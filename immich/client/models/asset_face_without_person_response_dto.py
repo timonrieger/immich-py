@@ -16,8 +16,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from immich.client.models.source_type import SourceType
 from typing import Set
 from typing_extensions import Self
@@ -32,7 +33,7 @@ class AssetFaceWithoutPersonResponseDto(BaseModel):
     bounding_box_x2: StrictInt = Field(alias="boundingBoxX2")
     bounding_box_y1: StrictInt = Field(alias="boundingBoxY1")
     bounding_box_y2: StrictInt = Field(alias="boundingBoxY2")
-    id: StrictStr
+    id: UUID
     image_height: StrictInt = Field(alias="imageHeight")
     image_width: StrictInt = Field(alias="imageWidth")
     source_type: Optional[SourceType] = Field(default=None, alias="sourceType")

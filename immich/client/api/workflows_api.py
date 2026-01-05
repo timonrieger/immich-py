@@ -15,6 +15,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
+from uuid import UUID
 from immich.client.models.workflow_create_dto import WorkflowCreateDto
 from immich.client.models.workflow_response_dto import WorkflowResponseDto
 from immich.client.models.workflow_update_dto import WorkflowUpdateDto
@@ -290,7 +291,7 @@ class WorkflowsApi:
     @validate_call
     async def delete_workflow(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -308,7 +309,7 @@ class WorkflowsApi:
         Delete a workflow by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -354,7 +355,7 @@ class WorkflowsApi:
     @validate_call
     async def delete_workflow_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -372,7 +373,7 @@ class WorkflowsApi:
         Delete a workflow by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -418,7 +419,7 @@ class WorkflowsApi:
     @validate_call
     async def delete_workflow_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -436,7 +437,7 @@ class WorkflowsApi:
         Delete a workflow by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -525,7 +526,7 @@ class WorkflowsApi:
     @validate_call
     async def get_workflow(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -543,7 +544,7 @@ class WorkflowsApi:
         Retrieve information about a specific workflow by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -589,7 +590,7 @@ class WorkflowsApi:
     @validate_call
     async def get_workflow_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -607,7 +608,7 @@ class WorkflowsApi:
         Retrieve information about a specific workflow by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -653,7 +654,7 @@ class WorkflowsApi:
     @validate_call
     async def get_workflow_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -671,7 +672,7 @@ class WorkflowsApi:
         Retrieve information about a specific workflow by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -992,7 +993,7 @@ class WorkflowsApi:
     @validate_call
     async def update_workflow(
         self,
-        id: StrictStr,
+        id: UUID,
         workflow_update_dto: WorkflowUpdateDto,
         _request_timeout: Union[
             None,
@@ -1011,7 +1012,7 @@ class WorkflowsApi:
         Update the information of a specific workflow by its ID. This endpoint can be used to update the workflow name, description, trigger type, filters and actions order, etc.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param workflow_update_dto: (required)
         :type workflow_update_dto: WorkflowUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1060,7 +1061,7 @@ class WorkflowsApi:
     @validate_call
     async def update_workflow_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         workflow_update_dto: WorkflowUpdateDto,
         _request_timeout: Union[
             None,
@@ -1079,7 +1080,7 @@ class WorkflowsApi:
         Update the information of a specific workflow by its ID. This endpoint can be used to update the workflow name, description, trigger type, filters and actions order, etc.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param workflow_update_dto: (required)
         :type workflow_update_dto: WorkflowUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1128,7 +1129,7 @@ class WorkflowsApi:
     @validate_call
     async def update_workflow_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         workflow_update_dto: WorkflowUpdateDto,
         _request_timeout: Union[
             None,
@@ -1147,7 +1148,7 @@ class WorkflowsApi:
         Update the information of a specific workflow by its ID. This endpoint can be used to update the workflow name, description, trigger type, filters and actions order, etc.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param workflow_update_dto: (required)
         :type workflow_update_dto: WorkflowUpdateDto
         :param _request_timeout: timeout setting for this request. If one

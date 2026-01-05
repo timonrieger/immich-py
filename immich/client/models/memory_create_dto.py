@@ -17,8 +17,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from immich.client.models.memory_type import MemoryType
 from immich.client.models.on_this_day_dto import OnThisDayDto
 from typing import Set
@@ -30,7 +31,7 @@ class MemoryCreateDto(BaseModel):
     MemoryCreateDto
     """  # noqa: E501
 
-    asset_ids: Optional[List[StrictStr]] = Field(default=None, alias="assetIds")
+    asset_ids: Optional[List[UUID]] = Field(default=None, alias="assetIds")
     data: OnThisDayDto
     is_saved: Optional[StrictBool] = Field(default=None, alias="isSaved")
     memory_at: datetime = Field(alias="memoryAt")

@@ -18,6 +18,7 @@ from typing_extensions import Annotated
 
 from datetime import datetime
 from pydantic import StrictBytes
+from uuid import UUID
 from immich.client.models.asset_delta_sync_dto import AssetDeltaSyncDto
 from immich.client.models.asset_delta_sync_response_dto import AssetDeltaSyncResponseDto
 from immich.client.models.asset_full_sync_dto import AssetFullSyncDto
@@ -49,7 +50,7 @@ class DeprecatedApi:
     @validate_call
     async def create_partner_deprecated(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -67,7 +68,7 @@ class DeprecatedApi:
         Create a new partner to share assets with.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -114,7 +115,7 @@ class DeprecatedApi:
     @validate_call
     async def create_partner_deprecated_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -132,7 +133,7 @@ class DeprecatedApi:
         Create a new partner to share assets with.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -179,7 +180,7 @@ class DeprecatedApi:
     @validate_call
     async def create_partner_deprecated_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -197,7 +198,7 @@ class DeprecatedApi:
         Create a new partner to share assets with.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1540,7 +1541,7 @@ class DeprecatedApi:
     @validate_call
     async def replace_asset(
         self,
-        id: StrictStr,
+        id: UUID,
         asset_data: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
         device_asset_id: StrictStr,
         device_id: StrictStr,
@@ -1567,7 +1568,7 @@ class DeprecatedApi:
         Replace the asset with new file, without changing its id.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param asset_data: (required)
         :type asset_data: bytearray
         :param device_asset_id: (required)
@@ -1641,7 +1642,7 @@ class DeprecatedApi:
     @validate_call
     async def replace_asset_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         asset_data: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
         device_asset_id: StrictStr,
         device_id: StrictStr,
@@ -1668,7 +1669,7 @@ class DeprecatedApi:
         Replace the asset with new file, without changing its id.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param asset_data: (required)
         :type asset_data: bytearray
         :param device_asset_id: (required)
@@ -1742,7 +1743,7 @@ class DeprecatedApi:
     @validate_call
     async def replace_asset_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         asset_data: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
         device_asset_id: StrictStr,
         device_id: StrictStr,
@@ -1769,7 +1770,7 @@ class DeprecatedApi:
         Replace the asset with new file, without changing its id.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param asset_data: (required)
         :type asset_data: bytearray
         :param device_asset_id: (required)

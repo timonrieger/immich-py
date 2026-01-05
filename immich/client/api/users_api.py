@@ -16,6 +16,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import StrictBytes
+from uuid import UUID
 from immich.client.models.create_profile_image_response_dto import (
     CreateProfileImageResponseDto,
 )
@@ -1414,7 +1415,7 @@ class UsersApi:
     @validate_call
     async def get_profile_image(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1432,7 +1433,7 @@ class UsersApi:
         Retrieve the profile image file for a user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1478,7 +1479,7 @@ class UsersApi:
     @validate_call
     async def get_profile_image_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1496,7 +1497,7 @@ class UsersApi:
         Retrieve the profile image file for a user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1542,7 +1543,7 @@ class UsersApi:
     @validate_call
     async def get_profile_image_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1560,7 +1561,7 @@ class UsersApi:
         Retrieve the profile image file for a user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1655,7 +1656,7 @@ class UsersApi:
     @validate_call
     async def get_user(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1673,7 +1674,7 @@ class UsersApi:
         Retrieve a specific user by their ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1719,7 +1720,7 @@ class UsersApi:
     @validate_call
     async def get_user_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1737,7 +1738,7 @@ class UsersApi:
         Retrieve a specific user by their ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1783,7 +1784,7 @@ class UsersApi:
     @validate_call
     async def get_user_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1801,7 +1802,7 @@ class UsersApi:
         Retrieve a specific user by their ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of

@@ -16,6 +16,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import StrictBool
+from uuid import UUID
 from immich.client.models.add_users_dto import AddUsersDto
 from immich.client.models.album_response_dto import AlbumResponseDto
 from immich.client.models.album_statistics_response_dto import (
@@ -51,7 +52,7 @@ class AlbumsApi:
     @validate_call
     async def add_assets_to_album(
         self,
-        id: StrictStr,
+        id: UUID,
         bulk_ids_dto: BulkIdsDto,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
@@ -72,7 +73,7 @@ class AlbumsApi:
         Add multiple assets to a specific album by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param bulk_ids_dto: (required)
         :type bulk_ids_dto: BulkIdsDto
         :param key:
@@ -127,7 +128,7 @@ class AlbumsApi:
     @validate_call
     async def add_assets_to_album_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         bulk_ids_dto: BulkIdsDto,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
@@ -148,7 +149,7 @@ class AlbumsApi:
         Add multiple assets to a specific album by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param bulk_ids_dto: (required)
         :type bulk_ids_dto: BulkIdsDto
         :param key:
@@ -203,7 +204,7 @@ class AlbumsApi:
     @validate_call
     async def add_assets_to_album_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         bulk_ids_dto: BulkIdsDto,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
@@ -224,7 +225,7 @@ class AlbumsApi:
         Add multiple assets to a specific album by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param bulk_ids_dto: (required)
         :type bulk_ids_dto: BulkIdsDto
         :param key:
@@ -632,7 +633,7 @@ class AlbumsApi:
     @validate_call
     async def add_users_to_album(
         self,
-        id: StrictStr,
+        id: UUID,
         add_users_dto: AddUsersDto,
         _request_timeout: Union[
             None,
@@ -651,7 +652,7 @@ class AlbumsApi:
         Share an album with multiple users. Each user can be given a specific role in the album.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param add_users_dto: (required)
         :type add_users_dto: AddUsersDto
         :param _request_timeout: timeout setting for this request. If one
@@ -700,7 +701,7 @@ class AlbumsApi:
     @validate_call
     async def add_users_to_album_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         add_users_dto: AddUsersDto,
         _request_timeout: Union[
             None,
@@ -719,7 +720,7 @@ class AlbumsApi:
         Share an album with multiple users. Each user can be given a specific role in the album.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param add_users_dto: (required)
         :type add_users_dto: AddUsersDto
         :param _request_timeout: timeout setting for this request. If one
@@ -768,7 +769,7 @@ class AlbumsApi:
     @validate_call
     async def add_users_to_album_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         add_users_dto: AddUsersDto,
         _request_timeout: Union[
             None,
@@ -787,7 +788,7 @@ class AlbumsApi:
         Share an album with multiple users. Each user can be given a specific role in the album.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param add_users_dto: (required)
         :type add_users_dto: AddUsersDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1149,7 +1150,7 @@ class AlbumsApi:
     @validate_call
     async def delete_album(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1167,7 +1168,7 @@ class AlbumsApi:
         Delete a specific album by its ID. Note the album is initially trashed and then immediately scheduled for deletion, but relies on a background job to complete the process.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1213,7 +1214,7 @@ class AlbumsApi:
     @validate_call
     async def delete_album_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1231,7 +1232,7 @@ class AlbumsApi:
         Delete a specific album by its ID. Note the album is initially trashed and then immediately scheduled for deletion, but relies on a background job to complete the process.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1277,7 +1278,7 @@ class AlbumsApi:
     @validate_call
     async def delete_album_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1295,7 +1296,7 @@ class AlbumsApi:
         Delete a specific album by its ID. Note the album is initially trashed and then immediately scheduled for deletion, but relies on a background job to complete the process.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1384,7 +1385,7 @@ class AlbumsApi:
     @validate_call
     async def get_album_info(
         self,
-        id: StrictStr,
+        id: UUID,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
         without_assets: Optional[StrictBool] = None,
@@ -1405,7 +1406,7 @@ class AlbumsApi:
         Retrieve information about a specific album by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param key:
         :type key: str
         :param slug:
@@ -1460,7 +1461,7 @@ class AlbumsApi:
     @validate_call
     async def get_album_info_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
         without_assets: Optional[StrictBool] = None,
@@ -1481,7 +1482,7 @@ class AlbumsApi:
         Retrieve information about a specific album by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param key:
         :type key: str
         :param slug:
@@ -1536,7 +1537,7 @@ class AlbumsApi:
     @validate_call
     async def get_album_info_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
         without_assets: Optional[StrictBool] = None,
@@ -1557,7 +1558,7 @@ class AlbumsApi:
         Retrieve information about a specific album by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param key:
         :type key: str
         :param slug:
@@ -1900,7 +1901,7 @@ class AlbumsApi:
     async def get_all_albums(
         self,
         asset_id: Annotated[
-            Optional[StrictStr],
+            Optional[UUID],
             Field(
                 description="Only returns albums that contain the asset Ignores the shared parameter undefined: get all albums"
             ),
@@ -1923,7 +1924,7 @@ class AlbumsApi:
         Retrieve a list of albums available to the authenticated user.
 
         :param asset_id: Only returns albums that contain the asset Ignores the shared parameter undefined: get all albums
-        :type asset_id: str
+        :type asset_id: UUID
         :param shared:
         :type shared: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -1973,7 +1974,7 @@ class AlbumsApi:
     async def get_all_albums_with_http_info(
         self,
         asset_id: Annotated[
-            Optional[StrictStr],
+            Optional[UUID],
             Field(
                 description="Only returns albums that contain the asset Ignores the shared parameter undefined: get all albums"
             ),
@@ -1996,7 +1997,7 @@ class AlbumsApi:
         Retrieve a list of albums available to the authenticated user.
 
         :param asset_id: Only returns albums that contain the asset Ignores the shared parameter undefined: get all albums
-        :type asset_id: str
+        :type asset_id: UUID
         :param shared:
         :type shared: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -2046,7 +2047,7 @@ class AlbumsApi:
     async def get_all_albums_without_preload_content(
         self,
         asset_id: Annotated[
-            Optional[StrictStr],
+            Optional[UUID],
             Field(
                 description="Only returns albums that contain the asset Ignores the shared parameter undefined: get all albums"
             ),
@@ -2069,7 +2070,7 @@ class AlbumsApi:
         Retrieve a list of albums available to the authenticated user.
 
         :param asset_id: Only returns albums that contain the asset Ignores the shared parameter undefined: get all albums
-        :type asset_id: str
+        :type asset_id: UUID
         :param shared:
         :type shared: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -2172,7 +2173,7 @@ class AlbumsApi:
     @validate_call
     async def remove_asset_from_album(
         self,
-        id: StrictStr,
+        id: UUID,
         bulk_ids_dto: BulkIdsDto,
         _request_timeout: Union[
             None,
@@ -2191,7 +2192,7 @@ class AlbumsApi:
         Remove multiple assets from a specific album by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param bulk_ids_dto: (required)
         :type bulk_ids_dto: BulkIdsDto
         :param _request_timeout: timeout setting for this request. If one
@@ -2240,7 +2241,7 @@ class AlbumsApi:
     @validate_call
     async def remove_asset_from_album_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         bulk_ids_dto: BulkIdsDto,
         _request_timeout: Union[
             None,
@@ -2259,7 +2260,7 @@ class AlbumsApi:
         Remove multiple assets from a specific album by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param bulk_ids_dto: (required)
         :type bulk_ids_dto: BulkIdsDto
         :param _request_timeout: timeout setting for this request. If one
@@ -2308,7 +2309,7 @@ class AlbumsApi:
     @validate_call
     async def remove_asset_from_album_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         bulk_ids_dto: BulkIdsDto,
         _request_timeout: Union[
             None,
@@ -2327,7 +2328,7 @@ class AlbumsApi:
         Remove multiple assets from a specific album by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param bulk_ids_dto: (required)
         :type bulk_ids_dto: BulkIdsDto
         :param _request_timeout: timeout setting for this request. If one
@@ -2438,7 +2439,7 @@ class AlbumsApi:
     @validate_call
     async def remove_user_from_album(
         self,
-        id: StrictStr,
+        id: UUID,
         user_id: StrictStr,
         _request_timeout: Union[
             None,
@@ -2457,7 +2458,7 @@ class AlbumsApi:
         Remove a user from an album. Use an ID of \"me\" to leave a shared album.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param user_id: (required)
         :type user_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2506,7 +2507,7 @@ class AlbumsApi:
     @validate_call
     async def remove_user_from_album_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         user_id: StrictStr,
         _request_timeout: Union[
             None,
@@ -2525,7 +2526,7 @@ class AlbumsApi:
         Remove a user from an album. Use an ID of \"me\" to leave a shared album.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param user_id: (required)
         :type user_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2574,7 +2575,7 @@ class AlbumsApi:
     @validate_call
     async def remove_user_from_album_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         user_id: StrictStr,
         _request_timeout: Union[
             None,
@@ -2593,7 +2594,7 @@ class AlbumsApi:
         Remove a user from an album. Use an ID of \"me\" to leave a shared album.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param user_id: (required)
         :type user_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2688,7 +2689,7 @@ class AlbumsApi:
     @validate_call
     async def update_album_info(
         self,
-        id: StrictStr,
+        id: UUID,
         update_album_dto: UpdateAlbumDto,
         _request_timeout: Union[
             None,
@@ -2707,7 +2708,7 @@ class AlbumsApi:
         Update the information of a specific album by its ID. This endpoint can be used to update the album name, description, sort order, etc. However, it is not used to add or remove assets or users from the album.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param update_album_dto: (required)
         :type update_album_dto: UpdateAlbumDto
         :param _request_timeout: timeout setting for this request. If one
@@ -2756,7 +2757,7 @@ class AlbumsApi:
     @validate_call
     async def update_album_info_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         update_album_dto: UpdateAlbumDto,
         _request_timeout: Union[
             None,
@@ -2775,7 +2776,7 @@ class AlbumsApi:
         Update the information of a specific album by its ID. This endpoint can be used to update the album name, description, sort order, etc. However, it is not used to add or remove assets or users from the album.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param update_album_dto: (required)
         :type update_album_dto: UpdateAlbumDto
         :param _request_timeout: timeout setting for this request. If one
@@ -2824,7 +2825,7 @@ class AlbumsApi:
     @validate_call
     async def update_album_info_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         update_album_dto: UpdateAlbumDto,
         _request_timeout: Union[
             None,
@@ -2843,7 +2844,7 @@ class AlbumsApi:
         Update the information of a specific album by its ID. This endpoint can be used to update the album name, description, sort order, etc. However, it is not used to add or remove assets or users from the album.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param update_album_dto: (required)
         :type update_album_dto: UpdateAlbumDto
         :param _request_timeout: timeout setting for this request. If one
@@ -2954,7 +2955,7 @@ class AlbumsApi:
     @validate_call
     async def update_album_user(
         self,
-        id: StrictStr,
+        id: UUID,
         user_id: StrictStr,
         update_album_user_dto: UpdateAlbumUserDto,
         _request_timeout: Union[
@@ -2974,7 +2975,7 @@ class AlbumsApi:
         Change the role for a specific user in a specific album.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param user_id: (required)
         :type user_id: str
         :param update_album_user_dto: (required)
@@ -3026,7 +3027,7 @@ class AlbumsApi:
     @validate_call
     async def update_album_user_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         user_id: StrictStr,
         update_album_user_dto: UpdateAlbumUserDto,
         _request_timeout: Union[
@@ -3046,7 +3047,7 @@ class AlbumsApi:
         Change the role for a specific user in a specific album.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param user_id: (required)
         :type user_id: str
         :param update_album_user_dto: (required)
@@ -3098,7 +3099,7 @@ class AlbumsApi:
     @validate_call
     async def update_album_user_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         user_id: StrictStr,
         update_album_user_dto: UpdateAlbumUserDto,
         _request_timeout: Union[
@@ -3118,7 +3119,7 @@ class AlbumsApi:
         Change the role for a specific user in a specific album.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param user_id: (required)
         :type user_id: str
         :param update_album_user_dto: (required)

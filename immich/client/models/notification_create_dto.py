@@ -19,6 +19,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from immich.client.models.notification_level import NotificationLevel
 from immich.client.models.notification_type import NotificationType
 from typing import Set
@@ -36,7 +37,7 @@ class NotificationCreateDto(BaseModel):
     read_at: Optional[datetime] = Field(default=None, alias="readAt")
     title: StrictStr
     type: Optional[NotificationType] = None
-    user_id: StrictStr = Field(alias="userId")
+    user_id: UUID = Field(alias="userId")
     __properties: ClassVar[List[str]] = [
         "data",
         "description",

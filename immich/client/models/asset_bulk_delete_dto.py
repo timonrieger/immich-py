@@ -16,8 +16,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Set
 from typing_extensions import Self
 
@@ -28,7 +29,7 @@ class AssetBulkDeleteDto(BaseModel):
     """  # noqa: E501
 
     force: Optional[StrictBool] = None
-    ids: List[StrictStr]
+    ids: List[UUID]
     __properties: ClassVar[List[str]] = ["force", "ids"]
 
     model_config = ConfigDict(

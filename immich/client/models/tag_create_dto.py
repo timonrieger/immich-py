@@ -19,6 +19,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from typing import Set
 from typing_extensions import Self
 
@@ -30,7 +31,7 @@ class TagCreateDto(BaseModel):
 
     color: Optional[Annotated[str, Field(strict=True)]] = None
     name: StrictStr
-    parent_id: Optional[StrictStr] = Field(default=None, alias="parentId")
+    parent_id: Optional[UUID] = Field(default=None, alias="parentId")
     __properties: ClassVar[List[str]] = ["color", "name", "parentId"]
 
     @field_validator("color")

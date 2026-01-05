@@ -16,6 +16,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import StrictBool
+from uuid import UUID
 from immich.client.models.notification_delete_all_dto import NotificationDeleteAllDto
 from immich.client.models.notification_dto import NotificationDto
 from immich.client.models.notification_level import NotificationLevel
@@ -43,7 +44,7 @@ class NotificationsApi:
     @validate_call
     async def delete_notification(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -61,7 +62,7 @@ class NotificationsApi:
         Delete a specific notification.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -107,7 +108,7 @@ class NotificationsApi:
     @validate_call
     async def delete_notification_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -125,7 +126,7 @@ class NotificationsApi:
         Delete a specific notification.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -171,7 +172,7 @@ class NotificationsApi:
     @validate_call
     async def delete_notification_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -189,7 +190,7 @@ class NotificationsApi:
         Delete a specific notification.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -523,7 +524,7 @@ class NotificationsApi:
     @validate_call
     async def get_notification(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -541,7 +542,7 @@ class NotificationsApi:
         Retrieve a specific notification identified by id.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -587,7 +588,7 @@ class NotificationsApi:
     @validate_call
     async def get_notification_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -605,7 +606,7 @@ class NotificationsApi:
         Retrieve a specific notification identified by id.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -651,7 +652,7 @@ class NotificationsApi:
     @validate_call
     async def get_notification_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -669,7 +670,7 @@ class NotificationsApi:
         Retrieve a specific notification identified by id.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -764,7 +765,7 @@ class NotificationsApi:
     @validate_call
     async def get_notifications(
         self,
-        id: Optional[StrictStr] = None,
+        id: Optional[UUID] = None,
         level: Optional[NotificationLevel] = None,
         type: Optional[NotificationType] = None,
         unread: Optional[StrictBool] = None,
@@ -785,7 +786,7 @@ class NotificationsApi:
         Retrieve a list of notifications.
 
         :param id:
-        :type id: str
+        :type id: UUID
         :param level:
         :type level: NotificationLevel
         :param type:
@@ -840,7 +841,7 @@ class NotificationsApi:
     @validate_call
     async def get_notifications_with_http_info(
         self,
-        id: Optional[StrictStr] = None,
+        id: Optional[UUID] = None,
         level: Optional[NotificationLevel] = None,
         type: Optional[NotificationType] = None,
         unread: Optional[StrictBool] = None,
@@ -861,7 +862,7 @@ class NotificationsApi:
         Retrieve a list of notifications.
 
         :param id:
-        :type id: str
+        :type id: UUID
         :param level:
         :type level: NotificationLevel
         :param type:
@@ -916,7 +917,7 @@ class NotificationsApi:
     @validate_call
     async def get_notifications_without_preload_content(
         self,
-        id: Optional[StrictStr] = None,
+        id: Optional[UUID] = None,
         level: Optional[NotificationLevel] = None,
         type: Optional[NotificationType] = None,
         unread: Optional[StrictBool] = None,
@@ -937,7 +938,7 @@ class NotificationsApi:
         Retrieve a list of notifications.
 
         :param id:
-        :type id: str
+        :type id: UUID
         :param level:
         :type level: NotificationLevel
         :param type:
@@ -1054,7 +1055,7 @@ class NotificationsApi:
     @validate_call
     async def update_notification(
         self,
-        id: StrictStr,
+        id: UUID,
         notification_update_dto: NotificationUpdateDto,
         _request_timeout: Union[
             None,
@@ -1073,7 +1074,7 @@ class NotificationsApi:
         Update a specific notification to set its read status.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param notification_update_dto: (required)
         :type notification_update_dto: NotificationUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1122,7 +1123,7 @@ class NotificationsApi:
     @validate_call
     async def update_notification_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         notification_update_dto: NotificationUpdateDto,
         _request_timeout: Union[
             None,
@@ -1141,7 +1142,7 @@ class NotificationsApi:
         Update a specific notification to set its read status.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param notification_update_dto: (required)
         :type notification_update_dto: NotificationUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1190,7 +1191,7 @@ class NotificationsApi:
     @validate_call
     async def update_notification_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         notification_update_dto: NotificationUpdateDto,
         _request_timeout: Union[
             None,
@@ -1209,7 +1210,7 @@ class NotificationsApi:
         Update a specific notification to set its read status.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param notification_update_dto: (required)
         :type notification_update_dto: NotificationUpdateDto
         :param _request_timeout: timeout setting for this request. If one

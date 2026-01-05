@@ -16,6 +16,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
+from uuid import UUID
 from immich.client.models.partner_create_dto import PartnerCreateDto
 from immich.client.models.partner_direction import PartnerDirection
 from immich.client.models.partner_response_dto import PartnerResponseDto
@@ -292,7 +293,7 @@ class PartnersApi:
     @validate_call
     async def create_partner_deprecated(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -310,7 +311,7 @@ class PartnersApi:
         Create a new partner to share assets with.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -357,7 +358,7 @@ class PartnersApi:
     @validate_call
     async def create_partner_deprecated_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -375,7 +376,7 @@ class PartnersApi:
         Create a new partner to share assets with.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -422,7 +423,7 @@ class PartnersApi:
     @validate_call
     async def create_partner_deprecated_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -440,7 +441,7 @@ class PartnersApi:
         Create a new partner to share assets with.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -778,7 +779,7 @@ class PartnersApi:
     @validate_call
     async def remove_partner(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -796,7 +797,7 @@ class PartnersApi:
         Stop sharing assets with a partner.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -842,7 +843,7 @@ class PartnersApi:
     @validate_call
     async def remove_partner_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -860,7 +861,7 @@ class PartnersApi:
         Stop sharing assets with a partner.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -906,7 +907,7 @@ class PartnersApi:
     @validate_call
     async def remove_partner_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -924,7 +925,7 @@ class PartnersApi:
         Stop sharing assets with a partner.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1013,7 +1014,7 @@ class PartnersApi:
     @validate_call
     async def update_partner(
         self,
-        id: StrictStr,
+        id: UUID,
         partner_update_dto: PartnerUpdateDto,
         _request_timeout: Union[
             None,
@@ -1032,7 +1033,7 @@ class PartnersApi:
         Specify whether a partner's assets should appear in the user's timeline.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param partner_update_dto: (required)
         :type partner_update_dto: PartnerUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1081,7 +1082,7 @@ class PartnersApi:
     @validate_call
     async def update_partner_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         partner_update_dto: PartnerUpdateDto,
         _request_timeout: Union[
             None,
@@ -1100,7 +1101,7 @@ class PartnersApi:
         Specify whether a partner's assets should appear in the user's timeline.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param partner_update_dto: (required)
         :type partner_update_dto: PartnerUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1149,7 +1150,7 @@ class PartnersApi:
     @validate_call
     async def update_partner_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         partner_update_dto: PartnerUpdateDto,
         _request_timeout: Union[
             None,
@@ -1168,7 +1169,7 @@ class PartnersApi:
         Specify whether a partner's assets should appear in the user's timeline.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param partner_update_dto: (required)
         :type partner_update_dto: PartnerUpdateDto
         :param _request_timeout: timeout setting for this request. If one

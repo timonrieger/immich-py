@@ -15,6 +15,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
+from uuid import UUID
 from immich.client.models.asset_face_create_dto import AssetFaceCreateDto
 from immich.client.models.asset_face_delete_dto import AssetFaceDeleteDto
 from immich.client.models.asset_face_response_dto import AssetFaceResponseDto
@@ -286,7 +287,7 @@ class FacesApi:
     @validate_call
     async def delete_face(
         self,
-        id: StrictStr,
+        id: UUID,
         asset_face_delete_dto: AssetFaceDeleteDto,
         _request_timeout: Union[
             None,
@@ -305,7 +306,7 @@ class FacesApi:
         Delete a face identified by the id. Optionally can be force deleted.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param asset_face_delete_dto: (required)
         :type asset_face_delete_dto: AssetFaceDeleteDto
         :param _request_timeout: timeout setting for this request. If one
@@ -354,7 +355,7 @@ class FacesApi:
     @validate_call
     async def delete_face_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         asset_face_delete_dto: AssetFaceDeleteDto,
         _request_timeout: Union[
             None,
@@ -373,7 +374,7 @@ class FacesApi:
         Delete a face identified by the id. Optionally can be force deleted.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param asset_face_delete_dto: (required)
         :type asset_face_delete_dto: AssetFaceDeleteDto
         :param _request_timeout: timeout setting for this request. If one
@@ -422,7 +423,7 @@ class FacesApi:
     @validate_call
     async def delete_face_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         asset_face_delete_dto: AssetFaceDeleteDto,
         _request_timeout: Union[
             None,
@@ -441,7 +442,7 @@ class FacesApi:
         Delete a face identified by the id. Optionally can be force deleted.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param asset_face_delete_dto: (required)
         :type asset_face_delete_dto: AssetFaceDeleteDto
         :param _request_timeout: timeout setting for this request. If one
@@ -546,7 +547,7 @@ class FacesApi:
     @validate_call
     async def get_faces(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -564,7 +565,7 @@ class FacesApi:
         Retrieve all faces belonging to an asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -610,7 +611,7 @@ class FacesApi:
     @validate_call
     async def get_faces_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -628,7 +629,7 @@ class FacesApi:
         Retrieve all faces belonging to an asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -674,7 +675,7 @@ class FacesApi:
     @validate_call
     async def get_faces_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -692,7 +693,7 @@ class FacesApi:
         Retrieve all faces belonging to an asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -788,7 +789,7 @@ class FacesApi:
     @validate_call
     async def reassign_faces_by_id(
         self,
-        id: StrictStr,
+        id: UUID,
         face_dto: FaceDto,
         _request_timeout: Union[
             None,
@@ -807,7 +808,7 @@ class FacesApi:
         Re-assign the face provided in the body to the person identified by the id in the path parameter.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param face_dto: (required)
         :type face_dto: FaceDto
         :param _request_timeout: timeout setting for this request. If one
@@ -856,7 +857,7 @@ class FacesApi:
     @validate_call
     async def reassign_faces_by_id_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         face_dto: FaceDto,
         _request_timeout: Union[
             None,
@@ -875,7 +876,7 @@ class FacesApi:
         Re-assign the face provided in the body to the person identified by the id in the path parameter.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param face_dto: (required)
         :type face_dto: FaceDto
         :param _request_timeout: timeout setting for this request. If one
@@ -924,7 +925,7 @@ class FacesApi:
     @validate_call
     async def reassign_faces_by_id_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         face_dto: FaceDto,
         _request_timeout: Union[
             None,
@@ -943,7 +944,7 @@ class FacesApi:
         Re-assign the face provided in the body to the person identified by the id in the path parameter.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param face_dto: (required)
         :type face_dto: FaceDto
         :param _request_timeout: timeout setting for this request. If one

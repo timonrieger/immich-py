@@ -15,6 +15,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
+from uuid import UUID
 from immich.client.models.bulk_id_response_dto import BulkIdResponseDto
 from immich.client.models.bulk_ids_dto import BulkIdsDto
 from immich.client.models.tag_bulk_assets_dto import TagBulkAssetsDto
@@ -546,7 +547,7 @@ class TagsApi:
     @validate_call
     async def delete_tag(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -564,7 +565,7 @@ class TagsApi:
         Delete a specific tag by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -610,7 +611,7 @@ class TagsApi:
     @validate_call
     async def delete_tag_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -628,7 +629,7 @@ class TagsApi:
         Delete a specific tag by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -674,7 +675,7 @@ class TagsApi:
     @validate_call
     async def delete_tag_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -692,7 +693,7 @@ class TagsApi:
         Delete a specific tag by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1007,7 +1008,7 @@ class TagsApi:
     @validate_call
     async def get_tag_by_id(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1025,7 +1026,7 @@ class TagsApi:
         Retrieve a specific tag by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1071,7 +1072,7 @@ class TagsApi:
     @validate_call
     async def get_tag_by_id_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1089,7 +1090,7 @@ class TagsApi:
         Retrieve a specific tag by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1135,7 +1136,7 @@ class TagsApi:
     @validate_call
     async def get_tag_by_id_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1153,7 +1154,7 @@ class TagsApi:
         Retrieve a specific tag by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1248,7 +1249,7 @@ class TagsApi:
     @validate_call
     async def tag_assets(
         self,
-        id: StrictStr,
+        id: UUID,
         bulk_ids_dto: BulkIdsDto,
         _request_timeout: Union[
             None,
@@ -1267,7 +1268,7 @@ class TagsApi:
         Add a tag to all the specified assets.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param bulk_ids_dto: (required)
         :type bulk_ids_dto: BulkIdsDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1316,7 +1317,7 @@ class TagsApi:
     @validate_call
     async def tag_assets_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         bulk_ids_dto: BulkIdsDto,
         _request_timeout: Union[
             None,
@@ -1335,7 +1336,7 @@ class TagsApi:
         Add a tag to all the specified assets.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param bulk_ids_dto: (required)
         :type bulk_ids_dto: BulkIdsDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1384,7 +1385,7 @@ class TagsApi:
     @validate_call
     async def tag_assets_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         bulk_ids_dto: BulkIdsDto,
         _request_timeout: Union[
             None,
@@ -1403,7 +1404,7 @@ class TagsApi:
         Add a tag to all the specified assets.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param bulk_ids_dto: (required)
         :type bulk_ids_dto: BulkIdsDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1514,7 +1515,7 @@ class TagsApi:
     @validate_call
     async def untag_assets(
         self,
-        id: StrictStr,
+        id: UUID,
         bulk_ids_dto: BulkIdsDto,
         _request_timeout: Union[
             None,
@@ -1533,7 +1534,7 @@ class TagsApi:
         Remove a tag from all the specified assets.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param bulk_ids_dto: (required)
         :type bulk_ids_dto: BulkIdsDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1582,7 +1583,7 @@ class TagsApi:
     @validate_call
     async def untag_assets_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         bulk_ids_dto: BulkIdsDto,
         _request_timeout: Union[
             None,
@@ -1601,7 +1602,7 @@ class TagsApi:
         Remove a tag from all the specified assets.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param bulk_ids_dto: (required)
         :type bulk_ids_dto: BulkIdsDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1650,7 +1651,7 @@ class TagsApi:
     @validate_call
     async def untag_assets_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         bulk_ids_dto: BulkIdsDto,
         _request_timeout: Union[
             None,
@@ -1669,7 +1670,7 @@ class TagsApi:
         Remove a tag from all the specified assets.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param bulk_ids_dto: (required)
         :type bulk_ids_dto: BulkIdsDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1780,7 +1781,7 @@ class TagsApi:
     @validate_call
     async def update_tag(
         self,
-        id: StrictStr,
+        id: UUID,
         tag_update_dto: TagUpdateDto,
         _request_timeout: Union[
             None,
@@ -1799,7 +1800,7 @@ class TagsApi:
         Update an existing tag identified by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param tag_update_dto: (required)
         :type tag_update_dto: TagUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1848,7 +1849,7 @@ class TagsApi:
     @validate_call
     async def update_tag_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         tag_update_dto: TagUpdateDto,
         _request_timeout: Union[
             None,
@@ -1867,7 +1868,7 @@ class TagsApi:
         Update an existing tag identified by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param tag_update_dto: (required)
         :type tag_update_dto: TagUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1916,7 +1917,7 @@ class TagsApi:
     @validate_call
     async def update_tag_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         tag_update_dto: TagUpdateDto,
         _request_timeout: Union[
             None,
@@ -1935,7 +1936,7 @@ class TagsApi:
         Update an existing tag identified by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param tag_update_dto: (required)
         :type tag_update_dto: TagUpdateDto
         :param _request_timeout: timeout setting for this request. If one

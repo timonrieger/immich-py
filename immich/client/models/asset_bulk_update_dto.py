@@ -27,6 +27,7 @@ from pydantic import (
 )
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing_extensions import Annotated
+from uuid import UUID
 from immich.client.models.asset_visibility import AssetVisibility
 from typing import Set
 from typing_extensions import Self
@@ -45,7 +46,7 @@ class AssetBulkUpdateDto(BaseModel):
     )
     description: Optional[StrictStr] = None
     duplicate_id: Optional[StrictStr] = Field(default=None, alias="duplicateId")
-    ids: List[StrictStr]
+    ids: List[UUID]
     is_favorite: Optional[StrictBool] = Field(default=None, alias="isFavorite")
     latitude: Optional[Union[StrictFloat, StrictInt]] = None
     longitude: Optional[Union[StrictFloat, StrictInt]] = None

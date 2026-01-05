@@ -17,6 +17,7 @@ from typing_extensions import Annotated
 
 from datetime import datetime
 from pydantic import StrictBool
+from uuid import UUID
 from immich.client.models.asset_response_dto import AssetResponseDto
 from immich.client.models.asset_type_enum import AssetTypeEnum
 from immich.client.models.asset_visibility import AssetVisibility
@@ -1345,7 +1346,7 @@ class SearchApi:
     @validate_call
     async def search_large_assets(
         self,
-        album_ids: Optional[List[StrictStr]] = None,
+        album_ids: Optional[List[UUID]] = None,
         city: Optional[StrictStr] = None,
         country: Optional[StrictStr] = None,
         created_after: Optional[datetime] = None,
@@ -1357,12 +1358,12 @@ class SearchApi:
         is_not_in_album: Optional[StrictBool] = None,
         is_offline: Optional[StrictBool] = None,
         lens_model: Optional[StrictStr] = None,
-        library_id: Optional[StrictStr] = None,
+        library_id: Optional[UUID] = None,
         make: Optional[StrictStr] = None,
         min_file_size: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         model: Optional[StrictStr] = None,
         ocr: Optional[StrictStr] = None,
-        person_ids: Optional[List[StrictStr]] = None,
+        person_ids: Optional[List[UUID]] = None,
         rating: Optional[
             Union[
                 Annotated[float, Field(le=5, strict=True, ge=-1)],
@@ -1376,7 +1377,7 @@ class SearchApi:
             ]
         ] = None,
         state: Optional[StrictStr] = None,
-        tag_ids: Optional[List[StrictStr]] = None,
+        tag_ids: Optional[List[UUID]] = None,
         taken_after: Optional[datetime] = None,
         taken_before: Optional[datetime] = None,
         trashed_after: Optional[datetime] = None,
@@ -1404,7 +1405,7 @@ class SearchApi:
         Search for assets that are considered large based on specified criteria.
 
         :param album_ids:
-        :type album_ids: List[str]
+        :type album_ids: List[UUID]
         :param city:
         :type city: str
         :param country:
@@ -1428,7 +1429,7 @@ class SearchApi:
         :param lens_model:
         :type lens_model: str
         :param library_id:
-        :type library_id: str
+        :type library_id: UUID
         :param make:
         :type make: str
         :param min_file_size:
@@ -1438,7 +1439,7 @@ class SearchApi:
         :param ocr:
         :type ocr: str
         :param person_ids:
-        :type person_ids: List[str]
+        :type person_ids: List[UUID]
         :param rating:
         :type rating: float
         :param size:
@@ -1446,7 +1447,7 @@ class SearchApi:
         :param state:
         :type state: str
         :param tag_ids:
-        :type tag_ids: List[str]
+        :type tag_ids: List[UUID]
         :param taken_after:
         :type taken_after: datetime
         :param taken_before:
@@ -1543,7 +1544,7 @@ class SearchApi:
     @validate_call
     async def search_large_assets_with_http_info(
         self,
-        album_ids: Optional[List[StrictStr]] = None,
+        album_ids: Optional[List[UUID]] = None,
         city: Optional[StrictStr] = None,
         country: Optional[StrictStr] = None,
         created_after: Optional[datetime] = None,
@@ -1555,12 +1556,12 @@ class SearchApi:
         is_not_in_album: Optional[StrictBool] = None,
         is_offline: Optional[StrictBool] = None,
         lens_model: Optional[StrictStr] = None,
-        library_id: Optional[StrictStr] = None,
+        library_id: Optional[UUID] = None,
         make: Optional[StrictStr] = None,
         min_file_size: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         model: Optional[StrictStr] = None,
         ocr: Optional[StrictStr] = None,
-        person_ids: Optional[List[StrictStr]] = None,
+        person_ids: Optional[List[UUID]] = None,
         rating: Optional[
             Union[
                 Annotated[float, Field(le=5, strict=True, ge=-1)],
@@ -1574,7 +1575,7 @@ class SearchApi:
             ]
         ] = None,
         state: Optional[StrictStr] = None,
-        tag_ids: Optional[List[StrictStr]] = None,
+        tag_ids: Optional[List[UUID]] = None,
         taken_after: Optional[datetime] = None,
         taken_before: Optional[datetime] = None,
         trashed_after: Optional[datetime] = None,
@@ -1602,7 +1603,7 @@ class SearchApi:
         Search for assets that are considered large based on specified criteria.
 
         :param album_ids:
-        :type album_ids: List[str]
+        :type album_ids: List[UUID]
         :param city:
         :type city: str
         :param country:
@@ -1626,7 +1627,7 @@ class SearchApi:
         :param lens_model:
         :type lens_model: str
         :param library_id:
-        :type library_id: str
+        :type library_id: UUID
         :param make:
         :type make: str
         :param min_file_size:
@@ -1636,7 +1637,7 @@ class SearchApi:
         :param ocr:
         :type ocr: str
         :param person_ids:
-        :type person_ids: List[str]
+        :type person_ids: List[UUID]
         :param rating:
         :type rating: float
         :param size:
@@ -1644,7 +1645,7 @@ class SearchApi:
         :param state:
         :type state: str
         :param tag_ids:
-        :type tag_ids: List[str]
+        :type tag_ids: List[UUID]
         :param taken_after:
         :type taken_after: datetime
         :param taken_before:
@@ -1741,7 +1742,7 @@ class SearchApi:
     @validate_call
     async def search_large_assets_without_preload_content(
         self,
-        album_ids: Optional[List[StrictStr]] = None,
+        album_ids: Optional[List[UUID]] = None,
         city: Optional[StrictStr] = None,
         country: Optional[StrictStr] = None,
         created_after: Optional[datetime] = None,
@@ -1753,12 +1754,12 @@ class SearchApi:
         is_not_in_album: Optional[StrictBool] = None,
         is_offline: Optional[StrictBool] = None,
         lens_model: Optional[StrictStr] = None,
-        library_id: Optional[StrictStr] = None,
+        library_id: Optional[UUID] = None,
         make: Optional[StrictStr] = None,
         min_file_size: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         model: Optional[StrictStr] = None,
         ocr: Optional[StrictStr] = None,
-        person_ids: Optional[List[StrictStr]] = None,
+        person_ids: Optional[List[UUID]] = None,
         rating: Optional[
             Union[
                 Annotated[float, Field(le=5, strict=True, ge=-1)],
@@ -1772,7 +1773,7 @@ class SearchApi:
             ]
         ] = None,
         state: Optional[StrictStr] = None,
-        tag_ids: Optional[List[StrictStr]] = None,
+        tag_ids: Optional[List[UUID]] = None,
         taken_after: Optional[datetime] = None,
         taken_before: Optional[datetime] = None,
         trashed_after: Optional[datetime] = None,
@@ -1800,7 +1801,7 @@ class SearchApi:
         Search for assets that are considered large based on specified criteria.
 
         :param album_ids:
-        :type album_ids: List[str]
+        :type album_ids: List[UUID]
         :param city:
         :type city: str
         :param country:
@@ -1824,7 +1825,7 @@ class SearchApi:
         :param lens_model:
         :type lens_model: str
         :param library_id:
-        :type library_id: str
+        :type library_id: UUID
         :param make:
         :type make: str
         :param min_file_size:
@@ -1834,7 +1835,7 @@ class SearchApi:
         :param ocr:
         :type ocr: str
         :param person_ids:
-        :type person_ids: List[str]
+        :type person_ids: List[UUID]
         :param rating:
         :type rating: float
         :param size:
@@ -1842,7 +1843,7 @@ class SearchApi:
         :param state:
         :type state: str
         :param tag_ids:
-        :type tag_ids: List[str]
+        :type tag_ids: List[UUID]
         :param taken_after:
         :type taken_after: datetime
         :param taken_before:

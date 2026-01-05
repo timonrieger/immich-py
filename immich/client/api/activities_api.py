@@ -15,6 +15,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
+from uuid import UUID
 from immich.client.models.activity_create_dto import ActivityCreateDto
 from immich.client.models.activity_response_dto import ActivityResponseDto
 from immich.client.models.activity_statistics_response_dto import (
@@ -294,7 +295,7 @@ class ActivitiesApi:
     @validate_call
     async def delete_activity(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -312,7 +313,7 @@ class ActivitiesApi:
         Removes a like or comment from a given album or asset in an album.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -358,7 +359,7 @@ class ActivitiesApi:
     @validate_call
     async def delete_activity_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -376,7 +377,7 @@ class ActivitiesApi:
         Removes a like or comment from a given album or asset in an album.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -422,7 +423,7 @@ class ActivitiesApi:
     @validate_call
     async def delete_activity_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -440,7 +441,7 @@ class ActivitiesApi:
         Removes a like or comment from a given album or asset in an album.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -529,11 +530,11 @@ class ActivitiesApi:
     @validate_call
     async def get_activities(
         self,
-        album_id: StrictStr,
-        asset_id: Optional[StrictStr] = None,
+        album_id: UUID,
+        asset_id: Optional[UUID] = None,
         level: Optional[ReactionLevel] = None,
         type: Optional[ReactionType] = None,
-        user_id: Optional[StrictStr] = None,
+        user_id: Optional[UUID] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -551,15 +552,15 @@ class ActivitiesApi:
         Returns a list of activities for the selected asset or album. The activities are returned in sorted order, with the oldest activities appearing first.
 
         :param album_id: (required)
-        :type album_id: str
+        :type album_id: UUID
         :param asset_id:
-        :type asset_id: str
+        :type asset_id: UUID
         :param level:
         :type level: ReactionLevel
         :param type:
         :type type: ReactionType
         :param user_id:
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -609,11 +610,11 @@ class ActivitiesApi:
     @validate_call
     async def get_activities_with_http_info(
         self,
-        album_id: StrictStr,
-        asset_id: Optional[StrictStr] = None,
+        album_id: UUID,
+        asset_id: Optional[UUID] = None,
         level: Optional[ReactionLevel] = None,
         type: Optional[ReactionType] = None,
-        user_id: Optional[StrictStr] = None,
+        user_id: Optional[UUID] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -631,15 +632,15 @@ class ActivitiesApi:
         Returns a list of activities for the selected asset or album. The activities are returned in sorted order, with the oldest activities appearing first.
 
         :param album_id: (required)
-        :type album_id: str
+        :type album_id: UUID
         :param asset_id:
-        :type asset_id: str
+        :type asset_id: UUID
         :param level:
         :type level: ReactionLevel
         :param type:
         :type type: ReactionType
         :param user_id:
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -689,11 +690,11 @@ class ActivitiesApi:
     @validate_call
     async def get_activities_without_preload_content(
         self,
-        album_id: StrictStr,
-        asset_id: Optional[StrictStr] = None,
+        album_id: UUID,
+        asset_id: Optional[UUID] = None,
         level: Optional[ReactionLevel] = None,
         type: Optional[ReactionType] = None,
-        user_id: Optional[StrictStr] = None,
+        user_id: Optional[UUID] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -711,15 +712,15 @@ class ActivitiesApi:
         Returns a list of activities for the selected asset or album. The activities are returned in sorted order, with the oldest activities appearing first.
 
         :param album_id: (required)
-        :type album_id: str
+        :type album_id: UUID
         :param asset_id:
-        :type asset_id: str
+        :type asset_id: UUID
         :param level:
         :type level: ReactionLevel
         :param type:
         :type type: ReactionType
         :param user_id:
-        :type user_id: str
+        :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -835,8 +836,8 @@ class ActivitiesApi:
     @validate_call
     async def get_activity_statistics(
         self,
-        album_id: StrictStr,
-        asset_id: Optional[StrictStr] = None,
+        album_id: UUID,
+        asset_id: Optional[UUID] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -854,9 +855,9 @@ class ActivitiesApi:
         Returns the number of likes and comments for a given album or asset in an album.
 
         :param album_id: (required)
-        :type album_id: str
+        :type album_id: UUID
         :param asset_id:
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -903,8 +904,8 @@ class ActivitiesApi:
     @validate_call
     async def get_activity_statistics_with_http_info(
         self,
-        album_id: StrictStr,
-        asset_id: Optional[StrictStr] = None,
+        album_id: UUID,
+        asset_id: Optional[UUID] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -922,9 +923,9 @@ class ActivitiesApi:
         Returns the number of likes and comments for a given album or asset in an album.
 
         :param album_id: (required)
-        :type album_id: str
+        :type album_id: UUID
         :param asset_id:
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -971,8 +972,8 @@ class ActivitiesApi:
     @validate_call
     async def get_activity_statistics_without_preload_content(
         self,
-        album_id: StrictStr,
-        asset_id: Optional[StrictStr] = None,
+        album_id: UUID,
+        asset_id: Optional[UUID] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -990,9 +991,9 @@ class ActivitiesApi:
         Returns the number of likes and comments for a given album or asset in an album.
 
         :param album_id: (required)
-        :type album_id: str
+        :type album_id: UUID
         :param asset_id:
-        :type asset_id: str
+        :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of

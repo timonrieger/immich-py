@@ -20,6 +20,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing_extensions import Annotated
+from uuid import UUID
 from immich.client.models.asset_type_enum import AssetTypeEnum
 from immich.client.models.asset_visibility import AssetVisibility
 from typing import Set
@@ -31,7 +32,7 @@ class RandomSearchDto(BaseModel):
     RandomSearchDto
     """  # noqa: E501
 
-    album_ids: Optional[List[StrictStr]] = Field(default=None, alias="albumIds")
+    album_ids: Optional[List[UUID]] = Field(default=None, alias="albumIds")
     city: Optional[StrictStr] = None
     country: Optional[StrictStr] = None
     created_after: Optional[datetime] = Field(default=None, alias="createdAfter")
@@ -43,11 +44,11 @@ class RandomSearchDto(BaseModel):
     is_not_in_album: Optional[StrictBool] = Field(default=None, alias="isNotInAlbum")
     is_offline: Optional[StrictBool] = Field(default=None, alias="isOffline")
     lens_model: Optional[StrictStr] = Field(default=None, alias="lensModel")
-    library_id: Optional[StrictStr] = Field(default=None, alias="libraryId")
+    library_id: Optional[UUID] = Field(default=None, alias="libraryId")
     make: Optional[StrictStr] = None
     model: Optional[StrictStr] = None
     ocr: Optional[StrictStr] = None
-    person_ids: Optional[List[StrictStr]] = Field(default=None, alias="personIds")
+    person_ids: Optional[List[UUID]] = Field(default=None, alias="personIds")
     rating: Optional[
         Union[
             Annotated[float, Field(le=5, strict=True, ge=-1)],
@@ -61,7 +62,7 @@ class RandomSearchDto(BaseModel):
         ]
     ] = None
     state: Optional[StrictStr] = None
-    tag_ids: Optional[List[StrictStr]] = Field(default=None, alias="tagIds")
+    tag_ids: Optional[List[UUID]] = Field(default=None, alias="tagIds")
     taken_after: Optional[datetime] = Field(default=None, alias="takenAfter")
     taken_before: Optional[datetime] = Field(default=None, alias="takenBefore")
     trashed_after: Optional[datetime] = Field(default=None, alias="trashedAfter")

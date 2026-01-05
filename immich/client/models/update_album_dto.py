@@ -18,6 +18,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from immich.client.models.asset_order import AssetOrder
 from typing import Set
 from typing_extensions import Self
@@ -29,7 +30,7 @@ class UpdateAlbumDto(BaseModel):
     """  # noqa: E501
 
     album_name: Optional[StrictStr] = Field(default=None, alias="albumName")
-    album_thumbnail_asset_id: Optional[StrictStr] = Field(
+    album_thumbnail_asset_id: Optional[UUID] = Field(
         default=None, alias="albumThumbnailAssetId"
     )
     description: Optional[StrictStr] = None

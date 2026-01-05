@@ -15,6 +15,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
+from uuid import UUID
 from immich.client.models.create_library_dto import CreateLibraryDto
 from immich.client.models.library_response_dto import LibraryResponseDto
 from immich.client.models.library_stats_response_dto import LibraryStatsResponseDto
@@ -295,7 +296,7 @@ class LibrariesApi:
     @validate_call
     async def delete_library(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -313,7 +314,7 @@ class LibrariesApi:
         Delete an external library by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -359,7 +360,7 @@ class LibrariesApi:
     @validate_call
     async def delete_library_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -377,7 +378,7 @@ class LibrariesApi:
         Delete an external library by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -423,7 +424,7 @@ class LibrariesApi:
     @validate_call
     async def delete_library_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -441,7 +442,7 @@ class LibrariesApi:
         Delete an external library by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -756,7 +757,7 @@ class LibrariesApi:
     @validate_call
     async def get_library(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -774,7 +775,7 @@ class LibrariesApi:
         Retrieve an external library by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -820,7 +821,7 @@ class LibrariesApi:
     @validate_call
     async def get_library_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -838,7 +839,7 @@ class LibrariesApi:
         Retrieve an external library by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -884,7 +885,7 @@ class LibrariesApi:
     @validate_call
     async def get_library_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -902,7 +903,7 @@ class LibrariesApi:
         Retrieve an external library by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -997,7 +998,7 @@ class LibrariesApi:
     @validate_call
     async def get_library_statistics(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1015,7 +1016,7 @@ class LibrariesApi:
         Retrieve statistics for a specific external library, including number of videos, images, and storage usage.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1061,7 +1062,7 @@ class LibrariesApi:
     @validate_call
     async def get_library_statistics_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1079,7 +1080,7 @@ class LibrariesApi:
         Retrieve statistics for a specific external library, including number of videos, images, and storage usage.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1125,7 +1126,7 @@ class LibrariesApi:
     @validate_call
     async def get_library_statistics_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1143,7 +1144,7 @@ class LibrariesApi:
         Retrieve statistics for a specific external library, including number of videos, images, and storage usage.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1238,7 +1239,7 @@ class LibrariesApi:
     @validate_call
     async def scan_library(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1256,7 +1257,7 @@ class LibrariesApi:
         Queue a scan for the external library to find and import new assets.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1302,7 +1303,7 @@ class LibrariesApi:
     @validate_call
     async def scan_library_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1320,7 +1321,7 @@ class LibrariesApi:
         Queue a scan for the external library to find and import new assets.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1366,7 +1367,7 @@ class LibrariesApi:
     @validate_call
     async def scan_library_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1384,7 +1385,7 @@ class LibrariesApi:
         Queue a scan for the external library to find and import new assets.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1473,7 +1474,7 @@ class LibrariesApi:
     @validate_call
     async def update_library(
         self,
-        id: StrictStr,
+        id: UUID,
         update_library_dto: UpdateLibraryDto,
         _request_timeout: Union[
             None,
@@ -1492,7 +1493,7 @@ class LibrariesApi:
         Update an existing external library.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param update_library_dto: (required)
         :type update_library_dto: UpdateLibraryDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1541,7 +1542,7 @@ class LibrariesApi:
     @validate_call
     async def update_library_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         update_library_dto: UpdateLibraryDto,
         _request_timeout: Union[
             None,
@@ -1560,7 +1561,7 @@ class LibrariesApi:
         Update an existing external library.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param update_library_dto: (required)
         :type update_library_dto: UpdateLibraryDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1609,7 +1610,7 @@ class LibrariesApi:
     @validate_call
     async def update_library_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         update_library_dto: UpdateLibraryDto,
         _request_timeout: Union[
             None,
@@ -1628,7 +1629,7 @@ class LibrariesApi:
         Update an existing external library.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param update_library_dto: (required)
         :type update_library_dto: UpdateLibraryDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1739,7 +1740,7 @@ class LibrariesApi:
     @validate_call
     async def validate(
         self,
-        id: StrictStr,
+        id: UUID,
         validate_library_dto: ValidateLibraryDto,
         _request_timeout: Union[
             None,
@@ -1758,7 +1759,7 @@ class LibrariesApi:
         Validate the settings of an external library.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param validate_library_dto: (required)
         :type validate_library_dto: ValidateLibraryDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1807,7 +1808,7 @@ class LibrariesApi:
     @validate_call
     async def validate_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         validate_library_dto: ValidateLibraryDto,
         _request_timeout: Union[
             None,
@@ -1826,7 +1827,7 @@ class LibrariesApi:
         Validate the settings of an external library.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param validate_library_dto: (required)
         :type validate_library_dto: ValidateLibraryDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1875,7 +1876,7 @@ class LibrariesApi:
     @validate_call
     async def validate_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         validate_library_dto: ValidateLibraryDto,
         _request_timeout: Union[
             None,
@@ -1894,7 +1895,7 @@ class LibrariesApi:
         Validate the settings of an external library.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param validate_library_dto: (required)
         :type validate_library_dto: ValidateLibraryDto
         :param _request_timeout: timeout setting for this request. If one

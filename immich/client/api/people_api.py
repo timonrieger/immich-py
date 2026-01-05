@@ -16,6 +16,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import StrictBool
+from uuid import UUID
 from immich.client.models.asset_face_update_dto import AssetFaceUpdateDto
 from immich.client.models.bulk_id_response_dto import BulkIdResponseDto
 from immich.client.models.bulk_ids_dto import BulkIdsDto
@@ -545,7 +546,7 @@ class PeopleApi:
     @validate_call
     async def delete_person(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -563,7 +564,7 @@ class PeopleApi:
         Delete an individual person.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -609,7 +610,7 @@ class PeopleApi:
     @validate_call
     async def delete_person_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -627,7 +628,7 @@ class PeopleApi:
         Delete an individual person.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -673,7 +674,7 @@ class PeopleApi:
     @validate_call
     async def delete_person_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -691,7 +692,7 @@ class PeopleApi:
         Delete an individual person.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -780,8 +781,8 @@ class PeopleApi:
     @validate_call
     async def get_all_people(
         self,
-        closest_asset_id: Optional[StrictStr] = None,
-        closest_person_id: Optional[StrictStr] = None,
+        closest_asset_id: Optional[UUID] = None,
+        closest_person_id: Optional[UUID] = None,
         page: Annotated[
             Optional[
                 Union[
@@ -818,9 +819,9 @@ class PeopleApi:
         Retrieve a list of all people.
 
         :param closest_asset_id:
-        :type closest_asset_id: str
+        :type closest_asset_id: UUID
         :param closest_person_id:
-        :type closest_person_id: str
+        :type closest_person_id: UUID
         :param page: Page number for pagination
         :type page: float
         :param size: Number of items per page
@@ -876,8 +877,8 @@ class PeopleApi:
     @validate_call
     async def get_all_people_with_http_info(
         self,
-        closest_asset_id: Optional[StrictStr] = None,
-        closest_person_id: Optional[StrictStr] = None,
+        closest_asset_id: Optional[UUID] = None,
+        closest_person_id: Optional[UUID] = None,
         page: Annotated[
             Optional[
                 Union[
@@ -914,9 +915,9 @@ class PeopleApi:
         Retrieve a list of all people.
 
         :param closest_asset_id:
-        :type closest_asset_id: str
+        :type closest_asset_id: UUID
         :param closest_person_id:
-        :type closest_person_id: str
+        :type closest_person_id: UUID
         :param page: Page number for pagination
         :type page: float
         :param size: Number of items per page
@@ -972,8 +973,8 @@ class PeopleApi:
     @validate_call
     async def get_all_people_without_preload_content(
         self,
-        closest_asset_id: Optional[StrictStr] = None,
-        closest_person_id: Optional[StrictStr] = None,
+        closest_asset_id: Optional[UUID] = None,
+        closest_person_id: Optional[UUID] = None,
         page: Annotated[
             Optional[
                 Union[
@@ -1010,9 +1011,9 @@ class PeopleApi:
         Retrieve a list of all people.
 
         :param closest_asset_id:
-        :type closest_asset_id: str
+        :type closest_asset_id: UUID
         :param closest_person_id:
-        :type closest_person_id: str
+        :type closest_person_id: UUID
         :param page: Page number for pagination
         :type page: float
         :param size: Number of items per page
@@ -1134,7 +1135,7 @@ class PeopleApi:
     @validate_call
     async def get_person(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1152,7 +1153,7 @@ class PeopleApi:
         Retrieve a person by id.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1198,7 +1199,7 @@ class PeopleApi:
     @validate_call
     async def get_person_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1216,7 +1217,7 @@ class PeopleApi:
         Retrieve a person by id.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1262,7 +1263,7 @@ class PeopleApi:
     @validate_call
     async def get_person_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1280,7 +1281,7 @@ class PeopleApi:
         Retrieve a person by id.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1375,7 +1376,7 @@ class PeopleApi:
     @validate_call
     async def get_person_statistics(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1393,7 +1394,7 @@ class PeopleApi:
         Retrieve statistics about a specific person.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1439,7 +1440,7 @@ class PeopleApi:
     @validate_call
     async def get_person_statistics_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1457,7 +1458,7 @@ class PeopleApi:
         Retrieve statistics about a specific person.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1503,7 +1504,7 @@ class PeopleApi:
     @validate_call
     async def get_person_statistics_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1521,7 +1522,7 @@ class PeopleApi:
         Retrieve statistics about a specific person.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1616,7 +1617,7 @@ class PeopleApi:
     @validate_call
     async def get_person_thumbnail(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1634,7 +1635,7 @@ class PeopleApi:
         Retrieve the thumbnail file for a person.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1680,7 +1681,7 @@ class PeopleApi:
     @validate_call
     async def get_person_thumbnail_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1698,7 +1699,7 @@ class PeopleApi:
         Retrieve the thumbnail file for a person.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1744,7 +1745,7 @@ class PeopleApi:
     @validate_call
     async def get_person_thumbnail_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1762,7 +1763,7 @@ class PeopleApi:
         Retrieve the thumbnail file for a person.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1857,7 +1858,7 @@ class PeopleApi:
     @validate_call
     async def merge_person(
         self,
-        id: StrictStr,
+        id: UUID,
         merge_person_dto: MergePersonDto,
         _request_timeout: Union[
             None,
@@ -1876,7 +1877,7 @@ class PeopleApi:
         Merge a list of people into the person specified in the path parameter.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param merge_person_dto: (required)
         :type merge_person_dto: MergePersonDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1925,7 +1926,7 @@ class PeopleApi:
     @validate_call
     async def merge_person_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         merge_person_dto: MergePersonDto,
         _request_timeout: Union[
             None,
@@ -1944,7 +1945,7 @@ class PeopleApi:
         Merge a list of people into the person specified in the path parameter.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param merge_person_dto: (required)
         :type merge_person_dto: MergePersonDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1993,7 +1994,7 @@ class PeopleApi:
     @validate_call
     async def merge_person_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         merge_person_dto: MergePersonDto,
         _request_timeout: Union[
             None,
@@ -2012,7 +2013,7 @@ class PeopleApi:
         Merge a list of people into the person specified in the path parameter.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param merge_person_dto: (required)
         :type merge_person_dto: MergePersonDto
         :param _request_timeout: timeout setting for this request. If one
@@ -2123,7 +2124,7 @@ class PeopleApi:
     @validate_call
     async def reassign_faces(
         self,
-        id: StrictStr,
+        id: UUID,
         asset_face_update_dto: AssetFaceUpdateDto,
         _request_timeout: Union[
             None,
@@ -2142,7 +2143,7 @@ class PeopleApi:
         Bulk reassign a list of faces to a different person.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param asset_face_update_dto: (required)
         :type asset_face_update_dto: AssetFaceUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -2191,7 +2192,7 @@ class PeopleApi:
     @validate_call
     async def reassign_faces_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         asset_face_update_dto: AssetFaceUpdateDto,
         _request_timeout: Union[
             None,
@@ -2210,7 +2211,7 @@ class PeopleApi:
         Bulk reassign a list of faces to a different person.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param asset_face_update_dto: (required)
         :type asset_face_update_dto: AssetFaceUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -2259,7 +2260,7 @@ class PeopleApi:
     @validate_call
     async def reassign_faces_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         asset_face_update_dto: AssetFaceUpdateDto,
         _request_timeout: Union[
             None,
@@ -2278,7 +2279,7 @@ class PeopleApi:
         Bulk reassign a list of faces to a different person.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param asset_face_update_dto: (required)
         :type asset_face_update_dto: AssetFaceUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -2640,7 +2641,7 @@ class PeopleApi:
     @validate_call
     async def update_person(
         self,
-        id: StrictStr,
+        id: UUID,
         person_update_dto: PersonUpdateDto,
         _request_timeout: Union[
             None,
@@ -2659,7 +2660,7 @@ class PeopleApi:
         Update an individual person.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param person_update_dto: (required)
         :type person_update_dto: PersonUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -2708,7 +2709,7 @@ class PeopleApi:
     @validate_call
     async def update_person_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         person_update_dto: PersonUpdateDto,
         _request_timeout: Union[
             None,
@@ -2727,7 +2728,7 @@ class PeopleApi:
         Update an individual person.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param person_update_dto: (required)
         :type person_update_dto: PersonUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -2776,7 +2777,7 @@ class PeopleApi:
     @validate_call
     async def update_person_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         person_update_dto: PersonUpdateDto,
         _request_timeout: Union[
             None,
@@ -2795,7 +2796,7 @@ class PeopleApi:
         Update an individual person.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param person_update_dto: (required)
         :type person_update_dto: PersonUpdateDto
         :param _request_timeout: timeout setting for this request. If one

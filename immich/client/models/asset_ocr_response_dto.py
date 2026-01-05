@@ -18,6 +18,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Union
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,11 +28,11 @@ class AssetOcrResponseDto(BaseModel):
     AssetOcrResponseDto
     """  # noqa: E501
 
-    asset_id: StrictStr = Field(alias="assetId")
+    asset_id: UUID = Field(alias="assetId")
     box_score: Union[StrictFloat, StrictInt] = Field(
         description="Confidence score for text detection box", alias="boxScore"
     )
-    id: StrictStr
+    id: UUID
     text: StrictStr = Field(description="Recognized text")
     text_score: Union[StrictFloat, StrictInt] = Field(
         description="Confidence score for text recognition", alias="textScore"

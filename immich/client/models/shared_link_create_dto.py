@@ -19,6 +19,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from immich.client.models.shared_link_type import SharedLinkType
 from typing import Set
 from typing_extensions import Self
@@ -29,10 +30,10 @@ class SharedLinkCreateDto(BaseModel):
     SharedLinkCreateDto
     """  # noqa: E501
 
-    album_id: Optional[StrictStr] = Field(default=None, alias="albumId")
+    album_id: Optional[UUID] = Field(default=None, alias="albumId")
     allow_download: Optional[StrictBool] = Field(default=True, alias="allowDownload")
     allow_upload: Optional[StrictBool] = Field(default=None, alias="allowUpload")
-    asset_ids: Optional[List[StrictStr]] = Field(default=None, alias="assetIds")
+    asset_ids: Optional[List[UUID]] = Field(default=None, alias="assetIds")
     description: Optional[StrictStr] = None
     expires_at: Optional[datetime] = Field(default=None, alias="expiresAt")
     password: Optional[StrictStr] = None

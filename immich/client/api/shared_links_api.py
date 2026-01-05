@@ -15,6 +15,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
+from uuid import UUID
 from immich.client.models.asset_ids_dto import AssetIdsDto
 from immich.client.models.asset_ids_response_dto import AssetIdsResponseDto
 from immich.client.models.shared_link_create_dto import SharedLinkCreateDto
@@ -41,7 +42,7 @@ class SharedLinksApi:
     @validate_call
     async def add_shared_link_assets(
         self,
-        id: StrictStr,
+        id: UUID,
         asset_ids_dto: AssetIdsDto,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
@@ -62,7 +63,7 @@ class SharedLinksApi:
         Add assets to a specific shared link by its ID. This endpoint is only relevant for shared link of type individual.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param asset_ids_dto: (required)
         :type asset_ids_dto: AssetIdsDto
         :param key:
@@ -117,7 +118,7 @@ class SharedLinksApi:
     @validate_call
     async def add_shared_link_assets_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         asset_ids_dto: AssetIdsDto,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
@@ -138,7 +139,7 @@ class SharedLinksApi:
         Add assets to a specific shared link by its ID. This endpoint is only relevant for shared link of type individual.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param asset_ids_dto: (required)
         :type asset_ids_dto: AssetIdsDto
         :param key:
@@ -193,7 +194,7 @@ class SharedLinksApi:
     @validate_call
     async def add_shared_link_assets_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         asset_ids_dto: AssetIdsDto,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
@@ -214,7 +215,7 @@ class SharedLinksApi:
         Add assets to a specific shared link by its ID. This endpoint is only relevant for shared link of type individual.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param asset_ids_dto: (required)
         :type asset_ids_dto: AssetIdsDto
         :param key:
@@ -590,8 +591,8 @@ class SharedLinksApi:
     @validate_call
     async def get_all_shared_links(
         self,
-        album_id: Optional[StrictStr] = None,
-        id: Optional[StrictStr] = None,
+        album_id: Optional[UUID] = None,
+        id: Optional[UUID] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -609,9 +610,9 @@ class SharedLinksApi:
         Retrieve a list of all shared links.
 
         :param album_id:
-        :type album_id: str
+        :type album_id: UUID
         :param id:
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -658,8 +659,8 @@ class SharedLinksApi:
     @validate_call
     async def get_all_shared_links_with_http_info(
         self,
-        album_id: Optional[StrictStr] = None,
-        id: Optional[StrictStr] = None,
+        album_id: Optional[UUID] = None,
+        id: Optional[UUID] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -677,9 +678,9 @@ class SharedLinksApi:
         Retrieve a list of all shared links.
 
         :param album_id:
-        :type album_id: str
+        :type album_id: UUID
         :param id:
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -726,8 +727,8 @@ class SharedLinksApi:
     @validate_call
     async def get_all_shared_links_without_preload_content(
         self,
-        album_id: Optional[StrictStr] = None,
-        id: Optional[StrictStr] = None,
+        album_id: Optional[UUID] = None,
+        id: Optional[UUID] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -745,9 +746,9 @@ class SharedLinksApi:
         Retrieve a list of all shared links.
 
         :param album_id:
-        :type album_id: str
+        :type album_id: UUID
         :param id:
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1138,7 +1139,7 @@ class SharedLinksApi:
     @validate_call
     async def get_shared_link_by_id(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1156,7 +1157,7 @@ class SharedLinksApi:
         Retrieve a specific shared link by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1202,7 +1203,7 @@ class SharedLinksApi:
     @validate_call
     async def get_shared_link_by_id_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1220,7 +1221,7 @@ class SharedLinksApi:
         Retrieve a specific shared link by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1266,7 +1267,7 @@ class SharedLinksApi:
     @validate_call
     async def get_shared_link_by_id_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1284,7 +1285,7 @@ class SharedLinksApi:
         Retrieve a specific shared link by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1379,7 +1380,7 @@ class SharedLinksApi:
     @validate_call
     async def remove_shared_link(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1397,7 +1398,7 @@ class SharedLinksApi:
         Delete a specific shared link by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1443,7 +1444,7 @@ class SharedLinksApi:
     @validate_call
     async def remove_shared_link_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1461,7 +1462,7 @@ class SharedLinksApi:
         Delete a specific shared link by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1507,7 +1508,7 @@ class SharedLinksApi:
     @validate_call
     async def remove_shared_link_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1525,7 +1526,7 @@ class SharedLinksApi:
         Delete a specific shared link by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1614,7 +1615,7 @@ class SharedLinksApi:
     @validate_call
     async def remove_shared_link_assets(
         self,
-        id: StrictStr,
+        id: UUID,
         asset_ids_dto: AssetIdsDto,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
@@ -1635,7 +1636,7 @@ class SharedLinksApi:
         Remove assets from a specific shared link by its ID. This endpoint is only relevant for shared link of type individual.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param asset_ids_dto: (required)
         :type asset_ids_dto: AssetIdsDto
         :param key:
@@ -1690,7 +1691,7 @@ class SharedLinksApi:
     @validate_call
     async def remove_shared_link_assets_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         asset_ids_dto: AssetIdsDto,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
@@ -1711,7 +1712,7 @@ class SharedLinksApi:
         Remove assets from a specific shared link by its ID. This endpoint is only relevant for shared link of type individual.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param asset_ids_dto: (required)
         :type asset_ids_dto: AssetIdsDto
         :param key:
@@ -1766,7 +1767,7 @@ class SharedLinksApi:
     @validate_call
     async def remove_shared_link_assets_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         asset_ids_dto: AssetIdsDto,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
@@ -1787,7 +1788,7 @@ class SharedLinksApi:
         Remove assets from a specific shared link by its ID. This endpoint is only relevant for shared link of type individual.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param asset_ids_dto: (required)
         :type asset_ids_dto: AssetIdsDto
         :param key:
@@ -1912,7 +1913,7 @@ class SharedLinksApi:
     @validate_call
     async def update_shared_link(
         self,
-        id: StrictStr,
+        id: UUID,
         shared_link_edit_dto: SharedLinkEditDto,
         _request_timeout: Union[
             None,
@@ -1931,7 +1932,7 @@ class SharedLinksApi:
         Update an existing shared link by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param shared_link_edit_dto: (required)
         :type shared_link_edit_dto: SharedLinkEditDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1980,7 +1981,7 @@ class SharedLinksApi:
     @validate_call
     async def update_shared_link_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         shared_link_edit_dto: SharedLinkEditDto,
         _request_timeout: Union[
             None,
@@ -1999,7 +2000,7 @@ class SharedLinksApi:
         Update an existing shared link by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param shared_link_edit_dto: (required)
         :type shared_link_edit_dto: SharedLinkEditDto
         :param _request_timeout: timeout setting for this request. If one
@@ -2048,7 +2049,7 @@ class SharedLinksApi:
     @validate_call
     async def update_shared_link_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         shared_link_edit_dto: SharedLinkEditDto,
         _request_timeout: Union[
             None,
@@ -2067,7 +2068,7 @@ class SharedLinksApi:
         Update an existing shared link by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param shared_link_edit_dto: (required)
         :type shared_link_edit_dto: SharedLinkEditDto
         :param _request_timeout: timeout setting for this request. If one

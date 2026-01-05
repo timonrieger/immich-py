@@ -16,9 +16,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +29,7 @@ class StackCreateDto(BaseModel):
     StackCreateDto
     """  # noqa: E501
 
-    asset_ids: Annotated[List[StrictStr], Field(min_length=2)] = Field(
+    asset_ids: Annotated[List[UUID], Field(min_length=2)] = Field(
         description="first asset becomes the primary", alias="assetIds"
     )
     __properties: ClassVar[List[str]] = ["assetIds"]

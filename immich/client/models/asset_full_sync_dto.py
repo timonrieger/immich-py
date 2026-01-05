@@ -17,9 +17,10 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from typing import Set
 from typing_extensions import Self
 
@@ -29,10 +30,10 @@ class AssetFullSyncDto(BaseModel):
     AssetFullSyncDto
     """  # noqa: E501
 
-    last_id: Optional[StrictStr] = Field(default=None, alias="lastId")
+    last_id: Optional[UUID] = Field(default=None, alias="lastId")
     limit: Annotated[int, Field(strict=True, ge=1)]
     updated_until: datetime = Field(alias="updatedUntil")
-    user_id: Optional[StrictStr] = Field(default=None, alias="userId")
+    user_id: Optional[UUID] = Field(default=None, alias="userId")
     __properties: ClassVar[List[str]] = ["lastId", "limit", "updatedUntil", "userId"]
 
     model_config = ConfigDict(

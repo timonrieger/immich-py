@@ -18,6 +18,7 @@ from typing_extensions import Annotated
 
 from datetime import datetime
 from pydantic import StrictBool, StrictBytes
+from uuid import UUID
 from immich.client.models.asset_bulk_delete_dto import AssetBulkDeleteDto
 from immich.client.models.asset_bulk_update_dto import AssetBulkUpdateDto
 from immich.client.models.asset_bulk_upload_check_dto import AssetBulkUploadCheckDto
@@ -811,7 +812,7 @@ class AssetsApi:
     @validate_call
     async def delete_asset_metadata(
         self,
-        id: StrictStr,
+        id: UUID,
         key: AssetMetadataKey,
         _request_timeout: Union[
             None,
@@ -830,7 +831,7 @@ class AssetsApi:
         Delete a specific metadata key-value pair associated with the specified asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param key: (required)
         :type key: AssetMetadataKey
         :param _request_timeout: timeout setting for this request. If one
@@ -879,7 +880,7 @@ class AssetsApi:
     @validate_call
     async def delete_asset_metadata_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         key: AssetMetadataKey,
         _request_timeout: Union[
             None,
@@ -898,7 +899,7 @@ class AssetsApi:
         Delete a specific metadata key-value pair associated with the specified asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param key: (required)
         :type key: AssetMetadataKey
         :param _request_timeout: timeout setting for this request. If one
@@ -947,7 +948,7 @@ class AssetsApi:
     @validate_call
     async def delete_asset_metadata_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         key: AssetMetadataKey,
         _request_timeout: Union[
             None,
@@ -966,7 +967,7 @@ class AssetsApi:
         Delete a specific metadata key-value pair associated with the specified asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param key: (required)
         :type key: AssetMetadataKey
         :param _request_timeout: timeout setting for this request. If one
@@ -1306,7 +1307,7 @@ class AssetsApi:
     @validate_call
     async def download_asset(
         self,
-        id: StrictStr,
+        id: UUID,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -1326,7 +1327,7 @@ class AssetsApi:
         Downloads the original file of the specified asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param key:
         :type key: str
         :param slug:
@@ -1378,7 +1379,7 @@ class AssetsApi:
     @validate_call
     async def download_asset_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -1398,7 +1399,7 @@ class AssetsApi:
         Downloads the original file of the specified asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param key:
         :type key: str
         :param slug:
@@ -1450,7 +1451,7 @@ class AssetsApi:
     @validate_call
     async def download_asset_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -1470,7 +1471,7 @@ class AssetsApi:
         Downloads the original file of the specified asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param key:
         :type key: str
         :param slug:
@@ -1829,7 +1830,7 @@ class AssetsApi:
     @validate_call
     async def get_asset_info(
         self,
-        id: StrictStr,
+        id: UUID,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -1849,7 +1850,7 @@ class AssetsApi:
         Retrieve detailed information about a specific asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param key:
         :type key: str
         :param slug:
@@ -1901,7 +1902,7 @@ class AssetsApi:
     @validate_call
     async def get_asset_info_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -1921,7 +1922,7 @@ class AssetsApi:
         Retrieve detailed information about a specific asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param key:
         :type key: str
         :param slug:
@@ -1973,7 +1974,7 @@ class AssetsApi:
     @validate_call
     async def get_asset_info_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -1993,7 +1994,7 @@ class AssetsApi:
         Retrieve detailed information about a specific asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param key:
         :type key: str
         :param slug:
@@ -2102,7 +2103,7 @@ class AssetsApi:
     @validate_call
     async def get_asset_metadata(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2120,7 +2121,7 @@ class AssetsApi:
         Retrieve all metadata key-value pairs associated with the specified asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2166,7 +2167,7 @@ class AssetsApi:
     @validate_call
     async def get_asset_metadata_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2184,7 +2185,7 @@ class AssetsApi:
         Retrieve all metadata key-value pairs associated with the specified asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2230,7 +2231,7 @@ class AssetsApi:
     @validate_call
     async def get_asset_metadata_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2248,7 +2249,7 @@ class AssetsApi:
         Retrieve all metadata key-value pairs associated with the specified asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2343,7 +2344,7 @@ class AssetsApi:
     @validate_call
     async def get_asset_metadata_by_key(
         self,
-        id: StrictStr,
+        id: UUID,
         key: AssetMetadataKey,
         _request_timeout: Union[
             None,
@@ -2362,7 +2363,7 @@ class AssetsApi:
         Retrieve the value of a specific metadata key associated with the specified asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param key: (required)
         :type key: AssetMetadataKey
         :param _request_timeout: timeout setting for this request. If one
@@ -2411,7 +2412,7 @@ class AssetsApi:
     @validate_call
     async def get_asset_metadata_by_key_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         key: AssetMetadataKey,
         _request_timeout: Union[
             None,
@@ -2430,7 +2431,7 @@ class AssetsApi:
         Retrieve the value of a specific metadata key associated with the specified asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param key: (required)
         :type key: AssetMetadataKey
         :param _request_timeout: timeout setting for this request. If one
@@ -2479,7 +2480,7 @@ class AssetsApi:
     @validate_call
     async def get_asset_metadata_by_key_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         key: AssetMetadataKey,
         _request_timeout: Union[
             None,
@@ -2498,7 +2499,7 @@ class AssetsApi:
         Retrieve the value of a specific metadata key associated with the specified asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param key: (required)
         :type key: AssetMetadataKey
         :param _request_timeout: timeout setting for this request. If one
@@ -2599,7 +2600,7 @@ class AssetsApi:
     @validate_call
     async def get_asset_ocr(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2617,7 +2618,7 @@ class AssetsApi:
         Retrieve all OCR (Optical Character Recognition) data associated with the specified asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2663,7 +2664,7 @@ class AssetsApi:
     @validate_call
     async def get_asset_ocr_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2681,7 +2682,7 @@ class AssetsApi:
         Retrieve all OCR (Optical Character Recognition) data associated with the specified asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2727,7 +2728,7 @@ class AssetsApi:
     @validate_call
     async def get_asset_ocr_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2745,7 +2746,7 @@ class AssetsApi:
         Retrieve all OCR (Optical Character Recognition) data associated with the specified asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3374,7 +3375,7 @@ class AssetsApi:
     @validate_call
     async def play_asset_video(
         self,
-        id: StrictStr,
+        id: UUID,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -3394,7 +3395,7 @@ class AssetsApi:
         Streams the video file for the specified asset. This endpoint also supports byte range requests.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param key:
         :type key: str
         :param slug:
@@ -3446,7 +3447,7 @@ class AssetsApi:
     @validate_call
     async def play_asset_video_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -3466,7 +3467,7 @@ class AssetsApi:
         Streams the video file for the specified asset. This endpoint also supports byte range requests.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param key:
         :type key: str
         :param slug:
@@ -3518,7 +3519,7 @@ class AssetsApi:
     @validate_call
     async def play_asset_video_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -3538,7 +3539,7 @@ class AssetsApi:
         Streams the video file for the specified asset. This endpoint also supports byte range requests.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param key:
         :type key: str
         :param slug:
@@ -3647,7 +3648,7 @@ class AssetsApi:
     @validate_call
     async def replace_asset(
         self,
-        id: StrictStr,
+        id: UUID,
         asset_data: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
         device_asset_id: StrictStr,
         device_id: StrictStr,
@@ -3674,7 +3675,7 @@ class AssetsApi:
         Replace the asset with new file, without changing its id.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param asset_data: (required)
         :type asset_data: bytearray
         :param device_asset_id: (required)
@@ -3748,7 +3749,7 @@ class AssetsApi:
     @validate_call
     async def replace_asset_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         asset_data: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
         device_asset_id: StrictStr,
         device_id: StrictStr,
@@ -3775,7 +3776,7 @@ class AssetsApi:
         Replace the asset with new file, without changing its id.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param asset_data: (required)
         :type asset_data: bytearray
         :param device_asset_id: (required)
@@ -3849,7 +3850,7 @@ class AssetsApi:
     @validate_call
     async def replace_asset_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         asset_data: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
         device_asset_id: StrictStr,
         device_id: StrictStr,
@@ -3876,7 +3877,7 @@ class AssetsApi:
         Replace the asset with new file, without changing its id.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param asset_data: (required)
         :type asset_data: bytearray
         :param device_asset_id: (required)
@@ -4283,7 +4284,7 @@ class AssetsApi:
     @validate_call
     async def update_asset(
         self,
-        id: StrictStr,
+        id: UUID,
         update_asset_dto: UpdateAssetDto,
         _request_timeout: Union[
             None,
@@ -4302,7 +4303,7 @@ class AssetsApi:
         Update information of a specific asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param update_asset_dto: (required)
         :type update_asset_dto: UpdateAssetDto
         :param _request_timeout: timeout setting for this request. If one
@@ -4351,7 +4352,7 @@ class AssetsApi:
     @validate_call
     async def update_asset_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         update_asset_dto: UpdateAssetDto,
         _request_timeout: Union[
             None,
@@ -4370,7 +4371,7 @@ class AssetsApi:
         Update information of a specific asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param update_asset_dto: (required)
         :type update_asset_dto: UpdateAssetDto
         :param _request_timeout: timeout setting for this request. If one
@@ -4419,7 +4420,7 @@ class AssetsApi:
     @validate_call
     async def update_asset_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         update_asset_dto: UpdateAssetDto,
         _request_timeout: Union[
             None,
@@ -4438,7 +4439,7 @@ class AssetsApi:
         Update information of a specific asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param update_asset_dto: (required)
         :type update_asset_dto: UpdateAssetDto
         :param _request_timeout: timeout setting for this request. If one
@@ -4549,7 +4550,7 @@ class AssetsApi:
     @validate_call
     async def update_asset_metadata(
         self,
-        id: StrictStr,
+        id: UUID,
         asset_metadata_upsert_dto: AssetMetadataUpsertDto,
         _request_timeout: Union[
             None,
@@ -4568,7 +4569,7 @@ class AssetsApi:
         Update or add metadata key-value pairs for the specified asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param asset_metadata_upsert_dto: (required)
         :type asset_metadata_upsert_dto: AssetMetadataUpsertDto
         :param _request_timeout: timeout setting for this request. If one
@@ -4617,7 +4618,7 @@ class AssetsApi:
     @validate_call
     async def update_asset_metadata_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         asset_metadata_upsert_dto: AssetMetadataUpsertDto,
         _request_timeout: Union[
             None,
@@ -4636,7 +4637,7 @@ class AssetsApi:
         Update or add metadata key-value pairs for the specified asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param asset_metadata_upsert_dto: (required)
         :type asset_metadata_upsert_dto: AssetMetadataUpsertDto
         :param _request_timeout: timeout setting for this request. If one
@@ -4685,7 +4686,7 @@ class AssetsApi:
     @validate_call
     async def update_asset_metadata_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         asset_metadata_upsert_dto: AssetMetadataUpsertDto,
         _request_timeout: Union[
             None,
@@ -4704,7 +4705,7 @@ class AssetsApi:
         Update or add metadata key-value pairs for the specified asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param asset_metadata_upsert_dto: (required)
         :type asset_metadata_upsert_dto: AssetMetadataUpsertDto
         :param _request_timeout: timeout setting for this request. If one
@@ -5077,7 +5078,7 @@ class AssetsApi:
         duration: Optional[StrictStr] = None,
         filename: Optional[StrictStr] = None,
         is_favorite: Optional[StrictBool] = None,
-        live_photo_video_id: Optional[StrictStr] = None,
+        live_photo_video_id: Optional[UUID] = None,
         sidecar_data: Optional[
             Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]
         ] = None,
@@ -5123,7 +5124,7 @@ class AssetsApi:
         :param is_favorite:
         :type is_favorite: bool
         :param live_photo_video_id:
-        :type live_photo_video_id: str
+        :type live_photo_video_id: UUID
         :param sidecar_data:
         :type sidecar_data: bytearray
         :param visibility:
@@ -5204,7 +5205,7 @@ class AssetsApi:
         duration: Optional[StrictStr] = None,
         filename: Optional[StrictStr] = None,
         is_favorite: Optional[StrictBool] = None,
-        live_photo_video_id: Optional[StrictStr] = None,
+        live_photo_video_id: Optional[UUID] = None,
         sidecar_data: Optional[
             Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]
         ] = None,
@@ -5250,7 +5251,7 @@ class AssetsApi:
         :param is_favorite:
         :type is_favorite: bool
         :param live_photo_video_id:
-        :type live_photo_video_id: str
+        :type live_photo_video_id: UUID
         :param sidecar_data:
         :type sidecar_data: bytearray
         :param visibility:
@@ -5331,7 +5332,7 @@ class AssetsApi:
         duration: Optional[StrictStr] = None,
         filename: Optional[StrictStr] = None,
         is_favorite: Optional[StrictBool] = None,
-        live_photo_video_id: Optional[StrictStr] = None,
+        live_photo_video_id: Optional[UUID] = None,
         sidecar_data: Optional[
             Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]
         ] = None,
@@ -5377,7 +5378,7 @@ class AssetsApi:
         :param is_favorite:
         :type is_favorite: bool
         :param live_photo_video_id:
-        :type live_photo_video_id: str
+        :type live_photo_video_id: UUID
         :param sidecar_data:
         :type sidecar_data: bytearray
         :param visibility:
@@ -5546,7 +5547,7 @@ class AssetsApi:
     @validate_call
     async def view_asset(
         self,
-        id: StrictStr,
+        id: UUID,
         key: Optional[StrictStr] = None,
         size: Optional[AssetMediaSize] = None,
         slug: Optional[StrictStr] = None,
@@ -5567,7 +5568,7 @@ class AssetsApi:
         Retrieve the thumbnail image for the specified asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param key:
         :type key: str
         :param size:
@@ -5622,7 +5623,7 @@ class AssetsApi:
     @validate_call
     async def view_asset_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         key: Optional[StrictStr] = None,
         size: Optional[AssetMediaSize] = None,
         slug: Optional[StrictStr] = None,
@@ -5643,7 +5644,7 @@ class AssetsApi:
         Retrieve the thumbnail image for the specified asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param key:
         :type key: str
         :param size:
@@ -5698,7 +5699,7 @@ class AssetsApi:
     @validate_call
     async def view_asset_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         key: Optional[StrictStr] = None,
         size: Optional[AssetMediaSize] = None,
         slug: Optional[StrictStr] = None,
@@ -5719,7 +5720,7 @@ class AssetsApi:
         Retrieve the thumbnail image for the specified asset.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param key:
         :type key: str
         :param size:

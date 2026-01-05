@@ -18,6 +18,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from immich.client.models.album_user_create_dto import AlbumUserCreateDto
 from typing import Set
 from typing_extensions import Self
@@ -32,7 +33,7 @@ class CreateAlbumDto(BaseModel):
     album_users: Optional[List[AlbumUserCreateDto]] = Field(
         default=None, alias="albumUsers"
     )
-    asset_ids: Optional[List[StrictStr]] = Field(default=None, alias="assetIds")
+    asset_ids: Optional[List[UUID]] = Field(default=None, alias="assetIds")
     description: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = [
         "albumName",

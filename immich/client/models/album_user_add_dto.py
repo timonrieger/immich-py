@@ -16,8 +16,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from immich.client.models.album_user_role import AlbumUserRole
 from typing import Set
 from typing_extensions import Self
@@ -29,7 +30,7 @@ class AlbumUserAddDto(BaseModel):
     """  # noqa: E501
 
     role: Optional[AlbumUserRole] = None
-    user_id: StrictStr = Field(alias="userId")
+    user_id: UUID = Field(alias="userId")
     __properties: ClassVar[List[str]] = ["role", "userId"]
 
     model_config = ConfigDict(

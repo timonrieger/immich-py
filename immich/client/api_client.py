@@ -20,6 +20,7 @@ import mimetypes
 import os
 import re
 import tempfile
+import uuid
 
 from urllib.parse import quote
 from typing import Tuple, Optional, List, Dict, Union
@@ -298,7 +299,7 @@ class ApiClient:
                 return_data = self.__deserialize_file(response_data)
             elif response_type is not None:
                 match = None
-                content_type = response_data.getheader("content-type")
+                content_type = response_data.headers.get("content-type")
                 if content_type is not None:
                     match = re.search(r"charset=([a-zA-Z\-\d]+)[\s;]?", content_type)
                 encoding = match.group(1) if match else "utf-8"
@@ -317,7 +318,7 @@ class ApiClient:
         return ApiResponse(
             status_code=response_data.status,
             data=return_data,
-            headers=response_data.getheaders(),
+            headers=response_data.headers,
             raw_data=response_data.data,
         )
 
@@ -345,6 +346,8 @@ class ApiClient:
             return obj.get_secret_value()
         elif isinstance(obj, self.PRIMITIVE_TYPES):
             return obj
+        elif isinstance(obj, uuid.UUID):
+            return str(obj)
         elif isinstance(obj, list):
             return [self.sanitize_for_serialization(sub_obj) for sub_obj in obj]
         elif isinstance(obj, tuple):
@@ -395,7 +398,7 @@ class ApiClient:
             except ValueError:
                 data = response_text
         elif re.match(
-            r"^application/(json|[\w!#$&.+-^_]+\+json)\s*(;|$)",
+            r"^application/(json|[\w!#$&.+\-^_]+\+json)\s*(;|$)",
             content_type,
             re.IGNORECASE,
         ):
@@ -444,13 +447,13 @@ class ApiClient:
 
         if klass in self.PRIMITIVE_TYPES:
             return self.__deserialize_primitive(data, klass)
-        elif klass == object:
+        elif klass is object:
             return self.__deserialize_object(data)
-        elif klass == datetime.date:
+        elif klass is datetime.date:
             return self.__deserialize_date(data)
-        elif klass == datetime.datetime:
+        elif klass is datetime.datetime:
             return self.__deserialize_datetime(data)
-        elif klass == decimal.Decimal:
+        elif klass is decimal.Decimal:
             return decimal.Decimal(data)
         elif issubclass(klass, Enum):
             return self.__deserialize_enum(data, klass)
@@ -661,7 +664,7 @@ class ApiClient:
         os.close(fd)
         os.remove(path)
 
-        content_disposition = response.getheader("Content-Disposition")
+        content_disposition = response.headers.get("Content-Disposition")
         if content_disposition:
             m = re.search(r'filename=[\'"]?([^\'"\s]+)[\'"]?', content_disposition)
             assert m is not None, "Unexpected 'content-disposition' header value"

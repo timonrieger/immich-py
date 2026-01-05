@@ -15,6 +15,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
+from uuid import UUID
 from immich.client.models.api_key_create_dto import APIKeyCreateDto
 from immich.client.models.api_key_create_response_dto import APIKeyCreateResponseDto
 from immich.client.models.api_key_response_dto import APIKeyResponseDto
@@ -291,7 +292,7 @@ class APIKeysApi:
     @validate_call
     async def delete_api_key(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -309,7 +310,7 @@ class APIKeysApi:
         Deletes an API key identified by its ID. The current user must own this API key.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -355,7 +356,7 @@ class APIKeysApi:
     @validate_call
     async def delete_api_key_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -373,7 +374,7 @@ class APIKeysApi:
         Deletes an API key identified by its ID. The current user must own this API key.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -419,7 +420,7 @@ class APIKeysApi:
     @validate_call
     async def delete_api_key_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -437,7 +438,7 @@ class APIKeysApi:
         Deletes an API key identified by its ID. The current user must own this API key.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -526,7 +527,7 @@ class APIKeysApi:
     @validate_call
     async def get_api_key(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -544,7 +545,7 @@ class APIKeysApi:
         Retrieve an API key by its ID. The current user must own this API key.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -590,7 +591,7 @@ class APIKeysApi:
     @validate_call
     async def get_api_key_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -608,7 +609,7 @@ class APIKeysApi:
         Retrieve an API key by its ID. The current user must own this API key.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -654,7 +655,7 @@ class APIKeysApi:
     @validate_call
     async def get_api_key_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -672,7 +673,7 @@ class APIKeysApi:
         Retrieve an API key by its ID. The current user must own this API key.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1219,7 +1220,7 @@ class APIKeysApi:
     @validate_call
     async def update_api_key(
         self,
-        id: StrictStr,
+        id: UUID,
         api_key_update_dto: APIKeyUpdateDto,
         _request_timeout: Union[
             None,
@@ -1238,7 +1239,7 @@ class APIKeysApi:
         Updates the name and permissions of an API key by its ID. The current user must own this API key.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param api_key_update_dto: (required)
         :type api_key_update_dto: APIKeyUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1287,7 +1288,7 @@ class APIKeysApi:
     @validate_call
     async def update_api_key_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         api_key_update_dto: APIKeyUpdateDto,
         _request_timeout: Union[
             None,
@@ -1306,7 +1307,7 @@ class APIKeysApi:
         Updates the name and permissions of an API key by its ID. The current user must own this API key.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param api_key_update_dto: (required)
         :type api_key_update_dto: APIKeyUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1355,7 +1356,7 @@ class APIKeysApi:
     @validate_call
     async def update_api_key_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         api_key_update_dto: APIKeyUpdateDto,
         _request_timeout: Union[
             None,
@@ -1374,7 +1375,7 @@ class APIKeysApi:
         Updates the name and permissions of an API key by its ID. The current user must own this API key.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param api_key_update_dto: (required)
         :type api_key_update_dto: APIKeyUpdateDto
         :param _request_timeout: timeout setting for this request. If one

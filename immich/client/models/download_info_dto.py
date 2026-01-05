@@ -16,9 +16,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from typing import Set
 from typing_extensions import Self
 
@@ -28,12 +29,12 @@ class DownloadInfoDto(BaseModel):
     DownloadInfoDto
     """  # noqa: E501
 
-    album_id: Optional[StrictStr] = Field(default=None, alias="albumId")
+    album_id: Optional[UUID] = Field(default=None, alias="albumId")
     archive_size: Optional[Annotated[int, Field(strict=True, ge=1)]] = Field(
         default=None, alias="archiveSize"
     )
-    asset_ids: Optional[List[StrictStr]] = Field(default=None, alias="assetIds")
-    user_id: Optional[StrictStr] = Field(default=None, alias="userId")
+    asset_ids: Optional[List[UUID]] = Field(default=None, alias="assetIds")
+    user_id: Optional[UUID] = Field(default=None, alias="userId")
     __properties: ClassVar[List[str]] = ["albumId", "archiveSize", "assetIds", "userId"]
 
     model_config = ConfigDict(

@@ -19,6 +19,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from typing import Set
 from typing_extensions import Self
 
@@ -35,7 +36,7 @@ class CreateLibraryDto(BaseModel):
         default=None, alias="importPaths"
     )
     name: Optional[StrictStr] = None
-    owner_id: StrictStr = Field(alias="ownerId")
+    owner_id: UUID = Field(alias="ownerId")
     __properties: ClassVar[List[str]] = [
         "exclusionPatterns",
         "importPaths",

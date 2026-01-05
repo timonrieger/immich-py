@@ -16,8 +16,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,8 +28,8 @@ class AssetFaceUpdateItem(BaseModel):
     AssetFaceUpdateItem
     """  # noqa: E501
 
-    asset_id: StrictStr = Field(alias="assetId")
-    person_id: StrictStr = Field(alias="personId")
+    asset_id: UUID = Field(alias="assetId")
+    person_id: UUID = Field(alias="personId")
     __properties: ClassVar[List[str]] = ["assetId", "personId"]
 
     model_config = ConfigDict(

@@ -20,6 +20,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing_extensions import Annotated
+from uuid import UUID
 from immich.client.models.asset_order import AssetOrder
 from immich.client.models.asset_type_enum import AssetTypeEnum
 from immich.client.models.asset_visibility import AssetVisibility
@@ -32,7 +33,7 @@ class MetadataSearchDto(BaseModel):
     MetadataSearchDto
     """  # noqa: E501
 
-    album_ids: Optional[List[StrictStr]] = Field(default=None, alias="albumIds")
+    album_ids: Optional[List[UUID]] = Field(default=None, alias="albumIds")
     checksum: Optional[StrictStr] = None
     city: Optional[StrictStr] = None
     country: Optional[StrictStr] = None
@@ -44,14 +45,14 @@ class MetadataSearchDto(BaseModel):
     encoded_video_path: Optional[StrictStr] = Field(
         default=None, alias="encodedVideoPath"
     )
-    id: Optional[StrictStr] = None
+    id: Optional[UUID] = None
     is_encoded: Optional[StrictBool] = Field(default=None, alias="isEncoded")
     is_favorite: Optional[StrictBool] = Field(default=None, alias="isFavorite")
     is_motion: Optional[StrictBool] = Field(default=None, alias="isMotion")
     is_not_in_album: Optional[StrictBool] = Field(default=None, alias="isNotInAlbum")
     is_offline: Optional[StrictBool] = Field(default=None, alias="isOffline")
     lens_model: Optional[StrictStr] = Field(default=None, alias="lensModel")
-    library_id: Optional[StrictStr] = Field(default=None, alias="libraryId")
+    library_id: Optional[UUID] = Field(default=None, alias="libraryId")
     make: Optional[StrictStr] = None
     model: Optional[StrictStr] = None
     ocr: Optional[StrictStr] = None
@@ -66,7 +67,7 @@ class MetadataSearchDto(BaseModel):
             Annotated[int, Field(strict=True, ge=1)],
         ]
     ] = None
-    person_ids: Optional[List[StrictStr]] = Field(default=None, alias="personIds")
+    person_ids: Optional[List[UUID]] = Field(default=None, alias="personIds")
     preview_path: Optional[StrictStr] = Field(default=None, alias="previewPath")
     rating: Optional[
         Union[
@@ -81,7 +82,7 @@ class MetadataSearchDto(BaseModel):
         ]
     ] = None
     state: Optional[StrictStr] = None
-    tag_ids: Optional[List[StrictStr]] = Field(default=None, alias="tagIds")
+    tag_ids: Optional[List[UUID]] = Field(default=None, alias="tagIds")
     taken_after: Optional[datetime] = Field(default=None, alias="takenAfter")
     taken_before: Optional[datetime] = Field(default=None, alias="takenBefore")
     thumbnail_path: Optional[StrictStr] = Field(default=None, alias="thumbnailPath")

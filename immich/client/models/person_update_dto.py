@@ -19,6 +19,7 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Set
 from typing_extensions import Self
 
@@ -34,7 +35,7 @@ class PersonUpdateDto(BaseModel):
         alias="birthDate",
     )
     color: Optional[StrictStr] = None
-    feature_face_asset_id: Optional[StrictStr] = Field(
+    feature_face_asset_id: Optional[UUID] = Field(
         default=None,
         description="Asset is used to get the feature face thumbnail.",
         alias="featureFaceAssetId",

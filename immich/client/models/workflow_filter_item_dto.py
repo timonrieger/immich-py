@@ -16,8 +16,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Set
 from typing_extensions import Self
 
@@ -28,7 +29,7 @@ class WorkflowFilterItemDto(BaseModel):
     """  # noqa: E501
 
     filter_config: Optional[Dict[str, Any]] = Field(default=None, alias="filterConfig")
-    plugin_filter_id: StrictStr = Field(alias="pluginFilterId")
+    plugin_filter_id: UUID = Field(alias="pluginFilterId")
     __properties: ClassVar[List[str]] = ["filterConfig", "pluginFilterId"]
 
     model_config = ConfigDict(

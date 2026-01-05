@@ -16,6 +16,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import StrictBool
+from uuid import UUID
 from immich.client.models.asset_order import AssetOrder
 from immich.client.models.asset_visibility import AssetVisibility
 from immich.client.models.time_bucket_asset_response_dto import (
@@ -50,7 +51,7 @@ class TimelineApi:
             ),
         ],
         album_id: Annotated[
-            Optional[StrictStr],
+            Optional[UUID],
             Field(description="Filter assets belonging to a specific album"),
         ] = None,
         is_favorite: Annotated[
@@ -73,17 +74,17 @@ class TimelineApi:
             ),
         ] = None,
         person_id: Annotated[
-            Optional[StrictStr],
+            Optional[UUID],
             Field(
                 description="Filter assets containing a specific person (face recognition)"
             ),
         ] = None,
         slug: Optional[StrictStr] = None,
         tag_id: Annotated[
-            Optional[StrictStr], Field(description="Filter assets with a specific tag")
+            Optional[UUID], Field(description="Filter assets with a specific tag")
         ] = None,
         user_id: Annotated[
-            Optional[StrictStr], Field(description="Filter assets by specific user ID")
+            Optional[UUID], Field(description="Filter assets by specific user ID")
         ] = None,
         visibility: Annotated[
             Optional[AssetVisibility],
@@ -123,7 +124,7 @@ class TimelineApi:
         :param time_bucket: Time bucket identifier in YYYY-MM-DD format (e.g., \"2024-01-01\" for January 2024) (required)
         :type time_bucket: str
         :param album_id: Filter assets belonging to a specific album
-        :type album_id: str
+        :type album_id: UUID
         :param is_favorite: Filter by favorite status (true for favorites only, false for non-favorites only)
         :type is_favorite: bool
         :param is_trashed: Filter by trash status (true for trashed assets only, false for non-trashed only)
@@ -133,13 +134,13 @@ class TimelineApi:
         :param order: Sort order for assets within time buckets (ASC for oldest first, DESC for newest first)
         :type order: AssetOrder
         :param person_id: Filter assets containing a specific person (face recognition)
-        :type person_id: str
+        :type person_id: UUID
         :param slug:
         :type slug: str
         :param tag_id: Filter assets with a specific tag
-        :type tag_id: str
+        :type tag_id: UUID
         :param user_id: Filter assets by specific user ID
-        :type user_id: str
+        :type user_id: UUID
         :param visibility: Filter by asset visibility status (ARCHIVE, TIMELINE, HIDDEN, LOCKED)
         :type visibility: AssetVisibility
         :param with_coordinates: Include location data in the response
@@ -213,7 +214,7 @@ class TimelineApi:
             ),
         ],
         album_id: Annotated[
-            Optional[StrictStr],
+            Optional[UUID],
             Field(description="Filter assets belonging to a specific album"),
         ] = None,
         is_favorite: Annotated[
@@ -236,17 +237,17 @@ class TimelineApi:
             ),
         ] = None,
         person_id: Annotated[
-            Optional[StrictStr],
+            Optional[UUID],
             Field(
                 description="Filter assets containing a specific person (face recognition)"
             ),
         ] = None,
         slug: Optional[StrictStr] = None,
         tag_id: Annotated[
-            Optional[StrictStr], Field(description="Filter assets with a specific tag")
+            Optional[UUID], Field(description="Filter assets with a specific tag")
         ] = None,
         user_id: Annotated[
-            Optional[StrictStr], Field(description="Filter assets by specific user ID")
+            Optional[UUID], Field(description="Filter assets by specific user ID")
         ] = None,
         visibility: Annotated[
             Optional[AssetVisibility],
@@ -286,7 +287,7 @@ class TimelineApi:
         :param time_bucket: Time bucket identifier in YYYY-MM-DD format (e.g., \"2024-01-01\" for January 2024) (required)
         :type time_bucket: str
         :param album_id: Filter assets belonging to a specific album
-        :type album_id: str
+        :type album_id: UUID
         :param is_favorite: Filter by favorite status (true for favorites only, false for non-favorites only)
         :type is_favorite: bool
         :param is_trashed: Filter by trash status (true for trashed assets only, false for non-trashed only)
@@ -296,13 +297,13 @@ class TimelineApi:
         :param order: Sort order for assets within time buckets (ASC for oldest first, DESC for newest first)
         :type order: AssetOrder
         :param person_id: Filter assets containing a specific person (face recognition)
-        :type person_id: str
+        :type person_id: UUID
         :param slug:
         :type slug: str
         :param tag_id: Filter assets with a specific tag
-        :type tag_id: str
+        :type tag_id: UUID
         :param user_id: Filter assets by specific user ID
-        :type user_id: str
+        :type user_id: UUID
         :param visibility: Filter by asset visibility status (ARCHIVE, TIMELINE, HIDDEN, LOCKED)
         :type visibility: AssetVisibility
         :param with_coordinates: Include location data in the response
@@ -376,7 +377,7 @@ class TimelineApi:
             ),
         ],
         album_id: Annotated[
-            Optional[StrictStr],
+            Optional[UUID],
             Field(description="Filter assets belonging to a specific album"),
         ] = None,
         is_favorite: Annotated[
@@ -399,17 +400,17 @@ class TimelineApi:
             ),
         ] = None,
         person_id: Annotated[
-            Optional[StrictStr],
+            Optional[UUID],
             Field(
                 description="Filter assets containing a specific person (face recognition)"
             ),
         ] = None,
         slug: Optional[StrictStr] = None,
         tag_id: Annotated[
-            Optional[StrictStr], Field(description="Filter assets with a specific tag")
+            Optional[UUID], Field(description="Filter assets with a specific tag")
         ] = None,
         user_id: Annotated[
-            Optional[StrictStr], Field(description="Filter assets by specific user ID")
+            Optional[UUID], Field(description="Filter assets by specific user ID")
         ] = None,
         visibility: Annotated[
             Optional[AssetVisibility],
@@ -449,7 +450,7 @@ class TimelineApi:
         :param time_bucket: Time bucket identifier in YYYY-MM-DD format (e.g., \"2024-01-01\" for January 2024) (required)
         :type time_bucket: str
         :param album_id: Filter assets belonging to a specific album
-        :type album_id: str
+        :type album_id: UUID
         :param is_favorite: Filter by favorite status (true for favorites only, false for non-favorites only)
         :type is_favorite: bool
         :param is_trashed: Filter by trash status (true for trashed assets only, false for non-trashed only)
@@ -459,13 +460,13 @@ class TimelineApi:
         :param order: Sort order for assets within time buckets (ASC for oldest first, DESC for newest first)
         :type order: AssetOrder
         :param person_id: Filter assets containing a specific person (face recognition)
-        :type person_id: str
+        :type person_id: UUID
         :param slug:
         :type slug: str
         :param tag_id: Filter assets with a specific tag
-        :type tag_id: str
+        :type tag_id: UUID
         :param user_id: Filter assets by specific user ID
-        :type user_id: str
+        :type user_id: UUID
         :param visibility: Filter by asset visibility status (ARCHIVE, TIMELINE, HIDDEN, LOCKED)
         :type visibility: AssetVisibility
         :param with_coordinates: Include location data in the response
@@ -635,7 +636,7 @@ class TimelineApi:
     async def get_time_buckets(
         self,
         album_id: Annotated[
-            Optional[StrictStr],
+            Optional[UUID],
             Field(description="Filter assets belonging to a specific album"),
         ] = None,
         is_favorite: Annotated[
@@ -658,17 +659,17 @@ class TimelineApi:
             ),
         ] = None,
         person_id: Annotated[
-            Optional[StrictStr],
+            Optional[UUID],
             Field(
                 description="Filter assets containing a specific person (face recognition)"
             ),
         ] = None,
         slug: Optional[StrictStr] = None,
         tag_id: Annotated[
-            Optional[StrictStr], Field(description="Filter assets with a specific tag")
+            Optional[UUID], Field(description="Filter assets with a specific tag")
         ] = None,
         user_id: Annotated[
-            Optional[StrictStr], Field(description="Filter assets by specific user ID")
+            Optional[UUID], Field(description="Filter assets by specific user ID")
         ] = None,
         visibility: Annotated[
             Optional[AssetVisibility],
@@ -706,7 +707,7 @@ class TimelineApi:
         Retrieve a list of all minimal time buckets.
 
         :param album_id: Filter assets belonging to a specific album
-        :type album_id: str
+        :type album_id: UUID
         :param is_favorite: Filter by favorite status (true for favorites only, false for non-favorites only)
         :type is_favorite: bool
         :param is_trashed: Filter by trash status (true for trashed assets only, false for non-trashed only)
@@ -716,13 +717,13 @@ class TimelineApi:
         :param order: Sort order for assets within time buckets (ASC for oldest first, DESC for newest first)
         :type order: AssetOrder
         :param person_id: Filter assets containing a specific person (face recognition)
-        :type person_id: str
+        :type person_id: UUID
         :param slug:
         :type slug: str
         :param tag_id: Filter assets with a specific tag
-        :type tag_id: str
+        :type tag_id: UUID
         :param user_id: Filter assets by specific user ID
-        :type user_id: str
+        :type user_id: UUID
         :param visibility: Filter by asset visibility status (ARCHIVE, TIMELINE, HIDDEN, LOCKED)
         :type visibility: AssetVisibility
         :param with_coordinates: Include location data in the response
@@ -789,7 +790,7 @@ class TimelineApi:
     async def get_time_buckets_with_http_info(
         self,
         album_id: Annotated[
-            Optional[StrictStr],
+            Optional[UUID],
             Field(description="Filter assets belonging to a specific album"),
         ] = None,
         is_favorite: Annotated[
@@ -812,17 +813,17 @@ class TimelineApi:
             ),
         ] = None,
         person_id: Annotated[
-            Optional[StrictStr],
+            Optional[UUID],
             Field(
                 description="Filter assets containing a specific person (face recognition)"
             ),
         ] = None,
         slug: Optional[StrictStr] = None,
         tag_id: Annotated[
-            Optional[StrictStr], Field(description="Filter assets with a specific tag")
+            Optional[UUID], Field(description="Filter assets with a specific tag")
         ] = None,
         user_id: Annotated[
-            Optional[StrictStr], Field(description="Filter assets by specific user ID")
+            Optional[UUID], Field(description="Filter assets by specific user ID")
         ] = None,
         visibility: Annotated[
             Optional[AssetVisibility],
@@ -860,7 +861,7 @@ class TimelineApi:
         Retrieve a list of all minimal time buckets.
 
         :param album_id: Filter assets belonging to a specific album
-        :type album_id: str
+        :type album_id: UUID
         :param is_favorite: Filter by favorite status (true for favorites only, false for non-favorites only)
         :type is_favorite: bool
         :param is_trashed: Filter by trash status (true for trashed assets only, false for non-trashed only)
@@ -870,13 +871,13 @@ class TimelineApi:
         :param order: Sort order for assets within time buckets (ASC for oldest first, DESC for newest first)
         :type order: AssetOrder
         :param person_id: Filter assets containing a specific person (face recognition)
-        :type person_id: str
+        :type person_id: UUID
         :param slug:
         :type slug: str
         :param tag_id: Filter assets with a specific tag
-        :type tag_id: str
+        :type tag_id: UUID
         :param user_id: Filter assets by specific user ID
-        :type user_id: str
+        :type user_id: UUID
         :param visibility: Filter by asset visibility status (ARCHIVE, TIMELINE, HIDDEN, LOCKED)
         :type visibility: AssetVisibility
         :param with_coordinates: Include location data in the response
@@ -943,7 +944,7 @@ class TimelineApi:
     async def get_time_buckets_without_preload_content(
         self,
         album_id: Annotated[
-            Optional[StrictStr],
+            Optional[UUID],
             Field(description="Filter assets belonging to a specific album"),
         ] = None,
         is_favorite: Annotated[
@@ -966,17 +967,17 @@ class TimelineApi:
             ),
         ] = None,
         person_id: Annotated[
-            Optional[StrictStr],
+            Optional[UUID],
             Field(
                 description="Filter assets containing a specific person (face recognition)"
             ),
         ] = None,
         slug: Optional[StrictStr] = None,
         tag_id: Annotated[
-            Optional[StrictStr], Field(description="Filter assets with a specific tag")
+            Optional[UUID], Field(description="Filter assets with a specific tag")
         ] = None,
         user_id: Annotated[
-            Optional[StrictStr], Field(description="Filter assets by specific user ID")
+            Optional[UUID], Field(description="Filter assets by specific user ID")
         ] = None,
         visibility: Annotated[
             Optional[AssetVisibility],
@@ -1014,7 +1015,7 @@ class TimelineApi:
         Retrieve a list of all minimal time buckets.
 
         :param album_id: Filter assets belonging to a specific album
-        :type album_id: str
+        :type album_id: UUID
         :param is_favorite: Filter by favorite status (true for favorites only, false for non-favorites only)
         :type is_favorite: bool
         :param is_trashed: Filter by trash status (true for trashed assets only, false for non-trashed only)
@@ -1024,13 +1025,13 @@ class TimelineApi:
         :param order: Sort order for assets within time buckets (ASC for oldest first, DESC for newest first)
         :type order: AssetOrder
         :param person_id: Filter assets containing a specific person (face recognition)
-        :type person_id: str
+        :type person_id: UUID
         :param slug:
         :type slug: str
         :param tag_id: Filter assets with a specific tag
-        :type tag_id: str
+        :type tag_id: UUID
         :param user_id: Filter assets by specific user ID
-        :type user_id: str
+        :type user_id: UUID
         :param visibility: Filter by asset visibility status (ARCHIVE, TIMELINE, HIDDEN, LOCKED)
         :type visibility: AssetVisibility
         :param with_coordinates: Include location data in the response

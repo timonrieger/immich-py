@@ -18,6 +18,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from immich.client.models.reaction_type import ReactionType
 from typing import Set
 from typing_extensions import Self
@@ -28,8 +29,8 @@ class ActivityCreateDto(BaseModel):
     ActivityCreateDto
     """  # noqa: E501
 
-    album_id: StrictStr = Field(alias="albumId")
-    asset_id: Optional[StrictStr] = Field(default=None, alias="assetId")
+    album_id: UUID = Field(alias="albumId")
+    asset_id: Optional[UUID] = Field(default=None, alias="assetId")
     comment: Optional[StrictStr] = None
     type: ReactionType
     __properties: ClassVar[List[str]] = ["albumId", "assetId", "comment", "type"]

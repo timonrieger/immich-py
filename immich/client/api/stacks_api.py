@@ -15,6 +15,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
+from uuid import UUID
 from immich.client.models.bulk_ids_dto import BulkIdsDto
 from immich.client.models.stack_create_dto import StackCreateDto
 from immich.client.models.stack_response_dto import StackResponseDto
@@ -291,7 +292,7 @@ class StacksApi:
     @validate_call
     async def delete_stack(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -309,7 +310,7 @@ class StacksApi:
         Delete a specific stack by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -355,7 +356,7 @@ class StacksApi:
     @validate_call
     async def delete_stack_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -373,7 +374,7 @@ class StacksApi:
         Delete a specific stack by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -419,7 +420,7 @@ class StacksApi:
     @validate_call
     async def delete_stack_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -437,7 +438,7 @@ class StacksApi:
         Delete a specific stack by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -771,7 +772,7 @@ class StacksApi:
     @validate_call
     async def get_stack(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -789,7 +790,7 @@ class StacksApi:
         Retrieve a specific stack by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -835,7 +836,7 @@ class StacksApi:
     @validate_call
     async def get_stack_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -853,7 +854,7 @@ class StacksApi:
         Retrieve a specific stack by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -899,7 +900,7 @@ class StacksApi:
     @validate_call
     async def get_stack_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -917,7 +918,7 @@ class StacksApi:
         Retrieve a specific stack by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1012,8 +1013,8 @@ class StacksApi:
     @validate_call
     async def remove_asset_from_stack(
         self,
-        asset_id: StrictStr,
-        id: StrictStr,
+        asset_id: UUID,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1031,9 +1032,9 @@ class StacksApi:
         Remove a specific asset from a stack by providing the stack ID and asset ID.
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1080,8 +1081,8 @@ class StacksApi:
     @validate_call
     async def remove_asset_from_stack_with_http_info(
         self,
-        asset_id: StrictStr,
-        id: StrictStr,
+        asset_id: UUID,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1099,9 +1100,9 @@ class StacksApi:
         Remove a specific asset from a stack by providing the stack ID and asset ID.
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1148,8 +1149,8 @@ class StacksApi:
     @validate_call
     async def remove_asset_from_stack_without_preload_content(
         self,
-        asset_id: StrictStr,
-        id: StrictStr,
+        asset_id: UUID,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1167,9 +1168,9 @@ class StacksApi:
         Remove a specific asset from a stack by providing the stack ID and asset ID.
 
         :param asset_id: (required)
-        :type asset_id: str
+        :type asset_id: UUID
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1262,7 +1263,7 @@ class StacksApi:
     @validate_call
     async def search_stacks(
         self,
-        primary_asset_id: Optional[StrictStr] = None,
+        primary_asset_id: Optional[UUID] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1280,7 +1281,7 @@ class StacksApi:
         Retrieve a list of stacks.
 
         :param primary_asset_id:
-        :type primary_asset_id: str
+        :type primary_asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1326,7 +1327,7 @@ class StacksApi:
     @validate_call
     async def search_stacks_with_http_info(
         self,
-        primary_asset_id: Optional[StrictStr] = None,
+        primary_asset_id: Optional[UUID] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1344,7 +1345,7 @@ class StacksApi:
         Retrieve a list of stacks.
 
         :param primary_asset_id:
-        :type primary_asset_id: str
+        :type primary_asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1390,7 +1391,7 @@ class StacksApi:
     @validate_call
     async def search_stacks_without_preload_content(
         self,
-        primary_asset_id: Optional[StrictStr] = None,
+        primary_asset_id: Optional[UUID] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1408,7 +1409,7 @@ class StacksApi:
         Retrieve a list of stacks.
 
         :param primary_asset_id:
-        :type primary_asset_id: str
+        :type primary_asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1504,7 +1505,7 @@ class StacksApi:
     @validate_call
     async def update_stack(
         self,
-        id: StrictStr,
+        id: UUID,
         stack_update_dto: StackUpdateDto,
         _request_timeout: Union[
             None,
@@ -1523,7 +1524,7 @@ class StacksApi:
         Update an existing stack by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param stack_update_dto: (required)
         :type stack_update_dto: StackUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1572,7 +1573,7 @@ class StacksApi:
     @validate_call
     async def update_stack_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         stack_update_dto: StackUpdateDto,
         _request_timeout: Union[
             None,
@@ -1591,7 +1592,7 @@ class StacksApi:
         Update an existing stack by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param stack_update_dto: (required)
         :type stack_update_dto: StackUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1640,7 +1641,7 @@ class StacksApi:
     @validate_call
     async def update_stack_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         stack_update_dto: StackUpdateDto,
         _request_timeout: Union[
             None,
@@ -1659,7 +1660,7 @@ class StacksApi:
         Update an existing stack by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param stack_update_dto: (required)
         :type stack_update_dto: StackUpdateDto
         :param _request_timeout: timeout setting for this request. If one

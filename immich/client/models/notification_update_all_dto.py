@@ -17,8 +17,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Set
 from typing_extensions import Self
 
@@ -28,7 +29,7 @@ class NotificationUpdateAllDto(BaseModel):
     NotificationUpdateAllDto
     """  # noqa: E501
 
-    ids: List[StrictStr]
+    ids: List[UUID]
     read_at: Optional[datetime] = Field(default=None, alias="readAt")
     __properties: ClassVar[List[str]] = ["ids", "readAt"]
 

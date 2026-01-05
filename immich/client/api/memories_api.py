@@ -17,6 +17,7 @@ from typing_extensions import Annotated
 
 from datetime import datetime
 from pydantic import StrictBool
+from uuid import UUID
 from immich.client.models.bulk_id_response_dto import BulkIdResponseDto
 from immich.client.models.bulk_ids_dto import BulkIdsDto
 from immich.client.models.memory_create_dto import MemoryCreateDto
@@ -48,7 +49,7 @@ class MemoriesApi:
     @validate_call
     async def add_memory_assets(
         self,
-        id: StrictStr,
+        id: UUID,
         bulk_ids_dto: BulkIdsDto,
         _request_timeout: Union[
             None,
@@ -67,7 +68,7 @@ class MemoriesApi:
         Add a list of asset IDs to a specific memory.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param bulk_ids_dto: (required)
         :type bulk_ids_dto: BulkIdsDto
         :param _request_timeout: timeout setting for this request. If one
@@ -116,7 +117,7 @@ class MemoriesApi:
     @validate_call
     async def add_memory_assets_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         bulk_ids_dto: BulkIdsDto,
         _request_timeout: Union[
             None,
@@ -135,7 +136,7 @@ class MemoriesApi:
         Add a list of asset IDs to a specific memory.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param bulk_ids_dto: (required)
         :type bulk_ids_dto: BulkIdsDto
         :param _request_timeout: timeout setting for this request. If one
@@ -184,7 +185,7 @@ class MemoriesApi:
     @validate_call
     async def add_memory_assets_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         bulk_ids_dto: BulkIdsDto,
         _request_timeout: Union[
             None,
@@ -203,7 +204,7 @@ class MemoriesApi:
         Add a list of asset IDs to a specific memory.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param bulk_ids_dto: (required)
         :type bulk_ids_dto: BulkIdsDto
         :param _request_timeout: timeout setting for this request. If one
@@ -565,7 +566,7 @@ class MemoriesApi:
     @validate_call
     async def delete_memory(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -583,7 +584,7 @@ class MemoriesApi:
         Delete a specific memory by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -629,7 +630,7 @@ class MemoriesApi:
     @validate_call
     async def delete_memory_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -647,7 +648,7 @@ class MemoriesApi:
         Delete a specific memory by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -693,7 +694,7 @@ class MemoriesApi:
     @validate_call
     async def delete_memory_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -711,7 +712,7 @@ class MemoriesApi:
         Delete a specific memory by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -800,7 +801,7 @@ class MemoriesApi:
     @validate_call
     async def get_memory(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -818,7 +819,7 @@ class MemoriesApi:
         Retrieve a specific memory by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -864,7 +865,7 @@ class MemoriesApi:
     @validate_call
     async def get_memory_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -882,7 +883,7 @@ class MemoriesApi:
         Retrieve a specific memory by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -928,7 +929,7 @@ class MemoriesApi:
     @validate_call
     async def get_memory_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -946,7 +947,7 @@ class MemoriesApi:
         Retrieve a specific memory by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1380,7 +1381,7 @@ class MemoriesApi:
     @validate_call
     async def remove_memory_assets(
         self,
-        id: StrictStr,
+        id: UUID,
         bulk_ids_dto: BulkIdsDto,
         _request_timeout: Union[
             None,
@@ -1399,7 +1400,7 @@ class MemoriesApi:
         Remove a list of asset IDs from a specific memory.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param bulk_ids_dto: (required)
         :type bulk_ids_dto: BulkIdsDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1448,7 +1449,7 @@ class MemoriesApi:
     @validate_call
     async def remove_memory_assets_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         bulk_ids_dto: BulkIdsDto,
         _request_timeout: Union[
             None,
@@ -1467,7 +1468,7 @@ class MemoriesApi:
         Remove a list of asset IDs from a specific memory.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param bulk_ids_dto: (required)
         :type bulk_ids_dto: BulkIdsDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1516,7 +1517,7 @@ class MemoriesApi:
     @validate_call
     async def remove_memory_assets_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         bulk_ids_dto: BulkIdsDto,
         _request_timeout: Union[
             None,
@@ -1535,7 +1536,7 @@ class MemoriesApi:
         Remove a list of asset IDs from a specific memory.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param bulk_ids_dto: (required)
         :type bulk_ids_dto: BulkIdsDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1985,7 +1986,7 @@ class MemoriesApi:
     @validate_call
     async def update_memory(
         self,
-        id: StrictStr,
+        id: UUID,
         memory_update_dto: MemoryUpdateDto,
         _request_timeout: Union[
             None,
@@ -2004,7 +2005,7 @@ class MemoriesApi:
         Update an existing memory by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param memory_update_dto: (required)
         :type memory_update_dto: MemoryUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -2053,7 +2054,7 @@ class MemoriesApi:
     @validate_call
     async def update_memory_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         memory_update_dto: MemoryUpdateDto,
         _request_timeout: Union[
             None,
@@ -2072,7 +2073,7 @@ class MemoriesApi:
         Update an existing memory by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param memory_update_dto: (required)
         :type memory_update_dto: MemoryUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -2121,7 +2122,7 @@ class MemoriesApi:
     @validate_call
     async def update_memory_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         memory_update_dto: MemoryUpdateDto,
         _request_timeout: Union[
             None,
@@ -2140,7 +2141,7 @@ class MemoriesApi:
         Update an existing memory by its ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param memory_update_dto: (required)
         :type memory_update_dto: MemoryUpdateDto
         :param _request_timeout: timeout setting for this request. If one

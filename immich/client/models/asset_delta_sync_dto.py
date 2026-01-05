@@ -17,8 +17,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,7 +30,7 @@ class AssetDeltaSyncDto(BaseModel):
     """  # noqa: E501
 
     updated_after: datetime = Field(alias="updatedAfter")
-    user_ids: List[StrictStr] = Field(alias="userIds")
+    user_ids: List[UUID] = Field(alias="userIds")
     __properties: ClassVar[List[str]] = ["updatedAfter", "userIds"]
 
     model_config = ConfigDict(

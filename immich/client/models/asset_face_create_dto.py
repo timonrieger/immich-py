@@ -16,8 +16,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,11 +28,11 @@ class AssetFaceCreateDto(BaseModel):
     AssetFaceCreateDto
     """  # noqa: E501
 
-    asset_id: StrictStr = Field(alias="assetId")
+    asset_id: UUID = Field(alias="assetId")
     height: StrictInt
     image_height: StrictInt = Field(alias="imageHeight")
     image_width: StrictInt = Field(alias="imageWidth")
-    person_id: StrictStr = Field(alias="personId")
+    person_id: UUID = Field(alias="personId")
     width: StrictInt
     x: StrictInt
     y: StrictInt

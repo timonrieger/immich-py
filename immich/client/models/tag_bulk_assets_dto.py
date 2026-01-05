@@ -16,8 +16,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,8 +28,8 @@ class TagBulkAssetsDto(BaseModel):
     TagBulkAssetsDto
     """  # noqa: E501
 
-    asset_ids: List[StrictStr] = Field(alias="assetIds")
-    tag_ids: List[StrictStr] = Field(alias="tagIds")
+    asset_ids: List[UUID] = Field(alias="assetIds")
+    tag_ids: List[UUID] = Field(alias="tagIds")
     __properties: ClassVar[List[str]] = ["assetIds", "tagIds"]
 
     model_config = ConfigDict(

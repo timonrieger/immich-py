@@ -16,8 +16,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Set
 from typing_extensions import Self
 
@@ -31,9 +32,9 @@ class AssetCopyDto(BaseModel):
     favorite: Optional[StrictBool] = True
     shared_links: Optional[StrictBool] = Field(default=True, alias="sharedLinks")
     sidecar: Optional[StrictBool] = True
-    source_id: StrictStr = Field(alias="sourceId")
+    source_id: UUID = Field(alias="sourceId")
     stack: Optional[StrictBool] = True
-    target_id: StrictStr = Field(alias="targetId")
+    target_id: UUID = Field(alias="targetId")
     __properties: ClassVar[List[str]] = [
         "albums",
         "favorite",

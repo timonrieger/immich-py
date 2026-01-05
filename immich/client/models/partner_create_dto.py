@@ -16,8 +16,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class PartnerCreateDto(BaseModel):
     PartnerCreateDto
     """  # noqa: E501
 
-    shared_with_id: StrictStr = Field(alias="sharedWithId")
+    shared_with_id: UUID = Field(alias="sharedWithId")
     __properties: ClassVar[List[str]] = ["sharedWithId"]
 
     model_config = ConfigDict(

@@ -16,6 +16,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import StrictBool
+from uuid import UUID
 from immich.client.models.asset_stats_response_dto import AssetStatsResponseDto
 from immich.client.models.asset_visibility import AssetVisibility
 from immich.client.models.session_response_dto import SessionResponseDto
@@ -299,7 +300,7 @@ class UsersAdminApi:
     @validate_call
     async def delete_user_admin(
         self,
-        id: StrictStr,
+        id: UUID,
         user_admin_delete_dto: UserAdminDeleteDto,
         _request_timeout: Union[
             None,
@@ -318,7 +319,7 @@ class UsersAdminApi:
         Delete a user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param user_admin_delete_dto: (required)
         :type user_admin_delete_dto: UserAdminDeleteDto
         :param _request_timeout: timeout setting for this request. If one
@@ -367,7 +368,7 @@ class UsersAdminApi:
     @validate_call
     async def delete_user_admin_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         user_admin_delete_dto: UserAdminDeleteDto,
         _request_timeout: Union[
             None,
@@ -386,7 +387,7 @@ class UsersAdminApi:
         Delete a user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param user_admin_delete_dto: (required)
         :type user_admin_delete_dto: UserAdminDeleteDto
         :param _request_timeout: timeout setting for this request. If one
@@ -435,7 +436,7 @@ class UsersAdminApi:
     @validate_call
     async def delete_user_admin_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         user_admin_delete_dto: UserAdminDeleteDto,
         _request_timeout: Union[
             None,
@@ -454,7 +455,7 @@ class UsersAdminApi:
         Delete a user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param user_admin_delete_dto: (required)
         :type user_admin_delete_dto: UserAdminDeleteDto
         :param _request_timeout: timeout setting for this request. If one
@@ -565,7 +566,7 @@ class UsersAdminApi:
     @validate_call
     async def get_user_admin(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -583,7 +584,7 @@ class UsersAdminApi:
         Retrieve  a specific user by their ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -629,7 +630,7 @@ class UsersAdminApi:
     @validate_call
     async def get_user_admin_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -647,7 +648,7 @@ class UsersAdminApi:
         Retrieve  a specific user by their ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -693,7 +694,7 @@ class UsersAdminApi:
     @validate_call
     async def get_user_admin_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -711,7 +712,7 @@ class UsersAdminApi:
         Retrieve  a specific user by their ID.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -806,7 +807,7 @@ class UsersAdminApi:
     @validate_call
     async def get_user_preferences_admin(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -824,7 +825,7 @@ class UsersAdminApi:
         Retrieve the preferences of a specific user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -870,7 +871,7 @@ class UsersAdminApi:
     @validate_call
     async def get_user_preferences_admin_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -888,7 +889,7 @@ class UsersAdminApi:
         Retrieve the preferences of a specific user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -934,7 +935,7 @@ class UsersAdminApi:
     @validate_call
     async def get_user_preferences_admin_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -952,7 +953,7 @@ class UsersAdminApi:
         Retrieve the preferences of a specific user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1047,7 +1048,7 @@ class UsersAdminApi:
     @validate_call
     async def get_user_sessions_admin(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1065,7 +1066,7 @@ class UsersAdminApi:
         Retrieve all sessions for a specific user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1111,7 +1112,7 @@ class UsersAdminApi:
     @validate_call
     async def get_user_sessions_admin_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1129,7 +1130,7 @@ class UsersAdminApi:
         Retrieve all sessions for a specific user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1175,7 +1176,7 @@ class UsersAdminApi:
     @validate_call
     async def get_user_sessions_admin_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1193,7 +1194,7 @@ class UsersAdminApi:
         Retrieve all sessions for a specific user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1288,7 +1289,7 @@ class UsersAdminApi:
     @validate_call
     async def get_user_statistics_admin(
         self,
-        id: StrictStr,
+        id: UUID,
         is_favorite: Optional[StrictBool] = None,
         is_trashed: Optional[StrictBool] = None,
         visibility: Optional[AssetVisibility] = None,
@@ -1309,7 +1310,7 @@ class UsersAdminApi:
         Retrieve asset statistics for a specific user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param is_favorite:
         :type is_favorite: bool
         :param is_trashed:
@@ -1364,7 +1365,7 @@ class UsersAdminApi:
     @validate_call
     async def get_user_statistics_admin_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         is_favorite: Optional[StrictBool] = None,
         is_trashed: Optional[StrictBool] = None,
         visibility: Optional[AssetVisibility] = None,
@@ -1385,7 +1386,7 @@ class UsersAdminApi:
         Retrieve asset statistics for a specific user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param is_favorite:
         :type is_favorite: bool
         :param is_trashed:
@@ -1440,7 +1441,7 @@ class UsersAdminApi:
     @validate_call
     async def get_user_statistics_admin_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         is_favorite: Optional[StrictBool] = None,
         is_trashed: Optional[StrictBool] = None,
         visibility: Optional[AssetVisibility] = None,
@@ -1461,7 +1462,7 @@ class UsersAdminApi:
         Retrieve asset statistics for a specific user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param is_favorite:
         :type is_favorite: bool
         :param is_trashed:
@@ -1577,7 +1578,7 @@ class UsersAdminApi:
     @validate_call
     async def restore_user_admin(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1595,7 +1596,7 @@ class UsersAdminApi:
         Restore a previously deleted user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1641,7 +1642,7 @@ class UsersAdminApi:
     @validate_call
     async def restore_user_admin_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1659,7 +1660,7 @@ class UsersAdminApi:
         Restore a previously deleted user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1705,7 +1706,7 @@ class UsersAdminApi:
     @validate_call
     async def restore_user_admin_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1723,7 +1724,7 @@ class UsersAdminApi:
         Restore a previously deleted user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1818,7 +1819,7 @@ class UsersAdminApi:
     @validate_call
     async def search_users_admin(
         self,
-        id: Optional[StrictStr] = None,
+        id: Optional[UUID] = None,
         with_deleted: Optional[StrictBool] = None,
         _request_timeout: Union[
             None,
@@ -1837,7 +1838,7 @@ class UsersAdminApi:
         Search for users.
 
         :param id:
-        :type id: str
+        :type id: UUID
         :param with_deleted:
         :type with_deleted: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -1886,7 +1887,7 @@ class UsersAdminApi:
     @validate_call
     async def search_users_admin_with_http_info(
         self,
-        id: Optional[StrictStr] = None,
+        id: Optional[UUID] = None,
         with_deleted: Optional[StrictBool] = None,
         _request_timeout: Union[
             None,
@@ -1905,7 +1906,7 @@ class UsersAdminApi:
         Search for users.
 
         :param id:
-        :type id: str
+        :type id: UUID
         :param with_deleted:
         :type with_deleted: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -1954,7 +1955,7 @@ class UsersAdminApi:
     @validate_call
     async def search_users_admin_without_preload_content(
         self,
-        id: Optional[StrictStr] = None,
+        id: Optional[UUID] = None,
         with_deleted: Optional[StrictBool] = None,
         _request_timeout: Union[
             None,
@@ -1973,7 +1974,7 @@ class UsersAdminApi:
         Search for users.
 
         :param id:
-        :type id: str
+        :type id: UUID
         :param with_deleted:
         :type with_deleted: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -2076,7 +2077,7 @@ class UsersAdminApi:
     @validate_call
     async def update_user_admin(
         self,
-        id: StrictStr,
+        id: UUID,
         user_admin_update_dto: UserAdminUpdateDto,
         _request_timeout: Union[
             None,
@@ -2095,7 +2096,7 @@ class UsersAdminApi:
         Update an existing user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param user_admin_update_dto: (required)
         :type user_admin_update_dto: UserAdminUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -2144,7 +2145,7 @@ class UsersAdminApi:
     @validate_call
     async def update_user_admin_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         user_admin_update_dto: UserAdminUpdateDto,
         _request_timeout: Union[
             None,
@@ -2163,7 +2164,7 @@ class UsersAdminApi:
         Update an existing user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param user_admin_update_dto: (required)
         :type user_admin_update_dto: UserAdminUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -2212,7 +2213,7 @@ class UsersAdminApi:
     @validate_call
     async def update_user_admin_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         user_admin_update_dto: UserAdminUpdateDto,
         _request_timeout: Union[
             None,
@@ -2231,7 +2232,7 @@ class UsersAdminApi:
         Update an existing user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param user_admin_update_dto: (required)
         :type user_admin_update_dto: UserAdminUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -2342,7 +2343,7 @@ class UsersAdminApi:
     @validate_call
     async def update_user_preferences_admin(
         self,
-        id: StrictStr,
+        id: UUID,
         user_preferences_update_dto: UserPreferencesUpdateDto,
         _request_timeout: Union[
             None,
@@ -2361,7 +2362,7 @@ class UsersAdminApi:
         Update the preferences of a specific user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param user_preferences_update_dto: (required)
         :type user_preferences_update_dto: UserPreferencesUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -2410,7 +2411,7 @@ class UsersAdminApi:
     @validate_call
     async def update_user_preferences_admin_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         user_preferences_update_dto: UserPreferencesUpdateDto,
         _request_timeout: Union[
             None,
@@ -2429,7 +2430,7 @@ class UsersAdminApi:
         Update the preferences of a specific user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param user_preferences_update_dto: (required)
         :type user_preferences_update_dto: UserPreferencesUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -2478,7 +2479,7 @@ class UsersAdminApi:
     @validate_call
     async def update_user_preferences_admin_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         user_preferences_update_dto: UserPreferencesUpdateDto,
         _request_timeout: Union[
             None,
@@ -2497,7 +2498,7 @@ class UsersAdminApi:
         Update the preferences of a specific user.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param user_preferences_update_dto: (required)
         :type user_preferences_update_dto: UserPreferencesUpdateDto
         :param _request_timeout: timeout setting for this request. If one

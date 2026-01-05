@@ -16,8 +16,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class StackUpdateDto(BaseModel):
     StackUpdateDto
     """  # noqa: E501
 
-    primary_asset_id: Optional[StrictStr] = Field(default=None, alias="primaryAssetId")
+    primary_asset_id: Optional[UUID] = Field(default=None, alias="primaryAssetId")
     __properties: ClassVar[List[str]] = ["primaryAssetId"]
 
     model_config = ConfigDict(

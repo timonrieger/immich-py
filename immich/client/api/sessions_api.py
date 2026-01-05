@@ -15,6 +15,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
+from uuid import UUID
 from immich.client.models.session_create_dto import SessionCreateDto
 from immich.client.models.session_create_response_dto import SessionCreateResponseDto
 from immich.client.models.session_response_dto import SessionResponseDto
@@ -511,7 +512,7 @@ class SessionsApi:
     @validate_call
     async def delete_session(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -529,7 +530,7 @@ class SessionsApi:
         Delete a specific session by id.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -575,7 +576,7 @@ class SessionsApi:
     @validate_call
     async def delete_session_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -593,7 +594,7 @@ class SessionsApi:
         Delete a specific session by id.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -639,7 +640,7 @@ class SessionsApi:
     @validate_call
     async def delete_session_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -657,7 +658,7 @@ class SessionsApi:
         Delete a specific session by id.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -972,7 +973,7 @@ class SessionsApi:
     @validate_call
     async def lock_session(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -990,7 +991,7 @@ class SessionsApi:
         Lock a specific session by id.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1036,7 +1037,7 @@ class SessionsApi:
     @validate_call
     async def lock_session_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1054,7 +1055,7 @@ class SessionsApi:
         Lock a specific session by id.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1100,7 +1101,7 @@ class SessionsApi:
     @validate_call
     async def lock_session_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1118,7 +1119,7 @@ class SessionsApi:
         Lock a specific session by id.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1207,7 +1208,7 @@ class SessionsApi:
     @validate_call
     async def update_session(
         self,
-        id: StrictStr,
+        id: UUID,
         session_update_dto: SessionUpdateDto,
         _request_timeout: Union[
             None,
@@ -1226,7 +1227,7 @@ class SessionsApi:
         Update a specific session identified by id.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param session_update_dto: (required)
         :type session_update_dto: SessionUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1275,7 +1276,7 @@ class SessionsApi:
     @validate_call
     async def update_session_with_http_info(
         self,
-        id: StrictStr,
+        id: UUID,
         session_update_dto: SessionUpdateDto,
         _request_timeout: Union[
             None,
@@ -1294,7 +1295,7 @@ class SessionsApi:
         Update a specific session identified by id.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param session_update_dto: (required)
         :type session_update_dto: SessionUpdateDto
         :param _request_timeout: timeout setting for this request. If one
@@ -1343,7 +1344,7 @@ class SessionsApi:
     @validate_call
     async def update_session_without_preload_content(
         self,
-        id: StrictStr,
+        id: UUID,
         session_update_dto: SessionUpdateDto,
         _request_timeout: Union[
             None,
@@ -1362,7 +1363,7 @@ class SessionsApi:
         Update a specific session identified by id.
 
         :param id: (required)
-        :type id: str
+        :type id: UUID
         :param session_update_dto: (required)
         :type session_update_dto: SessionUpdateDto
         :param _request_timeout: timeout setting for this request. If one
