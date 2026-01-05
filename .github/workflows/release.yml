@@ -20,7 +20,7 @@ jobs:
 
     environment:
       name: pypi
-      url: https://pypi.org/p/crypticorn
+      url: https://pypi.org/p/immich
 
     steps:
       # Note: We checkout the repository at the branch that triggered the workflow

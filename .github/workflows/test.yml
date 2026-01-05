@@ -30,7 +30,7 @@ jobs:
         run: uv sync --locked --dev
 
       - name: Test with pytest
-        run: uv run pytest tests/ --cov=crypticorn --cov-branch --cov-report=xml --cov-report=term-missing:skip-covered
+        run: uv run pytest tests/ --cov=immich --cov-branch --cov-report=xml --cov-report=term-missing:skip-covered
 
       - name: Pytest coverage comment
         if: ${{ matrix.python-version == '3.14' }}
