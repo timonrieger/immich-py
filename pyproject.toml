@@ -67,7 +67,7 @@ lint.ignore = ["E721", "F403"]
 asyncio_default_fixture_loop_scope = "function"
 
 [build-system]
-requires = ["uv_build==0.9.21"]
+requires = ["uv_build==0.9"]
 build-backend = "uv_build"
 
 [dependency-groups]
