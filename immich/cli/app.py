@@ -25,7 +25,7 @@ console = Console()
 
 
 @app.callback(invoke_without_command=True)
-def main(
+def _callback(
     ctx: typer.Context,
     debug: bool = typer.Option(False, "--debug", help="Enable debug output"),
     format_mode: str = typer.Option(
@@ -38,18 +38,17 @@ def main(
     ctx.obj["debug"] = debug
     ctx.obj["format"] = format_mode
 
-    # Create client and store in context
+    # If help/completion parsing, or no command provided, don't require config.
+    if getattr(ctx, "resilient_parsing", False) or ctx.invoked_subcommand is None:
+        console.print(ctx.get_help())
+        raise typer.Exit(0)
+
+    # Create client only when a command is actually invoked.
     try:
-        client = create_client()
-        ctx.obj["client"] = client
+        ctx.obj["client"] = create_client()
     except ValueError as e:
         console.print(f"[red]Error:[/red] {e}", err=True)
-        sys.exit(1)
-
-    # If no command provided, show help
-    if ctx.invoked_subcommand is None:
-        console.print(ctx.get_help())
-        sys.exit(0)
+        raise typer.Exit(1)
 
 
 def attach_generated_apps() -> None:

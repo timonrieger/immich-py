@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,10 +11,10 @@ app = typer.Typer(help="Download operations")
 
 @app.command("download-archive")
 def download_archive(
+    ctx: typer.Context,
     key: str | None = typer.Option(None, "--key"),
     slug: str | None = typer.Option(None, "--slug"),
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Download asset archive"""
     from pathlib import Path
@@ -36,10 +37,10 @@ def download_archive(
 
 @app.command("get-download-info")
 def get_download_info(
+    ctx: typer.Context,
     key: str | None = typer.Option(None, "--key"),
     slug: str | None = typer.Option(None, "--slug"),
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Retrieve download information"""
     from pathlib import Path

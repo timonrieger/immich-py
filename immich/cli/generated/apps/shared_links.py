@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,11 +11,11 @@ app = typer.Typer(help="Shared links operations")
 
 @app.command("add-shared-link-assets")
 def add_shared_link_assets(
+    ctx: typer.Context,
     id: str,
     key: str | None = typer.Option(None, "--key"),
     slug: str | None = typer.Option(None, "--slug"),
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Add assets to a shared link"""
     from pathlib import Path
@@ -38,8 +39,8 @@ def add_shared_link_assets(
 
 @app.command("create-shared-link")
 def create_shared_link(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Create a shared link"""
     from pathlib import Path
@@ -58,9 +59,9 @@ def create_shared_link(
 
 @app.command("get-all-shared-links")
 def get_all_shared_links(
+    ctx: typer.Context,
     album_id: str | None = typer.Option(None, "--album-id"),
     id: str | None = typer.Option(None, "--id"),
-    ctx: typer.Context,
 ) -> None:
     """Retrieve all shared links"""
     from pathlib import Path
@@ -78,11 +79,11 @@ def get_all_shared_links(
 
 @app.command("get-my-shared-link")
 def get_my_shared_link(
+    ctx: typer.Context,
     key: str | None = typer.Option(None, "--key"),
     password: str | None = typer.Option(None, "--password"),
     slug: str | None = typer.Option(None, "--slug"),
     token: str | None = typer.Option(None, "--token"),
-    ctx: typer.Context,
 ) -> None:
     """Retrieve current shared link"""
     from pathlib import Path
@@ -104,8 +105,8 @@ def get_my_shared_link(
 
 @app.command("get-shared-link-by-id")
 def get_shared_link_by_id(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Retrieve a shared link"""
     from pathlib import Path
@@ -120,8 +121,8 @@ def get_shared_link_by_id(
 
 @app.command("remove-shared-link")
 def remove_shared_link(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Delete a shared link"""
     from pathlib import Path
@@ -136,11 +137,11 @@ def remove_shared_link(
 
 @app.command("remove-shared-link-assets")
 def remove_shared_link_assets(
+    ctx: typer.Context,
     id: str,
     key: str | None = typer.Option(None, "--key"),
     slug: str | None = typer.Option(None, "--slug"),
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Remove assets from a shared link"""
     from pathlib import Path
@@ -164,9 +165,9 @@ def remove_shared_link_assets(
 
 @app.command("update-shared-link")
 def update_shared_link(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Update a shared link"""
     from pathlib import Path

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,8 +11,8 @@ app = typer.Typer(help="Workflows operations")
 
 @app.command("create-workflow")
 def create_workflow(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Create a workflow"""
     from pathlib import Path
@@ -30,8 +31,8 @@ def create_workflow(
 
 @app.command("delete-workflow")
 def delete_workflow(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Delete a workflow"""
     from pathlib import Path
@@ -46,8 +47,8 @@ def delete_workflow(
 
 @app.command("get-workflow")
 def get_workflow(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Retrieve a workflow"""
     from pathlib import Path
@@ -76,9 +77,9 @@ def get_workflows(
 
 @app.command("update-workflow")
 def update_workflow(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Update a workflow"""
     from pathlib import Path

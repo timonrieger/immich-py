@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,8 +11,8 @@ app = typer.Typer(help="Assets operations")
 
 @app.command("check-bulk-upload")
 def check_bulk_upload(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Check bulk upload"""
     from pathlib import Path
@@ -30,8 +31,8 @@ def check_bulk_upload(
 
 @app.command("check-existing-assets")
 def check_existing_assets(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Check existing assets"""
     from pathlib import Path
@@ -50,8 +51,8 @@ def check_existing_assets(
 
 @app.command("copy-asset")
 def copy_asset(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Copy asset"""
     from pathlib import Path
@@ -70,9 +71,9 @@ def copy_asset(
 
 @app.command("delete-asset-metadata")
 def delete_asset_metadata(
-    id: str,
-    key: AssetMetadataKey,
     ctx: typer.Context,
+    id: str,
+    key: str,
 ) -> None:
     """Delete asset metadata by key"""
     from pathlib import Path
@@ -88,8 +89,8 @@ def delete_asset_metadata(
 
 @app.command("delete-assets")
 def delete_assets(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Delete assets"""
     from pathlib import Path
@@ -108,10 +109,10 @@ def delete_assets(
 
 @app.command("download-asset")
 def download_asset(
+    ctx: typer.Context,
     id: str,
     key: str | None = typer.Option(None, "--key"),
     slug: str | None = typer.Option(None, "--slug"),
-    ctx: typer.Context,
 ) -> None:
     """Download original asset"""
     from pathlib import Path
@@ -130,8 +131,8 @@ def download_asset(
 
 @app.command("get-all-user-assets-by-device-id")
 def get_all_user_assets_by_device_id(
-    device_id: str,
     ctx: typer.Context,
+    device_id: str,
 ) -> None:
     """Retrieve assets by device ID"""
     from pathlib import Path
@@ -146,10 +147,10 @@ def get_all_user_assets_by_device_id(
 
 @app.command("get-asset-info")
 def get_asset_info(
+    ctx: typer.Context,
     id: str,
     key: str | None = typer.Option(None, "--key"),
     slug: str | None = typer.Option(None, "--slug"),
-    ctx: typer.Context,
 ) -> None:
     """Retrieve an asset"""
     from pathlib import Path
@@ -168,8 +169,8 @@ def get_asset_info(
 
 @app.command("get-asset-metadata")
 def get_asset_metadata(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Get asset metadata"""
     from pathlib import Path
@@ -184,9 +185,9 @@ def get_asset_metadata(
 
 @app.command("get-asset-metadata-by-key")
 def get_asset_metadata_by_key(
-    id: str,
-    key: AssetMetadataKey,
     ctx: typer.Context,
+    id: str,
+    key: str,
 ) -> None:
     """Retrieve asset metadata by key"""
     from pathlib import Path
@@ -202,8 +203,8 @@ def get_asset_metadata_by_key(
 
 @app.command("get-asset-ocr")
 def get_asset_ocr(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Retrieve asset OCR data"""
     from pathlib import Path
@@ -218,10 +219,10 @@ def get_asset_ocr(
 
 @app.command("get-asset-statistics")
 def get_asset_statistics(
+    ctx: typer.Context,
     is_favorite: bool | None = typer.Option(None, "--is-favorite"),
     is_trashed: bool | None = typer.Option(None, "--is-trashed"),
-    visibility: AssetVisibility | None = typer.Option(None, "--visibility"),
-    ctx: typer.Context,
+    visibility: str | None = typer.Option(None, "--visibility"),
 ) -> None:
     """Get asset statistics"""
     from pathlib import Path
@@ -241,8 +242,8 @@ def get_asset_statistics(
 
 @app.command("get-random")
 def get_random(
-    count: float | None = typer.Option(None, "--count"),
     ctx: typer.Context,
+    count: float | None = typer.Option(None, "--count"),
 ) -> None:
     """Get random assets"""
     from pathlib import Path
@@ -258,10 +259,10 @@ def get_random(
 
 @app.command("play-asset-video")
 def play_asset_video(
+    ctx: typer.Context,
     id: str,
     key: str | None = typer.Option(None, "--key"),
     slug: str | None = typer.Option(None, "--slug"),
-    ctx: typer.Context,
 ) -> None:
     """Play asset video"""
     from pathlib import Path
@@ -280,12 +281,12 @@ def play_asset_video(
 
 @app.command("replace-asset")
 def replace_asset(
+    ctx: typer.Context,
     id: str,
     key: str | None = typer.Option(None, "--key"),
     slug: str | None = typer.Option(None, "--slug"),
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with multipart fields (non-file)"),
     asset_data: Path = typer.Option(..., "--asset-data", help="File to upload for assetData"),
-    ctx: typer.Context,
 ) -> None:
     """Replace asset"""
     from pathlib import Path
@@ -341,8 +342,8 @@ def replace_asset(
 
 @app.command("run-asset-jobs")
 def run_asset_jobs(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Run an asset job"""
     from pathlib import Path
@@ -361,9 +362,9 @@ def run_asset_jobs(
 
 @app.command("update-asset")
 def update_asset(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Update an asset"""
     from pathlib import Path
@@ -383,9 +384,9 @@ def update_asset(
 
 @app.command("update-asset-metadata")
 def update_asset_metadata(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Update asset metadata"""
     from pathlib import Path
@@ -405,8 +406,8 @@ def update_asset_metadata(
 
 @app.command("update-assets")
 def update_assets(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Update assets"""
     from pathlib import Path
@@ -425,13 +426,13 @@ def update_assets(
 
 @app.command("upload-asset")
 def upload_asset(
+    ctx: typer.Context,
     key: str | None = typer.Option(None, "--key"),
     slug: str | None = typer.Option(None, "--slug"),
     x_immich_checksum: str | None = typer.Option(None, "--x-immich-checksum"),
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with multipart fields (non-file)"),
     asset_data: Path = typer.Option(..., "--asset-data", help="File to upload for assetData"),
     sidecar_data: Path | None = typer.Option(None, "--sidecar-data", help="File to upload for sidecarData"),
-    ctx: typer.Context,
 ) -> None:
     """Upload asset"""
     from pathlib import Path
@@ -508,11 +509,11 @@ def upload_asset(
 
 @app.command("view-asset")
 def view_asset(
+    ctx: typer.Context,
     id: str,
     key: str | None = typer.Option(None, "--key"),
-    size: AssetMediaSize | None = typer.Option(None, "--size"),
+    size: str | None = typer.Option(None, "--size"),
     slug: str | None = typer.Option(None, "--slug"),
-    ctx: typer.Context,
 ) -> None:
     """View asset thumbnail"""
     from pathlib import Path

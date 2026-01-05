@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,8 +11,8 @@ app = typer.Typer(help="API keys operations")
 
 @app.command("create-api-key")
 def create_api_key(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Create an API key"""
     from pathlib import Path
@@ -30,8 +31,8 @@ def create_api_key(
 
 @app.command("delete-api-key")
 def delete_api_key(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Delete an API key"""
     from pathlib import Path
@@ -46,8 +47,8 @@ def delete_api_key(
 
 @app.command("get-api-key")
 def get_api_key(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Retrieve an API key"""
     from pathlib import Path
@@ -90,9 +91,9 @@ def get_my_api_key(
 
 @app.command("update-api-key")
 def update_api_key(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Update an API key"""
     from pathlib import Path

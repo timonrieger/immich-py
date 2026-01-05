@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,8 +11,8 @@ app = typer.Typer(help="Plugins operations")
 
 @app.command("get-plugin")
 def get_plugin(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Retrieve a plugin"""
     from pathlib import Path

@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import keyword
 import os
 import re
 import shutil
@@ -51,7 +52,10 @@ def to_snake_case(name: str) -> str:
     s2 = re.sub("([a-z0-9])([A-Z])", r"\1_\2", s1)
     # Replace spaces/hyphens with underscores and lowercase
     s3 = re.sub(r"[\s-]+", "_", s2)
-    return s3.lower()
+    # Replace any remaining non-identifier characters (e.g. parentheses, slashes)
+    s4 = re.sub(r"[^A-Za-z0-9_]", "_", s3)
+    s5 = re.sub(r"_+", "_", s4).strip("_")
+    return s5.lower()
 
 
 def to_kebab_case(name: str) -> str:
@@ -59,16 +63,48 @@ def to_kebab_case(name: str) -> str:
     snake = to_snake_case(name)
     return snake.replace("_", "-")
 
+def to_python_ident(name: str) -> str:
+    """Convert an OpenAPI name into a safe Python identifier.
 
-def python_type_from_schema(schema: dict[str, Any]) -> str:
+    This must match (or be compatible with) openapi-generator's Python naming:
+    - snake_case
+    - avoid keywords like `for`, `from`, `class`, etc.
+    """
+    ident = to_snake_case(name)
+    if not ident:
+        return "param"
+    if ident[0].isdigit():
+        ident = "_" + ident
+    if keyword.iskeyword(ident):
+        ident = ident + "_"
+    return ident
+
+
+def python_type_from_schema(schema: dict[str, Any], spec: dict[str, Any] | None = None) -> str:
     """Convert OpenAPI schema to Python type hint."""
     if "type" not in schema:
         # Reference or complex type
         if "$ref" in schema:
-            ref = schema["$ref"]
-            # Extract model name from #/components/schemas/ModelName
-            model_name = ref.split("/")[-1]
-            return model_name
+            # For CLI params, prefer JSON-serializable primitives where possible.
+            # Avoid emitting model/enums here because Python 3.14+ will eagerly
+            # evaluate string annotations (Typer -> inspect), requiring imports.
+            if spec is not None:
+                resolved = resolve_schema_ref(spec, schema["$ref"])
+                # enums are represented as strings/ints in CLI
+                if "enum" in resolved:
+                    t = resolved.get("type")
+                    if t == "integer":
+                        return "int"
+                    if t == "boolean":
+                        return "bool"
+                    if t == "number":
+                        return "float"
+                    return "str"
+                # fall back to resolved primitive if present
+                if "type" in resolved:
+                    return python_type_from_schema(resolved, spec=None)
+            # Avoid typing.Any in CLI signatures: Typer/Click rejects it.
+            return "str"
         return "Any"
 
     schema_type = schema["type"]
@@ -89,11 +125,15 @@ def python_type_from_schema(schema: dict[str, Any]) -> str:
     elif schema_type == "array":
         items = schema.get("items", {})
         item_type = python_type_from_schema(items)
+        # Keep list item types Click-friendly.
+        if item_type not in {"str", "int", "float", "bool"}:
+            item_type = "str"
         return f"list[{item_type}]"
     elif schema_type == "object":
-        return "dict[str, Any]"
+        # Click can't map arbitrary objects; accept JSON as a string.
+        return "str"
     else:
-        return "Any"
+        return "str"
 
 
 def validate_operation(operation: dict[str, Any], path: str, method: str) -> None:
@@ -204,13 +244,16 @@ def generate_command_function(
     # Build function signature
     lines = [f'@app.command("{cmd_name}")']
     lines.append(f"def {func_name}(")
+    # Typer context must be a non-default parameter; emit it first to avoid
+    # Python's "non-default follows default" SyntaxError.
+    lines.append("    ctx: typer.Context,")
 
     # Path parameters (required positional)
     for param in sorted(path_params, key=lambda p: p["name"]):
         openapi_name = param["name"]
-        param_name = to_snake_case(openapi_name)
+        param_name = to_python_ident(openapi_name)
         schema = param.get("schema", {"type": "string"})
-        param_type = python_type_from_schema(schema)
+        param_type = python_type_from_schema(schema, spec)
         required = param.get("required", False)
         if required:
             lines.append(f"    {param_name}: {param_type},")
@@ -220,9 +263,9 @@ def generate_command_function(
     # Query parameters (optional flags)
     for param in sorted(query_params, key=lambda p: p["name"]):
         openapi_name = param["name"]
-        param_name = to_snake_case(openapi_name)
+        param_name = to_python_ident(openapi_name)
         schema = param.get("schema", {"type": "string"})
-        param_type = python_type_from_schema(schema)
+        param_type = python_type_from_schema(schema, spec)
         flag_name = to_kebab_case(openapi_name)
         required = param.get("required", False)
         if required:
@@ -237,9 +280,9 @@ def generate_command_function(
     # Header parameters (optional flags)
     for param in sorted(header_params, key=lambda p: p["name"]):
         openapi_name = param["name"]
-        param_name = to_snake_case(openapi_name)
+        param_name = to_python_ident(openapi_name)
         schema = param.get("schema", {"type": "string"})
-        param_type = python_type_from_schema(schema)
+        param_type = python_type_from_schema(schema, spec)
         flag_name = to_kebab_case(openapi_name)
         required = param.get("required", False)
         if required:
@@ -270,7 +313,7 @@ def generate_command_function(
                 if not isinstance(prop_schema, dict):
                     continue
                 if prop_schema.get("type") == "string" and prop_schema.get("format") == "binary":
-                    arg_name = to_snake_case(prop_name)
+                    arg_name = to_python_ident(prop_name)
                     opt_name = to_kebab_case(prop_name)
                     if prop_name in required_props:
                         lines.append(
@@ -281,7 +324,6 @@ def generate_command_function(
                             f'    {arg_name}: Path | None = typer.Option(None, "--{opt_name}", help="File to upload for {prop_name}"),'
                         )
 
-    lines.append("    ctx: typer.Context,")
     lines.append(") -> None:")
 
     # Function body
@@ -295,13 +337,13 @@ def generate_command_function(
     # Add path params
     for param in path_params:
         openapi_name = param["name"]
-        param_name = to_snake_case(openapi_name)
+        param_name = to_python_ident(openapi_name)
         lines.append(f"    kwargs['{param_name}'] = {param_name}")
 
     # Add query params
     for param in query_params:
         openapi_name = param["name"]
-        param_name = to_snake_case(openapi_name)
+        param_name = to_python_ident(openapi_name)
         required = param.get("required", False)
         if required:
             lines.append(f"    kwargs['{param_name}'] = {param_name}")
@@ -312,7 +354,7 @@ def generate_command_function(
     # Add header params
     for param in header_params:
         openapi_name = param["name"]
-        param_name = to_snake_case(openapi_name)
+        param_name = to_python_ident(openapi_name)
         required = param.get("required", False)
         if required:
             lines.append(f"    kwargs['{param_name}'] = {param_name}")
@@ -325,7 +367,7 @@ def generate_command_function(
         content_type, request_body_model, resolved_schema = request_body_info
         if content_type == "application/json":
             # Infer parameter name from model name (e.g., UserUpdateMeDto -> user_update_me_dto)
-            body_param_name = to_snake_case(request_body_model)
+            body_param_name = to_python_ident(request_body_model)
             lines.append("    if json_path is not None:")
             lines.append("        json_data = load_json_file(json_path)")
             # Model import path: convert ModelNameDto to model_name_dto.py
@@ -354,6 +396,7 @@ def generate_command_function(
                 if not isinstance(prop_schema, dict):
                     continue
                 snake = to_snake_case(prop_name)
+                snake = to_python_ident(prop_name)
                 is_binary = (
                     prop_schema.get("type") == "string"
                     and prop_schema.get("format") == "binary"
@@ -414,6 +457,7 @@ def generate_tag_app(
         "from __future__ import annotations",
         "",
         "from pathlib import Path",
+        "from typing import Any",
         "import typer",
         "from typer import Context",
         "",
@@ -492,7 +536,8 @@ def main() -> int:
 
         app_file = apps_dir / f"{tag_snake}.py"
         app_file.write_text(app_content, encoding="utf-8")
-        apps_dict[tag] = f"immich.cli.generated.apps.{tag_snake}"
+        # Use a CLI-safe group name (no spaces/parentheses)
+        apps_dict[to_kebab_case(tag)] = f"immich.cli.generated.apps.{tag_snake}"
 
     # Generate __init__.py
     init_lines = [
@@ -506,16 +551,17 @@ def main() -> int:
     ]
 
     # Import apps
-    for tag, module_path in sorted(apps_dict.items()):
-        tag_snake = to_snake_case(tag)
+    for tag_cli, module_path in sorted(apps_dict.items()):
+        # module_path ends with <tag_snake>
+        tag_snake = module_path.rsplit(".", 1)[-1]
         init_lines.append(f"from immich.cli.generated.apps import {tag_snake}")
 
     init_lines.append("")
     init_lines.append("APPS: dict[str, typer.Typer] = {")
 
-    for tag, module_path in sorted(apps_dict.items()):
-        tag_snake = to_snake_case(tag)
-        init_lines.append(f'    "{tag}": {tag_snake}.app,')
+    for tag_cli, module_path in sorted(apps_dict.items()):
+        tag_snake = module_path.rsplit(".", 1)[-1]
+        init_lines.append(f'    "{tag_cli}": {tag_snake}.app,')
 
     init_lines.append("}")
 

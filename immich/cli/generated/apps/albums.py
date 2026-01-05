@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,11 +11,11 @@ app = typer.Typer(help="Albums operations")
 
 @app.command("add-assets-to-album")
 def add_assets_to_album(
+    ctx: typer.Context,
     id: str,
     key: str | None = typer.Option(None, "--key"),
     slug: str | None = typer.Option(None, "--slug"),
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Add assets to an album"""
     from pathlib import Path
@@ -38,10 +39,10 @@ def add_assets_to_album(
 
 @app.command("add-assets-to-albums")
 def add_assets_to_albums(
+    ctx: typer.Context,
     key: str | None = typer.Option(None, "--key"),
     slug: str | None = typer.Option(None, "--slug"),
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Add assets to albums"""
     from pathlib import Path
@@ -64,9 +65,9 @@ def add_assets_to_albums(
 
 @app.command("add-users-to-album")
 def add_users_to_album(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Share album with users"""
     from pathlib import Path
@@ -86,8 +87,8 @@ def add_users_to_album(
 
 @app.command("create-album")
 def create_album(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Create an album"""
     from pathlib import Path
@@ -106,8 +107,8 @@ def create_album(
 
 @app.command("delete-album")
 def delete_album(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Delete an album"""
     from pathlib import Path
@@ -122,11 +123,11 @@ def delete_album(
 
 @app.command("get-album-info")
 def get_album_info(
+    ctx: typer.Context,
     id: str,
     key: str | None = typer.Option(None, "--key"),
     slug: str | None = typer.Option(None, "--slug"),
     without_assets: bool | None = typer.Option(None, "--without-assets"),
-    ctx: typer.Context,
 ) -> None:
     """Retrieve an album"""
     from pathlib import Path
@@ -161,9 +162,9 @@ def get_album_statistics(
 
 @app.command("get-all-albums")
 def get_all_albums(
+    ctx: typer.Context,
     asset_id: str | None = typer.Option(None, "--asset-id"),
     shared: bool | None = typer.Option(None, "--shared"),
-    ctx: typer.Context,
 ) -> None:
     """List all albums"""
     from pathlib import Path
@@ -181,9 +182,9 @@ def get_all_albums(
 
 @app.command("remove-asset-from-album")
 def remove_asset_from_album(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Remove assets from an album"""
     from pathlib import Path
@@ -203,9 +204,9 @@ def remove_asset_from_album(
 
 @app.command("remove-user-from-album")
 def remove_user_from_album(
+    ctx: typer.Context,
     id: str,
     user_id: str,
-    ctx: typer.Context,
 ) -> None:
     """Remove user from album"""
     from pathlib import Path
@@ -221,9 +222,9 @@ def remove_user_from_album(
 
 @app.command("update-album-info")
 def update_album_info(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Update an album"""
     from pathlib import Path
@@ -243,10 +244,10 @@ def update_album_info(
 
 @app.command("update-album-user")
 def update_album_user(
+    ctx: typer.Context,
     id: str,
     user_id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Update user role"""
     from pathlib import Path

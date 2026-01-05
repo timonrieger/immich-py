@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,8 +11,8 @@ app = typer.Typer(help="Partners operations")
 
 @app.command("create-partner")
 def create_partner(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Create a partner"""
     from pathlib import Path
@@ -30,8 +31,8 @@ def create_partner(
 
 @app.command("create-partner-deprecated")
 def create_partner_deprecated(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Create a partner"""
     from pathlib import Path
@@ -46,8 +47,8 @@ def create_partner_deprecated(
 
 @app.command("get-partners")
 def get_partners(
-    direction: PartnerDirection = typer.Option(..., "--direction"),
     ctx: typer.Context,
+    direction: str = typer.Option(..., "--direction"),
 ) -> None:
     """Retrieve partners"""
     from pathlib import Path
@@ -62,8 +63,8 @@ def get_partners(
 
 @app.command("remove-partner")
 def remove_partner(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Remove a partner"""
     from pathlib import Path
@@ -78,9 +79,9 @@ def remove_partner(
 
 @app.command("update-partner")
 def update_partner(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Update a partner"""
     from pathlib import Path

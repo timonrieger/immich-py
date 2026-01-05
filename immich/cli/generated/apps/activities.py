@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,8 +11,8 @@ app = typer.Typer(help="Activities operations")
 
 @app.command("create-activity")
 def create_activity(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Create an activity"""
     from pathlib import Path
@@ -30,8 +31,8 @@ def create_activity(
 
 @app.command("delete-activity")
 def delete_activity(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Delete an activity"""
     from pathlib import Path
@@ -46,12 +47,12 @@ def delete_activity(
 
 @app.command("get-activities")
 def get_activities(
+    ctx: typer.Context,
     album_id: str = typer.Option(..., "--album-id"),
     asset_id: str | None = typer.Option(None, "--asset-id"),
-    level: ReactionLevel | None = typer.Option(None, "--level"),
-    type: ReactionType | None = typer.Option(None, "--type"),
+    level: str | None = typer.Option(None, "--level"),
+    type: str | None = typer.Option(None, "--type"),
     user_id: str | None = typer.Option(None, "--user-id"),
-    ctx: typer.Context,
 ) -> None:
     """List all activities"""
     from pathlib import Path
@@ -74,9 +75,9 @@ def get_activities(
 
 @app.command("get-activity-statistics")
 def get_activity_statistics(
+    ctx: typer.Context,
     album_id: str = typer.Option(..., "--album-id"),
     asset_id: str | None = typer.Option(None, "--asset-id"),
-    ctx: typer.Context,
 ) -> None:
     """Retrieve activity statistics"""
     from pathlib import Path

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,8 +11,8 @@ app = typer.Typer(help="Maintenance (admin) operations")
 
 @app.command("maintenance-login")
 def maintenance_login(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Log into maintenance mode"""
     from pathlib import Path
@@ -23,15 +24,15 @@ def maintenance_login(
         maintenance_login_dto = deserialize_request_body(json_data, MaintenanceLoginDto)
         kwargs['maintenance_login_dto'] = maintenance_login_dto
     client = ctx.obj['client']
-    api_group = client.maintenance_(admin)
+    api_group = client.maintenance_admin
     result = run_command(client, api_group, 'maintenance_login', **kwargs)
     format_mode = ctx.obj.get('format', 'pretty')
     print_response(result, format_mode)
 
 @app.command("set-maintenance-mode")
 def set_maintenance_mode(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Set maintenance mode"""
     from pathlib import Path
@@ -43,7 +44,7 @@ def set_maintenance_mode(
         set_maintenance_mode_dto = deserialize_request_body(json_data, SetMaintenanceModeDto)
         kwargs['set_maintenance_mode_dto'] = set_maintenance_mode_dto
     client = ctx.obj['client']
-    api_group = client.maintenance_(admin)
+    api_group = client.maintenance_admin
     result = run_command(client, api_group, 'set_maintenance_mode', **kwargs)
     format_mode = ctx.obj.get('format', 'pretty')
     print_response(result, format_mode)

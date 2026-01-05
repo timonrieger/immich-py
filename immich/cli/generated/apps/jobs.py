@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,8 +11,8 @@ app = typer.Typer(help="Jobs operations")
 
 @app.command("create-job")
 def create_job(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Create a manual job"""
     from pathlib import Path
@@ -44,9 +45,9 @@ def get_queues_legacy(
 
 @app.command("run-queue-command-legacy")
 def run_queue_command_legacy(
-    name: QueueName,
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    name: str,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Run jobs"""
     from pathlib import Path

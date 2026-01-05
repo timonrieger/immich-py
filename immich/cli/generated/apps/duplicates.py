@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,8 +11,8 @@ app = typer.Typer(help="Duplicates operations")
 
 @app.command("delete-duplicate")
 def delete_duplicate(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Delete a duplicate"""
     from pathlib import Path
@@ -26,8 +27,8 @@ def delete_duplicate(
 
 @app.command("delete-duplicates")
 def delete_duplicates(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Delete duplicates"""
     from pathlib import Path

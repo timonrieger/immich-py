@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,9 +11,9 @@ app = typer.Typer(help="Memories operations")
 
 @app.command("add-memory-assets")
 def add_memory_assets(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Add assets to a memory"""
     from pathlib import Path
@@ -32,8 +33,8 @@ def add_memory_assets(
 
 @app.command("create-memory")
 def create_memory(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Create a memory"""
     from pathlib import Path
@@ -52,8 +53,8 @@ def create_memory(
 
 @app.command("delete-memory")
 def delete_memory(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Delete a memory"""
     from pathlib import Path
@@ -68,8 +69,8 @@ def delete_memory(
 
 @app.command("get-memory")
 def get_memory(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Retrieve a memory"""
     from pathlib import Path
@@ -84,20 +85,20 @@ def get_memory(
 
 @app.command("memories-statistics")
 def memories_statistics(
-    for: str | None = typer.Option(None, "--for"),
+    ctx: typer.Context,
+    for_: str | None = typer.Option(None, "--for"),
     is_saved: bool | None = typer.Option(None, "--is-saved"),
     is_trashed: bool | None = typer.Option(None, "--is-trashed"),
-    order: MemorySearchOrder | None = typer.Option(None, "--order"),
+    order: str | None = typer.Option(None, "--order"),
     size: int | None = typer.Option(None, "--size"),
-    type: MemoryType | None = typer.Option(None, "--type"),
-    ctx: typer.Context,
+    type: str | None = typer.Option(None, "--type"),
 ) -> None:
     """Retrieve memories statistics"""
     from pathlib import Path
     from immich.cli.runtime import load_json_file, load_file_bytes, deserialize_request_body, print_response, run_command
     kwargs = {}
-    if for is not None:
-        kwargs['for'] = for
+    if for_ is not None:
+        kwargs['for_'] = for_
     if is_saved is not None:
         kwargs['is_saved'] = is_saved
     if is_trashed is not None:
@@ -116,9 +117,9 @@ def memories_statistics(
 
 @app.command("remove-memory-assets")
 def remove_memory_assets(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Remove assets from a memory"""
     from pathlib import Path
@@ -138,20 +139,20 @@ def remove_memory_assets(
 
 @app.command("search-memories")
 def search_memories(
-    for: str | None = typer.Option(None, "--for"),
+    ctx: typer.Context,
+    for_: str | None = typer.Option(None, "--for"),
     is_saved: bool | None = typer.Option(None, "--is-saved"),
     is_trashed: bool | None = typer.Option(None, "--is-trashed"),
-    order: MemorySearchOrder | None = typer.Option(None, "--order"),
+    order: str | None = typer.Option(None, "--order"),
     size: int | None = typer.Option(None, "--size"),
-    type: MemoryType | None = typer.Option(None, "--type"),
-    ctx: typer.Context,
+    type: str | None = typer.Option(None, "--type"),
 ) -> None:
     """Retrieve memories"""
     from pathlib import Path
     from immich.cli.runtime import load_json_file, load_file_bytes, deserialize_request_body, print_response, run_command
     kwargs = {}
-    if for is not None:
-        kwargs['for'] = for
+    if for_ is not None:
+        kwargs['for_'] = for_
     if is_saved is not None:
         kwargs['is_saved'] = is_saved
     if is_trashed is not None:
@@ -170,9 +171,9 @@ def search_memories(
 
 @app.command("update-memory")
 def update_memory(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Update a memory"""
     from pathlib import Path

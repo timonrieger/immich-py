@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,8 +11,8 @@ app = typer.Typer(help="Sync operations")
 
 @app.command("delete-sync-ack")
 def delete_sync_ack(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Delete acknowledgements"""
     from pathlib import Path
@@ -30,8 +31,8 @@ def delete_sync_ack(
 
 @app.command("get-delta-sync")
 def get_delta_sync(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Get delta sync for user"""
     from pathlib import Path
@@ -50,8 +51,8 @@ def get_delta_sync(
 
 @app.command("get-full-sync-for-user")
 def get_full_sync_for_user(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Get full sync for user"""
     from pathlib import Path
@@ -84,8 +85,8 @@ def get_sync_ack(
 
 @app.command("get-sync-stream")
 def get_sync_stream(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Stream sync changes"""
     from pathlib import Path
@@ -104,8 +105,8 @@ def get_sync_stream(
 
 @app.command("send-sync-ack")
 def send_sync_ack(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Acknowledge changes"""
     from pathlib import Path

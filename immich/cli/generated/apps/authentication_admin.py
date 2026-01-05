@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -17,7 +18,7 @@ def unlink_all_o_auth_accounts_admin(
     from immich.cli.runtime import load_json_file, load_file_bytes, deserialize_request_body, print_response, run_command
     kwargs = {}
     client = ctx.obj['client']
-    api_group = client.authentication_(admin)
+    api_group = client.authentication_admin
     result = run_command(client, api_group, 'unlink_all_o_auth_accounts_admin', **kwargs)
     format_mode = ctx.obj.get('format', 'pretty')
     print_response(result, format_mode)

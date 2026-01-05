@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,8 +11,8 @@ app = typer.Typer(help="Notifications operations")
 
 @app.command("delete-notification")
 def delete_notification(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Delete a notification"""
     from pathlib import Path
@@ -26,8 +27,8 @@ def delete_notification(
 
 @app.command("delete-notifications")
 def delete_notifications(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Delete notifications"""
     from pathlib import Path
@@ -46,8 +47,8 @@ def delete_notifications(
 
 @app.command("get-notification")
 def get_notification(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Get a notification"""
     from pathlib import Path
@@ -62,11 +63,11 @@ def get_notification(
 
 @app.command("get-notifications")
 def get_notifications(
-    id: str | None = typer.Option(None, "--id"),
-    level: NotificationLevel | None = typer.Option(None, "--level"),
-    type: NotificationType | None = typer.Option(None, "--type"),
-    unread: bool | None = typer.Option(None, "--unread"),
     ctx: typer.Context,
+    id: str | None = typer.Option(None, "--id"),
+    level: str | None = typer.Option(None, "--level"),
+    type: str | None = typer.Option(None, "--type"),
+    unread: bool | None = typer.Option(None, "--unread"),
 ) -> None:
     """Retrieve notifications"""
     from pathlib import Path
@@ -88,9 +89,9 @@ def get_notifications(
 
 @app.command("update-notification")
 def update_notification(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Update a notification"""
     from pathlib import Path
@@ -110,8 +111,8 @@ def update_notification(
 
 @app.command("update-notifications")
 def update_notifications(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Update notifications"""
     from pathlib import Path

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,8 +11,8 @@ app = typer.Typer(help="Stacks operations")
 
 @app.command("create-stack")
 def create_stack(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Create a stack"""
     from pathlib import Path
@@ -30,8 +31,8 @@ def create_stack(
 
 @app.command("delete-stack")
 def delete_stack(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Delete a stack"""
     from pathlib import Path
@@ -46,8 +47,8 @@ def delete_stack(
 
 @app.command("delete-stacks")
 def delete_stacks(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Delete stacks"""
     from pathlib import Path
@@ -66,8 +67,8 @@ def delete_stacks(
 
 @app.command("get-stack")
 def get_stack(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Retrieve a stack"""
     from pathlib import Path
@@ -82,9 +83,9 @@ def get_stack(
 
 @app.command("remove-asset-from-stack")
 def remove_asset_from_stack(
+    ctx: typer.Context,
     asset_id: str,
     id: str,
-    ctx: typer.Context,
 ) -> None:
     """Remove an asset from a stack"""
     from pathlib import Path
@@ -100,8 +101,8 @@ def remove_asset_from_stack(
 
 @app.command("search-stacks")
 def search_stacks(
-    primary_asset_id: str | None = typer.Option(None, "--primary-asset-id"),
     ctx: typer.Context,
+    primary_asset_id: str | None = typer.Option(None, "--primary-asset-id"),
 ) -> None:
     """Retrieve stacks"""
     from pathlib import Path
@@ -117,9 +118,9 @@ def search_stacks(
 
 @app.command("update-stack")
 def update_stack(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Update a stack"""
     from pathlib import Path

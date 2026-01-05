@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,8 +11,8 @@ app = typer.Typer(help="Views operations")
 
 @app.command("get-assets-by-original-path")
 def get_assets_by_original_path(
-    path: str = typer.Option(..., "--path"),
     ctx: typer.Context,
+    path: str = typer.Option(..., "--path"),
 ) -> None:
     """Retrieve assets by original path"""
     from pathlib import Path

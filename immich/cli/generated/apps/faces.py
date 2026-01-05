@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,8 +11,8 @@ app = typer.Typer(help="Faces operations")
 
 @app.command("create-face")
 def create_face(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Create a face"""
     from pathlib import Path
@@ -30,9 +31,9 @@ def create_face(
 
 @app.command("delete-face")
 def delete_face(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Delete a face"""
     from pathlib import Path
@@ -52,8 +53,8 @@ def delete_face(
 
 @app.command("get-faces")
 def get_faces(
-    id: str = typer.Option(..., "--id"),
     ctx: typer.Context,
+    id: str = typer.Option(..., "--id"),
 ) -> None:
     """Retrieve faces for asset"""
     from pathlib import Path
@@ -68,9 +69,9 @@ def get_faces(
 
 @app.command("reassign-faces-by-id")
 def reassign_faces_by_id(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Re-assign a face to another person"""
     from pathlib import Path

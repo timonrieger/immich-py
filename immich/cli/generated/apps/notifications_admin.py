@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,8 +11,8 @@ app = typer.Typer(help="Notifications (admin) operations")
 
 @app.command("create-notification")
 def create_notification(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Create a notification"""
     from pathlib import Path
@@ -23,16 +24,16 @@ def create_notification(
         notification_create_dto = deserialize_request_body(json_data, NotificationCreateDto)
         kwargs['notification_create_dto'] = notification_create_dto
     client = ctx.obj['client']
-    api_group = client.notifications_(admin)
+    api_group = client.notifications_admin
     result = run_command(client, api_group, 'create_notification', **kwargs)
     format_mode = ctx.obj.get('format', 'pretty')
     print_response(result, format_mode)
 
 @app.command("get-notification-template-admin")
 def get_notification_template_admin(
+    ctx: typer.Context,
     name: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Render email template"""
     from pathlib import Path
@@ -45,15 +46,15 @@ def get_notification_template_admin(
         template_dto = deserialize_request_body(json_data, TemplateDto)
         kwargs['template_dto'] = template_dto
     client = ctx.obj['client']
-    api_group = client.notifications_(admin)
+    api_group = client.notifications_admin
     result = run_command(client, api_group, 'get_notification_template_admin', **kwargs)
     format_mode = ctx.obj.get('format', 'pretty')
     print_response(result, format_mode)
 
 @app.command("send-test-email-admin")
 def send_test_email_admin(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Send test email"""
     from pathlib import Path
@@ -65,7 +66,7 @@ def send_test_email_admin(
         system_config_smtp_dto = deserialize_request_body(json_data, SystemConfigSmtpDto)
         kwargs['system_config_smtp_dto'] = system_config_smtp_dto
     client = ctx.obj['client']
-    api_group = client.notifications_(admin)
+    api_group = client.notifications_admin
     result = run_command(client, api_group, 'send_test_email_admin', **kwargs)
     format_mode = ctx.obj.get('format', 'pretty')
     print_response(result, format_mode)

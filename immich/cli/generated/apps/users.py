@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,9 +11,9 @@ app = typer.Typer(help="Users operations")
 
 @app.command("create-profile-image")
 def create_profile_image(
+    ctx: typer.Context,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with multipart fields (non-file)"),
     file: Path = typer.Option(..., "--file", help="File to upload for file"),
-    ctx: typer.Context,
 ) -> None:
     """Create user profile image"""
     from pathlib import Path
@@ -101,8 +102,8 @@ def get_my_user(
 
 @app.command("get-profile-image")
 def get_profile_image(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Retrieve user profile image"""
     from pathlib import Path
@@ -117,8 +118,8 @@ def get_profile_image(
 
 @app.command("get-user")
 def get_user(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Retrieve a user"""
     from pathlib import Path
@@ -175,8 +176,8 @@ def search_users(
 
 @app.command("set-user-license")
 def set_user_license(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Set user product key"""
     from pathlib import Path
@@ -195,8 +196,8 @@ def set_user_license(
 
 @app.command("set-user-onboarding")
 def set_user_onboarding(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Update user onboarding"""
     from pathlib import Path
@@ -215,8 +216,8 @@ def set_user_onboarding(
 
 @app.command("update-my-preferences")
 def update_my_preferences(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Update my preferences"""
     from pathlib import Path
@@ -235,8 +236,8 @@ def update_my_preferences(
 
 @app.command("update-my-user")
 def update_my_user(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Update current user"""
     from pathlib import Path

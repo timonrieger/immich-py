@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,13 +11,13 @@ app = typer.Typer(help="Map operations")
 
 @app.command("get-map-markers")
 def get_map_markers(
+    ctx: typer.Context,
     file_created_after: str | None = typer.Option(None, "--file-created-after"),
     file_created_before: str | None = typer.Option(None, "--file-created-before"),
     is_archived: bool | None = typer.Option(None, "--is-archived"),
     is_favorite: bool | None = typer.Option(None, "--is-favorite"),
     with_partners: bool | None = typer.Option(None, "--with-partners"),
     with_shared_albums: bool | None = typer.Option(None, "--with-shared-albums"),
-    ctx: typer.Context,
 ) -> None:
     """Retrieve map markers"""
     from pathlib import Path
@@ -42,9 +43,9 @@ def get_map_markers(
 
 @app.command("reverse-geocode")
 def reverse_geocode(
+    ctx: typer.Context,
     lat: float = typer.Option(..., "--lat"),
     lon: float = typer.Option(..., "--lon"),
-    ctx: typer.Context,
 ) -> None:
     """Reverse geocode coordinates"""
     from pathlib import Path

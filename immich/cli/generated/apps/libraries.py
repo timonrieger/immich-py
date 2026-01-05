@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,8 +11,8 @@ app = typer.Typer(help="Libraries operations")
 
 @app.command("create-library")
 def create_library(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Create a library"""
     from pathlib import Path
@@ -30,8 +31,8 @@ def create_library(
 
 @app.command("delete-library")
 def delete_library(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Delete a library"""
     from pathlib import Path
@@ -60,8 +61,8 @@ def get_all_libraries(
 
 @app.command("get-library")
 def get_library(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Retrieve a library"""
     from pathlib import Path
@@ -76,8 +77,8 @@ def get_library(
 
 @app.command("get-library-statistics")
 def get_library_statistics(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Retrieve library statistics"""
     from pathlib import Path
@@ -92,8 +93,8 @@ def get_library_statistics(
 
 @app.command("scan-library")
 def scan_library(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Scan a library"""
     from pathlib import Path
@@ -108,9 +109,9 @@ def scan_library(
 
 @app.command("update-library")
 def update_library(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Update a library"""
     from pathlib import Path
@@ -130,9 +131,9 @@ def update_library(
 
 @app.command("validate")
 def validate(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Validate library settings"""
     from pathlib import Path

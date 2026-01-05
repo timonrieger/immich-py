@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,21 +11,21 @@ app = typer.Typer(help="Timeline operations")
 
 @app.command("get-time-bucket")
 def get_time_bucket(
+    ctx: typer.Context,
     album_id: str | None = typer.Option(None, "--album-id"),
     is_favorite: bool | None = typer.Option(None, "--is-favorite"),
     is_trashed: bool | None = typer.Option(None, "--is-trashed"),
     key: str | None = typer.Option(None, "--key"),
-    order: AssetOrder | None = typer.Option(None, "--order"),
+    order: str | None = typer.Option(None, "--order"),
     person_id: str | None = typer.Option(None, "--person-id"),
     slug: str | None = typer.Option(None, "--slug"),
     tag_id: str | None = typer.Option(None, "--tag-id"),
     time_bucket: str = typer.Option(..., "--time-bucket"),
     user_id: str | None = typer.Option(None, "--user-id"),
-    visibility: AssetVisibility | None = typer.Option(None, "--visibility"),
+    visibility: str | None = typer.Option(None, "--visibility"),
     with_coordinates: bool | None = typer.Option(None, "--with-coordinates"),
     with_partners: bool | None = typer.Option(None, "--with-partners"),
     with_stacked: bool | None = typer.Option(None, "--with-stacked"),
-    ctx: typer.Context,
 ) -> None:
     """Get time bucket"""
     from pathlib import Path
@@ -65,20 +66,20 @@ def get_time_bucket(
 
 @app.command("get-time-buckets")
 def get_time_buckets(
+    ctx: typer.Context,
     album_id: str | None = typer.Option(None, "--album-id"),
     is_favorite: bool | None = typer.Option(None, "--is-favorite"),
     is_trashed: bool | None = typer.Option(None, "--is-trashed"),
     key: str | None = typer.Option(None, "--key"),
-    order: AssetOrder | None = typer.Option(None, "--order"),
+    order: str | None = typer.Option(None, "--order"),
     person_id: str | None = typer.Option(None, "--person-id"),
     slug: str | None = typer.Option(None, "--slug"),
     tag_id: str | None = typer.Option(None, "--tag-id"),
     user_id: str | None = typer.Option(None, "--user-id"),
-    visibility: AssetVisibility | None = typer.Option(None, "--visibility"),
+    visibility: str | None = typer.Option(None, "--visibility"),
     with_coordinates: bool | None = typer.Option(None, "--with-coordinates"),
     with_partners: bool | None = typer.Option(None, "--with-partners"),
     with_stacked: bool | None = typer.Option(None, "--with-stacked"),
-    ctx: typer.Context,
 ) -> None:
     """Get time buckets"""
     from pathlib import Path

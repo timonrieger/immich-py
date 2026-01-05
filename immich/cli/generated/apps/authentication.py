@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,8 +11,8 @@ app = typer.Typer(help="Authentication operations")
 
 @app.command("change-password")
 def change_password(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Change password"""
     from pathlib import Path
@@ -30,8 +31,8 @@ def change_password(
 
 @app.command("change-pin-code")
 def change_pin_code(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Change pin code"""
     from pathlib import Path
@@ -50,8 +51,8 @@ def change_pin_code(
 
 @app.command("finish-o-auth")
 def finish_o_auth(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Finish OAuth"""
     from pathlib import Path
@@ -84,8 +85,8 @@ def get_auth_status(
 
 @app.command("link-o-auth-account")
 def link_o_auth_account(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Link OAuth account"""
     from pathlib import Path
@@ -118,8 +119,8 @@ def lock_auth_session(
 
 @app.command("login")
 def login(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Login"""
     from pathlib import Path
@@ -166,8 +167,8 @@ def redirect_o_auth_to_mobile(
 
 @app.command("reset-pin-code")
 def reset_pin_code(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Reset pin code"""
     from pathlib import Path
@@ -186,8 +187,8 @@ def reset_pin_code(
 
 @app.command("setup-pin-code")
 def setup_pin_code(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Setup pin code"""
     from pathlib import Path
@@ -206,8 +207,8 @@ def setup_pin_code(
 
 @app.command("sign-up-admin")
 def sign_up_admin(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Register admin"""
     from pathlib import Path
@@ -226,8 +227,8 @@ def sign_up_admin(
 
 @app.command("start-o-auth")
 def start_o_auth(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Start OAuth"""
     from pathlib import Path
@@ -260,8 +261,8 @@ def unlink_o_auth_account(
 
 @app.command("unlock-auth-session")
 def unlock_auth_session(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Unlock auth session"""
     from pathlib import Path

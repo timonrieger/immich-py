@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,8 +11,8 @@ app = typer.Typer(help="People operations")
 
 @app.command("create-person")
 def create_person(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Create a person"""
     from pathlib import Path
@@ -30,8 +31,8 @@ def create_person(
 
 @app.command("delete-people")
 def delete_people(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Delete people"""
     from pathlib import Path
@@ -50,8 +51,8 @@ def delete_people(
 
 @app.command("delete-person")
 def delete_person(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Delete person"""
     from pathlib import Path
@@ -66,12 +67,12 @@ def delete_person(
 
 @app.command("get-all-people")
 def get_all_people(
+    ctx: typer.Context,
     closest_asset_id: str | None = typer.Option(None, "--closest-asset-id"),
     closest_person_id: str | None = typer.Option(None, "--closest-person-id"),
     page: float | None = typer.Option(None, "--page"),
     size: float | None = typer.Option(None, "--size"),
     with_hidden: bool | None = typer.Option(None, "--with-hidden"),
-    ctx: typer.Context,
 ) -> None:
     """Get all people"""
     from pathlib import Path
@@ -95,8 +96,8 @@ def get_all_people(
 
 @app.command("get-person")
 def get_person(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Get a person"""
     from pathlib import Path
@@ -111,8 +112,8 @@ def get_person(
 
 @app.command("get-person-statistics")
 def get_person_statistics(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Get person statistics"""
     from pathlib import Path
@@ -127,8 +128,8 @@ def get_person_statistics(
 
 @app.command("get-person-thumbnail")
 def get_person_thumbnail(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Get person thumbnail"""
     from pathlib import Path
@@ -143,9 +144,9 @@ def get_person_thumbnail(
 
 @app.command("merge-person")
 def merge_person(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Merge people"""
     from pathlib import Path
@@ -165,9 +166,9 @@ def merge_person(
 
 @app.command("reassign-faces")
 def reassign_faces(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Reassign faces"""
     from pathlib import Path
@@ -187,8 +188,8 @@ def reassign_faces(
 
 @app.command("update-people")
 def update_people(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Update people"""
     from pathlib import Path
@@ -207,9 +208,9 @@ def update_people(
 
 @app.command("update-person")
 def update_person(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Update person"""
     from pathlib import Path

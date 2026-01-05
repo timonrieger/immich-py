@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,8 +11,8 @@ app = typer.Typer(help="Tags operations")
 
 @app.command("bulk-tag-assets")
 def bulk_tag_assets(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Tag assets"""
     from pathlib import Path
@@ -30,8 +31,8 @@ def bulk_tag_assets(
 
 @app.command("create-tag")
 def create_tag(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Create a tag"""
     from pathlib import Path
@@ -50,8 +51,8 @@ def create_tag(
 
 @app.command("delete-tag")
 def delete_tag(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Delete a tag"""
     from pathlib import Path
@@ -80,8 +81,8 @@ def get_all_tags(
 
 @app.command("get-tag-by-id")
 def get_tag_by_id(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Retrieve a tag"""
     from pathlib import Path
@@ -96,9 +97,9 @@ def get_tag_by_id(
 
 @app.command("tag-assets")
 def tag_assets(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Tag assets"""
     from pathlib import Path
@@ -118,9 +119,9 @@ def tag_assets(
 
 @app.command("untag-assets")
 def untag_assets(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Untag assets"""
     from pathlib import Path
@@ -140,9 +141,9 @@ def untag_assets(
 
 @app.command("update-tag")
 def update_tag(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Update a tag"""
     from pathlib import Path
@@ -162,8 +163,8 @@ def update_tag(
 
 @app.command("upsert-tags")
 def upsert_tags(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Upsert tags"""
     from pathlib import Path

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,9 +11,9 @@ app = typer.Typer(help="Queues operations")
 
 @app.command("empty-queue")
 def empty_queue(
-    name: QueueName,
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    name: str,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Empty a queue"""
     from pathlib import Path
@@ -32,8 +33,8 @@ def empty_queue(
 
 @app.command("get-queue")
 def get_queue(
-    name: QueueName,
     ctx: typer.Context,
+    name: str,
 ) -> None:
     """Retrieve a queue"""
     from pathlib import Path
@@ -48,9 +49,9 @@ def get_queue(
 
 @app.command("get-queue-jobs")
 def get_queue_jobs(
-    name: QueueName,
-    status: list[QueueJobStatus] | None = typer.Option(None, "--status"),
     ctx: typer.Context,
+    name: str,
+    status: list[str] | None = typer.Option(None, "--status"),
 ) -> None:
     """Retrieve queue jobs"""
     from pathlib import Path
@@ -81,9 +82,9 @@ def get_queues(
 
 @app.command("update-queue")
 def update_queue(
-    name: QueueName,
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    name: str,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Update a queue"""
     from pathlib import Path

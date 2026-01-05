@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -10,8 +11,8 @@ app = typer.Typer(help="Sessions operations")
 
 @app.command("create-session")
 def create_session(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Create a session"""
     from pathlib import Path
@@ -44,8 +45,8 @@ def delete_all_sessions(
 
 @app.command("delete-session")
 def delete_session(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Delete a session"""
     from pathlib import Path
@@ -74,8 +75,8 @@ def get_sessions(
 
 @app.command("lock-session")
 def lock_session(
-    id: str,
     ctx: typer.Context,
+    id: str,
 ) -> None:
     """Lock a session"""
     from pathlib import Path
@@ -90,9 +91,9 @@ def lock_session(
 
 @app.command("update-session")
 def update_session(
+    ctx: typer.Context,
     id: str,
     json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
-    ctx: typer.Context,
 ) -> None:
     """Update a session"""
     from pathlib import Path

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 import typer
 from typer import Context
 
@@ -38,14 +39,14 @@ def get_explore_data(
 
 @app.command("get-search-suggestions")
 def get_search_suggestions(
+    ctx: typer.Context,
     country: str | None = typer.Option(None, "--country"),
     include_null: bool | None = typer.Option(None, "--include-null"),
     lens_model: str | None = typer.Option(None, "--lens-model"),
     make: str | None = typer.Option(None, "--make"),
     model: str | None = typer.Option(None, "--model"),
     state: str | None = typer.Option(None, "--state"),
-    type: SearchSuggestionType = typer.Option(..., "--type"),
-    ctx: typer.Context,
+    type: str = typer.Option(..., "--type"),
 ) -> None:
     """Retrieve search suggestions"""
     from pathlib import Path
@@ -72,8 +73,8 @@ def get_search_suggestions(
 
 @app.command("search-asset-statistics")
 def search_asset_statistics(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Search asset statistics"""
     from pathlib import Path
@@ -92,8 +93,8 @@ def search_asset_statistics(
 
 @app.command("search-assets")
 def search_assets(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Search assets by metadata"""
     from pathlib import Path
@@ -112,6 +113,7 @@ def search_assets(
 
 @app.command("search-large-assets")
 def search_large_assets(
+    ctx: typer.Context,
     album_ids: list[str] | None = typer.Option(None, "--album-ids"),
     city: str | None = typer.Option(None, "--city"),
     country: str | None = typer.Option(None, "--country"),
@@ -138,13 +140,12 @@ def search_large_assets(
     taken_before: str | None = typer.Option(None, "--taken-before"),
     trashed_after: str | None = typer.Option(None, "--trashed-after"),
     trashed_before: str | None = typer.Option(None, "--trashed-before"),
-    type: AssetTypeEnum | None = typer.Option(None, "--type"),
+    type: str | None = typer.Option(None, "--type"),
     updated_after: str | None = typer.Option(None, "--updated-after"),
     updated_before: str | None = typer.Option(None, "--updated-before"),
-    visibility: AssetVisibility | None = typer.Option(None, "--visibility"),
+    visibility: str | None = typer.Option(None, "--visibility"),
     with_deleted: bool | None = typer.Option(None, "--with-deleted"),
     with_exif: bool | None = typer.Option(None, "--with-exif"),
-    ctx: typer.Context,
 ) -> None:
     """Search large assets"""
     from pathlib import Path
@@ -222,9 +223,9 @@ def search_large_assets(
 
 @app.command("search-person")
 def search_person(
+    ctx: typer.Context,
     name: str = typer.Option(..., "--name"),
     with_hidden: bool | None = typer.Option(None, "--with-hidden"),
-    ctx: typer.Context,
 ) -> None:
     """Search people"""
     from pathlib import Path
@@ -241,8 +242,8 @@ def search_person(
 
 @app.command("search-places")
 def search_places(
-    name: str = typer.Option(..., "--name"),
     ctx: typer.Context,
+    name: str = typer.Option(..., "--name"),
 ) -> None:
     """Search places"""
     from pathlib import Path
@@ -257,8 +258,8 @@ def search_places(
 
 @app.command("search-random")
 def search_random(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Search random assets"""
     from pathlib import Path
@@ -277,8 +278,8 @@ def search_random(
 
 @app.command("search-smart")
 def search_smart(
-    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
     ctx: typer.Context,
+    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),
 ) -> None:
     """Smart asset search"""
     from pathlib import Path
