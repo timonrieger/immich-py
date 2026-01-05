@@ -40,7 +40,7 @@ jobs:
           git reset --hard ${{ github.event.workflow_run.head_sha }}
 
       - name: Setup | Install uv + Python
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
         with:
           version: "0.9.21"
           python-version: "3.11"
