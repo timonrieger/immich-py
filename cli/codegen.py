@@ -8,14 +8,10 @@ import json
 import os
 import re
 import shutil
+import urllib.error
+import urllib.request
 from pathlib import Path
 from typing import Any
-
-try:
-    import requests
-except ImportError:
-    print("Error: requests is required. Install with: pip install requests")
-    raise SystemExit(1)
 
 
 def project_root() -> Path:
@@ -29,6 +25,22 @@ def openapi_url(ref: str) -> str:
         "https://raw.githubusercontent.com/immich-app/immich/"
         f"{ref}/open-api/immich-openapi-specs.json"
     )
+
+def fetch_openapi_spec_json(url: str) -> dict[str, Any]:
+    """Fetch and parse OpenAPI JSON from a URL."""
+    req = urllib.request.Request(url, headers={"User-Agent": "immich-cli-codegen"})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            data = resp.read()
+    except urllib.error.HTTPError as e:
+        raise RuntimeError(f"Failed to fetch OpenAPI spec (status={e.code})") from e
+    except urllib.error.URLError as e:
+        raise RuntimeError(f"Failed to fetch OpenAPI spec: {e.reason}") from e
+
+    try:
+        return json.loads(data.decode("utf-8"))
+    except json.JSONDecodeError as e:
+        raise RuntimeError(f"Invalid JSON in OpenAPI spec: {e}") from e
 
 
 def to_snake_case(name: str) -> str:
@@ -99,38 +111,65 @@ def validate_operation(operation: dict[str, Any], path: str, method: str) -> Non
     # Check parameters
     for param in operation.get("parameters", []):
         param_in = param.get("in")
-        if param_in not in ["path", "query"]:
+        if param_in not in ["path", "query", "header"]:
             raise ValueError(
                 f"Operation {operation.get('operationId')} has unsupported "
-                f"parameter location: {param_in} (only 'path' and 'query' supported)"
+                f"parameter location: {param_in} "
+                "(only 'path', 'query', and 'header' supported)"
             )
 
     # Check request body
     if "requestBody" in operation:
         content = operation["requestBody"].get("content", {})
-        if "application/json" not in content:
+        supported = {"application/json", "multipart/form-data"}
+        content_types = set(content.keys())
+        if not (content_types & supported):
             raise ValueError(
-                f"Operation {operation.get('operationId')} has requestBody "
-                "but no 'application/json' content type (only JSON supported)"
+                f"Operation {operation.get('operationId')} has requestBody but no "
+                f"supported content type. Supported: {sorted(supported)}. "
+                f"Found: {sorted(content.keys())}"
             )
 
+        # Require $ref schema for supported content types (keeps codegen deterministic)
+        for ct in sorted(content_types & supported):
+            schema = content.get(ct, {}).get("schema", {})
+            if "$ref" not in schema:
+                raise ValueError(
+                    f"Operation {operation.get('operationId')} has requestBody with "
+                    f"'{ct}' but schema is not a $ref (unsupported)"
+                )
 
-def get_request_body_model(
+
+def resolve_schema_ref(spec: dict[str, Any], ref: str) -> dict[str, Any]:
+    """Resolve a local OpenAPI $ref like '#/components/schemas/Foo'."""
+    if not ref.startswith("#/"):
+        raise ValueError(f"Unsupported $ref (only local refs supported): {ref}")
+    cur: Any = spec
+    for part in ref.lstrip("#/").split("/"):
+        if not isinstance(cur, dict) or part not in cur:
+            raise ValueError(f"Unresolvable $ref: {ref}")
+        cur = cur[part]
+    if not isinstance(cur, dict):
+        raise ValueError(f"Unresolvable $ref (not an object): {ref}")
+    return cur
+
+
+def get_request_body_info(
     operation: dict[str, Any], spec: dict[str, Any]
-) -> str | None:
-    """Extract request body model class name from operation."""
+) -> tuple[str, str, dict[str, Any]] | None:
+    """Return (content_type, model_name, resolved_schema) for requestBody."""
     if "requestBody" not in operation:
         return None
 
     content = operation["requestBody"].get("content", {})
-    json_schema = content.get("application/json", {}).get("schema", {})
-
-    if "$ref" in json_schema:
-        ref = json_schema["$ref"]
-        return ref.split("/")[-1]
-
-    # Inline schema - we'll need to construct it, but for now return None
-    # and handle in runtime
+    if "application/json" in content:
+        schema = content.get("application/json", {}).get("schema", {})
+        ref = schema["$ref"]
+        return ("application/json", ref.split("/")[-1], resolve_schema_ref(spec, ref))
+    if "multipart/form-data" in content:
+        schema = content.get("multipart/form-data", {}).get("schema", {})
+        ref = schema["$ref"]
+        return ("multipart/form-data", ref.split("/")[-1], resolve_schema_ref(spec, ref))
     return None
 
 
@@ -149,15 +188,18 @@ def generate_command_function(
     # Extract parameters
     path_params: list[dict[str, Any]] = []
     query_params: list[dict[str, Any]] = []
+    header_params: list[dict[str, Any]] = []
 
     for param in operation.get("parameters", []):
         if param["in"] == "path":
             path_params.append(param)
         elif param["in"] == "query":
             query_params.append(param)
+        elif param["in"] == "header":
+            header_params.append(param)
 
-    # Get request body model
-    request_body_model = get_request_body_model(operation, spec)
+    # Get request body info
+    request_body_info = get_request_body_info(operation, spec)
 
     # Build function signature
     lines = [f'@app.command("{cmd_name}")']
@@ -165,7 +207,8 @@ def generate_command_function(
 
     # Path parameters (required positional)
     for param in sorted(path_params, key=lambda p: p["name"]):
-        param_name = param["name"]
+        openapi_name = param["name"]
+        param_name = to_snake_case(openapi_name)
         schema = param.get("schema", {"type": "string"})
         param_type = python_type_from_schema(schema)
         required = param.get("required", False)
@@ -176,19 +219,67 @@ def generate_command_function(
 
     # Query parameters (optional flags)
     for param in sorted(query_params, key=lambda p: p["name"]):
-        param_name = param["name"]
+        openapi_name = param["name"]
+        param_name = to_snake_case(openapi_name)
         schema = param.get("schema", {"type": "string"})
         param_type = python_type_from_schema(schema)
-        flag_name = param_name.replace("_", "-")
-        lines.append(
-            f"    {param_name}: {param_type} | None = typer.Option(None, \"--{flag_name}\"),"
-        )
+        flag_name = to_kebab_case(openapi_name)
+        required = param.get("required", False)
+        if required:
+            lines.append(
+                f"    {param_name}: {param_type} = typer.Option(..., \"--{flag_name}\"),"
+            )
+        else:
+            lines.append(
+                f"    {param_name}: {param_type} | None = typer.Option(None, \"--{flag_name}\"),"
+            )
 
-    # Request body (optional --json flag)
-    if request_body_model:
-        lines.append(
-            '    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),'
-        )
+    # Header parameters (optional flags)
+    for param in sorted(header_params, key=lambda p: p["name"]):
+        openapi_name = param["name"]
+        param_name = to_snake_case(openapi_name)
+        schema = param.get("schema", {"type": "string"})
+        param_type = python_type_from_schema(schema)
+        flag_name = to_kebab_case(openapi_name)
+        required = param.get("required", False)
+        if required:
+            lines.append(
+                f"    {param_name}: {param_type} = typer.Option(..., \"--{flag_name}\"),"
+            )
+        else:
+            lines.append(
+                f"    {param_name}: {param_type} | None = typer.Option(None, \"--{flag_name}\"),"
+            )
+
+    # Request body options
+    if request_body_info:
+        content_type, request_body_model, resolved_schema = request_body_info
+        if content_type == "application/json":
+            lines.append(
+                '    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with request body"),'
+            )
+        elif content_type == "multipart/form-data":
+            # Keep rule: requestBody => --json PATH for non-file fields
+            lines.append(
+                '    json_path: Path | None = typer.Option(None, "--json", help="Path to JSON file with multipart fields (non-file)"),'
+            )
+            # Add file-part options for binary fields
+            props = resolved_schema.get("properties", {}) if isinstance(resolved_schema, dict) else {}
+            required_props = set(resolved_schema.get("required", []) or [])
+            for prop_name, prop_schema in sorted(props.items(), key=lambda kv: kv[0]):
+                if not isinstance(prop_schema, dict):
+                    continue
+                if prop_schema.get("type") == "string" and prop_schema.get("format") == "binary":
+                    arg_name = to_snake_case(prop_name)
+                    opt_name = to_kebab_case(prop_name)
+                    if prop_name in required_props:
+                        lines.append(
+                            f'    {arg_name}: Path = typer.Option(..., "--{opt_name}", help="File to upload for {prop_name}"),'
+                        )
+                    else:
+                        lines.append(
+                            f'    {arg_name}: Path | None = typer.Option(None, "--{opt_name}", help="File to upload for {prop_name}"),'
+                        )
 
     lines.append("    ctx: typer.Context,")
     lines.append(") -> None:")
@@ -196,35 +287,104 @@ def generate_command_function(
     # Function body
     lines.append('    """' + operation.get("summary", operation_id) + '"""')
     lines.append("    from pathlib import Path")
-    lines.append("    from immich.cli.runtime import load_json_file, deserialize_request_body, print_response, run_command")
+    lines.append("    from immich.cli.runtime import load_json_file, load_file_bytes, deserialize_request_body, print_response, run_command")
 
     # Build kwargs
     lines.append("    kwargs = {}")
 
     # Add path params
     for param in path_params:
-        param_name = param["name"]
+        openapi_name = param["name"]
+        param_name = to_snake_case(openapi_name)
         lines.append(f"    kwargs['{param_name}'] = {param_name}")
 
     # Add query params
     for param in query_params:
-        param_name = param["name"]
-        lines.append(f"    if {param_name} is not None:")
-        lines.append(f"        kwargs['{param_name}'] = {param_name}")
+        openapi_name = param["name"]
+        param_name = to_snake_case(openapi_name)
+        required = param.get("required", False)
+        if required:
+            lines.append(f"    kwargs['{param_name}'] = {param_name}")
+        else:
+            lines.append(f"    if {param_name} is not None:")
+            lines.append(f"        kwargs['{param_name}'] = {param_name}")
+
+    # Add header params
+    for param in header_params:
+        openapi_name = param["name"]
+        param_name = to_snake_case(openapi_name)
+        required = param.get("required", False)
+        if required:
+            lines.append(f"    kwargs['{param_name}'] = {param_name}")
+        else:
+            lines.append(f"    if {param_name} is not None:")
+            lines.append(f"        kwargs['{param_name}'] = {param_name}")
 
     # Handle request body
-    if request_body_model:
-        # Infer parameter name from model name (e.g., UserUpdateMeDto -> user_update_me_dto)
-        body_param_name = to_snake_case(request_body_model)
-        lines.append("    if json_path is not None:")
-        lines.append("        json_data = load_json_file(json_path)")
-        # Model import path: convert ModelNameDto to model_name_dto.py
-        model_module = to_snake_case(request_body_model)
-        lines.append(
-            f"        from immich.client.models.{model_module} import {request_body_model}"
-        )
-        lines.append(f"        {body_param_name} = deserialize_request_body(json_data, {request_body_model})")
-        lines.append(f"        kwargs['{body_param_name}'] = {body_param_name}")
+    if request_body_info:
+        content_type, request_body_model, resolved_schema = request_body_info
+        if content_type == "application/json":
+            # Infer parameter name from model name (e.g., UserUpdateMeDto -> user_update_me_dto)
+            body_param_name = to_snake_case(request_body_model)
+            lines.append("    if json_path is not None:")
+            lines.append("        json_data = load_json_file(json_path)")
+            # Model import path: convert ModelNameDto to model_name_dto.py
+            model_module = to_snake_case(request_body_model)
+            lines.append(
+                f"        from immich.client.models.{model_module} import {request_body_model}"
+            )
+            lines.append(
+                f"        {body_param_name} = deserialize_request_body(json_data, {request_body_model})"
+            )
+            lines.append(f"        kwargs['{body_param_name}'] = {body_param_name}")
+        elif content_type == "multipart/form-data":
+            # Load json fields (non-file) and merge into kwargs using snake_case keys
+            props = (
+                resolved_schema.get("properties", {})
+                if isinstance(resolved_schema, dict)
+                else {}
+            )
+            required_props = set(resolved_schema.get("required", []) or [])
+            lines.append(
+                "    json_data = load_json_file(json_path) if json_path is not None else {}"
+            )
+            # Fail loudly if required non-file fields are missing
+            lines.append("    missing: list[str] = []")
+            for prop_name, prop_schema in sorted(props.items(), key=lambda kv: kv[0]):
+                if not isinstance(prop_schema, dict):
+                    continue
+                snake = to_snake_case(prop_name)
+                is_binary = (
+                    prop_schema.get("type") == "string"
+                    and prop_schema.get("format") == "binary"
+                )
+                if is_binary:
+                    # File fields come from dedicated CLI options
+                    if prop_name in required_props:
+                        lines.append(f"    kwargs['{snake}'] = load_file_bytes({snake})")
+                    else:
+                        lines.append(f"    if {snake} is not None:")
+                        lines.append(
+                            f"        kwargs['{snake}'] = load_file_bytes({snake})"
+                        )
+                else:
+                    # Prefer original OpenAPI key, fallback to snake_case key
+                    lines.append(f"    if '{prop_name}' in json_data:")
+                    lines.append(
+                        f"        kwargs['{snake}'] = json_data['{prop_name}']"
+                    )
+                    lines.append(f"    elif '{snake}' in json_data:")
+                    lines.append(f"        kwargs['{snake}'] = json_data['{snake}']")
+                    if prop_name in required_props:
+                        lines.append("    else:")
+                        lines.append(f"        missing.append('{prop_name}')")
+            lines.append("    if missing:")
+            lines.append(
+                "        raise SystemExit("
+                "\"Error: missing required multipart fields: \" + ', '.join(missing) + "
+                "\". Provide them via --json and/or file options.\""
+                ")"
+            )
 
     # Get client and API group
     lines.append("    client = ctx.obj['client']")
@@ -291,14 +451,9 @@ def main() -> int:
     print(f"Fetching OpenAPI spec from: {url}")
 
     try:
-        resp = requests.get(url, timeout=30)
-        resp.raise_for_status()
-        spec = resp.json()
-    except requests.RequestException as e:
-        print(f"Error: Failed to fetch OpenAPI spec: {e}", file=__import__("sys").stderr)
-        return 1
-    except json.JSONDecodeError as e:
-        print(f"Error: Invalid JSON in OpenAPI spec: {e}", file=__import__("sys").stderr)
+        spec = fetch_openapi_spec_json(url)
+    except RuntimeError as e:
+        print(f"Error: {e}", file=__import__("sys").stderr)
         return 1
 
     # Validate and group operations

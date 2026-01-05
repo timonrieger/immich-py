@@ -32,6 +32,14 @@ def load_json_file(path: Path) -> dict[str, Any]:
         print(f"Error: Failed to read {path}: {e}", file=sys.stderr)
         sys.exit(1)
 
+def load_file_bytes(path: Path) -> tuple[str, bytes]:
+    """Load a file as bytes and return (filename, bytes) for multipart uploads."""
+    try:
+        return (path.name, path.read_bytes())
+    except Exception as e:
+        print(f"Error: Failed to read file {path}: {e}", file=sys.stderr)
+        sys.exit(1)
+
 
 def deserialize_request_body(
     json_data: dict[str, Any], model_class: type[Any]
