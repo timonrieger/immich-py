@@ -1,6 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
-  ]
+    "config:best-practices"
+  ],
+  "schedule": ["* * 1 * *"],
+  "description": "Schedule monthly on the first day of the month",
+  "minimumReleaseAge": "3 days"
 }
