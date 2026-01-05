@@ -4,12 +4,12 @@ Unofficial Python client for the [Immich](https://immich.app) API.
 
 > [!IMPORTANT]
 > This repository is **auto-generated** from the Immich OpenAPI specification.
-> **Do not open pull requests**: PRs will be closed. See [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
+> **Do not open pull requests**. See [CONTRIBUTING](CONTRIBUTING.md) for more details.
 
 ## Status
 
-- **Unofficial**: This project is not affiliated with or endorsed by the Immich project.
-- **Auto-sync with Immich**: The client is kept in **automatic sync with the latest Immich release** (generated/updated as upstream changes land).
+- **Unofficial**: Not affiliated with or endorsed by Immich.
+- **Auto-synced**: Kept in sync with the **latest Immich release** (regenerated as upstream changes land).
 
 ## Installation
 
@@ -29,31 +29,21 @@ pip install --pre immich
 
 ## Structure
 
-This SDK is available as an asynchronous Python client:
-
-- `AsyncClient` — for async/await usage
-
-```python
-from immich import AsyncClient
-```
+This SDK is **async-only**. The client exposes API groups as attributes, and endpoints as methods on those groups. Groups and endpoints are documented in the [Immich API documentation](https://api.immich.app/endpoints).
 
 ## Authentication
 
-Immich supports API keys. Create an API key in your Immich server, then pass it to the client via `api_key=...`.
+Immich supports API keys. Create one in your server and pass it via `api_key=...`. Cookie and Bearer tokens are also supported.
 
-## Basic usage
+## Usage
 
-### Asynchronous client
-
-Recommended (context manager):
+With a context manager (recommended):
 
 ```python
 from immich import AsyncClient
 
-async def main():
-    async with AsyncClient(api_key="your-immich-api-key", base_url="http://localhost:2283/api") as client:
-        # Call generated API methods here
-        ...
+async with AsyncClient(api_key="your-immich-api-key", base_url="http://localhost:2283/api") as client:
+    await client.server.get_about_info()
 ```
 
 Without a context manager:
@@ -65,7 +55,7 @@ from immich import AsyncClient
 async def main():
     client = AsyncClient(api_key="your-immich-api-key", base_url="http://localhost:2283/api")
     try:
-        ...
+        await client.server.get_about_info()
     finally:
         await client.close()
 
@@ -74,14 +64,14 @@ asyncio.run(main())
 
 ## Session management
 
-- The **async client** can manage a shared `aiohttp.ClientSession` internally, or you can inject your own `aiohttp.ClientSession` via `http_client=...` (you then own its lifecycle).
+The client can manage a shared `aiohttp.ClientSession`, or you can pass your own via `http_client=...` (you are responsible for its lifecycle).
 
 ## Versioning
 
-This package follows **Semantic Versioning (SemVer)**.
+This package follows **[Semantic Versioning](https://semver.org)**.
 
-- **Package version does NOT imply the supported Immich version**: `immich` package `X.Y.Z` is the client’s own version, not an encoded Immich server version.
-- **Upstream breaking changes ⇒ major bump**: Breaking Immich API/upstream changes that require breaking client changes will result in a new **major** version of this package.
-- **Supported Immich server version**: `IMMICH-VERSION` (at the repository root) tracks the upstream Immich server version the generated client is built against.
+- **Package version is not the server version**: `immich` package `X.Y.Z` is the client’s own version.
+- **Upstream breaking changes ⇒ major bump**: Breaking Immich changes that require breaking client changes produce a new **major** version.
+- **Supported Immich server version**: `IMMICH-VERSION` (repo root) tracks the Immich version this client was generated from.
   - If you run an **older** Immich server version, you can install an **older** `immich` package release where `IMMICH-VERSION` matches your server.
   - This client supports **Immich v2.4.1** and above.
