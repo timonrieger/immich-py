@@ -5,7 +5,9 @@ from mimetypes import guess_extension
 from typing import Optional
 
 
-def filename_from_headers(headers: dict[str, str] | None, *, fallback_base: str) -> Optional[str]:
+def filename_from_headers(
+    headers: dict[str, str] | None, *, fallback_base: str
+) -> Optional[str]:
     """
     Derive a filename from response headers. First, we try to derive the original filename from the Content-Disposition header. If that fails, we try to derive the filename from the Content-Type header.
 
@@ -34,5 +36,3 @@ def filename_from_headers(headers: dict[str, str] | None, *, fallback_base: str)
     if not ext:
         return None
     return f"{fallback_base}{ext}"
-
-

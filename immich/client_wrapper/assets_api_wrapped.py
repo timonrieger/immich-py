@@ -34,13 +34,9 @@ class AssetsApiWrapped(AssetsApi):
             fallback_base=fallback_base or f"orig-{id}",
         )
         if not name:
-            raise ValueError(
-                f"Cannot derive filename from headers={resp.headers!r}"
-            )
+            raise ValueError(f"Cannot derive filename from headers={resp.headers!r}")
 
         out_dir.mkdir(parents=True, exist_ok=True)
         out_path = out_dir / name
         out_path.write_bytes(bytes(resp.data))
         return out_path
-
-
