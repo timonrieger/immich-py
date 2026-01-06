@@ -34,6 +34,7 @@ jobs:
         with:
           ref: ${{ github.event.workflow_run.head_branch }}
           fetch-depth: 0
+          token: ${{ secrets.RELEASE_PAT }}
 
       - name: Setup | Force release branch to be at workflow sha
         run: |
@@ -84,7 +85,7 @@ jobs:
         uses: python-semantic-release/python-semantic-release@350c48fcb3ffcdfd2e0a235206bc2ecea6b69df0 # v10
         with:
           directory: ./
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.RELEASE_PAT }}
           git_committer_name: "github-actions"
           git_committer_email: "actions@users.noreply.github.com"
           changelog: false # github releases are sufficient
@@ -92,11 +93,11 @@ jobs:
       - name: Cleanup | Remove release, tag and commit on failure
         if: failure() && steps.release.outputs.tag != ''
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASE_PAT }}
         run: |
           TAG=${{ steps.release.outputs.tag }}
-          git tag -d $TAG || echo "Failed to delete tag"
-          git push origin :refs/tags/$TAG || echo "Failed to delete tag"
+          git tag -d $TAG || echo "Failed to delete local tag"
+          git push origin :refs/tags/$TAG || echo "Failed to delete remote tag"
           git reset --hard ${{ github.sha }}
           gh release delete $TAG --yes || echo "Failed to delete release"
 
