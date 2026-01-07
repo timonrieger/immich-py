@@ -56,9 +56,13 @@ Some API groups include custom convenience methods that are **preferred** over t
 - **assets.view_asset_to_file**: Download an asset thumbnail directly to disk .
 - **assets.play_asset_video_to_file**: Download an asset video stream directly to disk.
 
+**Resumable Downloads**: All asset download methods support automatic resumable downloads. If a download is interrupted, the client will automatically resume from where it left off using HTTP Range requests. Partial downloads are saved as `.temp` files and renamed upon successful completion.
+
 ### Download API
 
 - **download.download_archive_to_file**: Download asset archives (ZIP files) directly to disk. You can download whole albums or user-specified assets in a single request.
+
+**Note**: Archive downloads (ZIP files) do not support resumable downloads due to the nature of streaming archives.
 
 ### Users API
 
