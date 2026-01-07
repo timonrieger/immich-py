@@ -6,6 +6,9 @@ on:
     types: [completed]
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -15,73 +18,23 @@ jobs:
       cancel-in-progress: false
 
     permissions:
-      id-token: write
       contents: write
 
-    environment:
-      name: pypi
-      url: https://pypi.org/p/immich
-
     steps:
-      # Note: We checkout the repository at the branch that triggered the workflow
-      # with the entire history to ensure to match PSR's release branch detection
-      # and history evaluation.
-      # However, we forcefully reset the branch to the workflow sha because it is
-      # possible that the branch was updated while the workflow was running. This
-      # prevents accidentally releasing un-evaluated changes.
       - name: Setup | Checkout Repository on Release Branch
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
         with:
           ref: ${{ github.event.workflow_run.head_branch }}
           fetch-depth: 0
           token: ${{ secrets.RELEASE_PAT }}
+          persist-credentials: false
 
       - name: Setup | Force release branch to be at workflow sha
         run: |
           git reset --hard ${{ github.event.workflow_run.head_sha }}
 
-      - name: Evaluate | Verify upstream has NOT changed
-        # Last chance to abort before causing an error as another PR/push was applied to
-        # the upstream branch while this workflow was running. This is important
-        # because we are committing a version change (--commit). You may omit this step
-        # if you have 'commit: false' in your configuration.
-        #
-        # You may consider moving this to a repo script and call it from this step instead
-        # of writing it in-line.
-        shell: bash
-        run: |
-          set +o pipefail
-
-          UPSTREAM_BRANCH_NAME="$(git status -sb | head -n 1 | cut -d' ' -f2 | grep -E '\.{3}' | cut -d'.' -f4)"
-          printf '%s\n' "Upstream branch name: $UPSTREAM_BRANCH_NAME"
-
-          set -o pipefail
-
-          if [ -z "$UPSTREAM_BRANCH_NAME" ]; then
-              printf >&2 '%s\n' "::error::Unable to determine upstream branch name!"
-              exit 1
-          fi
-
-          git fetch "${UPSTREAM_BRANCH_NAME%%/*}"
-
-          if ! UPSTREAM_SHA="$(git rev-parse "$UPSTREAM_BRANCH_NAME")"; then
-              printf >&2 '%s\n' "::error::Unable to determine upstream branch sha!"
-              exit 1
-          fi
-
-          HEAD_SHA="$(git rev-parse HEAD)"
-
-          if [ "$HEAD_SHA" != "$UPSTREAM_SHA" ]; then
-              printf >&2 '%s\n' "[HEAD SHA] $HEAD_SHA != $UPSTREAM_SHA [UPSTREAM SHA]"
-              printf >&2 '%s\n' "::error::Upstream has changed, aborting release..."
-              exit 1
-          fi
-
-          printf '%s\n' "Verified upstream branch has not changed, continuing with release..."
-
       - name: Action | Semantic Version Release
         id: release
-        # Adjust tag with desired version if applicable.
         uses: python-semantic-release/python-semantic-release@350c48fcb3ffcdfd2e0a235206bc2ecea6b69df0 # v10
         with:
           directory: ./
@@ -90,19 +43,38 @@ jobs:
           git_committer_email: "actions@users.noreply.github.com"
           changelog: false # github releases are sufficient
 
-      - name: Cleanup | Remove release, tag and commit on failure
-        if: failure() && steps.release.outputs.tag != ''
-        env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_PAT }}
-        run: |
-          TAG=${{ steps.release.outputs.tag }}
-          git tag -d $TAG || echo "Failed to delete local tag"
-          git push origin :refs/tags/$TAG || echo "Failed to delete remote tag"
-          git reset --hard ${{ github.sha }}
-          gh release delete $TAG --yes || echo "Failed to delete release"
+      - name: Upload | Distribution Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: distribution-artifacts
+          path: dist
+          if-no-files-found: error
+
+    outputs:
+      released: ${{ steps.release.outputs.released || 'false' }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: release
+    if: ${{ needs.release.outputs.released == 'true' }}
+
+    permissions:
+      contents: read
+      id-token: write
+
+    environment:
+      name: pypi
+      url: https://pypi.org/p/immich
+
+    steps:
+      - name: Setup | Download Build Artifacts
+        uses: actions/download-artifact@v4
+        id: artifact-download
+        with:
+          name: distribution-artifacts
+          path: dist
 
       - name: Publish | Upload package to PyPI
         uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # v1.13.0
-        if: steps.release.outputs.released == 'true'
         with:
           packages-dir: dist/
