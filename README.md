@@ -46,6 +46,23 @@ pip install --pre immich
 
 This SDK is **async-only**. The client exposes API groups as attributes, and endpoints as methods on those groups. Groups and endpoints are documented in the [Immich API documentation](https://api.immich.app/endpoints).
 
+## Custom functions
+
+Some API groups include custom convenience methods that are **preferred** over the auto-generated ones for common operations:
+
+### Assets API
+
+- **assets.download_asset_to_file**: Download an asset (original file) directly to disk.
+- **assets.view_asset_to_file**: Download an asset thumbnail directly to disk .
+
+### Download API
+
+- **download.download_archive_to_file**: Download asset archives (ZIP files) directly to disk. You can download whole albums or user-specified assets in a single request.
+
+### Users API
+
+- **users.get_profile_image_to_file**: Download a user's profile image directly to disk.
+
 ## Authentication
 
 Immich supports API keys. Create one in your server and pass it via `api_key=...`. Cookie and Bearer tokens are also supported.
