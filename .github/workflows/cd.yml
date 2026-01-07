@@ -1,18 +1,70 @@
-name: Release to PyPI
+name: Continuous Delivery
 
 on:
-  workflow_run:
-    workflows: ["Test and Coverage"] # only run if the test and coverage workflow has completed successfully
-    types: [completed]
+  pull_request:
+    branches: [main]
+  push:
     branches: [main]
 
 permissions:
   contents: read
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check-out repository
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+        with:
+          persist-credentials: false
+
+      - name: Install mise
+        uses: jdx/mise-action@146a28175021df8ca24f8ee1828cc2a60f980bd5 # v3
+
+      - name: Run pre-commit hooks
+        run: mise run lint
+
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
+
+    steps:
+      - name: Check-out repository
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+        with:
+          persist-credentials: false
+
+      - name: Install uv + Python ${{ matrix.python-version }}
+        uses: astral-sh/setup-uv@681c641aba71e4a1c380be3ab5e12ad51f415867 # v7
+        with:
+          version: "0.9.21"
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install the project
+        run: uv sync --locked --dev
+
+      - name: Test with pytest
+        run: uv run pytest tests/ --cov=immich --cov-branch --cov-report=xml --cov-report=term-missing:skip-covered
+
+      - name: Pytest coverage comment
+        if: ${{ matrix.python-version == '3.14' }}
+        uses: MishaKav/pytest-coverage-comment@ae0e8a539a3f310aefb3bfb6a2209778a21fa42b # v1.2.0
+        with:
+          title: Coverage Report ${{ matrix.python-version }}
+          pytest-xml-coverage-path: ./coverage.xml
+          report-only-changed-files: true
+          hide-report: true
+
   release:
     runs-on: ubuntu-latest
-    if: github.event.workflow_run.conclusion == 'success'
+    needs: [lint, test]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     concurrency:
       group: ${{ github.workflow }}-release-${{ github.ref_name }}
       cancel-in-progress: false
@@ -24,7 +76,6 @@ jobs:
       - name: Setup | Checkout Repository on Release Branch
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
         with:
-          ref: ${{ github.event.workflow_run.head_branch }}
           fetch-depth: 0
           token: ${{ secrets.RELEASE_PAT }}
           persist-credentials: false
@@ -61,7 +112,6 @@ jobs:
     if: ${{ needs.release.outputs.released == 'true' }}
 
     permissions:
-      contents: read
       id-token: write
 
     environment:
