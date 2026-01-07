@@ -23,6 +23,8 @@ jobs:
     steps:
       - name: Check-out repository
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+        with:
+          persist-credentials: false
 
       - name: Install uv + Python ${{ matrix.python-version }}
         uses: astral-sh/setup-uv@681c641aba71e4a1c380be3ab5e12ad51f415867 # v7
@@ -38,7 +40,7 @@ jobs:
 
       - name: Pytest coverage comment
         if: ${{ matrix.python-version == '3.14' }}
-        uses: MishaKav/pytest-coverage-comment@main
+        uses: MishaKav/pytest-coverage-comment@ae0e8a539a3f310aefb3bfb6a2209778a21fa42b # v1.2.0
         with:
           title: Coverage Report ${{ matrix.python-version }}
           pytest-xml-coverage-path: ./coverage.xml
