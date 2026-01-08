@@ -69,6 +69,7 @@ Some API groups include custom convenience methods that are **preferred** over t
 - **assets.download_asset_to_file**: Download an asset (original file) directly to disk.
 - **assets.view_asset_to_file**: Download an asset thumbnail directly to disk .
 - **assets.play_asset_video_to_file**: Download an asset video stream directly to disk.
+- **assets.upload_asset_smart**: Upload assets with smart features (duplicate detection, album management, sidecar support, dry run).
 
 **Resumable Downloads**: All asset download methods support automatic resumable downloads.
 
