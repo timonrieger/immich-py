@@ -10,6 +10,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Optional, cast
 from uuid import UUID
+import uuid
 
 from pydantic import BaseModel
 import tqdm
@@ -134,7 +135,7 @@ async def upload_file(
     dry_run: bool = False,
 ) -> AssetMediaResponseDto:
     if dry_run:
-        return AssetMediaResponseDto(id="", status=AssetMediaStatus.CREATED)
+        return AssetMediaResponseDto(id=str(uuid.uuid4()), status=AssetMediaStatus.CREATED)
 
     stats = filepath.stat()
 
