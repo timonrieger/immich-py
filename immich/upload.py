@@ -226,7 +226,7 @@ async def upload_files(
             except Exception as e:
                 if isinstance(e, ApiException) and e.body:
                     body: dict[str, Any] = json.loads(cast(str, e.body))
-                    msg = body.get("message", str(e))
+                    msg = str(body.get("message", str(e)))
                 else:
                     msg = str(e)
                 failed.append((filepath, msg))

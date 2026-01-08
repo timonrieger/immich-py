@@ -5066,7 +5066,8 @@ class AssetsApi:
         device_id: StrictStr,
         file_created_at: datetime,
         file_modified_at: datetime,
-        metadata: List[AssetMetadataUpsertItemDto],
+        # NOTE: just a temporary fix to allow empty metadata, should be fixed in the next upstream release, see https://github.com/immich-app/immich/pull/25144
+        metadata: Optional[List[AssetMetadataUpsertItemDto]] = None,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
         x_immich_checksum: Annotated[
