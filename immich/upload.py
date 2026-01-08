@@ -283,15 +283,17 @@ async def delete_files(
             to_delete.append(filepath)
 
     for filepath in to_delete:
+        main_deleted = True
         if dry_run:
             logger.info(f"Would have deleted {filepath}")
         else:
             try:
                 filepath.unlink()
             except Exception as e:
-                logger.error(f"Failed to delete {filepath}: {e}")
+                main_deleted = False
+                logger.exception(f"Failed to delete {filepath}: {e}")
 
-        if include_sidecars:
+        if include_sidecars and main_deleted:
             sidecar_path = find_sidecar(filepath)
             if sidecar_path:
                 if dry_run:
@@ -300,4 +302,4 @@ async def delete_files(
                     try:
                         sidecar_path.unlink()
                     except Exception as e:
-                        logger.error(f"Failed to delete {sidecar_path}: {e}")
+                        logger.exception(f"Failed to delete {sidecar_path}: {e}")
