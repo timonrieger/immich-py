@@ -1,0 +1,9 @@
+---
+alwaysApply: true
+---
+Apply the following rules:
+- Reuse as much existing code logic as possible
+- Write aggressive code
+- No extensive error handling if not absolutely necessary
+- Type extensively
+- Keep changes minimal
