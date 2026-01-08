@@ -180,13 +180,10 @@ class AssetsApiWrapped(AssetsApi):
         dry_run: bool = False,
     ) -> UploadResult:
         """
-        Upload assets with smart features like duplicate detection, album management, and more.
+        Upload assets with smart features (duplicate detection, album management, sidecar support, dry run).
 
-        The `paths` parameter accepts files or directories. Directories are automatically walked recursively
-        (if `path.is_dir()` is True). To ignore subdirectories, use the `ignore_pattern` parameter.
-
-        :param paths: File or directory paths to upload. Can be a single path or list of paths.
-        :param ignore_pattern: Pattern to ignore files (e.g., "*.tmp").
+        :param paths: File or directory paths to upload. Can be a single path or list of paths. Directories are automatically walked recursively. To ignore subdirectories, use the `ignore_pattern` parameter.
+        :param ignore_pattern: Wildcard pattern to ignore files (uses `fnmatch` stdlib module). Examples: "*.tmp" (ignore all .tmp files), "*/subdir/*" (ignore files in subdir at any level).
         :param include_hidden: Whether to include hidden files (starting with ".").
         :param check_duplicates: Whether to check for duplicates using SHA1 hashes before uploading.
         :param concurrency: Number of concurrent uploads. Defaults to 5. A higher number may increase upload speed, but also increases the risk of rate limiting or other issues.
@@ -196,6 +193,7 @@ class AssetsApiWrapped(AssetsApi):
         :param delete_after_upload: Whether to delete successfully uploaded files locally.
         :param delete_duplicates: Whether to delete duplicate files locally.
         :param dry_run: If True, simulate uploads without actually uploading.
+
         :return: UploadResult with uploaded assets, duplicates, failures, and statistics.
         """
         server_api = ServerApi(self.api_client)
