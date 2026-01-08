@@ -1,8 +1,9 @@
-# Immich API Client
 
+<h1 align="center">Immich API Client</h1>
+<h3 align="center">Unofficial Python client for the <a href="https://immich.app">Immich</a> API.</h3>
 <p align="center">
 <a href="https://github.com/immich-app/immich/releases" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/dynamic/regex?url=https://raw.githubusercontent.com/timonrieger/immich-python-client/main/IMMICH-VERSION&search=(.*)&replace=%241%20-%20$1&label=supports&color=blue" alt="Supported Immich version">
+    <img src="https://img.shields.io/badge/dynamic/regex?url=https://raw.githubusercontent.com/timonrieger/immich-python-client/main/IMMICH-VERSION&search=(.*)&replace=%241%20-%20$1&label=supported%20Immich%20versions&color=blue" alt="Supported Immich version">
 </a>
     <a href="https://pypi.org/project/immich" target="_blank" rel="noopener noreferrer">
         <img src="https://img.shields.io/pypi/v/immich?color=blue&label=pypi%20package" alt="Package version">
@@ -20,16 +21,24 @@
 
 </p>
 
-Unofficial Python client for the [Immich](https://immich.app) API.
-
 > [!IMPORTANT]
 > This repository is mostly **auto-generated** from the Immich OpenAPI specification.
-> Pull requests are welcome, but **modifications to auto-generated code (especially `immich/client/`) will be rejected**. See [CONTRIBUTING](CONTRIBUTING.md) for more details.
+> Pull requests are welcome, but modifications to auto-generated code will be rejected. See [CONTRIBUTING](CONTRIBUTING.md) for more details.
 
-## Status
+> [!NOTE]
+> This project is [auto-synced](./.github/workflows/upstream-sync.yml) with the **latest Immich release**.
 
-- **Unofficial**: Not affiliated with or endorsed by Immich.
-- **Auto-synced**: Kept in sync with the **latest Immich release** (regenerated as upstream changes land).
+> [!NOTE]
+> This project is not affiliated with or endorsed by Immich.
+
+
+## Versioning
+
+This package follows **[Semantic Versioning](https://semver.org)**. Some important notes:
+
+- **Package version is not the server version**: `immich` package `x.y.z` is the client’s own version.
+- **Upstream breaking changes ⇒ major bump**: Breaking Immich changes produce a new **major** version of this package.
+- **Supported Immich server version**: [IMMICH-VERSION](./IMMICH-VERSION) tracks the Immich version the client was generated from. [COMPATIBILITY.csv](./COMPATIBILITY.csv) maps package versions to supported server versions.
 
 ## Installation
 
@@ -61,7 +70,7 @@ Some API groups include custom convenience methods that are **preferred** over t
 - **assets.view_asset_to_file**: Download an asset thumbnail directly to disk .
 - **assets.play_asset_video_to_file**: Download an asset video stream directly to disk.
 
-**Resumable Downloads**: All asset download methods support automatic resumable downloads. If a download is interrupted, the client will automatically resume from where it left off using HTTP Range requests. Partial downloads are saved as `.temp` files and renamed upon successful completion.
+**Resumable Downloads**: All asset download methods support automatic resumable downloads.
 
 ### Download API
 
@@ -146,13 +155,3 @@ await response.json()
 ## Session management
 
 The client can manage a shared `aiohttp.ClientSession`, or you can pass your own via `http_client=...` (you are responsible for its lifecycle).
-
-## Versioning
-
-This package follows **[Semantic Versioning](https://semver.org)**.
-
-- **Package version is not the server version**: `immich` package `X.Y.Z` is the client’s own version.
-- **Upstream breaking changes ⇒ major bump**: Breaking Immich changes that require breaking client changes produce a new **major** version.
-- **Supported Immich server version**: [IMMICH-VERSION](./IMMICH-VERSION) tracks the Immich version this client was generated from.
-  - If you run an **older** Immich server version, you can install an **older** `immich` package release where `IMMICH-VERSION` matches your server.
-  - This client supports **Immich v2.4.1** and above.
