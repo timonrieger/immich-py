@@ -233,6 +233,7 @@ class AssetsApiWrapped(AssetsApi):
             duplicates=duplicates,
             delete_after_upload=delete_after_upload,
             delete_duplicates=delete_duplicates,
+            include_sidecars=include_sidecars,
             dry_run=dry_run,
         )
 

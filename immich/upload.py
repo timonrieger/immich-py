@@ -133,6 +133,27 @@ async def check_duplicates(
     return new_files, duplicates
 
 
+def find_sidecar(filepath: Path) -> Optional[Path]:
+    """Find sidecar file for a given media file path.
+
+    Checks both naming conventions:
+    - {filename}.xmp (e.g., photo.xmp for photo.jpg)
+    - {filename}.{ext}.xmp (e.g., photo.jpg.xmp for photo.jpg)
+
+    :param filepath: The path to the media file.
+
+    :return: The path to the first sidecar file that exists, or None if neither exists.
+    """
+    no_ext = filepath.parent / filepath.stem
+    for sidecar_path in [
+        no_ext.with_suffix(".xmp"),
+        filepath.with_suffix(filepath.suffix + ".xmp"),
+    ]:
+        if sidecar_path.exists():
+            return sidecar_path
+    return None
+
+
 async def upload_file(
     filepath: Path,
     assets_api: AssetsApi,
@@ -146,16 +167,11 @@ async def upload_file(
 
     stats = filepath.stat()
 
-    sidecar_data = None
+    sidecar_data: Optional[str] = None
     if include_sidecars:
-        no_ext = filepath.parent / filepath.stem
-        for sidecar_path in [
-            no_ext.with_suffix(".xmp"),
-            filepath.with_suffix(filepath.suffix + ".xmp"),
-        ]:
-            if sidecar_path.exists():
-                sidecar_data = str(sidecar_path)
-                break
+        sidecar_path = find_sidecar(filepath)
+        if sidecar_path:
+            sidecar_data = str(sidecar_path)
 
     asset_data = str(filepath)
 
@@ -251,6 +267,7 @@ async def delete_files(
     duplicates: list[tuple[Path, str]],
     delete_after_upload: bool = False,
     delete_duplicates: bool = False,
+    include_sidecars: bool = True,
     dry_run: bool = False,
 ) -> None:
     to_delete: list[Path] = []
@@ -265,8 +282,19 @@ async def delete_files(
     for filepath in to_delete:
         if dry_run:
             logger.info(f"Would have deleted {filepath}")
-            continue
-        try:
-            filepath.unlink()
-        except Exception as e:
-            logger.error(f"Failed to delete {filepath}: {e}")
+        else:
+            try:
+                filepath.unlink()
+            except Exception as e:
+                logger.error(f"Failed to delete {filepath}: {e}")
+
+        if include_sidecars:
+            sidecar_path = find_sidecar(filepath)
+            if sidecar_path:
+                if dry_run:
+                    logger.info(f"Would have deleted {sidecar_path}")
+                else:
+                    try:
+                        sidecar_path.unlink()
+                    except Exception as e:
+                        logger.error(f"Failed to delete {sidecar_path}: {e}")
