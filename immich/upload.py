@@ -120,7 +120,7 @@ async def scan_files(
     return sorted(set(files))
 
 
-async def compute_sha1(filepath: Path) -> str:
+def compute_sha1_sync(filepath: Path) -> str:
     sha1 = hashlib.sha1(usedforsecurity=False)
     with open(filepath, "rb") as f:
         while chunk := f.read(1024 * 1024):
@@ -140,7 +140,7 @@ async def check_duplicates(
     pbar = tqdm.tqdm(total=len(files), desc="Hashing files", disable=not show_progress)
     checksums: list[tuple[Path, str]] = []
     for filepath in files:
-        checksum = await compute_sha1(filepath)
+        checksum = await asyncio.to_thread(compute_sha1_sync, filepath)
         checksums.append((filepath, checksum))
         pbar.update(1)
     pbar.close()
@@ -320,12 +320,12 @@ async def update_albums(
         album_map[album_name] = album.id
 
     album_id = album_map[album_name]
-    asset_ids = [UUID(entry.asset.id) for entry in uploaded]
+    asset_ids = [UUID(str(entry.asset.id)) for entry in uploaded]
 
     for i in range(0, len(asset_ids), 1000):
         batch = asset_ids[i : i + 1000]
         await albums_api.add_assets_to_album(
-            id=UUID(album_id), bulk_ids_dto=BulkIdsDto(ids=batch)
+            id=UUID(str(album_id)), bulk_ids_dto=BulkIdsDto(ids=batch)
         )
 
 
