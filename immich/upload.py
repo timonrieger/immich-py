@@ -10,7 +10,7 @@ import sys
 from statx import statx
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Literal, Optional, cast
+from typing import Literal, Optional, cast
 from uuid import UUID
 import uuid
 
@@ -78,6 +78,8 @@ class UploadedEntry(BaseModel):
 
 
 class UploadResult(BaseModel):
+    """The result of an upload operation containing all uploaded, rejected, and failed entries."""
+
     uploaded: list[UploadedEntry] = Field(
         ..., description="The assets that were uploaded."
     )
@@ -318,19 +320,29 @@ async def upload_files(
                             reason="duplicate",
                         )
                     )
+                else:
+                    failed.append(
+                        FailedEntry(
+                            filepath=filepath,
+                            error=f"Unexpected status_code={response.status_code}",
+                        )
+                    )
                 if not dry_run:
                     pbar.update(filepath.stat().st_size)
-            except Exception as e:
-                if isinstance(e, ApiException) and e.body:
+            except ApiException as e:
+                msg = str(e)
+                if e.body:
                     try:
-                        body: dict[str, Any] = json.loads(cast(str, e.body))
-                        msg = str(body.get("message", str(e)))
-                    except (ValueError, json.JSONDecodeError):
-                        msg = str(e.body) if e.body else str(e)
-                else:
-                    msg = str(e)
+                        body = json.loads(cast(str, e.body))
+                        msg = str(body.get("message", msg))
+                    except Exception:  # nosec: B110
+                        pass
                 failed.append(FailedEntry(filepath=filepath, error=msg))
-                logger.exception(f"Failed to upload {filepath}: {msg}")
+                logger.exception("Failed to upload %s: %s", filepath, msg)
+            except Exception as e:
+                msg = str(e)
+                failed.append(FailedEntry(filepath=filepath, error=msg))
+                logger.exception("Failed to upload %s: %s", filepath, msg)
 
     await asyncio.gather(*[upload_with_semaphore(f) for f in files])
     pbar.close()
