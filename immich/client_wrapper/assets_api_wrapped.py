@@ -183,7 +183,7 @@ class AssetsApiWrapped(AssetsApi):
         Upload assets with smart features (duplicate detection, album management, sidecar support, dry run).
 
         :param paths: File or directory paths to upload. Can be a single path or list of paths. Directories are automatically walked recursively. To ignore subdirectories, use the `ignore_pattern` parameter.
-        :param ignore_pattern: Wildcard pattern to ignore files (uses `fnmatch` stdlib module). Examples: "*.tmp" (ignore all .tmp files), "*/subdir/*" (ignore files in subdir at any level).
+        :param ignore_pattern: Wildcard pattern to ignore files (uses `fnmatch` stdlib module, not regex). Examples: "*.tmp" (ignore all .tmp files), "*/subdir/*" (ignore files in subdir at any level).
         :param include_hidden: Whether to include hidden files (starting with ".").
         :param check_duplicates: Whether to check for duplicates using SHA1 hashes before uploading.
         :param concurrency: Number of concurrent uploads. Defaults to 5. A higher number may increase upload speed, but also increases the risk of rate limiting or other issues.

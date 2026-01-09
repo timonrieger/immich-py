@@ -97,12 +97,12 @@ async def test_scan_files_ignore_pattern_wildcard(
     mock_server_api, tmp_path: Path
 ) -> None:
     file1 = tmp_path / "test.jpg"
-    file2 = tmp_path / "ignore.jpg"
+    file2 = tmp_path / "ignore.jpeg"
     file3 = tmp_path / "other.jpg"
     file1.write_bytes(b"test1")
     file2.write_bytes(b"test2")
     file3.write_bytes(b"test3")
-    result = await scan_files([tmp_path], mock_server_api, ignore_pattern="ignore.jpg")
+    result = await scan_files([tmp_path], mock_server_api, ignore_pattern="*.jpeg")
     assert len(result) == 2
     assert set(result) == {file1.resolve(), file3.resolve()}
 
@@ -117,7 +117,7 @@ async def test_scan_files_ignore_pattern_directory(
     file2 = subdir / "test2.jpg"
     file1.write_bytes(b"test1")
     file2.write_bytes(b"test2")
-    result = await scan_files([tmp_path], mock_server_api, ignore_pattern="subdir/*")
+    result = await scan_files([tmp_path], mock_server_api, ignore_pattern="*/subdir/*")
     assert len(result) == 1
     assert result[0] == file1.resolve()
 
