@@ -7,6 +7,7 @@ import json
 import logging
 import os
 import sys
+from statx import statx
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Literal, Optional, cast
@@ -205,27 +206,29 @@ def find_sidecar(filepath: Path) -> Optional[Path]:
     return None
 
 
-def get_file_creation_time(stats: os.stat_result) -> Optional[datetime]:
-    """Get file creation time reliably, or None if unavailable.
+def get_file_times(path: Path, stats: os.stat_result) -> tuple[datetime, datetime]:
+    """Get file creation and modification times reliably.
 
-    Attempts to get the file creation time using platform-specific methods:
-    - macOS/BSD: st_birthtime (actual creation time)
-    - Windows: st_ctime (creation time on Windows)
-    - Linux: Returns None (st_ctime is metadata change time, not creation time)
+    Credits: https://stackoverflow.com/a/39501288
 
+    :param path: The path to the file (used for statx fallback on Linux).
     :param stats: The stat result from os.stat() or Path.stat().
 
-    :return: UTC-aware datetime of file creation, or None if unavailable.
+    :return: Tuple of (creation_time, modification_time) as UTC-aware datetimes.
     """
-    if sys.platform == "win32":
-        # On Windows, st_ctime is the creation time
-        return datetime.fromtimestamp(stats.st_ctime, tz=timezone.utc)
-    elif hasattr(stats, "st_birthtime"):
-        # On macOS/BSD, st_birthtime is the creation time
-        return datetime.fromtimestamp(stats.st_birthtime, tz=timezone.utc)
-    # On Linux, st_ctime is metadata change time, not creation time
-    # Return None to indicate creation time is unavailable
-    return None
+    mtime = stats.st_mtime
+
+    try:
+        ctime = stats.st_birthtime
+    except AttributeError:
+        if sys.platform == "win32":
+            ctime = stats.st_ctime
+        else:
+            ctime = statx(path).btime
+
+    return datetime.fromtimestamp(
+        ctime or mtime, tz=timezone.utc
+    ), datetime.fromtimestamp(mtime, tz=timezone.utc)
 
 
 async def upload_file(
@@ -255,12 +258,7 @@ async def upload_file(
 
     asset_data = str(filepath)
 
-    # Get UTC-aware timestamps
-    file_modified_at = datetime.fromtimestamp(stats.st_mtime, tz=timezone.utc)
-    file_created_at = get_file_creation_time(stats)
-    # If creation time is unavailable, use modification time as fallback
-    if file_created_at is None:
-        file_created_at = file_modified_at
+    file_created_at, file_modified_at = get_file_times(filepath, stats)
 
     response = await assets_api.upload_asset_with_http_info(
         asset_data=asset_data,
