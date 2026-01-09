@@ -10,7 +10,7 @@ from immich.client.api.albums_api import AlbumsApi
 from immich.client.api.assets_api import AssetsApi
 from immich.client.api.server_api import ServerApi
 from immich.client.models.asset_media_size import AssetMediaSize
-from immich.upload import (
+from immich._internal.upload import (
     UploadResult,
     UploadStats,
     check_duplicates as check_dupes,
@@ -19,7 +19,7 @@ from immich.upload import (
     update_albums,
     upload_files,
 )
-from immich.utils import download_file, resolve_output_filename
+from immich._internal.utils import download_file, resolve_output_filename
 
 
 class AssetsApiWrapped(AssetsApi):
