@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Stacks operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='A stack is a group of related assets. One asset is the "primary" asset, and the rest are "child" assets. On the main timeline, stack parents are included by default, while child assets are hidden.. https://api.immich.app/endpoints/stacks', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("create-stack")
 def create_stack(

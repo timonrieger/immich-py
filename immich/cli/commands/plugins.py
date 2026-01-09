@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Plugins operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='A plugin is an installed module that makes filters and actions available for the workflow feature.. https://api.immich.app/endpoints/plugins', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("get-plugin")
 def get_plugin(

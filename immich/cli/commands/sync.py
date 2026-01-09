@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Sync operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='A collection of endpoints for the new mobile synchronization implementation.. https://api.immich.app/endpoints/sync', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("delete-sync-ack")
 def delete_sync_ack(

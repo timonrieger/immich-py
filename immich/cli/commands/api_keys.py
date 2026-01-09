@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="API keys operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='An api key can be used to programmatically access the Immich API.. https://api.immich.app/endpoints/api-keys', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("create-api-key")
 def create_api_key(

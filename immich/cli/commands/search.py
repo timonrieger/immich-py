@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Search operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='Endpoints related to searching assets via text, smart search, optical character recognition (OCR), and other filters like person, album, and other metadata. Search endpoints usually support pagination and sorting.. https://api.immich.app/endpoints/search', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("get-assets-by-city")
 def get_assets_by_city(

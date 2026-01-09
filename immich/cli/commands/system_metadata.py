@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="System metadata operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='Endpoints to view, modify, and validate the system metadata, which includes information about things like admin onboarding status.. https://api.immich.app/endpoints/system-metadata', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("get-admin-onboarding")
 def get_admin_onboarding(

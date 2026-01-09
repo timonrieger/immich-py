@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Faces operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='A face is a detected human face within an asset, which can be associated with a person. Faces are normally detected via machine learning, but can also be created via manually.. https://api.immich.app/endpoints/faces', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("create-face")
 def create_face(

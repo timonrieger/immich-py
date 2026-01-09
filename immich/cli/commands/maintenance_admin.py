@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Maintenance (admin) operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='Maintenance mode allows you to put Immich in a read-only state to perform various operations.. https://api.immich.app/endpoints/maintenance-admin', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("maintenance-login")
 def maintenance_login(

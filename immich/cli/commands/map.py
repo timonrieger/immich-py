@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Map operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='Map endpoints include supplemental functionality related to geolocation, such as reverse geocoding and retrieving map markers for assets with geolocation data.. https://api.immich.app/endpoints/map', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("get-map-markers")
 def get_map_markers(

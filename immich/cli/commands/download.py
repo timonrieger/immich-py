@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Download operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='Endpoints for downloading assets or collections of assets.. https://api.immich.app/endpoints/download', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("download-archive")
 def download_archive(

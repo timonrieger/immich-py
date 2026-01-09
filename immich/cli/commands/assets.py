@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Assets operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='An asset is an image or video that has been uploaded to Immich.. https://api.immich.app/endpoints/assets', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("check-bulk-upload")
 def check_bulk_upload(

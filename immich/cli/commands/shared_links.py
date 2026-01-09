@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Shared links operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='A shared link is a public url that provides access to a specific album, asset, or collection of assets. A shared link can be protected with a password, include a specific slug, allow or disallow downloads, and optionally include an expiration date.. https://api.immich.app/endpoints/shared-links', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("add-shared-link-assets")
 def add_shared_link_assets(

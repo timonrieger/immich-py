@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Users operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='Endpoints for viewing and updating the current users, including product key information, profile picture data, onboarding progress, and more.. https://api.immich.app/endpoints/users', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("create-profile-image")
 def create_profile_image(

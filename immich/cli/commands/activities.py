@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Activities operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='An activity is a like or a comment made by a user on an asset or album.. https://api.immich.app/endpoints/activities', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("create-activity")
 def create_activity(

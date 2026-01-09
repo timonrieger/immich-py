@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Authentication operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='Endpoints related to user authentication, including OAuth.. https://api.immich.app/endpoints/authentication', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("change-password")
 def change_password(

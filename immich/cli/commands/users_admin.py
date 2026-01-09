@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Users (admin) operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='Administrative endpoints for managing users, including creating, updating, deleting, and restoring users. Also includes endpoints for resetting passwords and PIN codes.. https://api.immich.app/endpoints/users-admin', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("create-user-admin")
 def create_user_admin(

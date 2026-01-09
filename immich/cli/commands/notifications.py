@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Notifications operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='A notification is a specialized message sent to users to inform them of important events. Currently, these notifications are only shown in the Immich web application.. https://api.immich.app/endpoints/notifications', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("delete-notification")
 def delete_notification(

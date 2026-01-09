@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Memories operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='A memory is a specialized collection of assets with dedicated viewing implementations in the web and mobile clients. A memory includes fields related to visibility and are automatically generated per user via a background job.. https://api.immich.app/endpoints/memories', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("add-memory-assets")
 def add_memory_assets(

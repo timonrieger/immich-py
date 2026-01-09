@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Notifications (admin) operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='Notification administrative endpoints.. https://api.immich.app/endpoints/notifications-admin', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("create-notification")
 def create_notification(

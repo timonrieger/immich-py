@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Server operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='Information about the current server deployment, including version and build information, available features, supported media types, and more.. https://api.immich.app/endpoints/server', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("delete-server-license")
 def delete_server_license(

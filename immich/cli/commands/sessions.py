@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Sessions operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='A session represents an authenticated login session for a user. Sessions also appear in the web application as "Authorized devices".. https://api.immich.app/endpoints/sessions', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("create-session")
 def create_session(

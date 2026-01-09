@@ -1,11 +1,14 @@
 # /// script
 # requires-python = ">=3.11"
+# dependencies = [
+#   "inflection",
+#   "urllib3",
+# ]
 # ///
 
 from __future__ import annotations
 
 import argparse
-import json
 import keyword
 import os
 import re
@@ -13,12 +16,7 @@ import shutil
 import urllib3
 from pathlib import Path
 from typing import Any
-
-
-def project_root() -> Path:
-    """Get project root directory."""
-    return Path(__file__).resolve().parents[2]
-
+import inflection
 
 def openapi_url(ref: str) -> str:
     """Build OpenAPI spec URL from git ref."""
@@ -30,22 +28,15 @@ def openapi_url(ref: str) -> str:
 
 def to_snake_case(name: str) -> str:
     """Convert string to snake_case."""
-    # Insert underscore before uppercase letters (except first)
-    s1 = re.sub("(.)([A-Z][a-z]+)", r"\1_\2", name)
-    # Insert underscore before uppercase letters that follow lowercase
-    s2 = re.sub("([a-z0-9])([A-Z])", r"\1_\2", s1)
-    # Replace spaces/hyphens with underscores and lowercase
-    s3 = re.sub(r"[\s-]+", "_", s2)
-    # Replace any remaining non-identifier characters (e.g. parentheses, slashes)
-    s4 = re.sub(r"[^A-Za-z0-9_]", "_", s3)
-    s5 = re.sub(r"_+", "_", s4).strip("_")
-    return s5.lower()
+    # first get the underscore in, then take out all parenthesis with dashes, then underscore again
+    snake = inflection.underscore(name)
+    return inflection.parameterize(snake, separator="_")
 
 
 def to_kebab_case(name: str) -> str:
     """Convert string to kebab-case."""
     snake = to_snake_case(name)
-    return snake.replace("_", "-")
+    return inflection.dasherize(snake)
 
 
 def to_python_ident(name: str) -> str:
@@ -56,10 +47,6 @@ def to_python_ident(name: str) -> str:
     - avoid keywords like `for`, `from`, `class`, etc.
     """
     ident = to_snake_case(name)
-    if not ident:
-        return "param"
-    if ident[0].isdigit():
-        ident = "_" + ident
     if keyword.iskeyword(ident):
         ident = ident + "_"
     return ident
@@ -121,51 +108,6 @@ def python_type_from_schema(
     else:
         return "str"
 
-
-def validate_operation(operation: dict[str, Any], path: str, method: str) -> None:
-    """Validate operation meets CLI generation requirements."""
-    if "operationId" not in operation:
-        raise ValueError(
-            f"Operation {method.upper()} {path} missing required 'operationId'"
-        )
-
-    if "tags" not in operation or not operation["tags"]:
-        raise ValueError(
-            f"Operation {operation.get('operationId')} missing required 'tags'"
-        )
-
-    # Check parameters
-    for param in operation.get("parameters", []):
-        param_in = param.get("in")
-        if param_in not in ["path", "query", "header"]:
-            raise ValueError(
-                f"Operation {operation.get('operationId')} has unsupported "
-                f"parameter location: {param_in} "
-                "(only 'path', 'query', and 'header' supported)"
-            )
-
-    # Check request body
-    if "requestBody" in operation:
-        content = operation["requestBody"].get("content", {})
-        supported = {"application/json", "multipart/form-data"}
-        content_types = set(content.keys())
-        if not (content_types & supported):
-            raise ValueError(
-                f"Operation {operation.get('operationId')} has requestBody but no "
-                f"supported content type. Supported: {sorted(supported)}. "
-                f"Found: {sorted(content.keys())}"
-            )
-
-        # Require $ref schema for supported content types (keeps codegen deterministic)
-        for ct in sorted(content_types & supported):
-            schema = content.get(ct, {}).get("schema", {})
-            if "$ref" not in schema:
-                raise ValueError(
-                    f"Operation {operation.get('operationId')} has requestBody with "
-                    f"'{ct}' but schema is not a $ref (unsupported)"
-                )
-
-
 def resolve_schema_ref(spec: dict[str, Any], ref: str) -> dict[str, Any]:
     """Resolve a local OpenAPI $ref like '#/components/schemas/Foo'."""
     if not ref.startswith("#/"):
@@ -205,8 +147,6 @@ def get_request_body_info(
 
 def generate_command_function(
     operation: dict[str, Any],
-    path: str,
-    method: str,
     spec: dict[str, Any],
     tag_attr: str,
 ) -> str:
@@ -434,8 +374,8 @@ def generate_tag_app(
     tag: str, operations: list[tuple[str, str, dict[str, Any]]], spec: dict[str, Any]
 ) -> str:
     """Generate a Typer app module for a tag."""
-    tag_snake = to_snake_case(tag)
-    tag_attr = tag_snake  # This should match AsyncClient attribute
+    tag_attr = to_snake_case(tag)
+    tag_description = next(t for t in spec["tags"] if t["name"] == tag)["description"]
 
     lines = [
         '"""Generated CLI commands for '
@@ -450,7 +390,7 @@ def generate_tag_app(
         "",
         "from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command",
         "",
-        f'app = typer.Typer(help="{tag} operations", context_settings={{"help_option_names": ["-h", "--help"]}})',
+        f"app = typer.Typer(help='{tag_description} https://api.immich.app/endpoints/{inflection.parameterize(tag)}', context_settings={{'help_option_names': ['-h', '--help']}})",
         "",
     ]
 
@@ -458,9 +398,32 @@ def generate_tag_app(
     for path, method, operation in sorted(
         operations, key=lambda x: x[2].get("operationId", "")
     ):
-        func_code = generate_command_function(operation, path, method, spec, tag_attr)
+        func_code = generate_command_function(operation, spec, tag_attr)
         lines.append(func_code)
         lines.append("")
+
+    return "\n".join(lines)
+
+
+def generate_init_py(tags: list[str]) -> str:
+    """Generate __init__.py with lazy import map for commands."""
+    lines = [
+        '"""Lazy import map for CLI commands (auto-generated, do not edit)."""',
+        "",
+        "from __future__ import annotations",
+        "",
+        "# Lazy import map: module_name -> CLI command name",
+        "# Modules are imported lazily in app.py for faster shell completion",
+        "_MODULE_MAP: dict[str, str] = {",
+    ]
+
+    # Sort tags for consistent output
+    for tag in sorted(tags):
+        module_name = to_snake_case(tag)
+        app_name = to_kebab_case(tag)
+        lines.append(f'    "{module_name}": "{app_name}",')
+
+    lines.append("}")
 
     return "\n".join(lines)
 
@@ -477,15 +440,13 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    root = project_root()
-    commands_dir = root / "immich" / "cli" / "commands"
+    commands_dir = Path(__file__).resolve().parents[2] / "immich" / "cli" / "commands"
 
     # Fetch OpenAPI spec
     url = openapi_url(args.ref)
     print(f"Fetching OpenAPI spec from: {url}")
 
-    req = urllib3.request("GET", url)
-    spec = req.json()
+    spec = urllib3.request("GET", url).json()
 
     # Validate and group operations
     operations_by_tag: dict[str, list[tuple[str, str, dict[str, Any]]]] = {}
@@ -494,8 +455,6 @@ def main() -> int:
         for method, operation in path_item.items():
             if method not in ["get", "post", "put", "patch", "delete"]:
                 continue
-
-            validate_operation(operation, path, method)
 
             # Group by first tag
             tags = operation.get("tags", [])
@@ -518,10 +477,10 @@ def main() -> int:
         app_file = commands_dir / f"{tag_snake}.py"
         app_file.write_text(app_content, encoding="utf-8")
 
-    # Skip generating __init__.py to preserve manual lazy import optimization
-    # The __init__.py file uses lazy imports for faster shell completion.
-    # If you need to regenerate it, manually update the _MODULE_MAP in __init__.py
-    # with any new tags.
+    # Generate __init__.py with lazy import map
+    init_content = generate_init_py(list(operations_by_tag.keys()))
+    init_file = commands_dir / "__init__.py"
+    init_file.write_text(init_content, encoding="utf-8")
 
     print(f"Generated CLI commands for {len(operations_by_tag)} tags")
 

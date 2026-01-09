@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Partners operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='A partner is a link with another user that allows sharing of assets between two users.. https://api.immich.app/endpoints/partners', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("create-partner")
 def create_partner(

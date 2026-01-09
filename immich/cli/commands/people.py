@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="People operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='A person is a collection of faces, which can be favorited and named. A person can also be merged into another person. People are automatically created via the face recognition job.. https://api.immich.app/endpoints/people', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("create-person")
 def create_person(

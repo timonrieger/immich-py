@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Tags operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='A tag is a user-defined label that can be applied to assets for organizational purposes. Tags can also be hierarchical, allowing for parent-child relationships between tags.. https://api.immich.app/endpoints/tags', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("bulk-tag-assets")
 def bulk_tag_assets(

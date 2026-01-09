@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Queues operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='Queues and background jobs are used for processing tasks asynchronously. Queues can be paused and resumed as needed.. https://api.immich.app/endpoints/queues', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("empty-queue")
 def empty_queue(

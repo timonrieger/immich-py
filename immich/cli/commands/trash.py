@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Trash operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='Endpoints for managing the trash can, which includes assets that have been discarded. Items in the trash are automatically deleted after a configured amount of time.. https://api.immich.app/endpoints/trash', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("empty-trash")
 def empty_trash(

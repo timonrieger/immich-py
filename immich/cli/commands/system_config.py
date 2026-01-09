@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="System config operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='Endpoints to view, modify, and validate the system configuration settings.. https://api.immich.app/endpoints/system-config', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("get-config")
 def get_config(

@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Timeline operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='Specialized endpoints related to the timeline implementation used in the web application. External applications or tools should not use or rely on these endpoints, as they are subject to change without notice.. https://api.immich.app/endpoints/timeline', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("get-time-bucket")
 def get_time_bucket(

@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Libraries operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='An external library is made up of input file paths or expressions that are scanned for asset files. Discovered files are automatically imported. Assets much be unique within a library, but can be duplicated across libraries. Each user has a default upload library, and can have one or more external libraries.. https://api.immich.app/endpoints/libraries', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("create-library")
 def create_library(

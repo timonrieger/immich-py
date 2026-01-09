@@ -8,7 +8,7 @@ import typer
 
 from immich.cli.runtime import load_file_bytes, deserialize_request_body, print_response, run_command
 
-app = typer.Typer(help="Albums operations", context_settings={"help_option_names": ["-h", "--help"]})
+app = typer.Typer(help='An album is a collection of assets that can be shared with other users or via shared links.. https://api.immich.app/endpoints/albums', context_settings={'help_option_names': ['-h', '--help']})
 
 @app.command("add-assets-to-album")
 def add_assets_to_album(
