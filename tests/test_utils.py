@@ -5,12 +5,15 @@ from unittest.mock import MagicMock
 
 import pytest
 
-import immich.utils as utils
+import immich._internal.download as download_utils
 
 
 def test_filename_from_headers_prefers_content_disposition() -> None:
     headers = {"Content-Disposition": 'attachment; filename="hello.jpg"'}
-    assert utils.filename_from_headers(headers, fallback_base="ignored") == "hello.jpg"
+    assert (
+        download_utils.filename_from_headers(headers, fallback_base="ignored")
+        == "hello.jpg"
+    )
 
 
 def test_filename_from_headers_uses_content_type_as_extension_safety_net_for_cd_name() -> (
@@ -20,20 +23,27 @@ def test_filename_from_headers_uses_content_type_as_extension_safety_net_for_cd_
         "Content-Disposition": 'attachment; filename="hello"',
         "Content-Type": "image/jpeg",
     }
-    assert utils.filename_from_headers(headers, fallback_base="ignored") == "hello.jpg"
+    assert (
+        download_utils.filename_from_headers(headers, fallback_base="ignored")
+        == "hello.jpg"
+    )
 
 
 def test_filename_from_headers_cd_without_extension_and_without_content_type_returns_bare_cd_name() -> (
     None
 ):
     headers = {"Content-Disposition": 'attachment; filename="hello"'}
-    assert utils.filename_from_headers(headers, fallback_base="ignored") == "hello"
+    assert (
+        download_utils.filename_from_headers(headers, fallback_base="ignored")
+        == "hello"
+    )
 
 
 def test_filename_from_headers_falls_back_to_content_type() -> None:
     headers = {"Content-Type": "image/jpeg"}
     assert (
-        utils.filename_from_headers(headers, fallback_base="orig-123") == "orig-123.jpg"
+        download_utils.filename_from_headers(headers, fallback_base="orig-123")
+        == "orig-123.jpg"
     )
 
 
@@ -41,16 +51,20 @@ def test_filename_from_headers_returns_none_when_content_type_is_unknown_and_no_
     None
 ):
     headers = {"Content-Type": "application/x-unknown"}
-    assert utils.filename_from_headers(headers, fallback_base="orig-123") is None
+    assert (
+        download_utils.filename_from_headers(headers, fallback_base="orig-123") is None
+    )
 
 
 def test_filename_from_headers_returns_none_when_no_cd_and_no_content_type() -> None:
     headers = {"X-Other": "1"}
-    assert utils.filename_from_headers(headers, fallback_base="orig-123") is None
+    assert (
+        download_utils.filename_from_headers(headers, fallback_base="orig-123") is None
+    )
 
 
 def test_filename_from_headers_none_headers() -> None:
-    assert utils.filename_from_headers(None, fallback_base="orig-123") is None
+    assert download_utils.filename_from_headers(None, fallback_base="orig-123") is None
 
 
 @pytest.mark.parametrize(
@@ -97,7 +111,7 @@ def test_resolve_output_filename(
 ) -> None:
     default_base = "archive-x" if expected.startswith("archive-x") else "orig-123"
     assert (
-        utils.resolve_output_filename(
+        download_utils.resolve_output_filename(
             headers,
             name=name,
             default_base=default_base,
@@ -109,7 +123,7 @@ def test_resolve_output_filename(
 
 def test_resolve_output_filename_rejects_default_ext_without_dot() -> None:
     with pytest.raises(ValueError, match="default_ext must start with"):
-        utils.resolve_output_filename(
+        download_utils.resolve_output_filename(
             None, name=None, default_base="x", default_ext="zip"
         )
 
@@ -177,7 +191,7 @@ async def test_download_file_basic_download(tmp_path: Path) -> None:
     def resolve_filename(h):
         return "test.txt"
 
-    result = await utils.download_file(
+    result = await download_utils.download_file(
         make_request, out_dir, resolve_filename, show_progress=False
     )
 
@@ -210,7 +224,7 @@ async def test_download_file_file_already_exists_complete(tmp_path: Path) -> Non
     def resolve_filename(h):
         return "existing.txt"
 
-    result = await utils.download_file(
+    result = await download_utils.download_file(
         make_request, out_dir, resolve_filename, show_progress=False
     )
 
@@ -244,7 +258,7 @@ async def test_download_file_file_already_exists_incomplete(tmp_path: Path) -> N
     def resolve_filename(h):
         return "incomplete.txt"
 
-    result = await utils.download_file(
+    result = await download_utils.download_file(
         make_request, out_dir, resolve_filename, show_progress=False
     )
 
@@ -283,7 +297,7 @@ async def test_download_file_resume_from_temp_file(tmp_path: Path) -> None:
     def resolve_filename(h):
         return "resume.txt"
 
-    result = await utils.download_file(
+    result = await download_utils.download_file(
         make_request, out_dir, resolve_filename, show_progress=False, resumeable=True
     )
 
@@ -320,7 +334,7 @@ async def test_download_file_resume_not_supported_by_server(tmp_path: Path) -> N
     def resolve_filename(h):
         return "no_resume.txt"
 
-    result = await utils.download_file(
+    result = await download_utils.download_file(
         make_request, out_dir, resolve_filename, show_progress=False, resumeable=True
     )
 
@@ -352,7 +366,7 @@ async def test_download_file_temp_file_complete_deletes_and_restarts(
     def resolve_filename(h):
         return "complete_temp.txt"
 
-    result = await utils.download_file(
+    result = await download_utils.download_file(
         make_request, out_dir, resolve_filename, show_progress=False
     )
 
@@ -382,7 +396,7 @@ async def test_download_file_resume_disabled(tmp_path: Path) -> None:
     def resolve_filename(h):
         return "no_resume_flag.txt"
 
-    result = await utils.download_file(
+    result = await download_utils.download_file(
         make_request, out_dir, resolve_filename, show_progress=False, resumeable=False
     )
 
@@ -409,7 +423,7 @@ async def test_download_file_raises_error_if_out_dir_is_not_directory(
 
     # is_dir() check happens before mkdir(), so ValueError is raised
     with pytest.raises(ValueError, match="out_dir must be a directory"):
-        await utils.download_file(
+        await download_utils.download_file(
             make_request, out_dir, resolve_filename, show_progress=False
         )
     # Temp file should not exist since error occurred before temp_path was set
@@ -464,7 +478,7 @@ async def test_download_file_handles_empty_chunks(tmp_path: Path) -> None:
     def resolve_filename(h):
         return "empty_chunks.txt"
 
-    result = await utils.download_file(
+    result = await download_utils.download_file(
         make_request, out_dir, resolve_filename, show_progress=False
     )
 
@@ -500,7 +514,7 @@ async def test_download_file_cleans_up_temp_file_on_error(tmp_path: Path) -> Non
         return "error.txt"
 
     with pytest.raises(RuntimeError, match="Read error"):
-        await utils.download_file(
+        await download_utils.download_file(
             make_request, out_dir, resolve_filename, show_progress=False
         )
 
@@ -523,7 +537,7 @@ async def test_download_file_handles_no_content_length(tmp_path: Path) -> None:
     def resolve_filename(h):
         return "no_length.txt"
 
-    result = await utils.download_file(
+    result = await download_utils.download_file(
         make_request, out_dir, resolve_filename, show_progress=False
     )
 
@@ -553,7 +567,7 @@ async def test_download_file_resume_updates_progress_bar(tmp_path: Path) -> None
 
     mock_pbar = MagicMock()
 
-    result = await utils.download_file(
+    result = await download_utils.download_file(
         make_request,
         out_dir,
         resolve_filename,
