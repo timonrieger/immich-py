@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import sys
 from unittest.mock import patch
 
 
@@ -19,4 +18,3 @@ def test_base_import_still_works() -> None:
     """Test that base immich imports work without CLI deps."""
     from immich import AsyncClient  # noqa: F401
     from immich.client import ApiClient  # noqa: F401
-

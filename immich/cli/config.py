@@ -48,4 +48,3 @@ def create_client() -> AsyncClient:
         cookie=cookie,
         base_url=base_url,
     )
-

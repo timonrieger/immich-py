@@ -17,6 +17,7 @@ from pathlib import Path
 from typing import Any
 import inflection
 
+
 def openapi_url(ref: str) -> str:
     """Build OpenAPI spec URL from git ref."""
     return (
@@ -63,7 +64,9 @@ def python_type_from_schema(
             # Avoid emitting model/enums here because Python 3.14+ will eagerly
             # evaluate string annotations (Typer -> inspect), requiring imports.
             if spec is not None:
-                resolved = normalize_schema(resolve_schema_ref(spec, schema["$ref"]), spec)
+                resolved = normalize_schema(
+                    resolve_schema_ref(spec, schema["$ref"]), spec
+                )
                 # enums are represented as strings/ints in CLI
                 if "enum" in resolved:
                     t = resolved.get("type")
@@ -111,6 +114,7 @@ def python_type_from_schema(
         return "str"
     else:
         return "str"
+
 
 def resolve_schema_ref(spec: dict[str, Any], ref: str) -> dict[str, Any]:
     """Resolve a local OpenAPI $ref like '#/components/schemas/Foo'."""
@@ -185,7 +189,7 @@ def is_complex_type(schema: dict[str, Any], spec: dict[str, Any] | None = None) 
             resolved = resolve_schema_ref(spec, schema["$ref"])
             return is_complex_type(resolved, spec=None)
         return True  # Unknown ref, treat as complex
-    
+
     schema_type = schema.get("type")
     if schema_type == "object":
         return True
@@ -196,15 +200,15 @@ def is_complex_type(schema: dict[str, Any], spec: dict[str, Any] | None = None) 
         if items.get("type") == "object":
             return True
         return is_complex_type(items, spec)
-    
+
     # oneOf, anyOf, allOf are complex
     if any(key in schema for key in ["oneOf", "anyOf", "allOf"]):
         return True
-    
+
     # additionalProperties indicates object-like structure
     if "additionalProperties" in schema:
         return True
-    
+
     return False
 
 
@@ -215,24 +219,24 @@ def flatten_schema(
     required_path: bool = True,
 ) -> list[tuple[list[str], dict[str, Any], bool]]:
     """Flatten a schema into leaf entries with dotted paths.
-    
+
     Returns list of (path_parts, schema, is_required) tuples.
     """
     if path is None:
         path = []
     schema = normalize_schema(schema, spec)
-    
+
     # Handle oneOf/anyOf - treat as complex, return single entry
     # (allOf is normalized above to keep flattening working)
     if any(key in schema for key in ["oneOf", "anyOf"]):
         return [(path, schema, required_path)]
-    
+
     schema_type = schema.get("type")
-    
+
     # Primitive or enum - leaf node
     if schema_type in ("string", "integer", "number", "boolean") or "enum" in schema:
         return [(path, schema, required_path)]
-    
+
     # Array of primitives - leaf node
     if schema_type == "array":
         items = schema.get("items", {})
@@ -240,17 +244,17 @@ def flatten_schema(
             return [(path, schema, required_path)]
         # Array of objects - treat as complex
         return [(path, schema, required_path)]
-    
+
     # Object - recurse into properties
     if schema_type == "object":
         props = schema.get("properties", {})
         if not props:
             # Empty object or additionalProperties - treat as complex
             return [(path, schema, required_path)]
-        
+
         required_props = set(schema.get("required", []) or [])
         results: list[tuple[list[str], dict[str, Any], bool]] = []
-        
+
         for prop_name, prop_schema in props.items():
             if not isinstance(prop_schema, dict):
                 continue
@@ -263,9 +267,9 @@ def flatten_schema(
                     required_path=(required_path and prop_name in required_props),
                 )
             )
-        
+
         return results
-    
+
     # Fallback: treat as complex
     return [(path, schema, required_path)]
 
@@ -295,7 +299,12 @@ def get_request_body_info(
     if "application/json" in content:
         schema = content.get("application/json", {}).get("schema", {})
         ref = schema["$ref"]
-        return ("application/json", ref.split("/")[-1], resolve_schema_ref(spec, ref), is_required)
+        return (
+            "application/json",
+            ref.split("/")[-1],
+            resolve_schema_ref(spec, ref),
+            is_required,
+        )
     if "multipart/form-data" in content:
         schema = content.get("multipart/form-data", {}).get("schema", {})
         ref = schema["$ref"]
@@ -359,11 +368,11 @@ def generate_command_function(
             description_str = python_triple_quoted_str(description)
             if required:
                 lines.append(
-                    f'    {param_name}: {param_type} = typer.Argument(..., help={description_str}),'
+                    f"    {param_name}: {param_type} = typer.Argument(..., help={description_str}),"
                 )
             else:
                 lines.append(
-                    f'    {param_name}: {param_type} | None = typer.Argument(None, help={description_str}),'
+                    f"    {param_name}: {param_type} | None = typer.Argument(None, help={description_str}),"
                 )
         else:
             if required:
@@ -384,14 +393,14 @@ def generate_command_function(
         flag_name = to_kebab_case(openapi_name)
         full_opt_name = f"--{flag_name}"
         description = param.get("description", "")
-        
+
         # Check for collisions
         if full_opt_name in used_option_names:
             raise ValueError(
                 f"Option name collision in {operation_id}: '{full_opt_name}' already used (query param)"
             )
         used_option_names.add(full_opt_name)
-        
+
         required = param.get("required", False)
         if description:
             description_str = python_triple_quoted_str(description)
@@ -423,14 +432,14 @@ def generate_command_function(
         flag_name = to_kebab_case(openapi_name)
         full_opt_name = f"--{flag_name}"
         description = param.get("description", "")
-        
+
         # Check for collisions
         if full_opt_name in used_option_names:
             raise ValueError(
                 f"Option name collision in {operation_id}: '{full_opt_name}' already used (header param)"
             )
         used_option_names.add(full_opt_name)
-        
+
         required = param.get("required", False)
         if description:
             description_str = python_triple_quoted_str(description)
@@ -451,12 +460,16 @@ def generate_command_function(
                 lines.append(
                     f'    {param_name}: {param_type} | None = typer.Option(None, "--{flag_name}"),'
                 )
-    
+
     # Request body options
-    body_flags: list[tuple[list[str], dict[str, Any], bool, str, str]] = []  # (path, schema, required, param_name, opt_name)
-    
+    body_flags: list[
+        tuple[list[str], dict[str, Any], bool, str, str]
+    ] = []  # (path, schema, required, param_name, opt_name)
+
     if request_body_info:
-        content_type, request_body_model, resolved_schema, body_required = request_body_info
+        content_type, request_body_model, resolved_schema, body_required = (
+            request_body_info
+        )
         if content_type == "application/json":
             # Keep --json for backward compatibility
             if "--json" in used_option_names:
@@ -468,12 +481,12 @@ def generate_command_function(
                 '    json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),'
             )
             used_param_names.add("json_str")
-            
+
             # Flatten schema and generate dotted flags
             flattened = flatten_schema(resolved_schema, spec)
             for path_parts, leaf_schema, is_required in flattened:
                 opt_name = option_name_for_path(path_parts)
-                
+
                 # Check for collisions
                 if opt_name in used_option_names:
                     raise ValueError(
@@ -481,7 +494,7 @@ def generate_command_function(
                         f"Path: {'.'.join(path_parts)}"
                     )
                 used_option_names.add(opt_name)
-                
+
                 # Generate Python parameter name from path
                 base_param_name = "_".join(to_python_ident(part) for part in path_parts)
                 param_name = base_param_name
@@ -492,27 +505,30 @@ def generate_command_function(
 
                 # Ensure uniqueness across both existing args and other body args
                 counter = 1
-                while (
-                    param_name in used_param_names
-                    or any(existing[3] == param_name for existing in body_flags)
+                while param_name in used_param_names or any(
+                    existing[3] == param_name for existing in body_flags
                 ):
                     candidate = f"{base_param_name}_{counter}"
                     param_name = (
-                        f"body_{candidate}" if candidate in used_param_names else candidate
+                        f"body_{candidate}"
+                        if candidate in used_param_names
+                        else candidate
                     )
                     counter += 1
 
                 used_param_names.add(param_name)
-                
+
                 # Determine type
                 # leaf_schema is already resolved in flatten_schema, so pass spec=None
                 # to avoid re-resolving and handle schemas without explicit type
                 param_type = python_type_from_schema(leaf_schema, spec=None)
                 is_complex = is_complex_type(leaf_schema, spec)
                 description = leaf_schema.get("description", "")
-                
-                body_flags.append((path_parts, leaf_schema, is_required, param_name, opt_name))
-                
+
+                body_flags.append(
+                    (path_parts, leaf_schema, is_required, param_name, opt_name)
+                )
+
                 # Emit Typer option
                 if description:
                     description_str = python_triple_quoted_str(description)
@@ -581,14 +597,14 @@ def generate_command_function(
                     opt_name = to_kebab_case(prop_name)
                     full_opt_name = f"--{opt_name}"
                     description = prop_schema.get("description", "")
-                    
+
                     # Check for collisions
                     if full_opt_name in used_option_names:
                         raise ValueError(
                             f"Option name collision in {operation_id}: '{full_opt_name}' already used"
                         )
                     used_option_names.add(full_opt_name)
-                    
+
                     if description:
                         description_str = python_triple_quoted_str(description)
                         if prop_name in required_props:
@@ -649,29 +665,33 @@ def generate_command_function(
 
     # Handle request body
     if request_body_info:
-        content_type, request_body_model, resolved_schema, body_required = request_body_info
+        content_type, request_body_model, resolved_schema, body_required = (
+            request_body_info
+        )
         if content_type == "application/json":
             body_param_name = to_python_ident(request_body_model)
             model_module = to_snake_case(request_body_model)
-            
+
             # Check mutual exclusion: --json and dotted flags cannot both be used
             if body_flags:
                 body_flag_params = [param_name for _, _, _, param_name, _ in body_flags]
-                lines.append("    # Check mutual exclusion between --json and dotted flags")
-                lines.append(f"    has_json = json_str is not None")
+                lines.append(
+                    "    # Check mutual exclusion between --json and dotted flags"
+                )
+                lines.append("    has_json = json_str is not None")
                 lines.append(f"    has_flags = any([{', '.join(body_flag_params)}])")
                 lines.append("    if has_json and has_flags:")
                 lines.append(
                     '        raise SystemExit("Error: Cannot use both --json and dotted body flags together. Use one or the other.")'
                 )
-                
+
                 # Check if body is required but not provided
                 if body_required:
                     lines.append("    if not has_json and not has_flags:")
                     lines.append(
                         '        raise SystemExit("Error: Request body is required. Provide --json or use dotted body flags.")'
                     )
-            
+
             # Handle --json path (backward compatibility)
             lines.append("    if json_str is not None:")
             lines.append("        json_data = json.loads(json_str)")
@@ -682,7 +702,7 @@ def generate_command_function(
                 f"        {body_param_name} = deserialize_request_body(json_data, {request_body_model})"
             )
             lines.append(f"        kwargs['{body_param_name}'] = {body_param_name}")
-            
+
             # Handle dotted flags path
             if body_flags:
                 lines.append("    elif any([")
@@ -691,32 +711,50 @@ def generate_command_function(
                 lines.append("    ]):")
                 lines.append("        # Build body from dotted flags")
                 lines.append("        json_data = {}")
-                
-                for path_parts, leaf_schema, is_required, param_name, opt_name in body_flags:
+
+                for (
+                    path_parts,
+                    leaf_schema,
+                    is_required,
+                    param_name,
+                    opt_name,
+                ) in body_flags:
                     is_complex = is_complex_type(leaf_schema, spec)
-                    
+
                     if is_required:
                         if is_complex:
                             lines.append(f"        if {param_name} is None:")
                             lines.append(
                                 f'            raise SystemExit("Error: --{opt_name.lstrip("--")} is required")'
                             )
-                            lines.append(f"        value_{param_name} = json.loads({param_name})")
-                            lines.append(f"        set_nested(json_data, {path_parts!r}, value_{param_name})")
+                            lines.append(
+                                f"        value_{param_name} = json.loads({param_name})"
+                            )
+                            lines.append(
+                                f"        set_nested(json_data, {path_parts!r}, value_{param_name})"
+                            )
                         else:
                             lines.append(f"        if {param_name} is None:")
                             lines.append(
                                 f'            raise SystemExit("Error: --{opt_name.lstrip("--")} is required")'
                             )
-                            lines.append(f"        set_nested(json_data, {path_parts!r}, {param_name})")
+                            lines.append(
+                                f"        set_nested(json_data, {path_parts!r}, {param_name})"
+                            )
                     else:
                         lines.append(f"        if {param_name} is not None:")
                         if is_complex:
-                            lines.append(f"            value_{param_name} = json.loads({param_name})")
-                            lines.append(f"            set_nested(json_data, {path_parts!r}, value_{param_name})")
+                            lines.append(
+                                f"            value_{param_name} = json.loads({param_name})"
+                            )
+                            lines.append(
+                                f"            set_nested(json_data, {path_parts!r}, value_{param_name})"
+                            )
                         else:
-                            lines.append(f"            set_nested(json_data, {path_parts!r}, {param_name})")
-                
+                            lines.append(
+                                f"            set_nested(json_data, {path_parts!r}, {param_name})"
+                            )
+
                 # Validate and create model
                 lines.append("        if json_data:")
                 lines.append(
@@ -725,7 +763,9 @@ def generate_command_function(
                 lines.append(
                     f"            {body_param_name} = deserialize_request_body(json_data, {request_body_model})"
                 )
-                lines.append(f"            kwargs['{body_param_name}'] = {body_param_name}")
+                lines.append(
+                    f"            kwargs['{body_param_name}'] = {body_param_name}"
+                )
         elif content_type == "multipart/form-data":
             props = (
                 resolved_schema.get("properties", {})
@@ -733,7 +773,9 @@ def generate_command_function(
                 else {}
             )
             required_props = set(resolved_schema.get("required", []) or [])
-            lines.append("    json_data = json.loads(json_str) if json_str is not None else {}")
+            lines.append(
+                "    json_data = json.loads(json_str) if json_str is not None else {}"
+            )
             lines.append("    missing: list[str] = []")
             for prop_name, prop_schema in sorted(props.items(), key=lambda kv: kv[0]):
                 if not isinstance(prop_schema, dict):
@@ -746,7 +788,9 @@ def generate_command_function(
                 if is_binary:
                     # File fields come from dedicated CLI options
                     if prop_name in required_props:
-                        lines.append(f"    kwargs['{snake}'] = load_file_bytes({snake})")
+                        lines.append(
+                            f"    kwargs['{snake}'] = load_file_bytes({snake})"
+                        )
                     else:
                         lines.append(f"    if {snake} is not None:")
                         lines.append(
@@ -755,7 +799,9 @@ def generate_command_function(
                 else:
                     # Prefer original OpenAPI key, fallback to snake_case key
                     lines.append(f"    if '{prop_name}' in json_data:")
-                    lines.append(f"        kwargs['{snake}'] = json_data['{prop_name}']")
+                    lines.append(
+                        f"        kwargs['{snake}'] = json_data['{prop_name}']"
+                    )
                     lines.append(f"    elif '{snake}' in json_data:")
                     lines.append(f"        kwargs['{snake}'] = json_data['{snake}']")
                     if prop_name in required_props:
@@ -775,7 +821,9 @@ def generate_command_function(
 
     # Call method
     method_name = to_snake_case(operation_id)
-    lines.append(f"    result = run_command(client, api_group, '{method_name}', **kwargs)")
+    lines.append(
+        f"    result = run_command(client, api_group, '{method_name}', **kwargs)"
+    )
 
     # Print result
     lines.append("    format_mode = ctx.obj.get('format', 'pretty')")
@@ -903,4 +951,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

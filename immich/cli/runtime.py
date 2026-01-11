@@ -25,7 +25,7 @@ def load_file_bytes(path: Path) -> tuple[str, bytes]:
 
 def set_nested(d: dict[str, Any], path: list[str], value: Any) -> None:
     """Set a nested dictionary value using a path list.
-    
+
     Example: set_nested({}, ['user', 'name'], 'John') -> {'user': {'name': 'John'}}
     """
     current = d

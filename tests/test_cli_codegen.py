@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import subprocess
-import sys
 from pathlib import Path
 
 
@@ -38,8 +36,8 @@ def test_cli_help_works() -> None:
     # For now, we'll test that the entrypoint exists
     try:
         from immich.cli.app import main
+
         assert callable(main)
     except ImportError:
         # CLI deps not installed - skip test
         pass
-
