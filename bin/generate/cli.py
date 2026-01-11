@@ -20,7 +20,7 @@ import inflection
 def openapi_url(ref: str) -> str:
     """Build OpenAPI spec URL from git ref."""
     return (
-        "https://raw.githubusercontent.com/immich-app/immich/"
+        "https://raw.githubusercontent.com/timonrieger/immich/"
         f"{ref}/open-api/immich-openapi-specs.json"
     )
 
@@ -55,6 +55,7 @@ def python_type_from_schema(
     schema: dict[str, Any], spec: dict[str, Any] | None = None
 ) -> str:
     """Convert OpenAPI schema to Python type hint."""
+    schema = normalize_schema(schema, spec)
     if "type" not in schema:
         # Reference or complex type
         if "$ref" in schema:
@@ -62,7 +63,7 @@ def python_type_from_schema(
             # Avoid emitting model/enums here because Python 3.14+ will eagerly
             # evaluate string annotations (Typer -> inspect), requiring imports.
             if spec is not None:
-                resolved = resolve_schema_ref(spec, schema["$ref"])
+                resolved = normalize_schema(resolve_schema_ref(spec, schema["$ref"]), spec)
                 # enums are represented as strings/ints in CLI
                 if "enum" in resolved:
                     t = resolved.get("type")
@@ -125,8 +126,60 @@ def resolve_schema_ref(spec: dict[str, Any], ref: str) -> dict[str, Any]:
     return cur
 
 
+def normalize_schema(
+    schema: dict[str, Any], spec: dict[str, Any] | None = None
+) -> dict[str, Any]:
+    """Normalize a schema for CLI generation.
+
+    Today this focuses on "allOf" by merging object-ish schemas so we can keep
+    generating dotted flags instead of collapsing to JSON strings.
+    """
+    if not isinstance(schema, dict):
+        return {}
+
+    # If we can, resolve refs up-front to expose actual types/properties.
+    if "$ref" in schema and spec is not None:
+        schema = resolve_schema_ref(spec, schema["$ref"])
+
+    # Merge allOf when possible (common in Immich OpenAPI for composed DTOs).
+    if "allOf" in schema and isinstance(schema.get("allOf"), list):
+        merged: dict[str, Any] = {k: v for k, v in schema.items() if k != "allOf"}
+        merged_required: set[str] = set(merged.get("required", []) or [])
+        merged_props: dict[str, Any] = dict(merged.get("properties", {}) or {})
+
+        for sub in schema.get("allOf", []) or []:
+            if not isinstance(sub, dict):
+                continue
+            sub_norm = normalize_schema(sub, spec)
+
+            req = sub_norm.get("required")
+            if isinstance(req, list):
+                merged_required |= set(req)
+
+            props = sub_norm.get("properties")
+            if isinstance(props, dict):
+                merged_props.update(props)
+
+            for k, v in sub_norm.items():
+                if k in {"properties", "required"}:
+                    continue
+                # last-one-wins is fine for CLI typing/flattening purposes
+                merged[k] = v
+
+        if merged_props:
+            merged["type"] = "object"
+            merged["properties"] = merged_props
+        if merged_required:
+            merged["required"] = sorted(merged_required)
+
+        schema = merged
+
+    return schema
+
+
 def is_complex_type(schema: dict[str, Any], spec: dict[str, Any] | None = None) -> bool:
     """Check if schema represents a complex type (object, array-of-object, oneOf/anyOf, etc.)."""
+    schema = normalize_schema(schema, spec)
     if "$ref" in schema:
         if spec is not None:
             resolved = resolve_schema_ref(spec, schema["$ref"])
@@ -159,7 +212,7 @@ def flatten_schema(
     schema: dict[str, Any],
     spec: dict[str, Any],
     path: list[str] | None = None,
-    required: set[str] | None = None,
+    required_path: bool = True,
 ) -> list[tuple[list[str], dict[str, Any], bool]]:
     """Flatten a schema into leaf entries with dotted paths.
     
@@ -167,37 +220,33 @@ def flatten_schema(
     """
     if path is None:
         path = []
-    if required is None:
-        required = set()
+    schema = normalize_schema(schema, spec)
     
-    # Resolve $ref
-    if "$ref" in schema:
-        schema = resolve_schema_ref(spec, schema["$ref"])
-    
-    # Handle oneOf/anyOf/allOf - treat as complex, return single entry
-    if any(key in schema for key in ["oneOf", "anyOf", "allOf"]):
-        return [(path, schema, len(path) == 0 or path[-1] in required)]
+    # Handle oneOf/anyOf - treat as complex, return single entry
+    # (allOf is normalized above to keep flattening working)
+    if any(key in schema for key in ["oneOf", "anyOf"]):
+        return [(path, schema, required_path)]
     
     schema_type = schema.get("type")
     
     # Primitive or enum - leaf node
     if schema_type in ("string", "integer", "number", "boolean") or "enum" in schema:
-        return [(path, schema, len(path) == 0 or (path and path[-1] in required))]
+        return [(path, schema, required_path)]
     
     # Array of primitives - leaf node
     if schema_type == "array":
         items = schema.get("items", {})
         if not is_complex_type(items, spec):
-            return [(path, schema, len(path) == 0 or (path and path[-1] in required))]
+            return [(path, schema, required_path)]
         # Array of objects - treat as complex
-        return [(path, schema, len(path) == 0 or (path and path[-1] in required))]
+        return [(path, schema, required_path)]
     
     # Object - recurse into properties
     if schema_type == "object":
         props = schema.get("properties", {})
         if not props:
             # Empty object or additionalProperties - treat as complex
-            return [(path, schema, len(path) == 0 or (path and path[-1] in required))]
+            return [(path, schema, required_path)]
         
         required_props = set(schema.get("required", []) or [])
         results: list[tuple[list[str], dict[str, Any], bool]] = []
@@ -206,13 +255,19 @@ def flatten_schema(
             if not isinstance(prop_schema, dict):
                 continue
             new_path = path + [prop_name]
-            new_required = required | required_props
-            results.extend(flatten_schema(prop_schema, spec, new_path, new_required))
+            results.extend(
+                flatten_schema(
+                    prop_schema,
+                    spec,
+                    new_path,
+                    required_path=(required_path and prop_name in required_props),
+                )
+            )
         
         return results
     
     # Fallback: treat as complex
-    return [(path, schema, len(path) == 0 or (path and path[-1] in required))]
+    return [(path, schema, required_path)]
 
 
 def option_name_for_path(path_parts: list[str]) -> str:

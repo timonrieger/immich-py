@@ -64,7 +64,7 @@ def create_memory(
     is_saved: bool | None = typer.Option(None, "--isSaved"),
     memory_at: str = typer.Option(..., "--memoryAt"),
     seen_at: str | None = typer.Option(None, "--seenAt"),
-    type: str = typer.Option(..., "--type", help="JSON string for type"),
+    type: str = typer.Option(..., "--type"),
 ) -> None:
     """Create a memory
 
@@ -107,8 +107,7 @@ Docs: https://api.immich.app/endpoints/memories/createMemory
             set_nested(json_data, ['seenAt'], seen_at)
         if type is None:
             raise SystemExit("Error: --type is required")
-        value_type = json.loads(type)
-        set_nested(json_data, ['type'], value_type)
+        set_nested(json_data, ['type'], type)
         if json_data:
             from immich.client.models.memory_create_dto import MemoryCreateDto
             memory_create_dto = deserialize_request_body(json_data, MemoryCreateDto)

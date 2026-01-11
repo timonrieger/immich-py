@@ -9,7 +9,6 @@ try:
     import typer
     from rich.console import Console
 except ImportError:
-    # Stub behavior when CLI deps not installed
     print(
         "Error: CLI dependencies not installed. Install with: pip install immich[cli]",
         file=sys.stderr,

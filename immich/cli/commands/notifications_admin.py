@@ -18,10 +18,10 @@ def create_notification(
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
     data: str | None = typer.Option(None, "--data", help="JSON string for data"),
     description: str | None = typer.Option(None, "--description"),
-    level: str | None = typer.Option(None, "--level", help="JSON string for level"),
+    level: str | None = typer.Option(None, "--level"),
     read_at: str | None = typer.Option(None, "--readAt"),
     title: str = typer.Option(..., "--title"),
-    type: str | None = typer.Option(None, "--type", help="JSON string for type"),
+    type: str | None = typer.Option(None, "--type"),
     user_id: str = typer.Option(..., "--userId"),
 ) -> None:
     """Create a notification
@@ -58,16 +58,14 @@ Docs: https://api.immich.app/endpoints/notifications-admin/createNotification
         if description is not None:
             set_nested(json_data, ['description'], description)
         if level is not None:
-            value_level = json.loads(level)
-            set_nested(json_data, ['level'], value_level)
+            set_nested(json_data, ['level'], level)
         if read_at is not None:
             set_nested(json_data, ['readAt'], read_at)
         if title is None:
             raise SystemExit("Error: --title is required")
         set_nested(json_data, ['title'], title)
         if type is not None:
-            value_type = json.loads(type)
-            set_nested(json_data, ['type'], value_type)
+            set_nested(json_data, ['type'], type)
         if user_id is None:
             raise SystemExit("Error: --userId is required")
         set_nested(json_data, ['userId'], user_id)

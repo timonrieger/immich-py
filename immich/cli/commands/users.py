@@ -279,8 +279,8 @@ Docs: https://api.immich.app/endpoints/users/setUserOnboarding
 def update_my_preferences(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    albums_default_asset_order: str | None = typer.Option(None, "--albums.defaultAssetOrder", help="JSON string for albums.defaultAssetOrder"),
-    avatar_color: str | None = typer.Option(None, "--avatar.color", help="JSON string for avatar.color"),
+    albums_default_asset_order: str | None = typer.Option(None, "--albums.defaultAssetOrder"),
+    avatar_color: str | None = typer.Option(None, "--avatar.color"),
     cast_g_cast_enabled: bool | None = typer.Option(None, "--cast.gCastEnabled"),
     download_archive_size: int | None = typer.Option(None, "--download.archiveSize"),
     download_include_embedded_videos: bool | None = typer.Option(None, "--download.includeEmbeddedVideos"),
@@ -344,11 +344,9 @@ Docs: https://api.immich.app/endpoints/users/updateMyPreferences
         # Build body from dotted flags
         json_data = {}
         if albums_default_asset_order is not None:
-            value_albums_default_asset_order = json.loads(albums_default_asset_order)
-            set_nested(json_data, ['albums', 'defaultAssetOrder'], value_albums_default_asset_order)
+            set_nested(json_data, ['albums', 'defaultAssetOrder'], albums_default_asset_order)
         if avatar_color is not None:
-            value_avatar_color = json.loads(avatar_color)
-            set_nested(json_data, ['avatar', 'color'], value_avatar_color)
+            set_nested(json_data, ['avatar', 'color'], avatar_color)
         if cast_g_cast_enabled is not None:
             set_nested(json_data, ['cast', 'gCastEnabled'], cast_g_cast_enabled)
         if download_archive_size is not None:
@@ -401,7 +399,7 @@ Docs: https://api.immich.app/endpoints/users/updateMyPreferences
 def update_my_user(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    avatar_color: str | None = typer.Option(None, "--avatarColor", help="JSON string for avatarColor"),
+    avatar_color: str | None = typer.Option(None, "--avatarColor"),
     email: str | None = typer.Option(None, "--email"),
     name: str | None = typer.Option(None, "--name"),
     password: str | None = typer.Option(None, "--password"),
@@ -432,8 +430,7 @@ Docs: https://api.immich.app/endpoints/users/updateMyUser
         # Build body from dotted flags
         json_data = {}
         if avatar_color is not None:
-            value_avatar_color = json.loads(avatar_color)
-            set_nested(json_data, ['avatarColor'], value_avatar_color)
+            set_nested(json_data, ['avatarColor'], avatar_color)
         if email is not None:
             set_nested(json_data, ['email'], email)
         if name is not None:

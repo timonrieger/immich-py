@@ -16,7 +16,7 @@ Docs: https://api.immich.app/endpoints/users-admin""", context_settings={'help_o
 def create_user_admin(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    avatar_color: str | None = typer.Option(None, "--avatarColor", help="JSON string for avatarColor"),
+    avatar_color: str | None = typer.Option(None, "--avatarColor"),
     email: str = typer.Option(..., "--email"),
     is_admin: bool | None = typer.Option(None, "--isAdmin"),
     name: str = typer.Option(..., "--name"),
@@ -57,8 +57,7 @@ Docs: https://api.immich.app/endpoints/users-admin/createUserAdmin
         # Build body from dotted flags
         json_data = {}
         if avatar_color is not None:
-            value_avatar_color = json.loads(avatar_color)
-            set_nested(json_data, ['avatarColor'], value_avatar_color)
+            set_nested(json_data, ['avatarColor'], avatar_color)
         if email is None:
             raise SystemExit("Error: --email is required")
         set_nested(json_data, ['email'], email)
@@ -250,7 +249,7 @@ def update_user_admin(
     ctx: typer.Context,
     id: str,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    avatar_color: str | None = typer.Option(None, "--avatarColor", help="JSON string for avatarColor"),
+    avatar_color: str | None = typer.Option(None, "--avatarColor"),
     email: str | None = typer.Option(None, "--email"),
     is_admin: bool | None = typer.Option(None, "--isAdmin"),
     name: str | None = typer.Option(None, "--name"),
@@ -292,8 +291,7 @@ Docs: https://api.immich.app/endpoints/users-admin/updateUserAdmin
         # Build body from dotted flags
         json_data = {}
         if avatar_color is not None:
-            value_avatar_color = json.loads(avatar_color)
-            set_nested(json_data, ['avatarColor'], value_avatar_color)
+            set_nested(json_data, ['avatarColor'], avatar_color)
         if email is not None:
             set_nested(json_data, ['email'], email)
         if is_admin is not None:
@@ -325,8 +323,8 @@ def update_user_preferences_admin(
     ctx: typer.Context,
     id: str,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    albums_default_asset_order: str | None = typer.Option(None, "--albums.defaultAssetOrder", help="JSON string for albums.defaultAssetOrder"),
-    avatar_color: str | None = typer.Option(None, "--avatar.color", help="JSON string for avatar.color"),
+    albums_default_asset_order: str | None = typer.Option(None, "--albums.defaultAssetOrder"),
+    avatar_color: str | None = typer.Option(None, "--avatar.color"),
     cast_g_cast_enabled: bool | None = typer.Option(None, "--cast.gCastEnabled"),
     download_archive_size: int | None = typer.Option(None, "--download.archiveSize"),
     download_include_embedded_videos: bool | None = typer.Option(None, "--download.includeEmbeddedVideos"),
@@ -391,11 +389,9 @@ Docs: https://api.immich.app/endpoints/users-admin/updateUserPreferencesAdmin
         # Build body from dotted flags
         json_data = {}
         if albums_default_asset_order is not None:
-            value_albums_default_asset_order = json.loads(albums_default_asset_order)
-            set_nested(json_data, ['albums', 'defaultAssetOrder'], value_albums_default_asset_order)
+            set_nested(json_data, ['albums', 'defaultAssetOrder'], albums_default_asset_order)
         if avatar_color is not None:
-            value_avatar_color = json.loads(avatar_color)
-            set_nested(json_data, ['avatar', 'color'], value_avatar_color)
+            set_nested(json_data, ['avatar', 'color'], avatar_color)
         if cast_g_cast_enabled is not None:
             set_nested(json_data, ['cast', 'gCastEnabled'], cast_g_cast_enabled)
         if download_archive_size is not None:

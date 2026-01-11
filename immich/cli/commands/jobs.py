@@ -16,7 +16,7 @@ Docs: https://api.immich.app/endpoints/jobs""", context_settings={'help_option_n
 def create_job(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    name: str = typer.Option(..., "--name", help="JSON string for name"),
+    name: str = typer.Option(..., "--name"),
 ) -> None:
     """Create a manual job
 
@@ -42,8 +42,7 @@ Docs: https://api.immich.app/endpoints/jobs/createJob
         json_data = {}
         if name is None:
             raise SystemExit("Error: --name is required")
-        value_name = json.loads(name)
-        set_nested(json_data, ['name'], value_name)
+        set_nested(json_data, ['name'], name)
         if json_data:
             from immich.client.models.job_create_dto import JobCreateDto
             job_create_dto = deserialize_request_body(json_data, JobCreateDto)
@@ -74,7 +73,7 @@ def run_queue_command_legacy(
     ctx: typer.Context,
     name: str,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    command: str = typer.Option(..., "--command", help="JSON string for command"),
+    command: str = typer.Option(..., "--command"),
     force: bool | None = typer.Option(None, "--force"),
 ) -> None:
     """Run jobs
@@ -103,8 +102,7 @@ Docs: https://api.immich.app/endpoints/jobs/runQueueCommandLegacy
         json_data = {}
         if command is None:
             raise SystemExit("Error: --command is required")
-        value_command = json.loads(command)
-        set_nested(json_data, ['command'], value_command)
+        set_nested(json_data, ['command'], command)
         if force is not None:
             set_nested(json_data, ['force'], force)
         if json_data:

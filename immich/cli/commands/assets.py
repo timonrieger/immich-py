@@ -601,7 +601,7 @@ def run_asset_jobs(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
     asset_ids: list[str] = typer.Option(..., "--assetIds"),
-    name: str = typer.Option(..., "--name", help="JSON string for name"),
+    name: str = typer.Option(..., "--name"),
 ) -> None:
     """Run an asset job
 
@@ -631,8 +631,7 @@ Docs: https://api.immich.app/endpoints/assets/runAssetJobs
         set_nested(json_data, ['assetIds'], asset_ids)
         if name is None:
             raise SystemExit("Error: --name is required")
-        value_name = json.loads(name)
-        set_nested(json_data, ['name'], value_name)
+        set_nested(json_data, ['name'], name)
         if json_data:
             from immich.client.models.asset_jobs_dto import AssetJobsDto
             asset_jobs_dto = deserialize_request_body(json_data, AssetJobsDto)
@@ -655,7 +654,7 @@ def update_asset(
     live_photo_video_id: str | None = typer.Option(None, "--livePhotoVideoId"),
     longitude: float | None = typer.Option(None, "--longitude"),
     rating: float | None = typer.Option(None, "--rating"),
-    visibility: str | None = typer.Option(None, "--visibility", help="JSON string for visibility"),
+    visibility: str | None = typer.Option(None, "--visibility"),
 ) -> None:
     """Update an asset
 
@@ -702,8 +701,7 @@ Docs: https://api.immich.app/endpoints/assets/updateAsset
         if rating is not None:
             set_nested(json_data, ['rating'], rating)
         if visibility is not None:
-            value_visibility = json.loads(visibility)
-            set_nested(json_data, ['visibility'], value_visibility)
+            set_nested(json_data, ['visibility'], visibility)
         if json_data:
             from immich.client.models.update_asset_dto import UpdateAssetDto
             update_asset_dto = deserialize_request_body(json_data, UpdateAssetDto)
@@ -772,7 +770,7 @@ def update_assets(
     longitude: float | None = typer.Option(None, "--longitude"),
     rating: float | None = typer.Option(None, "--rating"),
     time_zone: str | None = typer.Option(None, "--timeZone"),
-    visibility: str | None = typer.Option(None, "--visibility", help="JSON string for visibility"),
+    visibility: str | None = typer.Option(None, "--visibility"),
 ) -> None:
     """Update assets
 
@@ -828,8 +826,7 @@ Docs: https://api.immich.app/endpoints/assets/updateAssets
         if time_zone is not None:
             set_nested(json_data, ['timeZone'], time_zone)
         if visibility is not None:
-            value_visibility = json.loads(visibility)
-            set_nested(json_data, ['visibility'], value_visibility)
+            set_nested(json_data, ['visibility'], visibility)
         if json_data:
             from immich.client.models.asset_bulk_update_dto import AssetBulkUpdateDto
             asset_bulk_update_dto = deserialize_request_body(json_data, AssetBulkUpdateDto)

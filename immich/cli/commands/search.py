@@ -106,10 +106,10 @@ def search_asset_statistics(
     taken_before: str | None = typer.Option(None, "--takenBefore"),
     trashed_after: str | None = typer.Option(None, "--trashedAfter"),
     trashed_before: str | None = typer.Option(None, "--trashedBefore"),
-    type: str | None = typer.Option(None, "--type", help="JSON string for type"),
+    type: str | None = typer.Option(None, "--type"),
     updated_after: str | None = typer.Option(None, "--updatedAfter"),
     updated_before: str | None = typer.Option(None, "--updatedBefore"),
-    visibility: str | None = typer.Option(None, "--visibility", help="JSON string for visibility"),
+    visibility: str | None = typer.Option(None, "--visibility"),
 ) -> None:
     """Search asset statistics
 
@@ -212,15 +212,13 @@ Docs: https://api.immich.app/endpoints/search/searchAssetStatistics
         if trashed_before is not None:
             set_nested(json_data, ['trashedBefore'], trashed_before)
         if type is not None:
-            value_type = json.loads(type)
-            set_nested(json_data, ['type'], value_type)
+            set_nested(json_data, ['type'], type)
         if updated_after is not None:
             set_nested(json_data, ['updatedAfter'], updated_after)
         if updated_before is not None:
             set_nested(json_data, ['updatedBefore'], updated_before)
         if visibility is not None:
-            value_visibility = json.loads(visibility)
-            set_nested(json_data, ['visibility'], value_visibility)
+            set_nested(json_data, ['visibility'], visibility)
         if json_data:
             from immich.client.models.statistics_search_dto import StatisticsSearchDto
             statistics_search_dto = deserialize_request_body(json_data, StatisticsSearchDto)
@@ -256,7 +254,7 @@ def search_assets(
     make: str | None = typer.Option(None, "--make"),
     model: str | None = typer.Option(None, "--model"),
     ocr: str | None = typer.Option(None, "--ocr"),
-    order: str | None = typer.Option(None, "--order", help="JSON string for order"),
+    order: str | None = typer.Option(None, "--order"),
     original_file_name: str | None = typer.Option(None, "--originalFileName"),
     original_path: str | None = typer.Option(None, "--originalPath"),
     page: float | None = typer.Option(None, "--page"),
@@ -271,10 +269,10 @@ def search_assets(
     thumbnail_path: str | None = typer.Option(None, "--thumbnailPath"),
     trashed_after: str | None = typer.Option(None, "--trashedAfter"),
     trashed_before: str | None = typer.Option(None, "--trashedBefore"),
-    type: str | None = typer.Option(None, "--type", help="JSON string for type"),
+    type: str | None = typer.Option(None, "--type"),
     updated_after: str | None = typer.Option(None, "--updatedAfter"),
     updated_before: str | None = typer.Option(None, "--updatedBefore"),
-    visibility: str | None = typer.Option(None, "--visibility", help="JSON string for visibility"),
+    visibility: str | None = typer.Option(None, "--visibility"),
     with_deleted: bool | None = typer.Option(None, "--withDeleted"),
     with_exif: bool | None = typer.Option(None, "--withExif"),
     with_people: bool | None = typer.Option(None, "--withPeople"),
@@ -388,8 +386,7 @@ Docs: https://api.immich.app/endpoints/search/searchAssets
         if ocr is not None:
             set_nested(json_data, ['ocr'], ocr)
         if order is not None:
-            value_order = json.loads(order)
-            set_nested(json_data, ['order'], value_order)
+            set_nested(json_data, ['order'], order)
         if original_file_name is not None:
             set_nested(json_data, ['originalFileName'], original_file_name)
         if original_path is not None:
@@ -419,15 +416,13 @@ Docs: https://api.immich.app/endpoints/search/searchAssets
         if trashed_before is not None:
             set_nested(json_data, ['trashedBefore'], trashed_before)
         if type is not None:
-            value_type = json.loads(type)
-            set_nested(json_data, ['type'], value_type)
+            set_nested(json_data, ['type'], type)
         if updated_after is not None:
             set_nested(json_data, ['updatedAfter'], updated_after)
         if updated_before is not None:
             set_nested(json_data, ['updatedBefore'], updated_before)
         if visibility is not None:
-            value_visibility = json.loads(visibility)
-            set_nested(json_data, ['visibility'], value_visibility)
+            set_nested(json_data, ['visibility'], visibility)
         if with_deleted is not None:
             set_nested(json_data, ['withDeleted'], with_deleted)
         if with_exif is not None:
@@ -623,10 +618,10 @@ def search_random(
     taken_before: str | None = typer.Option(None, "--takenBefore"),
     trashed_after: str | None = typer.Option(None, "--trashedAfter"),
     trashed_before: str | None = typer.Option(None, "--trashedBefore"),
-    type: str | None = typer.Option(None, "--type", help="JSON string for type"),
+    type: str | None = typer.Option(None, "--type"),
     updated_after: str | None = typer.Option(None, "--updatedAfter"),
     updated_before: str | None = typer.Option(None, "--updatedBefore"),
-    visibility: str | None = typer.Option(None, "--visibility", help="JSON string for visibility"),
+    visibility: str | None = typer.Option(None, "--visibility"),
     with_deleted: bool | None = typer.Option(None, "--withDeleted"),
     with_exif: bool | None = typer.Option(None, "--withExif"),
     with_people: bool | None = typer.Option(None, "--withPeople"),
@@ -737,15 +732,13 @@ Docs: https://api.immich.app/endpoints/search/searchRandom
         if trashed_before is not None:
             set_nested(json_data, ['trashedBefore'], trashed_before)
         if type is not None:
-            value_type = json.loads(type)
-            set_nested(json_data, ['type'], value_type)
+            set_nested(json_data, ['type'], type)
         if updated_after is not None:
             set_nested(json_data, ['updatedAfter'], updated_after)
         if updated_before is not None:
             set_nested(json_data, ['updatedBefore'], updated_before)
         if visibility is not None:
-            value_visibility = json.loads(visibility)
-            set_nested(json_data, ['visibility'], value_visibility)
+            set_nested(json_data, ['visibility'], visibility)
         if with_deleted is not None:
             set_nested(json_data, ['withDeleted'], with_deleted)
         if with_exif is not None:
@@ -797,10 +790,10 @@ def search_smart(
     taken_before: str | None = typer.Option(None, "--takenBefore"),
     trashed_after: str | None = typer.Option(None, "--trashedAfter"),
     trashed_before: str | None = typer.Option(None, "--trashedBefore"),
-    type: str | None = typer.Option(None, "--type", help="JSON string for type"),
+    type: str | None = typer.Option(None, "--type"),
     updated_after: str | None = typer.Option(None, "--updatedAfter"),
     updated_before: str | None = typer.Option(None, "--updatedBefore"),
-    visibility: str | None = typer.Option(None, "--visibility", help="JSON string for visibility"),
+    visibility: str | None = typer.Option(None, "--visibility"),
     with_deleted: bool | None = typer.Option(None, "--withDeleted"),
     with_exif: bool | None = typer.Option(None, "--withExif"),
 ) -> None:
@@ -919,15 +912,13 @@ Docs: https://api.immich.app/endpoints/search/searchSmart
         if trashed_before is not None:
             set_nested(json_data, ['trashedBefore'], trashed_before)
         if type is not None:
-            value_type = json.loads(type)
-            set_nested(json_data, ['type'], value_type)
+            set_nested(json_data, ['type'], type)
         if updated_after is not None:
             set_nested(json_data, ['updatedAfter'], updated_after)
         if updated_before is not None:
             set_nested(json_data, ['updatedBefore'], updated_before)
         if visibility is not None:
-            value_visibility = json.loads(visibility)
-            set_nested(json_data, ['visibility'], value_visibility)
+            set_nested(json_data, ['visibility'], visibility)
         if with_deleted is not None:
             set_nested(json_data, ['withDeleted'], with_deleted)
         if with_exif is not None:

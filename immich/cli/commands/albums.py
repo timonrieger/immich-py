@@ -361,7 +361,7 @@ def update_album_info(
     album_thumbnail_asset_id: str | None = typer.Option(None, "--albumThumbnailAssetId"),
     description: str | None = typer.Option(None, "--description"),
     is_activity_enabled: bool | None = typer.Option(None, "--isActivityEnabled"),
-    order: str | None = typer.Option(None, "--order", help="JSON string for order"),
+    order: str | None = typer.Option(None, "--order"),
 ) -> None:
     """Update an album
 
@@ -399,8 +399,7 @@ Docs: https://api.immich.app/endpoints/albums/updateAlbumInfo
         if is_activity_enabled is not None:
             set_nested(json_data, ['isActivityEnabled'], is_activity_enabled)
         if order is not None:
-            value_order = json.loads(order)
-            set_nested(json_data, ['order'], value_order)
+            set_nested(json_data, ['order'], order)
         if json_data:
             from immich.client.models.update_album_dto import UpdateAlbumDto
             update_album_dto = deserialize_request_body(json_data, UpdateAlbumDto)
@@ -417,7 +416,7 @@ def update_album_user(
     id: str,
     user_id: str,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    role: str = typer.Option(..., "--role", help="JSON string for role"),
+    role: str = typer.Option(..., "--role"),
 ) -> None:
     """Update user role
 
@@ -445,8 +444,7 @@ Docs: https://api.immich.app/endpoints/albums/updateAlbumUser
         json_data = {}
         if role is None:
             raise SystemExit("Error: --role is required")
-        value_role = json.loads(role)
-        set_nested(json_data, ['role'], value_role)
+        set_nested(json_data, ['role'], role)
         if json_data:
             from immich.client.models.update_album_user_dto import UpdateAlbumUserDto
             update_album_user_dto = deserialize_request_body(json_data, UpdateAlbumUserDto)

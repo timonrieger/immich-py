@@ -74,7 +74,7 @@ def create_shared_link(
     password: str | None = typer.Option(None, "--password"),
     show_metadata: bool | None = typer.Option(None, "--showMetadata"),
     slug: str | None = typer.Option(None, "--slug"),
-    type: str = typer.Option(..., "--type", help="JSON string for type"),
+    type: str = typer.Option(..., "--type"),
 ) -> None:
     """Create a shared link
 
@@ -127,8 +127,7 @@ Docs: https://api.immich.app/endpoints/shared-links/createSharedLink
             set_nested(json_data, ['slug'], slug)
         if type is None:
             raise SystemExit("Error: --type is required")
-        value_type = json.loads(type)
-        set_nested(json_data, ['type'], value_type)
+        set_nested(json_data, ['type'], type)
         if json_data:
             from immich.client.models.shared_link_create_dto import SharedLinkCreateDto
             shared_link_create_dto = deserialize_request_body(json_data, SharedLinkCreateDto)

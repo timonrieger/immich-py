@@ -19,7 +19,7 @@ def create_activity(
     album_id: str = typer.Option(..., "--albumId"),
     asset_id: str | None = typer.Option(None, "--assetId"),
     comment: str | None = typer.Option(None, "--comment"),
-    type: str = typer.Option(..., "--type", help="JSON string for type"),
+    type: str = typer.Option(..., "--type"),
 ) -> None:
     """Create an activity
 
@@ -55,8 +55,7 @@ Docs: https://api.immich.app/endpoints/activities/createActivity
             set_nested(json_data, ['comment'], comment)
         if type is None:
             raise SystemExit("Error: --type is required")
-        value_type = json.loads(type)
-        set_nested(json_data, ['type'], value_type)
+        set_nested(json_data, ['type'], type)
         if json_data:
             from immich.client.models.activity_create_dto import ActivityCreateDto
             activity_create_dto = deserialize_request_body(json_data, ActivityCreateDto)

@@ -64,36 +64,36 @@ def update_config(
     backup_database_cron_expression: str = typer.Option(..., "--backup.database.cronExpression"),
     backup_database_enabled: bool = typer.Option(..., "--backup.database.enabled"),
     backup_database_keep_last_amount: float = typer.Option(..., "--backup.database.keepLastAmount"),
-    ffmpeg_accel: str = typer.Option(..., "--ffmpeg.accel", help="JSON string for ffmpeg.accel"),
+    ffmpeg_accel: str = typer.Option(..., "--ffmpeg.accel"),
     ffmpeg_accel_decode: bool = typer.Option(..., "--ffmpeg.accelDecode"),
     ffmpeg_accepted_audio_codecs: list[str] = typer.Option(..., "--ffmpeg.acceptedAudioCodecs", help="JSON string for ffmpeg.acceptedAudioCodecs"),
     ffmpeg_accepted_containers: list[str] = typer.Option(..., "--ffmpeg.acceptedContainers", help="JSON string for ffmpeg.acceptedContainers"),
     ffmpeg_accepted_video_codecs: list[str] = typer.Option(..., "--ffmpeg.acceptedVideoCodecs", help="JSON string for ffmpeg.acceptedVideoCodecs"),
     ffmpeg_bframes: int = typer.Option(..., "--ffmpeg.bframes"),
-    ffmpeg_cq_mode: str = typer.Option(..., "--ffmpeg.cqMode", help="JSON string for ffmpeg.cqMode"),
+    ffmpeg_cq_mode: str = typer.Option(..., "--ffmpeg.cqMode"),
     ffmpeg_crf: int = typer.Option(..., "--ffmpeg.crf"),
     ffmpeg_gop_size: int = typer.Option(..., "--ffmpeg.gopSize"),
     ffmpeg_max_bitrate: str = typer.Option(..., "--ffmpeg.maxBitrate"),
     ffmpeg_preferred_hw_device: str = typer.Option(..., "--ffmpeg.preferredHwDevice"),
     ffmpeg_preset: str = typer.Option(..., "--ffmpeg.preset"),
     ffmpeg_refs: int = typer.Option(..., "--ffmpeg.refs"),
-    ffmpeg_target_audio_codec: str = typer.Option(..., "--ffmpeg.targetAudioCodec", help="JSON string for ffmpeg.targetAudioCodec"),
+    ffmpeg_target_audio_codec: str = typer.Option(..., "--ffmpeg.targetAudioCodec"),
     ffmpeg_target_resolution: str = typer.Option(..., "--ffmpeg.targetResolution"),
-    ffmpeg_target_video_codec: str = typer.Option(..., "--ffmpeg.targetVideoCodec", help="JSON string for ffmpeg.targetVideoCodec"),
+    ffmpeg_target_video_codec: str = typer.Option(..., "--ffmpeg.targetVideoCodec"),
     ffmpeg_temporal_aq: bool = typer.Option(..., "--ffmpeg.temporalAQ"),
     ffmpeg_threads: int = typer.Option(..., "--ffmpeg.threads"),
-    ffmpeg_tonemap: str = typer.Option(..., "--ffmpeg.tonemap", help="JSON string for ffmpeg.tonemap"),
-    ffmpeg_transcode: str = typer.Option(..., "--ffmpeg.transcode", help="JSON string for ffmpeg.transcode"),
+    ffmpeg_tonemap: str = typer.Option(..., "--ffmpeg.tonemap"),
+    ffmpeg_transcode: str = typer.Option(..., "--ffmpeg.transcode"),
     ffmpeg_two_pass: bool = typer.Option(..., "--ffmpeg.twoPass"),
-    image_colorspace: str = typer.Option(..., "--image.colorspace", help="JSON string for image.colorspace"),
+    image_colorspace: str = typer.Option(..., "--image.colorspace"),
     image_extract_embedded: bool = typer.Option(..., "--image.extractEmbedded"),
     image_fullsize_enabled: bool = typer.Option(..., "--image.fullsize.enabled"),
-    image_fullsize_format: str = typer.Option(..., "--image.fullsize.format", help="JSON string for image.fullsize.format"),
+    image_fullsize_format: str = typer.Option(..., "--image.fullsize.format"),
     image_fullsize_quality: int = typer.Option(..., "--image.fullsize.quality"),
-    image_preview_format: str = typer.Option(..., "--image.preview.format", help="JSON string for image.preview.format"),
+    image_preview_format: str = typer.Option(..., "--image.preview.format"),
     image_preview_quality: int = typer.Option(..., "--image.preview.quality"),
     image_preview_size: int = typer.Option(..., "--image.preview.size"),
-    image_thumbnail_format: str = typer.Option(..., "--image.thumbnail.format", help="JSON string for image.thumbnail.format"),
+    image_thumbnail_format: str = typer.Option(..., "--image.thumbnail.format"),
     image_thumbnail_quality: int = typer.Option(..., "--image.thumbnail.quality"),
     image_thumbnail_size: int = typer.Option(..., "--image.thumbnail.size"),
     job_background_task_concurrency: int = typer.Option(..., "--job.backgroundTask.concurrency"),
@@ -114,7 +114,7 @@ def update_config(
     library_scan_enabled: bool = typer.Option(..., "--library.scan.enabled"),
     library_watch_enabled: bool = typer.Option(..., "--library.watch.enabled"),
     logging_enabled: bool = typer.Option(..., "--logging.enabled"),
-    logging_level: str = typer.Option(..., "--logging.level", help="JSON string for logging.level"),
+    logging_level: str = typer.Option(..., "--logging.level"),
     machine_learning_availability_checks_enabled: bool = typer.Option(..., "--machineLearning.availabilityChecks.enabled"),
     machine_learning_availability_checks_interval: float = typer.Option(..., "--machineLearning.availabilityChecks.interval"),
     machine_learning_availability_checks_timeout: float = typer.Option(..., "--machineLearning.availabilityChecks.timeout"),
@@ -171,7 +171,7 @@ def update_config(
     oauth_storage_label_claim: str = typer.Option(..., "--oauth.storageLabelClaim"),
     oauth_storage_quota_claim: str = typer.Option(..., "--oauth.storageQuotaClaim"),
     oauth_timeout: int = typer.Option(..., "--oauth.timeout"),
-    oauth_token_endpoint_auth_method: str = typer.Option(..., "--oauth.tokenEndpointAuthMethod", help="JSON string for oauth.tokenEndpointAuthMethod"),
+    oauth_token_endpoint_auth_method: str = typer.Option(..., "--oauth.tokenEndpointAuthMethod"),
     password_login_enabled: bool = typer.Option(..., "--passwordLogin.enabled"),
     reverse_geocoding_enabled: bool = typer.Option(..., "--reverseGeocoding.enabled"),
     server_external_domain: str = typer.Option(..., "--server.externalDomain"),
@@ -346,8 +346,7 @@ Docs: https://api.immich.app/endpoints/system-config/updateConfig
         set_nested(json_data, ['backup', 'database', 'keepLastAmount'], backup_database_keep_last_amount)
         if ffmpeg_accel is None:
             raise SystemExit("Error: --ffmpeg.accel is required")
-        value_ffmpeg_accel = json.loads(ffmpeg_accel)
-        set_nested(json_data, ['ffmpeg', 'accel'], value_ffmpeg_accel)
+        set_nested(json_data, ['ffmpeg', 'accel'], ffmpeg_accel)
         if ffmpeg_accel_decode is None:
             raise SystemExit("Error: --ffmpeg.accelDecode is required")
         set_nested(json_data, ['ffmpeg', 'accelDecode'], ffmpeg_accel_decode)
@@ -368,8 +367,7 @@ Docs: https://api.immich.app/endpoints/system-config/updateConfig
         set_nested(json_data, ['ffmpeg', 'bframes'], ffmpeg_bframes)
         if ffmpeg_cq_mode is None:
             raise SystemExit("Error: --ffmpeg.cqMode is required")
-        value_ffmpeg_cq_mode = json.loads(ffmpeg_cq_mode)
-        set_nested(json_data, ['ffmpeg', 'cqMode'], value_ffmpeg_cq_mode)
+        set_nested(json_data, ['ffmpeg', 'cqMode'], ffmpeg_cq_mode)
         if ffmpeg_crf is None:
             raise SystemExit("Error: --ffmpeg.crf is required")
         set_nested(json_data, ['ffmpeg', 'crf'], ffmpeg_crf)
@@ -390,15 +388,13 @@ Docs: https://api.immich.app/endpoints/system-config/updateConfig
         set_nested(json_data, ['ffmpeg', 'refs'], ffmpeg_refs)
         if ffmpeg_target_audio_codec is None:
             raise SystemExit("Error: --ffmpeg.targetAudioCodec is required")
-        value_ffmpeg_target_audio_codec = json.loads(ffmpeg_target_audio_codec)
-        set_nested(json_data, ['ffmpeg', 'targetAudioCodec'], value_ffmpeg_target_audio_codec)
+        set_nested(json_data, ['ffmpeg', 'targetAudioCodec'], ffmpeg_target_audio_codec)
         if ffmpeg_target_resolution is None:
             raise SystemExit("Error: --ffmpeg.targetResolution is required")
         set_nested(json_data, ['ffmpeg', 'targetResolution'], ffmpeg_target_resolution)
         if ffmpeg_target_video_codec is None:
             raise SystemExit("Error: --ffmpeg.targetVideoCodec is required")
-        value_ffmpeg_target_video_codec = json.loads(ffmpeg_target_video_codec)
-        set_nested(json_data, ['ffmpeg', 'targetVideoCodec'], value_ffmpeg_target_video_codec)
+        set_nested(json_data, ['ffmpeg', 'targetVideoCodec'], ffmpeg_target_video_codec)
         if ffmpeg_temporal_aq is None:
             raise SystemExit("Error: --ffmpeg.temporalAQ is required")
         set_nested(json_data, ['ffmpeg', 'temporalAQ'], ffmpeg_temporal_aq)
@@ -407,19 +403,16 @@ Docs: https://api.immich.app/endpoints/system-config/updateConfig
         set_nested(json_data, ['ffmpeg', 'threads'], ffmpeg_threads)
         if ffmpeg_tonemap is None:
             raise SystemExit("Error: --ffmpeg.tonemap is required")
-        value_ffmpeg_tonemap = json.loads(ffmpeg_tonemap)
-        set_nested(json_data, ['ffmpeg', 'tonemap'], value_ffmpeg_tonemap)
+        set_nested(json_data, ['ffmpeg', 'tonemap'], ffmpeg_tonemap)
         if ffmpeg_transcode is None:
             raise SystemExit("Error: --ffmpeg.transcode is required")
-        value_ffmpeg_transcode = json.loads(ffmpeg_transcode)
-        set_nested(json_data, ['ffmpeg', 'transcode'], value_ffmpeg_transcode)
+        set_nested(json_data, ['ffmpeg', 'transcode'], ffmpeg_transcode)
         if ffmpeg_two_pass is None:
             raise SystemExit("Error: --ffmpeg.twoPass is required")
         set_nested(json_data, ['ffmpeg', 'twoPass'], ffmpeg_two_pass)
         if image_colorspace is None:
             raise SystemExit("Error: --image.colorspace is required")
-        value_image_colorspace = json.loads(image_colorspace)
-        set_nested(json_data, ['image', 'colorspace'], value_image_colorspace)
+        set_nested(json_data, ['image', 'colorspace'], image_colorspace)
         if image_extract_embedded is None:
             raise SystemExit("Error: --image.extractEmbedded is required")
         set_nested(json_data, ['image', 'extractEmbedded'], image_extract_embedded)
@@ -428,15 +421,13 @@ Docs: https://api.immich.app/endpoints/system-config/updateConfig
         set_nested(json_data, ['image', 'fullsize', 'enabled'], image_fullsize_enabled)
         if image_fullsize_format is None:
             raise SystemExit("Error: --image.fullsize.format is required")
-        value_image_fullsize_format = json.loads(image_fullsize_format)
-        set_nested(json_data, ['image', 'fullsize', 'format'], value_image_fullsize_format)
+        set_nested(json_data, ['image', 'fullsize', 'format'], image_fullsize_format)
         if image_fullsize_quality is None:
             raise SystemExit("Error: --image.fullsize.quality is required")
         set_nested(json_data, ['image', 'fullsize', 'quality'], image_fullsize_quality)
         if image_preview_format is None:
             raise SystemExit("Error: --image.preview.format is required")
-        value_image_preview_format = json.loads(image_preview_format)
-        set_nested(json_data, ['image', 'preview', 'format'], value_image_preview_format)
+        set_nested(json_data, ['image', 'preview', 'format'], image_preview_format)
         if image_preview_quality is None:
             raise SystemExit("Error: --image.preview.quality is required")
         set_nested(json_data, ['image', 'preview', 'quality'], image_preview_quality)
@@ -445,8 +436,7 @@ Docs: https://api.immich.app/endpoints/system-config/updateConfig
         set_nested(json_data, ['image', 'preview', 'size'], image_preview_size)
         if image_thumbnail_format is None:
             raise SystemExit("Error: --image.thumbnail.format is required")
-        value_image_thumbnail_format = json.loads(image_thumbnail_format)
-        set_nested(json_data, ['image', 'thumbnail', 'format'], value_image_thumbnail_format)
+        set_nested(json_data, ['image', 'thumbnail', 'format'], image_thumbnail_format)
         if image_thumbnail_quality is None:
             raise SystemExit("Error: --image.thumbnail.quality is required")
         set_nested(json_data, ['image', 'thumbnail', 'quality'], image_thumbnail_quality)
@@ -509,8 +499,7 @@ Docs: https://api.immich.app/endpoints/system-config/updateConfig
         set_nested(json_data, ['logging', 'enabled'], logging_enabled)
         if logging_level is None:
             raise SystemExit("Error: --logging.level is required")
-        value_logging_level = json.loads(logging_level)
-        set_nested(json_data, ['logging', 'level'], value_logging_level)
+        set_nested(json_data, ['logging', 'level'], logging_level)
         if machine_learning_availability_checks_enabled is None:
             raise SystemExit("Error: --machineLearning.availabilityChecks.enabled is required")
         set_nested(json_data, ['machineLearning', 'availabilityChecks', 'enabled'], machine_learning_availability_checks_enabled)
@@ -681,8 +670,7 @@ Docs: https://api.immich.app/endpoints/system-config/updateConfig
         set_nested(json_data, ['oauth', 'timeout'], oauth_timeout)
         if oauth_token_endpoint_auth_method is None:
             raise SystemExit("Error: --oauth.tokenEndpointAuthMethod is required")
-        value_oauth_token_endpoint_auth_method = json.loads(oauth_token_endpoint_auth_method)
-        set_nested(json_data, ['oauth', 'tokenEndpointAuthMethod'], value_oauth_token_endpoint_auth_method)
+        set_nested(json_data, ['oauth', 'tokenEndpointAuthMethod'], oauth_token_endpoint_auth_method)
         if password_login_enabled is None:
             raise SystemExit("Error: --passwordLogin.enabled is required")
         set_nested(json_data, ['passwordLogin', 'enabled'], password_login_enabled)

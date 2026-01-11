@@ -21,7 +21,7 @@ def create_workflow(
     enabled: bool | None = typer.Option(None, "--enabled"),
     filters: list[str] = typer.Option(..., "--filters", help="JSON string for filters"),
     name: str = typer.Option(..., "--name"),
-    trigger_type: str = typer.Option(..., "--triggerType", help="JSON string for triggerType"),
+    trigger_type: str = typer.Option(..., "--triggerType"),
 ) -> None:
     """Create a workflow
 
@@ -67,8 +67,7 @@ Docs: https://api.immich.app/endpoints/workflows/createWorkflow
         set_nested(json_data, ['name'], name)
         if trigger_type is None:
             raise SystemExit("Error: --triggerType is required")
-        value_trigger_type = json.loads(trigger_type)
-        set_nested(json_data, ['triggerType'], value_trigger_type)
+        set_nested(json_data, ['triggerType'], trigger_type)
         if json_data:
             from immich.client.models.workflow_create_dto import WorkflowCreateDto
             workflow_create_dto = deserialize_request_body(json_data, WorkflowCreateDto)
@@ -138,7 +137,7 @@ def update_workflow(
     enabled: bool | None = typer.Option(None, "--enabled"),
     filters: list[str] | None = typer.Option(None, "--filters", help="JSON string for filters"),
     name: str | None = typer.Option(None, "--name"),
-    trigger_type: str | None = typer.Option(None, "--triggerType", help="JSON string for triggerType"),
+    trigger_type: str | None = typer.Option(None, "--triggerType"),
 ) -> None:
     """Update a workflow
 
@@ -181,8 +180,7 @@ Docs: https://api.immich.app/endpoints/workflows/updateWorkflow
         if name is not None:
             set_nested(json_data, ['name'], name)
         if trigger_type is not None:
-            value_trigger_type = json.loads(trigger_type)
-            set_nested(json_data, ['triggerType'], value_trigger_type)
+            set_nested(json_data, ['triggerType'], trigger_type)
         if json_data:
             from immich.client.models.workflow_update_dto import WorkflowUpdateDto
             workflow_update_dto = deserialize_request_body(json_data, WorkflowUpdateDto)

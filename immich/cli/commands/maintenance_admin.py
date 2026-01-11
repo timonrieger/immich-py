@@ -56,7 +56,7 @@ Docs: https://api.immich.app/endpoints/maintenance-admin/maintenanceLogin
 def set_maintenance_mode(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    action: str = typer.Option(..., "--action", help="JSON string for action"),
+    action: str = typer.Option(..., "--action"),
 ) -> None:
     """Set maintenance mode
 
@@ -82,8 +82,7 @@ Docs: https://api.immich.app/endpoints/maintenance-admin/setMaintenanceMode
         json_data = {}
         if action is None:
             raise SystemExit("Error: --action is required")
-        value_action = json.loads(action)
-        set_nested(json_data, ['action'], value_action)
+        set_nested(json_data, ['action'], action)
         if json_data:
             from immich.client.models.set_maintenance_mode_dto import SetMaintenanceModeDto
             set_maintenance_mode_dto = deserialize_request_body(json_data, SetMaintenanceModeDto)
