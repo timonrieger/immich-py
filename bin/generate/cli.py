@@ -509,28 +509,50 @@ def generate_command_function(
                 # to avoid re-resolving and handle schemas without explicit type
                 param_type = python_type_from_schema(leaf_schema, spec=None)
                 is_complex = is_complex_type(leaf_schema, spec)
+                description = leaf_schema.get("description", "")
                 
                 body_flags.append((path_parts, leaf_schema, is_required, param_name, opt_name))
                 
                 # Emit Typer option
-                if is_required:
-                    if is_complex:
-                        lines.append(
-                            f'    {param_name}: {param_type} = typer.Option(..., "{opt_name}", help="JSON string for {".".join(path_parts)}"),'
-                        )
+                if description:
+                    description_str = python_triple_quoted_str(description)
+                    if is_required:
+                        if is_complex:
+                            lines.append(
+                                f'    {param_name}: {param_type} = typer.Option(..., "{opt_name}", help={description_str}),'
+                            )
+                        else:
+                            lines.append(
+                                f'    {param_name}: {param_type} = typer.Option(..., "{opt_name}", help={description_str}),'
+                            )
                     else:
-                        lines.append(
-                            f'    {param_name}: {param_type} = typer.Option(..., "{opt_name}"),'
-                        )
+                        if is_complex:
+                            lines.append(
+                                f'    {param_name}: {param_type} | None = typer.Option(None, "{opt_name}", help={description_str}),'
+                            )
+                        else:
+                            lines.append(
+                                f'    {param_name}: {param_type} | None = typer.Option(None, "{opt_name}", help={description_str}),'
+                            )
                 else:
-                    if is_complex:
-                        lines.append(
-                            f'    {param_name}: {param_type} | None = typer.Option(None, "{opt_name}", help="JSON string for {".".join(path_parts)}"),'
-                        )
+                    if is_required:
+                        if is_complex:
+                            lines.append(
+                                f'    {param_name}: {param_type} = typer.Option(..., "{opt_name}", help="JSON string for {".".join(path_parts)}"),'
+                            )
+                        else:
+                            lines.append(
+                                f'    {param_name}: {param_type} = typer.Option(..., "{opt_name}"),'
+                            )
                     else:
-                        lines.append(
-                            f'    {param_name}: {param_type} | None = typer.Option(None, "{opt_name}"),'
-                        )
+                        if is_complex:
+                            lines.append(
+                                f'    {param_name}: {param_type} | None = typer.Option(None, "{opt_name}", help="JSON string for {".".join(path_parts)}"),'
+                            )
+                        else:
+                            lines.append(
+                                f'    {param_name}: {param_type} | None = typer.Option(None, "{opt_name}"),'
+                            )
         elif content_type == "multipart/form-data":
             # Inline JSON for non-file fields
             if "--json" in used_option_names:
@@ -558,6 +580,7 @@ def generate_command_function(
                     arg_name = to_python_ident(prop_name)
                     opt_name = to_kebab_case(prop_name)
                     full_opt_name = f"--{opt_name}"
+                    description = prop_schema.get("description", "")
                     
                     # Check for collisions
                     if full_opt_name in used_option_names:
@@ -566,14 +589,25 @@ def generate_command_function(
                         )
                     used_option_names.add(full_opt_name)
                     
-                    if prop_name in required_props:
-                        lines.append(
-                            f'    {arg_name}: Path = typer.Option(..., "--{opt_name}", help="File to upload for {prop_name}"),'
-                        )
+                    if description:
+                        description_str = python_triple_quoted_str(description)
+                        if prop_name in required_props:
+                            lines.append(
+                                f'    {arg_name}: Path = typer.Option(..., "--{opt_name}", help={description_str}),'
+                            )
+                        else:
+                            lines.append(
+                                f'    {arg_name}: Path | None = typer.Option(None, "--{opt_name}", help={description_str}),'
+                            )
                     else:
-                        lines.append(
-                            f'    {arg_name}: Path | None = typer.Option(None, "--{opt_name}", help="File to upload for {prop_name}"),'
-                        )
+                        if prop_name in required_props:
+                            lines.append(
+                                f'    {arg_name}: Path = typer.Option(..., "--{opt_name}", help="File to upload for {prop_name}"),'
+                            )
+                        else:
+                            lines.append(
+                                f'    {arg_name}: Path | None = typer.Option(None, "--{opt_name}", help="File to upload for {prop_name}"),'
+                            )
 
     lines.append(") -> None:")
 

@@ -19,7 +19,7 @@ def add_assets_to_album(
     key: str | None = typer.Option(None, "--key", help="""Access key for shared links"""),
     slug: str | None = typer.Option(None, "--slug", help="""Access slug for shared links"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    ids: list[str] = typer.Option(..., "--ids"),
+    ids: list[str] = typer.Option(..., "--ids", help="""IDs to process"""),
 ) -> None:
     """Add assets to an album
 
@@ -67,8 +67,8 @@ def add_assets_to_albums(
     key: str | None = typer.Option(None, "--key", help="""Access key for shared links"""),
     slug: str | None = typer.Option(None, "--slug", help="""Access slug for shared links"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    album_ids: list[str] = typer.Option(..., "--albumIds"),
-    asset_ids: list[str] = typer.Option(..., "--assetIds"),
+    album_ids: list[str] = typer.Option(..., "--albumIds", help="""Album IDs"""),
+    asset_ids: list[str] = typer.Option(..., "--assetIds", help="""Asset IDs"""),
 ) -> None:
     """Add assets to albums
 
@@ -118,7 +118,7 @@ def add_users_to_album(
     ctx: typer.Context,
     id: str = typer.Argument(..., help="""Album ID"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    album_users: list[str] = typer.Option(..., "--albumUsers", help="JSON string for albumUsers"),
+    album_users: list[str] = typer.Option(..., "--albumUsers", help="""Album users to add"""),
 ) -> None:
     """Share album with users
 
@@ -161,10 +161,10 @@ Docs: https://api.immich.app/endpoints/albums/addUsersToAlbum
 def create_album(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    album_name: str = typer.Option(..., "--albumName"),
-    album_users: list[str] | None = typer.Option(None, "--albumUsers", help="JSON string for albumUsers"),
-    asset_ids: list[str] | None = typer.Option(None, "--assetIds"),
-    description: str | None = typer.Option(None, "--description"),
+    album_name: str = typer.Option(..., "--albumName", help="""Album name"""),
+    album_users: list[str] | None = typer.Option(None, "--albumUsers", help="""Album users"""),
+    asset_ids: list[str] | None = typer.Option(None, "--assetIds", help="""Initial asset IDs"""),
+    description: str | None = typer.Option(None, "--description", help="""Album description"""),
 ) -> None:
     """Create an album
 
@@ -295,7 +295,7 @@ def remove_asset_from_album(
     ctx: typer.Context,
     id: str = typer.Argument(..., help="""Album ID"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    ids: list[str] = typer.Option(..., "--ids"),
+    ids: list[str] = typer.Option(..., "--ids", help="""IDs to process"""),
 ) -> None:
     """Remove assets from an album
 
@@ -357,11 +357,11 @@ def update_album_info(
     ctx: typer.Context,
     id: str = typer.Argument(..., help="""Album ID"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    album_name: str | None = typer.Option(None, "--albumName"),
-    album_thumbnail_asset_id: str | None = typer.Option(None, "--albumThumbnailAssetId"),
-    description: str | None = typer.Option(None, "--description"),
-    is_activity_enabled: bool | None = typer.Option(None, "--isActivityEnabled"),
-    order: str | None = typer.Option(None, "--order"),
+    album_name: str | None = typer.Option(None, "--albumName", help="""Album name"""),
+    album_thumbnail_asset_id: str | None = typer.Option(None, "--albumThumbnailAssetId", help="""Album thumbnail asset ID"""),
+    description: str | None = typer.Option(None, "--description", help="""Album description"""),
+    is_activity_enabled: bool | None = typer.Option(None, "--isActivityEnabled", help="""Enable activity feed"""),
+    order: str | None = typer.Option(None, "--order", help="""Asset sort order"""),
 ) -> None:
     """Update an album
 
@@ -416,7 +416,7 @@ def update_album_user(
     id: str = typer.Argument(..., help="""Album ID"""),
     user_id: str = typer.Argument(..., help="""User ID (use "me" for current user)"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    role: str = typer.Option(..., "--role"),
+    role: str = typer.Option(..., "--role", help="""Album user role"""),
 ) -> None:
     """Update user role
 

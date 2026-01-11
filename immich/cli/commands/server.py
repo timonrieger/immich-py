@@ -226,8 +226,8 @@ Docs: https://api.immich.app/endpoints/server/pingServer
 def set_server_license(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    activation_key: str = typer.Option(..., "--activationKey"),
-    license_key: str = typer.Option(..., "--licenseKey"),
+    activation_key: str = typer.Option(..., "--activationKey", help="""Activation key"""),
+    license_key: str = typer.Option(..., "--licenseKey", help="""License key (format: IM(SV|CL)(-XXXX){8})"""),
 ) -> None:
     """Set server product key
 

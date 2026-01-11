@@ -16,8 +16,8 @@ Docs: https://api.immich.app/endpoints/tags""", context_settings={'help_option_n
 def bulk_tag_assets(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    asset_ids: list[str] = typer.Option(..., "--assetIds"),
-    tag_ids: list[str] = typer.Option(..., "--tagIds"),
+    asset_ids: list[str] = typer.Option(..., "--assetIds", help="""Asset IDs"""),
+    tag_ids: list[str] = typer.Option(..., "--tagIds", help="""Tag IDs"""),
 ) -> None:
     """Tag assets
 
@@ -62,9 +62,9 @@ Docs: https://api.immich.app/endpoints/tags/bulkTagAssets
 def create_tag(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    color: str | None = typer.Option(None, "--color"),
-    name: str = typer.Option(..., "--name"),
-    parent_id: str | None = typer.Option(None, "--parentId"),
+    color: str | None = typer.Option(None, "--color", help="""Tag color (hex)"""),
+    name: str = typer.Option(..., "--name", help="""Tag name"""),
+    parent_id: str | None = typer.Option(None, "--parentId", help="""Parent tag ID"""),
 ) -> None:
     """Create a tag
 
@@ -161,7 +161,7 @@ def tag_assets(
     ctx: typer.Context,
     id: str = typer.Argument(..., help="""Tag ID"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    ids: list[str] = typer.Option(..., "--ids"),
+    ids: list[str] = typer.Option(..., "--ids", help="""IDs to process"""),
 ) -> None:
     """Tag assets
 
@@ -204,7 +204,7 @@ def untag_assets(
     ctx: typer.Context,
     id: str = typer.Argument(..., help="""Tag ID"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    ids: list[str] = typer.Option(..., "--ids"),
+    ids: list[str] = typer.Option(..., "--ids", help="""IDs to process"""),
 ) -> None:
     """Untag assets
 
@@ -247,7 +247,7 @@ def update_tag(
     ctx: typer.Context,
     id: str = typer.Argument(..., help="""Tag ID"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    color: str | None = typer.Option(None, "--color"),
+    color: str | None = typer.Option(None, "--color", help="""Tag color (hex)"""),
 ) -> None:
     """Update a tag
 
@@ -288,7 +288,7 @@ Docs: https://api.immich.app/endpoints/tags/updateTag
 def upsert_tags(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    tags: list[str] = typer.Option(..., "--tags"),
+    tags: list[str] = typer.Option(..., "--tags", help="""Tag names to upsert"""),
 ) -> None:
     """Upsert tags
 

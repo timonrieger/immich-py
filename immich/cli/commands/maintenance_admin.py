@@ -16,7 +16,7 @@ Docs: https://api.immich.app/endpoints/maintenance-admin""", context_settings={'
 def maintenance_login(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    token: str | None = typer.Option(None, "--token"),
+    token: str | None = typer.Option(None, "--token", help="""Maintenance token"""),
 ) -> None:
     """Log into maintenance mode
 
@@ -56,7 +56,7 @@ Docs: https://api.immich.app/endpoints/maintenance-admin/maintenanceLogin
 def set_maintenance_mode(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    action: str = typer.Option(..., "--action"),
+    action: str = typer.Option(..., "--action", help="""Maintenance action"""),
 ) -> None:
     """Set maintenance mode
 

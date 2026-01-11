@@ -31,7 +31,7 @@ Docs: https://api.immich.app/endpoints/trash/emptyTrash
 def restore_assets(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    ids: list[str] = typer.Option(..., "--ids"),
+    ids: list[str] = typer.Option(..., "--ids", help="""IDs to process"""),
 ) -> None:
     """Restore assets
 

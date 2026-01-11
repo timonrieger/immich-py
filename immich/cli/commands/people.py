@@ -16,11 +16,11 @@ Docs: https://api.immich.app/endpoints/people""", context_settings={'help_option
 def create_person(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    birth_date: str | None = typer.Option(None, "--birthDate"),
-    color: str | None = typer.Option(None, "--color"),
-    is_favorite: bool | None = typer.Option(None, "--isFavorite"),
-    is_hidden: bool | None = typer.Option(None, "--isHidden"),
-    name: str | None = typer.Option(None, "--name"),
+    birth_date: str | None = typer.Option(None, "--birthDate", help="""Person date of birth"""),
+    color: str | None = typer.Option(None, "--color", help="""Person color (hex)"""),
+    is_favorite: bool | None = typer.Option(None, "--isFavorite", help="""Mark as favorite"""),
+    is_hidden: bool | None = typer.Option(None, "--isHidden", help="""Person visibility (hidden)"""),
+    name: str | None = typer.Option(None, "--name", help="""Person name"""),
 ) -> None:
     """Create a person
 
@@ -72,7 +72,7 @@ Docs: https://api.immich.app/endpoints/people/createPerson
 def delete_people(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    ids: list[str] = typer.Option(..., "--ids"),
+    ids: list[str] = typer.Option(..., "--ids", help="""IDs to process"""),
 ) -> None:
     """Delete people
 
@@ -212,7 +212,7 @@ def merge_person(
     ctx: typer.Context,
     id: str = typer.Argument(..., help="""Target person ID to merge into"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    ids: list[str] = typer.Option(..., "--ids"),
+    ids: list[str] = typer.Option(..., "--ids", help="""Person IDs to merge"""),
 ) -> None:
     """Merge people
 
@@ -255,7 +255,7 @@ def reassign_faces(
     ctx: typer.Context,
     id: str = typer.Argument(..., help="""Target person ID"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    data: list[str] = typer.Option(..., "--data", help="JSON string for data"),
+    data: list[str] = typer.Option(..., "--data", help="""Face update items"""),
 ) -> None:
     """Reassign faces
 
@@ -298,7 +298,7 @@ Docs: https://api.immich.app/endpoints/people/reassignFaces
 def update_people(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    people: list[str] = typer.Option(..., "--people", help="JSON string for people"),
+    people: list[str] = typer.Option(..., "--people", help="""People to update"""),
 ) -> None:
     """Update people
 
@@ -341,12 +341,12 @@ def update_person(
     ctx: typer.Context,
     id: str = typer.Argument(..., help="""Person ID"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    birth_date: str | None = typer.Option(None, "--birthDate"),
-    color: str | None = typer.Option(None, "--color"),
-    feature_face_asset_id: str | None = typer.Option(None, "--featureFaceAssetId"),
-    is_favorite: bool | None = typer.Option(None, "--isFavorite"),
-    is_hidden: bool | None = typer.Option(None, "--isHidden"),
-    name: str | None = typer.Option(None, "--name"),
+    birth_date: str | None = typer.Option(None, "--birthDate", help="""Person date of birth"""),
+    color: str | None = typer.Option(None, "--color", help="""Person color (hex)"""),
+    feature_face_asset_id: str | None = typer.Option(None, "--featureFaceAssetId", help="""Asset ID used for feature face thumbnail"""),
+    is_favorite: bool | None = typer.Option(None, "--isFavorite", help="""Mark as favorite"""),
+    is_hidden: bool | None = typer.Option(None, "--isHidden", help="""Person visibility (hidden)"""),
+    name: str | None = typer.Option(None, "--name", help="""Person name"""),
 ) -> None:
     """Update person
 

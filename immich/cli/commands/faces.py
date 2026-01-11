@@ -16,14 +16,14 @@ Docs: https://api.immich.app/endpoints/faces""", context_settings={'help_option_
 def create_face(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    asset_id: str = typer.Option(..., "--assetId"),
-    height: int = typer.Option(..., "--height"),
-    image_height: int = typer.Option(..., "--imageHeight"),
-    image_width: int = typer.Option(..., "--imageWidth"),
-    person_id: str = typer.Option(..., "--personId"),
-    width: int = typer.Option(..., "--width"),
-    x: int = typer.Option(..., "--x"),
-    y: int = typer.Option(..., "--y"),
+    asset_id: str = typer.Option(..., "--assetId", help="""Asset ID"""),
+    height: int = typer.Option(..., "--height", help="""Face bounding box height"""),
+    image_height: int = typer.Option(..., "--imageHeight", help="""Image height in pixels"""),
+    image_width: int = typer.Option(..., "--imageWidth", help="""Image width in pixels"""),
+    person_id: str = typer.Option(..., "--personId", help="""Person ID"""),
+    width: int = typer.Option(..., "--width", help="""Face bounding box width"""),
+    x: int = typer.Option(..., "--x", help="""Face bounding box X coordinate"""),
+    y: int = typer.Option(..., "--y", help="""Face bounding box Y coordinate"""),
 ) -> None:
     """Create a face
 
@@ -93,7 +93,7 @@ def delete_face(
     ctx: typer.Context,
     id: str = typer.Argument(..., help="""Face ID to delete"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    force: bool = typer.Option(..., "--force"),
+    force: bool = typer.Option(..., "--force", help="""Force delete even if person has other faces"""),
 ) -> None:
     """Delete a face
 
@@ -153,7 +153,7 @@ def reassign_faces_by_id(
     ctx: typer.Context,
     id: str = typer.Argument(..., help="""Person ID to assign the face to"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    body_id: str = typer.Option(..., "--id"),
+    body_id: str = typer.Option(..., "--id", help="""Face ID"""),
 ) -> None:
     """Re-assign a face to another person
 

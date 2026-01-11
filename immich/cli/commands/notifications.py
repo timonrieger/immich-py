@@ -33,7 +33,7 @@ Docs: https://api.immich.app/endpoints/notifications/deleteNotification
 def delete_notifications(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    ids: list[str] = typer.Option(..., "--ids"),
+    ids: list[str] = typer.Option(..., "--ids", help="""Notification IDs to delete"""),
 ) -> None:
     """Delete notifications
 
@@ -119,7 +119,7 @@ def update_notification(
     ctx: typer.Context,
     id: str = typer.Argument(..., help="""Notification ID"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    read_at: str | None = typer.Option(None, "--readAt"),
+    read_at: str | None = typer.Option(None, "--readAt", help="""Date when notification was read"""),
 ) -> None:
     """Update a notification
 
@@ -160,8 +160,8 @@ Docs: https://api.immich.app/endpoints/notifications/updateNotification
 def update_notifications(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    ids: list[str] = typer.Option(..., "--ids"),
-    read_at: str | None = typer.Option(None, "--readAt"),
+    ids: list[str] = typer.Option(..., "--ids", help="""Notification IDs to update"""),
+    read_at: str | None = typer.Option(None, "--readAt", help="""Date when notifications were read"""),
 ) -> None:
     """Update notifications
 

@@ -16,9 +16,9 @@ Docs: https://api.immich.app/endpoints/sessions""", context_settings={'help_opti
 def create_session(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    device_os: str | None = typer.Option(None, "--deviceOS"),
-    device_type: str | None = typer.Option(None, "--deviceType"),
-    duration: float | None = typer.Option(None, "--duration"),
+    device_os: str | None = typer.Option(None, "--deviceOS", help="""Device OS"""),
+    device_type: str | None = typer.Option(None, "--deviceType", help="""Device type"""),
+    duration: float | None = typer.Option(None, "--duration", help="""Session duration in seconds"""),
 ) -> None:
     """Create a session
 
@@ -129,7 +129,7 @@ def update_session(
     ctx: typer.Context,
     id: str = typer.Argument(..., help="""Session ID"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    is_pending_sync_reset: bool | None = typer.Option(None, "--isPendingSyncReset"),
+    is_pending_sync_reset: bool | None = typer.Option(None, "--isPendingSyncReset", help="""Reset pending sync state"""),
 ) -> None:
     """Update a session
 

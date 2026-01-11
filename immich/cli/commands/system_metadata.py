@@ -61,7 +61,7 @@ Docs: https://api.immich.app/endpoints/system-metadata/getVersionCheckState
 def update_admin_onboarding(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    is_onboarded: bool = typer.Option(..., "--isOnboarded"),
+    is_onboarded: bool = typer.Option(..., "--isOnboarded", help="""Is admin onboarded"""),
 ) -> None:
     """Update admin onboarding
 

@@ -16,10 +16,10 @@ Docs: https://api.immich.app/endpoints/libraries""", context_settings={'help_opt
 def create_library(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    exclusion_patterns: list[str] | None = typer.Option(None, "--exclusionPatterns"),
-    import_paths: list[str] | None = typer.Option(None, "--importPaths"),
-    name: str | None = typer.Option(None, "--name"),
-    owner_id: str = typer.Option(..., "--ownerId"),
+    exclusion_patterns: list[str] | None = typer.Option(None, "--exclusionPatterns", help="""Exclusion patterns (max 128)"""),
+    import_paths: list[str] | None = typer.Option(None, "--importPaths", help="""Import paths (max 128)"""),
+    name: str | None = typer.Option(None, "--name", help="""Library name"""),
+    owner_id: str = typer.Option(..., "--ownerId", help="""Owner user ID"""),
 ) -> None:
     """Create a library
 
@@ -153,9 +153,9 @@ def update_library(
     ctx: typer.Context,
     id: str = typer.Argument(..., help="""Library ID"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    exclusion_patterns: list[str] | None = typer.Option(None, "--exclusionPatterns"),
-    import_paths: list[str] | None = typer.Option(None, "--importPaths"),
-    name: str | None = typer.Option(None, "--name"),
+    exclusion_patterns: list[str] | None = typer.Option(None, "--exclusionPatterns", help="""Exclusion patterns (max 128)"""),
+    import_paths: list[str] | None = typer.Option(None, "--importPaths", help="""Import paths (max 128)"""),
+    name: str | None = typer.Option(None, "--name", help="""Library name"""),
 ) -> None:
     """Update a library
 
@@ -203,8 +203,8 @@ def validate(
     ctx: typer.Context,
     id: str = typer.Argument(..., help="""Library ID"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    exclusion_patterns: list[str] | None = typer.Option(None, "--exclusionPatterns"),
-    import_paths: list[str] | None = typer.Option(None, "--importPaths"),
+    exclusion_patterns: list[str] | None = typer.Option(None, "--exclusionPatterns", help="""Exclusion patterns (max 128)"""),
+    import_paths: list[str] | None = typer.Option(None, "--importPaths", help="""Import paths to validate (max 128)"""),
 ) -> None:
     """Validate library settings
 

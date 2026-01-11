@@ -16,7 +16,7 @@ Docs: https://api.immich.app/endpoints/stacks""", context_settings={'help_option
 def create_stack(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    asset_ids: list[str] = typer.Option(..., "--assetIds"),
+    asset_ids: list[str] = typer.Option(..., "--assetIds", help="""Asset IDs (first becomes primary, min 2)"""),
 ) -> None:
     """Create a stack
 
@@ -74,7 +74,7 @@ Docs: https://api.immich.app/endpoints/stacks/deleteStack
 def delete_stacks(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    ids: list[str] = typer.Option(..., "--ids"),
+    ids: list[str] = typer.Option(..., "--ids", help="""IDs to process"""),
 ) -> None:
     """Delete stacks
 
@@ -170,7 +170,7 @@ def update_stack(
     ctx: typer.Context,
     id: str = typer.Argument(..., help="""Stack ID"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    primary_asset_id: str | None = typer.Option(None, "--primaryAssetId"),
+    primary_asset_id: str | None = typer.Option(None, "--primaryAssetId", help="""Primary asset ID"""),
 ) -> None:
     """Update a stack
 

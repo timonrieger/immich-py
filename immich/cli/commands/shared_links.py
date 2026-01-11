@@ -19,7 +19,7 @@ def add_shared_link_assets(
     key: str | None = typer.Option(None, "--key", help="""Access key for shared links"""),
     slug: str | None = typer.Option(None, "--slug", help="""Access slug for shared links"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    asset_ids: list[str] = typer.Option(..., "--assetIds"),
+    asset_ids: list[str] = typer.Option(..., "--assetIds", help="""Asset IDs"""),
 ) -> None:
     """Add assets to a shared link
 
@@ -65,16 +65,16 @@ Docs: https://api.immich.app/endpoints/shared-links/addSharedLinkAssets
 def create_shared_link(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    album_id: str | None = typer.Option(None, "--albumId"),
-    allow_download: bool | None = typer.Option(None, "--allowDownload"),
-    allow_upload: bool | None = typer.Option(None, "--allowUpload"),
-    asset_ids: list[str] | None = typer.Option(None, "--assetIds"),
-    description: str | None = typer.Option(None, "--description"),
-    expires_at: str | None = typer.Option(None, "--expiresAt"),
-    password: str | None = typer.Option(None, "--password"),
-    show_metadata: bool | None = typer.Option(None, "--showMetadata"),
-    slug: str | None = typer.Option(None, "--slug"),
-    type: str = typer.Option(..., "--type"),
+    album_id: str | None = typer.Option(None, "--albumId", help="""Album ID (for album sharing)"""),
+    allow_download: bool | None = typer.Option(None, "--allowDownload", help="""Allow downloads"""),
+    allow_upload: bool | None = typer.Option(None, "--allowUpload", help="""Allow uploads"""),
+    asset_ids: list[str] | None = typer.Option(None, "--assetIds", help="""Asset IDs (for individual assets)"""),
+    description: str | None = typer.Option(None, "--description", help="""Link description"""),
+    expires_at: str | None = typer.Option(None, "--expiresAt", help="""Expiration date"""),
+    password: str | None = typer.Option(None, "--password", help="""Link password"""),
+    show_metadata: bool | None = typer.Option(None, "--showMetadata", help="""Show metadata"""),
+    slug: str | None = typer.Option(None, "--slug", help="""Custom URL slug"""),
+    type: str = typer.Option(..., "--type", help="""Shared link type"""),
 ) -> None:
     """Create a shared link
 
@@ -227,7 +227,7 @@ def remove_shared_link_assets(
     key: str | None = typer.Option(None, "--key", help="""Access key for shared links"""),
     slug: str | None = typer.Option(None, "--slug", help="""Access slug for shared links"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    asset_ids: list[str] = typer.Option(..., "--assetIds"),
+    asset_ids: list[str] = typer.Option(..., "--assetIds", help="""Asset IDs"""),
 ) -> None:
     """Remove assets from a shared link
 
@@ -274,14 +274,14 @@ def update_shared_link(
     ctx: typer.Context,
     id: str = typer.Argument(..., help="""Shared link ID"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    allow_download: bool | None = typer.Option(None, "--allowDownload"),
-    allow_upload: bool | None = typer.Option(None, "--allowUpload"),
-    change_expiry_time: bool | None = typer.Option(None, "--changeExpiryTime"),
-    description: str | None = typer.Option(None, "--description"),
-    expires_at: str | None = typer.Option(None, "--expiresAt"),
-    password: str | None = typer.Option(None, "--password"),
-    show_metadata: bool | None = typer.Option(None, "--showMetadata"),
-    slug: str | None = typer.Option(None, "--slug"),
+    allow_download: bool | None = typer.Option(None, "--allowDownload", help="""Allow downloads"""),
+    allow_upload: bool | None = typer.Option(None, "--allowUpload", help="""Allow uploads"""),
+    change_expiry_time: bool | None = typer.Option(None, "--changeExpiryTime", help="""Change expiry time (set to true to remove expiry)"""),
+    description: str | None = typer.Option(None, "--description", help="""Link description"""),
+    expires_at: str | None = typer.Option(None, "--expiresAt", help="""Expiration date"""),
+    password: str | None = typer.Option(None, "--password", help="""Link password"""),
+    show_metadata: bool | None = typer.Option(None, "--showMetadata", help="""Show metadata"""),
+    slug: str | None = typer.Option(None, "--slug", help="""Custom URL slug"""),
 ) -> None:
     """Update a shared link
 

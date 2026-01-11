@@ -17,7 +17,7 @@ def add_memory_assets(
     ctx: typer.Context,
     id: str = typer.Argument(..., help="""Memory ID"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    ids: list[str] = typer.Option(..., "--ids"),
+    ids: list[str] = typer.Option(..., "--ids", help="""IDs to process"""),
 ) -> None:
     """Add assets to a memory
 
@@ -59,12 +59,12 @@ Docs: https://api.immich.app/endpoints/memories/addMemoryAssets
 def create_memory(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    asset_ids: list[str] | None = typer.Option(None, "--assetIds"),
-    data_year: float = typer.Option(..., "--data.year"),
-    is_saved: bool | None = typer.Option(None, "--isSaved"),
-    memory_at: str = typer.Option(..., "--memoryAt"),
-    seen_at: str | None = typer.Option(None, "--seenAt"),
-    type: str = typer.Option(..., "--type"),
+    asset_ids: list[str] | None = typer.Option(None, "--assetIds", help="""Asset IDs to associate with memory"""),
+    data_year: float = typer.Option(..., "--data.year", help="""Year for on this day memory"""),
+    is_saved: bool | None = typer.Option(None, "--isSaved", help="""Is memory saved"""),
+    memory_at: str = typer.Option(..., "--memoryAt", help="""Memory date"""),
+    seen_at: str | None = typer.Option(None, "--seenAt", help="""Date when memory was seen"""),
+    type: str = typer.Option(..., "--type", help="""Memory type"""),
 ) -> None:
     """Create a memory
 
@@ -190,7 +190,7 @@ def remove_memory_assets(
     ctx: typer.Context,
     id: str = typer.Argument(..., help="""Memory ID"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    ids: list[str] = typer.Option(..., "--ids"),
+    ids: list[str] = typer.Option(..., "--ids", help="""IDs to process"""),
 ) -> None:
     """Remove assets from a memory
 
@@ -266,9 +266,9 @@ def update_memory(
     ctx: typer.Context,
     id: str = typer.Argument(..., help="""Memory ID"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    is_saved: bool | None = typer.Option(None, "--isSaved"),
-    memory_at: str | None = typer.Option(None, "--memoryAt"),
-    seen_at: str | None = typer.Option(None, "--seenAt"),
+    is_saved: bool | None = typer.Option(None, "--isSaved", help="""Is memory saved"""),
+    memory_at: str | None = typer.Option(None, "--memoryAt", help="""Memory date"""),
+    seen_at: str | None = typer.Option(None, "--seenAt", help="""Date when memory was seen"""),
 ) -> None:
     """Update a memory
 

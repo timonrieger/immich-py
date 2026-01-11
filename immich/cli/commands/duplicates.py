@@ -33,7 +33,7 @@ Docs: https://api.immich.app/endpoints/duplicates/deleteDuplicate
 def delete_duplicates(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    ids: list[str] = typer.Option(..., "--ids"),
+    ids: list[str] = typer.Option(..., "--ids", help="""IDs to process"""),
 ) -> None:
     """Delete duplicates
 

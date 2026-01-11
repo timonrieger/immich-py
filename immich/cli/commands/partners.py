@@ -16,7 +16,7 @@ Docs: https://api.immich.app/endpoints/partners""", context_settings={'help_opti
 def create_partner(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    shared_with_id: str = typer.Option(..., "--sharedWithId"),
+    shared_with_id: str = typer.Option(..., "--sharedWithId", help="""User ID to share with"""),
 ) -> None:
     """Create a partner
 
@@ -109,7 +109,7 @@ def update_partner(
     ctx: typer.Context,
     id: str = typer.Argument(..., help="""Partner ID"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    in_timeline: bool = typer.Option(..., "--inTimeline"),
+    in_timeline: bool = typer.Option(..., "--inTimeline", help="""Show partner assets in timeline"""),
 ) -> None:
     """Update a partner
 

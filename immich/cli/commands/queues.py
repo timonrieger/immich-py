@@ -17,7 +17,7 @@ def empty_queue(
     ctx: typer.Context,
     name: str = typer.Argument(..., help="""Queue name"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    failed: bool | None = typer.Option(None, "--failed"),
+    failed: bool | None = typer.Option(None, "--failed", help="""If true, will also remove failed jobs from the queue."""),
 ) -> None:
     """Empty a queue
 
@@ -111,7 +111,7 @@ def update_queue(
     ctx: typer.Context,
     name: str = typer.Argument(..., help="""Queue name"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    is_paused: bool | None = typer.Option(None, "--isPaused"),
+    is_paused: bool | None = typer.Option(None, "--isPaused", help="""Whether to pause the queue"""),
 ) -> None:
     """Update a queue
 

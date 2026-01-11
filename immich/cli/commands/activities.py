@@ -16,10 +16,10 @@ Docs: https://api.immich.app/endpoints/activities""", context_settings={'help_op
 def create_activity(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    album_id: str = typer.Option(..., "--albumId"),
-    asset_id: str | None = typer.Option(None, "--assetId"),
-    comment: str | None = typer.Option(None, "--comment"),
-    type: str = typer.Option(..., "--type"),
+    album_id: str = typer.Option(..., "--albumId", help="""Album ID"""),
+    asset_id: str | None = typer.Option(None, "--assetId", help="""Asset ID (if activity is for an asset)"""),
+    comment: str | None = typer.Option(None, "--comment", help="""Comment text (required if type is comment)"""),
+    type: str = typer.Option(..., "--type", help="""Activity type (like or comment)"""),
 ) -> None:
     """Create an activity
 

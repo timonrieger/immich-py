@@ -16,13 +16,13 @@ Docs: https://api.immich.app/endpoints/notifications-admin""", context_settings=
 def create_notification(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    data: str | None = typer.Option(None, "--data", help="JSON string for data"),
-    description: str | None = typer.Option(None, "--description"),
-    level: str | None = typer.Option(None, "--level"),
-    read_at: str | None = typer.Option(None, "--readAt"),
-    title: str = typer.Option(..., "--title"),
-    type: str | None = typer.Option(None, "--type"),
-    user_id: str = typer.Option(..., "--userId"),
+    data: str | None = typer.Option(None, "--data", help="""Additional notification data"""),
+    description: str | None = typer.Option(None, "--description", help="""Notification description"""),
+    level: str | None = typer.Option(None, "--level", help="""Notification level"""),
+    read_at: str | None = typer.Option(None, "--readAt", help="""Date when notification was read"""),
+    title: str = typer.Option(..., "--title", help="""Notification title"""),
+    type: str | None = typer.Option(None, "--type", help="""Notification type"""),
+    user_id: str = typer.Option(..., "--userId", help="""User ID to send notification to"""),
 ) -> None:
     """Create a notification
 
@@ -84,7 +84,7 @@ def get_notification_template_admin(
     ctx: typer.Context,
     name: str = typer.Argument(..., help="""Email template name"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    template: str = typer.Option(..., "--template"),
+    template: str = typer.Option(..., "--template", help="""Template name"""),
 ) -> None:
     """Render email template
 
@@ -126,15 +126,15 @@ Docs: https://api.immich.app/endpoints/notifications-admin/getNotificationTempla
 def send_test_email_admin(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    enabled: bool = typer.Option(..., "--enabled"),
-    from_: str = typer.Option(..., "--from"),
-    reply_to: str = typer.Option(..., "--replyTo"),
-    transport_host: str = typer.Option(..., "--transport.host"),
-    transport_ignore_cert: bool = typer.Option(..., "--transport.ignoreCert"),
-    transport_password: str = typer.Option(..., "--transport.password"),
-    transport_port: float = typer.Option(..., "--transport.port"),
-    transport_secure: bool = typer.Option(..., "--transport.secure"),
-    transport_username: str = typer.Option(..., "--transport.username"),
+    enabled: bool = typer.Option(..., "--enabled", help="""Whether SMTP email notifications are enabled"""),
+    from_: str = typer.Option(..., "--from", help="""Email address to send from"""),
+    reply_to: str = typer.Option(..., "--replyTo", help="""Email address for replies"""),
+    transport_host: str = typer.Option(..., "--transport.host", help="""SMTP server hostname"""),
+    transport_ignore_cert: bool = typer.Option(..., "--transport.ignoreCert", help="""Whether to ignore SSL certificate errors"""),
+    transport_password: str = typer.Option(..., "--transport.password", help="""SMTP password"""),
+    transport_port: float = typer.Option(..., "--transport.port", help="""SMTP server port"""),
+    transport_secure: bool = typer.Option(..., "--transport.secure", help="""Whether to use secure connection (TLS/SSL)"""),
+    transport_username: str = typer.Option(..., "--transport.username", help="""SMTP username"""),
 ) -> None:
     """Send test email
 

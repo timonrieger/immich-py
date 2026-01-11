@@ -16,7 +16,7 @@ Docs: https://api.immich.app/endpoints/users""", context_settings={'help_option_
 def create_profile_image(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON with multipart fields (non-file)"),
-    file: Path = typer.Option(..., "--file", help="File to upload for file"),
+    file: Path = typer.Option(..., "--file", help="""Profile image file"""),
 ) -> None:
     """Create user profile image
 
@@ -192,8 +192,8 @@ Docs: https://api.immich.app/endpoints/users/searchUsers
 def set_user_license(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    activation_key: str = typer.Option(..., "--activationKey"),
-    license_key: str = typer.Option(..., "--licenseKey"),
+    activation_key: str = typer.Option(..., "--activationKey", help="""Activation key"""),
+    license_key: str = typer.Option(..., "--licenseKey", help="""License key (format: IM(SV|CL)(-XXXX){8})"""),
 ) -> None:
     """Set user product key
 
@@ -238,7 +238,7 @@ Docs: https://api.immich.app/endpoints/users/setUserLicense
 def set_user_onboarding(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    is_onboarded: bool = typer.Option(..., "--isOnboarded"),
+    is_onboarded: bool = typer.Option(..., "--isOnboarded", help="""Is user onboarded"""),
 ) -> None:
     """Update user onboarding
 
@@ -279,27 +279,27 @@ Docs: https://api.immich.app/endpoints/users/setUserOnboarding
 def update_my_preferences(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    albums_default_asset_order: str | None = typer.Option(None, "--albums.defaultAssetOrder"),
-    avatar_color: str | None = typer.Option(None, "--avatar.color"),
-    cast_g_cast_enabled: bool | None = typer.Option(None, "--cast.gCastEnabled"),
-    download_archive_size: int | None = typer.Option(None, "--download.archiveSize"),
-    download_include_embedded_videos: bool | None = typer.Option(None, "--download.includeEmbeddedVideos"),
-    email_notifications_album_invite: bool | None = typer.Option(None, "--emailNotifications.albumInvite"),
-    email_notifications_album_update: bool | None = typer.Option(None, "--emailNotifications.albumUpdate"),
-    email_notifications_enabled: bool | None = typer.Option(None, "--emailNotifications.enabled"),
-    folders_enabled: bool | None = typer.Option(None, "--folders.enabled"),
-    folders_sidebar_web: bool | None = typer.Option(None, "--folders.sidebarWeb"),
-    memories_duration: int | None = typer.Option(None, "--memories.duration"),
-    memories_enabled: bool | None = typer.Option(None, "--memories.enabled"),
-    people_enabled: bool | None = typer.Option(None, "--people.enabled"),
-    people_sidebar_web: bool | None = typer.Option(None, "--people.sidebarWeb"),
-    purchase_hide_buy_button_until: str | None = typer.Option(None, "--purchase.hideBuyButtonUntil"),
-    purchase_show_support_badge: bool | None = typer.Option(None, "--purchase.showSupportBadge"),
-    ratings_enabled: bool | None = typer.Option(None, "--ratings.enabled"),
-    shared_links_enabled: bool | None = typer.Option(None, "--sharedLinks.enabled"),
-    shared_links_sidebar_web: bool | None = typer.Option(None, "--sharedLinks.sidebarWeb"),
-    tags_enabled: bool | None = typer.Option(None, "--tags.enabled"),
-    tags_sidebar_web: bool | None = typer.Option(None, "--tags.sidebarWeb"),
+    albums_default_asset_order: str | None = typer.Option(None, "--albums.defaultAssetOrder", help="""Asset sort order"""),
+    avatar_color: str | None = typer.Option(None, "--avatar.color", help="""Avatar color"""),
+    cast_g_cast_enabled: bool | None = typer.Option(None, "--cast.gCastEnabled", help="""Whether Google Cast is enabled"""),
+    download_archive_size: int | None = typer.Option(None, "--download.archiveSize", help="""Maximum archive size in bytes"""),
+    download_include_embedded_videos: bool | None = typer.Option(None, "--download.includeEmbeddedVideos", help="""Whether to include embedded videos in downloads"""),
+    email_notifications_album_invite: bool | None = typer.Option(None, "--emailNotifications.albumInvite", help="""Whether to receive email notifications for album invites"""),
+    email_notifications_album_update: bool | None = typer.Option(None, "--emailNotifications.albumUpdate", help="""Whether to receive email notifications for album updates"""),
+    email_notifications_enabled: bool | None = typer.Option(None, "--emailNotifications.enabled", help="""Whether email notifications are enabled"""),
+    folders_enabled: bool | None = typer.Option(None, "--folders.enabled", help="""Whether folders are enabled"""),
+    folders_sidebar_web: bool | None = typer.Option(None, "--folders.sidebarWeb", help="""Whether folders appear in web sidebar"""),
+    memories_duration: int | None = typer.Option(None, "--memories.duration", help="""Memory duration in seconds"""),
+    memories_enabled: bool | None = typer.Option(None, "--memories.enabled", help="""Whether memories are enabled"""),
+    people_enabled: bool | None = typer.Option(None, "--people.enabled", help="""Whether people are enabled"""),
+    people_sidebar_web: bool | None = typer.Option(None, "--people.sidebarWeb", help="""Whether people appear in web sidebar"""),
+    purchase_hide_buy_button_until: str | None = typer.Option(None, "--purchase.hideBuyButtonUntil", help="""Date until which to hide buy button"""),
+    purchase_show_support_badge: bool | None = typer.Option(None, "--purchase.showSupportBadge", help="""Whether to show support badge"""),
+    ratings_enabled: bool | None = typer.Option(None, "--ratings.enabled", help="""Whether ratings are enabled"""),
+    shared_links_enabled: bool | None = typer.Option(None, "--sharedLinks.enabled", help="""Whether shared links are enabled"""),
+    shared_links_sidebar_web: bool | None = typer.Option(None, "--sharedLinks.sidebarWeb", help="""Whether shared links appear in web sidebar"""),
+    tags_enabled: bool | None = typer.Option(None, "--tags.enabled", help="""Whether tags are enabled"""),
+    tags_sidebar_web: bool | None = typer.Option(None, "--tags.sidebarWeb", help="""Whether tags appear in web sidebar"""),
 ) -> None:
     """Update my preferences
 
@@ -399,10 +399,10 @@ Docs: https://api.immich.app/endpoints/users/updateMyPreferences
 def update_my_user(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    avatar_color: str | None = typer.Option(None, "--avatarColor"),
-    email: str | None = typer.Option(None, "--email"),
-    name: str | None = typer.Option(None, "--name"),
-    password: str | None = typer.Option(None, "--password"),
+    avatar_color: str | None = typer.Option(None, "--avatarColor", help="""Avatar color"""),
+    email: str | None = typer.Option(None, "--email", help="""User email"""),
+    name: str | None = typer.Option(None, "--name", help="""User name"""),
+    password: str | None = typer.Option(None, "--password", help="""User password (deprecated, use change password endpoint)"""),
 ) -> None:
     """Update current user
 

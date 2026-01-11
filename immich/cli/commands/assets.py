@@ -16,7 +16,7 @@ Docs: https://api.immich.app/endpoints/assets""", context_settings={'help_option
 def check_bulk_upload(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    assets: list[str] = typer.Option(..., "--assets", help="JSON string for assets"),
+    assets: list[str] = typer.Option(..., "--assets", help="""Assets to check"""),
 ) -> None:
     """Check bulk upload
 
@@ -58,8 +58,8 @@ Docs: https://api.immich.app/endpoints/assets/checkBulkUpload
 def check_existing_assets(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    device_asset_ids: list[str] = typer.Option(..., "--deviceAssetIds"),
-    device_id: str = typer.Option(..., "--deviceId"),
+    device_asset_ids: list[str] = typer.Option(..., "--deviceAssetIds", help="""Device asset IDs to check"""),
+    device_id: str = typer.Option(..., "--deviceId", help="""Device ID"""),
 ) -> None:
     """Check existing assets
 
@@ -104,13 +104,13 @@ Docs: https://api.immich.app/endpoints/assets/checkExistingAssets
 def copy_asset(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    albums: bool | None = typer.Option(None, "--albums"),
-    favorite: bool | None = typer.Option(None, "--favorite"),
-    shared_links: bool | None = typer.Option(None, "--sharedLinks"),
-    sidecar: bool | None = typer.Option(None, "--sidecar"),
-    source_id: str = typer.Option(..., "--sourceId"),
-    stack: bool | None = typer.Option(None, "--stack"),
-    target_id: str = typer.Option(..., "--targetId"),
+    albums: bool | None = typer.Option(None, "--albums", help="""Copy album associations"""),
+    favorite: bool | None = typer.Option(None, "--favorite", help="""Copy favorite status"""),
+    shared_links: bool | None = typer.Option(None, "--sharedLinks", help="""Copy shared links"""),
+    sidecar: bool | None = typer.Option(None, "--sidecar", help="""Copy sidecar file"""),
+    source_id: str = typer.Option(..., "--sourceId", help="""Source asset ID"""),
+    stack: bool | None = typer.Option(None, "--stack", help="""Copy stack association"""),
+    target_id: str = typer.Option(..., "--targetId", help="""Target asset ID"""),
 ) -> None:
     """Copy asset
 
@@ -189,8 +189,8 @@ Docs: https://api.immich.app/endpoints/assets/deleteAssetMetadata
 def delete_assets(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    force: bool | None = typer.Option(None, "--force"),
-    ids: list[str] = typer.Option(..., "--ids"),
+    force: bool | None = typer.Option(None, "--force", help="""Force delete even if in use"""),
+    ids: list[str] = typer.Option(..., "--ids", help="""IDs to process"""),
 ) -> None:
     """Delete assets
 
@@ -234,7 +234,7 @@ Docs: https://api.immich.app/endpoints/assets/deleteAssets
 def delete_bulk_asset_metadata(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    items: list[str] = typer.Option(..., "--items", help="JSON string for items"),
+    items: list[str] = typer.Option(..., "--items", help="""Metadata items to delete"""),
 ) -> None:
     """Delete asset metadata
 
@@ -303,7 +303,7 @@ def edit_asset(
     ctx: typer.Context,
     id: str,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    edits: list[str] = typer.Option(..., "--edits", help="JSON string for edits"),
+    edits: list[str] = typer.Option(..., "--edits", help="""List of edit actions to apply (crop, rotate, or mirror)"""),
 ) -> None:
     """Apply edits to an existing asset
 
@@ -541,7 +541,7 @@ def replace_asset(
     key: str | None = typer.Option(None, "--key", help="""Access key for shared links"""),
     slug: str | None = typer.Option(None, "--slug", help="""Access slug for shared links"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON with multipart fields (non-file)"),
-    asset_data: Path = typer.Option(..., "--asset-data", help="File to upload for assetData"),
+    asset_data: Path = typer.Option(..., "--asset-data", help="""Asset file data"""),
 ) -> None:
     """Replace asset
 
@@ -600,8 +600,8 @@ Docs: https://api.immich.app/endpoints/assets/replaceAsset
 def run_asset_jobs(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    asset_ids: list[str] = typer.Option(..., "--assetIds"),
-    name: str = typer.Option(..., "--name"),
+    asset_ids: list[str] = typer.Option(..., "--assetIds", help="""Asset IDs"""),
+    name: str = typer.Option(..., "--name", help="""Job name"""),
 ) -> None:
     """Run an asset job
 
@@ -647,14 +647,14 @@ def update_asset(
     ctx: typer.Context,
     id: str,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    date_time_original: str | None = typer.Option(None, "--dateTimeOriginal"),
-    description: str | None = typer.Option(None, "--description"),
-    is_favorite: bool | None = typer.Option(None, "--isFavorite"),
-    latitude: float | None = typer.Option(None, "--latitude"),
-    live_photo_video_id: str | None = typer.Option(None, "--livePhotoVideoId"),
-    longitude: float | None = typer.Option(None, "--longitude"),
-    rating: float | None = typer.Option(None, "--rating"),
-    visibility: str | None = typer.Option(None, "--visibility"),
+    date_time_original: str | None = typer.Option(None, "--dateTimeOriginal", help="""Original date and time"""),
+    description: str | None = typer.Option(None, "--description", help="""Asset description"""),
+    is_favorite: bool | None = typer.Option(None, "--isFavorite", help="""Mark as favorite"""),
+    latitude: float | None = typer.Option(None, "--latitude", help="""Latitude coordinate"""),
+    live_photo_video_id: str | None = typer.Option(None, "--livePhotoVideoId", help="""Live photo video ID"""),
+    longitude: float | None = typer.Option(None, "--longitude", help="""Longitude coordinate"""),
+    rating: float | None = typer.Option(None, "--rating", help="""Rating (-1 to 5)"""),
+    visibility: str | None = typer.Option(None, "--visibility", help="""Asset visibility"""),
 ) -> None:
     """Update an asset
 
@@ -717,7 +717,7 @@ def update_asset_metadata(
     ctx: typer.Context,
     id: str,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    items: list[str] = typer.Option(..., "--items", help="JSON string for items"),
+    items: list[str] = typer.Option(..., "--items", help="""Metadata items to upsert"""),
 ) -> None:
     """Update asset metadata
 
@@ -760,17 +760,17 @@ Docs: https://api.immich.app/endpoints/assets/updateAssetMetadata
 def update_assets(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    date_time_original: str | None = typer.Option(None, "--dateTimeOriginal"),
-    date_time_relative: float | None = typer.Option(None, "--dateTimeRelative"),
-    description: str | None = typer.Option(None, "--description"),
-    duplicate_id: str | None = typer.Option(None, "--duplicateId"),
-    ids: list[str] = typer.Option(..., "--ids"),
-    is_favorite: bool | None = typer.Option(None, "--isFavorite"),
-    latitude: float | None = typer.Option(None, "--latitude"),
-    longitude: float | None = typer.Option(None, "--longitude"),
-    rating: float | None = typer.Option(None, "--rating"),
-    time_zone: str | None = typer.Option(None, "--timeZone"),
-    visibility: str | None = typer.Option(None, "--visibility"),
+    date_time_original: str | None = typer.Option(None, "--dateTimeOriginal", help="""Original date and time"""),
+    date_time_relative: float | None = typer.Option(None, "--dateTimeRelative", help="""Relative time offset in seconds"""),
+    description: str | None = typer.Option(None, "--description", help="""Asset description"""),
+    duplicate_id: str | None = typer.Option(None, "--duplicateId", help="""Duplicate asset ID"""),
+    ids: list[str] = typer.Option(..., "--ids", help="""Asset IDs to update"""),
+    is_favorite: bool | None = typer.Option(None, "--isFavorite", help="""Mark as favorite"""),
+    latitude: float | None = typer.Option(None, "--latitude", help="""Latitude coordinate"""),
+    longitude: float | None = typer.Option(None, "--longitude", help="""Longitude coordinate"""),
+    rating: float | None = typer.Option(None, "--rating", help="""Rating (-1 to 5)"""),
+    time_zone: str | None = typer.Option(None, "--timeZone", help="""Time zone (IANA timezone)"""),
+    visibility: str | None = typer.Option(None, "--visibility", help="""Asset visibility"""),
 ) -> None:
     """Update assets
 
@@ -841,7 +841,7 @@ Docs: https://api.immich.app/endpoints/assets/updateAssets
 def update_bulk_asset_metadata(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    items: list[str] = typer.Option(..., "--items", help="JSON string for items"),
+    items: list[str] = typer.Option(..., "--items", help="""Metadata items to upsert"""),
 ) -> None:
     """Upsert asset metadata
 
@@ -886,8 +886,8 @@ def upload_asset(
     slug: str | None = typer.Option(None, "--slug", help="""Access slug for shared links"""),
     x_immich_checksum: str | None = typer.Option(None, "--x-immich-checksum", help="""sha1 checksum that can be used for duplicate detection before the file is uploaded"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON with multipart fields (non-file)"),
-    asset_data: Path = typer.Option(..., "--asset-data", help="File to upload for assetData"),
-    sidecar_data: Path | None = typer.Option(None, "--sidecar-data", help="File to upload for sidecarData"),
+    asset_data: Path = typer.Option(..., "--asset-data", help="""Asset file data"""),
+    sidecar_data: Path | None = typer.Option(None, "--sidecar-data", help="""Sidecar file data"""),
 ) -> None:
     """Upload asset
 

@@ -16,9 +16,9 @@ Docs: https://api.immich.app/endpoints/authentication""", context_settings={'hel
 def change_password(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    invalidate_sessions: bool | None = typer.Option(None, "--invalidateSessions"),
-    new_password: str = typer.Option(..., "--newPassword"),
-    password: str = typer.Option(..., "--password"),
+    invalidate_sessions: bool | None = typer.Option(None, "--invalidateSessions", help="""Invalidate all other sessions"""),
+    new_password: str = typer.Option(..., "--newPassword", help="""New password (min 8 characters)"""),
+    password: str = typer.Option(..., "--password", help="""Current password"""),
 ) -> None:
     """Change password
 
@@ -66,9 +66,9 @@ Docs: https://api.immich.app/endpoints/authentication/changePassword
 def change_pin_code(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    new_pin_code: str = typer.Option(..., "--newPinCode"),
-    password: str | None = typer.Option(None, "--password"),
-    pin_code: str | None = typer.Option(None, "--pinCode"),
+    new_pin_code: str = typer.Option(..., "--newPinCode", help="""New PIN code (4-6 digits)"""),
+    password: str | None = typer.Option(None, "--password", help="""User password (required if PIN code is not provided)"""),
+    pin_code: str | None = typer.Option(None, "--pinCode", help="""New PIN code (4-6 digits)"""),
 ) -> None:
     """Change pin code
 
@@ -115,9 +115,9 @@ Docs: https://api.immich.app/endpoints/authentication/changePinCode
 def finish_o_auth(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    code_verifier: str | None = typer.Option(None, "--codeVerifier"),
-    state: str | None = typer.Option(None, "--state"),
-    url: str = typer.Option(..., "--url"),
+    code_verifier: str | None = typer.Option(None, "--codeVerifier", help="""OAuth code verifier (PKCE)"""),
+    state: str | None = typer.Option(None, "--state", help="""OAuth state parameter"""),
+    url: str = typer.Option(..., "--url", help="""OAuth callback URL"""),
 ) -> None:
     """Finish OAuth
 
@@ -179,9 +179,9 @@ Docs: https://api.immich.app/endpoints/authentication/getAuthStatus
 def link_o_auth_account(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    code_verifier: str | None = typer.Option(None, "--codeVerifier"),
-    state: str | None = typer.Option(None, "--state"),
-    url: str = typer.Option(..., "--url"),
+    code_verifier: str | None = typer.Option(None, "--codeVerifier", help="""OAuth code verifier (PKCE)"""),
+    state: str | None = typer.Option(None, "--state", help="""OAuth state parameter"""),
+    url: str = typer.Option(..., "--url", help="""OAuth callback URL"""),
 ) -> None:
     """Link OAuth account
 
@@ -243,8 +243,8 @@ Docs: https://api.immich.app/endpoints/authentication/lockAuthSession
 def login(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    email: str = typer.Option(..., "--email"),
-    password: str = typer.Option(..., "--password"),
+    email: str = typer.Option(..., "--email", help="""User email"""),
+    password: str = typer.Option(..., "--password", help="""User password"""),
 ) -> None:
     """Login
 
@@ -319,8 +319,8 @@ Docs: https://api.immich.app/endpoints/authentication/redirectOAuthToMobile
 def reset_pin_code(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    password: str | None = typer.Option(None, "--password"),
-    pin_code: str | None = typer.Option(None, "--pinCode"),
+    password: str | None = typer.Option(None, "--password", help="""User password (required if PIN code is not provided)"""),
+    pin_code: str | None = typer.Option(None, "--pinCode", help="""New PIN code (4-6 digits)"""),
 ) -> None:
     """Reset pin code
 
@@ -363,7 +363,7 @@ Docs: https://api.immich.app/endpoints/authentication/resetPinCode
 def setup_pin_code(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    pin_code: str = typer.Option(..., "--pinCode"),
+    pin_code: str = typer.Option(..., "--pinCode", help="""PIN code (4-6 digits)"""),
 ) -> None:
     """Setup pin code
 
@@ -404,9 +404,9 @@ Docs: https://api.immich.app/endpoints/authentication/setupPinCode
 def sign_up_admin(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    email: str = typer.Option(..., "--email"),
-    name: str = typer.Option(..., "--name"),
-    password: str = typer.Option(..., "--password"),
+    email: str = typer.Option(..., "--email", help="""User email"""),
+    name: str = typer.Option(..., "--name", help="""User name"""),
+    password: str = typer.Option(..., "--password", help="""User password"""),
 ) -> None:
     """Register admin
 
@@ -455,9 +455,9 @@ Docs: https://api.immich.app/endpoints/authentication/signUpAdmin
 def start_o_auth(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    code_challenge: str | None = typer.Option(None, "--codeChallenge"),
-    redirect_uri: str = typer.Option(..., "--redirectUri"),
-    state: str | None = typer.Option(None, "--state"),
+    code_challenge: str | None = typer.Option(None, "--codeChallenge", help="""OAuth code challenge (PKCE)"""),
+    redirect_uri: str = typer.Option(..., "--redirectUri", help="""OAuth redirect URI"""),
+    state: str | None = typer.Option(None, "--state", help="""OAuth state parameter"""),
 ) -> None:
     """Start OAuth
 
@@ -519,8 +519,8 @@ Docs: https://api.immich.app/endpoints/authentication/unlinkOAuthAccount
 def unlock_auth_session(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    password: str | None = typer.Option(None, "--password"),
-    pin_code: str | None = typer.Option(None, "--pinCode"),
+    password: str | None = typer.Option(None, "--password", help="""User password (required if PIN code is not provided)"""),
+    pin_code: str | None = typer.Option(None, "--pinCode", help="""New PIN code (4-6 digits)"""),
 ) -> None:
     """Unlock auth session
 

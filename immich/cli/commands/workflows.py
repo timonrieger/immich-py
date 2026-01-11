@@ -16,12 +16,12 @@ Docs: https://api.immich.app/endpoints/workflows""", context_settings={'help_opt
 def create_workflow(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    actions: list[str] = typer.Option(..., "--actions", help="JSON string for actions"),
-    description: str | None = typer.Option(None, "--description"),
-    enabled: bool | None = typer.Option(None, "--enabled"),
-    filters: list[str] = typer.Option(..., "--filters", help="JSON string for filters"),
-    name: str = typer.Option(..., "--name"),
-    trigger_type: str = typer.Option(..., "--triggerType"),
+    actions: list[str] = typer.Option(..., "--actions", help="""Workflow actions"""),
+    description: str | None = typer.Option(None, "--description", help="""Workflow description"""),
+    enabled: bool | None = typer.Option(None, "--enabled", help="""Workflow enabled"""),
+    filters: list[str] = typer.Option(..., "--filters", help="""Workflow filters"""),
+    name: str = typer.Option(..., "--name", help="""Workflow name"""),
+    trigger_type: str = typer.Option(..., "--triggerType", help="""Trigger type"""),
 ) -> None:
     """Create a workflow
 
@@ -132,12 +132,12 @@ def update_workflow(
     ctx: typer.Context,
     id: str = typer.Argument(..., help="""Workflow ID"""),
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    actions: list[str] | None = typer.Option(None, "--actions", help="JSON string for actions"),
-    description: str | None = typer.Option(None, "--description"),
-    enabled: bool | None = typer.Option(None, "--enabled"),
-    filters: list[str] | None = typer.Option(None, "--filters", help="JSON string for filters"),
-    name: str | None = typer.Option(None, "--name"),
-    trigger_type: str | None = typer.Option(None, "--triggerType"),
+    actions: list[str] | None = typer.Option(None, "--actions", help="""Workflow actions"""),
+    description: str | None = typer.Option(None, "--description", help="""Workflow description"""),
+    enabled: bool | None = typer.Option(None, "--enabled", help="""Workflow enabled"""),
+    filters: list[str] | None = typer.Option(None, "--filters", help="""Workflow filters"""),
+    name: str | None = typer.Option(None, "--name", help="""Workflow name"""),
+    trigger_type: str | None = typer.Option(None, "--triggerType", help="""Trigger type"""),
 ) -> None:
     """Update a workflow
 

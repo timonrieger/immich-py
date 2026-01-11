@@ -16,7 +16,7 @@ Docs: https://api.immich.app/endpoints/sync""", context_settings={'help_option_n
 def delete_sync_ack(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    types: list[str] | None = typer.Option(None, "--types", help="JSON string for types"),
+    types: list[str] | None = typer.Option(None, "--types", help="""Sync entity types to delete acks for"""),
 ) -> None:
     """Delete acknowledgements
 
@@ -57,8 +57,8 @@ Docs: https://api.immich.app/endpoints/sync/deleteSyncAck
 def get_delta_sync(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    updated_after: str = typer.Option(..., "--updatedAfter"),
-    user_ids: list[str] = typer.Option(..., "--userIds"),
+    updated_after: str = typer.Option(..., "--updatedAfter", help="""Sync assets updated after this date"""),
+    user_ids: list[str] = typer.Option(..., "--userIds", help="""User IDs to sync"""),
 ) -> None:
     """Get delta sync for user
 
@@ -103,10 +103,10 @@ Docs: https://api.immich.app/endpoints/sync/getDeltaSync
 def get_full_sync_for_user(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    last_id: str | None = typer.Option(None, "--lastId"),
-    limit: int = typer.Option(..., "--limit"),
-    updated_until: str = typer.Option(..., "--updatedUntil"),
-    user_id: str | None = typer.Option(None, "--userId"),
+    last_id: str | None = typer.Option(None, "--lastId", help="""Last asset ID (pagination)"""),
+    limit: int = typer.Option(..., "--limit", help="""Maximum number of assets to return"""),
+    updated_until: str = typer.Option(..., "--updatedUntil", help="""Sync assets updated until this date"""),
+    user_id: str | None = typer.Option(None, "--userId", help="""Filter by user ID"""),
 ) -> None:
     """Get full sync for user
 
@@ -172,8 +172,8 @@ Docs: https://api.immich.app/endpoints/sync/getSyncAck
 def get_sync_stream(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    reset: bool | None = typer.Option(None, "--reset"),
-    types: list[str] = typer.Option(..., "--types", help="JSON string for types"),
+    reset: bool | None = typer.Option(None, "--reset", help="""Reset sync state"""),
+    types: list[str] = typer.Option(..., "--types", help="""Sync request types"""),
 ) -> None:
     """Stream sync changes
 
@@ -218,7 +218,7 @@ Docs: https://api.immich.app/endpoints/sync/getSyncStream
 def send_sync_ack(
     ctx: typer.Context,
     json_str: str | None = typer.Option(None, "--json", help="Inline JSON request body"),
-    acks: list[str] = typer.Option(..., "--acks"),
+    acks: list[str] = typer.Option(..., "--acks", help="""Acknowledgment IDs (max 1000)"""),
 ) -> None:
     """Acknowledge changes
 
