@@ -1,0 +1,3 @@
+[tools]
+# only include constant tools here, dynamic versions are handled by the CI workflow
+uv = "0.9.21"

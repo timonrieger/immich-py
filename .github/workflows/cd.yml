@@ -41,12 +41,10 @@ jobs:
       - name: Install mise
         uses: jdx/mise-action@146a28175021df8ca24f8ee1828cc2a60f980bd5 # v3
         with:
-          # `install_args` only installs tools; it does not override versions coming from `mise.toml`.
-          # Use the action's config override so the matrix Python becomes the active interpreter for this job.
-          mise_toml: |
-            [tools]
-            python = "${{ matrix.python-version }}"
-            uv = "0.9.21"
+          # Workaround: Use `--env ci` to load mise.ci.toml which contains constant tools (uv).
+          # This allows us to override only the Python version via install-args without duplicating
+          # tool definitions.
+          install-args: "python@${{ matrix.python-version }} --env ci"
 
       - name: Run unit tests
         run: mise run ci:test:unit
@@ -65,12 +63,6 @@ jobs:
 
       - name: Install mise
         uses: jdx/mise-action@146a28175021df8ca24f8ee1828cc2a60f980bd5 # v3
-        with:
-          # Keep e2e tests on a consistent Python without relying on repo `mise.toml`.
-          mise_toml: |
-            [tools]
-            python = "3.14"
-            uv = "0.9.21"
 
       - name: Read Immich version
         id: immich-version
