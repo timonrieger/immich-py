@@ -80,14 +80,19 @@ jobs:
       - name: Start Immich server
         working-directory: ./immich-git-repo/e2e
         run: |
-          docker compose up -d --build
+          docker compose up --build --renew-anon-volumes --force-recreate --remove-orphans > /tmp/docker-compose.log 2>&1 &
+          COMPOSE_PID=$!
           echo "Waiting for Immich server to be ready..."
-          timeout=180
+          timeout=60
           elapsed=0
-          while ! curl -f http://127.0.0.1:2285/api/server-info/ping > /dev/null 2>&1; do
+          while ! grep -q "Immich Microservices is running" /tmp/docker-compose.log 2>/dev/null; do
             if [ $elapsed -ge $timeout ]; then
               echo "Server failed to start within $timeout seconds"
+              echo "=== Docker Compose Logs ==="
+              cat /tmp/docker-compose.log
+              echo "=== Docker Compose Status ==="
               docker compose logs
+              kill $COMPOSE_PID 2>/dev/null || true
               exit 1
             fi
             sleep 2
