@@ -1,7 +1,6 @@
 # /// script
 # requires-python = ">=3.11"
 # dependencies = [
-#   "urllib3>=2.6.3,<3.0.0",
 #   "inflection>=0.5.1,<0.6.0",
 # ]
 # ///
