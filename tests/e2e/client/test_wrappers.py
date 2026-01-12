@@ -10,6 +10,7 @@ from uuid import UUID
 import pytest
 
 from immich import AsyncClient
+from immich.client.exceptions import BadRequestException
 from immich.client.models.admin_onboarding_update_dto import AdminOnboardingUpdateDto
 from immich.client.models.api_key_create_dto import APIKeyCreateDto
 from immich.client.models.asset_media_size import AssetMediaSize
@@ -28,18 +29,22 @@ MP4_BASE64 = "AAAAIGZ0eXBtcDQyAAAAAG1wNDJtcDQxaXNvbWF2YzEAAAGhtZGF0AAACrgYF//+q3
 @pytest.fixture
 async def client_with_api_key(tmp_path: Path):
     """Set up admin user, create API key, and return authenticated client."""
-    base_url = os.environ.get("IMMICH_API_URL", "http://127.0.0.1:2285/api")
+    base_url = os.environ.get("IMMICH_API_URL", "http://127.0.0.1:2283/api")
 
     # Create unauthenticated client for setup
     setup_client = AsyncClient(base_url=base_url)
 
     try:
-        # Sign up admin
-        await setup_client.authentication.sign_up_admin(
-            SignUpDto(
-                email="admin@immich.cloud", name="Immich Admin", password="password"
+        # Sign up admin (idempotent: subsequent tests will hit "already has an admin")
+        try:
+            await setup_client.authentication.sign_up_admin(
+                SignUpDto(
+                    email="admin@immich.cloud", name="Immich Admin", password="password"
+                )
             )
-        )
+        except BadRequestException as e:
+            if not (e.status == 400 and e.body and "already has an admin" in e.body):
+                raise
 
         # Login to get access token
         login_response = await setup_client.authentication.login(
