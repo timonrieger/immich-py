@@ -26,6 +26,10 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+    env:
+      # `mise.toml` reads PYTHON_VERSION via `get_env(...)`. Set it at the job level so it applies
+      # to both `mise install` (setup) and `mise run ...` (tasks), preventing fallback installs.
+      PYTHON_VERSION: ${{ matrix.python-version }}
 
     strategy:
       fail-fast: false
@@ -40,12 +44,8 @@ jobs:
 
       - name: Install mise
         uses: jdx/mise-action@146a28175021df8ca24f8ee1828cc2a60f980bd5 # v3
-        env:
-          MISE_PYTHON_VERSION: ${{ matrix.python-version }}
 
       - name: Run unit tests
-        env:
-          PYTHON_VERSION: ${{ matrix.python-version }}
         run: mise run ci:test:unit
 
   e2e-tests:
