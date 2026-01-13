@@ -44,7 +44,7 @@ jobs:
           # Workaround: Use `--env ci` to load mise.ci.toml which contains constant tools (uv).
           # This allows us to override only the Python version via install-args without duplicating
           # tool definitions.
-          install-args: "python@${{ matrix.python-version }} --env ci"
+          install_args: "python@${{ matrix.python-version }} --env ci"
 
       - name: Run unit tests
         run: mise run ci:test:unit
