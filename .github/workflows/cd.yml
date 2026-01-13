@@ -42,7 +42,7 @@ jobs:
         uses: jdx/mise-action@146a28175021df8ca24f8ee1828cc2a60f980bd5 # v3
         with:
           # Workaround: Use `--env ci` to load mise.ci.toml which contains constant tools (uv).
-          # This allows us to override only the Python version via install-args without duplicating
+          # This allows us to override only the Python version via install_args without duplicating
           # tool definitions.
           install_args: "python@${{ matrix.python-version }} --env ci"
 
