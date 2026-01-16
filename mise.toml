@@ -28,8 +28,7 @@ description = "Run e2e client tests"
 
 [tasks."test:e2e"]
 run = [
-    { task = "test:e2e:cli" },
-    { task = "test:e2e:client" },
+  { tasks = ["test:e2e:client", "test:e2e:cli"] },
 ]
 description = "Run e2e tests"
 
