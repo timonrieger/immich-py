@@ -3,14 +3,22 @@
 from __future__ import annotations
 
 from datetime import datetime
-from pathlib import Path
 import typer
 
-from immich.cli.runtime import load_file_bytes, deserialize_request_body, parse_complex_list, print_response, run_command, set_nested
+from immich.cli.runtime import (
+    deserialize_request_body,
+    print_response,
+    run_command,
+    set_nested,
+)
 
-app = typer.Typer(help="""A collection of endpoints for the new mobile synchronization implementation.
+app = typer.Typer(
+    help="""A collection of endpoints for the new mobile synchronization implementation.
 
-Docs: https://api.immich.app/endpoints/sync""", context_settings={'help_option_names': ['-h', '--help']})
+Docs: https://api.immich.app/endpoints/sync""",
+    context_settings={"help_option_names": ["-h", "--help"]},
+)
+
 
 @app.command("delete-sync-ack")
 def delete_sync_ack(
@@ -19,7 +27,7 @@ def delete_sync_ack(
 ) -> None:
     """Delete acknowledgements
 
-Docs: https://api.immich.app/endpoints/sync/deleteSyncAck
+    Docs: https://api.immich.app/endpoints/sync/deleteSyncAck
     """
     kwargs = {}
     has_flags = any([types])
@@ -28,14 +36,16 @@ Docs: https://api.immich.app/endpoints/sync/deleteSyncAck
     if any([types]):
         json_data = {}
         if types is not None:
-            set_nested(json_data, ['types'], types)
+            set_nested(json_data, ["types"], types)
         from immich.client.models.sync_ack_delete_dto import SyncAckDeleteDto
+
         sync_ack_delete_dto = deserialize_request_body(json_data, SyncAckDeleteDto)
-        kwargs['sync_ack_delete_dto'] = sync_ack_delete_dto
-    client = ctx.obj['client']
-    result = run_command(client, client.sync, 'delete_sync_ack', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+        kwargs["sync_ack_delete_dto"] = sync_ack_delete_dto
+    client = ctx.obj["client"]
+    result = run_command(client, client.sync, "delete_sync_ack", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("get-delta-sync")
 def get_delta_sync(
@@ -45,7 +55,7 @@ def get_delta_sync(
 ) -> None:
     """Get delta sync for user
 
-Docs: https://api.immich.app/endpoints/sync/getDeltaSync
+    Docs: https://api.immich.app/endpoints/sync/getDeltaSync
     """
     kwargs = {}
     has_flags = any([updated_after, user_ids])
@@ -53,15 +63,17 @@ Docs: https://api.immich.app/endpoints/sync/getDeltaSync
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
     if any([updated_after, user_ids]):
         json_data = {}
-        set_nested(json_data, ['updatedAfter'], updated_after)
-        set_nested(json_data, ['userIds'], user_ids)
+        set_nested(json_data, ["updatedAfter"], updated_after)
+        set_nested(json_data, ["userIds"], user_ids)
         from immich.client.models.asset_delta_sync_dto import AssetDeltaSyncDto
+
         asset_delta_sync_dto = deserialize_request_body(json_data, AssetDeltaSyncDto)
-        kwargs['asset_delta_sync_dto'] = asset_delta_sync_dto
-    client = ctx.obj['client']
-    result = run_command(client, client.sync, 'get_delta_sync', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+        kwargs["asset_delta_sync_dto"] = asset_delta_sync_dto
+    client = ctx.obj["client"]
+    result = run_command(client, client.sync, "get_delta_sync", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("get-full-sync-for-user")
 def get_full_sync_for_user(
@@ -73,7 +85,7 @@ def get_full_sync_for_user(
 ) -> None:
     """Get full sync for user
 
-Docs: https://api.immich.app/endpoints/sync/getFullSyncForUser
+    Docs: https://api.immich.app/endpoints/sync/getFullSyncForUser
     """
     kwargs = {}
     has_flags = any([last_id, limit, updated_until, user_id])
@@ -82,18 +94,20 @@ Docs: https://api.immich.app/endpoints/sync/getFullSyncForUser
     if any([last_id, limit, updated_until, user_id]):
         json_data = {}
         if last_id is not None:
-            set_nested(json_data, ['lastId'], last_id)
-        set_nested(json_data, ['limit'], limit)
-        set_nested(json_data, ['updatedUntil'], updated_until)
+            set_nested(json_data, ["lastId"], last_id)
+        set_nested(json_data, ["limit"], limit)
+        set_nested(json_data, ["updatedUntil"], updated_until)
         if user_id is not None:
-            set_nested(json_data, ['userId'], user_id)
+            set_nested(json_data, ["userId"], user_id)
         from immich.client.models.asset_full_sync_dto import AssetFullSyncDto
+
         asset_full_sync_dto = deserialize_request_body(json_data, AssetFullSyncDto)
-        kwargs['asset_full_sync_dto'] = asset_full_sync_dto
-    client = ctx.obj['client']
-    result = run_command(client, client.sync, 'get_full_sync_for_user', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+        kwargs["asset_full_sync_dto"] = asset_full_sync_dto
+    client = ctx.obj["client"]
+    result = run_command(client, client.sync, "get_full_sync_for_user", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("get-sync-ack")
 def get_sync_ack(
@@ -101,13 +115,14 @@ def get_sync_ack(
 ) -> None:
     """Retrieve acknowledgements
 
-Docs: https://api.immich.app/endpoints/sync/getSyncAck
+    Docs: https://api.immich.app/endpoints/sync/getSyncAck
     """
     kwargs = {}
-    client = ctx.obj['client']
-    result = run_command(client, client.sync, 'get_sync_ack', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+    client = ctx.obj["client"]
+    result = run_command(client, client.sync, "get_sync_ack", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("get-sync-stream")
 def get_sync_stream(
@@ -117,7 +132,7 @@ def get_sync_stream(
 ) -> None:
     """Stream sync changes
 
-Docs: https://api.immich.app/endpoints/sync/getSyncStream
+    Docs: https://api.immich.app/endpoints/sync/getSyncStream
     """
     kwargs = {}
     has_flags = any([reset, types])
@@ -126,15 +141,17 @@ Docs: https://api.immich.app/endpoints/sync/getSyncStream
     if any([reset, types]):
         json_data = {}
         if reset is not None:
-            set_nested(json_data, ['reset'], reset)
-        set_nested(json_data, ['types'], types)
+            set_nested(json_data, ["reset"], reset)
+        set_nested(json_data, ["types"], types)
         from immich.client.models.sync_stream_dto import SyncStreamDto
+
         sync_stream_dto = deserialize_request_body(json_data, SyncStreamDto)
-        kwargs['sync_stream_dto'] = sync_stream_dto
-    client = ctx.obj['client']
-    result = run_command(client, client.sync, 'get_sync_stream', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+        kwargs["sync_stream_dto"] = sync_stream_dto
+    client = ctx.obj["client"]
+    result = run_command(client, client.sync, "get_sync_stream", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("send-sync-ack")
 def send_sync_ack(
@@ -143,7 +160,7 @@ def send_sync_ack(
 ) -> None:
     """Acknowledge changes
 
-Docs: https://api.immich.app/endpoints/sync/sendSyncAck
+    Docs: https://api.immich.app/endpoints/sync/sendSyncAck
     """
     kwargs = {}
     has_flags = any([acks])
@@ -151,11 +168,12 @@ Docs: https://api.immich.app/endpoints/sync/sendSyncAck
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
     if any([acks]):
         json_data = {}
-        set_nested(json_data, ['acks'], acks)
+        set_nested(json_data, ["acks"], acks)
         from immich.client.models.sync_ack_set_dto import SyncAckSetDto
+
         sync_ack_set_dto = deserialize_request_body(json_data, SyncAckSetDto)
-        kwargs['sync_ack_set_dto'] = sync_ack_set_dto
-    client = ctx.obj['client']
-    result = run_command(client, client.sync, 'send_sync_ack', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+        kwargs["sync_ack_set_dto"] = sync_ack_set_dto
+    client = ctx.obj["client"]
+    result = run_command(client, client.sync, "send_sync_ack", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

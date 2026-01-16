@@ -2,15 +2,22 @@
 
 from __future__ import annotations
 
-from datetime import datetime
-from pathlib import Path
 import typer
 
-from immich.cli.runtime import load_file_bytes, deserialize_request_body, parse_complex_list, print_response, run_command, set_nested
+from immich.cli.runtime import (
+    deserialize_request_body,
+    print_response,
+    run_command,
+    set_nested,
+)
 
-app = typer.Typer(help="""A partner is a link with another user that allows sharing of assets between two users.
+app = typer.Typer(
+    help="""A partner is a link with another user that allows sharing of assets between two users.
 
-Docs: https://api.immich.app/endpoints/partners""", context_settings={'help_option_names': ['-h', '--help']})
+Docs: https://api.immich.app/endpoints/partners""",
+    context_settings={"help_option_names": ["-h", "--help"]},
+)
+
 
 @app.command("create-partner")
 def create_partner(
@@ -19,7 +26,7 @@ def create_partner(
 ) -> None:
     """Create a partner
 
-Docs: https://api.immich.app/endpoints/partners/createPartner
+    Docs: https://api.immich.app/endpoints/partners/createPartner
     """
     kwargs = {}
     has_flags = any([shared_with_id])
@@ -27,14 +34,16 @@ Docs: https://api.immich.app/endpoints/partners/createPartner
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
     if any([shared_with_id]):
         json_data = {}
-        set_nested(json_data, ['sharedWithId'], shared_with_id)
+        set_nested(json_data, ["sharedWithId"], shared_with_id)
         from immich.client.models.partner_create_dto import PartnerCreateDto
+
         partner_create_dto = deserialize_request_body(json_data, PartnerCreateDto)
-        kwargs['partner_create_dto'] = partner_create_dto
-    client = ctx.obj['client']
-    result = run_command(client, client.partners, 'create_partner', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+        kwargs["partner_create_dto"] = partner_create_dto
+    client = ctx.obj["client"]
+    result = run_command(client, client.partners, "create_partner", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("create-partner-deprecated")
 def create_partner_deprecated(
@@ -43,14 +52,15 @@ def create_partner_deprecated(
 ) -> None:
     """Create a partner
 
-Docs: https://api.immich.app/endpoints/partners/createPartnerDeprecated
+    Docs: https://api.immich.app/endpoints/partners/createPartnerDeprecated
     """
     kwargs = {}
-    kwargs['id'] = id
-    client = ctx.obj['client']
-    result = run_command(client, client.partners, 'create_partner_deprecated', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+    kwargs["id"] = id
+    client = ctx.obj["client"]
+    result = run_command(client, client.partners, "create_partner_deprecated", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("get-partners")
 def get_partners(
@@ -59,14 +69,15 @@ def get_partners(
 ) -> None:
     """Retrieve partners
 
-Docs: https://api.immich.app/endpoints/partners/getPartners
+    Docs: https://api.immich.app/endpoints/partners/getPartners
     """
     kwargs = {}
-    kwargs['direction'] = direction
-    client = ctx.obj['client']
-    result = run_command(client, client.partners, 'get_partners', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+    kwargs["direction"] = direction
+    client = ctx.obj["client"]
+    result = run_command(client, client.partners, "get_partners", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("remove-partner")
 def remove_partner(
@@ -75,14 +86,15 @@ def remove_partner(
 ) -> None:
     """Remove a partner
 
-Docs: https://api.immich.app/endpoints/partners/removePartner
+    Docs: https://api.immich.app/endpoints/partners/removePartner
     """
     kwargs = {}
-    kwargs['id'] = id
-    client = ctx.obj['client']
-    result = run_command(client, client.partners, 'remove_partner', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+    kwargs["id"] = id
+    client = ctx.obj["client"]
+    result = run_command(client, client.partners, "remove_partner", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("update-partner")
 def update_partner(
@@ -92,20 +104,21 @@ def update_partner(
 ) -> None:
     """Update a partner
 
-Docs: https://api.immich.app/endpoints/partners/updatePartner
+    Docs: https://api.immich.app/endpoints/partners/updatePartner
     """
     kwargs = {}
-    kwargs['id'] = id
+    kwargs["id"] = id
     has_flags = any([in_timeline])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
     if any([in_timeline]):
         json_data = {}
-        set_nested(json_data, ['inTimeline'], in_timeline)
+        set_nested(json_data, ["inTimeline"], in_timeline)
         from immich.client.models.partner_update_dto import PartnerUpdateDto
+
         partner_update_dto = deserialize_request_body(json_data, PartnerUpdateDto)
-        kwargs['partner_update_dto'] = partner_update_dto
-    client = ctx.obj['client']
-    result = run_command(client, client.partners, 'update_partner', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+        kwargs["partner_update_dto"] = partner_update_dto
+    client = ctx.obj["client"]
+    result = run_command(client, client.partners, "update_partner", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

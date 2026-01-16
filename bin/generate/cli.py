@@ -287,8 +287,6 @@ def generate_command_function(
     # Track Python argument names to avoid duplicate arguments in the generated
     # function signature (e.g. path param `id` colliding with body field `id`).
     used_param_names: set[str] = {"ctx"}
-    # Track enum params (name -> is_list) for value extraction
-    enum_params: dict[str, bool] = {}
 
     # Path parameters (required positional)
     for param in sorted(path_params, key=lambda p: p["name"]):
@@ -318,9 +316,7 @@ def generate_command_function(
             param_type = "str"
             boolean_query_params.add(param_name)
         else:
-            param_type = python_type_from_schema(
-                schema, spec
-            )
+            param_type = python_type_from_schema(schema, spec)
         flag_name = to_kebab_case(openapi_name)
         full_opt_name = f"--{flag_name}"
         description = param.get("description", "")
@@ -680,9 +676,6 @@ def generate_tag_app(
     tag_slug = inflection.parameterize(tag)
     tag_help = f"{tag_description}\n\nDocs: https://api.immich.app/endpoints/{tag_slug}"
 
-    # Collect all enums used across all commands in this tag
-    enum_collector: dict[str, dict[str, Any]] = {}
-
     lines = [
         '"""Generated CLI commands for '
         + tag
@@ -703,9 +696,7 @@ def generate_tag_app(
     for path, method, operation in sorted(
         operations, key=lambda x: x[2].get("operationId", "")
     ):
-        func_code = generate_command_function(
-            operation, spec, tag_attr, tag
-        )
+        func_code = generate_command_function(operation, spec, tag_attr, tag)
         command_codes.append(func_code)
 
     lines.append(

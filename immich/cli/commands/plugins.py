@@ -2,15 +2,17 @@
 
 from __future__ import annotations
 
-from datetime import datetime
-from pathlib import Path
 import typer
 
-from immich.cli.runtime import load_file_bytes, deserialize_request_body, parse_complex_list, print_response, run_command, set_nested
+from immich.cli.runtime import print_response, run_command
 
-app = typer.Typer(help="""A plugin is an installed module that makes filters and actions available for the workflow feature.
+app = typer.Typer(
+    help="""A plugin is an installed module that makes filters and actions available for the workflow feature.
 
-Docs: https://api.immich.app/endpoints/plugins""", context_settings={'help_option_names': ['-h', '--help']})
+Docs: https://api.immich.app/endpoints/plugins""",
+    context_settings={"help_option_names": ["-h", "--help"]},
+)
+
 
 @app.command("get-plugin")
 def get_plugin(
@@ -19,14 +21,15 @@ def get_plugin(
 ) -> None:
     """Retrieve a plugin
 
-Docs: https://api.immich.app/endpoints/plugins/getPlugin
+    Docs: https://api.immich.app/endpoints/plugins/getPlugin
     """
     kwargs = {}
-    kwargs['id'] = id
-    client = ctx.obj['client']
-    result = run_command(client, client.plugins, 'get_plugin', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+    kwargs["id"] = id
+    client = ctx.obj["client"]
+    result = run_command(client, client.plugins, "get_plugin", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("get-plugin-triggers")
 def get_plugin_triggers(
@@ -34,13 +37,14 @@ def get_plugin_triggers(
 ) -> None:
     """List all plugin triggers
 
-Docs: https://api.immich.app/endpoints/plugins/getPluginTriggers
+    Docs: https://api.immich.app/endpoints/plugins/getPluginTriggers
     """
     kwargs = {}
-    client = ctx.obj['client']
-    result = run_command(client, client.plugins, 'get_plugin_triggers', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+    client = ctx.obj["client"]
+    result = run_command(client, client.plugins, "get_plugin_triggers", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("get-plugins")
 def get_plugins(
@@ -48,10 +52,10 @@ def get_plugins(
 ) -> None:
     """List all plugins
 
-Docs: https://api.immich.app/endpoints/plugins/getPlugins
+    Docs: https://api.immich.app/endpoints/plugins/getPlugins
     """
     kwargs = {}
-    client = ctx.obj['client']
-    result = run_command(client, client.plugins, 'get_plugins', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+    client = ctx.obj["client"]
+    result = run_command(client, client.plugins, "get_plugins", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

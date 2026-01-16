@@ -2,15 +2,17 @@
 
 from __future__ import annotations
 
-from datetime import datetime
-from pathlib import Path
 import typer
 
-from immich.cli.runtime import load_file_bytes, deserialize_request_body, parse_complex_list, print_response, run_command, set_nested
+from immich.cli.runtime import print_response, run_command
 
-app = typer.Typer(help="""Administrative endpoints related to authentication.
+app = typer.Typer(
+    help="""Administrative endpoints related to authentication.
 
-Docs: https://api.immich.app/endpoints/authentication-admin""", context_settings={'help_option_names': ['-h', '--help']})
+Docs: https://api.immich.app/endpoints/authentication-admin""",
+    context_settings={"help_option_names": ["-h", "--help"]},
+)
+
 
 @app.command("unlink-all-o-auth-accounts-admin")
 def unlink_all_o_auth_accounts_admin(
@@ -18,10 +20,15 @@ def unlink_all_o_auth_accounts_admin(
 ) -> None:
     """Unlink all OAuth accounts
 
-Docs: https://api.immich.app/endpoints/authentication-admin/unlinkAllOAuthAccountsAdmin
+    Docs: https://api.immich.app/endpoints/authentication-admin/unlinkAllOAuthAccountsAdmin
     """
     kwargs = {}
-    client = ctx.obj['client']
-    result = run_command(client, client.authentication_admin, 'unlink_all_o_auth_accounts_admin', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+    client = ctx.obj["client"]
+    result = run_command(
+        client,
+        client.authentication_admin,
+        "unlink_all_o_auth_accounts_admin",
+        **kwargs,
+    )
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

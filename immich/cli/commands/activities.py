@@ -2,15 +2,22 @@
 
 from __future__ import annotations
 
-from datetime import datetime
-from pathlib import Path
 import typer
 
-from immich.cli.runtime import load_file_bytes, deserialize_request_body, parse_complex_list, print_response, run_command, set_nested
+from immich.cli.runtime import (
+    deserialize_request_body,
+    print_response,
+    run_command,
+    set_nested,
+)
 
-app = typer.Typer(help="""An activity is a like or a comment made by a user on an asset or album.
+app = typer.Typer(
+    help="""An activity is a like or a comment made by a user on an asset or album.
 
-Docs: https://api.immich.app/endpoints/activities""", context_settings={'help_option_names': ['-h', '--help']})
+Docs: https://api.immich.app/endpoints/activities""",
+    context_settings={"help_option_names": ["-h", "--help"]},
+)
+
 
 @app.command("create-activity")
 def create_activity(
@@ -22,7 +29,7 @@ def create_activity(
 ) -> None:
     """Create an activity
 
-Docs: https://api.immich.app/endpoints/activities/createActivity
+    Docs: https://api.immich.app/endpoints/activities/createActivity
     """
     kwargs = {}
     has_flags = any([album_id, asset_id, comment, type])
@@ -30,19 +37,21 @@ Docs: https://api.immich.app/endpoints/activities/createActivity
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
     if any([album_id, asset_id, comment, type]):
         json_data = {}
-        set_nested(json_data, ['albumId'], album_id)
+        set_nested(json_data, ["albumId"], album_id)
         if asset_id is not None:
-            set_nested(json_data, ['assetId'], asset_id)
+            set_nested(json_data, ["assetId"], asset_id)
         if comment is not None:
-            set_nested(json_data, ['comment'], comment)
-        set_nested(json_data, ['type'], type)
+            set_nested(json_data, ["comment"], comment)
+        set_nested(json_data, ["type"], type)
         from immich.client.models.activity_create_dto import ActivityCreateDto
+
         activity_create_dto = deserialize_request_body(json_data, ActivityCreateDto)
-        kwargs['activity_create_dto'] = activity_create_dto
-    client = ctx.obj['client']
-    result = run_command(client, client.activities, 'create_activity', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+        kwargs["activity_create_dto"] = activity_create_dto
+    client = ctx.obj["client"]
+    result = run_command(client, client.activities, "create_activity", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("delete-activity")
 def delete_activity(
@@ -51,14 +60,15 @@ def delete_activity(
 ) -> None:
     """Delete an activity
 
-Docs: https://api.immich.app/endpoints/activities/deleteActivity
+    Docs: https://api.immich.app/endpoints/activities/deleteActivity
     """
     kwargs = {}
-    kwargs['id'] = id
-    client = ctx.obj['client']
-    result = run_command(client, client.activities, 'delete_activity', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+    kwargs["id"] = id
+    client = ctx.obj["client"]
+    result = run_command(client, client.activities, "delete_activity", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("get-activities")
 def get_activities(
@@ -71,22 +81,23 @@ def get_activities(
 ) -> None:
     """List all activities
 
-Docs: https://api.immich.app/endpoints/activities/getActivities
+    Docs: https://api.immich.app/endpoints/activities/getActivities
     """
     kwargs = {}
-    kwargs['album_id'] = album_id
+    kwargs["album_id"] = album_id
     if asset_id is not None:
-        kwargs['asset_id'] = asset_id
+        kwargs["asset_id"] = asset_id
     if level is not None:
-        kwargs['level'] = level
+        kwargs["level"] = level
     if type is not None:
-        kwargs['type'] = type
+        kwargs["type"] = type
     if user_id is not None:
-        kwargs['user_id'] = user_id
-    client = ctx.obj['client']
-    result = run_command(client, client.activities, 'get_activities', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+        kwargs["user_id"] = user_id
+    client = ctx.obj["client"]
+    result = run_command(client, client.activities, "get_activities", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("get-activity-statistics")
 def get_activity_statistics(
@@ -96,13 +107,13 @@ def get_activity_statistics(
 ) -> None:
     """Retrieve activity statistics
 
-Docs: https://api.immich.app/endpoints/activities/getActivityStatistics
+    Docs: https://api.immich.app/endpoints/activities/getActivityStatistics
     """
     kwargs = {}
-    kwargs['album_id'] = album_id
+    kwargs["album_id"] = album_id
     if asset_id is not None:
-        kwargs['asset_id'] = asset_id
-    client = ctx.obj['client']
-    result = run_command(client, client.activities, 'get_activity_statistics', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+        kwargs["asset_id"] = asset_id
+    client = ctx.obj["client"]
+    result = run_command(client, client.activities, "get_activity_statistics", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

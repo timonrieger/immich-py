@@ -3,14 +3,22 @@
 from __future__ import annotations
 
 from datetime import datetime
-from pathlib import Path
 import typer
 
-from immich.cli.runtime import load_file_bytes, deserialize_request_body, parse_complex_list, print_response, run_command, set_nested
+from immich.cli.runtime import (
+    deserialize_request_body,
+    print_response,
+    run_command,
+    set_nested,
+)
 
-app = typer.Typer(help="""A memory is a specialized collection of assets with dedicated viewing implementations in the web and mobile clients. A memory includes fields related to visibility and are automatically generated per user via a background job.
+app = typer.Typer(
+    help="""A memory is a specialized collection of assets with dedicated viewing implementations in the web and mobile clients. A memory includes fields related to visibility and are automatically generated per user via a background job.
 
-Docs: https://api.immich.app/endpoints/memories""", context_settings={'help_option_names': ['-h', '--help']})
+Docs: https://api.immich.app/endpoints/memories""",
+    context_settings={"help_option_names": ["-h", "--help"]},
+)
+
 
 @app.command("add-memory-assets")
 def add_memory_assets(
@@ -20,23 +28,25 @@ def add_memory_assets(
 ) -> None:
     """Add assets to a memory
 
-Docs: https://api.immich.app/endpoints/memories/addMemoryAssets
+    Docs: https://api.immich.app/endpoints/memories/addMemoryAssets
     """
     kwargs = {}
-    kwargs['id'] = id
+    kwargs["id"] = id
     has_flags = any([ids])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
     if any([ids]):
         json_data = {}
-        set_nested(json_data, ['ids'], ids)
+        set_nested(json_data, ["ids"], ids)
         from immich.client.models.bulk_ids_dto import BulkIdsDto
+
         bulk_ids_dto = deserialize_request_body(json_data, BulkIdsDto)
-        kwargs['bulk_ids_dto'] = bulk_ids_dto
-    client = ctx.obj['client']
-    result = run_command(client, client.memories, 'add_memory_assets', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+        kwargs["bulk_ids_dto"] = bulk_ids_dto
+    client = ctx.obj["client"]
+    result = run_command(client, client.memories, "add_memory_assets", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("create-memory")
 def create_memory(
@@ -50,7 +60,7 @@ def create_memory(
 ) -> None:
     """Create a memory
 
-Docs: https://api.immich.app/endpoints/memories/createMemory
+    Docs: https://api.immich.app/endpoints/memories/createMemory
     """
     kwargs = {}
     has_flags = any([asset_ids, data_year, is_saved, memory_at, seen_at, type])
@@ -59,21 +69,23 @@ Docs: https://api.immich.app/endpoints/memories/createMemory
     if any([asset_ids, data_year, is_saved, memory_at, seen_at, type]):
         json_data = {}
         if asset_ids is not None:
-            set_nested(json_data, ['assetIds'], asset_ids)
-        set_nested(json_data, ['data', 'year'], data_year)
+            set_nested(json_data, ["assetIds"], asset_ids)
+        set_nested(json_data, ["data", "year"], data_year)
         if is_saved is not None:
-            set_nested(json_data, ['isSaved'], is_saved)
-        set_nested(json_data, ['memoryAt'], memory_at)
+            set_nested(json_data, ["isSaved"], is_saved)
+        set_nested(json_data, ["memoryAt"], memory_at)
         if seen_at is not None:
-            set_nested(json_data, ['seenAt'], seen_at)
-        set_nested(json_data, ['type'], type)
+            set_nested(json_data, ["seenAt"], seen_at)
+        set_nested(json_data, ["type"], type)
         from immich.client.models.memory_create_dto import MemoryCreateDto
+
         memory_create_dto = deserialize_request_body(json_data, MemoryCreateDto)
-        kwargs['memory_create_dto'] = memory_create_dto
-    client = ctx.obj['client']
-    result = run_command(client, client.memories, 'create_memory', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+        kwargs["memory_create_dto"] = memory_create_dto
+    client = ctx.obj["client"]
+    result = run_command(client, client.memories, "create_memory", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("delete-memory")
 def delete_memory(
@@ -82,14 +94,15 @@ def delete_memory(
 ) -> None:
     """Delete a memory
 
-Docs: https://api.immich.app/endpoints/memories/deleteMemory
+    Docs: https://api.immich.app/endpoints/memories/deleteMemory
     """
     kwargs = {}
-    kwargs['id'] = id
-    client = ctx.obj['client']
-    result = run_command(client, client.memories, 'delete_memory', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+    kwargs["id"] = id
+    client = ctx.obj["client"]
+    result = run_command(client, client.memories, "delete_memory", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("get-memory")
 def get_memory(
@@ -98,14 +111,15 @@ def get_memory(
 ) -> None:
     """Retrieve a memory
 
-Docs: https://api.immich.app/endpoints/memories/getMemory
+    Docs: https://api.immich.app/endpoints/memories/getMemory
     """
     kwargs = {}
-    kwargs['id'] = id
-    client = ctx.obj['client']
-    result = run_command(client, client.memories, 'get_memory', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+    kwargs["id"] = id
+    client = ctx.obj["client"]
+    result = run_command(client, client.memories, "get_memory", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("memories-statistics")
 def memories_statistics(
@@ -114,30 +128,33 @@ def memories_statistics(
     is_saved: str | None = typer.Option(None, "--is-saved"),
     is_trashed: str | None = typer.Option(None, "--is-trashed"),
     order: str | None = typer.Option(None, "--order"),
-    size: int | None = typer.Option(None, "--size", help="""Number of memories to return"""),
+    size: int | None = typer.Option(
+        None, "--size", help="""Number of memories to return"""
+    ),
     type: str | None = typer.Option(None, "--type"),
 ) -> None:
     """Retrieve memories statistics
 
-Docs: https://api.immich.app/endpoints/memories/memoriesStatistics
+    Docs: https://api.immich.app/endpoints/memories/memoriesStatistics
     """
     kwargs = {}
     if for_ is not None:
-        kwargs['for_'] = for_
+        kwargs["for_"] = for_
     if is_saved is not None:
-        kwargs['is_saved'] = is_saved.lower() == 'true'
+        kwargs["is_saved"] = is_saved.lower() == "true"
     if is_trashed is not None:
-        kwargs['is_trashed'] = is_trashed.lower() == 'true'
+        kwargs["is_trashed"] = is_trashed.lower() == "true"
     if order is not None:
-        kwargs['order'] = order
+        kwargs["order"] = order
     if size is not None:
-        kwargs['size'] = size
+        kwargs["size"] = size
     if type is not None:
-        kwargs['type'] = type
-    client = ctx.obj['client']
-    result = run_command(client, client.memories, 'memories_statistics', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+        kwargs["type"] = type
+    client = ctx.obj["client"]
+    result = run_command(client, client.memories, "memories_statistics", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("remove-memory-assets")
 def remove_memory_assets(
@@ -147,23 +164,25 @@ def remove_memory_assets(
 ) -> None:
     """Remove assets from a memory
 
-Docs: https://api.immich.app/endpoints/memories/removeMemoryAssets
+    Docs: https://api.immich.app/endpoints/memories/removeMemoryAssets
     """
     kwargs = {}
-    kwargs['id'] = id
+    kwargs["id"] = id
     has_flags = any([ids])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
     if any([ids]):
         json_data = {}
-        set_nested(json_data, ['ids'], ids)
+        set_nested(json_data, ["ids"], ids)
         from immich.client.models.bulk_ids_dto import BulkIdsDto
+
         bulk_ids_dto = deserialize_request_body(json_data, BulkIdsDto)
-        kwargs['bulk_ids_dto'] = bulk_ids_dto
-    client = ctx.obj['client']
-    result = run_command(client, client.memories, 'remove_memory_assets', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+        kwargs["bulk_ids_dto"] = bulk_ids_dto
+    client = ctx.obj["client"]
+    result = run_command(client, client.memories, "remove_memory_assets", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("search-memories")
 def search_memories(
@@ -172,30 +191,33 @@ def search_memories(
     is_saved: str | None = typer.Option(None, "--is-saved"),
     is_trashed: str | None = typer.Option(None, "--is-trashed"),
     order: str | None = typer.Option(None, "--order"),
-    size: int | None = typer.Option(None, "--size", help="""Number of memories to return"""),
+    size: int | None = typer.Option(
+        None, "--size", help="""Number of memories to return"""
+    ),
     type: str | None = typer.Option(None, "--type"),
 ) -> None:
     """Retrieve memories
 
-Docs: https://api.immich.app/endpoints/memories/searchMemories
+    Docs: https://api.immich.app/endpoints/memories/searchMemories
     """
     kwargs = {}
     if for_ is not None:
-        kwargs['for_'] = for_
+        kwargs["for_"] = for_
     if is_saved is not None:
-        kwargs['is_saved'] = is_saved.lower() == 'true'
+        kwargs["is_saved"] = is_saved.lower() == "true"
     if is_trashed is not None:
-        kwargs['is_trashed'] = is_trashed.lower() == 'true'
+        kwargs["is_trashed"] = is_trashed.lower() == "true"
     if order is not None:
-        kwargs['order'] = order
+        kwargs["order"] = order
     if size is not None:
-        kwargs['size'] = size
+        kwargs["size"] = size
     if type is not None:
-        kwargs['type'] = type
-    client = ctx.obj['client']
-    result = run_command(client, client.memories, 'search_memories', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+        kwargs["type"] = type
+    client = ctx.obj["client"]
+    result = run_command(client, client.memories, "search_memories", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("update-memory")
 def update_memory(
@@ -207,25 +229,26 @@ def update_memory(
 ) -> None:
     """Update a memory
 
-Docs: https://api.immich.app/endpoints/memories/updateMemory
+    Docs: https://api.immich.app/endpoints/memories/updateMemory
     """
     kwargs = {}
-    kwargs['id'] = id
+    kwargs["id"] = id
     has_flags = any([is_saved, memory_at, seen_at])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
     if any([is_saved, memory_at, seen_at]):
         json_data = {}
         if is_saved is not None:
-            set_nested(json_data, ['isSaved'], is_saved)
+            set_nested(json_data, ["isSaved"], is_saved)
         if memory_at is not None:
-            set_nested(json_data, ['memoryAt'], memory_at)
+            set_nested(json_data, ["memoryAt"], memory_at)
         if seen_at is not None:
-            set_nested(json_data, ['seenAt'], seen_at)
+            set_nested(json_data, ["seenAt"], seen_at)
         from immich.client.models.memory_update_dto import MemoryUpdateDto
+
         memory_update_dto = deserialize_request_body(json_data, MemoryUpdateDto)
-        kwargs['memory_update_dto'] = memory_update_dto
-    client = ctx.obj['client']
-    result = run_command(client, client.memories, 'update_memory', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+        kwargs["memory_update_dto"] = memory_update_dto
+    client = ctx.obj["client"]
+    result = run_command(client, client.memories, "update_memory", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

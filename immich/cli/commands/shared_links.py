@@ -3,14 +3,22 @@
 from __future__ import annotations
 
 from datetime import datetime
-from pathlib import Path
 import typer
 
-from immich.cli.runtime import load_file_bytes, deserialize_request_body, parse_complex_list, print_response, run_command, set_nested
+from immich.cli.runtime import (
+    deserialize_request_body,
+    print_response,
+    run_command,
+    set_nested,
+)
 
-app = typer.Typer(help="""A shared link is a public url that provides access to a specific album, asset, or collection of assets. A shared link can be protected with a password, include a specific slug, allow or disallow downloads, and optionally include an expiration date.
+app = typer.Typer(
+    help="""A shared link is a public url that provides access to a specific album, asset, or collection of assets. A shared link can be protected with a password, include a specific slug, allow or disallow downloads, and optionally include an expiration date.
 
-Docs: https://api.immich.app/endpoints/shared-links""", context_settings={'help_option_names': ['-h', '--help']})
+Docs: https://api.immich.app/endpoints/shared-links""",
+    context_settings={"help_option_names": ["-h", "--help"]},
+)
+
 
 @app.command("add-shared-link-assets")
 def add_shared_link_assets(
@@ -22,27 +30,31 @@ def add_shared_link_assets(
 ) -> None:
     """Add assets to a shared link
 
-Docs: https://api.immich.app/endpoints/shared-links/addSharedLinkAssets
+    Docs: https://api.immich.app/endpoints/shared-links/addSharedLinkAssets
     """
     kwargs = {}
-    kwargs['id'] = id
+    kwargs["id"] = id
     if key is not None:
-        kwargs['key'] = key
+        kwargs["key"] = key
     if slug is not None:
-        kwargs['slug'] = slug
+        kwargs["slug"] = slug
     has_flags = any([asset_ids])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
     if any([asset_ids]):
         json_data = {}
-        set_nested(json_data, ['assetIds'], asset_ids)
+        set_nested(json_data, ["assetIds"], asset_ids)
         from immich.client.models.asset_ids_dto import AssetIdsDto
+
         asset_ids_dto = deserialize_request_body(json_data, AssetIdsDto)
-        kwargs['asset_ids_dto'] = asset_ids_dto
-    client = ctx.obj['client']
-    result = run_command(client, client.shared_links, 'add_shared_link_assets', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+        kwargs["asset_ids_dto"] = asset_ids_dto
+    client = ctx.obj["client"]
+    result = run_command(
+        client, client.shared_links, "add_shared_link_assets", **kwargs
+    )
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("create-shared-link")
 def create_shared_link(
@@ -60,40 +72,70 @@ def create_shared_link(
 ) -> None:
     """Create a shared link
 
-Docs: https://api.immich.app/endpoints/shared-links/createSharedLink
+    Docs: https://api.immich.app/endpoints/shared-links/createSharedLink
     """
     kwargs = {}
-    has_flags = any([album_id, allow_download, allow_upload, asset_ids, description, expires_at, password, show_metadata, slug, type])
+    has_flags = any(
+        [
+            album_id,
+            allow_download,
+            allow_upload,
+            asset_ids,
+            description,
+            expires_at,
+            password,
+            show_metadata,
+            slug,
+            type,
+        ]
+    )
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([album_id, allow_download, allow_upload, asset_ids, description, expires_at, password, show_metadata, slug, type]):
+    if any(
+        [
+            album_id,
+            allow_download,
+            allow_upload,
+            asset_ids,
+            description,
+            expires_at,
+            password,
+            show_metadata,
+            slug,
+            type,
+        ]
+    ):
         json_data = {}
         if album_id is not None:
-            set_nested(json_data, ['albumId'], album_id)
+            set_nested(json_data, ["albumId"], album_id)
         if allow_download is not None:
-            set_nested(json_data, ['allowDownload'], allow_download)
+            set_nested(json_data, ["allowDownload"], allow_download)
         if allow_upload is not None:
-            set_nested(json_data, ['allowUpload'], allow_upload)
+            set_nested(json_data, ["allowUpload"], allow_upload)
         if asset_ids is not None:
-            set_nested(json_data, ['assetIds'], asset_ids)
+            set_nested(json_data, ["assetIds"], asset_ids)
         if description is not None:
-            set_nested(json_data, ['description'], description)
+            set_nested(json_data, ["description"], description)
         if expires_at is not None:
-            set_nested(json_data, ['expiresAt'], expires_at)
+            set_nested(json_data, ["expiresAt"], expires_at)
         if password is not None:
-            set_nested(json_data, ['password'], password)
+            set_nested(json_data, ["password"], password)
         if show_metadata is not None:
-            set_nested(json_data, ['showMetadata'], show_metadata)
+            set_nested(json_data, ["showMetadata"], show_metadata)
         if slug is not None:
-            set_nested(json_data, ['slug'], slug)
-        set_nested(json_data, ['type'], type)
+            set_nested(json_data, ["slug"], slug)
+        set_nested(json_data, ["type"], type)
         from immich.client.models.shared_link_create_dto import SharedLinkCreateDto
-        shared_link_create_dto = deserialize_request_body(json_data, SharedLinkCreateDto)
-        kwargs['shared_link_create_dto'] = shared_link_create_dto
-    client = ctx.obj['client']
-    result = run_command(client, client.shared_links, 'create_shared_link', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+
+        shared_link_create_dto = deserialize_request_body(
+            json_data, SharedLinkCreateDto
+        )
+        kwargs["shared_link_create_dto"] = shared_link_create_dto
+    client = ctx.obj["client"]
+    result = run_command(client, client.shared_links, "create_shared_link", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("get-all-shared-links")
 def get_all_shared_links(
@@ -103,17 +145,18 @@ def get_all_shared_links(
 ) -> None:
     """Retrieve all shared links
 
-Docs: https://api.immich.app/endpoints/shared-links/getAllSharedLinks
+    Docs: https://api.immich.app/endpoints/shared-links/getAllSharedLinks
     """
     kwargs = {}
     if album_id is not None:
-        kwargs['album_id'] = album_id
+        kwargs["album_id"] = album_id
     if id is not None:
-        kwargs['id'] = id
-    client = ctx.obj['client']
-    result = run_command(client, client.shared_links, 'get_all_shared_links', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+        kwargs["id"] = id
+    client = ctx.obj["client"]
+    result = run_command(client, client.shared_links, "get_all_shared_links", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("get-my-shared-link")
 def get_my_shared_link(
@@ -125,21 +168,22 @@ def get_my_shared_link(
 ) -> None:
     """Retrieve current shared link
 
-Docs: https://api.immich.app/endpoints/shared-links/getMySharedLink
+    Docs: https://api.immich.app/endpoints/shared-links/getMySharedLink
     """
     kwargs = {}
     if key is not None:
-        kwargs['key'] = key
+        kwargs["key"] = key
     if password is not None:
-        kwargs['password'] = password
+        kwargs["password"] = password
     if slug is not None:
-        kwargs['slug'] = slug
+        kwargs["slug"] = slug
     if token is not None:
-        kwargs['token'] = token
-    client = ctx.obj['client']
-    result = run_command(client, client.shared_links, 'get_my_shared_link', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+        kwargs["token"] = token
+    client = ctx.obj["client"]
+    result = run_command(client, client.shared_links, "get_my_shared_link", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("get-shared-link-by-id")
 def get_shared_link_by_id(
@@ -148,14 +192,15 @@ def get_shared_link_by_id(
 ) -> None:
     """Retrieve a shared link
 
-Docs: https://api.immich.app/endpoints/shared-links/getSharedLinkById
+    Docs: https://api.immich.app/endpoints/shared-links/getSharedLinkById
     """
     kwargs = {}
-    kwargs['id'] = id
-    client = ctx.obj['client']
-    result = run_command(client, client.shared_links, 'get_shared_link_by_id', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+    kwargs["id"] = id
+    client = ctx.obj["client"]
+    result = run_command(client, client.shared_links, "get_shared_link_by_id", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("remove-shared-link")
 def remove_shared_link(
@@ -164,14 +209,15 @@ def remove_shared_link(
 ) -> None:
     """Delete a shared link
 
-Docs: https://api.immich.app/endpoints/shared-links/removeSharedLink
+    Docs: https://api.immich.app/endpoints/shared-links/removeSharedLink
     """
     kwargs = {}
-    kwargs['id'] = id
-    client = ctx.obj['client']
-    result = run_command(client, client.shared_links, 'remove_shared_link', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+    kwargs["id"] = id
+    client = ctx.obj["client"]
+    result = run_command(client, client.shared_links, "remove_shared_link", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("remove-shared-link-assets")
 def remove_shared_link_assets(
@@ -183,27 +229,31 @@ def remove_shared_link_assets(
 ) -> None:
     """Remove assets from a shared link
 
-Docs: https://api.immich.app/endpoints/shared-links/removeSharedLinkAssets
+    Docs: https://api.immich.app/endpoints/shared-links/removeSharedLinkAssets
     """
     kwargs = {}
-    kwargs['id'] = id
+    kwargs["id"] = id
     if key is not None:
-        kwargs['key'] = key
+        kwargs["key"] = key
     if slug is not None:
-        kwargs['slug'] = slug
+        kwargs["slug"] = slug
     has_flags = any([asset_ids])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
     if any([asset_ids]):
         json_data = {}
-        set_nested(json_data, ['assetIds'], asset_ids)
+        set_nested(json_data, ["assetIds"], asset_ids)
         from immich.client.models.asset_ids_dto import AssetIdsDto
+
         asset_ids_dto = deserialize_request_body(json_data, AssetIdsDto)
-        kwargs['asset_ids_dto'] = asset_ids_dto
-    client = ctx.obj['client']
-    result = run_command(client, client.shared_links, 'remove_shared_link_assets', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+        kwargs["asset_ids_dto"] = asset_ids_dto
+    client = ctx.obj["client"]
+    result = run_command(
+        client, client.shared_links, "remove_shared_link_assets", **kwargs
+    )
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
+
 
 @app.command("update-shared-link")
 def update_shared_link(
@@ -211,9 +261,13 @@ def update_shared_link(
     id: str,
     allow_download: bool | None = typer.Option(None, "--allowDownload"),
     allow_upload: bool | None = typer.Option(None, "--allowUpload"),
-    change_expiry_time: bool | None = typer.Option(None, "--changeExpiryTime", help="""Few clients cannot send null to set the expiryTime to never.
+    change_expiry_time: bool | None = typer.Option(
+        None,
+        "--changeExpiryTime",
+        help="""Few clients cannot send null to set the expiryTime to never.
 Setting this flag and not sending expiryAt is considered as null instead.
-Clients that can send null values can ignore this."""),
+Clients that can send null values can ignore this.""",
+    ),
     description: str | None = typer.Option(None, "--description"),
     expires_at: datetime | None = typer.Option(None, "--expiresAt"),
     password: str | None = typer.Option(None, "--password"),
@@ -222,35 +276,58 @@ Clients that can send null values can ignore this."""),
 ) -> None:
     """Update a shared link
 
-Docs: https://api.immich.app/endpoints/shared-links/updateSharedLink
+    Docs: https://api.immich.app/endpoints/shared-links/updateSharedLink
     """
     kwargs = {}
-    kwargs['id'] = id
-    has_flags = any([allow_download, allow_upload, change_expiry_time, description, expires_at, password, show_metadata, slug])
+    kwargs["id"] = id
+    has_flags = any(
+        [
+            allow_download,
+            allow_upload,
+            change_expiry_time,
+            description,
+            expires_at,
+            password,
+            show_metadata,
+            slug,
+        ]
+    )
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([allow_download, allow_upload, change_expiry_time, description, expires_at, password, show_metadata, slug]):
+    if any(
+        [
+            allow_download,
+            allow_upload,
+            change_expiry_time,
+            description,
+            expires_at,
+            password,
+            show_metadata,
+            slug,
+        ]
+    ):
         json_data = {}
         if allow_download is not None:
-            set_nested(json_data, ['allowDownload'], allow_download)
+            set_nested(json_data, ["allowDownload"], allow_download)
         if allow_upload is not None:
-            set_nested(json_data, ['allowUpload'], allow_upload)
+            set_nested(json_data, ["allowUpload"], allow_upload)
         if change_expiry_time is not None:
-            set_nested(json_data, ['changeExpiryTime'], change_expiry_time)
+            set_nested(json_data, ["changeExpiryTime"], change_expiry_time)
         if description is not None:
-            set_nested(json_data, ['description'], description)
+            set_nested(json_data, ["description"], description)
         if expires_at is not None:
-            set_nested(json_data, ['expiresAt'], expires_at)
+            set_nested(json_data, ["expiresAt"], expires_at)
         if password is not None:
-            set_nested(json_data, ['password'], password)
+            set_nested(json_data, ["password"], password)
         if show_metadata is not None:
-            set_nested(json_data, ['showMetadata'], show_metadata)
+            set_nested(json_data, ["showMetadata"], show_metadata)
         if slug is not None:
-            set_nested(json_data, ['slug'], slug)
+            set_nested(json_data, ["slug"], slug)
         from immich.client.models.shared_link_edit_dto import SharedLinkEditDto
+
         shared_link_edit_dto = deserialize_request_body(json_data, SharedLinkEditDto)
-        kwargs['shared_link_edit_dto'] = shared_link_edit_dto
-    client = ctx.obj['client']
-    result = run_command(client, client.shared_links, 'update_shared_link', **kwargs)
-    format_mode = ctx.obj.get('format', 'pretty')
+        kwargs["shared_link_edit_dto"] = shared_link_edit_dto
+    client = ctx.obj["client"]
+    result = run_command(client, client.shared_links, "update_shared_link", **kwargs)
+    format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
