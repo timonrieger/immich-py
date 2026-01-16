@@ -26,10 +26,7 @@ Docs: https://api.immich.app/endpoints/tags/bulkTagAssets
     has_flags = any([asset_ids, tag_ids])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        asset_ids,
-        tag_ids,
-    ]):
+    if any([asset_ids, tag_ids]):
         json_data = {}
         set_nested(json_data, ['assetIds'], asset_ids)
         set_nested(json_data, ['tagIds'], tag_ids)
@@ -56,11 +53,7 @@ Docs: https://api.immich.app/endpoints/tags/createTag
     has_flags = any([color, name, parent_id])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        color,
-        name,
-        parent_id,
-    ]):
+    if any([color, name, parent_id]):
         json_data = {}
         if color is not None:
             set_nested(json_data, ['color'], color)
@@ -136,9 +129,7 @@ Docs: https://api.immich.app/endpoints/tags/tagAssets
     has_flags = any([ids])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        ids,
-    ]):
+    if any([ids]):
         json_data = {}
         set_nested(json_data, ['ids'], ids)
         from immich.client.models.bulk_ids_dto import BulkIdsDto
@@ -164,9 +155,7 @@ Docs: https://api.immich.app/endpoints/tags/untagAssets
     has_flags = any([ids])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        ids,
-    ]):
+    if any([ids]):
         json_data = {}
         set_nested(json_data, ['ids'], ids)
         from immich.client.models.bulk_ids_dto import BulkIdsDto
@@ -192,9 +181,7 @@ Docs: https://api.immich.app/endpoints/tags/updateTag
     has_flags = any([color])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        color,
-    ]):
+    if any([color]):
         json_data = {}
         if color is not None:
             set_nested(json_data, ['color'], color)
@@ -219,9 +206,7 @@ Docs: https://api.immich.app/endpoints/tags/upsertTags
     has_flags = any([tags])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        tags,
-    ]):
+    if any([tags]):
         json_data = {}
         set_nested(json_data, ['tags'], tags)
         from immich.client.models.tag_upsert_dto import TagUpsertDto

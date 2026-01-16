@@ -25,9 +25,7 @@ Docs: https://api.immich.app/endpoints/jobs/createJob
     has_flags = any([name])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        name,
-    ]):
+    if any([name]):
         json_data = {}
         set_nested(json_data, ['name'], name)
         from immich.client.models.job_create_dto import JobCreateDto
@@ -68,10 +66,7 @@ Docs: https://api.immich.app/endpoints/jobs/runQueueCommandLegacy
     has_flags = any([command, force])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        command,
-        force,
-    ]):
+    if any([command, force]):
         json_data = {}
         set_nested(json_data, ['command'], command)
         if force is not None:

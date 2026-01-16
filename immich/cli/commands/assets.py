@@ -25,9 +25,7 @@ Docs: https://api.immich.app/endpoints/assets/checkBulkUpload
     has_flags = any([assets])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        assets,
-    ]):
+    if any([assets]):
         json_data = {}
         value_assets = parse_complex_list(assets)
         set_nested(json_data, ['assets'], value_assets)
@@ -53,10 +51,7 @@ Docs: https://api.immich.app/endpoints/assets/checkExistingAssets
     has_flags = any([device_asset_ids, device_id])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        device_asset_ids,
-        device_id,
-    ]):
+    if any([device_asset_ids, device_id]):
         json_data = {}
         set_nested(json_data, ['deviceAssetIds'], device_asset_ids)
         set_nested(json_data, ['deviceId'], device_id)
@@ -87,15 +82,7 @@ Docs: https://api.immich.app/endpoints/assets/copyAsset
     has_flags = any([albums, favorite, shared_links, sidecar, source_id, stack, target_id])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        albums,
-        favorite,
-        shared_links,
-        sidecar,
-        source_id,
-        stack,
-        target_id,
-    ]):
+    if any([albums, favorite, shared_links, sidecar, source_id, stack, target_id]):
         json_data = {}
         if albums is not None:
             set_nested(json_data, ['albums'], albums)
@@ -149,10 +136,7 @@ Docs: https://api.immich.app/endpoints/assets/deleteAssets
     has_flags = any([force, ids])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        force,
-        ids,
-    ]):
+    if any([force, ids]):
         json_data = {}
         if force is not None:
             set_nested(json_data, ['force'], force)
@@ -178,9 +162,7 @@ Docs: https://api.immich.app/endpoints/assets/deleteBulkAssetMetadata
     has_flags = any([items])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        items,
-    ]):
+    if any([items]):
         json_data = {}
         value_items = parse_complex_list(items)
         set_nested(json_data, ['items'], value_items)
@@ -232,9 +214,7 @@ Docs: https://api.immich.app/endpoints/assets/editAsset
     has_flags = any([edits])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        edits,
-    ]):
+    if any([edits]):
         json_data = {}
         value_edits = parse_complex_list(edits)
         set_nested(json_data, ['edits'], value_edits)
@@ -502,10 +482,7 @@ Docs: https://api.immich.app/endpoints/assets/runAssetJobs
     has_flags = any([asset_ids, name])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        asset_ids,
-        name,
-    ]):
+    if any([asset_ids, name]):
         json_data = {}
         set_nested(json_data, ['assetIds'], asset_ids)
         set_nested(json_data, ['name'], name)
@@ -539,16 +516,7 @@ Docs: https://api.immich.app/endpoints/assets/updateAsset
     has_flags = any([date_time_original, description, is_favorite, latitude, live_photo_video_id, longitude, rating, visibility])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        date_time_original,
-        description,
-        is_favorite,
-        latitude,
-        live_photo_video_id,
-        longitude,
-        rating,
-        visibility,
-    ]):
+    if any([date_time_original, description, is_favorite, latitude, live_photo_video_id, longitude, rating, visibility]):
         json_data = {}
         if date_time_original is not None:
             set_nested(json_data, ['dateTimeOriginal'], date_time_original)
@@ -589,9 +557,7 @@ Docs: https://api.immich.app/endpoints/assets/updateAssetMetadata
     has_flags = any([items])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        items,
-    ]):
+    if any([items]):
         json_data = {}
         value_items = parse_complex_list(items)
         set_nested(json_data, ['items'], value_items)
@@ -626,19 +592,7 @@ Docs: https://api.immich.app/endpoints/assets/updateAssets
     has_flags = any([date_time_original, date_time_relative, description, duplicate_id, ids, is_favorite, latitude, longitude, rating, time_zone, visibility])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        date_time_original,
-        date_time_relative,
-        description,
-        duplicate_id,
-        ids,
-        is_favorite,
-        latitude,
-        longitude,
-        rating,
-        time_zone,
-        visibility,
-    ]):
+    if any([date_time_original, date_time_relative, description, duplicate_id, ids, is_favorite, latitude, longitude, rating, time_zone, visibility]):
         json_data = {}
         if date_time_original is not None:
             set_nested(json_data, ['dateTimeOriginal'], date_time_original)
@@ -682,9 +636,7 @@ Docs: https://api.immich.app/endpoints/assets/updateBulkAssetMetadata
     has_flags = any([items])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        items,
-    ]):
+    if any([items]):
         json_data = {}
         value_items = parse_complex_list(items)
         set_nested(json_data, ['items'], value_items)

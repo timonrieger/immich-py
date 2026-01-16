@@ -67,9 +67,7 @@ Docs: https://api.immich.app/endpoints/system-metadata/updateAdminOnboarding
     has_flags = any([is_onboarded])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        is_onboarded,
-    ]):
+    if any([is_onboarded]):
         json_data = {}
         set_nested(json_data, ['isOnboarded'], is_onboarded)
         from immich.client.models.admin_onboarding_update_dto import AdminOnboardingUpdateDto

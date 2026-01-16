@@ -25,9 +25,7 @@ Docs: https://api.immich.app/endpoints/partners/createPartner
     has_flags = any([shared_with_id])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        shared_with_id,
-    ]):
+    if any([shared_with_id]):
         json_data = {}
         set_nested(json_data, ['sharedWithId'], shared_with_id)
         from immich.client.models.partner_create_dto import PartnerCreateDto
@@ -101,9 +99,7 @@ Docs: https://api.immich.app/endpoints/partners/updatePartner
     has_flags = any([in_timeline])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        in_timeline,
-    ]):
+    if any([in_timeline]):
         json_data = {}
         set_nested(json_data, ['inTimeline'], in_timeline)
         from immich.client.models.partner_update_dto import PartnerUpdateDto

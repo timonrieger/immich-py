@@ -41,9 +41,7 @@ Docs: https://api.immich.app/endpoints/duplicates/deleteDuplicates
     has_flags = any([ids])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        ids,
-    ]):
+    if any([ids]):
         json_data = {}
         set_nested(json_data, ['ids'], ids)
         from immich.client.models.bulk_ids_dto import BulkIdsDto

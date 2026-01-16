@@ -28,12 +28,7 @@ Docs: https://api.immich.app/endpoints/libraries/createLibrary
     has_flags = any([exclusion_patterns, import_paths, name, owner_id])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        exclusion_patterns,
-        import_paths,
-        name,
-        owner_id,
-    ]):
+    if any([exclusion_patterns, import_paths, name, owner_id]):
         json_data = {}
         if exclusion_patterns is not None:
             set_nested(json_data, ['exclusionPatterns'], exclusion_patterns)
@@ -145,11 +140,7 @@ Docs: https://api.immich.app/endpoints/libraries/updateLibrary
     has_flags = any([exclusion_patterns, import_paths, name])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        exclusion_patterns,
-        import_paths,
-        name,
-    ]):
+    if any([exclusion_patterns, import_paths, name]):
         json_data = {}
         if exclusion_patterns is not None:
             set_nested(json_data, ['exclusionPatterns'], exclusion_patterns)
@@ -181,10 +172,7 @@ Docs: https://api.immich.app/endpoints/libraries/validate
     has_flags = any([exclusion_patterns, import_paths])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        exclusion_patterns,
-        import_paths,
-    ]):
+    if any([exclusion_patterns, import_paths]):
         json_data = {}
         if exclusion_patterns is not None:
             set_nested(json_data, ['exclusionPatterns'], exclusion_patterns)

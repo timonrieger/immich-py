@@ -25,9 +25,7 @@ Docs: https://api.immich.app/endpoints/sync/deleteSyncAck
     has_flags = any([types])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        types,
-    ]):
+    if any([types]):
         json_data = {}
         if types is not None:
             set_nested(json_data, ['types'], types)
@@ -53,10 +51,7 @@ Docs: https://api.immich.app/endpoints/sync/getDeltaSync
     has_flags = any([updated_after, user_ids])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        updated_after,
-        user_ids,
-    ]):
+    if any([updated_after, user_ids]):
         json_data = {}
         set_nested(json_data, ['updatedAfter'], updated_after)
         set_nested(json_data, ['userIds'], user_ids)
@@ -84,12 +79,7 @@ Docs: https://api.immich.app/endpoints/sync/getFullSyncForUser
     has_flags = any([last_id, limit, updated_until, user_id])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        last_id,
-        limit,
-        updated_until,
-        user_id,
-    ]):
+    if any([last_id, limit, updated_until, user_id]):
         json_data = {}
         if last_id is not None:
             set_nested(json_data, ['lastId'], last_id)
@@ -133,10 +123,7 @@ Docs: https://api.immich.app/endpoints/sync/getSyncStream
     has_flags = any([reset, types])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        reset,
-        types,
-    ]):
+    if any([reset, types]):
         json_data = {}
         if reset is not None:
             set_nested(json_data, ['reset'], reset)
@@ -162,9 +149,7 @@ Docs: https://api.immich.app/endpoints/sync/sendSyncAck
     has_flags = any([acks])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        acks,
-    ]):
+    if any([acks]):
         json_data = {}
         set_nested(json_data, ['acks'], acks)
         from immich.client.models.sync_ack_set_dto import SyncAckSetDto

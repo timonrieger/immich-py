@@ -27,11 +27,7 @@ Docs: https://api.immich.app/endpoints/authentication/changePassword
     has_flags = any([invalidate_sessions, new_password, password])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        invalidate_sessions,
-        new_password,
-        password,
-    ]):
+    if any([invalidate_sessions, new_password, password]):
         json_data = {}
         if invalidate_sessions is not None:
             set_nested(json_data, ['invalidateSessions'], invalidate_sessions)
@@ -60,11 +56,7 @@ Docs: https://api.immich.app/endpoints/authentication/changePinCode
     has_flags = any([new_pin_code, password, pin_code])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        new_pin_code,
-        password,
-        pin_code,
-    ]):
+    if any([new_pin_code, password, pin_code]):
         json_data = {}
         set_nested(json_data, ['newPinCode'], new_pin_code)
         if password is not None:
@@ -94,11 +86,7 @@ Docs: https://api.immich.app/endpoints/authentication/finishOAuth
     has_flags = any([code_verifier, state, url])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        code_verifier,
-        state,
-        url,
-    ]):
+    if any([code_verifier, state, url]):
         json_data = {}
         if code_verifier is not None:
             set_nested(json_data, ['codeVerifier'], code_verifier)
@@ -142,11 +130,7 @@ Docs: https://api.immich.app/endpoints/authentication/linkOAuthAccount
     has_flags = any([code_verifier, state, url])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        code_verifier,
-        state,
-        url,
-    ]):
+    if any([code_verifier, state, url]):
         json_data = {}
         if code_verifier is not None:
             set_nested(json_data, ['codeVerifier'], code_verifier)
@@ -189,10 +173,7 @@ Docs: https://api.immich.app/endpoints/authentication/login
     has_flags = any([email, password])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        email,
-        password,
-    ]):
+    if any([email, password]):
         json_data = {}
         set_nested(json_data, ['email'], email)
         set_nested(json_data, ['password'], password)
@@ -246,10 +227,7 @@ Docs: https://api.immich.app/endpoints/authentication/resetPinCode
     has_flags = any([password, pin_code])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        password,
-        pin_code,
-    ]):
+    if any([password, pin_code]):
         json_data = {}
         if password is not None:
             set_nested(json_data, ['password'], password)
@@ -276,9 +254,7 @@ Docs: https://api.immich.app/endpoints/authentication/setupPinCode
     has_flags = any([pin_code])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        pin_code,
-    ]):
+    if any([pin_code]):
         json_data = {}
         set_nested(json_data, ['pinCode'], pin_code)
         from immich.client.models.pin_code_setup_dto import PinCodeSetupDto
@@ -304,11 +280,7 @@ Docs: https://api.immich.app/endpoints/authentication/signUpAdmin
     has_flags = any([email, name, password])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        email,
-        name,
-        password,
-    ]):
+    if any([email, name, password]):
         json_data = {}
         set_nested(json_data, ['email'], email)
         set_nested(json_data, ['name'], name)
@@ -336,11 +308,7 @@ Docs: https://api.immich.app/endpoints/authentication/startOAuth
     has_flags = any([code_challenge, redirect_uri, state])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        code_challenge,
-        redirect_uri,
-        state,
-    ]):
+    if any([code_challenge, redirect_uri, state]):
         json_data = {}
         if code_challenge is not None:
             set_nested(json_data, ['codeChallenge'], code_challenge)
@@ -383,10 +351,7 @@ Docs: https://api.immich.app/endpoints/authentication/unlockAuthSession
     has_flags = any([password, pin_code])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        password,
-        pin_code,
-    ]):
+    if any([password, pin_code]):
         json_data = {}
         if password is not None:
             set_nested(json_data, ['password'], password)

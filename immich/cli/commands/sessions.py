@@ -27,11 +27,7 @@ Docs: https://api.immich.app/endpoints/sessions/createSession
     has_flags = any([device_os, device_type, duration])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        device_os,
-        device_type,
-        duration,
-    ]):
+    if any([device_os, device_type, duration]):
         json_data = {}
         if device_os is not None:
             set_nested(json_data, ['deviceOS'], device_os)
@@ -122,9 +118,7 @@ Docs: https://api.immich.app/endpoints/sessions/updateSession
     has_flags = any([is_pending_sync_reset])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        is_pending_sync_reset,
-    ]):
+    if any([is_pending_sync_reset]):
         json_data = {}
         if is_pending_sync_reset is not None:
             set_nested(json_data, ['isPendingSyncReset'], is_pending_sync_reset)

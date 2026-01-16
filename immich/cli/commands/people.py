@@ -30,13 +30,7 @@ Docs: https://api.immich.app/endpoints/people/createPerson
     has_flags = any([birth_date, color, is_favorite, is_hidden, name])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        birth_date,
-        color,
-        is_favorite,
-        is_hidden,
-        name,
-    ]):
+    if any([birth_date, color, is_favorite, is_hidden, name]):
         json_data = {}
         if birth_date is not None:
             set_nested(json_data, ['birthDate'], birth_date)
@@ -69,9 +63,7 @@ Docs: https://api.immich.app/endpoints/people/deletePeople
     has_flags = any([ids])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        ids,
-    ]):
+    if any([ids]):
         json_data = {}
         set_nested(json_data, ['ids'], ids)
         from immich.client.models.bulk_ids_dto import BulkIdsDto
@@ -190,9 +182,7 @@ Docs: https://api.immich.app/endpoints/people/mergePerson
     has_flags = any([ids])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        ids,
-    ]):
+    if any([ids]):
         json_data = {}
         set_nested(json_data, ['ids'], ids)
         from immich.client.models.merge_person_dto import MergePersonDto
@@ -218,9 +208,7 @@ Docs: https://api.immich.app/endpoints/people/reassignFaces
     has_flags = any([data])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        data,
-    ]):
+    if any([data]):
         json_data = {}
         value_data = parse_complex_list(data)
         set_nested(json_data, ['data'], value_data)
@@ -245,9 +233,7 @@ Docs: https://api.immich.app/endpoints/people/updatePeople
     has_flags = any([people])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        people,
-    ]):
+    if any([people]):
         json_data = {}
         value_people = parse_complex_list(people)
         set_nested(json_data, ['people'], value_people)
@@ -280,14 +266,7 @@ Docs: https://api.immich.app/endpoints/people/updatePerson
     has_flags = any([birth_date, color, feature_face_asset_id, is_favorite, is_hidden, name])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        birth_date,
-        color,
-        feature_face_asset_id,
-        is_favorite,
-        is_hidden,
-        name,
-    ]):
+    if any([birth_date, color, feature_face_asset_id, is_favorite, is_hidden, name]):
         json_data = {}
         if birth_date is not None:
             set_nested(json_data, ['birthDate'], birth_date)

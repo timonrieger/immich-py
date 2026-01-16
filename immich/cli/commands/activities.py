@@ -28,12 +28,7 @@ Docs: https://api.immich.app/endpoints/activities/createActivity
     has_flags = any([album_id, asset_id, comment, type])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        album_id,
-        asset_id,
-        comment,
-        type,
-    ]):
+    if any([album_id, asset_id, comment, type]):
         json_data = {}
         set_nested(json_data, ['albumId'], album_id)
         if asset_id is not None:

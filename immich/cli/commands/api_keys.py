@@ -26,10 +26,7 @@ Docs: https://api.immich.app/endpoints/api-keys/createApiKey
     has_flags = any([name, permissions])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        name,
-        permissions,
-    ]):
+    if any([name, permissions]):
         json_data = {}
         if name is not None:
             set_nested(json_data, ['name'], name)
@@ -118,10 +115,7 @@ Docs: https://api.immich.app/endpoints/api-keys/updateApiKey
     has_flags = any([name, permissions])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        name,
-        permissions,
-    ]):
+    if any([name, permissions]):
         json_data = {}
         if name is not None:
             set_nested(json_data, ['name'], name)

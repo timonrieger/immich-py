@@ -33,9 +33,7 @@ Docs: https://api.immich.app/endpoints/albums/addAssetsToAlbum
     has_flags = any([ids])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        ids,
-    ]):
+    if any([ids]):
         json_data = {}
         set_nested(json_data, ['ids'], ids)
         from immich.client.models.bulk_ids_dto import BulkIdsDto
@@ -66,10 +64,7 @@ Docs: https://api.immich.app/endpoints/albums/addAssetsToAlbums
     has_flags = any([album_ids, asset_ids])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        album_ids,
-        asset_ids,
-    ]):
+    if any([album_ids, asset_ids]):
         json_data = {}
         set_nested(json_data, ['albumIds'], album_ids)
         set_nested(json_data, ['assetIds'], asset_ids)
@@ -96,9 +91,7 @@ Docs: https://api.immich.app/endpoints/albums/addUsersToAlbum
     has_flags = any([album_users])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        album_users,
-    ]):
+    if any([album_users]):
         json_data = {}
         value_album_users = parse_complex_list(album_users)
         set_nested(json_data, ['albumUsers'], value_album_users)
@@ -126,12 +119,7 @@ Docs: https://api.immich.app/endpoints/albums/createAlbum
     has_flags = any([album_name, album_users, asset_ids, description])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        album_name,
-        album_users,
-        asset_ids,
-        description,
-    ]):
+    if any([album_name, album_users, asset_ids, description]):
         json_data = {}
         set_nested(json_data, ['albumName'], album_name)
         if album_users is not None:
@@ -241,9 +229,7 @@ Docs: https://api.immich.app/endpoints/albums/removeAssetFromAlbum
     has_flags = any([ids])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        ids,
-    ]):
+    if any([ids]):
         json_data = {}
         set_nested(json_data, ['ids'], ids)
         from immich.client.models.bulk_ids_dto import BulkIdsDto
@@ -291,13 +277,7 @@ Docs: https://api.immich.app/endpoints/albums/updateAlbumInfo
     has_flags = any([album_name, album_thumbnail_asset_id, description, is_activity_enabled, order])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        album_name,
-        album_thumbnail_asset_id,
-        description,
-        is_activity_enabled,
-        order,
-    ]):
+    if any([album_name, album_thumbnail_asset_id, description, is_activity_enabled, order]):
         json_data = {}
         if album_name is not None:
             set_nested(json_data, ['albumName'], album_name)
@@ -334,9 +314,7 @@ Docs: https://api.immich.app/endpoints/albums/updateAlbumUser
     has_flags = any([role])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        role,
-    ]):
+    if any([role]):
         json_data = {}
         set_nested(json_data, ['role'], role)
         from immich.client.models.update_album_user_dto import UpdateAlbumUserDto

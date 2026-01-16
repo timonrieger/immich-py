@@ -190,10 +190,7 @@ Docs: https://api.immich.app/endpoints/users/setUserLicense
     has_flags = any([activation_key, license_key])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        activation_key,
-        license_key,
-    ]):
+    if any([activation_key, license_key]):
         json_data = {}
         set_nested(json_data, ['activationKey'], activation_key)
         set_nested(json_data, ['licenseKey'], license_key)
@@ -218,9 +215,7 @@ Docs: https://api.immich.app/endpoints/users/setUserOnboarding
     has_flags = any([is_onboarded])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        is_onboarded,
-    ]):
+    if any([is_onboarded]):
         json_data = {}
         set_nested(json_data, ['isOnboarded'], is_onboarded)
         from immich.client.models.onboarding_dto import OnboardingDto
@@ -264,29 +259,7 @@ Docs: https://api.immich.app/endpoints/users/updateMyPreferences
     has_flags = any([albums_default_asset_order, avatar_color, cast_g_cast_enabled, download_archive_size, download_include_embedded_videos, email_notifications_album_invite, email_notifications_album_update, email_notifications_enabled, folders_enabled, folders_sidebar_web, memories_duration, memories_enabled, people_enabled, people_sidebar_web, purchase_hide_buy_button_until, purchase_show_support_badge, ratings_enabled, shared_links_enabled, shared_links_sidebar_web, tags_enabled, tags_sidebar_web])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        albums_default_asset_order,
-        avatar_color,
-        cast_g_cast_enabled,
-        download_archive_size,
-        download_include_embedded_videos,
-        email_notifications_album_invite,
-        email_notifications_album_update,
-        email_notifications_enabled,
-        folders_enabled,
-        folders_sidebar_web,
-        memories_duration,
-        memories_enabled,
-        people_enabled,
-        people_sidebar_web,
-        purchase_hide_buy_button_until,
-        purchase_show_support_badge,
-        ratings_enabled,
-        shared_links_enabled,
-        shared_links_sidebar_web,
-        tags_enabled,
-        tags_sidebar_web,
-    ]):
+    if any([albums_default_asset_order, avatar_color, cast_g_cast_enabled, download_archive_size, download_include_embedded_videos, email_notifications_album_invite, email_notifications_album_update, email_notifications_enabled, folders_enabled, folders_sidebar_web, memories_duration, memories_enabled, people_enabled, people_sidebar_web, purchase_hide_buy_button_until, purchase_show_support_badge, ratings_enabled, shared_links_enabled, shared_links_sidebar_web, tags_enabled, tags_sidebar_web]):
         json_data = {}
         if albums_default_asset_order is not None:
             set_nested(json_data, ['albums', 'defaultAssetOrder'], albums_default_asset_order)
@@ -354,12 +327,7 @@ Docs: https://api.immich.app/endpoints/users/updateMyUser
     has_flags = any([avatar_color, email, name, password])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        avatar_color,
-        email,
-        name,
-        password,
-    ]):
+    if any([avatar_color, email, name, password]):
         json_data = {}
         if avatar_color is not None:
             set_nested(json_data, ['avatarColor'], avatar_color)

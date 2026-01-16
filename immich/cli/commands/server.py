@@ -222,10 +222,7 @@ Docs: https://api.immich.app/endpoints/server/setServerLicense
     has_flags = any([activation_key, license_key])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        activation_key,
-        license_key,
-    ]):
+    if any([activation_key, license_key]):
         json_data = {}
         set_nested(json_data, ['activationKey'], activation_key)
         set_nested(json_data, ['licenseKey'], license_key)

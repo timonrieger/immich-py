@@ -32,16 +32,7 @@ Docs: https://api.immich.app/endpoints/faces/createFace
     has_flags = any([asset_id, height, image_height, image_width, person_id, width, x, y])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        asset_id,
-        height,
-        image_height,
-        image_width,
-        person_id,
-        width,
-        x,
-        y,
-    ]):
+    if any([asset_id, height, image_height, image_width, person_id, width, x, y]):
         json_data = {}
         set_nested(json_data, ['assetId'], asset_id)
         set_nested(json_data, ['height'], height)
@@ -74,9 +65,7 @@ Docs: https://api.immich.app/endpoints/faces/deleteFace
     has_flags = any([force])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        force,
-    ]):
+    if any([force]):
         json_data = {}
         set_nested(json_data, ['force'], force)
         from immich.client.models.asset_face_delete_dto import AssetFaceDeleteDto
@@ -118,9 +107,7 @@ Docs: https://api.immich.app/endpoints/faces/reassignFacesById
     has_flags = any([body_id])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        body_id,
-    ]):
+    if any([body_id]):
         json_data = {}
         set_nested(json_data, ['id'], body_id)
         from immich.client.models.face_dto import FaceDto

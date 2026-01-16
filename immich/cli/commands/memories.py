@@ -27,9 +27,7 @@ Docs: https://api.immich.app/endpoints/memories/addMemoryAssets
     has_flags = any([ids])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        ids,
-    ]):
+    if any([ids]):
         json_data = {}
         set_nested(json_data, ['ids'], ids)
         from immich.client.models.bulk_ids_dto import BulkIdsDto
@@ -58,14 +56,7 @@ Docs: https://api.immich.app/endpoints/memories/createMemory
     has_flags = any([asset_ids, data_year, is_saved, memory_at, seen_at, type])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        asset_ids,
-        data_year,
-        is_saved,
-        memory_at,
-        seen_at,
-        type,
-    ]):
+    if any([asset_ids, data_year, is_saved, memory_at, seen_at, type]):
         json_data = {}
         if asset_ids is not None:
             set_nested(json_data, ['assetIds'], asset_ids)
@@ -163,9 +154,7 @@ Docs: https://api.immich.app/endpoints/memories/removeMemoryAssets
     has_flags = any([ids])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        ids,
-    ]):
+    if any([ids]):
         json_data = {}
         set_nested(json_data, ['ids'], ids)
         from immich.client.models.bulk_ids_dto import BulkIdsDto
@@ -225,11 +214,7 @@ Docs: https://api.immich.app/endpoints/memories/updateMemory
     has_flags = any([is_saved, memory_at, seen_at])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        is_saved,
-        memory_at,
-        seen_at,
-    ]):
+    if any([is_saved, memory_at, seen_at]):
         json_data = {}
         if is_saved is not None:
             set_nested(json_data, ['isSaved'], is_saved)

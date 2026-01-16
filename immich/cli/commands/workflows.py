@@ -30,14 +30,7 @@ Docs: https://api.immich.app/endpoints/workflows/createWorkflow
     has_flags = any([actions, description, enabled, filters, name, trigger_type])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        actions,
-        description,
-        enabled,
-        filters,
-        name,
-        trigger_type,
-    ]):
+    if any([actions, description, enabled, filters, name, trigger_type]):
         json_data = {}
         value_actions = parse_complex_list(actions)
         set_nested(json_data, ['actions'], value_actions)
@@ -123,14 +116,7 @@ Docs: https://api.immich.app/endpoints/workflows/updateWorkflow
     has_flags = any([actions, description, enabled, filters, name, trigger_type])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        actions,
-        description,
-        enabled,
-        filters,
-        name,
-        trigger_type,
-    ]):
+    if any([actions, description, enabled, filters, name, trigger_type]):
         json_data = {}
         if actions is not None:
             value_actions = parse_complex_list(actions)

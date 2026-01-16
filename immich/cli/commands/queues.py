@@ -27,9 +27,7 @@ Docs: https://api.immich.app/endpoints/queues/emptyQueue
     has_flags = any([failed])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        failed,
-    ]):
+    if any([failed]):
         json_data = {}
         if failed is not None:
             set_nested(json_data, ['failed'], failed)
@@ -105,9 +103,7 @@ Docs: https://api.immich.app/endpoints/queues/updateQueue
     has_flags = any([is_paused])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        is_paused,
-    ]):
+    if any([is_paused]):
         json_data = {}
         if is_paused is not None:
             set_nested(json_data, ['isPaused'], is_paused)

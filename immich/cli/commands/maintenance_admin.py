@@ -25,9 +25,7 @@ Docs: https://api.immich.app/endpoints/maintenance-admin/maintenanceLogin
     has_flags = any([token])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        token,
-    ]):
+    if any([token]):
         json_data = {}
         if token is not None:
             set_nested(json_data, ['token'], token)
@@ -52,9 +50,7 @@ Docs: https://api.immich.app/endpoints/maintenance-admin/setMaintenanceMode
     has_flags = any([action])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        action,
-    ]):
+    if any([action]):
         json_data = {}
         set_nested(json_data, ['action'], action)
         from immich.client.models.set_maintenance_mode_dto import SetMaintenanceModeDto

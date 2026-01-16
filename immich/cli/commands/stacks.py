@@ -25,9 +25,7 @@ Docs: https://api.immich.app/endpoints/stacks/createStack
     has_flags = any([asset_ids])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        asset_ids,
-    ]):
+    if any([asset_ids]):
         json_data = {}
         set_nested(json_data, ['assetIds'], asset_ids)
         from immich.client.models.stack_create_dto import StackCreateDto
@@ -67,9 +65,7 @@ Docs: https://api.immich.app/endpoints/stacks/deleteStacks
     has_flags = any([ids])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        ids,
-    ]):
+    if any([ids]):
         json_data = {}
         set_nested(json_data, ['ids'], ids)
         from immich.client.models.bulk_ids_dto import BulkIdsDto
@@ -146,9 +142,7 @@ Docs: https://api.immich.app/endpoints/stacks/updateStack
     has_flags = any([primary_asset_id])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        primary_asset_id,
-    ]):
+    if any([primary_asset_id]):
         json_data = {}
         if primary_asset_id is not None:
             set_nested(json_data, ['primaryAssetId'], primary_asset_id)

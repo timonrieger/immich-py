@@ -41,9 +41,7 @@ Docs: https://api.immich.app/endpoints/notifications/deleteNotifications
     has_flags = any([ids])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        ids,
-    ]):
+    if any([ids]):
         json_data = {}
         set_nested(json_data, ['ids'], ids)
         from immich.client.models.notification_delete_all_dto import NotificationDeleteAllDto
@@ -111,9 +109,7 @@ Docs: https://api.immich.app/endpoints/notifications/updateNotification
     has_flags = any([read_at])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        read_at,
-    ]):
+    if any([read_at]):
         json_data = {}
         if read_at is not None:
             set_nested(json_data, ['readAt'], read_at)
@@ -139,10 +135,7 @@ Docs: https://api.immich.app/endpoints/notifications/updateNotifications
     has_flags = any([ids, read_at])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        ids,
-        read_at,
-    ]):
+    if any([ids, read_at]):
         json_data = {}
         set_nested(json_data, ['ids'], ids)
         if read_at is not None:

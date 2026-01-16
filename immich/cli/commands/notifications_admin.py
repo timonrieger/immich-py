@@ -31,15 +31,7 @@ Docs: https://api.immich.app/endpoints/notifications-admin/createNotification
     has_flags = any([data, description, level, read_at, title, type, user_id])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        data,
-        description,
-        level,
-        read_at,
-        title,
-        type,
-        user_id,
-    ]):
+    if any([data, description, level, read_at, title, type, user_id]):
         json_data = {}
         if data is not None:
             value_data = parse_complex_list(data)
@@ -77,9 +69,7 @@ Docs: https://api.immich.app/endpoints/notifications-admin/getNotificationTempla
     has_flags = any([template])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        template,
-    ]):
+    if any([template]):
         json_data = {}
         set_nested(json_data, ['template'], template)
         from immich.client.models.template_dto import TemplateDto
@@ -111,17 +101,7 @@ Docs: https://api.immich.app/endpoints/notifications-admin/sendTestEmailAdmin
     has_flags = any([enabled, from_, reply_to, transport_host, transport_ignore_cert, transport_password, transport_port, transport_secure, transport_username])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        enabled,
-        from_,
-        reply_to,
-        transport_host,
-        transport_ignore_cert,
-        transport_password,
-        transport_port,
-        transport_secure,
-        transport_username,
-    ]):
+    if any([enabled, from_, reply_to, transport_host, transport_ignore_cert, transport_password, transport_port, transport_secure, transport_username]):
         json_data = {}
         set_nested(json_data, ['enabled'], enabled)
         set_nested(json_data, ['from'], from_)

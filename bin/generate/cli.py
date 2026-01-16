@@ -7,7 +7,6 @@
 
 from __future__ import annotations
 
-import argparse
 import keyword
 import os
 import shutil
@@ -51,92 +50,21 @@ def to_python_ident(name: str) -> str:
     return ident
 
 
-def enum_class_name_from_ref(ref: str) -> str:
-    """Generate a Python class name from an OpenAPI $ref."""
-    # Extract the last component of the ref (e.g., '#/components/schemas/AssetType' -> 'AssetType')
-    parts = ref.split("/")
-    name = parts[-1] if parts else "Enum"
-    # Ensure it's a valid Python class name
-    return to_python_ident(name).replace("_", "").title() or "Enum"
-
 def python_type_from_schema(
     schema: dict[str, Any],
     spec: dict[str, Any] | None = None,
-    enum_collector: dict[str, dict[str, Any]] | None = None,
-    enum_context: str = "",
 ) -> str:
     """Convert OpenAPI schema to Python type hint.
 
     Args:
         schema: OpenAPI schema dict
         spec: Full OpenAPI spec for resolving refs
-        enum_collector: Dict to collect enum definitions (enum_name -> {values, base_type, ref})
-        enum_context: Context name for generating unique enum class names
     """
     schema = normalize_schema(schema, spec)
 
     # Inline enums are not supported - all enums must come from $ref
     # If we encounter an inline enum, fall back to string
     if "enum" in schema and "$ref" not in schema:
-        t = schema.get("type", "str")
-        if t == "integer":
-            return "int"
-        if t == "boolean":
-            return "bool"
-        if t == "number":
-            return "float"
-        return "str"
-
-    if "type" not in schema:
-        # Reference or complex type
-        if "$ref" in schema:
-            if spec is not None:
-                resolved = normalize_schema(
-                    resolve_schema_ref(spec, schema["$ref"]), spec
-                )
-                # Handle enum refs
-                if "enum" in resolved:
-                    enum_values = resolved.get("enum", [])
-                    if enum_values and enum_collector is not None:
-                        base_type = resolved.get("type", "str")
-                        if base_type not in ("str", "int", "float"):
-                            base_type = "str"
-
-                        enum_name = enum_class_name_from_ref(schema["$ref"])
-                        # Ensure uniqueness
-                        counter = 1
-                        original_name = enum_name
-                        while enum_name in enum_collector:
-                            enum_name = f"{original_name}{counter}"
-                            counter += 1
-
-                        enum_collector[enum_name] = {
-                            "values": enum_values,
-                            "base_type": base_type,
-                            "ref": schema["$ref"],
-                        }
-                        return enum_name
-
-                    # Fallback if no collector
-                    t = resolved.get("type", "str")
-                    if t == "integer":
-                        return "int"
-                    if t == "boolean":
-                        return "bool"
-                    if t == "number":
-                        return "float"
-                    return "str"
-                # fall back to resolved primitive if present
-                if "type" in resolved:
-                    return python_type_from_schema(
-                        resolved,
-                        spec=None,
-                        enum_collector=enum_collector,
-                        enum_context=enum_context,
-                    )
-            # Avoid typing.Any in CLI signatures: Typer/Click rejects it.
-            return "str"
-        # No type and no $ref - treat as complex/unknown, return str
         return "str"
 
     schema_type = schema.get("type")
@@ -158,39 +86,18 @@ def python_type_from_schema(
         return "bool"
     elif schema_type == "array":
         items = schema.get("items", {})
-        item_type = python_type_from_schema(items, spec, enum_collector, enum_context)
-        # Allow enum types in lists
-        if item_type not in {
-            "str",
-            "int",
-            "float",
-            "bool",
-            "datetime",
-        } and not item_type.startswith("list["):
-            # Check if it's an enum (not a primitive)
-            if enum_collector and item_type in enum_collector:
-                return f"list[{item_type}]"
-            # Fallback to str for unknown types
-            item_type = "str"
+        item_type = python_type_from_schema(items, spec)
         return f"list[{item_type}]"
     elif schema_type == "object":
         # Click can't map arbitrary objects; accept JSON as a string.
-        return "str"
-    else:
         return "str"
 
 
 def resolve_schema_ref(spec: dict[str, Any], ref: str) -> dict[str, Any]:
     """Resolve a local OpenAPI $ref like '#/components/schemas/Foo'."""
-    if not ref.startswith("#/"):
-        raise ValueError(f"Unsupported $ref (only local refs supported): {ref}")
     cur: Any = spec
     for part in ref.lstrip("#/").split("/"):
-        if not isinstance(cur, dict) or part not in cur:
-            raise ValueError(f"Unresolvable $ref: {ref}")
         cur = cur[part]
-    if not isinstance(cur, dict):
-        raise ValueError(f"Unresolvable $ref (not an object): {ref}")
     return cur
 
 
@@ -202,9 +109,6 @@ def normalize_schema(
     Today this focuses on "allOf" by merging object-ish schemas so we can keep
     generating dotted flags instead of collapsing to JSON strings.
     """
-    if not isinstance(schema, dict):
-        return {}
-
     # If we can, resolve refs up-front to expose actual types/properties.
     if "$ref" in schema and spec is not None:
         schema = resolve_schema_ref(spec, schema["$ref"])
@@ -212,33 +116,11 @@ def normalize_schema(
     # Merge allOf when possible (common in Immich OpenAPI for composed DTOs).
     if "allOf" in schema and isinstance(schema.get("allOf"), list):
         merged: dict[str, Any] = {k: v for k, v in schema.items() if k != "allOf"}
-        merged_required: set[str] = set(merged.get("required", []) or [])
-        merged_props: dict[str, Any] = dict(merged.get("properties", {}) or {})
 
         for sub in schema.get("allOf", []) or []:
-            if not isinstance(sub, dict):
-                continue
             sub_norm = normalize_schema(sub, spec)
-
-            req = sub_norm.get("required")
-            if isinstance(req, list):
-                merged_required |= set(req)
-
-            props = sub_norm.get("properties")
-            if isinstance(props, dict):
-                merged_props.update(props)
-
             for k, v in sub_norm.items():
-                if k in {"properties", "required"}:
-                    continue
-                # last-one-wins is fine for CLI typing/flattening purposes
                 merged[k] = v
-
-        if merged_props:
-            merged["type"] = "object"
-            merged["properties"] = merged_props
-        if merged_required:
-            merged["required"] = sorted(merged_required)
 
         schema = merged
 
@@ -248,11 +130,6 @@ def normalize_schema(
 def is_complex_type(schema: dict[str, Any], spec: dict[str, Any] | None = None) -> bool:
     """Check if schema represents a complex type (object, array-of-object, oneOf/anyOf, etc.)."""
     schema = normalize_schema(schema, spec)
-    if "$ref" in schema:
-        if spec is not None:
-            resolved = resolve_schema_ref(spec, schema["$ref"])
-            return is_complex_type(resolved, spec=None)
-        return True  # Unknown ref, treat as complex
 
     schema_type = schema.get("type")
     if schema_type == "object":
@@ -266,22 +143,12 @@ def is_complex_type(schema: dict[str, Any], spec: dict[str, Any] | None = None) 
                 # Enums and primitives are not complex - only objects are
                 if "enum" in resolved:
                     return False  # Array of enums is simple
-                if resolved.get("type") in ("string", "integer", "number", "boolean"):
-                    return False  # Array of primitives is simple
                 # If it's an object or unknown, treat as complex
                 return True
-            # Unknown ref, treat as complex to be safe
-            return True
-        if items.get("type") == "object":
-            return True
         return is_complex_type(items, spec)
 
     # oneOf, anyOf, allOf are complex
     if any(key in schema for key in ["oneOf", "anyOf", "allOf"]):
-        return True
-
-    # additionalProperties indicates object-like structure
-    if "additionalProperties" in schema:
         return True
 
     return False
@@ -300,11 +167,6 @@ def flatten_schema(
     if path is None:
         path = []
     schema = normalize_schema(schema, spec)
-
-    # Handle oneOf/anyOf - treat as complex, return single entry
-    # (allOf is normalized above to keep flattening working)
-    if any(key in schema for key in ["oneOf", "anyOf"]):
-        return [(path, schema, required_path)]
 
     schema_type = schema.get("type")
 
@@ -331,8 +193,6 @@ def flatten_schema(
         results: list[tuple[list[str], dict[str, Any], bool]] = []
 
         for prop_name, prop_schema in props.items():
-            if not isinstance(prop_schema, dict):
-                continue
             new_path = path + [prop_name]
             results.extend(
                 flatten_schema(
@@ -344,9 +204,6 @@ def flatten_schema(
             )
 
         return results
-
-    # Fallback: treat as complex
-    return [(path, schema, required_path)]
 
 
 def option_name_for_path(path_parts: list[str]) -> str:
@@ -389,7 +246,6 @@ def get_request_body_info(
             resolve_schema_ref(spec, ref),
             is_required,
         )
-    return None
 
 
 def generate_command_function(
@@ -397,7 +253,6 @@ def generate_command_function(
     spec: dict[str, Any],
     tag_attr: str,
     tag: str,
-    enum_collector: dict[str, dict[str, Any]] | None = None,
 ) -> str:
     """Generate a Typer command function for an operation.
 
@@ -427,8 +282,6 @@ def generate_command_function(
     # Build function signature
     lines = [f'@app.command("{cmd_name}")']
     lines.append(f"def {func_name}(")
-    # Typer context must be a non-default parameter; emit it first to avoid
-    # Python's "non-default follows default" SyntaxError.
     lines.append("    ctx: typer.Context,")
 
     # Track Python argument names to avoid duplicate arguments in the generated
@@ -439,37 +292,13 @@ def generate_command_function(
 
     # Path parameters (required positional)
     for param in sorted(path_params, key=lambda p: p["name"]):
-        openapi_name = param["name"]
-        param_name = to_python_ident(openapi_name)
+        param_name = to_python_ident(param["name"])
         used_param_names.add(param_name)
         schema = param.get("schema", {"type": "string"})
-        param_type = python_type_from_schema(schema, spec, enum_collector, param_name)
-        # Track if this is an enum type
-        is_enum = param_type in enum_collector if enum_collector else False
-        is_list_enum = param_type.startswith("list[") and param_type[5:-1] in (
-            enum_collector if enum_collector else {}
-        )
-        if is_enum:
-            enum_params[param_name] = False
-        elif is_list_enum:
-            enum_params[param_name] = True
+        param_type = python_type_from_schema(schema, spec)
         required = param.get("required", False)
-        description = param.get("description", "")
-        if description:
-            description_str = python_triple_quoted_str(description)
-            if required:
-                lines.append(
-                    f"    {param_name}: {param_type} = typer.Argument(..., help={description_str}),"
-                )
-            else:
-                lines.append(
-                    f"    {param_name}: {param_type} | None = typer.Argument(None, help={description_str}),"
-                )
-        else:
-            if required:
-                lines.append(f"    {param_name}: {param_type},")
-            else:
-                lines.append(f"    {param_name}: {param_type} | None = None,")
+        if required:
+            lines.append(f"    {param_name}: {param_type},")
 
     # Track all option names for collision detection
     used_option_names: set[str] = set()
@@ -490,26 +319,13 @@ def generate_command_function(
             boolean_query_params.add(param_name)
         else:
             param_type = python_type_from_schema(
-                schema, spec, enum_collector, param_name
+                schema, spec
             )
-        # Track if this is an enum type
-        is_enum = param_type in enum_collector if enum_collector else False
-        is_list_enum = param_type.startswith("list[") and param_type[5:-1] in (
-            enum_collector if enum_collector else {}
-        )
-        if is_enum:
-            enum_params[param_name] = False
-        elif is_list_enum:
-            enum_params[param_name] = True
         flag_name = to_kebab_case(openapi_name)
         full_opt_name = f"--{flag_name}"
         description = param.get("description", "")
 
         # Check for collisions
-        if full_opt_name in used_option_names:
-            raise ValueError(
-                f"Option name collision in {operation_id}: '{full_opt_name}' already used (query param)"
-            )
         used_option_names.add(full_opt_name)
 
         required = param.get("required", False)
@@ -539,25 +355,12 @@ def generate_command_function(
         param_name = to_python_ident(openapi_name)
         used_param_names.add(param_name)
         schema = param.get("schema", {"type": "string"})
-        param_type = python_type_from_schema(schema, spec, enum_collector, param_name)
-        # Track if this is an enum type
-        is_enum = param_type in enum_collector if enum_collector else False
-        is_list_enum = param_type.startswith("list[") and param_type[5:-1] in (
-            enum_collector if enum_collector else {}
-        )
-        if is_enum:
-            enum_params[param_name] = False
-        elif is_list_enum:
-            enum_params[param_name] = True
+        param_type = python_type_from_schema(schema, spec)
         flag_name = to_kebab_case(openapi_name)
         full_opt_name = f"--{flag_name}"
         description = param.get("description", "")
 
         # Check for collisions
-        if full_opt_name in used_option_names:
-            raise ValueError(
-                f"Option name collision in {operation_id}: '{full_opt_name}' already used (header param)"
-            )
         used_option_names.add(full_opt_name)
 
         required = param.get("required", False)
@@ -612,19 +415,6 @@ def generate_command_function(
                 if param_name in used_param_names:
                     param_name = f"body_{param_name}"
 
-                # Ensure uniqueness across both existing args and other body args
-                counter = 1
-                while param_name in used_param_names or any(
-                    existing[3] == param_name for existing in body_flags
-                ):
-                    candidate = f"{base_param_name}_{counter}"
-                    param_name = (
-                        f"body_{candidate}"
-                        if candidate in used_param_names
-                        else candidate
-                    )
-                    counter += 1
-
                 used_param_names.add(param_name)
 
                 # Determine type
@@ -633,18 +423,7 @@ def generate_command_function(
                 param_type = python_type_from_schema(
                     leaf_schema,
                     spec=None,
-                    enum_collector=enum_collector,
-                    enum_context=param_name,
                 )
-                # Track if this is an enum type
-                is_enum = param_type in enum_collector if enum_collector else False
-                is_list_enum = param_type.startswith("list[") and param_type[5:-1] in (
-                    enum_collector if enum_collector else {}
-                )
-                if is_enum:
-                    enum_params[param_name] = False
-                elif is_list_enum:
-                    enum_params[param_name] = True
                 is_complex = is_complex_type(leaf_schema, spec)
                 description = leaf_schema.get("description", "")
 
@@ -701,8 +480,6 @@ def generate_command_function(
             )
             required_props = set(resolved_schema.get("required", []) or [])
             for prop_name, prop_schema in sorted(props.items(), key=lambda kv: kv[0]):
-                if not isinstance(prop_schema, dict):
-                    continue
                 if (
                     prop_schema.get("type") == "string"
                     and prop_schema.get("format") == "binary"
@@ -712,32 +489,16 @@ def generate_command_function(
                     full_opt_name = f"--{opt_name}"
                     description = prop_schema.get("description", "")
 
-                    # Check for collisions
-                    if full_opt_name in used_option_names:
-                        raise ValueError(
-                            f"Option name collision in {operation_id}: '{full_opt_name}' already used"
-                        )
                     used_option_names.add(full_opt_name)
 
-                    if description:
-                        description_str = python_triple_quoted_str(description)
-                        if prop_name in required_props:
-                            lines.append(
-                                f'    {arg_name}: Path = typer.Option(..., "--{opt_name}", help={description_str}),'
-                            )
-                        else:
-                            lines.append(
-                                f'    {arg_name}: Path | None = typer.Option(None, "--{opt_name}", help={description_str}),'
-                            )
+                    if prop_name in required_props:
+                        lines.append(
+                            f'    {arg_name}: Path = typer.Option(..., "--{opt_name}", help="File to upload for {prop_name}"),'
+                        )
                     else:
-                        if prop_name in required_props:
-                            lines.append(
-                                f'    {arg_name}: Path = typer.Option(..., "--{opt_name}", help="File to upload for {prop_name}"),'
-                            )
-                        else:
-                            lines.append(
-                                f'    {arg_name}: Path | None = typer.Option(None, "--{opt_name}", help="File to upload for {prop_name}"),'
-                            )
+                        lines.append(
+                            f'    {arg_name}: Path | None = typer.Option(None, "--{opt_name}", help="File to upload for {prop_name}"),'
+                        )
 
     lines.append(") -> None:")
 
@@ -753,26 +514,7 @@ def generate_command_function(
     for param in path_params:
         openapi_name = param["name"]
         param_name = to_python_ident(openapi_name)
-        required = param.get("required", False)
-        if param_name in enum_params:
-            if enum_params[param_name]:  # list enum
-                if required:
-                    lines.append(
-                        f"    kwargs['{param_name}'] = [e.value for e in {param_name}]"
-                    )
-                else:
-                    lines.append(
-                        f"    kwargs['{param_name}'] = [e.value for e in {param_name}] if {param_name} else None"
-                    )
-            else:  # single enum
-                if required:
-                    lines.append(f"    kwargs['{param_name}'] = {param_name}.value")
-                else:
-                    lines.append(
-                        f"    kwargs['{param_name}'] = {param_name}.value if {param_name} is not None else None"
-                    )
-        else:
-            lines.append(f"    kwargs['{param_name}'] = {param_name}")
+        lines.append(f"    kwargs['{param_name}'] = {param_name}")
 
     # Add query params
     for param in query_params:
@@ -781,33 +523,10 @@ def generate_command_function(
         required = param.get("required", False)
         # Convert boolean query params from string "true"/"false" to actual booleans
         if param_name in boolean_query_params:
-            if required:
-                lines.append(
-                    f"    kwargs['{param_name}'] = {param_name}.lower() == 'true'"
-                )
-            else:
-                lines.append(f"    if {param_name} is not None:")
-                lines.append(
-                    f"        kwargs['{param_name}'] = {param_name}.lower() == 'true'"
-                )
-        elif param_name in enum_params:
-            # Convert enum to value
-            if enum_params[param_name]:  # list enum
-                if required:
-                    lines.append(
-                        f"    kwargs['{param_name}'] = [e.value for e in {param_name}]"
-                    )
-                else:
-                    lines.append(f"    if {param_name} is not None:")
-                    lines.append(
-                        f"        kwargs['{param_name}'] = [e.value for e in {param_name}]"
-                    )
-            else:  # single enum
-                if required:
-                    lines.append(f"    kwargs['{param_name}'] = {param_name}.value")
-                else:
-                    lines.append(f"    if {param_name} is not None:")
-                    lines.append(f"        kwargs['{param_name}'] = {param_name}.value")
+            lines.append(f"    if {param_name} is not None:")
+            lines.append(
+                f"        kwargs['{param_name}'] = {param_name}.lower() == 'true'"
+            )
         else:
             if required:
                 lines.append(f"    kwargs['{param_name}'] = {param_name}")
@@ -820,30 +539,8 @@ def generate_command_function(
         openapi_name = param["name"]
         param_name = to_python_ident(openapi_name)
         required = param.get("required", False)
-        if param_name in enum_params:
-            # Convert enum to value
-            if enum_params[param_name]:  # list enum
-                if required:
-                    lines.append(
-                        f"    kwargs['{param_name}'] = [e.value for e in {param_name}]"
-                    )
-                else:
-                    lines.append(f"    if {param_name} is not None:")
-                    lines.append(
-                        f"        kwargs['{param_name}'] = [e.value for e in {param_name}]"
-                    )
-            else:  # single enum
-                if required:
-                    lines.append(f"    kwargs['{param_name}'] = {param_name}.value")
-                else:
-                    lines.append(f"    if {param_name} is not None:")
-                    lines.append(f"        kwargs['{param_name}'] = {param_name}.value")
-        else:
-            if required:
-                lines.append(f"    kwargs['{param_name}'] = {param_name}")
-            else:
-                lines.append(f"    if {param_name} is not None:")
-                lines.append(f"        kwargs['{param_name}'] = {param_name}")
+        lines.append(f"    if {param_name} is not None:")
+        lines.append(f"        kwargs['{param_name}'] = {param_name}")
 
     # Handle request body
     if request_body_info:
@@ -866,9 +563,7 @@ def generate_command_function(
                     lines.append(
                         '        raise SystemExit("Error: Request body is required. Use dotted body flags.")'
                     )
-                lines.append("    if any([")
-                lines.append("        " + ",\n        ".join(body_flag_params) + ",")
-                lines.append("    ]):")
+                lines.append("    if any([" + ", ".join(body_flag_params) + "]):")
                 lines.append("        json_data = {}")
 
                 for (
@@ -879,15 +574,7 @@ def generate_command_function(
                     opt_name,
                 ) in body_flags:
                     is_complex = is_complex_type(leaf_schema, spec)
-
-                    # Convert enum to value if needed
-                    if param_name in enum_params:
-                        if enum_params[param_name]:  # list enum
-                            value_expr = f"[e.value for e in {param_name}]"
-                        else:  # single enum
-                            value_expr = f"{param_name}.value"
-                    else:
-                        value_expr = param_name
+                    value_expr = param_name
 
                     if is_required:
                         if is_complex:
@@ -923,10 +610,6 @@ def generate_command_function(
                     f"        {body_param_name} = deserialize_request_body(json_data, {request_body_model})"
                 )
                 lines.append(f"        kwargs['{body_param_name}'] = {body_param_name}")
-            elif body_required:
-                lines.append(
-                    '    raise SystemExit("Error: Request body is required but cannot be provided via dotted flags (complex type).")'
-                )
         elif content_type == "multipart/form-data":
             props = (
                 resolved_schema.get("properties", {})
@@ -937,8 +620,6 @@ def generate_command_function(
             lines.append("    json_data = {}  # noqa: F841")
             lines.append("    missing: list[str] = []")
             for prop_name, prop_schema in sorted(props.items(), key=lambda kv: kv[0]):
-                if not isinstance(prop_schema, dict):
-                    continue
                 snake = to_python_ident(prop_name)
                 is_binary = (
                     prop_schema.get("type") == "string"
@@ -1017,39 +698,15 @@ def generate_tag_app(
         "",
     ]
 
-    # Generate command for each operation (this populates enum_collector)
+    # Generate command for each operation
     command_codes: list[str] = []
     for path, method, operation in sorted(
         operations, key=lambda x: x[2].get("operationId", "")
     ):
         func_code = generate_command_function(
-            operation, spec, tag_attr, tag, enum_collector
+            operation, spec, tag_attr, tag
         )
         command_codes.append(func_code)
-
-    # Import enums from client module
-    if enum_collector:
-        lines.append("")
-        # Group imports by module
-        imports_by_module: dict[str, list[str]] = {}
-        for enum_name, enum_info in sorted(enum_collector.items()):
-            # All enums should have a ref (assumed)
-            enum_module = to_snake_case(enum_name)
-            if enum_module not in imports_by_module:
-                imports_by_module[enum_module] = []
-            imports_by_module[enum_module].append(enum_name)
-
-        for module_name in sorted(imports_by_module.keys()):
-            enum_names = sorted(imports_by_module[module_name])
-            if len(enum_names) == 1:
-                lines.append(
-                    f"from immich.client.models.{module_name} import {enum_names[0]}"
-                )
-            else:
-                enum_list = ", ".join(enum_names)
-                lines.append(
-                    f"from immich.client.models.{module_name} import {enum_list}"
-                )
 
     lines.append(
         f"app = typer.Typer(help={python_triple_quoted_str(tag_help)}, context_settings={{'help_option_names': ['-h', '--help']}})"
@@ -1066,20 +723,10 @@ def generate_tag_app(
 
 def main() -> None:
     """Main codegen entrypoint."""
-    parser = argparse.ArgumentParser(
-        description="Generate Immich CLI from OpenAPI specification."
-    )
-    parser.add_argument(
-        "--ref",
-        default=os.environ.get("IMMICH_OPENAPI_REF", "main"),
-        help="Immich git ref for OpenAPI spec (default: IMMICH_OPENAPI_REF or 'main')",
-    )
-    args = parser.parse_args()
-
     commands_dir = Path(__file__).resolve().parents[2] / "immich" / "cli" / "commands"
 
     # Fetch OpenAPI spec
-    url = openapi_url(args.ref)
+    url = openapi_url(os.environ.get("IMMICH_OPENAPI_REF", "main"))
     print(f"Fetching OpenAPI spec from: {url}")
 
     spec = urllib3.request("GET", url).json()

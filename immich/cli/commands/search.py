@@ -115,37 +115,7 @@ Docs: https://api.immich.app/endpoints/search/searchAssetStatistics
     has_flags = any([album_ids, city, country, created_after, created_before, description, device_id, is_encoded, is_favorite, is_motion, is_not_in_album, is_offline, lens_model, library_id, make, model, ocr, person_ids, rating, state, tag_ids, taken_after, taken_before, trashed_after, trashed_before, type, updated_after, updated_before, visibility])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        album_ids,
-        city,
-        country,
-        created_after,
-        created_before,
-        description,
-        device_id,
-        is_encoded,
-        is_favorite,
-        is_motion,
-        is_not_in_album,
-        is_offline,
-        lens_model,
-        library_id,
-        make,
-        model,
-        ocr,
-        person_ids,
-        rating,
-        state,
-        tag_ids,
-        taken_after,
-        taken_before,
-        trashed_after,
-        trashed_before,
-        type,
-        updated_after,
-        updated_before,
-        visibility,
-    ]):
+    if any([album_ids, city, country, created_after, created_before, description, device_id, is_encoded, is_favorite, is_motion, is_not_in_album, is_offline, lens_model, library_id, make, model, ocr, person_ids, rating, state, tag_ids, taken_after, taken_before, trashed_after, trashed_before, type, updated_after, updated_before, visibility]):
         json_data = {}
         if album_ids is not None:
             set_nested(json_data, ['albumIds'], album_ids)
@@ -269,52 +239,7 @@ Docs: https://api.immich.app/endpoints/search/searchAssets
     has_flags = any([album_ids, checksum, city, country, created_after, created_before, description, device_asset_id, device_id, encoded_video_path, id, is_encoded, is_favorite, is_motion, is_not_in_album, is_offline, lens_model, library_id, make, model, ocr, order, original_file_name, original_path, page, person_ids, preview_path, rating, size, state, tag_ids, taken_after, taken_before, thumbnail_path, trashed_after, trashed_before, type, updated_after, updated_before, visibility, with_deleted, with_exif, with_people, with_stacked])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        album_ids,
-        checksum,
-        city,
-        country,
-        created_after,
-        created_before,
-        description,
-        device_asset_id,
-        device_id,
-        encoded_video_path,
-        id,
-        is_encoded,
-        is_favorite,
-        is_motion,
-        is_not_in_album,
-        is_offline,
-        lens_model,
-        library_id,
-        make,
-        model,
-        ocr,
-        order,
-        original_file_name,
-        original_path,
-        page,
-        person_ids,
-        preview_path,
-        rating,
-        size,
-        state,
-        tag_ids,
-        taken_after,
-        taken_before,
-        thumbnail_path,
-        trashed_after,
-        trashed_before,
-        type,
-        updated_after,
-        updated_before,
-        visibility,
-        with_deleted,
-        with_exif,
-        with_people,
-        with_stacked,
-    ]):
+    if any([album_ids, checksum, city, country, created_after, created_before, description, device_asset_id, device_id, encoded_video_path, id, is_encoded, is_favorite, is_motion, is_not_in_album, is_offline, lens_model, library_id, make, model, ocr, order, original_file_name, original_path, page, person_ids, preview_path, rating, size, state, tag_ids, taken_after, taken_before, thumbnail_path, trashed_after, trashed_before, type, updated_after, updated_before, visibility, with_deleted, with_exif, with_people, with_stacked]):
         json_data = {}
         if album_ids is not None:
             set_nested(json_data, ['albumIds'], album_ids)
@@ -602,41 +527,7 @@ Docs: https://api.immich.app/endpoints/search/searchRandom
     has_flags = any([album_ids, city, country, created_after, created_before, device_id, is_encoded, is_favorite, is_motion, is_not_in_album, is_offline, lens_model, library_id, make, model, ocr, person_ids, rating, size, state, tag_ids, taken_after, taken_before, trashed_after, trashed_before, type, updated_after, updated_before, visibility, with_deleted, with_exif, with_people, with_stacked])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        album_ids,
-        city,
-        country,
-        created_after,
-        created_before,
-        device_id,
-        is_encoded,
-        is_favorite,
-        is_motion,
-        is_not_in_album,
-        is_offline,
-        lens_model,
-        library_id,
-        make,
-        model,
-        ocr,
-        person_ids,
-        rating,
-        size,
-        state,
-        tag_ids,
-        taken_after,
-        taken_before,
-        trashed_after,
-        trashed_before,
-        type,
-        updated_after,
-        updated_before,
-        visibility,
-        with_deleted,
-        with_exif,
-        with_people,
-        with_stacked,
-    ]):
+    if any([album_ids, city, country, created_after, created_before, device_id, is_encoded, is_favorite, is_motion, is_not_in_album, is_offline, lens_model, library_id, make, model, ocr, person_ids, rating, size, state, tag_ids, taken_after, taken_before, trashed_after, trashed_before, type, updated_after, updated_before, visibility, with_deleted, with_exif, with_people, with_stacked]):
         json_data = {}
         if album_ids is not None:
             set_nested(json_data, ['albumIds'], album_ids)
@@ -759,43 +650,7 @@ Docs: https://api.immich.app/endpoints/search/searchSmart
     has_flags = any([album_ids, city, country, created_after, created_before, device_id, is_encoded, is_favorite, is_motion, is_not_in_album, is_offline, language, lens_model, library_id, make, model, ocr, page, person_ids, query, query_asset_id, rating, size, state, tag_ids, taken_after, taken_before, trashed_after, trashed_before, type, updated_after, updated_before, visibility, with_deleted, with_exif])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        album_ids,
-        city,
-        country,
-        created_after,
-        created_before,
-        device_id,
-        is_encoded,
-        is_favorite,
-        is_motion,
-        is_not_in_album,
-        is_offline,
-        language,
-        lens_model,
-        library_id,
-        make,
-        model,
-        ocr,
-        page,
-        person_ids,
-        query,
-        query_asset_id,
-        rating,
-        size,
-        state,
-        tag_ids,
-        taken_after,
-        taken_before,
-        trashed_after,
-        trashed_before,
-        type,
-        updated_after,
-        updated_before,
-        visibility,
-        with_deleted,
-        with_exif,
-    ]):
+    if any([album_ids, city, country, created_after, created_before, device_id, is_encoded, is_favorite, is_motion, is_not_in_album, is_offline, language, lens_model, library_id, make, model, ocr, page, person_ids, query, query_asset_id, rating, size, state, tag_ids, taken_after, taken_before, trashed_after, trashed_before, type, updated_after, updated_before, visibility, with_deleted, with_exif]):
         json_data = {}
         if album_ids is not None:
             set_nested(json_data, ['albumIds'], album_ids)

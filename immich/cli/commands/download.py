@@ -31,9 +31,7 @@ Docs: https://api.immich.app/endpoints/download/downloadArchive
     has_flags = any([asset_ids])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        asset_ids,
-    ]):
+    if any([asset_ids]):
         json_data = {}
         set_nested(json_data, ['assetIds'], asset_ids)
         from immich.client.models.asset_ids_dto import AssetIdsDto
@@ -66,12 +64,7 @@ Docs: https://api.immich.app/endpoints/download/getDownloadInfo
     has_flags = any([album_id, archive_size, asset_ids, user_id])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        album_id,
-        archive_size,
-        asset_ids,
-        user_id,
-    ]):
+    if any([album_id, archive_size, asset_ids, user_id]):
         json_data = {}
         if album_id is not None:
             set_nested(json_data, ['albumId'], album_id)

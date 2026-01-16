@@ -33,9 +33,7 @@ Docs: https://api.immich.app/endpoints/shared-links/addSharedLinkAssets
     has_flags = any([asset_ids])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        asset_ids,
-    ]):
+    if any([asset_ids]):
         json_data = {}
         set_nested(json_data, ['assetIds'], asset_ids)
         from immich.client.models.asset_ids_dto import AssetIdsDto
@@ -68,18 +66,7 @@ Docs: https://api.immich.app/endpoints/shared-links/createSharedLink
     has_flags = any([album_id, allow_download, allow_upload, asset_ids, description, expires_at, password, show_metadata, slug, type])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        album_id,
-        allow_download,
-        allow_upload,
-        asset_ids,
-        description,
-        expires_at,
-        password,
-        show_metadata,
-        slug,
-        type,
-    ]):
+    if any([album_id, allow_download, allow_upload, asset_ids, description, expires_at, password, show_metadata, slug, type]):
         json_data = {}
         if album_id is not None:
             set_nested(json_data, ['albumId'], album_id)
@@ -207,9 +194,7 @@ Docs: https://api.immich.app/endpoints/shared-links/removeSharedLinkAssets
     has_flags = any([asset_ids])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        asset_ids,
-    ]):
+    if any([asset_ids]):
         json_data = {}
         set_nested(json_data, ['assetIds'], asset_ids)
         from immich.client.models.asset_ids_dto import AssetIdsDto
@@ -244,16 +229,7 @@ Docs: https://api.immich.app/endpoints/shared-links/updateSharedLink
     has_flags = any([allow_download, allow_upload, change_expiry_time, description, expires_at, password, show_metadata, slug])
     if not has_flags:
         raise SystemExit("Error: Request body is required. Use dotted body flags.")
-    if any([
-        allow_download,
-        allow_upload,
-        change_expiry_time,
-        description,
-        expires_at,
-        password,
-        show_metadata,
-        slug,
-    ]):
+    if any([allow_download, allow_upload, change_expiry_time, description, expires_at, password, show_metadata, slug]):
         json_data = {}
         if allow_download is not None:
             set_nested(json_data, ['allowDownload'], allow_download)
