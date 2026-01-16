@@ -53,7 +53,6 @@ Note: the mobile app cannot currently set the birth date to null.""",
             name,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if birth_date is not None:
             set_nested(json_data, ["birthDate"], birth_date)
@@ -70,8 +69,7 @@ Note: the mobile app cannot currently set the birth date to null.""",
         person_create_dto = deserialize_request_body(json_data, PersonCreateDto)
         kwargs["person_create_dto"] = person_create_dto
     client = ctx.obj["client"]
-    api_group = client.people
-    result = run_command(client, api_group, "create_person", **kwargs)
+    result = run_command(client, client.people, "create_person", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -94,18 +92,14 @@ def delete_people(
             ids,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if ids is None:
-            raise SystemExit("Error: --ids is required")
         set_nested(json_data, ["ids"], ids)
         from immich.client.models.bulk_ids_dto import BulkIdsDto
 
         bulk_ids_dto = deserialize_request_body(json_data, BulkIdsDto)
         kwargs["bulk_ids_dto"] = bulk_ids_dto
     client = ctx.obj["client"]
-    api_group = client.people
-    result = run_command(client, api_group, "delete_people", **kwargs)
+    result = run_command(client, client.people, "delete_people", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -122,8 +116,7 @@ def delete_person(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.people
-    result = run_command(client, api_group, "delete_person", **kwargs)
+    result = run_command(client, client.people, "delete_person", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -157,8 +150,7 @@ def get_all_people(
     if with_hidden is not None:
         kwargs["with_hidden"] = with_hidden.lower() == "true"
     client = ctx.obj["client"]
-    api_group = client.people
-    result = run_command(client, api_group, "get_all_people", **kwargs)
+    result = run_command(client, client.people, "get_all_people", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -175,8 +167,7 @@ def get_person(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.people
-    result = run_command(client, api_group, "get_person", **kwargs)
+    result = run_command(client, client.people, "get_person", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -193,8 +184,7 @@ def get_person_statistics(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.people
-    result = run_command(client, api_group, "get_person_statistics", **kwargs)
+    result = run_command(client, client.people, "get_person_statistics", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -211,8 +201,7 @@ def get_person_thumbnail(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.people
-    result = run_command(client, api_group, "get_person_thumbnail", **kwargs)
+    result = run_command(client, client.people, "get_person_thumbnail", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -237,18 +226,14 @@ def merge_person(
             ids,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if ids is None:
-            raise SystemExit("Error: --ids is required")
         set_nested(json_data, ["ids"], ids)
         from immich.client.models.merge_person_dto import MergePersonDto
 
         merge_person_dto = deserialize_request_body(json_data, MergePersonDto)
         kwargs["merge_person_dto"] = merge_person_dto
     client = ctx.obj["client"]
-    api_group = client.people
-    result = run_command(client, api_group, "merge_person", **kwargs)
+    result = run_command(client, client.people, "merge_person", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -275,10 +260,7 @@ def reassign_faces(
             data,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if data is None:
-            raise SystemExit("Error: --data is required")
         value_data = parse_complex_list(data)
         set_nested(json_data, ["data"], value_data)
         from immich.client.models.asset_face_update_dto import AssetFaceUpdateDto
@@ -286,8 +268,7 @@ def reassign_faces(
         asset_face_update_dto = deserialize_request_body(json_data, AssetFaceUpdateDto)
         kwargs["asset_face_update_dto"] = asset_face_update_dto
     client = ctx.obj["client"]
-    api_group = client.people
-    result = run_command(client, api_group, "reassign_faces", **kwargs)
+    result = run_command(client, client.people, "reassign_faces", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -314,10 +295,7 @@ def update_people(
             people,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if people is None:
-            raise SystemExit("Error: --people is required")
         value_people = parse_complex_list(people)
         set_nested(json_data, ["people"], value_people)
         from immich.client.models.people_update_dto import PeopleUpdateDto
@@ -325,8 +303,7 @@ def update_people(
         people_update_dto = deserialize_request_body(json_data, PeopleUpdateDto)
         kwargs["people_update_dto"] = people_update_dto
     client = ctx.obj["client"]
-    api_group = client.people
-    result = run_command(client, api_group, "update_people", **kwargs)
+    result = run_command(client, client.people, "update_people", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -374,7 +351,6 @@ Note: the mobile app cannot currently set the birth date to null.""",
             name,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if birth_date is not None:
             set_nested(json_data, ["birthDate"], birth_date)
@@ -393,7 +369,6 @@ Note: the mobile app cannot currently set the birth date to null.""",
         person_update_dto = deserialize_request_body(json_data, PersonUpdateDto)
         kwargs["person_update_dto"] = person_update_dto
     client = ctx.obj["client"]
-    api_group = client.people
-    result = run_command(client, api_group, "update_person", **kwargs)
+    result = run_command(client, client.people, "update_person", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

@@ -39,18 +39,14 @@ def create_stack(
             asset_ids,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if asset_ids is None:
-            raise SystemExit("Error: --assetIds is required")
         set_nested(json_data, ["assetIds"], asset_ids)
         from immich.client.models.stack_create_dto import StackCreateDto
 
         stack_create_dto = deserialize_request_body(json_data, StackCreateDto)
         kwargs["stack_create_dto"] = stack_create_dto
     client = ctx.obj["client"]
-    api_group = client.stacks
-    result = run_command(client, api_group, "create_stack", **kwargs)
+    result = run_command(client, client.stacks, "create_stack", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -67,8 +63,7 @@ def delete_stack(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.stacks
-    result = run_command(client, api_group, "delete_stack", **kwargs)
+    result = run_command(client, client.stacks, "delete_stack", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -91,18 +86,14 @@ def delete_stacks(
             ids,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if ids is None:
-            raise SystemExit("Error: --ids is required")
         set_nested(json_data, ["ids"], ids)
         from immich.client.models.bulk_ids_dto import BulkIdsDto
 
         bulk_ids_dto = deserialize_request_body(json_data, BulkIdsDto)
         kwargs["bulk_ids_dto"] = bulk_ids_dto
     client = ctx.obj["client"]
-    api_group = client.stacks
-    result = run_command(client, api_group, "delete_stacks", **kwargs)
+    result = run_command(client, client.stacks, "delete_stacks", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -119,8 +110,7 @@ def get_stack(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.stacks
-    result = run_command(client, api_group, "get_stack", **kwargs)
+    result = run_command(client, client.stacks, "get_stack", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -139,8 +129,7 @@ def remove_asset_from_stack(
     kwargs["asset_id"] = asset_id
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.stacks
-    result = run_command(client, api_group, "remove_asset_from_stack", **kwargs)
+    result = run_command(client, client.stacks, "remove_asset_from_stack", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -158,8 +147,7 @@ def search_stacks(
     if primary_asset_id is not None:
         kwargs["primary_asset_id"] = primary_asset_id
     client = ctx.obj["client"]
-    api_group = client.stacks
-    result = run_command(client, api_group, "search_stacks", **kwargs)
+    result = run_command(client, client.stacks, "search_stacks", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -184,7 +172,6 @@ def update_stack(
             primary_asset_id,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if primary_asset_id is not None:
             set_nested(json_data, ["primaryAssetId"], primary_asset_id)
@@ -193,7 +180,6 @@ def update_stack(
         stack_update_dto = deserialize_request_body(json_data, StackUpdateDto)
         kwargs["stack_update_dto"] = stack_update_dto
     client = ctx.obj["client"]
-    api_group = client.stacks
-    result = run_command(client, api_group, "update_stack", **kwargs)
+    result = run_command(client, client.stacks, "update_stack", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

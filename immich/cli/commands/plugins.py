@@ -26,8 +26,7 @@ def get_plugin(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.plugins
-    result = run_command(client, api_group, "get_plugin", **kwargs)
+    result = run_command(client, client.plugins, "get_plugin", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -42,8 +41,7 @@ def get_plugin_triggers(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.plugins
-    result = run_command(client, api_group, "get_plugin_triggers", **kwargs)
+    result = run_command(client, client.plugins, "get_plugin_triggers", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -58,7 +56,6 @@ def get_plugins(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.plugins
-    result = run_command(client, api_group, "get_plugins", **kwargs)
+    result = run_command(client, client.plugins, "get_plugins", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

@@ -37,18 +37,14 @@ def create_job(
             name,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if name is None:
-            raise SystemExit("Error: --name is required")
         set_nested(json_data, ["name"], name)
         from immich.client.models.job_create_dto import JobCreateDto
 
         job_create_dto = deserialize_request_body(json_data, JobCreateDto)
         kwargs["job_create_dto"] = job_create_dto
     client = ctx.obj["client"]
-    api_group = client.jobs
-    result = run_command(client, api_group, "create_job", **kwargs)
+    result = run_command(client, client.jobs, "create_job", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -63,8 +59,7 @@ def get_queues_legacy(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.jobs
-    result = run_command(client, api_group, "get_queues_legacy", **kwargs)
+    result = run_command(client, client.jobs, "get_queues_legacy", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -91,10 +86,7 @@ def run_queue_command_legacy(
             force,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if command is None:
-            raise SystemExit("Error: --command is required")
         set_nested(json_data, ["command"], command)
         if force is not None:
             set_nested(json_data, ["force"], force)
@@ -103,7 +95,6 @@ def run_queue_command_legacy(
         queue_command_dto = deserialize_request_body(json_data, QueueCommandDto)
         kwargs["queue_command_dto"] = queue_command_dto
     client = ctx.obj["client"]
-    api_group = client.jobs
-    result = run_command(client, api_group, "run_queue_command_legacy", **kwargs)
+    result = run_command(client, client.jobs, "run_queue_command_legacy", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

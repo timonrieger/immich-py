@@ -29,8 +29,9 @@ def get_admin_onboarding(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.system_metadata
-    result = run_command(client, api_group, "get_admin_onboarding", **kwargs)
+    result = run_command(
+        client, client.system_metadata, "get_admin_onboarding", **kwargs
+    )
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -45,8 +46,9 @@ def get_reverse_geocoding_state(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.system_metadata
-    result = run_command(client, api_group, "get_reverse_geocoding_state", **kwargs)
+    result = run_command(
+        client, client.system_metadata, "get_reverse_geocoding_state", **kwargs
+    )
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -61,8 +63,9 @@ def get_version_check_state(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.system_metadata
-    result = run_command(client, api_group, "get_version_check_state", **kwargs)
+    result = run_command(
+        client, client.system_metadata, "get_version_check_state", **kwargs
+    )
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -85,10 +88,7 @@ def update_admin_onboarding(
             is_onboarded,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if is_onboarded is None:
-            raise SystemExit("Error: --isOnboarded is required")
         set_nested(json_data, ["isOnboarded"], is_onboarded)
         from immich.client.models.admin_onboarding_update_dto import (
             AdminOnboardingUpdateDto,
@@ -99,7 +99,8 @@ def update_admin_onboarding(
         )
         kwargs["admin_onboarding_update_dto"] = admin_onboarding_update_dto
     client = ctx.obj["client"]
-    api_group = client.system_metadata
-    result = run_command(client, api_group, "update_admin_onboarding", **kwargs)
+    result = run_command(
+        client, client.system_metadata, "update_admin_onboarding", **kwargs
+    )
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

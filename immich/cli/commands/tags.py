@@ -39,21 +39,15 @@ def bulk_tag_assets(
             tag_ids,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if asset_ids is None:
-            raise SystemExit("Error: --assetIds is required")
         set_nested(json_data, ["assetIds"], asset_ids)
-        if tag_ids is None:
-            raise SystemExit("Error: --tagIds is required")
         set_nested(json_data, ["tagIds"], tag_ids)
         from immich.client.models.tag_bulk_assets_dto import TagBulkAssetsDto
 
         tag_bulk_assets_dto = deserialize_request_body(json_data, TagBulkAssetsDto)
         kwargs["tag_bulk_assets_dto"] = tag_bulk_assets_dto
     client = ctx.obj["client"]
-    api_group = client.tags
-    result = run_command(client, api_group, "bulk_tag_assets", **kwargs)
+    result = run_command(client, client.tags, "bulk_tag_assets", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -80,12 +74,9 @@ def create_tag(
             parent_id,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if color is not None:
             set_nested(json_data, ["color"], color)
-        if name is None:
-            raise SystemExit("Error: --name is required")
         set_nested(json_data, ["name"], name)
         if parent_id is not None:
             set_nested(json_data, ["parentId"], parent_id)
@@ -94,8 +85,7 @@ def create_tag(
         tag_create_dto = deserialize_request_body(json_data, TagCreateDto)
         kwargs["tag_create_dto"] = tag_create_dto
     client = ctx.obj["client"]
-    api_group = client.tags
-    result = run_command(client, api_group, "create_tag", **kwargs)
+    result = run_command(client, client.tags, "create_tag", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -112,8 +102,7 @@ def delete_tag(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.tags
-    result = run_command(client, api_group, "delete_tag", **kwargs)
+    result = run_command(client, client.tags, "delete_tag", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -128,8 +117,7 @@ def get_all_tags(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.tags
-    result = run_command(client, api_group, "get_all_tags", **kwargs)
+    result = run_command(client, client.tags, "get_all_tags", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -146,8 +134,7 @@ def get_tag_by_id(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.tags
-    result = run_command(client, api_group, "get_tag_by_id", **kwargs)
+    result = run_command(client, client.tags, "get_tag_by_id", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -172,18 +159,14 @@ def tag_assets(
             ids,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if ids is None:
-            raise SystemExit("Error: --ids is required")
         set_nested(json_data, ["ids"], ids)
         from immich.client.models.bulk_ids_dto import BulkIdsDto
 
         bulk_ids_dto = deserialize_request_body(json_data, BulkIdsDto)
         kwargs["bulk_ids_dto"] = bulk_ids_dto
     client = ctx.obj["client"]
-    api_group = client.tags
-    result = run_command(client, api_group, "tag_assets", **kwargs)
+    result = run_command(client, client.tags, "tag_assets", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -208,18 +191,14 @@ def untag_assets(
             ids,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if ids is None:
-            raise SystemExit("Error: --ids is required")
         set_nested(json_data, ["ids"], ids)
         from immich.client.models.bulk_ids_dto import BulkIdsDto
 
         bulk_ids_dto = deserialize_request_body(json_data, BulkIdsDto)
         kwargs["bulk_ids_dto"] = bulk_ids_dto
     client = ctx.obj["client"]
-    api_group = client.tags
-    result = run_command(client, api_group, "untag_assets", **kwargs)
+    result = run_command(client, client.tags, "untag_assets", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -244,7 +223,6 @@ def update_tag(
             color,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if color is not None:
             set_nested(json_data, ["color"], color)
@@ -253,8 +231,7 @@ def update_tag(
         tag_update_dto = deserialize_request_body(json_data, TagUpdateDto)
         kwargs["tag_update_dto"] = tag_update_dto
     client = ctx.obj["client"]
-    api_group = client.tags
-    result = run_command(client, api_group, "update_tag", **kwargs)
+    result = run_command(client, client.tags, "update_tag", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -277,17 +254,13 @@ def upsert_tags(
             tags,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if tags is None:
-            raise SystemExit("Error: --tags is required")
         set_nested(json_data, ["tags"], tags)
         from immich.client.models.tag_upsert_dto import TagUpsertDto
 
         tag_upsert_dto = deserialize_request_body(json_data, TagUpsertDto)
         kwargs["tag_upsert_dto"] = tag_upsert_dto
     client = ctx.obj["client"]
-    api_group = client.tags
-    result = run_command(client, api_group, "upsert_tags", **kwargs)
+    result = run_command(client, client.tags, "upsert_tags", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

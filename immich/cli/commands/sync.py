@@ -37,7 +37,6 @@ def delete_sync_ack(
             types,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if types is not None:
             set_nested(json_data, ["types"], types)
@@ -46,8 +45,7 @@ def delete_sync_ack(
         sync_ack_delete_dto = deserialize_request_body(json_data, SyncAckDeleteDto)
         kwargs["sync_ack_delete_dto"] = sync_ack_delete_dto
     client = ctx.obj["client"]
-    api_group = client.sync
-    result = run_command(client, api_group, "delete_sync_ack", **kwargs)
+    result = run_command(client, client.sync, "delete_sync_ack", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -72,21 +70,15 @@ def get_delta_sync(
             user_ids,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if updated_after is None:
-            raise SystemExit("Error: --updatedAfter is required")
         set_nested(json_data, ["updatedAfter"], updated_after)
-        if user_ids is None:
-            raise SystemExit("Error: --userIds is required")
         set_nested(json_data, ["userIds"], user_ids)
         from immich.client.models.asset_delta_sync_dto import AssetDeltaSyncDto
 
         asset_delta_sync_dto = deserialize_request_body(json_data, AssetDeltaSyncDto)
         kwargs["asset_delta_sync_dto"] = asset_delta_sync_dto
     client = ctx.obj["client"]
-    api_group = client.sync
-    result = run_command(client, api_group, "get_delta_sync", **kwargs)
+    result = run_command(client, client.sync, "get_delta_sync", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -115,15 +107,10 @@ def get_full_sync_for_user(
             user_id,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if last_id is not None:
             set_nested(json_data, ["lastId"], last_id)
-        if limit is None:
-            raise SystemExit("Error: --limit is required")
         set_nested(json_data, ["limit"], limit)
-        if updated_until is None:
-            raise SystemExit("Error: --updatedUntil is required")
         set_nested(json_data, ["updatedUntil"], updated_until)
         if user_id is not None:
             set_nested(json_data, ["userId"], user_id)
@@ -132,8 +119,7 @@ def get_full_sync_for_user(
         asset_full_sync_dto = deserialize_request_body(json_data, AssetFullSyncDto)
         kwargs["asset_full_sync_dto"] = asset_full_sync_dto
     client = ctx.obj["client"]
-    api_group = client.sync
-    result = run_command(client, api_group, "get_full_sync_for_user", **kwargs)
+    result = run_command(client, client.sync, "get_full_sync_for_user", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -148,8 +134,7 @@ def get_sync_ack(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.sync
-    result = run_command(client, api_group, "get_sync_ack", **kwargs)
+    result = run_command(client, client.sync, "get_sync_ack", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -174,20 +159,16 @@ def get_sync_stream(
             types,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if reset is not None:
             set_nested(json_data, ["reset"], reset)
-        if types is None:
-            raise SystemExit("Error: --types is required")
         set_nested(json_data, ["types"], types)
         from immich.client.models.sync_stream_dto import SyncStreamDto
 
         sync_stream_dto = deserialize_request_body(json_data, SyncStreamDto)
         kwargs["sync_stream_dto"] = sync_stream_dto
     client = ctx.obj["client"]
-    api_group = client.sync
-    result = run_command(client, api_group, "get_sync_stream", **kwargs)
+    result = run_command(client, client.sync, "get_sync_stream", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -210,17 +191,13 @@ def send_sync_ack(
             acks,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if acks is None:
-            raise SystemExit("Error: --acks is required")
         set_nested(json_data, ["acks"], acks)
         from immich.client.models.sync_ack_set_dto import SyncAckSetDto
 
         sync_ack_set_dto = deserialize_request_body(json_data, SyncAckSetDto)
         kwargs["sync_ack_set_dto"] = sync_ack_set_dto
     client = ctx.obj["client"]
-    api_group = client.sync
-    result = run_command(client, api_group, "send_sync_ack", **kwargs)
+    result = run_command(client, client.sync, "send_sync_ack", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

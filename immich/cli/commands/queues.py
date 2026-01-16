@@ -43,7 +43,6 @@ def empty_queue(
             failed,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if failed is not None:
             set_nested(json_data, ["failed"], failed)
@@ -52,8 +51,7 @@ def empty_queue(
         queue_delete_dto = deserialize_request_body(json_data, QueueDeleteDto)
         kwargs["queue_delete_dto"] = queue_delete_dto
     client = ctx.obj["client"]
-    api_group = client.queues
-    result = run_command(client, api_group, "empty_queue", **kwargs)
+    result = run_command(client, client.queues, "empty_queue", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -70,8 +68,7 @@ def get_queue(
     kwargs = {}
     kwargs["name"] = name
     client = ctx.obj["client"]
-    api_group = client.queues
-    result = run_command(client, api_group, "get_queue", **kwargs)
+    result = run_command(client, client.queues, "get_queue", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -91,8 +88,7 @@ def get_queue_jobs(
     if status is not None:
         kwargs["status"] = status
     client = ctx.obj["client"]
-    api_group = client.queues
-    result = run_command(client, api_group, "get_queue_jobs", **kwargs)
+    result = run_command(client, client.queues, "get_queue_jobs", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -107,8 +103,7 @@ def get_queues(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.queues
-    result = run_command(client, api_group, "get_queues", **kwargs)
+    result = run_command(client, client.queues, "get_queues", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -133,7 +128,6 @@ def update_queue(
             is_paused,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if is_paused is not None:
             set_nested(json_data, ["isPaused"], is_paused)
@@ -142,7 +136,6 @@ def update_queue(
         queue_update_dto = deserialize_request_body(json_data, QueueUpdateDto)
         kwargs["queue_update_dto"] = queue_update_dto
     client = ctx.obj["client"]
-    api_group = client.queues
-    result = run_command(client, api_group, "update_queue", **kwargs)
+    result = run_command(client, client.queues, "update_queue", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

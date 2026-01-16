@@ -41,8 +41,7 @@ def create_profile_image(
             + ". Provide them via file options."
         )
     client = ctx.obj["client"]
-    api_group = client.users
-    result = run_command(client, api_group, "create_profile_image", **kwargs)
+    result = run_command(client, client.users, "create_profile_image", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -57,8 +56,7 @@ def delete_profile_image(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.users
-    result = run_command(client, api_group, "delete_profile_image", **kwargs)
+    result = run_command(client, client.users, "delete_profile_image", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -73,8 +71,7 @@ def delete_user_license(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.users
-    result = run_command(client, api_group, "delete_user_license", **kwargs)
+    result = run_command(client, client.users, "delete_user_license", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -89,8 +86,7 @@ def delete_user_onboarding(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.users
-    result = run_command(client, api_group, "delete_user_onboarding", **kwargs)
+    result = run_command(client, client.users, "delete_user_onboarding", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -105,8 +101,7 @@ def get_my_preferences(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.users
-    result = run_command(client, api_group, "get_my_preferences", **kwargs)
+    result = run_command(client, client.users, "get_my_preferences", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -121,8 +116,7 @@ def get_my_user(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.users
-    result = run_command(client, api_group, "get_my_user", **kwargs)
+    result = run_command(client, client.users, "get_my_user", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -139,8 +133,7 @@ def get_profile_image(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.users
-    result = run_command(client, api_group, "get_profile_image", **kwargs)
+    result = run_command(client, client.users, "get_profile_image", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -157,8 +150,7 @@ def get_user(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.users
-    result = run_command(client, api_group, "get_user", **kwargs)
+    result = run_command(client, client.users, "get_user", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -173,8 +165,7 @@ def get_user_license(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.users
-    result = run_command(client, api_group, "get_user_license", **kwargs)
+    result = run_command(client, client.users, "get_user_license", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -189,8 +180,7 @@ def get_user_onboarding(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.users
-    result = run_command(client, api_group, "get_user_onboarding", **kwargs)
+    result = run_command(client, client.users, "get_user_onboarding", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -205,8 +195,7 @@ def search_users(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.users
-    result = run_command(client, api_group, "search_users", **kwargs)
+    result = run_command(client, client.users, "search_users", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -231,21 +220,15 @@ def set_user_license(
             license_key,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if activation_key is None:
-            raise SystemExit("Error: --activationKey is required")
         set_nested(json_data, ["activationKey"], activation_key)
-        if license_key is None:
-            raise SystemExit("Error: --licenseKey is required")
         set_nested(json_data, ["licenseKey"], license_key)
         from immich.client.models.license_key_dto import LicenseKeyDto
 
         license_key_dto = deserialize_request_body(json_data, LicenseKeyDto)
         kwargs["license_key_dto"] = license_key_dto
     client = ctx.obj["client"]
-    api_group = client.users
-    result = run_command(client, api_group, "set_user_license", **kwargs)
+    result = run_command(client, client.users, "set_user_license", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -268,18 +251,14 @@ def set_user_onboarding(
             is_onboarded,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if is_onboarded is None:
-            raise SystemExit("Error: --isOnboarded is required")
         set_nested(json_data, ["isOnboarded"], is_onboarded)
         from immich.client.models.onboarding_dto import OnboardingDto
 
         onboarding_dto = deserialize_request_body(json_data, OnboardingDto)
         kwargs["onboarding_dto"] = onboarding_dto
     client = ctx.obj["client"]
-    api_group = client.users
-    result = run_command(client, api_group, "set_user_onboarding", **kwargs)
+    result = run_command(client, client.users, "set_user_onboarding", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -382,7 +361,6 @@ def update_my_preferences(
             tags_sidebar_web,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if albums_default_asset_order is not None:
             set_nested(
@@ -461,8 +439,7 @@ def update_my_preferences(
         )
         kwargs["user_preferences_update_dto"] = user_preferences_update_dto
     client = ctx.obj["client"]
-    api_group = client.users
-    result = run_command(client, api_group, "update_my_preferences", **kwargs)
+    result = run_command(client, client.users, "update_my_preferences", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -491,7 +468,6 @@ def update_my_user(
             password,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if avatar_color is not None:
             set_nested(json_data, ["avatarColor"], avatar_color)
@@ -506,7 +482,6 @@ def update_my_user(
         user_update_me_dto = deserialize_request_body(json_data, UserUpdateMeDto)
         kwargs["user_update_me_dto"] = user_update_me_dto
     client = ctx.obj["client"]
-    api_group = client.users
-    result = run_command(client, api_group, "update_my_user", **kwargs)
+    result = run_command(client, client.users, "update_my_user", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

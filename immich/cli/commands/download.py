@@ -43,18 +43,14 @@ def download_archive(
             asset_ids,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if asset_ids is None:
-            raise SystemExit("Error: --assetIds is required")
         set_nested(json_data, ["assetIds"], asset_ids)
         from immich.client.models.asset_ids_dto import AssetIdsDto
 
         asset_ids_dto = deserialize_request_body(json_data, AssetIdsDto)
         kwargs["asset_ids_dto"] = asset_ids_dto
     client = ctx.obj["client"]
-    api_group = client.download
-    result = run_command(client, api_group, "download_archive", **kwargs)
+    result = run_command(client, client.download, "download_archive", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -89,7 +85,6 @@ def get_download_info(
             user_id,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if album_id is not None:
             set_nested(json_data, ["albumId"], album_id)
@@ -104,7 +99,6 @@ def get_download_info(
         download_info_dto = deserialize_request_body(json_data, DownloadInfoDto)
         kwargs["download_info_dto"] = download_info_dto
     client = ctx.obj["client"]
-    api_group = client.download
-    result = run_command(client, api_group, "get_download_info", **kwargs)
+    result = run_command(client, client.download, "get_download_info", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

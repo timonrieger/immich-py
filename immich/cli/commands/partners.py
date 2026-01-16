@@ -37,18 +37,14 @@ def create_partner(
             shared_with_id,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if shared_with_id is None:
-            raise SystemExit("Error: --sharedWithId is required")
         set_nested(json_data, ["sharedWithId"], shared_with_id)
         from immich.client.models.partner_create_dto import PartnerCreateDto
 
         partner_create_dto = deserialize_request_body(json_data, PartnerCreateDto)
         kwargs["partner_create_dto"] = partner_create_dto
     client = ctx.obj["client"]
-    api_group = client.partners
-    result = run_command(client, api_group, "create_partner", **kwargs)
+    result = run_command(client, client.partners, "create_partner", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -65,8 +61,7 @@ def create_partner_deprecated(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.partners
-    result = run_command(client, api_group, "create_partner_deprecated", **kwargs)
+    result = run_command(client, client.partners, "create_partner_deprecated", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -83,8 +78,7 @@ def get_partners(
     kwargs = {}
     kwargs["direction"] = direction
     client = ctx.obj["client"]
-    api_group = client.partners
-    result = run_command(client, api_group, "get_partners", **kwargs)
+    result = run_command(client, client.partners, "get_partners", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -101,8 +95,7 @@ def remove_partner(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.partners
-    result = run_command(client, api_group, "remove_partner", **kwargs)
+    result = run_command(client, client.partners, "remove_partner", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -127,17 +120,13 @@ def update_partner(
             in_timeline,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if in_timeline is None:
-            raise SystemExit("Error: --inTimeline is required")
         set_nested(json_data, ["inTimeline"], in_timeline)
         from immich.client.models.partner_update_dto import PartnerUpdateDto
 
         partner_update_dto = deserialize_request_body(json_data, PartnerUpdateDto)
         kwargs["partner_update_dto"] = partner_update_dto
     client = ctx.obj["client"]
-    api_group = client.partners
-    result = run_command(client, api_group, "update_partner", **kwargs)
+    result = run_command(client, client.partners, "update_partner", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

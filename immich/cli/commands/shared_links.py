@@ -45,18 +45,16 @@ def add_shared_link_assets(
             asset_ids,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if asset_ids is None:
-            raise SystemExit("Error: --assetIds is required")
         set_nested(json_data, ["assetIds"], asset_ids)
         from immich.client.models.asset_ids_dto import AssetIdsDto
 
         asset_ids_dto = deserialize_request_body(json_data, AssetIdsDto)
         kwargs["asset_ids_dto"] = asset_ids_dto
     client = ctx.obj["client"]
-    api_group = client.shared_links
-    result = run_command(client, api_group, "add_shared_link_assets", **kwargs)
+    result = run_command(
+        client, client.shared_links, "add_shared_link_assets", **kwargs
+    )
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -110,7 +108,6 @@ def create_shared_link(
             type,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if album_id is not None:
             set_nested(json_data, ["albumId"], album_id)
@@ -130,8 +127,6 @@ def create_shared_link(
             set_nested(json_data, ["showMetadata"], show_metadata)
         if slug is not None:
             set_nested(json_data, ["slug"], slug)
-        if type is None:
-            raise SystemExit("Error: --type is required")
         set_nested(json_data, ["type"], type)
         from immich.client.models.shared_link_create_dto import SharedLinkCreateDto
 
@@ -140,8 +135,7 @@ def create_shared_link(
         )
         kwargs["shared_link_create_dto"] = shared_link_create_dto
     client = ctx.obj["client"]
-    api_group = client.shared_links
-    result = run_command(client, api_group, "create_shared_link", **kwargs)
+    result = run_command(client, client.shared_links, "create_shared_link", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -162,8 +156,7 @@ def get_all_shared_links(
     if id is not None:
         kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.shared_links
-    result = run_command(client, api_group, "get_all_shared_links", **kwargs)
+    result = run_command(client, client.shared_links, "get_all_shared_links", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -190,8 +183,7 @@ def get_my_shared_link(
     if token is not None:
         kwargs["token"] = token
     client = ctx.obj["client"]
-    api_group = client.shared_links
-    result = run_command(client, api_group, "get_my_shared_link", **kwargs)
+    result = run_command(client, client.shared_links, "get_my_shared_link", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -208,8 +200,7 @@ def get_shared_link_by_id(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.shared_links
-    result = run_command(client, api_group, "get_shared_link_by_id", **kwargs)
+    result = run_command(client, client.shared_links, "get_shared_link_by_id", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -226,8 +217,7 @@ def remove_shared_link(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.shared_links
-    result = run_command(client, api_group, "remove_shared_link", **kwargs)
+    result = run_command(client, client.shared_links, "remove_shared_link", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -258,18 +248,16 @@ def remove_shared_link_assets(
             asset_ids,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if asset_ids is None:
-            raise SystemExit("Error: --assetIds is required")
         set_nested(json_data, ["assetIds"], asset_ids)
         from immich.client.models.asset_ids_dto import AssetIdsDto
 
         asset_ids_dto = deserialize_request_body(json_data, AssetIdsDto)
         kwargs["asset_ids_dto"] = asset_ids_dto
     client = ctx.obj["client"]
-    api_group = client.shared_links
-    result = run_command(client, api_group, "remove_shared_link_assets", **kwargs)
+    result = run_command(
+        client, client.shared_links, "remove_shared_link_assets", **kwargs
+    )
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -325,7 +313,6 @@ Clients that can send null values can ignore this.""",
             slug,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if allow_download is not None:
             set_nested(json_data, ["allowDownload"], allow_download)
@@ -348,7 +335,6 @@ Clients that can send null values can ignore this.""",
         shared_link_edit_dto = deserialize_request_body(json_data, SharedLinkEditDto)
         kwargs["shared_link_edit_dto"] = shared_link_edit_dto
     client = ctx.obj["client"]
-    api_group = client.shared_links
-    result = run_command(client, api_group, "update_shared_link", **kwargs)
+    result = run_command(client, client.shared_links, "update_shared_link", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

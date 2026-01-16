@@ -53,39 +53,21 @@ def create_face(
             y,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if asset_id is None:
-            raise SystemExit("Error: --assetId is required")
         set_nested(json_data, ["assetId"], asset_id)
-        if height is None:
-            raise SystemExit("Error: --height is required")
         set_nested(json_data, ["height"], height)
-        if image_height is None:
-            raise SystemExit("Error: --imageHeight is required")
         set_nested(json_data, ["imageHeight"], image_height)
-        if image_width is None:
-            raise SystemExit("Error: --imageWidth is required")
         set_nested(json_data, ["imageWidth"], image_width)
-        if person_id is None:
-            raise SystemExit("Error: --personId is required")
         set_nested(json_data, ["personId"], person_id)
-        if width is None:
-            raise SystemExit("Error: --width is required")
         set_nested(json_data, ["width"], width)
-        if x is None:
-            raise SystemExit("Error: --x is required")
         set_nested(json_data, ["x"], x)
-        if y is None:
-            raise SystemExit("Error: --y is required")
         set_nested(json_data, ["y"], y)
         from immich.client.models.asset_face_create_dto import AssetFaceCreateDto
 
         asset_face_create_dto = deserialize_request_body(json_data, AssetFaceCreateDto)
         kwargs["asset_face_create_dto"] = asset_face_create_dto
     client = ctx.obj["client"]
-    api_group = client.faces
-    result = run_command(client, api_group, "create_face", **kwargs)
+    result = run_command(client, client.faces, "create_face", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -110,18 +92,14 @@ def delete_face(
             force,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if force is None:
-            raise SystemExit("Error: --force is required")
         set_nested(json_data, ["force"], force)
         from immich.client.models.asset_face_delete_dto import AssetFaceDeleteDto
 
         asset_face_delete_dto = deserialize_request_body(json_data, AssetFaceDeleteDto)
         kwargs["asset_face_delete_dto"] = asset_face_delete_dto
     client = ctx.obj["client"]
-    api_group = client.faces
-    result = run_command(client, api_group, "delete_face", **kwargs)
+    result = run_command(client, client.faces, "delete_face", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -138,8 +116,7 @@ def get_faces(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.faces
-    result = run_command(client, api_group, "get_faces", **kwargs)
+    result = run_command(client, client.faces, "get_faces", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -164,17 +141,13 @@ def reassign_faces_by_id(
             body_id,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if body_id is None:
-            raise SystemExit("Error: --id is required")
         set_nested(json_data, ["id"], body_id)
         from immich.client.models.face_dto import FaceDto
 
         face_dto = deserialize_request_body(json_data, FaceDto)
         kwargs["face_dto"] = face_dto
     client = ctx.obj["client"]
-    api_group = client.faces
-    result = run_command(client, api_group, "reassign_faces_by_id", **kwargs)
+    result = run_command(client, client.faces, "reassign_faces_by_id", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

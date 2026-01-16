@@ -37,7 +37,6 @@ def maintenance_login(
             token,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if token is not None:
             set_nested(json_data, ["token"], token)
@@ -46,8 +45,9 @@ def maintenance_login(
         maintenance_login_dto = deserialize_request_body(json_data, MaintenanceLoginDto)
         kwargs["maintenance_login_dto"] = maintenance_login_dto
     client = ctx.obj["client"]
-    api_group = client.maintenance_admin
-    result = run_command(client, api_group, "maintenance_login", **kwargs)
+    result = run_command(
+        client, client.maintenance_admin, "maintenance_login", **kwargs
+    )
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -70,10 +70,7 @@ def set_maintenance_mode(
             action,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if action is None:
-            raise SystemExit("Error: --action is required")
         set_nested(json_data, ["action"], action)
         from immich.client.models.set_maintenance_mode_dto import SetMaintenanceModeDto
 
@@ -82,7 +79,8 @@ def set_maintenance_mode(
         )
         kwargs["set_maintenance_mode_dto"] = set_maintenance_mode_dto
     client = ctx.obj["client"]
-    api_group = client.maintenance_admin
-    result = run_command(client, api_group, "set_maintenance_mode", **kwargs)
+    result = run_command(
+        client, client.maintenance_admin, "set_maintenance_mode", **kwargs
+    )
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

@@ -54,7 +54,6 @@ def create_notification(
             user_id,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if data is not None:
             value_data = parse_complex_list(data)
@@ -65,13 +64,9 @@ def create_notification(
             set_nested(json_data, ["level"], level)
         if read_at is not None:
             set_nested(json_data, ["readAt"], read_at)
-        if title is None:
-            raise SystemExit("Error: --title is required")
         set_nested(json_data, ["title"], title)
         if type is not None:
             set_nested(json_data, ["type"], type)
-        if user_id is None:
-            raise SystemExit("Error: --userId is required")
         set_nested(json_data, ["userId"], user_id)
         from immich.client.models.notification_create_dto import NotificationCreateDto
 
@@ -80,8 +75,9 @@ def create_notification(
         )
         kwargs["notification_create_dto"] = notification_create_dto
     client = ctx.obj["client"]
-    api_group = client.notifications_admin
-    result = run_command(client, api_group, "create_notification", **kwargs)
+    result = run_command(
+        client, client.notifications_admin, "create_notification", **kwargs
+    )
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -106,18 +102,16 @@ def get_notification_template_admin(
             template,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if template is None:
-            raise SystemExit("Error: --template is required")
         set_nested(json_data, ["template"], template)
         from immich.client.models.template_dto import TemplateDto
 
         template_dto = deserialize_request_body(json_data, TemplateDto)
         kwargs["template_dto"] = template_dto
     client = ctx.obj["client"]
-    api_group = client.notifications_admin
-    result = run_command(client, api_group, "get_notification_template_admin", **kwargs)
+    result = run_command(
+        client, client.notifications_admin, "get_notification_template_admin", **kwargs
+    )
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -168,34 +162,15 @@ def send_test_email_admin(
             transport_username,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if enabled is None:
-            raise SystemExit("Error: --enabled is required")
         set_nested(json_data, ["enabled"], enabled)
-        if from_ is None:
-            raise SystemExit("Error: --from is required")
         set_nested(json_data, ["from"], from_)
-        if reply_to is None:
-            raise SystemExit("Error: --replyTo is required")
         set_nested(json_data, ["replyTo"], reply_to)
-        if transport_host is None:
-            raise SystemExit("Error: --transport.host is required")
         set_nested(json_data, ["transport", "host"], transport_host)
-        if transport_ignore_cert is None:
-            raise SystemExit("Error: --transport.ignoreCert is required")
         set_nested(json_data, ["transport", "ignoreCert"], transport_ignore_cert)
-        if transport_password is None:
-            raise SystemExit("Error: --transport.password is required")
         set_nested(json_data, ["transport", "password"], transport_password)
-        if transport_port is None:
-            raise SystemExit("Error: --transport.port is required")
         set_nested(json_data, ["transport", "port"], transport_port)
-        if transport_secure is None:
-            raise SystemExit("Error: --transport.secure is required")
         set_nested(json_data, ["transport", "secure"], transport_secure)
-        if transport_username is None:
-            raise SystemExit("Error: --transport.username is required")
         set_nested(json_data, ["transport", "username"], transport_username)
         from immich.client.models.system_config_smtp_dto import SystemConfigSmtpDto
 
@@ -204,7 +179,8 @@ def send_test_email_admin(
         )
         kwargs["system_config_smtp_dto"] = system_config_smtp_dto
     client = ctx.obj["client"]
-    api_group = client.notifications_admin
-    result = run_command(client, api_group, "send_test_email_admin", **kwargs)
+    result = run_command(
+        client, client.notifications_admin, "send_test_email_admin", **kwargs
+    )
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

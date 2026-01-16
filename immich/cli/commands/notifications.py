@@ -31,8 +31,7 @@ def delete_notification(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.notifications
-    result = run_command(client, api_group, "delete_notification", **kwargs)
+    result = run_command(client, client.notifications, "delete_notification", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -55,10 +54,7 @@ def delete_notifications(
             ids,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if ids is None:
-            raise SystemExit("Error: --ids is required")
         set_nested(json_data, ["ids"], ids)
         from immich.client.models.notification_delete_all_dto import (
             NotificationDeleteAllDto,
@@ -69,8 +65,7 @@ def delete_notifications(
         )
         kwargs["notification_delete_all_dto"] = notification_delete_all_dto
     client = ctx.obj["client"]
-    api_group = client.notifications
-    result = run_command(client, api_group, "delete_notifications", **kwargs)
+    result = run_command(client, client.notifications, "delete_notifications", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -87,8 +82,7 @@ def get_notification(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.notifications
-    result = run_command(client, api_group, "get_notification", **kwargs)
+    result = run_command(client, client.notifications, "get_notification", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -115,8 +109,7 @@ def get_notifications(
     if unread is not None:
         kwargs["unread"] = unread.lower() == "true"
     client = ctx.obj["client"]
-    api_group = client.notifications
-    result = run_command(client, api_group, "get_notifications", **kwargs)
+    result = run_command(client, client.notifications, "get_notifications", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -141,7 +134,6 @@ def update_notification(
             read_at,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if read_at is not None:
             set_nested(json_data, ["readAt"], read_at)
@@ -152,8 +144,7 @@ def update_notification(
         )
         kwargs["notification_update_dto"] = notification_update_dto
     client = ctx.obj["client"]
-    api_group = client.notifications
-    result = run_command(client, api_group, "update_notification", **kwargs)
+    result = run_command(client, client.notifications, "update_notification", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -178,10 +169,7 @@ def update_notifications(
             read_at,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if ids is None:
-            raise SystemExit("Error: --ids is required")
         set_nested(json_data, ["ids"], ids)
         if read_at is not None:
             set_nested(json_data, ["readAt"], read_at)
@@ -194,7 +182,6 @@ def update_notifications(
         )
         kwargs["notification_update_all_dto"] = notification_update_all_dto
     client = ctx.obj["client"]
-    api_group = client.notifications
-    result = run_command(client, api_group, "update_notifications", **kwargs)
+    result = run_command(client, client.notifications, "update_notifications", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

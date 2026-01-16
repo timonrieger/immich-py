@@ -56,33 +56,23 @@ def create_workflow(
             trigger_type,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if actions is None:
-            raise SystemExit("Error: --actions is required")
         value_actions = parse_complex_list(actions)
         set_nested(json_data, ["actions"], value_actions)
         if description is not None:
             set_nested(json_data, ["description"], description)
         if enabled is not None:
             set_nested(json_data, ["enabled"], enabled)
-        if filters is None:
-            raise SystemExit("Error: --filters is required")
         value_filters = parse_complex_list(filters)
         set_nested(json_data, ["filters"], value_filters)
-        if name is None:
-            raise SystemExit("Error: --name is required")
         set_nested(json_data, ["name"], name)
-        if trigger_type is None:
-            raise SystemExit("Error: --triggerType is required")
         set_nested(json_data, ["triggerType"], trigger_type)
         from immich.client.models.workflow_create_dto import WorkflowCreateDto
 
         workflow_create_dto = deserialize_request_body(json_data, WorkflowCreateDto)
         kwargs["workflow_create_dto"] = workflow_create_dto
     client = ctx.obj["client"]
-    api_group = client.workflows
-    result = run_command(client, api_group, "create_workflow", **kwargs)
+    result = run_command(client, client.workflows, "create_workflow", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -99,8 +89,7 @@ def delete_workflow(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.workflows
-    result = run_command(client, api_group, "delete_workflow", **kwargs)
+    result = run_command(client, client.workflows, "delete_workflow", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -117,8 +106,7 @@ def get_workflow(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.workflows
-    result = run_command(client, api_group, "get_workflow", **kwargs)
+    result = run_command(client, client.workflows, "get_workflow", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -133,8 +121,7 @@ def get_workflows(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.workflows
-    result = run_command(client, api_group, "get_workflows", **kwargs)
+    result = run_command(client, client.workflows, "get_workflows", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -177,7 +164,6 @@ def update_workflow(
             trigger_type,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if actions is not None:
             value_actions = parse_complex_list(actions)
@@ -198,7 +184,6 @@ def update_workflow(
         workflow_update_dto = deserialize_request_body(json_data, WorkflowUpdateDto)
         kwargs["workflow_update_dto"] = workflow_update_dto
     client = ctx.obj["client"]
-    api_group = client.workflows
-    result = run_command(client, api_group, "update_workflow", **kwargs)
+    result = run_command(client, client.workflows, "update_workflow", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

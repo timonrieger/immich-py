@@ -31,8 +31,7 @@ def delete_duplicate(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.duplicates
-    result = run_command(client, api_group, "delete_duplicate", **kwargs)
+    result = run_command(client, client.duplicates, "delete_duplicate", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -55,18 +54,14 @@ def delete_duplicates(
             ids,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if ids is None:
-            raise SystemExit("Error: --ids is required")
         set_nested(json_data, ["ids"], ids)
         from immich.client.models.bulk_ids_dto import BulkIdsDto
 
         bulk_ids_dto = deserialize_request_body(json_data, BulkIdsDto)
         kwargs["bulk_ids_dto"] = bulk_ids_dto
     client = ctx.obj["client"]
-    api_group = client.duplicates
-    result = run_command(client, api_group, "delete_duplicates", **kwargs)
+    result = run_command(client, client.duplicates, "delete_duplicates", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -81,7 +76,6 @@ def get_asset_duplicates(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.duplicates
-    result = run_command(client, api_group, "get_asset_duplicates", **kwargs)
+    result = run_command(client, client.duplicates, "get_asset_duplicates", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

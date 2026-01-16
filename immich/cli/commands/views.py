@@ -26,8 +26,7 @@ def get_assets_by_original_path(
     kwargs = {}
     kwargs["path"] = path
     client = ctx.obj["client"]
-    api_group = client.views
-    result = run_command(client, api_group, "get_assets_by_original_path", **kwargs)
+    result = run_command(client, client.views, "get_assets_by_original_path", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -42,7 +41,6 @@ def get_unique_original_paths(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.views
-    result = run_command(client, api_group, "get_unique_original_paths", **kwargs)
+    result = run_command(client, client.views, "get_unique_original_paths", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

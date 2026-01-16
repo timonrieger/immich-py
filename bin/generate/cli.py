@@ -698,7 +698,6 @@ def generate_command_function(
                 lines.append("    if any([")
                 lines.append("        " + ",\n        ".join(body_flag_params) + ",")
                 lines.append("    ]):")
-                lines.append("        # Build body from dotted flags")
                 lines.append("        json_data = {}")
 
                 for (
@@ -712,10 +711,6 @@ def generate_command_function(
 
                     if is_required:
                         if is_complex:
-                            lines.append(f"        if {param_name} is None:")
-                            lines.append(
-                                f'            raise SystemExit("Error: --{opt_name.lstrip("--")} is required")'
-                            )
                             lines.append(
                                 f"        value_{param_name} = parse_complex_list({param_name})"
                             )
@@ -723,10 +718,6 @@ def generate_command_function(
                                 f"        set_nested(json_data, {path_parts!r}, value_{param_name})"
                             )
                         else:
-                            lines.append(f"        if {param_name} is None:")
-                            lines.append(
-                                f'            raise SystemExit("Error: --{opt_name.lstrip("--")} is required")'
-                            )
                             lines.append(
                                 f"        set_nested(json_data, {path_parts!r}, {param_name})"
                             )
@@ -805,12 +796,11 @@ def generate_command_function(
 
     # Get client and API group
     lines.append("    client = ctx.obj['client']")
-    lines.append(f"    api_group = client.{tag_attr}")
 
     # Call method
     method_name = to_snake_case(operation_id)
     lines.append(
-        f"    result = run_command(client, api_group, '{method_name}', **kwargs)"
+        f"    result = run_command(client, client.{tag_attr}, '{method_name}', **kwargs)"
     )
 
     # Print result

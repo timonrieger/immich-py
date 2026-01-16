@@ -43,7 +43,6 @@ def create_library(
             owner_id,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if exclusion_patterns is not None:
             set_nested(json_data, ["exclusionPatterns"], exclusion_patterns)
@@ -51,16 +50,13 @@ def create_library(
             set_nested(json_data, ["importPaths"], import_paths)
         if name is not None:
             set_nested(json_data, ["name"], name)
-        if owner_id is None:
-            raise SystemExit("Error: --ownerId is required")
         set_nested(json_data, ["ownerId"], owner_id)
         from immich.client.models.create_library_dto import CreateLibraryDto
 
         create_library_dto = deserialize_request_body(json_data, CreateLibraryDto)
         kwargs["create_library_dto"] = create_library_dto
     client = ctx.obj["client"]
-    api_group = client.libraries
-    result = run_command(client, api_group, "create_library", **kwargs)
+    result = run_command(client, client.libraries, "create_library", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -77,8 +73,7 @@ def delete_library(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.libraries
-    result = run_command(client, api_group, "delete_library", **kwargs)
+    result = run_command(client, client.libraries, "delete_library", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -93,8 +88,7 @@ def get_all_libraries(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.libraries
-    result = run_command(client, api_group, "get_all_libraries", **kwargs)
+    result = run_command(client, client.libraries, "get_all_libraries", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -111,8 +105,7 @@ def get_library(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.libraries
-    result = run_command(client, api_group, "get_library", **kwargs)
+    result = run_command(client, client.libraries, "get_library", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -129,8 +122,7 @@ def get_library_statistics(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.libraries
-    result = run_command(client, api_group, "get_library_statistics", **kwargs)
+    result = run_command(client, client.libraries, "get_library_statistics", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -147,8 +139,7 @@ def scan_library(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.libraries
-    result = run_command(client, api_group, "scan_library", **kwargs)
+    result = run_command(client, client.libraries, "scan_library", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -177,7 +168,6 @@ def update_library(
             name,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if exclusion_patterns is not None:
             set_nested(json_data, ["exclusionPatterns"], exclusion_patterns)
@@ -190,8 +180,7 @@ def update_library(
         update_library_dto = deserialize_request_body(json_data, UpdateLibraryDto)
         kwargs["update_library_dto"] = update_library_dto
     client = ctx.obj["client"]
-    api_group = client.libraries
-    result = run_command(client, api_group, "update_library", **kwargs)
+    result = run_command(client, client.libraries, "update_library", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -218,7 +207,6 @@ def validate(
             import_paths,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if exclusion_patterns is not None:
             set_nested(json_data, ["exclusionPatterns"], exclusion_patterns)
@@ -229,7 +217,6 @@ def validate(
         validate_library_dto = deserialize_request_body(json_data, ValidateLibraryDto)
         kwargs["validate_library_dto"] = validate_library_dto
     client = ctx.obj["client"]
-    api_group = client.libraries
-    result = run_command(client, api_group, "validate", **kwargs)
+    result = run_command(client, client.libraries, "validate", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

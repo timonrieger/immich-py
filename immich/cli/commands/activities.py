@@ -43,25 +43,19 @@ def create_activity(
             type,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if album_id is None:
-            raise SystemExit("Error: --albumId is required")
         set_nested(json_data, ["albumId"], album_id)
         if asset_id is not None:
             set_nested(json_data, ["assetId"], asset_id)
         if comment is not None:
             set_nested(json_data, ["comment"], comment)
-        if type is None:
-            raise SystemExit("Error: --type is required")
         set_nested(json_data, ["type"], type)
         from immich.client.models.activity_create_dto import ActivityCreateDto
 
         activity_create_dto = deserialize_request_body(json_data, ActivityCreateDto)
         kwargs["activity_create_dto"] = activity_create_dto
     client = ctx.obj["client"]
-    api_group = client.activities
-    result = run_command(client, api_group, "create_activity", **kwargs)
+    result = run_command(client, client.activities, "create_activity", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -78,8 +72,7 @@ def delete_activity(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.activities
-    result = run_command(client, api_group, "delete_activity", **kwargs)
+    result = run_command(client, client.activities, "delete_activity", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -108,8 +101,7 @@ def get_activities(
     if user_id is not None:
         kwargs["user_id"] = user_id
     client = ctx.obj["client"]
-    api_group = client.activities
-    result = run_command(client, api_group, "get_activities", **kwargs)
+    result = run_command(client, client.activities, "get_activities", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -129,7 +121,6 @@ def get_activity_statistics(
     if asset_id is not None:
         kwargs["asset_id"] = asset_id
     client = ctx.obj["client"]
-    api_group = client.activities
-    result = run_command(client, api_group, "get_activity_statistics", **kwargs)
+    result = run_command(client, client.activities, "get_activity_statistics", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

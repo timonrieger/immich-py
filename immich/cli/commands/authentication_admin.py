@@ -24,9 +24,11 @@ def unlink_all_o_auth_accounts_admin(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.authentication_admin
     result = run_command(
-        client, api_group, "unlink_all_o_auth_accounts_admin", **kwargs
+        client,
+        client.authentication_admin,
+        "unlink_all_o_auth_accounts_admin",
+        **kwargs,
     )
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

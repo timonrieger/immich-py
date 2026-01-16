@@ -65,22 +65,15 @@ def create_user_admin(
             storage_label,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if avatar_color is not None:
             set_nested(json_data, ["avatarColor"], avatar_color)
-        if email is None:
-            raise SystemExit("Error: --email is required")
         set_nested(json_data, ["email"], email)
         if is_admin is not None:
             set_nested(json_data, ["isAdmin"], is_admin)
-        if name is None:
-            raise SystemExit("Error: --name is required")
         set_nested(json_data, ["name"], name)
         if notify is not None:
             set_nested(json_data, ["notify"], notify)
-        if password is None:
-            raise SystemExit("Error: --password is required")
         set_nested(json_data, ["password"], password)
         if quota_size_in_bytes is not None:
             set_nested(json_data, ["quotaSizeInBytes"], quota_size_in_bytes)
@@ -93,8 +86,7 @@ def create_user_admin(
         user_admin_create_dto = deserialize_request_body(json_data, UserAdminCreateDto)
         kwargs["user_admin_create_dto"] = user_admin_create_dto
     client = ctx.obj["client"]
-    api_group = client.users_admin
-    result = run_command(client, api_group, "create_user_admin", **kwargs)
+    result = run_command(client, client.users_admin, "create_user_admin", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -119,7 +111,6 @@ def delete_user_admin(
             force,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if force is not None:
             set_nested(json_data, ["force"], force)
@@ -128,8 +119,7 @@ def delete_user_admin(
         user_admin_delete_dto = deserialize_request_body(json_data, UserAdminDeleteDto)
         kwargs["user_admin_delete_dto"] = user_admin_delete_dto
     client = ctx.obj["client"]
-    api_group = client.users_admin
-    result = run_command(client, api_group, "delete_user_admin", **kwargs)
+    result = run_command(client, client.users_admin, "delete_user_admin", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -146,8 +136,7 @@ def get_user_admin(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.users_admin
-    result = run_command(client, api_group, "get_user_admin", **kwargs)
+    result = run_command(client, client.users_admin, "get_user_admin", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -164,8 +153,9 @@ def get_user_preferences_admin(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.users_admin
-    result = run_command(client, api_group, "get_user_preferences_admin", **kwargs)
+    result = run_command(
+        client, client.users_admin, "get_user_preferences_admin", **kwargs
+    )
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -182,8 +172,9 @@ def get_user_sessions_admin(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.users_admin
-    result = run_command(client, api_group, "get_user_sessions_admin", **kwargs)
+    result = run_command(
+        client, client.users_admin, "get_user_sessions_admin", **kwargs
+    )
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -209,8 +200,9 @@ def get_user_statistics_admin(
     if visibility is not None:
         kwargs["visibility"] = visibility
     client = ctx.obj["client"]
-    api_group = client.users_admin
-    result = run_command(client, api_group, "get_user_statistics_admin", **kwargs)
+    result = run_command(
+        client, client.users_admin, "get_user_statistics_admin", **kwargs
+    )
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -227,8 +219,7 @@ def restore_user_admin(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.users_admin
-    result = run_command(client, api_group, "restore_user_admin", **kwargs)
+    result = run_command(client, client.users_admin, "restore_user_admin", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -249,8 +240,7 @@ def search_users_admin(
     if with_deleted is not None:
         kwargs["with_deleted"] = with_deleted.lower() == "true"
     client = ctx.obj["client"]
-    api_group = client.users_admin
-    result = run_command(client, api_group, "search_users_admin", **kwargs)
+    result = run_command(client, client.users_admin, "search_users_admin", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -303,7 +293,6 @@ def update_user_admin(
             storage_label,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if avatar_color is not None:
             set_nested(json_data, ["avatarColor"], avatar_color)
@@ -328,8 +317,7 @@ def update_user_admin(
         user_admin_update_dto = deserialize_request_body(json_data, UserAdminUpdateDto)
         kwargs["user_admin_update_dto"] = user_admin_update_dto
     client = ctx.obj["client"]
-    api_group = client.users_admin
-    result = run_command(client, api_group, "update_user_admin", **kwargs)
+    result = run_command(client, client.users_admin, "update_user_admin", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -434,7 +422,6 @@ def update_user_preferences_admin(
             tags_sidebar_web,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if albums_default_asset_order is not None:
             set_nested(
@@ -513,7 +500,8 @@ def update_user_preferences_admin(
         )
         kwargs["user_preferences_update_dto"] = user_preferences_update_dto
     client = ctx.obj["client"]
-    api_group = client.users_admin
-    result = run_command(client, api_group, "update_user_preferences_admin", **kwargs)
+    result = run_command(
+        client, client.users_admin, "update_user_preferences_admin", **kwargs
+    )
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

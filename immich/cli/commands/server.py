@@ -29,8 +29,7 @@ def delete_server_license(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.server
-    result = run_command(client, api_group, "delete_server_license", **kwargs)
+    result = run_command(client, client.server, "delete_server_license", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -45,8 +44,7 @@ def get_about_info(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.server
-    result = run_command(client, api_group, "get_about_info", **kwargs)
+    result = run_command(client, client.server, "get_about_info", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -61,8 +59,7 @@ def get_apk_links(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.server
-    result = run_command(client, api_group, "get_apk_links", **kwargs)
+    result = run_command(client, client.server, "get_apk_links", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -77,8 +74,7 @@ def get_server_config(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.server
-    result = run_command(client, api_group, "get_server_config", **kwargs)
+    result = run_command(client, client.server, "get_server_config", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -93,8 +89,7 @@ def get_server_features(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.server
-    result = run_command(client, api_group, "get_server_features", **kwargs)
+    result = run_command(client, client.server, "get_server_features", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -109,8 +104,7 @@ def get_server_license(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.server
-    result = run_command(client, api_group, "get_server_license", **kwargs)
+    result = run_command(client, client.server, "get_server_license", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -125,8 +119,7 @@ def get_server_statistics(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.server
-    result = run_command(client, api_group, "get_server_statistics", **kwargs)
+    result = run_command(client, client.server, "get_server_statistics", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -141,8 +134,7 @@ def get_server_version(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.server
-    result = run_command(client, api_group, "get_server_version", **kwargs)
+    result = run_command(client, client.server, "get_server_version", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -157,8 +149,7 @@ def get_storage(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.server
-    result = run_command(client, api_group, "get_storage", **kwargs)
+    result = run_command(client, client.server, "get_storage", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -173,8 +164,7 @@ def get_supported_media_types(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.server
-    result = run_command(client, api_group, "get_supported_media_types", **kwargs)
+    result = run_command(client, client.server, "get_supported_media_types", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -189,8 +179,7 @@ def get_theme(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.server
-    result = run_command(client, api_group, "get_theme", **kwargs)
+    result = run_command(client, client.server, "get_theme", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -205,8 +194,7 @@ def get_version_check(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.server
-    result = run_command(client, api_group, "get_version_check", **kwargs)
+    result = run_command(client, client.server, "get_version_check", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -221,8 +209,7 @@ def get_version_history(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.server
-    result = run_command(client, api_group, "get_version_history", **kwargs)
+    result = run_command(client, client.server, "get_version_history", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -237,8 +224,7 @@ def ping_server(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.server
-    result = run_command(client, api_group, "ping_server", **kwargs)
+    result = run_command(client, client.server, "ping_server", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -263,20 +249,14 @@ def set_server_license(
             license_key,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if activation_key is None:
-            raise SystemExit("Error: --activationKey is required")
         set_nested(json_data, ["activationKey"], activation_key)
-        if license_key is None:
-            raise SystemExit("Error: --licenseKey is required")
         set_nested(json_data, ["licenseKey"], license_key)
         from immich.client.models.license_key_dto import LicenseKeyDto
 
         license_key_dto = deserialize_request_body(json_data, LicenseKeyDto)
         kwargs["license_key_dto"] = license_key_dto
     client = ctx.obj["client"]
-    api_group = client.server
-    result = run_command(client, api_group, "set_server_license", **kwargs)
+    result = run_command(client, client.server, "set_server_license", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

@@ -46,18 +46,14 @@ def add_assets_to_album(
             ids,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if ids is None:
-            raise SystemExit("Error: --ids is required")
         set_nested(json_data, ["ids"], ids)
         from immich.client.models.bulk_ids_dto import BulkIdsDto
 
         bulk_ids_dto = deserialize_request_body(json_data, BulkIdsDto)
         kwargs["bulk_ids_dto"] = bulk_ids_dto
     client = ctx.obj["client"]
-    api_group = client.albums
-    result = run_command(client, api_group, "add_assets_to_album", **kwargs)
+    result = run_command(client, client.albums, "add_assets_to_album", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -88,21 +84,15 @@ def add_assets_to_albums(
             asset_ids,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if album_ids is None:
-            raise SystemExit("Error: --albumIds is required")
         set_nested(json_data, ["albumIds"], album_ids)
-        if asset_ids is None:
-            raise SystemExit("Error: --assetIds is required")
         set_nested(json_data, ["assetIds"], asset_ids)
         from immich.client.models.albums_add_assets_dto import AlbumsAddAssetsDto
 
         albums_add_assets_dto = deserialize_request_body(json_data, AlbumsAddAssetsDto)
         kwargs["albums_add_assets_dto"] = albums_add_assets_dto
     client = ctx.obj["client"]
-    api_group = client.albums
-    result = run_command(client, api_group, "add_assets_to_albums", **kwargs)
+    result = run_command(client, client.albums, "add_assets_to_albums", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -131,10 +121,7 @@ def add_users_to_album(
             album_users,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if album_users is None:
-            raise SystemExit("Error: --albumUsers is required")
         value_album_users = parse_complex_list(album_users)
         set_nested(json_data, ["albumUsers"], value_album_users)
         from immich.client.models.add_users_dto import AddUsersDto
@@ -142,8 +129,7 @@ def add_users_to_album(
         add_users_dto = deserialize_request_body(json_data, AddUsersDto)
         kwargs["add_users_dto"] = add_users_dto
     client = ctx.obj["client"]
-    api_group = client.albums
-    result = run_command(client, api_group, "add_users_to_album", **kwargs)
+    result = run_command(client, client.albums, "add_users_to_album", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -176,10 +162,7 @@ def create_album(
             description,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if album_name is None:
-            raise SystemExit("Error: --albumName is required")
         set_nested(json_data, ["albumName"], album_name)
         if album_users is not None:
             value_album_users = parse_complex_list(album_users)
@@ -193,8 +176,7 @@ def create_album(
         create_album_dto = deserialize_request_body(json_data, CreateAlbumDto)
         kwargs["create_album_dto"] = create_album_dto
     client = ctx.obj["client"]
-    api_group = client.albums
-    result = run_command(client, api_group, "create_album", **kwargs)
+    result = run_command(client, client.albums, "create_album", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -211,8 +193,7 @@ def delete_album(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.albums
-    result = run_command(client, api_group, "delete_album", **kwargs)
+    result = run_command(client, client.albums, "delete_album", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -238,8 +219,7 @@ def get_album_info(
     if without_assets is not None:
         kwargs["without_assets"] = without_assets.lower() == "true"
     client = ctx.obj["client"]
-    api_group = client.albums
-    result = run_command(client, api_group, "get_album_info", **kwargs)
+    result = run_command(client, client.albums, "get_album_info", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -254,8 +234,7 @@ def get_album_statistics(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.albums
-    result = run_command(client, api_group, "get_album_statistics", **kwargs)
+    result = run_command(client, client.albums, "get_album_statistics", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -282,8 +261,7 @@ undefined: get all albums""",
     if shared is not None:
         kwargs["shared"] = shared.lower() == "true"
     client = ctx.obj["client"]
-    api_group = client.albums
-    result = run_command(client, api_group, "get_all_albums", **kwargs)
+    result = run_command(client, client.albums, "get_all_albums", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -308,18 +286,14 @@ def remove_asset_from_album(
             ids,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if ids is None:
-            raise SystemExit("Error: --ids is required")
         set_nested(json_data, ["ids"], ids)
         from immich.client.models.bulk_ids_dto import BulkIdsDto
 
         bulk_ids_dto = deserialize_request_body(json_data, BulkIdsDto)
         kwargs["bulk_ids_dto"] = bulk_ids_dto
     client = ctx.obj["client"]
-    api_group = client.albums
-    result = run_command(client, api_group, "remove_asset_from_album", **kwargs)
+    result = run_command(client, client.albums, "remove_asset_from_album", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -338,8 +312,7 @@ def remove_user_from_album(
     kwargs["id"] = id
     kwargs["user_id"] = user_id
     client = ctx.obj["client"]
-    api_group = client.albums
-    result = run_command(client, api_group, "remove_user_from_album", **kwargs)
+    result = run_command(client, client.albums, "remove_user_from_album", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -376,7 +349,6 @@ def update_album_info(
             order,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if album_name is not None:
             set_nested(json_data, ["albumName"], album_name)
@@ -393,8 +365,7 @@ def update_album_info(
         update_album_dto = deserialize_request_body(json_data, UpdateAlbumDto)
         kwargs["update_album_dto"] = update_album_dto
     client = ctx.obj["client"]
-    api_group = client.albums
-    result = run_command(client, api_group, "update_album_info", **kwargs)
+    result = run_command(client, client.albums, "update_album_info", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -421,17 +392,13 @@ def update_album_user(
             role,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if role is None:
-            raise SystemExit("Error: --role is required")
         set_nested(json_data, ["role"], role)
         from immich.client.models.update_album_user_dto import UpdateAlbumUserDto
 
         update_album_user_dto = deserialize_request_body(json_data, UpdateAlbumUserDto)
         kwargs["update_album_user_dto"] = update_album_user_dto
     client = ctx.obj["client"]
-    api_group = client.albums
-    result = run_command(client, api_group, "update_album_user", **kwargs)
+    result = run_command(client, client.albums, "update_album_user", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

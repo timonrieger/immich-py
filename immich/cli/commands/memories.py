@@ -39,18 +39,14 @@ def add_memory_assets(
             ids,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if ids is None:
-            raise SystemExit("Error: --ids is required")
         set_nested(json_data, ["ids"], ids)
         from immich.client.models.bulk_ids_dto import BulkIdsDto
 
         bulk_ids_dto = deserialize_request_body(json_data, BulkIdsDto)
         kwargs["bulk_ids_dto"] = bulk_ids_dto
     client = ctx.obj["client"]
-    api_group = client.memories
-    result = run_command(client, api_group, "add_memory_assets", **kwargs)
+    result = run_command(client, client.memories, "add_memory_assets", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -83,30 +79,22 @@ def create_memory(
             type,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if asset_ids is not None:
             set_nested(json_data, ["assetIds"], asset_ids)
-        if data_year is None:
-            raise SystemExit("Error: --data.year is required")
         set_nested(json_data, ["data", "year"], data_year)
         if is_saved is not None:
             set_nested(json_data, ["isSaved"], is_saved)
-        if memory_at is None:
-            raise SystemExit("Error: --memoryAt is required")
         set_nested(json_data, ["memoryAt"], memory_at)
         if seen_at is not None:
             set_nested(json_data, ["seenAt"], seen_at)
-        if type is None:
-            raise SystemExit("Error: --type is required")
         set_nested(json_data, ["type"], type)
         from immich.client.models.memory_create_dto import MemoryCreateDto
 
         memory_create_dto = deserialize_request_body(json_data, MemoryCreateDto)
         kwargs["memory_create_dto"] = memory_create_dto
     client = ctx.obj["client"]
-    api_group = client.memories
-    result = run_command(client, api_group, "create_memory", **kwargs)
+    result = run_command(client, client.memories, "create_memory", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -123,8 +111,7 @@ def delete_memory(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.memories
-    result = run_command(client, api_group, "delete_memory", **kwargs)
+    result = run_command(client, client.memories, "delete_memory", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -141,8 +128,7 @@ def get_memory(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.memories
-    result = run_command(client, api_group, "get_memory", **kwargs)
+    result = run_command(client, client.memories, "get_memory", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -177,8 +163,7 @@ def memories_statistics(
     if type is not None:
         kwargs["type"] = type
     client = ctx.obj["client"]
-    api_group = client.memories
-    result = run_command(client, api_group, "memories_statistics", **kwargs)
+    result = run_command(client, client.memories, "memories_statistics", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -203,18 +188,14 @@ def remove_memory_assets(
             ids,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if ids is None:
-            raise SystemExit("Error: --ids is required")
         set_nested(json_data, ["ids"], ids)
         from immich.client.models.bulk_ids_dto import BulkIdsDto
 
         bulk_ids_dto = deserialize_request_body(json_data, BulkIdsDto)
         kwargs["bulk_ids_dto"] = bulk_ids_dto
     client = ctx.obj["client"]
-    api_group = client.memories
-    result = run_command(client, api_group, "remove_memory_assets", **kwargs)
+    result = run_command(client, client.memories, "remove_memory_assets", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -249,8 +230,7 @@ def search_memories(
     if type is not None:
         kwargs["type"] = type
     client = ctx.obj["client"]
-    api_group = client.memories
-    result = run_command(client, api_group, "search_memories", **kwargs)
+    result = run_command(client, client.memories, "search_memories", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -279,7 +259,6 @@ def update_memory(
             seen_at,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if is_saved is not None:
             set_nested(json_data, ["isSaved"], is_saved)
@@ -292,7 +271,6 @@ def update_memory(
         memory_update_dto = deserialize_request_body(json_data, MemoryUpdateDto)
         kwargs["memory_update_dto"] = memory_update_dto
     client = ctx.obj["client"]
-    api_group = client.memories
-    result = run_command(client, api_group, "update_memory", **kwargs)
+    result = run_command(client, client.memories, "update_memory", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

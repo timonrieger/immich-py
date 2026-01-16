@@ -41,23 +41,17 @@ def change_password(
             password,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if invalidate_sessions is not None:
             set_nested(json_data, ["invalidateSessions"], invalidate_sessions)
-        if new_password is None:
-            raise SystemExit("Error: --newPassword is required")
         set_nested(json_data, ["newPassword"], new_password)
-        if password is None:
-            raise SystemExit("Error: --password is required")
         set_nested(json_data, ["password"], password)
         from immich.client.models.change_password_dto import ChangePasswordDto
 
         change_password_dto = deserialize_request_body(json_data, ChangePasswordDto)
         kwargs["change_password_dto"] = change_password_dto
     client = ctx.obj["client"]
-    api_group = client.authentication
-    result = run_command(client, api_group, "change_password", **kwargs)
+    result = run_command(client, client.authentication, "change_password", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -84,10 +78,7 @@ def change_pin_code(
             pin_code,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if new_pin_code is None:
-            raise SystemExit("Error: --newPinCode is required")
         set_nested(json_data, ["newPinCode"], new_pin_code)
         if password is not None:
             set_nested(json_data, ["password"], password)
@@ -98,8 +89,7 @@ def change_pin_code(
         pin_code_change_dto = deserialize_request_body(json_data, PinCodeChangeDto)
         kwargs["pin_code_change_dto"] = pin_code_change_dto
     client = ctx.obj["client"]
-    api_group = client.authentication
-    result = run_command(client, api_group, "change_pin_code", **kwargs)
+    result = run_command(client, client.authentication, "change_pin_code", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -126,22 +116,18 @@ def finish_o_auth(
             url,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if code_verifier is not None:
             set_nested(json_data, ["codeVerifier"], code_verifier)
         if state is not None:
             set_nested(json_data, ["state"], state)
-        if url is None:
-            raise SystemExit("Error: --url is required")
         set_nested(json_data, ["url"], url)
         from immich.client.models.o_auth_callback_dto import OAuthCallbackDto
 
         o_auth_callback_dto = deserialize_request_body(json_data, OAuthCallbackDto)
         kwargs["o_auth_callback_dto"] = o_auth_callback_dto
     client = ctx.obj["client"]
-    api_group = client.authentication
-    result = run_command(client, api_group, "finish_o_auth", **kwargs)
+    result = run_command(client, client.authentication, "finish_o_auth", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -156,8 +142,7 @@ def get_auth_status(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.authentication
-    result = run_command(client, api_group, "get_auth_status", **kwargs)
+    result = run_command(client, client.authentication, "get_auth_status", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -184,22 +169,18 @@ def link_o_auth_account(
             url,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if code_verifier is not None:
             set_nested(json_data, ["codeVerifier"], code_verifier)
         if state is not None:
             set_nested(json_data, ["state"], state)
-        if url is None:
-            raise SystemExit("Error: --url is required")
         set_nested(json_data, ["url"], url)
         from immich.client.models.o_auth_callback_dto import OAuthCallbackDto
 
         o_auth_callback_dto = deserialize_request_body(json_data, OAuthCallbackDto)
         kwargs["o_auth_callback_dto"] = o_auth_callback_dto
     client = ctx.obj["client"]
-    api_group = client.authentication
-    result = run_command(client, api_group, "link_o_auth_account", **kwargs)
+    result = run_command(client, client.authentication, "link_o_auth_account", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -214,8 +195,7 @@ def lock_auth_session(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.authentication
-    result = run_command(client, api_group, "lock_auth_session", **kwargs)
+    result = run_command(client, client.authentication, "lock_auth_session", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -240,21 +220,15 @@ def login(
             password,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if email is None:
-            raise SystemExit("Error: --email is required")
         set_nested(json_data, ["email"], email)
-        if password is None:
-            raise SystemExit("Error: --password is required")
         set_nested(json_data, ["password"], password)
         from immich.client.models.login_credential_dto import LoginCredentialDto
 
         login_credential_dto = deserialize_request_body(json_data, LoginCredentialDto)
         kwargs["login_credential_dto"] = login_credential_dto
     client = ctx.obj["client"]
-    api_group = client.authentication
-    result = run_command(client, api_group, "login", **kwargs)
+    result = run_command(client, client.authentication, "login", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -269,8 +243,7 @@ def logout(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.authentication
-    result = run_command(client, api_group, "logout", **kwargs)
+    result = run_command(client, client.authentication, "logout", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -285,8 +258,9 @@ def redirect_o_auth_to_mobile(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.authentication
-    result = run_command(client, api_group, "redirect_o_auth_to_mobile", **kwargs)
+    result = run_command(
+        client, client.authentication, "redirect_o_auth_to_mobile", **kwargs
+    )
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -311,7 +285,6 @@ def reset_pin_code(
             pin_code,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if password is not None:
             set_nested(json_data, ["password"], password)
@@ -322,8 +295,7 @@ def reset_pin_code(
         pin_code_reset_dto = deserialize_request_body(json_data, PinCodeResetDto)
         kwargs["pin_code_reset_dto"] = pin_code_reset_dto
     client = ctx.obj["client"]
-    api_group = client.authentication
-    result = run_command(client, api_group, "reset_pin_code", **kwargs)
+    result = run_command(client, client.authentication, "reset_pin_code", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -346,18 +318,14 @@ def setup_pin_code(
             pin_code,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if pin_code is None:
-            raise SystemExit("Error: --pinCode is required")
         set_nested(json_data, ["pinCode"], pin_code)
         from immich.client.models.pin_code_setup_dto import PinCodeSetupDto
 
         pin_code_setup_dto = deserialize_request_body(json_data, PinCodeSetupDto)
         kwargs["pin_code_setup_dto"] = pin_code_setup_dto
     client = ctx.obj["client"]
-    api_group = client.authentication
-    result = run_command(client, api_group, "setup_pin_code", **kwargs)
+    result = run_command(client, client.authentication, "setup_pin_code", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -384,24 +352,16 @@ def sign_up_admin(
             password,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if email is None:
-            raise SystemExit("Error: --email is required")
         set_nested(json_data, ["email"], email)
-        if name is None:
-            raise SystemExit("Error: --name is required")
         set_nested(json_data, ["name"], name)
-        if password is None:
-            raise SystemExit("Error: --password is required")
         set_nested(json_data, ["password"], password)
         from immich.client.models.sign_up_dto import SignUpDto
 
         sign_up_dto = deserialize_request_body(json_data, SignUpDto)
         kwargs["sign_up_dto"] = sign_up_dto
     client = ctx.obj["client"]
-    api_group = client.authentication
-    result = run_command(client, api_group, "sign_up_admin", **kwargs)
+    result = run_command(client, client.authentication, "sign_up_admin", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -428,12 +388,9 @@ def start_o_auth(
             state,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if code_challenge is not None:
             set_nested(json_data, ["codeChallenge"], code_challenge)
-        if redirect_uri is None:
-            raise SystemExit("Error: --redirectUri is required")
         set_nested(json_data, ["redirectUri"], redirect_uri)
         if state is not None:
             set_nested(json_data, ["state"], state)
@@ -442,8 +399,7 @@ def start_o_auth(
         o_auth_config_dto = deserialize_request_body(json_data, OAuthConfigDto)
         kwargs["o_auth_config_dto"] = o_auth_config_dto
     client = ctx.obj["client"]
-    api_group = client.authentication
-    result = run_command(client, api_group, "start_o_auth", **kwargs)
+    result = run_command(client, client.authentication, "start_o_auth", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -458,8 +414,9 @@ def unlink_o_auth_account(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.authentication
-    result = run_command(client, api_group, "unlink_o_auth_account", **kwargs)
+    result = run_command(
+        client, client.authentication, "unlink_o_auth_account", **kwargs
+    )
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -484,7 +441,6 @@ def unlock_auth_session(
             pin_code,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if password is not None:
             set_nested(json_data, ["password"], password)
@@ -495,8 +451,7 @@ def unlock_auth_session(
         session_unlock_dto = deserialize_request_body(json_data, SessionUnlockDto)
         kwargs["session_unlock_dto"] = session_unlock_dto
     client = ctx.obj["client"]
-    api_group = client.authentication
-    result = run_command(client, api_group, "unlock_auth_session", **kwargs)
+    result = run_command(client, client.authentication, "unlock_auth_session", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -511,7 +466,8 @@ def validate_access_token(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.authentication
-    result = run_command(client, api_group, "validate_access_token", **kwargs)
+    result = run_command(
+        client, client.authentication, "validate_access_token", **kwargs
+    )
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

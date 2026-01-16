@@ -43,7 +43,6 @@ def create_session(
             duration,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if device_os is not None:
             set_nested(json_data, ["deviceOS"], device_os)
@@ -56,8 +55,7 @@ def create_session(
         session_create_dto = deserialize_request_body(json_data, SessionCreateDto)
         kwargs["session_create_dto"] = session_create_dto
     client = ctx.obj["client"]
-    api_group = client.sessions
-    result = run_command(client, api_group, "create_session", **kwargs)
+    result = run_command(client, client.sessions, "create_session", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -72,8 +70,7 @@ def delete_all_sessions(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.sessions
-    result = run_command(client, api_group, "delete_all_sessions", **kwargs)
+    result = run_command(client, client.sessions, "delete_all_sessions", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -90,8 +87,7 @@ def delete_session(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.sessions
-    result = run_command(client, api_group, "delete_session", **kwargs)
+    result = run_command(client, client.sessions, "delete_session", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -106,8 +102,7 @@ def get_sessions(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.sessions
-    result = run_command(client, api_group, "get_sessions", **kwargs)
+    result = run_command(client, client.sessions, "get_sessions", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -124,8 +119,7 @@ def lock_session(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.sessions
-    result = run_command(client, api_group, "lock_session", **kwargs)
+    result = run_command(client, client.sessions, "lock_session", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -150,7 +144,6 @@ def update_session(
             is_pending_sync_reset,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if is_pending_sync_reset is not None:
             set_nested(json_data, ["isPendingSyncReset"], is_pending_sync_reset)
@@ -159,7 +152,6 @@ def update_session(
         session_update_dto = deserialize_request_body(json_data, SessionUpdateDto)
         kwargs["session_update_dto"] = session_update_dto
     client = ctx.obj["client"]
-    api_group = client.sessions
-    result = run_command(client, api_group, "update_session", **kwargs)
+    result = run_command(client, client.sessions, "update_session", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

@@ -44,10 +44,7 @@ def check_bulk_upload(
             assets,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if assets is None:
-            raise SystemExit("Error: --assets is required")
         value_assets = parse_complex_list(assets)
         set_nested(json_data, ["assets"], value_assets)
         from immich.client.models.asset_bulk_upload_check_dto import (
@@ -59,8 +56,7 @@ def check_bulk_upload(
         )
         kwargs["asset_bulk_upload_check_dto"] = asset_bulk_upload_check_dto
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "check_bulk_upload", **kwargs)
+    result = run_command(client, client.assets, "check_bulk_upload", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -85,13 +81,8 @@ def check_existing_assets(
             device_id,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if device_asset_ids is None:
-            raise SystemExit("Error: --deviceAssetIds is required")
         set_nested(json_data, ["deviceAssetIds"], device_asset_ids)
-        if device_id is None:
-            raise SystemExit("Error: --deviceId is required")
         set_nested(json_data, ["deviceId"], device_id)
         from immich.client.models.check_existing_assets_dto import (
             CheckExistingAssetsDto,
@@ -102,8 +93,7 @@ def check_existing_assets(
         )
         kwargs["check_existing_assets_dto"] = check_existing_assets_dto
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "check_existing_assets", **kwargs)
+    result = run_command(client, client.assets, "check_existing_assets", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -140,7 +130,6 @@ def copy_asset(
             target_id,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if albums is not None:
             set_nested(json_data, ["albums"], albums)
@@ -150,21 +139,16 @@ def copy_asset(
             set_nested(json_data, ["sharedLinks"], shared_links)
         if sidecar is not None:
             set_nested(json_data, ["sidecar"], sidecar)
-        if source_id is None:
-            raise SystemExit("Error: --sourceId is required")
         set_nested(json_data, ["sourceId"], source_id)
         if stack is not None:
             set_nested(json_data, ["stack"], stack)
-        if target_id is None:
-            raise SystemExit("Error: --targetId is required")
         set_nested(json_data, ["targetId"], target_id)
         from immich.client.models.asset_copy_dto import AssetCopyDto
 
         asset_copy_dto = deserialize_request_body(json_data, AssetCopyDto)
         kwargs["asset_copy_dto"] = asset_copy_dto
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "copy_asset", **kwargs)
+    result = run_command(client, client.assets, "copy_asset", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -183,8 +167,7 @@ def delete_asset_metadata(
     kwargs["id"] = id
     kwargs["key"] = key
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "delete_asset_metadata", **kwargs)
+    result = run_command(client, client.assets, "delete_asset_metadata", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -209,20 +192,16 @@ def delete_assets(
             ids,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if force is not None:
             set_nested(json_data, ["force"], force)
-        if ids is None:
-            raise SystemExit("Error: --ids is required")
         set_nested(json_data, ["ids"], ids)
         from immich.client.models.asset_bulk_delete_dto import AssetBulkDeleteDto
 
         asset_bulk_delete_dto = deserialize_request_body(json_data, AssetBulkDeleteDto)
         kwargs["asset_bulk_delete_dto"] = asset_bulk_delete_dto
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "delete_assets", **kwargs)
+    result = run_command(client, client.assets, "delete_assets", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -249,10 +228,7 @@ def delete_bulk_asset_metadata(
             items,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if items is None:
-            raise SystemExit("Error: --items is required")
         value_items = parse_complex_list(items)
         set_nested(json_data, ["items"], value_items)
         from immich.client.models.asset_metadata_bulk_delete_dto import (
@@ -264,8 +240,7 @@ def delete_bulk_asset_metadata(
         )
         kwargs["asset_metadata_bulk_delete_dto"] = asset_metadata_bulk_delete_dto
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "delete_bulk_asset_metadata", **kwargs)
+    result = run_command(client, client.assets, "delete_bulk_asset_metadata", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -291,8 +266,7 @@ def download_asset(
     if slug is not None:
         kwargs["slug"] = slug
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "download_asset", **kwargs)
+    result = run_command(client, client.assets, "download_asset", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -317,10 +291,7 @@ def edit_asset(
             edits,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if edits is None:
-            raise SystemExit("Error: --edits is required")
         value_edits = parse_complex_list(edits)
         set_nested(json_data, ["edits"], value_edits)
         from immich.client.models.asset_edit_action_list_dto import (
@@ -332,8 +303,7 @@ def edit_asset(
         )
         kwargs["asset_edit_action_list_dto"] = asset_edit_action_list_dto
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "edit_asset", **kwargs)
+    result = run_command(client, client.assets, "edit_asset", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -350,9 +320,8 @@ def get_all_user_assets_by_device_id(
     kwargs = {}
     kwargs["device_id"] = device_id
     client = ctx.obj["client"]
-    api_group = client.assets
     result = run_command(
-        client, api_group, "get_all_user_assets_by_device_id", **kwargs
+        client, client.assets, "get_all_user_assets_by_device_id", **kwargs
     )
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
@@ -370,8 +339,7 @@ def get_asset_edits(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "get_asset_edits", **kwargs)
+    result = run_command(client, client.assets, "get_asset_edits", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -394,8 +362,7 @@ def get_asset_info(
     if slug is not None:
         kwargs["slug"] = slug
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "get_asset_info", **kwargs)
+    result = run_command(client, client.assets, "get_asset_info", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -412,8 +379,7 @@ def get_asset_metadata(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "get_asset_metadata", **kwargs)
+    result = run_command(client, client.assets, "get_asset_metadata", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -432,8 +398,7 @@ def get_asset_metadata_by_key(
     kwargs["id"] = id
     kwargs["key"] = key
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "get_asset_metadata_by_key", **kwargs)
+    result = run_command(client, client.assets, "get_asset_metadata_by_key", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -450,8 +415,7 @@ def get_asset_ocr(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "get_asset_ocr", **kwargs)
+    result = run_command(client, client.assets, "get_asset_ocr", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -475,8 +439,7 @@ def get_asset_statistics(
     if visibility is not None:
         kwargs["visibility"] = visibility
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "get_asset_statistics", **kwargs)
+    result = run_command(client, client.assets, "get_asset_statistics", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -494,8 +457,7 @@ def get_random(
     if count is not None:
         kwargs["count"] = count
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "get_random", **kwargs)
+    result = run_command(client, client.assets, "get_random", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -518,8 +480,7 @@ def play_asset_video(
     if slug is not None:
         kwargs["slug"] = slug
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "play_asset_video", **kwargs)
+    result = run_command(client, client.assets, "play_asset_video", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -536,8 +497,7 @@ def remove_asset_edits(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "remove_asset_edits", **kwargs)
+    result = run_command(client, client.assets, "remove_asset_edits", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -604,8 +564,7 @@ def replace_asset(
             + ". Provide them via file options."
         )
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "replace_asset", **kwargs)
+    result = run_command(client, client.assets, "replace_asset", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -630,21 +589,15 @@ def run_asset_jobs(
             name,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if asset_ids is None:
-            raise SystemExit("Error: --assetIds is required")
         set_nested(json_data, ["assetIds"], asset_ids)
-        if name is None:
-            raise SystemExit("Error: --name is required")
         set_nested(json_data, ["name"], name)
         from immich.client.models.asset_jobs_dto import AssetJobsDto
 
         asset_jobs_dto = deserialize_request_body(json_data, AssetJobsDto)
         kwargs["asset_jobs_dto"] = asset_jobs_dto
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "run_asset_jobs", **kwargs)
+    result = run_command(client, client.assets, "run_asset_jobs", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -694,7 +647,6 @@ def update_asset(
             visibility,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if date_time_original is not None:
             set_nested(json_data, ["dateTimeOriginal"], date_time_original)
@@ -717,8 +669,7 @@ def update_asset(
         update_asset_dto = deserialize_request_body(json_data, UpdateAssetDto)
         kwargs["update_asset_dto"] = update_asset_dto
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "update_asset", **kwargs)
+    result = run_command(client, client.assets, "update_asset", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -747,10 +698,7 @@ def update_asset_metadata(
             items,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if items is None:
-            raise SystemExit("Error: --items is required")
         value_items = parse_complex_list(items)
         set_nested(json_data, ["items"], value_items)
         from immich.client.models.asset_metadata_upsert_dto import (
@@ -762,8 +710,7 @@ def update_asset_metadata(
         )
         kwargs["asset_metadata_upsert_dto"] = asset_metadata_upsert_dto
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "update_asset_metadata", **kwargs)
+    result = run_command(client, client.assets, "update_asset_metadata", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -820,7 +767,6 @@ def update_assets(
             visibility,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if date_time_original is not None:
             set_nested(json_data, ["dateTimeOriginal"], date_time_original)
@@ -830,8 +776,6 @@ def update_assets(
             set_nested(json_data, ["description"], description)
         if duplicate_id is not None:
             set_nested(json_data, ["duplicateId"], duplicate_id)
-        if ids is None:
-            raise SystemExit("Error: --ids is required")
         set_nested(json_data, ["ids"], ids)
         if is_favorite is not None:
             set_nested(json_data, ["isFavorite"], is_favorite)
@@ -850,8 +794,7 @@ def update_assets(
         asset_bulk_update_dto = deserialize_request_body(json_data, AssetBulkUpdateDto)
         kwargs["asset_bulk_update_dto"] = asset_bulk_update_dto
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "update_assets", **kwargs)
+    result = run_command(client, client.assets, "update_assets", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -878,10 +821,7 @@ def update_bulk_asset_metadata(
             items,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
-        if items is None:
-            raise SystemExit("Error: --items is required")
         value_items = parse_complex_list(items)
         set_nested(json_data, ["items"], value_items)
         from immich.client.models.asset_metadata_bulk_upsert_dto import (
@@ -893,8 +833,7 @@ def update_bulk_asset_metadata(
         )
         kwargs["asset_metadata_bulk_upsert_dto"] = asset_metadata_bulk_upsert_dto
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "update_bulk_asset_metadata", **kwargs)
+    result = run_command(client, client.assets, "update_bulk_asset_metadata", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -987,8 +926,7 @@ def upload_asset(
             + ". Provide them via file options."
         )
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "upload_asset", **kwargs)
+    result = run_command(client, client.assets, "upload_asset", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -1017,7 +955,6 @@ def view_asset(
     if slug is not None:
         kwargs["slug"] = slug
     client = ctx.obj["client"]
-    api_group = client.assets
-    result = run_command(client, api_group, "view_asset", **kwargs)
+    result = run_command(client, client.assets, "view_asset", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

@@ -39,20 +39,16 @@ def create_api_key(
             permissions,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if name is not None:
             set_nested(json_data, ["name"], name)
-        if permissions is None:
-            raise SystemExit("Error: --permissions is required")
         set_nested(json_data, ["permissions"], permissions)
         from immich.client.models.api_key_create_dto import APIKeyCreateDto
 
         api_key_create_dto = deserialize_request_body(json_data, APIKeyCreateDto)
         kwargs["api_key_create_dto"] = api_key_create_dto
     client = ctx.obj["client"]
-    api_group = client.api_keys
-    result = run_command(client, api_group, "create_api_key", **kwargs)
+    result = run_command(client, client.api_keys, "create_api_key", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -69,8 +65,7 @@ def delete_api_key(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.api_keys
-    result = run_command(client, api_group, "delete_api_key", **kwargs)
+    result = run_command(client, client.api_keys, "delete_api_key", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -87,8 +82,7 @@ def get_api_key(
     kwargs = {}
     kwargs["id"] = id
     client = ctx.obj["client"]
-    api_group = client.api_keys
-    result = run_command(client, api_group, "get_api_key", **kwargs)
+    result = run_command(client, client.api_keys, "get_api_key", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -103,8 +97,7 @@ def get_api_keys(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.api_keys
-    result = run_command(client, api_group, "get_api_keys", **kwargs)
+    result = run_command(client, client.api_keys, "get_api_keys", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -119,8 +112,7 @@ def get_my_api_key(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.api_keys
-    result = run_command(client, api_group, "get_my_api_key", **kwargs)
+    result = run_command(client, client.api_keys, "get_my_api_key", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -147,7 +139,6 @@ def update_api_key(
             permissions,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if name is not None:
             set_nested(json_data, ["name"], name)
@@ -158,7 +149,6 @@ def update_api_key(
         api_key_update_dto = deserialize_request_body(json_data, APIKeyUpdateDto)
         kwargs["api_key_update_dto"] = api_key_update_dto
     client = ctx.obj["client"]
-    api_group = client.api_keys
-    result = run_command(client, api_group, "update_api_key", **kwargs)
+    result = run_command(client, client.api_keys, "update_api_key", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)

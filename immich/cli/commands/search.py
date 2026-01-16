@@ -29,8 +29,7 @@ def get_assets_by_city(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.search
-    result = run_command(client, api_group, "get_assets_by_city", **kwargs)
+    result = run_command(client, client.search, "get_assets_by_city", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -45,8 +44,7 @@ def get_explore_data(
     """
     kwargs = {}
     client = ctx.obj["client"]
-    api_group = client.search
-    result = run_command(client, api_group, "get_explore_data", **kwargs)
+    result = run_command(client, client.search, "get_explore_data", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -81,8 +79,7 @@ def get_search_suggestions(
         kwargs["state"] = state
     kwargs["type"] = type
     client = ctx.obj["client"]
-    api_group = client.search
-    result = run_command(client, api_group, "get_search_suggestions", **kwargs)
+    result = run_command(client, client.search, "get_search_suggestions", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -193,7 +190,6 @@ def search_asset_statistics(
             visibility,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if album_ids is not None:
             set_nested(json_data, ["albumIds"], album_ids)
@@ -258,8 +254,7 @@ def search_asset_statistics(
         statistics_search_dto = deserialize_request_body(json_data, StatisticsSearchDto)
         kwargs["statistics_search_dto"] = statistics_search_dto
     client = ctx.obj["client"]
-    api_group = client.search
-    result = run_command(client, api_group, "search_asset_statistics", **kwargs)
+    result = run_command(client, client.search, "search_asset_statistics", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -415,7 +410,6 @@ def search_assets(
             with_stacked,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if album_ids is not None:
             set_nested(json_data, ["albumIds"], album_ids)
@@ -510,8 +504,7 @@ def search_assets(
         metadata_search_dto = deserialize_request_body(json_data, MetadataSearchDto)
         kwargs["metadata_search_dto"] = metadata_search_dto
     client = ctx.obj["client"]
-    api_group = client.search
-    result = run_command(client, api_group, "search_assets", **kwargs)
+    result = run_command(client, client.search, "search_assets", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -622,8 +615,7 @@ def search_large_assets(
     if with_exif is not None:
         kwargs["with_exif"] = with_exif.lower() == "true"
     client = ctx.obj["client"]
-    api_group = client.search
-    result = run_command(client, api_group, "search_large_assets", **kwargs)
+    result = run_command(client, client.search, "search_large_assets", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -643,8 +635,7 @@ def search_person(
     if with_hidden is not None:
         kwargs["with_hidden"] = with_hidden.lower() == "true"
     client = ctx.obj["client"]
-    api_group = client.search
-    result = run_command(client, api_group, "search_person", **kwargs)
+    result = run_command(client, client.search, "search_person", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -661,8 +652,7 @@ def search_places(
     kwargs = {}
     kwargs["name"] = name
     client = ctx.obj["client"]
-    api_group = client.search
-    result = run_command(client, api_group, "search_places", **kwargs)
+    result = run_command(client, client.search, "search_places", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -785,7 +775,6 @@ def search_random(
             with_stacked,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if album_ids is not None:
             set_nested(json_data, ["albumIds"], album_ids)
@@ -858,8 +847,7 @@ def search_random(
         random_search_dto = deserialize_request_body(json_data, RandomSearchDto)
         kwargs["random_search_dto"] = random_search_dto
     client = ctx.obj["client"]
-    api_group = client.search
-    result = run_command(client, api_group, "search_random", **kwargs)
+    result = run_command(client, client.search, "search_random", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
 
@@ -988,7 +976,6 @@ def search_smart(
             with_exif,
         ]
     ):
-        # Build body from dotted flags
         json_data = {}
         if album_ids is not None:
             set_nested(json_data, ["albumIds"], album_ids)
@@ -1065,7 +1052,6 @@ def search_smart(
         smart_search_dto = deserialize_request_body(json_data, SmartSearchDto)
         kwargs["smart_search_dto"] = smart_search_dto
     client = ctx.obj["client"]
-    api_group = client.search
-    result = run_command(client, api_group, "search_smart", **kwargs)
+    result = run_command(client, client.search, "search_smart", **kwargs)
     format_mode = ctx.obj.get("format", "pretty")
     print_response(result, format_mode)
