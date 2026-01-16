@@ -1,17 +1,23 @@
+import json
 import os
 from pathlib import Path
 from uuid import UUID
 
 import pytest
+from pydantic import ValidationError
 from typer.testing import CliRunner
 
 from immich import AsyncClient
+from immich.cli.app import app as cli_app
+from immich.client import AlbumResponseDto
 from immich.client.exceptions import BadRequestException
+from immich.client.models.activity_response_dto import ActivityResponseDto
 from immich.client.models.admin_onboarding_update_dto import AdminOnboardingUpdateDto
 from immich.client.models.api_key_create_dto import APIKeyCreateDto
 from immich.client.models.asset_bulk_delete_dto import AssetBulkDeleteDto
 from immich.client.models.login_credential_dto import LoginCredentialDto
 from immich.client.models.permission import Permission
+from immich.client.models.reaction_type import ReactionType
 from immich.client.models.sign_up_dto import SignUpDto
 
 from tests.e2e.client.generators import make_random_image, make_random_video
@@ -136,3 +142,94 @@ def runner(client_with_api_key: AsyncClient) -> CliRunner:
             ],
         }
     )
+
+
+@pytest.fixture
+def album(runner: CliRunner) -> AlbumResponseDto:
+    """Fixture to set up album for testing.
+
+    Creates an album, returns parsed album object.
+    Skips dependent tests if album creation fails.
+    """
+    # Set up: Create album
+    album_result = runner.invoke(
+        cli_app,
+        [
+            "--format",
+            "json",
+            "albums",
+            "create-album",
+            "--albumName",
+            "Test Album for Activities",
+        ],
+    )
+
+    if album_result.exit_code != 0:
+        pytest.skip(
+            f"Album creation failed:\n{album_result.stdout}{album_result.stderr}"
+        )
+
+    try:
+        album = AlbumResponseDto.model_validate(json.loads(album_result.output))
+    except (ValidationError, json.JSONDecodeError) as e:
+        pytest.skip(
+            f"Album creation returned invalid JSON:\n{e}\n{album_result.output}"
+        )
+
+    yield album
+
+    # Cleanup: Delete album (only runs if we got here, i.e., album parsed successfully)
+    if album.id:
+        runner.invoke(
+            cli_app,
+            ["--format", "json", "albums", "delete-album", str(album.id)],
+        )
+
+
+@pytest.fixture
+def activity(
+    runner: CliRunner, album: AlbumResponseDto, activity_type: ReactionType
+) -> ActivityResponseDto:
+    """Fixture to set up activity for testing.
+
+    Creates an activity with the specified type, returns parsed activity object.
+    Skips dependent tests if activity creation fails.
+    """
+    # Set up: Create activity
+    activity_args = [
+        "--format",
+        "json",
+        "activities",
+        "create-activity",
+        "--albumId",
+        str(album.id),
+        "--type",
+        activity_type.value,
+    ]
+    if activity_type == ReactionType.COMMENT:
+        activity_args.extend(["--comment", "Test comment"])
+
+    activity_result = runner.invoke(cli_app, activity_args)
+
+    if activity_result.exit_code != 0:
+        pytest.skip(
+            f"Activity creation failed ({activity_type.value}):\n{activity_result.stdout}{activity_result.stderr}"
+        )
+
+    try:
+        activity = ActivityResponseDto.model_validate(
+            json.loads(activity_result.output)
+        )
+    except (ValidationError, json.JSONDecodeError) as e:
+        pytest.skip(
+            f"Activity creation returned invalid JSON:\n{e}\n{activity_result.output}"
+        )
+
+    yield activity
+
+    # Cleanup: Delete activity (only runs if we got here, i.e., activity parsed successfully)
+    if activity.id:
+        runner.invoke(
+            cli_app,
+            ["--format", "json", "activities", "delete-activity", str(activity.id)],
+        )

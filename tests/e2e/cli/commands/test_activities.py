@@ -1,6 +1,5 @@
 import json
 
-from pydantic import ValidationError
 import pytest
 from typer.testing import CliRunner
 
@@ -11,97 +10,6 @@ from immich.client.models.activity_statistics_response_dto import (
     ActivityStatisticsResponseDto,
 )
 from immich.client.models.reaction_type import ReactionType
-
-
-@pytest.fixture
-def album(runner: CliRunner) -> AlbumResponseDto:
-    """Fixture to set up album for testing.
-
-    Creates an album, returns parsed album object.
-    Skips dependent tests if album creation fails.
-    """
-    # Set up: Create album
-    album_result = runner.invoke(
-        cli_app,
-        [
-            "--format",
-            "json",
-            "albums",
-            "create-album",
-            "--albumName",
-            "Test Album for Activities",
-        ],
-    )
-
-    if album_result.exit_code != 0:
-        pytest.skip(
-            f"Album creation failed:\n{album_result.stdout}{album_result.stderr}"
-        )
-
-    try:
-        album = AlbumResponseDto.model_validate(json.loads(album_result.output))
-    except (ValidationError, json.JSONDecodeError) as e:
-        pytest.skip(
-            f"Album creation returned invalid JSON:\n{e}\n{album_result.output}"
-        )
-
-    yield album
-
-    # Cleanup: Delete album (only runs if we got here, i.e., album parsed successfully)
-    if album.id:
-        runner.invoke(
-            cli_app,
-            ["--format", "json", "albums", "delete-album", str(album.id)],
-        )
-
-
-@pytest.fixture
-def activity(
-    runner: CliRunner, album: AlbumResponseDto, activity_type: ReactionType
-) -> ActivityResponseDto:
-    """Fixture to set up activity for testing.
-
-    Creates an activity with the specified type, returns parsed activity object.
-    Skips dependent tests if activity creation fails.
-    """
-    # Set up: Create activity
-    activity_args = [
-        "--format",
-        "json",
-        "activities",
-        "create-activity",
-        "--albumId",
-        str(album.id),
-        "--type",
-        activity_type.value,
-    ]
-    if activity_type == ReactionType.COMMENT:
-        activity_args.extend(["--comment", "Test comment"])
-
-    activity_result = runner.invoke(cli_app, activity_args)
-
-    if activity_result.exit_code != 0:
-        pytest.skip(
-            f"Activity creation failed ({activity_type.value}):\n{activity_result.stdout}{activity_result.stderr}"
-        )
-
-    try:
-        activity = ActivityResponseDto.model_validate(
-            json.loads(activity_result.output)
-        )
-    except (ValidationError, json.JSONDecodeError) as e:
-        pytest.skip(
-            f"Activity creation returned invalid JSON:\n{e}\n{activity_result.output}"
-        )
-
-    yield activity
-
-    # Cleanup: Delete activity (only runs if we got here, i.e., activity parsed successfully)
-    if activity.id:
-        runner.invoke(
-            cli_app,
-            ["--format", "json", "activities", "delete-activity", str(activity.id)],
-        )
 
 
 @pytest.mark.e2e
