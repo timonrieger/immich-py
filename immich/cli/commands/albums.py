@@ -266,7 +266,12 @@ def get_all_albums(
 Ignores the shared parameter
 undefined: get all albums""",
     ),
-    shared: bool | None = typer.Option(None, "--shared"),
+    shared: bool | None = typer.Option(
+        None, "--shared", help="Only return shared albums"
+    ),
+    not_shared: bool | None = typer.Option(
+        None, "--not-shared", help="Only return non-shared albums"
+    ),
 ) -> None:
     """List all albums
 
@@ -276,7 +281,9 @@ undefined: get all albums""",
     if asset_id is not None:
         kwargs["asset_id"] = asset_id
     if shared is not None:
-        kwargs["shared"] = shared
+        kwargs["shared"] = True
+    elif not_shared is not None:
+        kwargs["shared"] = False
     client = ctx.obj["client"]
     api_group = client.albums
     result = run_command(client, api_group, "get_all_albums", **kwargs)

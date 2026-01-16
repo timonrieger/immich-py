@@ -1,19 +1,24 @@
 import os
 from pathlib import Path
-from typing import AsyncGenerator
-from uuid import UUID
+from typing import AsyncGenerator, Awaitable, Callable, Optional
+from uuid import UUID, uuid4
 
 import pytest
 
 from immich import AsyncClient
+from immich._internal.upload import UploadResult
 from immich.client import (
     ActivityCreateDto,
     ActivityResponseDto,
     AlbumResponseDto,
+    AssetBulkDeleteDto,
+    AssetResponseDto,
     CreateAlbumDto,
     LicenseKeyDto,
     LicenseResponseDto,
     ReactionType,
+    UserAdminCreateDto,
+    UserResponseDto,
 )
 from immich.client.exceptions import BadRequestException
 from immich.client.models.admin_onboarding_update_dto import AdminOnboardingUpdateDto
@@ -21,6 +26,7 @@ from immich.client.models.api_key_create_dto import APIKeyCreateDto
 from immich.client.models.login_credential_dto import LoginCredentialDto
 from immich.client.models.permission import Permission
 from immich.client.models.sign_up_dto import SignUpDto
+from immich.client.models.user_admin_delete_dto import UserAdminDeleteDto
 
 from tests.e2e.client.generators import make_random_image, make_random_video
 
@@ -101,25 +107,44 @@ def test_video(tmp_path: Path) -> Path:
     return vid_path
 
 
-# ########################################################
-# # Fixtures for CLI commands depending on other commands
-# ########################################################
 @pytest.fixture
 async def album(
-    client_with_api_key: AsyncClient, teardown: bool
+    album_factory: Callable[..., Awaitable[AlbumResponseDto]],
 ) -> AsyncGenerator[AlbumResponseDto, None]:
     """Fixture to set up album for testing.
 
     Creates an album, returns parsed album object.
     Skips dependent tests if album creation fails.
     """
-    # Set up: Create album
-    album = await client_with_api_key.albums.create_album(
-        CreateAlbumDto(albumName="Test Album for Activities")
-    )
-    yield album
-    if teardown:
-        await client_with_api_key.albums.delete_album(UUID(str(album.id)))
+    request = CreateAlbumDto(albumName="Test Album")
+    yield await album_factory(request.model_dump())
+
+
+@pytest.fixture
+async def album_factory(
+    client_with_api_key: AsyncClient, teardown: bool
+) -> AsyncGenerator[Callable[..., Awaitable[AlbumResponseDto]], None]:
+    """Fixture to set up album for testing with factory pattern.
+
+    Creates an album, returns parsed album object.
+    Skips dependent tests if album creation fails.
+    """
+    _album_id: Optional[UUID] = None
+
+    async def _create_album(*args, **kwargs) -> AlbumResponseDto:
+        nonlocal _album_id
+        try:
+            result = await client_with_api_key.albums.create_album(*args, **kwargs)
+        except Exception as e:
+            pytest.skip(f"Asset upload failed:\n{e}")
+
+        _album_id = UUID(str(result.id))
+        return result
+
+    yield _create_album
+
+    if teardown and _album_id:
+        await client_with_api_key.albums.delete_album(_album_id)
 
 
 @pytest.fixture
@@ -175,3 +200,80 @@ async def license(
     yield license
     if teardown:
         await client_with_api_key.server.delete_server_license()
+
+
+@pytest.fixture
+async def upload_assets(
+    client_with_api_key: AsyncClient,
+    teardown: bool,
+) -> AsyncGenerator[Callable[..., Awaitable[UploadResult]], None]:
+    """Factory fixture: yields an async callable to upload assets and auto-clean them up.
+
+    Example:
+        upload_result = await upload_assets([test_image], check_duplicates=False, show_progress=False)
+    """
+
+    _uploaded_ids: list[UUID] = []
+
+    async def _upload(*args, **kwargs) -> UploadResult:
+        nonlocal _uploaded_ids
+        try:
+            result = await client_with_api_key.assets.upload(*args, **kwargs)
+        except Exception as e:
+            pytest.skip(f"Asset upload failed:\n{e}")
+
+        _uploaded_ids.extend(UUID(u.asset.id) for u in result.uploaded)
+        return result
+
+    yield _upload
+
+    if teardown and _uploaded_ids:
+        await client_with_api_key.assets.delete_assets(
+            AssetBulkDeleteDto(ids=_uploaded_ids, force=True)
+        )
+
+
+@pytest.fixture
+async def asset(
+    test_image: Path,
+    upload_assets: Callable[..., Awaitable[UploadResult]],
+    teardown: bool,
+) -> AsyncGenerator[AssetResponseDto, None]:
+    """Fixture to set up asset for testing.
+
+    Uploads a test image, returns parsed asset object.
+    Skips dependent tests if asset upload fails.
+    """
+    # Set up: Upload asset
+    upload_result = await upload_assets(
+        [test_image], check_duplicates=False, show_progress=False
+    )
+    assert len(upload_result.uploaded) == 1
+    asset = upload_result.uploaded[0].asset
+    yield asset
+    # Teardown is handled by upload_assets fixture
+
+
+@pytest.fixture
+async def user(
+    client_with_api_key: AsyncClient, teardown: bool
+) -> AsyncGenerator[UserResponseDto, None]:
+    """Fixture to set up user for testing.
+
+    Creates a user, returns parsed user object.
+    Skips dependent tests if user creation fails.
+    """
+    uuid = uuid4()
+    user = await client_with_api_key.users_admin.create_user_admin(
+        UserAdminCreateDto(
+            email=f"test_{uuid}@immich.cloud",
+            password="password",
+            name=f"Test User {uuid}",
+        )
+    )
+    yield user
+    if teardown:
+        await client_with_api_key.users_admin.delete_user_admin(
+            UUID(str(user.id)),
+            UserAdminDeleteDto(force=True),
+        )

@@ -17,7 +17,6 @@ from immich.client.models.download_info_dto import DownloadInfoDto
 @pytest.mark.asyncio
 @pytest.mark.e2e
 async def test_assets_upload(
-    client_with_api_key: AsyncClient,
     test_image: Path,
     test_video: Path,
     upload_assets: Callable[..., Awaitable[UploadResult]],
