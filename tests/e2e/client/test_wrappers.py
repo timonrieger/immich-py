@@ -3,11 +3,13 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Callable, Awaitable
 from uuid import UUID
 
 import pytest
 
 from immich import AsyncClient
+from immich._internal.upload import UploadResult
 from immich.client.models.asset_media_size import AssetMediaSize
 from immich.client.models.download_info_dto import DownloadInfoDto
 
@@ -18,10 +20,10 @@ async def test_assets_upload(
     client_with_api_key: AsyncClient,
     test_image: Path,
     test_video: Path,
-    asset_cleanup: dict,
+    upload_assets: Callable[..., Awaitable[UploadResult]],
 ):
     """Test AssetsApiWrapped.upload method."""
-    result = await client_with_api_key.assets.upload(
+    result = await upload_assets(
         [test_image, test_video],
         check_duplicates=False,  # Disable duplicate checking for test independence
         concurrency=2,
@@ -34,10 +36,6 @@ async def test_assets_upload(
     assert len(result.rejected) == 0
     assert len(result.failed) == 0
 
-    # Track uploaded assets for cleanup
-    for uploaded in result.uploaded:
-        asset_cleanup["asset_ids"].append(UUID(uploaded.asset.id))
-
 
 @pytest.mark.asyncio
 @pytest.mark.e2e
@@ -45,16 +43,14 @@ async def test_assets_download_asset_to_file(
     client_with_api_key: AsyncClient,
     test_image: Path,
     tmp_path: Path,
-    asset_cleanup: dict,
+    upload_assets: Callable[..., Awaitable[UploadResult]],
 ):
     """Test AssetsApiWrapped.download_asset_to_file method."""
-    # Upload an asset first
-    upload_result = await client_with_api_key.assets.upload(
+    upload_result = await upload_assets(
         [test_image], check_duplicates=False, show_progress=False
     )
     assert len(upload_result.uploaded) == 1
     asset_id = UUID(upload_result.uploaded[0].asset.id)
-    asset_cleanup["asset_ids"].append(asset_id)
 
     # Download the asset
     out_dir = tmp_path / "downloads"
@@ -73,16 +69,14 @@ async def test_assets_view_asset_to_file(
     client_with_api_key: AsyncClient,
     test_image: Path,
     tmp_path: Path,
-    asset_cleanup: dict,
+    upload_assets: Callable[..., Awaitable[UploadResult]],
 ):
     """Test AssetsApiWrapped.view_asset_to_file method."""
-    # Upload an asset first
-    upload_result = await client_with_api_key.assets.upload(
+    upload_result = await upload_assets(
         [test_image], check_duplicates=False, show_progress=False
     )
     assert len(upload_result.uploaded) == 1
     asset_id = UUID(upload_result.uploaded[0].asset.id)
-    asset_cleanup["asset_ids"].append(asset_id)
 
     # Download thumbnail
     out_dir = tmp_path / "thumbnails"
@@ -100,16 +94,14 @@ async def test_assets_play_asset_video_to_file(
     client_with_api_key: AsyncClient,
     test_video: Path,
     tmp_path: Path,
-    asset_cleanup: dict,
+    upload_assets: Callable[..., Awaitable[UploadResult]],
 ):
     """Test AssetsApiWrapped.play_asset_video_to_file method."""
-    # Upload a video first
-    upload_result = await client_with_api_key.assets.upload(
+    upload_result = await upload_assets(
         [test_video], check_duplicates=False, show_progress=False
     )
     assert len(upload_result.uploaded) == 1
     asset_id = UUID(upload_result.uploaded[0].asset.id)
-    asset_cleanup["asset_ids"].append(asset_id)
 
     # Download video stream
     out_dir = tmp_path / "videos"
@@ -127,16 +119,14 @@ async def test_download_archive_to_file(
     client_with_api_key: AsyncClient,
     test_image: Path,
     tmp_path: Path,
-    asset_cleanup: dict,
+    upload_assets: Callable[..., Awaitable[UploadResult]],
 ):
     """Test DownloadApiWrapped.download_archive_to_file method."""
-    # Upload assets first
-    upload_result = await client_with_api_key.assets.upload(
+    upload_result = await upload_assets(
         [test_image], check_duplicates=False, show_progress=False
     )
     assert len(upload_result.uploaded) == 1
     asset_id = UUID(upload_result.uploaded[0].asset.id)
-    asset_cleanup["asset_ids"].append(asset_id)
 
     # Create download info
     download_info = DownloadInfoDto(asset_ids=[asset_id])
@@ -158,7 +148,6 @@ async def test_users_get_profile_image_to_file(
     client_with_api_key: AsyncClient,
     test_image: Path,
     tmp_path: Path,
-    asset_cleanup: dict,
 ):
     """Test UsersApiWrapped.get_profile_image_to_file method."""
     # Get current user info
@@ -171,7 +160,6 @@ async def test_users_get_profile_image_to_file(
     await client_with_api_key.users.create_profile_image(
         file=("profile.jpg", img_bytes)
     )
-    asset_cleanup["profile_image"] = True
 
     # Download profile image
     out_dir = tmp_path / "profiles"
@@ -181,3 +169,9 @@ async def test_users_get_profile_image_to_file(
 
     assert profile_path.exists()
     assert profile_path.is_file()
+
+    # Cleanup profile image
+    try:
+        await client_with_api_key.users.delete_profile_image()
+    except Exception:
+        pass  # Ignore cleanup errors

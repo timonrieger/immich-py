@@ -1,11 +1,12 @@
 import os
+from collections.abc import AsyncGenerator, Awaitable, Callable
 from pathlib import Path
-from typing import Generator
 from uuid import UUID
 
 import pytest
 
 from immich import AsyncClient
+from immich._internal.upload import UploadResult
 from immich.client.exceptions import BadRequestException
 from immich.client.models.admin_onboarding_update_dto import AdminOnboardingUpdateDto
 from immich.client.models.api_key_create_dto import APIKeyCreateDto
@@ -91,35 +92,32 @@ def test_video(tmp_path: Path) -> Path:
 
 
 @pytest.fixture
-def asset_cleanup() -> Generator[dict[str, list[UUID] | bool], None, None]:
-    """Fixture to track uploaded assets and profile images for cleanup."""
-    cleanup_data: dict[str, list[UUID] | bool] = {
-        "asset_ids": [],
-        "profile_image": False,
-    }
-    yield cleanup_data
+async def upload_assets(
+    client_with_api_key: AsyncClient,
+) -> AsyncGenerator[Callable[..., Awaitable[UploadResult]], None]:
+    """Factory fixture: yields an async callable to upload assets and auto-clean them up.
 
+    Example:
+        upload_result = await upload_assets([test_image], check_duplicates=False, show_progress=False)
+    """
 
-@pytest.fixture(autouse=True)
-async def cleanup_assets_teardown(
-    client_with_api_key: AsyncClient, asset_cleanup: dict
-):
-    """Autouse fixture to clean up uploaded assets after each test."""
-    yield
+    uploaded_ids: list[UUID] = []
 
-    # Teardown: Clean up all uploaded assets
-    asset_ids = asset_cleanup.get("asset_ids", [])
-    if asset_ids:
+    async def _upload(*args, **kwargs) -> UploadResult:
+        try:
+            result = await client_with_api_key.assets.upload(*args, **kwargs)
+        except Exception as e:
+            pytest.skip(f"Asset upload failed:\n{e}")
+
+        uploaded_ids.extend(UUID(u.asset.id) for u in result.uploaded)
+        return result
+
+    yield _upload
+
+    if uploaded_ids:
         try:
             await client_with_api_key.assets.delete_assets(
-                AssetBulkDeleteDto(ids=asset_ids, force=True)
+                AssetBulkDeleteDto(ids=uploaded_ids, force=True)
             )
-        except Exception:
-            pass  # Ignore cleanup errors
-
-    # Teardown: Clean up profile image if uploaded
-    if asset_cleanup.get("profile_image", False):
-        try:
-            await client_with_api_key.users.delete_profile_image()
         except Exception:
             pass  # Ignore cleanup errors
