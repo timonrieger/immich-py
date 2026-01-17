@@ -93,19 +93,83 @@ async def client_with_api_key(env: dict[str, str]):
 
 
 @pytest.fixture
-def test_image(tmp_path: Path) -> Path:
-    """Create a minimal JPEG test image."""
-    img_path = tmp_path / "test.jpg"
-    img_path.write_bytes(make_random_image())
-    return img_path
+def test_image_factory(
+    tmp_path: Path, teardown: bool
+) -> Callable[[Optional[Path], Optional[str]], Path]:
+    """Factory fixture: yields a callable to create test images and auto-clean them up.
+
+    Example:
+        img_path = test_image_factory()
+        img_path2 = test_image_factory(directory=custom_dir, filename="custom.jpg")
+    """
+    _created_paths: list[Path] = []
+
+    def _create_image(
+        directory: Optional[Path] = None, filename: Optional[str] = None
+    ) -> Path:
+        nonlocal _created_paths
+        base_dir = directory if directory is not None else tmp_path
+        if filename is None:
+            filename = f"{uuid4()}.jpg"
+        img_path = base_dir / filename
+        img_path.write_bytes(make_random_image())
+        _created_paths.append(img_path)
+        return img_path
+
+    yield _create_image
+
+    if teardown:
+        for path in _created_paths:
+            if path.exists():
+                path.unlink()
 
 
 @pytest.fixture
-def test_video(tmp_path: Path) -> Path:
+def test_image(
+    test_image_factory: Callable[[Optional[Path], Optional[str]], Path],
+) -> AsyncGenerator[Path, None]:
+    """Create a minimal JPEG test image."""
+    yield test_image_factory()
+
+
+@pytest.fixture
+def test_video_factory(
+    tmp_path: Path, teardown: bool
+) -> Callable[[Optional[Path], Optional[str]], Path]:
+    """Factory fixture: yields a callable to create test videos and auto-clean them up.
+
+    Example:
+        video_path = test_video_factory()
+        video_path2 = test_video_factory(directory=custom_dir, filename="custom.mp4")
+    """
+    _created_paths: list[Path] = []
+
+    def _create_video(
+        directory: Optional[Path] = None, filename: Optional[str] = None
+    ) -> Path:
+        nonlocal _created_paths
+        base_dir = directory if directory is not None else tmp_path
+        if filename is None:
+            filename = f"{uuid4()}.mp4"
+        video_path = base_dir / filename
+        video_path.write_bytes(make_random_video())
+        _created_paths.append(video_path)
+        return video_path
+
+    yield _create_video
+
+    if teardown:
+        for path in _created_paths:
+            if path.exists():
+                path.unlink()
+
+
+@pytest.fixture
+def test_video(
+    test_video_factory: Callable[[Optional[Path], Optional[str]], Path],
+) -> AsyncGenerator[Path, None]:
     """Create a minimal MP4 test video."""
-    vid_path = tmp_path / "test.mp4"
-    vid_path.write_bytes(make_random_video())
-    return vid_path
+    yield test_video_factory()
 
 
 @pytest.fixture
