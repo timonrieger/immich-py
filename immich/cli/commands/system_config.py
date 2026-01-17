@@ -462,7 +462,6 @@ def update_config(
         ["backup_database_enabled"],
         backup_database_enabled.lower() == "true",
     )
-    set_nested(json_data, ["backup_database_enabled"], backup_database_enabled)
     set_nested(
         json_data,
         ["backup_database_keep_last_amount"],
@@ -472,7 +471,6 @@ def update_config(
     set_nested(
         json_data, ["ffmpeg_accel_decode"], ffmpeg_accel_decode.lower() == "true"
     )
-    set_nested(json_data, ["ffmpeg_accel_decode"], ffmpeg_accel_decode)
     set_nested(
         json_data, ["ffmpeg_accepted_audio_codecs"], ffmpeg_accepted_audio_codecs
     )
@@ -492,21 +490,17 @@ def update_config(
     set_nested(json_data, ["ffmpeg_target_resolution"], ffmpeg_target_resolution)
     set_nested(json_data, ["ffmpeg_target_video_codec"], ffmpeg_target_video_codec)
     set_nested(json_data, ["ffmpeg_temporal_aq"], ffmpeg_temporal_aq.lower() == "true")
-    set_nested(json_data, ["ffmpeg_temporal_aq"], ffmpeg_temporal_aq)
     set_nested(json_data, ["ffmpeg_threads"], ffmpeg_threads)
     set_nested(json_data, ["ffmpeg_tonemap"], ffmpeg_tonemap)
     set_nested(json_data, ["ffmpeg_transcode"], ffmpeg_transcode)
     set_nested(json_data, ["ffmpeg_two_pass"], ffmpeg_two_pass.lower() == "true")
-    set_nested(json_data, ["ffmpeg_two_pass"], ffmpeg_two_pass)
     set_nested(json_data, ["image_colorspace"], image_colorspace)
     set_nested(
         json_data, ["image_extract_embedded"], image_extract_embedded.lower() == "true"
     )
-    set_nested(json_data, ["image_extract_embedded"], image_extract_embedded)
     set_nested(
         json_data, ["image_fullsize_enabled"], image_fullsize_enabled.lower() == "true"
     )
-    set_nested(json_data, ["image_fullsize_enabled"], image_fullsize_enabled)
     set_nested(json_data, ["image_fullsize_format"], image_fullsize_format)
     set_nested(json_data, ["image_fullsize_quality"], image_fullsize_quality)
     set_nested(json_data, ["image_preview_format"], image_preview_format)
@@ -555,23 +549,15 @@ def update_config(
     set_nested(
         json_data, ["library_scan_enabled"], library_scan_enabled.lower() == "true"
     )
-    set_nested(json_data, ["library_scan_enabled"], library_scan_enabled)
     set_nested(
         json_data, ["library_watch_enabled"], library_watch_enabled.lower() == "true"
     )
-    set_nested(json_data, ["library_watch_enabled"], library_watch_enabled)
     set_nested(json_data, ["logging_enabled"], logging_enabled.lower() == "true")
-    set_nested(json_data, ["logging_enabled"], logging_enabled)
     set_nested(json_data, ["logging_level"], logging_level)
     set_nested(
         json_data,
         ["machine_learning_availability_checks_enabled"],
         machine_learning_availability_checks_enabled.lower() == "true",
-    )
-    set_nested(
-        json_data,
-        ["machine_learning_availability_checks_enabled"],
-        machine_learning_availability_checks_enabled,
     )
     set_nested(
         json_data,
@@ -589,9 +575,6 @@ def update_config(
         machine_learning_clip_enabled.lower() == "true",
     )
     set_nested(
-        json_data, ["machine_learning_clip_enabled"], machine_learning_clip_enabled
-    )
-    set_nested(
         json_data,
         ["machine_learning_clip_model_name"],
         machine_learning_clip_model_name,
@@ -603,11 +586,6 @@ def update_config(
     )
     set_nested(
         json_data,
-        ["machine_learning_duplicate_detection_enabled"],
-        machine_learning_duplicate_detection_enabled,
-    )
-    set_nested(
-        json_data,
         ["machine_learning_duplicate_detection_max_distance"],
         machine_learning_duplicate_detection_max_distance,
     )
@@ -616,16 +594,10 @@ def update_config(
         ["machine_learning_enabled"],
         machine_learning_enabled.lower() == "true",
     )
-    set_nested(json_data, ["machine_learning_enabled"], machine_learning_enabled)
     set_nested(
         json_data,
         ["machine_learning_facial_recognition_enabled"],
         machine_learning_facial_recognition_enabled.lower() == "true",
-    )
-    set_nested(
-        json_data,
-        ["machine_learning_facial_recognition_enabled"],
-        machine_learning_facial_recognition_enabled,
     )
     set_nested(
         json_data,
@@ -653,9 +625,6 @@ def update_config(
         machine_learning_ocr_enabled.lower() == "true",
     )
     set_nested(
-        json_data, ["machine_learning_ocr_enabled"], machine_learning_ocr_enabled
-    )
-    set_nested(
         json_data,
         ["machine_learning_ocr_max_resolution"],
         machine_learning_ocr_max_resolution,
@@ -676,25 +645,19 @@ def update_config(
     set_nested(json_data, ["machine_learning_urls"], machine_learning_urls)
     set_nested(json_data, ["map_dark_style"], map_dark_style)
     set_nested(json_data, ["map_enabled"], map_enabled.lower() == "true")
-    set_nested(json_data, ["map_enabled"], map_enabled)
     set_nested(json_data, ["map_light_style"], map_light_style)
     set_nested(
         json_data, ["metadata_faces_import_"], metadata_faces_import_.lower() == "true"
     )
-    set_nested(json_data, ["metadata_faces_import_"], metadata_faces_import_)
     set_nested(
         json_data,
         ["new_version_check_enabled"],
         new_version_check_enabled.lower() == "true",
     )
-    set_nested(json_data, ["new_version_check_enabled"], new_version_check_enabled)
     set_nested(
         json_data,
         ["nightly_tasks_cluster_new_faces"],
         nightly_tasks_cluster_new_faces.lower() == "true",
-    )
-    set_nested(
-        json_data, ["nightly_tasks_cluster_new_faces"], nightly_tasks_cluster_new_faces
     )
     set_nested(
         json_data,
@@ -702,25 +665,14 @@ def update_config(
         nightly_tasks_database_cleanup.lower() == "true",
     )
     set_nested(
-        json_data, ["nightly_tasks_database_cleanup"], nightly_tasks_database_cleanup
-    )
-    set_nested(
         json_data,
         ["nightly_tasks_generate_memories"],
         nightly_tasks_generate_memories.lower() == "true",
     )
     set_nested(
-        json_data, ["nightly_tasks_generate_memories"], nightly_tasks_generate_memories
-    )
-    set_nested(
         json_data,
         ["nightly_tasks_missing_thumbnails"],
         nightly_tasks_missing_thumbnails.lower() == "true",
-    )
-    set_nested(
-        json_data,
-        ["nightly_tasks_missing_thumbnails"],
-        nightly_tasks_missing_thumbnails,
     )
     set_nested(json_data, ["nightly_tasks_start_time"], nightly_tasks_start_time)
     set_nested(
@@ -729,14 +681,10 @@ def update_config(
         nightly_tasks_sync_quota_usage.lower() == "true",
     )
     set_nested(
-        json_data, ["nightly_tasks_sync_quota_usage"], nightly_tasks_sync_quota_usage
-    )
-    set_nested(
         json_data,
         ["notifications_smtp_enabled"],
         notifications_smtp_enabled.lower() == "true",
     )
-    set_nested(json_data, ["notifications_smtp_enabled"], notifications_smtp_enabled)
     set_nested(json_data, ["notifications_smtp_from_"], notifications_smtp_from_)
     set_nested(json_data, ["notifications_smtp_reply_to"], notifications_smtp_reply_to)
     set_nested(
@@ -748,11 +696,6 @@ def update_config(
         json_data,
         ["notifications_smtp_transport_ignore_cert"],
         notifications_smtp_transport_ignore_cert.lower() == "true",
-    )
-    set_nested(
-        json_data,
-        ["notifications_smtp_transport_ignore_cert"],
-        notifications_smtp_transport_ignore_cert,
     )
     set_nested(
         json_data,
@@ -771,34 +714,23 @@ def update_config(
     )
     set_nested(
         json_data,
-        ["notifications_smtp_transport_secure"],
-        notifications_smtp_transport_secure,
-    )
-    set_nested(
-        json_data,
         ["notifications_smtp_transport_username"],
         notifications_smtp_transport_username,
     )
     set_nested(json_data, ["oauth_auto_launch"], oauth_auto_launch.lower() == "true")
-    set_nested(json_data, ["oauth_auto_launch"], oauth_auto_launch)
     set_nested(
         json_data, ["oauth_auto_register"], oauth_auto_register.lower() == "true"
     )
-    set_nested(json_data, ["oauth_auto_register"], oauth_auto_register)
     set_nested(json_data, ["oauth_button_text"], oauth_button_text)
     set_nested(json_data, ["oauth_client_id"], oauth_client_id)
     set_nested(json_data, ["oauth_client_secret"], oauth_client_secret)
     set_nested(json_data, ["oauth_default_storage_quota"], oauth_default_storage_quota)
     set_nested(json_data, ["oauth_enabled"], oauth_enabled.lower() == "true")
-    set_nested(json_data, ["oauth_enabled"], oauth_enabled)
     set_nested(json_data, ["oauth_issuer_url"], oauth_issuer_url)
     set_nested(
         json_data,
         ["oauth_mobile_override_enabled"],
         oauth_mobile_override_enabled.lower() == "true",
-    )
-    set_nested(
-        json_data, ["oauth_mobile_override_enabled"], oauth_mobile_override_enabled
     )
     set_nested(json_data, ["oauth_mobile_redirect_uri"], oauth_mobile_redirect_uri)
     set_nested(
@@ -818,34 +750,25 @@ def update_config(
     set_nested(
         json_data, ["password_login_enabled"], password_login_enabled.lower() == "true"
     )
-    set_nested(json_data, ["password_login_enabled"], password_login_enabled)
     set_nested(
         json_data,
         ["reverse_geocoding_enabled"],
         reverse_geocoding_enabled.lower() == "true",
     )
-    set_nested(json_data, ["reverse_geocoding_enabled"], reverse_geocoding_enabled)
     set_nested(json_data, ["server_external_domain"], server_external_domain)
     set_nested(json_data, ["server_login_page_message"], server_login_page_message)
     set_nested(
         json_data, ["server_public_users"], server_public_users.lower() == "true"
     )
-    set_nested(json_data, ["server_public_users"], server_public_users)
     set_nested(
         json_data,
         ["storage_template_enabled"],
         storage_template_enabled.lower() == "true",
     )
-    set_nested(json_data, ["storage_template_enabled"], storage_template_enabled)
     set_nested(
         json_data,
         ["storage_template_hash_verification_enabled"],
         storage_template_hash_verification_enabled.lower() == "true",
-    )
-    set_nested(
-        json_data,
-        ["storage_template_hash_verification_enabled"],
-        storage_template_hash_verification_enabled,
     )
     set_nested(json_data, ["storage_template_template"], storage_template_template)
     set_nested(
@@ -866,7 +789,6 @@ def update_config(
     set_nested(json_data, ["theme_custom_css"], theme_custom_css)
     set_nested(json_data, ["trash_days"], trash_days)
     set_nested(json_data, ["trash_enabled"], trash_enabled.lower() == "true")
-    set_nested(json_data, ["trash_enabled"], trash_enabled)
     set_nested(json_data, ["user_delete_delay"], user_delete_delay)
     from immich.client.models.system_config_dto import SystemConfigDto
 

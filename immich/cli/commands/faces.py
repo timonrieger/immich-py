@@ -71,7 +71,6 @@ def delete_face(
     json_data = {}
     kwargs["id"] = id
     set_nested(json_data, ["force"], force.lower() == "true")
-    set_nested(json_data, ["force"], force)
     from immich.client.models.asset_face_delete_dto import AssetFaceDeleteDto
 
     asset_face_delete_dto = AssetFaceDeleteDto.model_validate(json_data)

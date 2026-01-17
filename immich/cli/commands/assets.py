@@ -5,6 +5,7 @@ from __future__ import annotations
 import typer
 import json
 from datetime import datetime
+from pathlib import Path
 from typing import Literal
 
 from immich.cli.runtime import print_response, run_command, set_nested
@@ -477,7 +478,7 @@ def remove_asset_edits(
 def replace_asset(
     ctx: typer.Context,
     id: str = typer.Argument(..., help="""Asset ID"""),
-    asset_data: str = typer.Option(..., "--asset-data", help="""Asset file data"""),
+    asset_data: Path = typer.Option(..., "--asset-data", help="""Asset file data"""),
     device_asset_id: str = typer.Option(
         ..., "--device-asset-id", help="""Device asset ID"""
     ),
@@ -510,7 +511,7 @@ def replace_asset(
         kwargs["key"] = key
     if slug is not None:
         kwargs["slug"] = slug
-    set_nested(json_data, ["asset_data"], asset_data)
+    kwargs["asset_data"] = (asset_data.name, asset_data.read_bytes())
     set_nested(json_data, ["device_asset_id"], device_asset_id)
     set_nested(json_data, ["device_id"], device_id)
     if duration is not None:
@@ -754,7 +755,7 @@ As a JSON string""",
 @app.command("upload-asset", deprecated=False)
 def upload_asset(
     ctx: typer.Context,
-    asset_data: str = typer.Option(..., "--asset-data", help="""Asset file data"""),
+    asset_data: Path = typer.Option(..., "--asset-data", help="""Asset file data"""),
     device_asset_id: str = typer.Option(
         ..., "--device-asset-id", help="""Device asset ID"""
     ),
@@ -785,7 +786,7 @@ def upload_asset(
 
 As a JSON string""",
     ),
-    sidecar_data: str | None = typer.Option(
+    sidecar_data: Path | None = typer.Option(
         None, "--sidecar-data", help="""Sidecar file data"""
     ),
     slug: str | None = typer.Option(
@@ -812,7 +813,7 @@ As a JSON string""",
         kwargs["slug"] = slug
     if x_immich_checksum is not None:
         kwargs["x_immich_checksum"] = x_immich_checksum
-    set_nested(json_data, ["asset_data"], asset_data)
+    kwargs["asset_data"] = (asset_data.name, asset_data.read_bytes())
     set_nested(json_data, ["device_asset_id"], device_asset_id)
     set_nested(json_data, ["device_id"], device_id)
     if duration is not None:
@@ -829,7 +830,9 @@ As a JSON string""",
         value_metadata = [json.loads(i) for i in metadata]
         set_nested(json_data, ["metadata"], value_metadata)
     if sidecar_data is not None:
-        set_nested(json_data, ["sidecar_data"], sidecar_data)
+        set_nested(
+            json_data, ["sidecar_data"], (sidecar_data.name, sidecar_data.read_bytes())
+        )
     if visibility is not None:
         set_nested(json_data, ["visibility"], visibility)
     from immich.client.models.asset_media_create_dto import AssetMediaCreateDto

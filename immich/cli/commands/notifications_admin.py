@@ -135,18 +135,15 @@ def send_test_email_admin(
     kwargs = {}
     json_data = {}
     set_nested(json_data, ["enabled"], enabled.lower() == "true")
-    set_nested(json_data, ["enabled"], enabled)
     set_nested(json_data, ["from_"], from_)
     set_nested(json_data, ["reply_to"], reply_to)
     set_nested(json_data, ["transport_host"], transport_host)
     set_nested(
         json_data, ["transport_ignore_cert"], transport_ignore_cert.lower() == "true"
     )
-    set_nested(json_data, ["transport_ignore_cert"], transport_ignore_cert)
     set_nested(json_data, ["transport_password"], transport_password)
     set_nested(json_data, ["transport_port"], transport_port)
     set_nested(json_data, ["transport_secure"], transport_secure.lower() == "true")
-    set_nested(json_data, ["transport_secure"], transport_secure)
     set_nested(json_data, ["transport_username"], transport_username)
     from immich.client.models.system_config_smtp_dto import SystemConfigSmtpDto
 

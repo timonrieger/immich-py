@@ -55,10 +55,6 @@ class RequestParam(BaseModel):
         return to_kebab_case(self.name)
 
 
-# (param, location, param_name, param_type, flag_name, required, is_boolean_query)
-# (path, schema, required, param_name, opt_name)
-
-
 def openapi_url(ref: str) -> str:
     """Build OpenAPI spec URL from git ref."""
     return (
@@ -117,15 +113,15 @@ def python_type_from_schema(
             fmt = nschema["format"]
             if fmt == "uuid":
                 return "str"  # UUID as string for CLI
-            if fmt == "date-time":
+            elif fmt == "date-time":
                 return "datetime"  # Typer handles datetime parsing
+            elif fmt == "binary":
+                return "Path"
         return "str"
     elif schema_type == "integer":
         return "int"
     elif schema_type == "number":
         return "float"
-    elif schema_type == "binary":
-        return "Path"
     elif schema_type == "boolean":
         return "Literal['true', 'false']"
     elif schema_type == "array":
@@ -409,7 +405,7 @@ def generate_command_function(
                         lines.append(
                             f"    set_nested(json_data, [{param.name!r}], {param.name}.lower() == 'true')"
                         )
-                    if param.type == "Path":
+                    elif param.type == "Path":
                         lines.append(
                             f"    kwargs['{param.name}'] = ({param.name}.name, {param.name}.read_bytes())"
                         )
@@ -430,6 +426,10 @@ def generate_command_function(
                     if param.type == "Literal['true', 'false']":
                         lines.append(
                             f"        set_nested(json_data, [{param.name!r}], {param.name}.lower() == 'true')"
+                        )
+                    elif param.type == "Path":
+                        lines.append(
+                            f"        set_nested(json_data, [{param.name!r}], ({param.name}.name, {param.name}.read_bytes()))"
                         )
                     else:
                         lines.append(

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import typer
+from pathlib import Path
 from typing import Literal
 
 from immich.cli.runtime import print_response, run_command, set_nested
@@ -18,7 +19,7 @@ Docs: https://api.immich.app/endpoints/users"""
 @app.command("create-profile-image", deprecated=False)
 def create_profile_image(
     ctx: typer.Context,
-    file: str = typer.Option(..., "--file", help="""Profile image file"""),
+    file: Path = typer.Option(..., "--file", help="""Profile image file"""),
 ) -> None:
     """Create user profile image
 
@@ -26,7 +27,7 @@ def create_profile_image(
     """
     kwargs = {}
     json_data = {}
-    set_nested(json_data, ["file"], file)
+    kwargs["file"] = (file.name, file.read_bytes())
     from immich.client.models.create_profile_image_dto import CreateProfileImageDto
 
     create_profile_image_dto = CreateProfileImageDto.model_validate(json_data)
@@ -233,7 +234,6 @@ def set_user_onboarding(
     kwargs = {}
     json_data = {}
     set_nested(json_data, ["is_onboarded"], is_onboarded.lower() == "true")
-    set_nested(json_data, ["is_onboarded"], is_onboarded)
     from immich.client.models.onboarding_dto import OnboardingDto
 
     onboarding_dto = OnboardingDto.model_validate(json_data)

@@ -108,7 +108,6 @@ def update_partner(
     json_data = {}
     kwargs["id"] = id
     set_nested(json_data, ["in_timeline"], in_timeline.lower() == "true")
-    set_nested(json_data, ["in_timeline"], in_timeline)
     from immich.client.models.partner_update_dto import PartnerUpdateDto
 
     partner_update_dto = PartnerUpdateDto.model_validate(json_data)

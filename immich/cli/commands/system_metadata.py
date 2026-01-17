@@ -80,7 +80,6 @@ def update_admin_onboarding(
     kwargs = {}
     json_data = {}
     set_nested(json_data, ["is_onboarded"], is_onboarded.lower() == "true")
-    set_nested(json_data, ["is_onboarded"], is_onboarded)
     from immich.client.models.admin_onboarding_update_dto import (
         AdminOnboardingUpdateDto,
     )
