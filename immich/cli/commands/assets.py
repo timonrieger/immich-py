@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import typer
 from pathlib import Path
 from typing import Literal
@@ -324,6 +325,7 @@ def get_all_user_assets_by_device_id(
         client, client.assets, "get_all_user_assets_by_device_id", **kwargs
     )
     format_mode = ctx.obj.get("format", "pretty")
+    print("This endpoint is deprecated and will be removed in a future version.")
     print_response(result, format_mode)
 
 
@@ -729,6 +731,14 @@ Example: --items key1=value1,key2=value2""",
     if any([items]):
         json_data = {}
         value_items = parse_complex_list(items)
+        # Parse JSON values for the 'value' field
+        for item in value_items:
+            if "value" in item:
+                try:
+                    item["value"] = json.loads(item["value"])
+                except (json.JSONDecodeError, TypeError):
+                    # If it's not valid JSON, leave it as a string
+                    pass
         set_nested(json_data, ["items"], value_items)
         from immich.client.models.asset_metadata_upsert_dto import (
             AssetMetadataUpsertDto,

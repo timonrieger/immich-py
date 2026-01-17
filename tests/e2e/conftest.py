@@ -1,12 +1,16 @@
+import asyncio
+import json
 import os
 from pathlib import Path
 from typing import AsyncGenerator, Awaitable, Callable, Optional
 from uuid import UUID, uuid4
 
 import pytest
+from typer.testing import CliRunner
 
 from immich import AsyncClient
 from immich._internal.upload import UploadResult
+from immich.cli.app import app as cli_app
 from immich.client import (
     ActivityCreateDto,
     ActivityResponseDto,
@@ -100,33 +104,22 @@ def test_image_factory(
 
     Example:
         img_path = test_image_factory()
-        img_path2 = test_image_factory(directory=custom_dir, filename="custom.jpg")
+        img_path2 = test_image_factory(filename="custom.jpg")
     """
-    _created_paths: list[Path] = []
 
-    def _create_image(
-        directory: Optional[Path] = None, filename: Optional[str] = None
-    ) -> Path:
-        nonlocal _created_paths
-        base_dir = directory if directory is not None else tmp_path
+    def _create_image(filename: Optional[str] = None) -> Path:
         if filename is None:
             filename = f"{uuid4()}.jpg"
-        img_path = base_dir / filename
+        img_path = tmp_path / filename
         img_path.write_bytes(make_random_image())
-        _created_paths.append(img_path)
         return img_path
 
     yield _create_image
 
-    if teardown:
-        for path in _created_paths:
-            if path.exists():
-                path.unlink()
-
 
 @pytest.fixture
 def test_image(
-    test_image_factory: Callable[[Optional[Path], Optional[str]], Path],
+    test_image_factory: Callable[[], Path],
 ) -> AsyncGenerator[Path, None]:
     """Create a minimal JPEG test image."""
     yield test_image_factory()
@@ -140,18 +133,15 @@ def test_video_factory(
 
     Example:
         video_path = test_video_factory()
-        video_path2 = test_video_factory(directory=custom_dir, filename="custom.mp4")
+        video_path2 = test_video_factory(filename="custom.mp4")
     """
     _created_paths: list[Path] = []
 
-    def _create_video(
-        directory: Optional[Path] = None, filename: Optional[str] = None
-    ) -> Path:
+    def _create_video(filename: Optional[str] = None) -> Path:
         nonlocal _created_paths
-        base_dir = directory if directory is not None else tmp_path
         if filename is None:
             filename = f"{uuid4()}.mp4"
-        video_path = base_dir / filename
+        video_path = tmp_path / filename
         video_path.write_bytes(make_random_video())
         _created_paths.append(video_path)
         return video_path
@@ -166,7 +156,7 @@ def test_video_factory(
 
 @pytest.fixture
 def test_video(
-    test_video_factory: Callable[[Optional[Path], Optional[str]], Path],
+    test_video_factory: Callable[[], Path],
 ) -> AsyncGenerator[Path, None]:
     """Create a minimal MP4 test video."""
     yield test_video_factory()
@@ -294,7 +284,9 @@ async def upload_assets(
 
     if teardown and _uploaded_ids:
         await client_with_api_key.assets.delete_assets(
-            AssetBulkDeleteDto(ids=_uploaded_ids, force=True)
+            AssetBulkDeleteDto(
+                ids=_uploaded_ids, force=True
+            )  # deletes without moving to trash
         )
 
 
@@ -302,7 +294,6 @@ async def upload_assets(
 async def asset(
     test_image: Path,
     upload_assets: Callable[..., Awaitable[UploadResult]],
-    teardown: bool,
 ) -> AsyncGenerator[AssetResponseDto, None]:
     """Fixture to set up asset for testing.
 
@@ -316,7 +307,6 @@ async def asset(
     assert len(upload_result.uploaded) == 1
     asset = upload_result.uploaded[0].asset
     yield asset
-    # Teardown is handled by upload_assets fixture
 
 
 @pytest.fixture
@@ -364,3 +354,32 @@ async def api_key(
     yield api_key
     if teardown:
         await client_with_api_key.api_keys.delete_api_key(UUID(str(api_key.id)))
+
+
+@pytest.fixture
+def get_asset_info_factory(
+    runner: CliRunner,
+) -> Callable[[str], Awaitable[AssetResponseDto]]:
+    """Factory fixture: yields a callable to get asset info by ID via CLI.
+
+    Example:
+        asset_info = await get_asset_info_factory(asset_id)
+    """
+
+    async def _get_asset_info(asset_id: str) -> AssetResponseDto:
+        result = await asyncio.to_thread(
+            runner.invoke,
+            cli_app,
+            [
+                "--format",
+                "json",
+                "assets",
+                "get-asset-info",
+                asset_id,
+            ],
+        )
+        assert result.exit_code == 0, result.stdout + result.stderr
+        response_data = json.loads(result.output)
+        return AssetResponseDto.model_validate(response_data)
+
+    return _get_asset_info

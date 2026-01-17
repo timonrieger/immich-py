@@ -31,6 +31,18 @@ from immich.client.exceptions import ApiException
 logger = logging.getLogger(__name__)
 
 BATCH_SIZE = 5000
+DEVICE_ID = "immich-python-client"
+
+
+def get_device_asset_id(filepath: Path, stats: os.stat_result) -> str:
+    """Get the device asset ID for a given file path and stats.
+
+    :param filepath: The path to the file.
+    :param stats: The stats of the file.
+
+    :return: The device asset ID.
+    """
+    return f"{filepath.name}-{stats.st_size}".replace(" ", "")
 
 
 class UploadStats(BaseModel):
@@ -304,8 +316,8 @@ async def upload_file(
 
     response = await assets_api.upload_asset_with_http_info(
         asset_data=asset_data,
-        device_asset_id=f"{filepath.name}-{stats.st_size}".replace(" ", ""),
-        device_id="immich-py",
+        device_asset_id=get_device_asset_id(filepath, stats),
+        device_id=DEVICE_ID,
         file_created_at=file_created_at,
         file_modified_at=file_modified_at,
         sidecar_data=sidecar_data,
