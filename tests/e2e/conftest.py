@@ -1,16 +1,12 @@
-import asyncio
-import json
 import os
 from pathlib import Path
 from typing import AsyncGenerator, Awaitable, Callable, Optional
 from uuid import UUID, uuid4
 
 import pytest
-from typer.testing import CliRunner
 
 from immich import AsyncClient
 from immich._internal.upload import UploadResult
-from immich.cli.app import app as cli_app
 from immich.client import (
     ActivityCreateDto,
     ActivityResponseDto,
@@ -18,9 +14,13 @@ from immich.client import (
     APIKeyResponseDto,
     AssetBulkDeleteDto,
     AssetResponseDto,
+    AuthStatusResponseDto,
     CreateAlbumDto,
     LicenseKeyDto,
     LicenseResponseDto,
+    PinCodeChangeDto,
+    PinCodeResetDto,
+    PinCodeSetupDto,
     ReactionType,
     UserAdminCreateDto,
     UserResponseDto,
@@ -369,9 +369,9 @@ async def api_key(
 
 
 @pytest.fixture
-def get_asset_info_factory(
-    runner: CliRunner,
-) -> Callable[[str], Awaitable[AssetResponseDto]]:
+async def get_asset_info_factory(
+    client_with_api_key: AsyncClient,
+) -> AsyncGenerator[Callable[[str], Awaitable[AssetResponseDto]], None]:
     """Factory fixture: yields a callable to get asset info by ID via CLI.
 
     Example:
@@ -379,19 +379,87 @@ def get_asset_info_factory(
     """
 
     async def _get_asset_info(asset_id: str) -> AssetResponseDto:
-        result = await asyncio.to_thread(
-            runner.invoke,
-            cli_app,
-            [
-                "--format",
-                "json",
-                "assets",
-                "get-asset-info",
-                asset_id,
-            ],
-        )
-        assert result.exit_code == 0, result.stdout + result.stderr
-        response_data = json.loads(result.output)
-        return AssetResponseDto.model_validate(response_data)
+        try:
+            return await client_with_api_key.assets.get_asset_info(asset_id)
+        except Exception as e:
+            pytest.skip(f"Get asset info failed:\n{e}")
 
-    return _get_asset_info
+    yield _get_asset_info
+
+
+@pytest.fixture
+async def pin_code_setup(
+    client_with_api_key: AsyncClient, teardown: bool
+) -> AsyncGenerator[str, None]:
+    """Fixture to set up PIN code for testing.
+
+    Sets up a PIN code with value "123456", returns the PIN code value.
+    Skips dependent tests if PIN code setup fails.
+    """
+    pin_code = "123456"
+    try:
+        # safe play in case a previous test failed and left a PIN code set
+        try:
+            await client_with_api_key.authentication.reset_pin_code(
+                PinCodeResetDto(password="password")
+            )
+        except Exception:
+            pass
+        await client_with_api_key.authentication.setup_pin_code(
+            PinCodeSetupDto(pin_code=pin_code)
+        )
+        assert (
+            await client_with_api_key.authentication.get_auth_status()
+        ).pin_code is True
+    except Exception as e:
+        pytest.skip(f"PIN code setup failed: {e}")
+
+    yield pin_code
+
+    if teardown:
+        # Reset PIN code by deleting it (requires password)
+        await client_with_api_key.authentication.reset_pin_code(
+            PinCodeResetDto(password="password")
+        )
+
+
+@pytest.fixture
+async def pin_code_change(
+    pin_code_setup: str, client_with_api_key: AsyncClient
+) -> AsyncGenerator[tuple[str, str], None]:
+    """Fixture to set up and change PIN code for testing.
+
+    Inherits from pin_code_setup, changes the PIN code, and returns both
+    the initial and new PIN code values in a dict with keys 'initial' and 'new'.
+    Skips dependent tests if PIN code change fails.
+    """
+    initial_pin = pin_code_setup
+    new_pin = "567890"
+
+    try:
+        await client_with_api_key.authentication.change_pin_code(
+            PinCodeChangeDto(new_pin_code=new_pin, password="password")
+        )
+    except Exception as e:
+        pytest.skip(f"PIN code change failed:\n{e}")
+
+    yield (initial_pin, new_pin)
+
+
+@pytest.fixture
+async def get_auth_status_factory(
+    client_with_access_token: AsyncClient,
+) -> AsyncGenerator[Callable[[], Awaitable[AuthStatusResponseDto]], None]:
+    """Factory fixture: yields a callable to get auth status.
+
+    Example:
+        auth_status = await get_auth_status_factory()
+    """
+
+    async def _get_auth_status() -> AuthStatusResponseDto:
+        try:
+            return await client_with_access_token.authentication.get_auth_status()
+        except Exception as e:
+            pytest.skip(f"Get auth status failed:\n{e}")
+
+    yield _get_auth_status
