@@ -7,13 +7,10 @@
 
 from __future__ import annotations
 
-import argparse
 import os
 import shutil
 import subprocess  # nosec: B404
 from pathlib import Path
-
-from immich._internal.consts import IMMICH_OPENAPI_REF
 
 
 def project_root() -> Path:
@@ -55,23 +52,12 @@ def rewrite_imports_in_tree(root: Path) -> int:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(
-        description="Generate Immich OpenAPI client and rewrite imports."
-    )
-    parser.add_argument(
-        "--ref",
-        default=os.environ.get(IMMICH_OPENAPI_REF, "main"),
-        help="Immich git ref for OpenAPI spec (default: IMMICH_OPENAPI_REF or 'main')",
-    )
-    args = parser.parse_args()
-
     root = project_root()
     out_dir = root / "immich"
     client_dir = out_dir / "client"
 
-    url = openapi_url(args.ref)
-    print(f"Generating Immich client from ref: {args.ref}")
-    print(f"Spec URL: {url}")
+    url = openapi_url(os.environ.get("IMMICH_OPENAPI_REF", "main"))
+    print(f"Fetching OpenAPI spec from: {url}")
 
     if client_dir.exists():
         print("Deleting existing generated client folder:", client_dir)

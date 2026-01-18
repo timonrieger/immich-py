@@ -212,10 +212,9 @@ __all__ = [
     "PinCodeSetupDto",
     "PlacesResponseDto",
     "PluginActionResponseDto",
-    "PluginContextType",
+    "PluginContext",
     "PluginFilterResponseDto",
     "PluginResponseDto",
-    "PluginTriggerResponseDto",
     "PluginTriggerType",
     "PurchaseResponse",
     "PurchaseUpdate",
@@ -761,17 +760,12 @@ from immich.client.models.places_response_dto import (
 from immich.client.models.plugin_action_response_dto import (
     PluginActionResponseDto as PluginActionResponseDto,
 )
-from immich.client.models.plugin_context_type import (
-    PluginContextType as PluginContextType,
-)
+from immich.client.models.plugin_context import PluginContext as PluginContext
 from immich.client.models.plugin_filter_response_dto import (
     PluginFilterResponseDto as PluginFilterResponseDto,
 )
 from immich.client.models.plugin_response_dto import (
     PluginResponseDto as PluginResponseDto,
-)
-from immich.client.models.plugin_trigger_response_dto import (
-    PluginTriggerResponseDto as PluginTriggerResponseDto,
 )
 from immich.client.models.plugin_trigger_type import (
     PluginTriggerType as PluginTriggerType,

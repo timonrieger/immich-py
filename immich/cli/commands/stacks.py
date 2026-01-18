@@ -16,7 +16,7 @@ app = typer.Typer(
 def create_stack(
     ctx: typer.Context,
     asset_ids: list[str] = typer.Option(
-        ..., "--asset-ids", help="""Asset IDs (first becomes primary, min 2)"""
+        ..., "--asset-ids", help="""first asset becomes the primary"""
     ),
 ) -> None:
     """Create a stack
@@ -39,7 +39,7 @@ def create_stack(
 @app.command("delete-stack", deprecated=False)
 def delete_stack(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Stack ID"""),
+    id: str = typer.Argument(..., help=""""""),
 ) -> None:
     """Delete a stack
 
@@ -56,7 +56,7 @@ def delete_stack(
 @app.command("delete-stacks", deprecated=False)
 def delete_stacks(
     ctx: typer.Context,
-    ids: list[str] = typer.Option(..., "--ids", help="""IDs to process"""),
+    ids: list[str] = typer.Option(..., "--ids", help=""""""),
 ) -> None:
     """Delete stacks
 
@@ -78,7 +78,7 @@ def delete_stacks(
 @app.command("get-stack", deprecated=False)
 def get_stack(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Stack ID"""),
+    id: str = typer.Argument(..., help=""""""),
 ) -> None:
     """Retrieve a stack
 
@@ -95,8 +95,8 @@ def get_stack(
 @app.command("remove-asset-from-stack", deprecated=False)
 def remove_asset_from_stack(
     ctx: typer.Context,
-    asset_id: str = typer.Argument(..., help="""Asset ID to remove"""),
-    id: str = typer.Argument(..., help="""Stack ID"""),
+    asset_id: str = typer.Argument(..., help=""""""),
+    id: str = typer.Argument(..., help=""""""),
 ) -> None:
     """Remove an asset from a stack
 
@@ -115,7 +115,7 @@ def remove_asset_from_stack(
 def search_stacks(
     ctx: typer.Context,
     primary_asset_id: str | None = typer.Option(
-        None, "--primary-asset-id", help="""Filter by primary asset ID"""
+        None, "--primary-asset-id", help=""""""
     ),
 ) -> None:
     """Retrieve stacks
@@ -134,9 +134,9 @@ def search_stacks(
 @app.command("update-stack", deprecated=False)
 def update_stack(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Stack ID"""),
+    id: str = typer.Argument(..., help=""""""),
     primary_asset_id: str | None = typer.Option(
-        None, "--primary-asset-id", help="""Primary asset ID"""
+        None, "--primary-asset-id", help=""""""
     ),
 ) -> None:
     """Update a stack

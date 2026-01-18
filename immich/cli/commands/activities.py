@@ -15,14 +15,10 @@ app = typer.Typer(
 @app.command("create-activity", deprecated=False)
 def create_activity(
     ctx: typer.Context,
-    album_id: str = typer.Option(..., "--album-id", help="""Album ID"""),
-    asset_id: str | None = typer.Option(
-        None, "--asset-id", help="""Asset ID (if activity is for an asset)"""
-    ),
-    comment: str | None = typer.Option(
-        None, "--comment", help="""Comment text (required if type is comment)"""
-    ),
-    type: str = typer.Option(..., "--type", help="""Activity type (like or comment)"""),
+    album_id: str = typer.Option(..., "--album-id", help=""""""),
+    asset_id: str | None = typer.Option(None, "--asset-id", help=""""""),
+    comment: str | None = typer.Option(None, "--comment", help=""""""),
+    type: str = typer.Option(..., "--type", help=""""""),
 ) -> None:
     """Create an activity
 
@@ -49,7 +45,7 @@ def create_activity(
 @app.command("delete-activity", deprecated=False)
 def delete_activity(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Activity ID to delete"""),
+    id: str = typer.Argument(..., help=""""""),
 ) -> None:
     """Delete an activity
 
@@ -66,17 +62,11 @@ def delete_activity(
 @app.command("get-activities", deprecated=False)
 def get_activities(
     ctx: typer.Context,
-    album_id: str = typer.Option(..., "--album-id", help="""Album ID"""),
-    asset_id: str | None = typer.Option(
-        None, "--asset-id", help="""Asset ID (if activity is for an asset)"""
-    ),
-    level: ReactionLevel | None = typer.Option(
-        None, "--level", help="""Filter by activity level"""
-    ),
-    type: ReactionType | None = typer.Option(
-        None, "--type", help="""Filter by activity type"""
-    ),
-    user_id: str | None = typer.Option(None, "--user-id", help="""Filter by user ID"""),
+    album_id: str = typer.Option(..., "--album-id", help=""""""),
+    asset_id: str | None = typer.Option(None, "--asset-id", help=""""""),
+    level: ReactionLevel | None = typer.Option(None, "--level", help=""""""),
+    type: ReactionType | None = typer.Option(None, "--type", help=""""""),
+    user_id: str | None = typer.Option(None, "--user-id", help=""""""),
 ) -> None:
     """List all activities
 
@@ -101,10 +91,8 @@ def get_activities(
 @app.command("get-activity-statistics", deprecated=False)
 def get_activity_statistics(
     ctx: typer.Context,
-    album_id: str = typer.Option(..., "--album-id", help="""Album ID"""),
-    asset_id: str | None = typer.Option(
-        None, "--asset-id", help="""Asset ID (if activity is for an asset)"""
-    ),
+    album_id: str = typer.Option(..., "--album-id", help=""""""),
+    asset_id: str | None = typer.Option(None, "--asset-id", help=""""""),
 ) -> None:
     """Retrieve activity statistics
 

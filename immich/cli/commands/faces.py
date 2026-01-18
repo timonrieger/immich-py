@@ -16,18 +16,14 @@ app = typer.Typer(
 @app.command("create-face", deprecated=False)
 def create_face(
     ctx: typer.Context,
-    asset_id: str = typer.Option(..., "--asset-id", help="""Asset ID"""),
-    height: int = typer.Option(..., "--height", help="""Face bounding box height"""),
-    image_height: int = typer.Option(
-        ..., "--image-height", help="""Image height in pixels"""
-    ),
-    image_width: int = typer.Option(
-        ..., "--image-width", help="""Image width in pixels"""
-    ),
-    person_id: str = typer.Option(..., "--person-id", help="""Person ID"""),
-    width: int = typer.Option(..., "--width", help="""Face bounding box width"""),
-    x: int = typer.Option(..., "--x", help="""Face bounding box X coordinate"""),
-    y: int = typer.Option(..., "--y", help="""Face bounding box Y coordinate"""),
+    asset_id: str = typer.Option(..., "--asset-id", help=""""""),
+    height: int = typer.Option(..., "--height", help=""""""),
+    image_height: int = typer.Option(..., "--image-height", help=""""""),
+    image_width: int = typer.Option(..., "--image-width", help=""""""),
+    person_id: str = typer.Option(..., "--person-id", help=""""""),
+    width: int = typer.Option(..., "--width", help=""""""),
+    x: int = typer.Option(..., "--x", help=""""""),
+    y: int = typer.Option(..., "--y", help=""""""),
 ) -> None:
     """Create a face
 
@@ -56,10 +52,8 @@ def create_face(
 @app.command("delete-face", deprecated=False)
 def delete_face(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Face ID to delete"""),
-    force: Literal["true", "false"] = typer.Option(
-        ..., "--force", help="""Force delete even if person has other faces"""
-    ),
+    id: str = typer.Argument(..., help=""""""),
+    force: Literal["true", "false"] = typer.Option(..., "--force", help=""""""),
 ) -> None:
     """Delete a face
 
@@ -82,7 +76,7 @@ def delete_face(
 @app.command("get-faces", deprecated=False)
 def get_faces(
     ctx: typer.Context,
-    id: str = typer.Option(..., "--id", help="""Asset ID to retrieve faces for"""),
+    id: str = typer.Option(..., "--id", help=""""""),
 ) -> None:
     """Retrieve faces for asset
 
@@ -99,8 +93,8 @@ def get_faces(
 @app.command("reassign-faces-by-id", deprecated=False)
 def reassign_faces_by_id(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Person ID to assign the face to"""),
-    body_id: str = typer.Option(..., "--body-id", help="""Face ID"""),
+    id: str = typer.Argument(..., help=""""""),
+    body_id: str = typer.Option(..., "--body-id", help=""""""),
 ) -> None:
     """Re-assign a face to another person
 

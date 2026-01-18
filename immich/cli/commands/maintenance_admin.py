@@ -15,7 +15,7 @@ app = typer.Typer(
 @app.command("maintenance-login", deprecated=False)
 def maintenance_login(
     ctx: typer.Context,
-    token: str | None = typer.Option(None, "--token", help="""Maintenance token"""),
+    token: str | None = typer.Option(None, "--token", help=""""""),
 ) -> None:
     """Log into maintenance mode
 
@@ -40,7 +40,7 @@ def maintenance_login(
 @app.command("set-maintenance-mode", deprecated=False)
 def set_maintenance_mode(
     ctx: typer.Context,
-    action: str = typer.Option(..., "--action", help="""Maintenance action"""),
+    action: str = typer.Option(..., "--action", help=""""""),
 ) -> None:
     """Set maintenance mode
 

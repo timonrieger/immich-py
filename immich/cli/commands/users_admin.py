@@ -16,29 +16,23 @@ app = typer.Typer(
 @app.command("create-user-admin", deprecated=False)
 def create_user_admin(
     ctx: typer.Context,
-    avatar_color: str | None = typer.Option(
-        None, "--avatar-color", help="""Avatar color"""
-    ),
-    email: str = typer.Option(..., "--email", help="""User email"""),
+    avatar_color: str | None = typer.Option(None, "--avatar-color", help=""""""),
+    email: str = typer.Option(..., "--email", help=""""""),
     is_admin: Literal["true", "false"] | None = typer.Option(
-        None, "--is-admin", help="""Grant admin privileges"""
+        None, "--is-admin", help=""""""
     ),
-    name: str = typer.Option(..., "--name", help="""User name"""),
+    name: str = typer.Option(..., "--name", help=""""""),
     notify: Literal["true", "false"] | None = typer.Option(
-        None, "--notify", help="""Send notification email"""
+        None, "--notify", help=""""""
     ),
-    password: str = typer.Option(..., "--password", help="""User password"""),
+    password: str = typer.Option(..., "--password", help=""""""),
     quota_size_in_bytes: int | None = typer.Option(
-        None, "--quota-size-in-bytes", help="""Storage quota in bytes""", min=0
+        None, "--quota-size-in-bytes", help="""""", min=0
     ),
     should_change_password: Literal["true", "false"] | None = typer.Option(
-        None,
-        "--should-change-password",
-        help="""Require password change on next login""",
+        None, "--should-change-password", help=""""""
     ),
-    storage_label: str | None = typer.Option(
-        None, "--storage-label", help="""Storage label"""
-    ),
+    storage_label: str | None = typer.Option(None, "--storage-label", help=""""""),
 ) -> None:
     """Create a user
 
@@ -78,10 +72,8 @@ def create_user_admin(
 @app.command("delete-user-admin", deprecated=False)
 def delete_user_admin(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""User ID"""),
-    force: Literal["true", "false"] | None = typer.Option(
-        None, "--force", help="""Force delete even if user has assets"""
-    ),
+    id: str = typer.Argument(..., help=""""""),
+    force: Literal["true", "false"] | None = typer.Option(None, "--force", help=""""""),
 ) -> None:
     """Delete a user
 
@@ -105,7 +97,7 @@ def delete_user_admin(
 @app.command("get-user-admin", deprecated=False)
 def get_user_admin(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""User ID"""),
+    id: str = typer.Argument(..., help=""""""),
 ) -> None:
     """Retrieve a user
 
@@ -122,7 +114,7 @@ def get_user_admin(
 @app.command("get-user-preferences-admin", deprecated=False)
 def get_user_preferences_admin(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""User ID"""),
+    id: str = typer.Argument(..., help=""""""),
 ) -> None:
     """Retrieve user preferences
 
@@ -141,7 +133,7 @@ def get_user_preferences_admin(
 @app.command("get-user-sessions-admin", deprecated=False)
 def get_user_sessions_admin(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""User ID"""),
+    id: str = typer.Argument(..., help=""""""),
 ) -> None:
     """Retrieve user sessions
 
@@ -160,15 +152,15 @@ def get_user_sessions_admin(
 @app.command("get-user-statistics-admin", deprecated=False)
 def get_user_statistics_admin(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""User ID"""),
+    id: str = typer.Argument(..., help=""""""),
     is_favorite: Literal["true", "false"] | None = typer.Option(
-        None, "--is-favorite", help="""Filter by favorite status"""
+        None, "--is-favorite", help=""""""
     ),
     is_trashed: Literal["true", "false"] | None = typer.Option(
-        None, "--is-trashed", help="""Filter by trash status"""
+        None, "--is-trashed", help=""""""
     ),
     visibility: AssetVisibility | None = typer.Option(
-        None, "--visibility", help="""Filter by visibility"""
+        None, "--visibility", help=""""""
     ),
 ) -> None:
     """Retrieve user statistics
@@ -194,7 +186,7 @@ def get_user_statistics_admin(
 @app.command("restore-user-admin", deprecated=False)
 def restore_user_admin(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""User ID"""),
+    id: str = typer.Argument(..., help=""""""),
 ) -> None:
     """Restore a deleted user
 
@@ -211,9 +203,9 @@ def restore_user_admin(
 @app.command("search-users-admin", deprecated=False)
 def search_users_admin(
     ctx: typer.Context,
-    id: str | None = typer.Option(None, "--id", help="""User ID filter"""),
+    id: str | None = typer.Option(None, "--id", help=""""""),
     with_deleted: Literal["true", "false"] | None = typer.Option(
-        None, "--with-deleted", help="""Include deleted users"""
+        None, "--with-deleted", help=""""""
     ),
 ) -> None:
     """Search users
@@ -234,34 +226,22 @@ def search_users_admin(
 @app.command("update-user-admin", deprecated=False)
 def update_user_admin(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""User ID"""),
-    avatar_color: str | None = typer.Option(
-        None, "--avatar-color", help="""Avatar color"""
-    ),
-    email: str | None = typer.Option(None, "--email", help="""User email"""),
+    id: str = typer.Argument(..., help=""""""),
+    avatar_color: str | None = typer.Option(None, "--avatar-color", help=""""""),
+    email: str | None = typer.Option(None, "--email", help=""""""),
     is_admin: Literal["true", "false"] | None = typer.Option(
-        None, "--is-admin", help="""Grant admin privileges"""
+        None, "--is-admin", help=""""""
     ),
-    name: str | None = typer.Option(None, "--name", help="""User name"""),
-    password: str | None = typer.Option(None, "--password", help="""User password"""),
-    pin_code: str | None = typer.Option(
-        None,
-        "--pin-code",
-        help="""PIN code
-
-Example: 123456""",
-    ),
+    name: str | None = typer.Option(None, "--name", help=""""""),
+    password: str | None = typer.Option(None, "--password", help=""""""),
+    pin_code: str | None = typer.Option(None, "--pin-code", help="""Example: 123456"""),
     quota_size_in_bytes: int | None = typer.Option(
-        None, "--quota-size-in-bytes", help="""Storage quota in bytes""", min=0
+        None, "--quota-size-in-bytes", help="""""", min=0
     ),
     should_change_password: Literal["true", "false"] | None = typer.Option(
-        None,
-        "--should-change-password",
-        help="""Require password change on next login""",
+        None, "--should-change-password", help=""""""
     ),
-    storage_label: str | None = typer.Option(
-        None, "--storage-label", help="""Storage label"""
-    ),
+    storage_label: str | None = typer.Option(None, "--storage-label", help=""""""),
 ) -> None:
     """Update a user
 
@@ -305,81 +285,67 @@ Example: 123456""",
 @app.command("update-user-preferences-admin", deprecated=False)
 def update_user_preferences_admin(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""User ID"""),
+    id: str = typer.Argument(..., help=""""""),
     albums_default_asset_order: str | None = typer.Option(
-        None, "--albums-default-asset-order", help="""Asset sort order"""
+        None, "--albums-default-asset-order", help=""""""
     ),
-    avatar_color: str | None = typer.Option(
-        None, "--avatar-color", help="""Avatar color"""
-    ),
+    avatar_color: str | None = typer.Option(None, "--avatar-color", help=""""""),
     cast_g_cast_enabled: Literal["true", "false"] | None = typer.Option(
-        None, "--cast-g-cast-enabled", help="""Whether Google Cast is enabled"""
+        None, "--cast-g-cast-enabled", help=""""""
     ),
     download_archive_size: int | None = typer.Option(
-        None, "--download-archive-size", help="""Maximum archive size in bytes""", min=1
+        None, "--download-archive-size", help="""""", min=1
     ),
     download_include_embedded_videos: Literal["true", "false"] | None = typer.Option(
-        None,
-        "--download-include-embedded-videos",
-        help="""Whether to include embedded videos in downloads""",
+        None, "--download-include-embedded-videos", help=""""""
     ),
     email_notifications_album_invite: Literal["true", "false"] | None = typer.Option(
-        None,
-        "--email-notifications-album-invite",
-        help="""Whether to receive email notifications for album invites""",
+        None, "--email-notifications-album-invite", help=""""""
     ),
     email_notifications_album_update: Literal["true", "false"] | None = typer.Option(
-        None,
-        "--email-notifications-album-update",
-        help="""Whether to receive email notifications for album updates""",
+        None, "--email-notifications-album-update", help=""""""
     ),
     email_notifications_enabled: Literal["true", "false"] | None = typer.Option(
-        None,
-        "--email-notifications-enabled",
-        help="""Whether email notifications are enabled""",
+        None, "--email-notifications-enabled", help=""""""
     ),
     folders_enabled: Literal["true", "false"] | None = typer.Option(
-        None, "--folders-enabled", help="""Whether folders are enabled"""
+        None, "--folders-enabled", help=""""""
     ),
     folders_sidebar_web: Literal["true", "false"] | None = typer.Option(
-        None, "--folders-sidebar-web", help="""Whether folders appear in web sidebar"""
+        None, "--folders-sidebar-web", help=""""""
     ),
     memories_duration: int | None = typer.Option(
-        None, "--memories-duration", help="""Memory duration in seconds""", min=1
+        None, "--memories-duration", help="""""", min=1
     ),
     memories_enabled: Literal["true", "false"] | None = typer.Option(
-        None, "--memories-enabled", help="""Whether memories are enabled"""
+        None, "--memories-enabled", help=""""""
     ),
     people_enabled: Literal["true", "false"] | None = typer.Option(
-        None, "--people-enabled", help="""Whether people are enabled"""
+        None, "--people-enabled", help=""""""
     ),
     people_sidebar_web: Literal["true", "false"] | None = typer.Option(
-        None, "--people-sidebar-web", help="""Whether people appear in web sidebar"""
+        None, "--people-sidebar-web", help=""""""
     ),
     purchase_hide_buy_button_until: str | None = typer.Option(
-        None,
-        "--purchase-hide-buy-button-until",
-        help="""Date until which to hide buy button""",
+        None, "--purchase-hide-buy-button-until", help=""""""
     ),
     purchase_show_support_badge: Literal["true", "false"] | None = typer.Option(
-        None, "--purchase-show-support-badge", help="""Whether to show support badge"""
+        None, "--purchase-show-support-badge", help=""""""
     ),
     ratings_enabled: Literal["true", "false"] | None = typer.Option(
-        None, "--ratings-enabled", help="""Whether ratings are enabled"""
+        None, "--ratings-enabled", help=""""""
     ),
     shared_links_enabled: Literal["true", "false"] | None = typer.Option(
-        None, "--shared-links-enabled", help="""Whether shared links are enabled"""
+        None, "--shared-links-enabled", help=""""""
     ),
     shared_links_sidebar_web: Literal["true", "false"] | None = typer.Option(
-        None,
-        "--shared-links-sidebar-web",
-        help="""Whether shared links appear in web sidebar""",
+        None, "--shared-links-sidebar-web", help=""""""
     ),
     tags_enabled: Literal["true", "false"] | None = typer.Option(
-        None, "--tags-enabled", help="""Whether tags are enabled"""
+        None, "--tags-enabled", help=""""""
     ),
     tags_sidebar_web: Literal["true", "false"] | None = typer.Option(
-        None, "--tags-sidebar-web", help="""Whether tags appear in web sidebar"""
+        None, "--tags-sidebar-web", help=""""""
     ),
 ) -> None:
     """Update user preferences

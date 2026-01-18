@@ -195,10 +195,9 @@ from immich.client.models.pin_code_reset_dto import PinCodeResetDto
 from immich.client.models.pin_code_setup_dto import PinCodeSetupDto
 from immich.client.models.places_response_dto import PlacesResponseDto
 from immich.client.models.plugin_action_response_dto import PluginActionResponseDto
-from immich.client.models.plugin_context_type import PluginContextType
+from immich.client.models.plugin_context import PluginContext
 from immich.client.models.plugin_filter_response_dto import PluginFilterResponseDto
 from immich.client.models.plugin_response_dto import PluginResponseDto
-from immich.client.models.plugin_trigger_response_dto import PluginTriggerResponseDto
 from immich.client.models.plugin_trigger_type import PluginTriggerType
 from immich.client.models.purchase_response import PurchaseResponse
 from immich.client.models.purchase_update import PurchaseUpdate

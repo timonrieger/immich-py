@@ -18,22 +18,22 @@ app = typer.Typer(
 def get_map_markers(
     ctx: typer.Context,
     file_created_after: datetime | None = typer.Option(
-        None, "--file-created-after", help="""Filter assets created after this date"""
+        None, "--file-created-after", help=""""""
     ),
     file_created_before: datetime | None = typer.Option(
-        None, "--file-created-before", help="""Filter assets created before this date"""
+        None, "--file-created-before", help=""""""
     ),
     is_archived: Literal["true", "false"] | None = typer.Option(
-        None, "--is-archived", help="""Filter by archived status"""
+        None, "--is-archived", help=""""""
     ),
     is_favorite: Literal["true", "false"] | None = typer.Option(
-        None, "--is-favorite", help="""Filter by favorite status"""
+        None, "--is-favorite", help=""""""
     ),
     with_partners: Literal["true", "false"] | None = typer.Option(
-        None, "--with-partners", help="""Include partner assets"""
+        None, "--with-partners", help=""""""
     ),
     with_shared_albums: Literal["true", "false"] | None = typer.Option(
-        None, "--with-shared-albums", help="""Include shared album assets"""
+        None, "--with-shared-albums", help=""""""
     ),
 ) -> None:
     """Retrieve map markers
@@ -62,8 +62,8 @@ def get_map_markers(
 @app.command("reverse-geocode", deprecated=False)
 def reverse_geocode(
     ctx: typer.Context,
-    lat: float = typer.Option(..., "--lat", help="""Latitude (-90 to 90)"""),
-    lon: float = typer.Option(..., "--lon", help="""Longitude (-180 to 180)"""),
+    lat: float = typer.Option(..., "--lat", help=""""""),
+    lon: float = typer.Option(..., "--lon", help=""""""),
 ) -> None:
     """Reverse geocode coordinates
 

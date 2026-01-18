@@ -17,28 +17,14 @@ app = typer.Typer(
 @app.command("create-workflow", deprecated=False)
 def create_workflow(
     ctx: typer.Context,
-    actions: list[str] = typer.Option(
-        ...,
-        "--actions",
-        help="""Workflow actions
-
-As a JSON string""",
-    ),
-    description: str | None = typer.Option(
-        None, "--description", help="""Workflow description"""
-    ),
+    actions: list[str] = typer.Option(..., "--actions", help="""As a JSON string"""),
+    description: str | None = typer.Option(None, "--description", help=""""""),
     enabled: Literal["true", "false"] | None = typer.Option(
-        None, "--enabled", help="""Workflow enabled"""
+        None, "--enabled", help=""""""
     ),
-    filters: list[str] = typer.Option(
-        ...,
-        "--filters",
-        help="""Workflow filters
-
-As a JSON string""",
-    ),
-    name: str = typer.Option(..., "--name", help="""Workflow name"""),
-    trigger_type: str = typer.Option(..., "--trigger-type", help="""Trigger type"""),
+    filters: list[str] = typer.Option(..., "--filters", help="""As a JSON string"""),
+    name: str = typer.Option(..., "--name", help=""""""),
+    trigger_type: str = typer.Option(..., "--trigger-type", help=""""""),
 ) -> None:
     """Create a workflow
 
@@ -69,7 +55,7 @@ As a JSON string""",
 @app.command("delete-workflow", deprecated=False)
 def delete_workflow(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Workflow ID"""),
+    id: str = typer.Argument(..., help=""""""),
 ) -> None:
     """Delete a workflow
 
@@ -86,7 +72,7 @@ def delete_workflow(
 @app.command("get-workflow", deprecated=False)
 def get_workflow(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Workflow ID"""),
+    id: str = typer.Argument(..., help=""""""),
 ) -> None:
     """Retrieve a workflow
 
@@ -118,31 +104,18 @@ def get_workflows(
 @app.command("update-workflow", deprecated=False)
 def update_workflow(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Workflow ID"""),
+    id: str = typer.Argument(..., help=""""""),
     actions: list[str] | None = typer.Option(
-        None,
-        "--actions",
-        help="""Workflow actions
-
-As a JSON string""",
+        None, "--actions", help="""As a JSON string"""
     ),
-    description: str | None = typer.Option(
-        None, "--description", help="""Workflow description"""
-    ),
+    description: str | None = typer.Option(None, "--description", help=""""""),
     enabled: Literal["true", "false"] | None = typer.Option(
-        None, "--enabled", help="""Workflow enabled"""
+        None, "--enabled", help=""""""
     ),
     filters: list[str] | None = typer.Option(
-        None,
-        "--filters",
-        help="""Workflow filters
-
-As a JSON string""",
+        None, "--filters", help="""As a JSON string"""
     ),
-    name: str | None = typer.Option(None, "--name", help="""Workflow name"""),
-    trigger_type: str | None = typer.Option(
-        None, "--trigger-type", help="""Trigger type"""
-    ),
+    name: str | None = typer.Option(None, "--name", help=""""""),
 ) -> None:
     """Update a workflow
 
@@ -163,8 +136,6 @@ As a JSON string""",
         set_nested(json_data, ["filters"], value_filters)
     if name is not None:
         set_nested(json_data, ["name"], name)
-    if trigger_type is not None:
-        set_nested(json_data, ["trigger_type"], trigger_type)
     from immich.client.models.workflow_update_dto import WorkflowUpdateDto
 
     workflow_update_dto = WorkflowUpdateDto.model_validate(json_data)

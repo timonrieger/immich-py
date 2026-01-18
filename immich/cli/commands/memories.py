@@ -17,8 +17,8 @@ app = typer.Typer(
 @app.command("add-memory-assets", deprecated=False)
 def add_memory_assets(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Memory ID"""),
-    ids: list[str] = typer.Option(..., "--ids", help="""IDs to process"""),
+    id: str = typer.Argument(..., help=""""""),
+    ids: list[str] = typer.Option(..., "--ids", help=""""""),
 ) -> None:
     """Add assets to a memory
 
@@ -41,20 +41,14 @@ def add_memory_assets(
 @app.command("create-memory", deprecated=False)
 def create_memory(
     ctx: typer.Context,
-    asset_ids: list[str] | None = typer.Option(
-        None, "--asset-ids", help="""Asset IDs to associate with memory"""
-    ),
-    data_year: float = typer.Option(
-        ..., "--data-year", help="""Year for on this day memory""", min=1
-    ),
+    asset_ids: list[str] | None = typer.Option(None, "--asset-ids", help=""""""),
+    data_year: float = typer.Option(..., "--data-year", help="""""", min=1),
     is_saved: Literal["true", "false"] | None = typer.Option(
-        None, "--is-saved", help="""Is memory saved"""
+        None, "--is-saved", help=""""""
     ),
-    memory_at: datetime = typer.Option(..., "--memory-at", help="""Memory date"""),
-    seen_at: datetime | None = typer.Option(
-        None, "--seen-at", help="""Date when memory was seen"""
-    ),
-    type: str = typer.Option(..., "--type", help="""Memory type"""),
+    memory_at: datetime = typer.Option(..., "--memory-at", help=""""""),
+    seen_at: datetime | None = typer.Option(None, "--seen-at", help=""""""),
+    type: str = typer.Option(..., "--type", help=""""""),
 ) -> None:
     """Create a memory
 
@@ -84,7 +78,7 @@ def create_memory(
 @app.command("delete-memory", deprecated=False)
 def delete_memory(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Memory ID"""),
+    id: str = typer.Argument(..., help=""""""),
 ) -> None:
     """Delete a memory
 
@@ -101,7 +95,7 @@ def delete_memory(
 @app.command("get-memory", deprecated=False)
 def get_memory(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Memory ID"""),
+    id: str = typer.Argument(..., help=""""""),
 ) -> None:
     """Retrieve a memory
 
@@ -118,20 +112,18 @@ def get_memory(
 @app.command("memories-statistics", deprecated=False)
 def memories_statistics(
     ctx: typer.Context,
-    for_: datetime | None = typer.Option(None, "--for", help="""Filter by date"""),
+    for_: datetime | None = typer.Option(None, "--for", help=""""""),
     is_saved: Literal["true", "false"] | None = typer.Option(
-        None, "--is-saved", help="""Filter by saved status"""
+        None, "--is-saved", help=""""""
     ),
     is_trashed: Literal["true", "false"] | None = typer.Option(
-        None, "--is-trashed", help="""Include trashed memories"""
+        None, "--is-trashed", help=""""""
     ),
-    order: MemorySearchOrder | None = typer.Option(
-        None, "--order", help="""Sort order"""
-    ),
+    order: MemorySearchOrder | None = typer.Option(None, "--order", help=""""""),
     size: int | None = typer.Option(
         None, "--size", help="""Number of memories to return""", min=1
     ),
-    type: MemoryType | None = typer.Option(None, "--type", help="""Memory type"""),
+    type: MemoryType | None = typer.Option(None, "--type", help=""""""),
 ) -> None:
     """Retrieve memories statistics
 
@@ -159,8 +151,8 @@ def memories_statistics(
 @app.command("remove-memory-assets", deprecated=False)
 def remove_memory_assets(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Memory ID"""),
-    ids: list[str] = typer.Option(..., "--ids", help="""IDs to process"""),
+    id: str = typer.Argument(..., help=""""""),
+    ids: list[str] = typer.Option(..., "--ids", help=""""""),
 ) -> None:
     """Remove assets from a memory
 
@@ -183,20 +175,18 @@ def remove_memory_assets(
 @app.command("search-memories", deprecated=False)
 def search_memories(
     ctx: typer.Context,
-    for_: datetime | None = typer.Option(None, "--for", help="""Filter by date"""),
+    for_: datetime | None = typer.Option(None, "--for", help=""""""),
     is_saved: Literal["true", "false"] | None = typer.Option(
-        None, "--is-saved", help="""Filter by saved status"""
+        None, "--is-saved", help=""""""
     ),
     is_trashed: Literal["true", "false"] | None = typer.Option(
-        None, "--is-trashed", help="""Include trashed memories"""
+        None, "--is-trashed", help=""""""
     ),
-    order: MemorySearchOrder | None = typer.Option(
-        None, "--order", help="""Sort order"""
-    ),
+    order: MemorySearchOrder | None = typer.Option(None, "--order", help=""""""),
     size: int | None = typer.Option(
         None, "--size", help="""Number of memories to return""", min=1
     ),
-    type: MemoryType | None = typer.Option(None, "--type", help="""Memory type"""),
+    type: MemoryType | None = typer.Option(None, "--type", help=""""""),
 ) -> None:
     """Retrieve memories
 
@@ -224,16 +214,12 @@ def search_memories(
 @app.command("update-memory", deprecated=False)
 def update_memory(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Memory ID"""),
+    id: str = typer.Argument(..., help=""""""),
     is_saved: Literal["true", "false"] | None = typer.Option(
-        None, "--is-saved", help="""Is memory saved"""
+        None, "--is-saved", help=""""""
     ),
-    memory_at: datetime | None = typer.Option(
-        None, "--memory-at", help="""Memory date"""
-    ),
-    seen_at: datetime | None = typer.Option(
-        None, "--seen-at", help="""Date when memory was seen"""
-    ),
+    memory_at: datetime | None = typer.Option(None, "--memory-at", help=""""""),
+    seen_at: datetime | None = typer.Option(None, "--seen-at", help=""""""),
 ) -> None:
     """Update a memory
 

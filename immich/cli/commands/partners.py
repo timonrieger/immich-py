@@ -16,9 +16,7 @@ app = typer.Typer(
 @app.command("create-partner", deprecated=False)
 def create_partner(
     ctx: typer.Context,
-    shared_with_id: str = typer.Option(
-        ..., "--shared-with-id", help="""User ID to share with"""
-    ),
+    shared_with_id: str = typer.Option(..., "--shared-with-id", help=""""""),
 ) -> None:
     """Create a partner
 
@@ -40,7 +38,7 @@ def create_partner(
 @app.command("create-partner-deprecated", deprecated=True)
 def create_partner_deprecated(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""User ID to share with"""),
+    id: str = typer.Argument(..., help=""""""),
 ) -> None:
     """Create a partner
 
@@ -57,9 +55,7 @@ def create_partner_deprecated(
 @app.command("get-partners", deprecated=False)
 def get_partners(
     ctx: typer.Context,
-    direction: PartnerDirection = typer.Option(
-        ..., "--direction", help="""Partner direction"""
-    ),
+    direction: PartnerDirection = typer.Option(..., "--direction", help=""""""),
 ) -> None:
     """Retrieve partners
 
@@ -76,7 +72,7 @@ def get_partners(
 @app.command("remove-partner", deprecated=False)
 def remove_partner(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Partner ID"""),
+    id: str = typer.Argument(..., help=""""""),
 ) -> None:
     """Remove a partner
 
@@ -93,9 +89,9 @@ def remove_partner(
 @app.command("update-partner", deprecated=False)
 def update_partner(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Partner ID"""),
+    id: str = typer.Argument(..., help=""""""),
     in_timeline: Literal["true", "false"] = typer.Option(
-        ..., "--in-timeline", help="""Show partner assets in timeline"""
+        ..., "--in-timeline", help=""""""
     ),
 ) -> None:
     """Update a partner

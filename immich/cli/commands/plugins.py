@@ -15,7 +15,7 @@ app = typer.Typer(
 @app.command("get-plugin", deprecated=False)
 def get_plugin(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Plugin ID"""),
+    id: str = typer.Argument(..., help=""""""),
 ) -> None:
     """Retrieve a plugin
 
@@ -25,21 +25,6 @@ def get_plugin(
     kwargs["id"] = id
     client = ctx.obj["client"]
     result = run_command(client, client.plugins, "get_plugin", **kwargs)
-    format_mode = ctx.obj.get("format")
-    print_response(result, format_mode)
-
-
-@app.command("get-plugin-triggers", deprecated=False)
-def get_plugin_triggers(
-    ctx: typer.Context,
-) -> None:
-    """List all plugin triggers
-
-    Docs: https://api.immich.app/endpoints/plugins/getPluginTriggers
-    """
-    kwargs = {}
-    client = ctx.obj["client"]
-    result = run_command(client, client.plugins, "get_plugin_triggers", **kwargs)
     format_mode = ctx.obj.get("format")
     print_response(result, format_mode)
 

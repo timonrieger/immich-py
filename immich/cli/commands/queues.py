@@ -16,7 +16,7 @@ app = typer.Typer(
 @app.command("empty-queue", deprecated=False)
 def empty_queue(
     ctx: typer.Context,
-    name: QueueName = typer.Argument(..., help="""Queue name"""),
+    name: QueueName = typer.Argument(..., help=""""""),
     failed: Literal["true", "false"] | None = typer.Option(
         None,
         "--failed",
@@ -45,7 +45,7 @@ def empty_queue(
 @app.command("get-queue", deprecated=False)
 def get_queue(
     ctx: typer.Context,
-    name: QueueName = typer.Argument(..., help="""Queue name"""),
+    name: QueueName = typer.Argument(..., help=""""""),
 ) -> None:
     """Retrieve a queue
 
@@ -62,10 +62,8 @@ def get_queue(
 @app.command("get-queue-jobs", deprecated=False)
 def get_queue_jobs(
     ctx: typer.Context,
-    name: QueueName = typer.Argument(..., help="""Queue name"""),
-    status: list[QueueJobStatus] | None = typer.Option(
-        None, "--status", help="""Filter by job status"""
-    ),
+    name: QueueName = typer.Argument(..., help=""""""),
+    status: list[QueueJobStatus] | None = typer.Option(None, "--status", help=""""""),
 ) -> None:
     """Retrieve queue jobs
 
@@ -99,9 +97,9 @@ def get_queues(
 @app.command("update-queue", deprecated=False)
 def update_queue(
     ctx: typer.Context,
-    name: QueueName = typer.Argument(..., help="""Queue name"""),
+    name: QueueName = typer.Argument(..., help=""""""),
     is_paused: Literal["true", "false"] | None = typer.Option(
-        None, "--is-paused", help="""Whether to pause the queue"""
+        None, "--is-paused", help=""""""
     ),
 ) -> None:
     """Update a queue

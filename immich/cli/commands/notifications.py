@@ -17,7 +17,7 @@ app = typer.Typer(
 @app.command("delete-notification", deprecated=False)
 def delete_notification(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Notification ID"""),
+    id: str = typer.Argument(..., help=""""""),
 ) -> None:
     """Delete a notification
 
@@ -34,7 +34,7 @@ def delete_notification(
 @app.command("delete-notifications", deprecated=False)
 def delete_notifications(
     ctx: typer.Context,
-    ids: list[str] = typer.Option(..., "--ids", help="""Notification IDs to delete"""),
+    ids: list[str] = typer.Option(..., "--ids", help=""""""),
 ) -> None:
     """Delete notifications
 
@@ -58,7 +58,7 @@ def delete_notifications(
 @app.command("get-notification", deprecated=False)
 def get_notification(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Notification ID"""),
+    id: str = typer.Argument(..., help=""""""),
 ) -> None:
     """Get a notification
 
@@ -75,15 +75,11 @@ def get_notification(
 @app.command("get-notifications", deprecated=False)
 def get_notifications(
     ctx: typer.Context,
-    id: str | None = typer.Option(None, "--id", help="""Filter by notification ID"""),
-    level: NotificationLevel | None = typer.Option(
-        None, "--level", help="""Filter by notification level"""
-    ),
-    type: NotificationType | None = typer.Option(
-        None, "--type", help="""Filter by notification type"""
-    ),
+    id: str | None = typer.Option(None, "--id", help=""""""),
+    level: NotificationLevel | None = typer.Option(None, "--level", help=""""""),
+    type: NotificationType | None = typer.Option(None, "--type", help=""""""),
     unread: Literal["true", "false"] | None = typer.Option(
-        None, "--unread", help="""Filter by unread status"""
+        None, "--unread", help=""""""
     ),
 ) -> None:
     """Retrieve notifications
@@ -108,10 +104,8 @@ def get_notifications(
 @app.command("update-notification", deprecated=False)
 def update_notification(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Notification ID"""),
-    read_at: datetime | None = typer.Option(
-        None, "--read-at", help="""Date when notification was read"""
-    ),
+    id: str = typer.Argument(..., help=""""""),
+    read_at: datetime | None = typer.Option(None, "--read-at", help=""""""),
 ) -> None:
     """Update a notification
 
@@ -135,10 +129,8 @@ def update_notification(
 @app.command("update-notifications", deprecated=False)
 def update_notifications(
     ctx: typer.Context,
-    ids: list[str] = typer.Option(..., "--ids", help="""Notification IDs to update"""),
-    read_at: datetime | None = typer.Option(
-        None, "--read-at", help="""Date when notifications were read"""
-    ),
+    ids: list[str] = typer.Option(..., "--ids", help=""""""),
+    read_at: datetime | None = typer.Option(None, "--read-at", help=""""""),
 ) -> None:
     """Update notifications
 

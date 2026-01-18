@@ -15,7 +15,7 @@ app = typer.Typer(
 @app.command("get-assets-by-original-path", deprecated=False)
 def get_assets_by_original_path(
     ctx: typer.Context,
-    path: str = typer.Option(..., "--path", help="""Original path of the folder"""),
+    path: str = typer.Option(..., "--path", help=""""""),
 ) -> None:
     """Retrieve assets by original path
 

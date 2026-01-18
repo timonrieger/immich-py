@@ -16,12 +16,10 @@ app = typer.Typer(
 @app.command("create-session", deprecated=False)
 def create_session(
     ctx: typer.Context,
-    device_os: str | None = typer.Option(None, "--device-os", help="""Device OS"""),
-    device_type: str | None = typer.Option(
-        None, "--device-type", help="""Device type"""
-    ),
+    device_os: str | None = typer.Option(None, "--device-os", help=""""""),
+    device_type: str | None = typer.Option(None, "--device-type", help=""""""),
     duration: float | None = typer.Option(
-        None, "--duration", help="""Session duration in seconds""", min=1
+        None, "--duration", help="""session duration, in seconds""", min=1
     ),
 ) -> None:
     """Create a session
@@ -64,7 +62,7 @@ def delete_all_sessions(
 @app.command("delete-session", deprecated=False)
 def delete_session(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Session ID"""),
+    id: str = typer.Argument(..., help=""""""),
 ) -> None:
     """Delete a session
 
@@ -96,7 +94,7 @@ def get_sessions(
 @app.command("lock-session", deprecated=False)
 def lock_session(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Session ID"""),
+    id: str = typer.Argument(..., help=""""""),
 ) -> None:
     """Lock a session
 
@@ -113,9 +111,9 @@ def lock_session(
 @app.command("update-session", deprecated=False)
 def update_session(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Session ID"""),
+    id: str = typer.Argument(..., help=""""""),
     is_pending_sync_reset: Literal["true", "false"] | None = typer.Option(
-        None, "--is-pending-sync-reset", help="""Reset pending sync state"""
+        None, "--is-pending-sync-reset", help=""""""
     ),
 ) -> None:
     """Update a session

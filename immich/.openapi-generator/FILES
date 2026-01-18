@@ -191,10 +191,9 @@ client/models/pin_code_reset_dto.py
 client/models/pin_code_setup_dto.py
 client/models/places_response_dto.py
 client/models/plugin_action_response_dto.py
-client/models/plugin_context_type.py
+client/models/plugin_context.py
 client/models/plugin_filter_response_dto.py
 client/models/plugin_response_dto.py
-client/models/plugin_trigger_response_dto.py
 client/models/plugin_trigger_type.py
 client/models/purchase_response.py
 client/models/purchase_update.py

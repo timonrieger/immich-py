@@ -15,7 +15,7 @@ app = typer.Typer(
 @app.command("delete-duplicate", deprecated=False)
 def delete_duplicate(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Duplicate asset ID"""),
+    id: str = typer.Argument(..., help=""""""),
 ) -> None:
     """Delete a duplicate
 
@@ -32,7 +32,7 @@ def delete_duplicate(
 @app.command("delete-duplicates", deprecated=False)
 def delete_duplicates(
     ctx: typer.Context,
-    ids: list[str] = typer.Option(..., "--ids", help="""IDs to process"""),
+    ids: list[str] = typer.Option(..., "--ids", help=""""""),
 ) -> None:
     """Delete duplicates
 

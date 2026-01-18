@@ -18,7 +18,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from immich.client.models.plugin_context_type import PluginContextType
+from immich.client.models.plugin_context import PluginContext
 from typing import Set
 from typing_extensions import Self
 
@@ -33,7 +33,7 @@ class PluginFilterResponseDto(BaseModel):
     method_name: StrictStr = Field(alias="methodName")
     plugin_id: StrictStr = Field(alias="pluginId")
     var_schema: Optional[Dict[str, Any]] = Field(alias="schema")
-    supported_contexts: List[PluginContextType] = Field(alias="supportedContexts")
+    supported_contexts: List[PluginContext] = Field(alias="supportedContexts")
     title: StrictStr
     __properties: ClassVar[List[str]] = [
         "description",

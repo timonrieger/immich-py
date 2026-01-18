@@ -149,9 +149,6 @@ def update_config(
     job_background_task_concurrency: int = typer.Option(
         ..., "--job-background-task-concurrency", help="""""", min=1
     ),
-    job_editor_concurrency: int = typer.Option(
-        ..., "--job-editor-concurrency", help="""""", min=1
-    ),
     job_face_detection_concurrency: int = typer.Option(
         ..., "--job-face-detection-concurrency", help="""""", min=1
     ),
@@ -213,22 +210,20 @@ def update_config(
         ..., "--machine-learning-availability-checks-timeout", help=""""""
     ),
     machine_learning_clip_enabled: Literal["true", "false"] = typer.Option(
-        ..., "--machine-learning-clip-enabled", help="""Whether the task is enabled"""
+        ..., "--machine-learning-clip-enabled", help=""""""
     ),
     machine_learning_clip_model_name: str = typer.Option(
-        ..., "--machine-learning-clip-model-name", help="""Name of the model to use"""
+        ..., "--machine-learning-clip-model-name", help=""""""
     ),
     machine_learning_duplicate_detection_enabled: Literal[
         "true", "false"
     ] = typer.Option(
-        ...,
-        "--machine-learning-duplicate-detection-enabled",
-        help="""Whether the task is enabled""",
+        ..., "--machine-learning-duplicate-detection-enabled", help=""""""
     ),
     machine_learning_duplicate_detection_max_distance: float = typer.Option(
         ...,
         "--machine-learning-duplicate-detection-max-distance",
-        help="""Maximum distance threshold for duplicate detection (0.001-0.1)""",
+        help="""""",
         min=0.001,
         max=0.1,
     ),
@@ -237,61 +232,41 @@ def update_config(
     ),
     machine_learning_facial_recognition_enabled: Literal[
         "true", "false"
-    ] = typer.Option(
-        ...,
-        "--machine-learning-facial-recognition-enabled",
-        help="""Whether the task is enabled""",
-    ),
+    ] = typer.Option(..., "--machine-learning-facial-recognition-enabled", help=""""""),
     machine_learning_facial_recognition_max_distance: float = typer.Option(
         ...,
         "--machine-learning-facial-recognition-max-distance",
-        help="""Maximum distance threshold for face recognition (0.1-2)""",
+        help="""""",
         min=0.1,
         max=2,
     ),
     machine_learning_facial_recognition_min_faces: int = typer.Option(
-        ...,
-        "--machine-learning-facial-recognition-min-faces",
-        help="""Minimum number of faces required for recognition""",
-        min=1,
+        ..., "--machine-learning-facial-recognition-min-faces", help="""""", min=1
     ),
     machine_learning_facial_recognition_min_score: float = typer.Option(
         ...,
         "--machine-learning-facial-recognition-min-score",
-        help="""Minimum confidence score for face detection (0.1-1)""",
+        help="""""",
         min=0.1,
         max=1,
     ),
     machine_learning_facial_recognition_model_name: str = typer.Option(
-        ...,
-        "--machine-learning-facial-recognition-model-name",
-        help="""Name of the model to use""",
+        ..., "--machine-learning-facial-recognition-model-name", help=""""""
     ),
     machine_learning_ocr_enabled: Literal["true", "false"] = typer.Option(
-        ..., "--machine-learning-ocr-enabled", help="""Whether the task is enabled"""
+        ..., "--machine-learning-ocr-enabled", help=""""""
     ),
     machine_learning_ocr_max_resolution: int = typer.Option(
-        ...,
-        "--machine-learning-ocr-max-resolution",
-        help="""Maximum resolution for OCR processing""",
-        min=1,
+        ..., "--machine-learning-ocr-max-resolution", help="""""", min=1
     ),
     machine_learning_ocr_min_detection_score: float = typer.Option(
-        ...,
-        "--machine-learning-ocr-min-detection-score",
-        help="""Minimum confidence score for text detection (0.1-1)""",
-        min=0.1,
-        max=1,
+        ..., "--machine-learning-ocr-min-detection-score", help="""""", min=0.1, max=1
     ),
     machine_learning_ocr_min_recognition_score: float = typer.Option(
-        ...,
-        "--machine-learning-ocr-min-recognition-score",
-        help="""Minimum confidence score for text recognition (0.1-1)""",
-        min=0.1,
-        max=1,
+        ..., "--machine-learning-ocr-min-recognition-score", help="""""", min=0.1, max=1
     ),
     machine_learning_ocr_model_name: str = typer.Option(
-        ..., "--machine-learning-ocr-model-name", help="""Name of the model to use"""
+        ..., "--machine-learning-ocr-model-name", help=""""""
     ),
     machine_learning_urls: list[str] = typer.Option(
         ..., "--machine-learning-urls", help=""""""
@@ -326,41 +301,31 @@ def update_config(
         ..., "--nightly-tasks-sync-quota-usage", help=""""""
     ),
     notifications_smtp_enabled: Literal["true", "false"] = typer.Option(
-        ...,
-        "--notifications-smtp-enabled",
-        help="""Whether SMTP email notifications are enabled""",
+        ..., "--notifications-smtp-enabled", help=""""""
     ),
     notifications_smtp_from_: str = typer.Option(
-        ..., "--notifications-smtp-from", help="""Email address to send from"""
+        ..., "--notifications-smtp-from", help=""""""
     ),
     notifications_smtp_reply_to: str = typer.Option(
-        ..., "--notifications-smtp-reply-to", help="""Email address for replies"""
+        ..., "--notifications-smtp-reply-to", help=""""""
     ),
     notifications_smtp_transport_host: str = typer.Option(
-        ..., "--notifications-smtp-transport-host", help="""SMTP server hostname"""
+        ..., "--notifications-smtp-transport-host", help=""""""
     ),
     notifications_smtp_transport_ignore_cert: Literal["true", "false"] = typer.Option(
-        ...,
-        "--notifications-smtp-transport-ignore-cert",
-        help="""Whether to ignore SSL certificate errors""",
+        ..., "--notifications-smtp-transport-ignore-cert", help=""""""
     ),
     notifications_smtp_transport_password: str = typer.Option(
-        ..., "--notifications-smtp-transport-password", help="""SMTP password"""
+        ..., "--notifications-smtp-transport-password", help=""""""
     ),
     notifications_smtp_transport_port: float = typer.Option(
-        ...,
-        "--notifications-smtp-transport-port",
-        help="""SMTP server port""",
-        min=0,
-        max=65535,
+        ..., "--notifications-smtp-transport-port", help="""""", min=0, max=65535
     ),
     notifications_smtp_transport_secure: Literal["true", "false"] = typer.Option(
-        ...,
-        "--notifications-smtp-transport-secure",
-        help="""Whether to use secure connection (TLS/SSL)""",
+        ..., "--notifications-smtp-transport-secure", help=""""""
     ),
     notifications_smtp_transport_username: str = typer.Option(
-        ..., "--notifications-smtp-transport-username", help="""SMTP username"""
+        ..., "--notifications-smtp-transport-username", help=""""""
     ),
     oauth_auto_launch: Literal["true", "false"] = typer.Option(
         ..., "--oauth-auto-launch", help=""""""
@@ -435,9 +400,7 @@ def update_config(
     templates_email_welcome_template: str = typer.Option(
         ..., "--templates-email-welcome-template", help=""""""
     ),
-    theme_custom_css: str = typer.Option(
-        ..., "--theme-custom-css", help="""Custom CSS for theming"""
-    ),
+    theme_custom_css: str = typer.Option(..., "--theme-custom-css", help=""""""),
     trash_days: int = typer.Option(..., "--trash-days", help="""""", min=0),
     trash_enabled: Literal["true", "false"] = typer.Option(
         ..., "--trash-enabled", help=""""""
@@ -510,7 +473,6 @@ def update_config(
     set_nested(
         json_data, ["job_background_task_concurrency"], job_background_task_concurrency
     )
-    set_nested(json_data, ["job_editor_concurrency"], job_editor_concurrency)
     set_nested(
         json_data, ["job_face_detection_concurrency"], job_face_detection_concurrency
     )

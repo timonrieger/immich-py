@@ -18,25 +18,13 @@ app = typer.Typer(
 @app.command("create-notification", deprecated=False)
 def create_notification(
     ctx: typer.Context,
-    data: str | None = typer.Option(
-        None,
-        "--data",
-        help="""Additional notification data
-
-As a JSON string""",
-    ),
-    description: str | None = typer.Option(
-        None, "--description", help="""Notification description"""
-    ),
-    level: str | None = typer.Option(None, "--level", help="""Notification level"""),
-    read_at: datetime | None = typer.Option(
-        None, "--read-at", help="""Date when notification was read"""
-    ),
-    title: str = typer.Option(..., "--title", help="""Notification title"""),
-    type: str | None = typer.Option(None, "--type", help="""Notification type"""),
-    user_id: str = typer.Option(
-        ..., "--user-id", help="""User ID to send notification to"""
-    ),
+    data: str | None = typer.Option(None, "--data", help="""As a JSON string"""),
+    description: str | None = typer.Option(None, "--description", help=""""""),
+    level: str | None = typer.Option(None, "--level", help=""""""),
+    read_at: datetime | None = typer.Option(None, "--read-at", help=""""""),
+    title: str = typer.Option(..., "--title", help=""""""),
+    type: str | None = typer.Option(None, "--type", help=""""""),
+    user_id: str = typer.Option(..., "--user-id", help=""""""),
 ) -> None:
     """Create a notification
 
@@ -72,8 +60,8 @@ As a JSON string""",
 @app.command("get-notification-template-admin", deprecated=False)
 def get_notification_template_admin(
     ctx: typer.Context,
-    name: str = typer.Argument(..., help="""Email template name"""),
-    template: str = typer.Option(..., "--template", help="""Template name"""),
+    name: str = typer.Argument(..., help=""""""),
+    template: str = typer.Option(..., "--template", help=""""""),
 ) -> None:
     """Render email template
 
@@ -98,33 +86,21 @@ def get_notification_template_admin(
 @app.command("send-test-email-admin", deprecated=False)
 def send_test_email_admin(
     ctx: typer.Context,
-    enabled: Literal["true", "false"] = typer.Option(
-        ..., "--enabled", help="""Whether SMTP email notifications are enabled"""
-    ),
-    from_: str = typer.Option(..., "--from", help="""Email address to send from"""),
-    reply_to: str = typer.Option(
-        ..., "--reply-to", help="""Email address for replies"""
-    ),
-    transport_host: str = typer.Option(
-        ..., "--transport-host", help="""SMTP server hostname"""
-    ),
+    enabled: Literal["true", "false"] = typer.Option(..., "--enabled", help=""""""),
+    from_: str = typer.Option(..., "--from", help=""""""),
+    reply_to: str = typer.Option(..., "--reply-to", help=""""""),
+    transport_host: str = typer.Option(..., "--transport-host", help=""""""),
     transport_ignore_cert: Literal["true", "false"] = typer.Option(
-        ...,
-        "--transport-ignore-cert",
-        help="""Whether to ignore SSL certificate errors""",
+        ..., "--transport-ignore-cert", help=""""""
     ),
-    transport_password: str = typer.Option(
-        ..., "--transport-password", help="""SMTP password"""
-    ),
+    transport_password: str = typer.Option(..., "--transport-password", help=""""""),
     transport_port: float = typer.Option(
-        ..., "--transport-port", help="""SMTP server port""", min=0, max=65535
+        ..., "--transport-port", help="""""", min=0, max=65535
     ),
     transport_secure: Literal["true", "false"] = typer.Option(
-        ..., "--transport-secure", help="""Whether to use secure connection (TLS/SSL)"""
+        ..., "--transport-secure", help=""""""
     ),
-    transport_username: str = typer.Option(
-        ..., "--transport-username", help="""SMTP username"""
-    ),
+    transport_username: str = typer.Option(..., "--transport-username", help=""""""),
 ) -> None:
     """Send test email
 

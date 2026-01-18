@@ -17,14 +17,10 @@ app = typer.Typer(
 @app.command("add-assets-to-album", deprecated=False)
 def add_assets_to_album(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Album ID"""),
-    ids: list[str] = typer.Option(..., "--ids", help="""IDs to process"""),
-    key: str | None = typer.Option(
-        None, "--key", help="""Access key for shared links"""
-    ),
-    slug: str | None = typer.Option(
-        None, "--slug", help="""Access slug for shared links"""
-    ),
+    id: str = typer.Argument(..., help=""""""),
+    ids: list[str] = typer.Option(..., "--ids", help=""""""),
+    key: str | None = typer.Option(None, "--key", help=""""""),
+    slug: str | None = typer.Option(None, "--slug", help=""""""),
 ) -> None:
     """Add assets to an album
 
@@ -51,14 +47,10 @@ def add_assets_to_album(
 @app.command("add-assets-to-albums", deprecated=False)
 def add_assets_to_albums(
     ctx: typer.Context,
-    album_ids: list[str] = typer.Option(..., "--album-ids", help="""Album IDs"""),
-    asset_ids: list[str] = typer.Option(..., "--asset-ids", help="""Asset IDs"""),
-    key: str | None = typer.Option(
-        None, "--key", help="""Access key for shared links"""
-    ),
-    slug: str | None = typer.Option(
-        None, "--slug", help="""Access slug for shared links"""
-    ),
+    album_ids: list[str] = typer.Option(..., "--album-ids", help=""""""),
+    asset_ids: list[str] = typer.Option(..., "--asset-ids", help=""""""),
+    key: str | None = typer.Option(None, "--key", help=""""""),
+    slug: str | None = typer.Option(None, "--slug", help=""""""),
 ) -> None:
     """Add assets to albums
 
@@ -85,13 +77,9 @@ def add_assets_to_albums(
 @app.command("add-users-to-album", deprecated=False)
 def add_users_to_album(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Album ID"""),
+    id: str = typer.Argument(..., help=""""""),
     album_users: list[str] = typer.Option(
-        ...,
-        "--album-users",
-        help="""Album users to add
-
-As a JSON string""",
+        ..., "--album-users", help="""As a JSON string"""
     ),
 ) -> None:
     """Share album with users
@@ -116,20 +104,12 @@ As a JSON string""",
 @app.command("create-album", deprecated=False)
 def create_album(
     ctx: typer.Context,
-    album_name: str = typer.Option(..., "--album-name", help="""Album name"""),
+    album_name: str = typer.Option(..., "--album-name", help=""""""),
     album_users: list[str] | None = typer.Option(
-        None,
-        "--album-users",
-        help="""Album users
-
-As a JSON string""",
+        None, "--album-users", help="""As a JSON string"""
     ),
-    asset_ids: list[str] | None = typer.Option(
-        None, "--asset-ids", help="""Initial asset IDs"""
-    ),
-    description: str | None = typer.Option(
-        None, "--description", help="""Album description"""
-    ),
+    asset_ids: list[str] | None = typer.Option(None, "--asset-ids", help=""""""),
+    description: str | None = typer.Option(None, "--description", help=""""""),
 ) -> None:
     """Create an album
 
@@ -158,7 +138,7 @@ As a JSON string""",
 @app.command("delete-album", deprecated=False)
 def delete_album(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Album ID"""),
+    id: str = typer.Argument(..., help=""""""),
 ) -> None:
     """Delete an album
 
@@ -175,15 +155,11 @@ def delete_album(
 @app.command("get-album-info", deprecated=False)
 def get_album_info(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Album ID"""),
-    key: str | None = typer.Option(
-        None, "--key", help="""Access key for shared links"""
-    ),
-    slug: str | None = typer.Option(
-        None, "--slug", help="""Access slug for shared links"""
-    ),
+    id: str = typer.Argument(..., help=""""""),
+    key: str | None = typer.Option(None, "--key", help=""""""),
+    slug: str | None = typer.Option(None, "--slug", help=""""""),
     without_assets: Literal["true", "false"] | None = typer.Option(
-        None, "--without-assets", help="""Exclude assets from response"""
+        None, "--without-assets", help=""""""
     ),
 ) -> None:
     """Retrieve an album
@@ -225,12 +201,12 @@ def get_all_albums(
     asset_id: str | None = typer.Option(
         None,
         "--asset-id",
-        help="""Filter albums containing this asset ID (ignores shared parameter)""",
+        help="""Only returns albums that contain the asset
+Ignores the shared parameter
+undefined: get all albums""",
     ),
     shared: Literal["true", "false"] | None = typer.Option(
-        None,
-        "--shared",
-        help="""Filter by shared status: true = only shared, false = only own, undefined = all""",
+        None, "--shared", help=""""""
     ),
 ) -> None:
     """List all albums
@@ -251,8 +227,8 @@ def get_all_albums(
 @app.command("remove-asset-from-album", deprecated=False)
 def remove_asset_from_album(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Album ID"""),
-    ids: list[str] = typer.Option(..., "--ids", help="""IDs to process"""),
+    id: str = typer.Argument(..., help=""""""),
+    ids: list[str] = typer.Option(..., "--ids", help=""""""),
 ) -> None:
     """Remove assets from an album
 
@@ -275,10 +251,8 @@ def remove_asset_from_album(
 @app.command("remove-user-from-album", deprecated=False)
 def remove_user_from_album(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Album ID"""),
-    user_id: str = typer.Argument(
-        ..., help="""User ID (use "me" to leave shared album)"""
-    ),
+    id: str = typer.Argument(..., help=""""""),
+    user_id: str = typer.Argument(..., help=""""""),
 ) -> None:
     """Remove user from album
 
@@ -296,18 +270,16 @@ def remove_user_from_album(
 @app.command("update-album-info", deprecated=False)
 def update_album_info(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Album ID"""),
-    album_name: str | None = typer.Option(None, "--album-name", help="""Album name"""),
+    id: str = typer.Argument(..., help=""""""),
+    album_name: str | None = typer.Option(None, "--album-name", help=""""""),
     album_thumbnail_asset_id: str | None = typer.Option(
-        None, "--album-thumbnail-asset-id", help="""Album thumbnail asset ID"""
+        None, "--album-thumbnail-asset-id", help=""""""
     ),
-    description: str | None = typer.Option(
-        None, "--description", help="""Album description"""
-    ),
+    description: str | None = typer.Option(None, "--description", help=""""""),
     is_activity_enabled: Literal["true", "false"] | None = typer.Option(
-        None, "--is-activity-enabled", help="""Enable activity feed"""
+        None, "--is-activity-enabled", help=""""""
     ),
-    order: str | None = typer.Option(None, "--order", help="""Asset sort order"""),
+    order: str | None = typer.Option(None, "--order", help=""""""),
 ) -> None:
     """Update an album
 
@@ -341,9 +313,9 @@ def update_album_info(
 @app.command("update-album-user", deprecated=False)
 def update_album_user(
     ctx: typer.Context,
-    id: str = typer.Argument(..., help="""Album ID"""),
-    user_id: str = typer.Argument(..., help="""User ID (use "me" for current user)"""),
-    role: str = typer.Option(..., "--role", help="""Album user role"""),
+    id: str = typer.Argument(..., help=""""""),
+    user_id: str = typer.Argument(..., help=""""""),
+    role: str = typer.Option(..., "--role", help=""""""),
 ) -> None:
     """Update user role
 
