@@ -5,7 +5,7 @@ from __future__ import annotations
 import typer
 import json
 from datetime import datetime
-from typing import Literal, TYPE_CHECKING
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from immich import AsyncClient
@@ -85,20 +85,18 @@ def get_notification_template_admin(
 @app.command("send-test-email-admin", deprecated=False, rich_help_panel="API commands")
 def send_test_email_admin(
     ctx: typer.Context,
-    enabled: Literal["true", "false"] = typer.Option(..., "--enabled", help=""""""),
+    enabled: bool = typer.Option(..., "--enabled", help=""""""),
     from_: str = typer.Option(..., "--from", help=""""""),
     reply_to: str = typer.Option(..., "--reply-to", help=""""""),
     transport_host: str = typer.Option(..., "--transport-host", help=""""""),
-    transport_ignore_cert: Literal["true", "false"] = typer.Option(
+    transport_ignore_cert: bool = typer.Option(
         ..., "--transport-ignore-cert", help=""""""
     ),
     transport_password: str = typer.Option(..., "--transport-password", help=""""""),
     transport_port: float = typer.Option(
         ..., "--transport-port", help="""""", min=0, max=65535
     ),
-    transport_secure: Literal["true", "false"] = typer.Option(
-        ..., "--transport-secure", help=""""""
-    ),
+    transport_secure: bool = typer.Option(..., "--transport-secure", help=""""""),
     transport_username: str = typer.Option(..., "--transport-username", help=""""""),
 ) -> None:
     """Send test email
@@ -107,16 +105,14 @@ def send_test_email_admin(
     """
     kwargs = {}
     json_data = {}
-    set_nested(json_data, ["enabled"], enabled.lower() == "true")
+    set_nested(json_data, ["enabled"], enabled)
     set_nested(json_data, ["from_"], from_)
     set_nested(json_data, ["reply_to"], reply_to)
     set_nested(json_data, ["transport_host"], transport_host)
-    set_nested(
-        json_data, ["transport_ignore_cert"], transport_ignore_cert.lower() == "true"
-    )
+    set_nested(json_data, ["transport_ignore_cert"], transport_ignore_cert)
     set_nested(json_data, ["transport_password"], transport_password)
     set_nested(json_data, ["transport_port"], transport_port)
-    set_nested(json_data, ["transport_secure"], transport_secure.lower() == "true")
+    set_nested(json_data, ["transport_secure"], transport_secure)
     set_nested(json_data, ["transport_username"], transport_username)
     system_config_smtp_dto = SystemConfigSmtpDto.model_validate(json_data)
     kwargs["system_config_smtp_dto"] = system_config_smtp_dto

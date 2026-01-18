@@ -469,3 +469,145 @@ def test_run_asset_jobs(runner: CliRunner, asset: AssetResponseDto) -> None:
     assert result.exit_code == 0, result.stdout + result.stderr
     response_data = json.loads(result.stdout)
     assert response_data is None
+
+
+@pytest.mark.asyncio
+@pytest.mark.e2e
+async def test_download_asset_to_file(
+    runner: CliRunner,
+    asset: AssetResponseDto,
+    tmp_path: Path,
+) -> None:
+    """Test download-asset-to-file command and verify file is downloaded."""
+    asset_id = asset.id
+    out_dir = tmp_path / "downloads"
+    out_dir.mkdir()
+
+    result = await asyncio.to_thread(
+        runner.invoke,
+        cli_app,
+        ["assets", "download-asset-to-file", asset_id, str(out_dir), "--show-progress"],
+    )
+    assert result.exit_code == 0, result.stdout + result.stderr
+    response_data = json.loads(result.stdout)
+    assert response_data is not None
+
+    # Verify file was downloaded
+    downloaded_files = list(out_dir.glob("*"))
+    assert len(downloaded_files) > 0, "No files were downloaded"
+    assert downloaded_files[0].exists(), "Downloaded file does not exist"
+    assert downloaded_files[0].stat().st_size > 0, "Downloaded file is empty"
+
+
+@pytest.mark.asyncio
+@pytest.mark.e2e
+async def test_play_asset_video_to_file(
+    runner: CliRunner,
+    test_video_factory: Callable[..., Path],
+    upload_assets: Callable[..., Awaitable[UploadResult]],
+    tmp_path: Path,
+) -> None:
+    """Test play-asset-video-to-file command and verify video file is downloaded."""
+    # Upload a video asset
+    video = test_video_factory()
+    upload_result = await upload_assets(
+        [video], check_duplicates=False, show_progress=False
+    )
+    if upload_result.stats.uploaded == 0:
+        pytest.skip(f"No video assets uploaded, {upload_result.model_dump_json()}")
+    video_asset = upload_result.uploaded[0].asset
+
+    out_dir = tmp_path / "video_downloads"
+    out_dir.mkdir()
+
+    result = await asyncio.to_thread(
+        runner.invoke,
+        cli_app,
+        [
+            "assets",
+            "play-asset-video-to-file",
+            video_asset.id,
+            str(out_dir),
+            "--show-progress",
+        ],
+    )
+    assert result.exit_code == 0, result.stdout + result.stderr
+    response_data = json.loads(result.stdout)
+    assert response_data is not None
+
+    # Verify video file was downloaded
+    downloaded_files = list(out_dir.glob("*"))
+    assert len(downloaded_files) > 0, "No video files were downloaded"
+    assert downloaded_files[0].exists(), "Downloaded video file does not exist"
+    assert downloaded_files[0].stat().st_size > 0, "Downloaded video file is empty"
+
+
+@pytest.mark.asyncio
+@pytest.mark.e2e
+async def test_view_asset_to_file(
+    runner: CliRunner,
+    asset: AssetResponseDto,
+    tmp_path: Path,
+) -> None:
+    """Test view-asset-to-file command and verify thumbnail file is downloaded."""
+    asset_id = asset.id
+    out_dir = tmp_path / "thumbnails"
+    out_dir.mkdir()
+
+    result = await asyncio.to_thread(
+        runner.invoke,
+        cli_app,
+        [
+            "assets",
+            "view-asset-to-file",
+            asset_id,
+            str(out_dir),
+            "--size",
+            "thumbnail",
+            "--show-progress",
+        ],
+    )
+    assert result.exit_code == 0, result.stdout + result.stderr
+    response_data = json.loads(result.stdout)
+    assert response_data is not None
+
+    # Verify thumbnail file was downloaded
+    downloaded_files = list(out_dir.glob("*"))
+    assert len(downloaded_files) > 0, "No thumbnail files were downloaded"
+    assert downloaded_files[0].exists(), "Downloaded thumbnail file does not exist"
+    assert downloaded_files[0].stat().st_size > 0, "Downloaded thumbnail file is empty"
+
+
+@pytest.mark.asyncio
+@pytest.mark.e2e
+async def test_upload(
+    runner: CliRunner,
+    test_image_factory: Callable[..., Path],
+    tmp_path: Path,
+) -> None:
+    """Test upload command and verify assets are uploaded."""
+    # Create test images
+    img1 = test_image_factory(filename="test1.jpg")
+    img2 = test_image_factory(filename="test2.jpg")
+
+    result = await asyncio.to_thread(
+        runner.invoke,
+        cli_app,
+        [
+            "assets",
+            "upload",
+            str(img1),
+            str(img2),
+            "--check-duplicates",
+            "--show-progress--concurrency",
+            "1",
+        ],
+    )
+    assert result.exit_code == 0, result.stdout + result.stderr
+    response_data = json.loads(result.stdout)
+    assert response_data is not None
+
+    # Verify upload result structure
+    upload_result = UploadResult.model_validate(response_data)
+    assert upload_result.stats.uploaded > 0, "No assets were uploaded"
+    assert len(upload_result.uploaded) > 0, "No assets in uploaded list"

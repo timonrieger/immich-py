@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import typer
-from typing import Literal, TYPE_CHECKING
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from immich import AsyncClient
@@ -53,7 +53,7 @@ def create_face(
 def delete_face(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-    force: Literal["true", "false"] = typer.Option(..., "--force", help=""""""),
+    force: bool = typer.Option(..., "--force", help=""""""),
 ) -> None:
     """Delete a face
 
@@ -62,7 +62,7 @@ def delete_face(
     kwargs = {}
     json_data = {}
     kwargs["id"] = id
-    set_nested(json_data, ["force"], force.lower() == "true")
+    set_nested(json_data, ["force"], force)
     asset_face_delete_dto = AssetFaceDeleteDto.model_validate(json_data)
     kwargs["asset_face_delete_dto"] = asset_face_delete_dto
     client: "AsyncClient" = ctx.obj["client"]

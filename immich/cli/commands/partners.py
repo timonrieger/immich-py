@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import typer
-from typing import Literal, TYPE_CHECKING
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from immich import AsyncClient
@@ -89,9 +89,7 @@ def remove_partner(
 def update_partner(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-    in_timeline: Literal["true", "false"] = typer.Option(
-        ..., "--in-timeline", help=""""""
-    ),
+    in_timeline: bool = typer.Option(..., "--in-timeline", help=""""""),
 ) -> None:
     """Update a partner
 
@@ -100,7 +98,7 @@ def update_partner(
     kwargs = {}
     json_data = {}
     kwargs["id"] = id
-    set_nested(json_data, ["in_timeline"], in_timeline.lower() == "true")
+    set_nested(json_data, ["in_timeline"], in_timeline)
     partner_update_dto = PartnerUpdateDto.model_validate(json_data)
     kwargs["partner_update_dto"] = partner_update_dto
     client: "AsyncClient" = ctx.obj["client"]

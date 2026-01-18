@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import typer
-from typing import Literal, TYPE_CHECKING
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from immich import AsyncClient
@@ -73,9 +73,7 @@ def get_version_check_state(
 )
 def update_admin_onboarding(
     ctx: typer.Context,
-    is_onboarded: Literal["true", "false"] = typer.Option(
-        ..., "--is-onboarded", help=""""""
-    ),
+    is_onboarded: bool = typer.Option(..., "--is-onboarded", help=""""""),
 ) -> None:
     """Update admin onboarding
 
@@ -83,7 +81,7 @@ def update_admin_onboarding(
     """
     kwargs = {}
     json_data = {}
-    set_nested(json_data, ["is_onboarded"], is_onboarded.lower() == "true")
+    set_nested(json_data, ["is_onboarded"], is_onboarded)
     admin_onboarding_update_dto = AdminOnboardingUpdateDto.model_validate(json_data)
     kwargs["admin_onboarding_update_dto"] = admin_onboarding_update_dto
     client: "AsyncClient" = ctx.obj["client"]

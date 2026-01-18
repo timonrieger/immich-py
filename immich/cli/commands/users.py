@@ -204,9 +204,7 @@ def set_user_license(
 @app.command("set-user-onboarding", deprecated=False, rich_help_panel="API commands")
 def set_user_onboarding(
     ctx: typer.Context,
-    is_onboarded: Literal["true", "false"] = typer.Option(
-        ..., "--is-onboarded", help=""""""
-    ),
+    is_onboarded: bool = typer.Option(..., "--is-onboarded", help=""""""),
 ) -> None:
     """Update user onboarding
 
@@ -214,7 +212,7 @@ def set_user_onboarding(
     """
     kwargs = {}
     json_data = {}
-    set_nested(json_data, ["is_onboarded"], is_onboarded.lower() == "true")
+    set_nested(json_data, ["is_onboarded"], is_onboarded)
     onboarding_dto = OnboardingDto.model_validate(json_data)
     kwargs["onboarding_dto"] = onboarding_dto
     client: "AsyncClient" = ctx.obj["client"]

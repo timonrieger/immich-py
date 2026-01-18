@@ -35,7 +35,7 @@ class RequestParam(BaseModel):
             "list",
             "dict",
             "Path",
-            "Literal['true', 'false']",
+            "bool",
             "datetime",
         ],
         str,
@@ -123,7 +123,7 @@ def python_type_from_schema(
     elif schema_type == "number":
         return "float"
     elif schema_type == "boolean":
-        return "Literal['true', 'false']"
+        return "bool"
     elif schema_type == "array":
         items = nschema.get("items", {})
         item_type = python_type_from_schema(items, spec)
@@ -352,6 +352,10 @@ def generate_command_function(
                 f"    {param.name}: {param.type} = typer.Argument(...{help_arg}),"
             )
         else:
+            # use tri-state boolean for optional, but regular boolean for required
+            # The server distinguishes between true/false/null, but we can't represent that in Python, thus we use a literal type.
+            if param.type == "bool" and not param.required:
+                type_str = "Literal['true', 'false'] | None"
             lines.append(
                 f'    {param.name}: {type_str} = typer.Option({default_value}, "--{param.flag_name}"{help_arg}{min_arg}{max_arg}),'
             )
@@ -375,7 +379,7 @@ def generate_command_function(
             lines.append(f"    kwargs['{param.name}'] = {param.name}")
         elif param.location == "query":
             # Convert boolean query params from string "true"/"false" to actual booleans
-            if param.type == "Literal['true', 'false']":
+            if param.type == "bool" and not param.required:
                 lines.append(f"    if {param.name} is not None:")
                 lines.append(
                     f"        kwargs['{param.name}'] = {param.name}.lower() == 'true'"
@@ -401,7 +405,7 @@ def generate_command_function(
                         f"    set_nested(json_data, [{param.name!r}], value_{param.name})"
                     )
                 else:
-                    if param.type == "Literal['true', 'false']":
+                    if param.type == "bool" and not param.required:
                         lines.append(
                             f"    set_nested(json_data, [{param.name!r}], {param.name}.lower() == 'true')"
                         )
@@ -423,7 +427,7 @@ def generate_command_function(
                         f"        set_nested(json_data, [{param.name!r}], value_{param.name})"
                     )
                 else:
-                    if param.type == "Literal['true', 'false']":
+                    if param.type == "bool" and not param.required:
                         lines.append(
                             f"        set_nested(json_data, [{param.name!r}], {param.name}.lower() == 'true')"
                         )

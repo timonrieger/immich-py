@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import typer
-from typing import Literal, TYPE_CHECKING
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from immich import AsyncClient
@@ -68,16 +68,14 @@ def update_config(
     backup_database_cron_expression: str = typer.Option(
         ..., "--backup-database-cron-expression", help=""""""
     ),
-    backup_database_enabled: Literal["true", "false"] = typer.Option(
+    backup_database_enabled: bool = typer.Option(
         ..., "--backup-database-enabled", help=""""""
     ),
     backup_database_keep_last_amount: float = typer.Option(
         ..., "--backup-database-keep-last-amount", help="""""", min=1
     ),
     ffmpeg_accel: str = typer.Option(..., "--ffmpeg-accel", help=""""""),
-    ffmpeg_accel_decode: Literal["true", "false"] = typer.Option(
-        ..., "--ffmpeg-accel-decode", help=""""""
-    ),
+    ffmpeg_accel_decode: bool = typer.Option(..., "--ffmpeg-accel-decode", help=""""""),
     ffmpeg_accepted_audio_codecs: list[AudioCodec] = typer.Option(
         ..., "--ffmpeg-accepted-audio-codecs", help=""""""
     ),
@@ -108,20 +106,16 @@ def update_config(
     ffmpeg_target_video_codec: str = typer.Option(
         ..., "--ffmpeg-target-video-codec", help=""""""
     ),
-    ffmpeg_temporal_aq: Literal["true", "false"] = typer.Option(
-        ..., "--ffmpeg-temporal-aq", help=""""""
-    ),
+    ffmpeg_temporal_aq: bool = typer.Option(..., "--ffmpeg-temporal-aq", help=""""""),
     ffmpeg_threads: int = typer.Option(..., "--ffmpeg-threads", help="""""", min=0),
     ffmpeg_tonemap: str = typer.Option(..., "--ffmpeg-tonemap", help=""""""),
     ffmpeg_transcode: str = typer.Option(..., "--ffmpeg-transcode", help=""""""),
-    ffmpeg_two_pass: Literal["true", "false"] = typer.Option(
-        ..., "--ffmpeg-two-pass", help=""""""
-    ),
+    ffmpeg_two_pass: bool = typer.Option(..., "--ffmpeg-two-pass", help=""""""),
     image_colorspace: str = typer.Option(..., "--image-colorspace", help=""""""),
-    image_extract_embedded: Literal["true", "false"] = typer.Option(
+    image_extract_embedded: bool = typer.Option(
         ..., "--image-extract-embedded", help=""""""
     ),
-    image_fullsize_enabled: Literal["true", "false"] = typer.Option(
+    image_fullsize_enabled: bool = typer.Option(
         ..., "--image-fullsize-enabled", help=""""""
     ),
     image_fullsize_format: str = typer.Option(
@@ -193,19 +187,15 @@ def update_config(
     library_scan_cron_expression: str = typer.Option(
         ..., "--library-scan-cron-expression", help=""""""
     ),
-    library_scan_enabled: Literal["true", "false"] = typer.Option(
+    library_scan_enabled: bool = typer.Option(
         ..., "--library-scan-enabled", help=""""""
     ),
-    library_watch_enabled: Literal["true", "false"] = typer.Option(
+    library_watch_enabled: bool = typer.Option(
         ..., "--library-watch-enabled", help=""""""
     ),
-    logging_enabled: Literal["true", "false"] = typer.Option(
-        ..., "--logging-enabled", help=""""""
-    ),
+    logging_enabled: bool = typer.Option(..., "--logging-enabled", help=""""""),
     logging_level: str = typer.Option(..., "--logging-level", help=""""""),
-    machine_learning_availability_checks_enabled: Literal[
-        "true", "false"
-    ] = typer.Option(
+    machine_learning_availability_checks_enabled: bool = typer.Option(
         ..., "--machine-learning-availability-checks-enabled", help=""""""
     ),
     machine_learning_availability_checks_interval: float = typer.Option(
@@ -214,15 +204,13 @@ def update_config(
     machine_learning_availability_checks_timeout: float = typer.Option(
         ..., "--machine-learning-availability-checks-timeout", help=""""""
     ),
-    machine_learning_clip_enabled: Literal["true", "false"] = typer.Option(
+    machine_learning_clip_enabled: bool = typer.Option(
         ..., "--machine-learning-clip-enabled", help=""""""
     ),
     machine_learning_clip_model_name: str = typer.Option(
         ..., "--machine-learning-clip-model-name", help=""""""
     ),
-    machine_learning_duplicate_detection_enabled: Literal[
-        "true", "false"
-    ] = typer.Option(
+    machine_learning_duplicate_detection_enabled: bool = typer.Option(
         ..., "--machine-learning-duplicate-detection-enabled", help=""""""
     ),
     machine_learning_duplicate_detection_max_distance: float = typer.Option(
@@ -232,12 +220,12 @@ def update_config(
         min=0.001,
         max=0.1,
     ),
-    machine_learning_enabled: Literal["true", "false"] = typer.Option(
+    machine_learning_enabled: bool = typer.Option(
         ..., "--machine-learning-enabled", help=""""""
     ),
-    machine_learning_facial_recognition_enabled: Literal[
-        "true", "false"
-    ] = typer.Option(..., "--machine-learning-facial-recognition-enabled", help=""""""),
+    machine_learning_facial_recognition_enabled: bool = typer.Option(
+        ..., "--machine-learning-facial-recognition-enabled", help=""""""
+    ),
     machine_learning_facial_recognition_max_distance: float = typer.Option(
         ...,
         "--machine-learning-facial-recognition-max-distance",
@@ -258,7 +246,7 @@ def update_config(
     machine_learning_facial_recognition_model_name: str = typer.Option(
         ..., "--machine-learning-facial-recognition-model-name", help=""""""
     ),
-    machine_learning_ocr_enabled: Literal["true", "false"] = typer.Option(
+    machine_learning_ocr_enabled: bool = typer.Option(
         ..., "--machine-learning-ocr-enabled", help=""""""
     ),
     machine_learning_ocr_max_resolution: int = typer.Option(
@@ -277,35 +265,33 @@ def update_config(
         ..., "--machine-learning-urls", help=""""""
     ),
     map_dark_style: str = typer.Option(..., "--map-dark-style", help=""""""),
-    map_enabled: Literal["true", "false"] = typer.Option(
-        ..., "--map-enabled", help=""""""
-    ),
+    map_enabled: bool = typer.Option(..., "--map-enabled", help=""""""),
     map_light_style: str = typer.Option(..., "--map-light-style", help=""""""),
-    metadata_faces_import_: Literal["true", "false"] = typer.Option(
+    metadata_faces_import_: bool = typer.Option(
         ..., "--metadata-faces-import", help=""""""
     ),
-    new_version_check_enabled: Literal["true", "false"] = typer.Option(
+    new_version_check_enabled: bool = typer.Option(
         ..., "--new-version-check-enabled", help=""""""
     ),
-    nightly_tasks_cluster_new_faces: Literal["true", "false"] = typer.Option(
+    nightly_tasks_cluster_new_faces: bool = typer.Option(
         ..., "--nightly-tasks-cluster-new-faces", help=""""""
     ),
-    nightly_tasks_database_cleanup: Literal["true", "false"] = typer.Option(
+    nightly_tasks_database_cleanup: bool = typer.Option(
         ..., "--nightly-tasks-database-cleanup", help=""""""
     ),
-    nightly_tasks_generate_memories: Literal["true", "false"] = typer.Option(
+    nightly_tasks_generate_memories: bool = typer.Option(
         ..., "--nightly-tasks-generate-memories", help=""""""
     ),
-    nightly_tasks_missing_thumbnails: Literal["true", "false"] = typer.Option(
+    nightly_tasks_missing_thumbnails: bool = typer.Option(
         ..., "--nightly-tasks-missing-thumbnails", help=""""""
     ),
     nightly_tasks_start_time: str = typer.Option(
         ..., "--nightly-tasks-start-time", help=""""""
     ),
-    nightly_tasks_sync_quota_usage: Literal["true", "false"] = typer.Option(
+    nightly_tasks_sync_quota_usage: bool = typer.Option(
         ..., "--nightly-tasks-sync-quota-usage", help=""""""
     ),
-    notifications_smtp_enabled: Literal["true", "false"] = typer.Option(
+    notifications_smtp_enabled: bool = typer.Option(
         ..., "--notifications-smtp-enabled", help=""""""
     ),
     notifications_smtp_from_: str = typer.Option(
@@ -317,7 +303,7 @@ def update_config(
     notifications_smtp_transport_host: str = typer.Option(
         ..., "--notifications-smtp-transport-host", help=""""""
     ),
-    notifications_smtp_transport_ignore_cert: Literal["true", "false"] = typer.Option(
+    notifications_smtp_transport_ignore_cert: bool = typer.Option(
         ..., "--notifications-smtp-transport-ignore-cert", help=""""""
     ),
     notifications_smtp_transport_password: str = typer.Option(
@@ -326,29 +312,23 @@ def update_config(
     notifications_smtp_transport_port: float = typer.Option(
         ..., "--notifications-smtp-transport-port", help="""""", min=0, max=65535
     ),
-    notifications_smtp_transport_secure: Literal["true", "false"] = typer.Option(
+    notifications_smtp_transport_secure: bool = typer.Option(
         ..., "--notifications-smtp-transport-secure", help=""""""
     ),
     notifications_smtp_transport_username: str = typer.Option(
         ..., "--notifications-smtp-transport-username", help=""""""
     ),
-    oauth_auto_launch: Literal["true", "false"] = typer.Option(
-        ..., "--oauth-auto-launch", help=""""""
-    ),
-    oauth_auto_register: Literal["true", "false"] = typer.Option(
-        ..., "--oauth-auto-register", help=""""""
-    ),
+    oauth_auto_launch: bool = typer.Option(..., "--oauth-auto-launch", help=""""""),
+    oauth_auto_register: bool = typer.Option(..., "--oauth-auto-register", help=""""""),
     oauth_button_text: str = typer.Option(..., "--oauth-button-text", help=""""""),
     oauth_client_id: str = typer.Option(..., "--oauth-client-id", help=""""""),
     oauth_client_secret: str = typer.Option(..., "--oauth-client-secret", help=""""""),
     oauth_default_storage_quota: int = typer.Option(
         ..., "--oauth-default-storage-quota", help="""""", min=0
     ),
-    oauth_enabled: Literal["true", "false"] = typer.Option(
-        ..., "--oauth-enabled", help=""""""
-    ),
+    oauth_enabled: bool = typer.Option(..., "--oauth-enabled", help=""""""),
     oauth_issuer_url: str = typer.Option(..., "--oauth-issuer-url", help=""""""),
-    oauth_mobile_override_enabled: Literal["true", "false"] = typer.Option(
+    oauth_mobile_override_enabled: bool = typer.Option(
         ..., "--oauth-mobile-override-enabled", help=""""""
     ),
     oauth_mobile_redirect_uri: str = typer.Option(
@@ -372,10 +352,10 @@ def update_config(
     oauth_token_endpoint_auth_method: str = typer.Option(
         ..., "--oauth-token-endpoint-auth-method", help=""""""
     ),
-    password_login_enabled: Literal["true", "false"] = typer.Option(
+    password_login_enabled: bool = typer.Option(
         ..., "--password-login-enabled", help=""""""
     ),
-    reverse_geocoding_enabled: Literal["true", "false"] = typer.Option(
+    reverse_geocoding_enabled: bool = typer.Option(
         ..., "--reverse-geocoding-enabled", help=""""""
     ),
     server_external_domain: str = typer.Option(
@@ -384,13 +364,11 @@ def update_config(
     server_login_page_message: str = typer.Option(
         ..., "--server-login-page-message", help=""""""
     ),
-    server_public_users: Literal["true", "false"] = typer.Option(
-        ..., "--server-public-users", help=""""""
-    ),
-    storage_template_enabled: Literal["true", "false"] = typer.Option(
+    server_public_users: bool = typer.Option(..., "--server-public-users", help=""""""),
+    storage_template_enabled: bool = typer.Option(
         ..., "--storage-template-enabled", help=""""""
     ),
-    storage_template_hash_verification_enabled: Literal["true", "false"] = typer.Option(
+    storage_template_hash_verification_enabled: bool = typer.Option(
         ..., "--storage-template-hash-verification-enabled", help=""""""
     ),
     storage_template_template: str = typer.Option(
@@ -407,9 +385,7 @@ def update_config(
     ),
     theme_custom_css: str = typer.Option(..., "--theme-custom-css", help=""""""),
     trash_days: int = typer.Option(..., "--trash-days", help="""""", min=0),
-    trash_enabled: Literal["true", "false"] = typer.Option(
-        ..., "--trash-enabled", help=""""""
-    ),
+    trash_enabled: bool = typer.Option(..., "--trash-enabled", help=""""""),
     user_delete_delay: int = typer.Option(
         ..., "--user-delete-delay", help="""""", min=1
     ),
@@ -423,20 +399,14 @@ def update_config(
     set_nested(
         json_data, ["backup_database_cron_expression"], backup_database_cron_expression
     )
-    set_nested(
-        json_data,
-        ["backup_database_enabled"],
-        backup_database_enabled.lower() == "true",
-    )
+    set_nested(json_data, ["backup_database_enabled"], backup_database_enabled)
     set_nested(
         json_data,
         ["backup_database_keep_last_amount"],
         backup_database_keep_last_amount,
     )
     set_nested(json_data, ["ffmpeg_accel"], ffmpeg_accel)
-    set_nested(
-        json_data, ["ffmpeg_accel_decode"], ffmpeg_accel_decode.lower() == "true"
-    )
+    set_nested(json_data, ["ffmpeg_accel_decode"], ffmpeg_accel_decode)
     set_nested(
         json_data, ["ffmpeg_accepted_audio_codecs"], ffmpeg_accepted_audio_codecs
     )
@@ -455,18 +425,14 @@ def update_config(
     set_nested(json_data, ["ffmpeg_target_audio_codec"], ffmpeg_target_audio_codec)
     set_nested(json_data, ["ffmpeg_target_resolution"], ffmpeg_target_resolution)
     set_nested(json_data, ["ffmpeg_target_video_codec"], ffmpeg_target_video_codec)
-    set_nested(json_data, ["ffmpeg_temporal_aq"], ffmpeg_temporal_aq.lower() == "true")
+    set_nested(json_data, ["ffmpeg_temporal_aq"], ffmpeg_temporal_aq)
     set_nested(json_data, ["ffmpeg_threads"], ffmpeg_threads)
     set_nested(json_data, ["ffmpeg_tonemap"], ffmpeg_tonemap)
     set_nested(json_data, ["ffmpeg_transcode"], ffmpeg_transcode)
-    set_nested(json_data, ["ffmpeg_two_pass"], ffmpeg_two_pass.lower() == "true")
+    set_nested(json_data, ["ffmpeg_two_pass"], ffmpeg_two_pass)
     set_nested(json_data, ["image_colorspace"], image_colorspace)
-    set_nested(
-        json_data, ["image_extract_embedded"], image_extract_embedded.lower() == "true"
-    )
-    set_nested(
-        json_data, ["image_fullsize_enabled"], image_fullsize_enabled.lower() == "true"
-    )
+    set_nested(json_data, ["image_extract_embedded"], image_extract_embedded)
+    set_nested(json_data, ["image_fullsize_enabled"], image_fullsize_enabled)
     set_nested(json_data, ["image_fullsize_format"], image_fullsize_format)
     set_nested(json_data, ["image_fullsize_quality"], image_fullsize_quality)
     set_nested(json_data, ["image_preview_format"], image_preview_format)
@@ -512,18 +478,14 @@ def update_config(
     set_nested(
         json_data, ["library_scan_cron_expression"], library_scan_cron_expression
     )
-    set_nested(
-        json_data, ["library_scan_enabled"], library_scan_enabled.lower() == "true"
-    )
-    set_nested(
-        json_data, ["library_watch_enabled"], library_watch_enabled.lower() == "true"
-    )
-    set_nested(json_data, ["logging_enabled"], logging_enabled.lower() == "true")
+    set_nested(json_data, ["library_scan_enabled"], library_scan_enabled)
+    set_nested(json_data, ["library_watch_enabled"], library_watch_enabled)
+    set_nested(json_data, ["logging_enabled"], logging_enabled)
     set_nested(json_data, ["logging_level"], logging_level)
     set_nested(
         json_data,
         ["machine_learning_availability_checks_enabled"],
-        machine_learning_availability_checks_enabled.lower() == "true",
+        machine_learning_availability_checks_enabled,
     )
     set_nested(
         json_data,
@@ -536,9 +498,7 @@ def update_config(
         machine_learning_availability_checks_timeout,
     )
     set_nested(
-        json_data,
-        ["machine_learning_clip_enabled"],
-        machine_learning_clip_enabled.lower() == "true",
+        json_data, ["machine_learning_clip_enabled"], machine_learning_clip_enabled
     )
     set_nested(
         json_data,
@@ -548,22 +508,18 @@ def update_config(
     set_nested(
         json_data,
         ["machine_learning_duplicate_detection_enabled"],
-        machine_learning_duplicate_detection_enabled.lower() == "true",
+        machine_learning_duplicate_detection_enabled,
     )
     set_nested(
         json_data,
         ["machine_learning_duplicate_detection_max_distance"],
         machine_learning_duplicate_detection_max_distance,
     )
-    set_nested(
-        json_data,
-        ["machine_learning_enabled"],
-        machine_learning_enabled.lower() == "true",
-    )
+    set_nested(json_data, ["machine_learning_enabled"], machine_learning_enabled)
     set_nested(
         json_data,
         ["machine_learning_facial_recognition_enabled"],
-        machine_learning_facial_recognition_enabled.lower() == "true",
+        machine_learning_facial_recognition_enabled,
     )
     set_nested(
         json_data,
@@ -586,9 +542,7 @@ def update_config(
         machine_learning_facial_recognition_model_name,
     )
     set_nested(
-        json_data,
-        ["machine_learning_ocr_enabled"],
-        machine_learning_ocr_enabled.lower() == "true",
+        json_data, ["machine_learning_ocr_enabled"], machine_learning_ocr_enabled
     )
     set_nested(
         json_data,
@@ -610,47 +564,29 @@ def update_config(
     )
     set_nested(json_data, ["machine_learning_urls"], machine_learning_urls)
     set_nested(json_data, ["map_dark_style"], map_dark_style)
-    set_nested(json_data, ["map_enabled"], map_enabled.lower() == "true")
+    set_nested(json_data, ["map_enabled"], map_enabled)
     set_nested(json_data, ["map_light_style"], map_light_style)
+    set_nested(json_data, ["metadata_faces_import_"], metadata_faces_import_)
+    set_nested(json_data, ["new_version_check_enabled"], new_version_check_enabled)
     set_nested(
-        json_data, ["metadata_faces_import_"], metadata_faces_import_.lower() == "true"
+        json_data, ["nightly_tasks_cluster_new_faces"], nightly_tasks_cluster_new_faces
     )
     set_nested(
-        json_data,
-        ["new_version_check_enabled"],
-        new_version_check_enabled.lower() == "true",
+        json_data, ["nightly_tasks_database_cleanup"], nightly_tasks_database_cleanup
     )
     set_nested(
-        json_data,
-        ["nightly_tasks_cluster_new_faces"],
-        nightly_tasks_cluster_new_faces.lower() == "true",
-    )
-    set_nested(
-        json_data,
-        ["nightly_tasks_database_cleanup"],
-        nightly_tasks_database_cleanup.lower() == "true",
-    )
-    set_nested(
-        json_data,
-        ["nightly_tasks_generate_memories"],
-        nightly_tasks_generate_memories.lower() == "true",
+        json_data, ["nightly_tasks_generate_memories"], nightly_tasks_generate_memories
     )
     set_nested(
         json_data,
         ["nightly_tasks_missing_thumbnails"],
-        nightly_tasks_missing_thumbnails.lower() == "true",
+        nightly_tasks_missing_thumbnails,
     )
     set_nested(json_data, ["nightly_tasks_start_time"], nightly_tasks_start_time)
     set_nested(
-        json_data,
-        ["nightly_tasks_sync_quota_usage"],
-        nightly_tasks_sync_quota_usage.lower() == "true",
+        json_data, ["nightly_tasks_sync_quota_usage"], nightly_tasks_sync_quota_usage
     )
-    set_nested(
-        json_data,
-        ["notifications_smtp_enabled"],
-        notifications_smtp_enabled.lower() == "true",
-    )
+    set_nested(json_data, ["notifications_smtp_enabled"], notifications_smtp_enabled)
     set_nested(json_data, ["notifications_smtp_from_"], notifications_smtp_from_)
     set_nested(json_data, ["notifications_smtp_reply_to"], notifications_smtp_reply_to)
     set_nested(
@@ -661,7 +597,7 @@ def update_config(
     set_nested(
         json_data,
         ["notifications_smtp_transport_ignore_cert"],
-        notifications_smtp_transport_ignore_cert.lower() == "true",
+        notifications_smtp_transport_ignore_cert,
     )
     set_nested(
         json_data,
@@ -676,27 +612,23 @@ def update_config(
     set_nested(
         json_data,
         ["notifications_smtp_transport_secure"],
-        notifications_smtp_transport_secure.lower() == "true",
+        notifications_smtp_transport_secure,
     )
     set_nested(
         json_data,
         ["notifications_smtp_transport_username"],
         notifications_smtp_transport_username,
     )
-    set_nested(json_data, ["oauth_auto_launch"], oauth_auto_launch.lower() == "true")
-    set_nested(
-        json_data, ["oauth_auto_register"], oauth_auto_register.lower() == "true"
-    )
+    set_nested(json_data, ["oauth_auto_launch"], oauth_auto_launch)
+    set_nested(json_data, ["oauth_auto_register"], oauth_auto_register)
     set_nested(json_data, ["oauth_button_text"], oauth_button_text)
     set_nested(json_data, ["oauth_client_id"], oauth_client_id)
     set_nested(json_data, ["oauth_client_secret"], oauth_client_secret)
     set_nested(json_data, ["oauth_default_storage_quota"], oauth_default_storage_quota)
-    set_nested(json_data, ["oauth_enabled"], oauth_enabled.lower() == "true")
+    set_nested(json_data, ["oauth_enabled"], oauth_enabled)
     set_nested(json_data, ["oauth_issuer_url"], oauth_issuer_url)
     set_nested(
-        json_data,
-        ["oauth_mobile_override_enabled"],
-        oauth_mobile_override_enabled.lower() == "true",
+        json_data, ["oauth_mobile_override_enabled"], oauth_mobile_override_enabled
     )
     set_nested(json_data, ["oauth_mobile_redirect_uri"], oauth_mobile_redirect_uri)
     set_nested(
@@ -713,28 +645,16 @@ def update_config(
         ["oauth_token_endpoint_auth_method"],
         oauth_token_endpoint_auth_method,
     )
-    set_nested(
-        json_data, ["password_login_enabled"], password_login_enabled.lower() == "true"
-    )
-    set_nested(
-        json_data,
-        ["reverse_geocoding_enabled"],
-        reverse_geocoding_enabled.lower() == "true",
-    )
+    set_nested(json_data, ["password_login_enabled"], password_login_enabled)
+    set_nested(json_data, ["reverse_geocoding_enabled"], reverse_geocoding_enabled)
     set_nested(json_data, ["server_external_domain"], server_external_domain)
     set_nested(json_data, ["server_login_page_message"], server_login_page_message)
-    set_nested(
-        json_data, ["server_public_users"], server_public_users.lower() == "true"
-    )
-    set_nested(
-        json_data,
-        ["storage_template_enabled"],
-        storage_template_enabled.lower() == "true",
-    )
+    set_nested(json_data, ["server_public_users"], server_public_users)
+    set_nested(json_data, ["storage_template_enabled"], storage_template_enabled)
     set_nested(
         json_data,
         ["storage_template_hash_verification_enabled"],
-        storage_template_hash_verification_enabled.lower() == "true",
+        storage_template_hash_verification_enabled,
     )
     set_nested(json_data, ["storage_template_template"], storage_template_template)
     set_nested(
@@ -754,7 +674,7 @@ def update_config(
     )
     set_nested(json_data, ["theme_custom_css"], theme_custom_css)
     set_nested(json_data, ["trash_days"], trash_days)
-    set_nested(json_data, ["trash_enabled"], trash_enabled.lower() == "true")
+    set_nested(json_data, ["trash_enabled"], trash_enabled)
     set_nested(json_data, ["user_delete_delay"], user_delete_delay)
     system_config_dto = SystemConfigDto.model_validate(json_data)
     kwargs["system_config_dto"] = system_config_dto
