@@ -46,22 +46,30 @@ def setup(
         hide_input=True,
         show_default=False,
     ),
+    skip_validation: bool = typer.Option(
+        False,
+        "--skip-validation",
+        help="Skip validation of the server.",
+    ),
 ):
     """Interactively set up a profile for the CLI to connect to an Immich server."""
     data = load_config(ensure_exists=True)
 
-    # validate the server is reachable
-    client = AsyncClient(base_url=base_url, api_key=api_key, access_token=access_token)
-    try:
-        run_command(client, client.server, "ping_server")
-    except Exception as exc:
-        print_(
-            "Error validating server. Make sure the base URL is correct and the server is reachable.",
-            level="error",
-            ctx=ctx,
+    if not skip_validation:
+        # Validate the server is reachable
+        client = AsyncClient(
+            base_url=base_url, api_key=api_key, access_token=access_token
         )
-        print_(str(exc), level="debug", ctx=ctx)
-        raise typer.Exit(1)
+        try:
+            run_command(client, client.server, "ping_server")
+        except Exception as exc:
+            print_(
+                "Error validating server. Make sure the base URL is correct and the server is reachable.",
+                level="error",
+                ctx=ctx,
+            )
+            print_(str(exc), level="debug", ctx=ctx)
+            raise typer.Exit(1)
 
     set_path(
         data,

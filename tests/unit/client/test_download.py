@@ -571,7 +571,7 @@ async def test_download_file_resume_updates_progress_bar(tmp_path: Path) -> None
         make_request,
         out_dir,
         resolve_filename,
-        pbar=mock_pbar,
+        progress=mock_pbar,
         show_progress=False,
         resumeable=True,
     )

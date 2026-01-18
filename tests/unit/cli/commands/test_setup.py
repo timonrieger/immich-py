@@ -47,6 +47,7 @@ class TestSetup:
                 "prod-key",
                 "--access-token",
                 "",
+                "--skip-validation",
             ],
         )
 
@@ -72,6 +73,7 @@ class TestSetup:
                 "",
                 "--access-token",
                 "",
+                "--skip-validation",
             ],
         )
 
@@ -103,6 +105,7 @@ class TestSetup:
                 "new-key",
                 "--access-token",
                 "",
+                "--skip-validation",
             ],
         )
 
