@@ -10,7 +10,7 @@ from immich._internal.cli.utils import (
 )
 
 app = typer.Typer(
-    help="Configure the CLI with your Immich server details, profiles, and request settings."
+    help="""Configure the CLI with server details, profiles, and request settings."""
 )
 
 
