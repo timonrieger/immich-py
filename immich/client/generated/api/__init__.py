@@ -37,4 +37,3 @@ from immich.client.generated.api.users_api import UsersApi
 from immich.client.generated.api.users_admin_api import UsersAdminApi
 from immich.client.generated.api.views_api import ViewsApi
 from immich.client.generated.api.workflows_api import WorkflowsApi
-
