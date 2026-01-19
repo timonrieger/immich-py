@@ -75,7 +75,6 @@ class TestSetup:
                 "",
                 "--access-token",
                 "",
-                "--skip-validation",
             ],
         )
 
