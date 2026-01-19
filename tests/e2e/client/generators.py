@@ -4,25 +4,38 @@ from __future__ import annotations
 
 import base64
 import io
+import time
 from typing import Iterator
 
 from PIL import Image
 
 
-def _create_jpeg(r: int, g: int, b: int) -> bytes:
-    """Create a minimal 1x1 JPEG with the specified RGB color."""
-    img = Image.new("RGB", (1, 1), (r, g, b))
+def _create_jpeg_with_seed(seed: int) -> bytes:
+    """Create a minimal JPEG with seed-based pixel values to ensure uniqueness."""
+    # Create a 2x2 image to embed more unique data in the content hash
+    # This ensures better uniqueness even when seeds are close together
+    img = Image.new("RGB", (2, 2))
+    pixels = img.load()
+
+    # Use seed to set different pixel values across the 2x2 grid
+    # Extract multiple values from seed to ensure variation
+    pixels[0, 0] = ((seed >> 24) & 0xFF, (seed >> 16) & 0xFF, (seed >> 8) & 0xFF)
+    pixels[1, 0] = ((seed >> 8) & 0xFF, seed & 0xFF, ((seed >> 24) & 0xFF))
+    pixels[0, 1] = (seed & 0xFF, ((seed >> 16) & 0xFF), ((seed >> 24) & 0xFF))
+    pixels[1, 1] = (((seed >> 16) & 0xFF), ((seed >> 8) & 0xFF), seed & 0xFF)
+
     buffer = io.BytesIO()
     img.save(buffer, format="JPEG", quality=95)
     return buffer.getvalue()
 
 
 def _new_jpeg_factory() -> Iterator[bytes]:
-    """Generator that yields unique JPEG images by cycling through RGB values."""
-    for r in range(0, 256, 16):  # Step by 16 to avoid too many combinations
-        for g in range(0, 256, 16):
-            for b in range(0, 256, 16):
-                yield _create_jpeg(r, g, b)
+    """Generator that yields unique JPEG images by incrementing seed."""
+    # Initialize seed with timestamp (nanoseconds) to ensure uniqueness across test runs
+    seed = int(time.time_ns()) % (2**32)
+    while True:
+        yield _create_jpeg_with_seed(seed)
+        seed = (seed + 1) % (2**32)
 
 
 _jpeg_factory = _new_jpeg_factory()
@@ -30,13 +43,7 @@ _jpeg_factory = _new_jpeg_factory()
 
 def make_random_image() -> bytes:
     """Generate a random unique JPEG image for testing."""
-    global _jpeg_factory
-    try:
-        return next(_jpeg_factory)
-    except StopIteration:
-        # Reset factory if we run out
-        _jpeg_factory = _new_jpeg_factory()
-        return next(_jpeg_factory)
+    return next(_jpeg_factory)
 
 
 # Decode the MP4 template once at module import
