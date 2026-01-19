@@ -5,9 +5,11 @@ from immich._internal.consts import (
     CONFIG_FILE,
     DEFAULT_PROFILE,
     DEMO_API_URL,
+    IMMICH_ACCESS_TOKEN,
+    IMMICH_API_KEY,
     IMMICH_API_URL,
 )
-from immich._internal.cli.utils import load_config, print_, set_path, write_config
+from immich._internal.cli.utils import load_config, mask, print_, set_path, write_config
 from immich.cli.runtime import run_command
 
 from immich import AsyncClient
@@ -21,25 +23,22 @@ def setup(
         "-p",
         help="Profile name. This can be used to set different server configurations.",
     ),
-    base_url: str = typer.Option(
-        os.getenv(IMMICH_API_URL) or DEMO_API_URL,
+    base_url: Optional[str] = typer.Option(
+        None,
         "--base-url",
         help="The base URL of the Immich server, including the API path.",
-        prompt="Base URL",
     ),
     api_key: Optional[str] = typer.Option(
-        "",
+        None,
         "--api-key",
         help="An API key to use with the profile ([green]recommended[/green])",
-        prompt="API Key (optional, recommended)",
         hide_input=True,
         show_default=False,
     ),
     access_token: Optional[str] = typer.Option(
-        "",
+        None,
         "--access-token",
         help="An access token to use with the profile ([red]not recommended[/red])",
-        prompt="Access Token (optional, not recommended)",
         hide_input=True,
         show_default=False,
     ),
@@ -52,8 +51,35 @@ def setup(
     """Interactively set up a profile for the CLI to connect to an Immich server."""
     data = load_config(ensure_exists=True)
 
+    if base_url is None:
+        base_url = typer.prompt(
+            "Base URL",
+            default=os.getenv(IMMICH_API_URL) or DEMO_API_URL,
+        )
+
+    if api_key is None:
+        env_api_key = os.getenv(IMMICH_API_KEY)
+        api_key = typer.prompt(
+            "API Key (optional, recommended)"
+            + (f" [{mask(env_api_key)}]" if env_api_key else ""),
+            # default=None is not possible input is required
+            default=env_api_key or "",
+            show_default=False,
+        )
+
+    if not api_key and access_token is None:
+        env_access_token = os.getenv(IMMICH_ACCESS_TOKEN)
+        access_token = typer.prompt(
+            "Access Token (optional, not recommended)"
+            + (f" [{mask(env_access_token)}]" if env_access_token else ""),
+            # default=None is not possible input is required
+            default=env_access_token or "",
+            show_default=False,
+        )
+
     if not skip_validation:
         # Validate the server is reachable
+        # passing empty strings is fine, as the client checks for falsey values
         client = AsyncClient(
             base_url=base_url, api_key=api_key, access_token=access_token
         )
