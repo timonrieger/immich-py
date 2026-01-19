@@ -21,22 +21,25 @@ def setup(
         "-p",
         help="Profile name. This can be used to set different server configurations.",
     ),
-    base_url: Optional[str] = typer.Option(
-        None,
+    base_url: str = typer.Option(
+        os.getenv(IMMICH_API_URL) or DEMO_API_URL,
         "--base-url",
         help="The base URL of the Immich server, including the API path.",
+        prompt="Base URL",
     ),
     api_key: Optional[str] = typer.Option(
-        None,
+        "",
         "--api-key",
         help="An API key to use with the profile ([green]recommended[/green])",
+        prompt="API Key (optional, recommended)",
         hide_input=True,
         show_default=False,
     ),
     access_token: Optional[str] = typer.Option(
-        None,
+        "",
         "--access-token",
         help="An access token to use with the profile ([red]not recommended[/red])",
+        prompt="Access Token (optional, not recommended)",
         hide_input=True,
         show_default=False,
     ),
@@ -49,31 +52,8 @@ def setup(
     """Interactively set up a profile for the CLI to connect to an Immich server."""
     data = load_config(ensure_exists=True)
 
-    if base_url is None:
-        base_url = typer.prompt(
-            "Base URL",
-            default=os.getenv(IMMICH_API_URL) or DEMO_API_URL,
-        )
-
-    if api_key is None:
-        api_key = typer.prompt(
-            "API Key (optional, recommended)",
-            # default=None is not possible input is required
-            default="",
-            show_default=False,
-        )
-
-    if not api_key and access_token is None:
-        access_token = typer.prompt(
-            "Access Token (optional, not recommended)",
-            # default=None is not possible input is required
-            default="",
-            show_default=False,
-        )
-
     if not skip_validation:
         # Validate the server is reachable
-        # passing empty strings is fine, as the client checks for falsey values
         client = AsyncClient(
             base_url=base_url, api_key=api_key, access_token=access_token
         )
