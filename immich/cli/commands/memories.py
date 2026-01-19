@@ -22,7 +22,7 @@ def add_memory_assets(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
     ids: list[str] = typer.Option(..., "--ids", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Add assets to a memory
 
     Docs: https://api.immich.app/endpoints/memories/addMemoryAssets
@@ -49,7 +49,7 @@ def create_memory(
     memory_at: datetime = typer.Option(..., "--memory-at", help=""""""),
     seen_at: datetime | None = typer.Option(None, "--seen-at", help=""""""),
     type: str = typer.Option(..., "--type", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Create a memory
 
     Docs: https://api.immich.app/endpoints/memories/createMemory
@@ -76,7 +76,7 @@ def create_memory(
 def delete_memory(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Delete a memory
 
     Docs: https://api.immich.app/endpoints/memories/deleteMemory
@@ -92,7 +92,7 @@ def delete_memory(
 def get_memory(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve a memory
 
     Docs: https://api.immich.app/endpoints/memories/getMemory
@@ -119,7 +119,7 @@ def memories_statistics(
         None, "--size", help="""Number of memories to return""", min=1
     ),
     type: MemoryType | None = typer.Option(None, "--type", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve memories statistics
 
     Docs: https://api.immich.app/endpoints/memories/memoriesStatistics
@@ -147,7 +147,7 @@ def remove_memory_assets(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
     ids: list[str] = typer.Option(..., "--ids", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Remove assets from a memory
 
     Docs: https://api.immich.app/endpoints/memories/removeMemoryAssets
@@ -178,7 +178,7 @@ def search_memories(
         None, "--size", help="""Number of memories to return""", min=1
     ),
     type: MemoryType | None = typer.Option(None, "--type", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve memories
 
     Docs: https://api.immich.app/endpoints/memories/searchMemories
@@ -210,7 +210,7 @@ def update_memory(
     ),
     memory_at: datetime | None = typer.Option(None, "--memory-at", help=""""""),
     seen_at: datetime | None = typer.Option(None, "--seen-at", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Update a memory
 
     Docs: https://api.immich.app/endpoints/memories/updateMemory

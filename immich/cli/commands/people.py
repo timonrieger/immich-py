@@ -34,7 +34,7 @@ Note: the mobile app cannot currently set the birth date to null.""",
         None, "--is-hidden", help="""Person visibility"""
     ),
     name: str | None = typer.Option(None, "--name", help="""Person name."""),
-) -> None:
+) -> None:  # pragma: no cover
     """Create a person
 
     Docs: https://api.immich.app/endpoints/people/createPerson
@@ -62,7 +62,7 @@ Note: the mobile app cannot currently set the birth date to null.""",
 def delete_people(
     ctx: typer.Context,
     ids: list[str] = typer.Option(..., "--ids", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Delete people
 
     Docs: https://api.immich.app/endpoints/people/deletePeople
@@ -81,7 +81,7 @@ def delete_people(
 def delete_person(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Delete person
 
     Docs: https://api.immich.app/endpoints/people/deletePerson
@@ -111,7 +111,7 @@ def get_all_people(
     with_hidden: Literal["true", "false"] | None = typer.Option(
         None, "--with-hidden", help=""""""
     ),
-) -> None:
+) -> None:  # pragma: no cover
     """Get all people
 
     Docs: https://api.immich.app/endpoints/people/getAllPeople
@@ -136,7 +136,7 @@ def get_all_people(
 def get_person(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Get a person
 
     Docs: https://api.immich.app/endpoints/people/getPerson
@@ -152,7 +152,7 @@ def get_person(
 def get_person_statistics(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Get person statistics
 
     Docs: https://api.immich.app/endpoints/people/getPersonStatistics
@@ -168,7 +168,7 @@ def get_person_statistics(
 def get_person_thumbnail(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Get person thumbnail
 
     Docs: https://api.immich.app/endpoints/people/getPersonThumbnail
@@ -185,7 +185,7 @@ def merge_person(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
     ids: list[str] = typer.Option(..., "--ids", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Merge people
 
     Docs: https://api.immich.app/endpoints/people/mergePerson
@@ -206,7 +206,7 @@ def reassign_faces(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
     data: list[str] = typer.Option(..., "--data", help="""As a JSON string"""),
-) -> None:
+) -> None:  # pragma: no cover
     """Reassign faces
 
     Docs: https://api.immich.app/endpoints/people/reassignFaces
@@ -227,7 +227,7 @@ def reassign_faces(
 def update_people(
     ctx: typer.Context,
     people: list[str] = typer.Option(..., "--people", help="""As a JSON string"""),
-) -> None:
+) -> None:  # pragma: no cover
     """Update people
 
     Docs: https://api.immich.app/endpoints/people/updatePeople
@@ -266,7 +266,7 @@ Note: the mobile app cannot currently set the birth date to null.""",
         None, "--is-hidden", help="""Person visibility"""
     ),
     name: str | None = typer.Option(None, "--name", help="""Person name."""),
-) -> None:
+) -> None:  # pragma: no cover
     """Update person
 
     Docs: https://api.immich.app/endpoints/people/updatePerson

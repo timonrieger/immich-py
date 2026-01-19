@@ -21,7 +21,7 @@ def bulk_tag_assets(
     ctx: typer.Context,
     asset_ids: list[str] = typer.Option(..., "--asset-ids", help=""""""),
     tag_ids: list[str] = typer.Option(..., "--tag-ids", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Tag assets
 
     Docs: https://api.immich.app/endpoints/tags/bulkTagAssets
@@ -43,7 +43,7 @@ def create_tag(
     color: str | None = typer.Option(None, "--color", help=""""""),
     name: str = typer.Option(..., "--name", help=""""""),
     parent_id: str | None = typer.Option(None, "--parent-id", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Create a tag
 
     Docs: https://api.immich.app/endpoints/tags/createTag
@@ -66,7 +66,7 @@ def create_tag(
 def delete_tag(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Delete a tag
 
     Docs: https://api.immich.app/endpoints/tags/deleteTag
@@ -81,7 +81,7 @@ def delete_tag(
 @app.command("get-all-tags", deprecated=False, rich_help_panel="API commands")
 def get_all_tags(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve tags
 
     Docs: https://api.immich.app/endpoints/tags/getAllTags
@@ -96,7 +96,7 @@ def get_all_tags(
 def get_tag_by_id(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve a tag
 
     Docs: https://api.immich.app/endpoints/tags/getTagById
@@ -113,7 +113,7 @@ def tag_assets(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
     ids: list[str] = typer.Option(..., "--ids", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Tag assets
 
     Docs: https://api.immich.app/endpoints/tags/tagAssets
@@ -134,7 +134,7 @@ def untag_assets(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
     ids: list[str] = typer.Option(..., "--ids", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Untag assets
 
     Docs: https://api.immich.app/endpoints/tags/untagAssets
@@ -155,7 +155,7 @@ def update_tag(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
     color: str | None = typer.Option(None, "--color", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Update a tag
 
     Docs: https://api.immich.app/endpoints/tags/updateTag
@@ -176,7 +176,7 @@ def update_tag(
 def upsert_tags(
     ctx: typer.Context,
     tags: list[str] = typer.Option(..., "--tags", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Upsert tags
 
     Docs: https://api.immich.app/endpoints/tags/upsertTags

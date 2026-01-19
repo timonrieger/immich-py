@@ -21,7 +21,7 @@ def create_api_key(
     ctx: typer.Context,
     name: str | None = typer.Option(None, "--name", help=""""""),
     permissions: list[Permission] = typer.Option(..., "--permissions", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Create an API key
 
     Docs: https://api.immich.app/endpoints/api-keys/createApiKey
@@ -42,7 +42,7 @@ def create_api_key(
 def delete_api_key(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Delete an API key
 
     Docs: https://api.immich.app/endpoints/api-keys/deleteApiKey
@@ -58,7 +58,7 @@ def delete_api_key(
 def get_api_key(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve an API key
 
     Docs: https://api.immich.app/endpoints/api-keys/getApiKey
@@ -73,7 +73,7 @@ def get_api_key(
 @app.command("get-api-keys", deprecated=False, rich_help_panel="API commands")
 def get_api_keys(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """List all API keys
 
     Docs: https://api.immich.app/endpoints/api-keys/getApiKeys
@@ -87,7 +87,7 @@ def get_api_keys(
 @app.command("get-my-api-key", deprecated=False, rich_help_panel="API commands")
 def get_my_api_key(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve the current API key
 
     Docs: https://api.immich.app/endpoints/api-keys/getMyApiKey
@@ -106,7 +106,7 @@ def update_api_key(
     permissions: list[Permission] | None = typer.Option(
         None, "--permissions", help=""""""
     ),
-) -> None:
+) -> None:  # pragma: no cover
     """Update an API key
 
     Docs: https://api.immich.app/endpoints/api-keys/updateApiKey

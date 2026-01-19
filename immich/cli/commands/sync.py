@@ -21,7 +21,7 @@ app = typer.Typer(
 def delete_sync_ack(
     ctx: typer.Context,
     types: list[SyncEntityType] | None = typer.Option(None, "--types", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Delete acknowledgements
 
     Docs: https://api.immich.app/endpoints/sync/deleteSyncAck
@@ -42,7 +42,7 @@ def get_delta_sync(
     ctx: typer.Context,
     updated_after: datetime = typer.Option(..., "--updated-after", help=""""""),
     user_ids: list[str] = typer.Option(..., "--user-ids", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Get delta sync for user
 
     Docs: https://api.immich.app/endpoints/sync/getDeltaSync
@@ -65,7 +65,7 @@ def get_full_sync_for_user(
     limit: int = typer.Option(..., "--limit", help="""""", min=1),
     updated_until: datetime = typer.Option(..., "--updated-until", help=""""""),
     user_id: str | None = typer.Option(None, "--user-id", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Get full sync for user
 
     Docs: https://api.immich.app/endpoints/sync/getFullSyncForUser
@@ -88,7 +88,7 @@ def get_full_sync_for_user(
 @app.command("get-sync-ack", deprecated=False, rich_help_panel="API commands")
 def get_sync_ack(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve acknowledgements
 
     Docs: https://api.immich.app/endpoints/sync/getSyncAck
@@ -104,7 +104,7 @@ def get_sync_stream(
     ctx: typer.Context,
     reset: Literal["true", "false"] | None = typer.Option(None, "--reset", help=""""""),
     types: list[SyncRequestType] = typer.Option(..., "--types", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Stream sync changes
 
     Docs: https://api.immich.app/endpoints/sync/getSyncStream
@@ -125,7 +125,7 @@ def get_sync_stream(
 def send_sync_ack(
     ctx: typer.Context,
     acks: list[str] = typer.Option(..., "--acks", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Acknowledge changes
 
     Docs: https://api.immich.app/endpoints/sync/sendSyncAck

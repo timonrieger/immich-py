@@ -23,7 +23,7 @@ def create_activity(
     asset_id: str | None = typer.Option(None, "--asset-id", help=""""""),
     comment: str | None = typer.Option(None, "--comment", help=""""""),
     type: str = typer.Option(..., "--type", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Create an activity
 
     Docs: https://api.immich.app/endpoints/activities/createActivity
@@ -47,7 +47,7 @@ def create_activity(
 def delete_activity(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Delete an activity
 
     Docs: https://api.immich.app/endpoints/activities/deleteActivity
@@ -67,7 +67,7 @@ def get_activities(
     level: ReactionLevel | None = typer.Option(None, "--level", help=""""""),
     type: ReactionType | None = typer.Option(None, "--type", help=""""""),
     user_id: str | None = typer.Option(None, "--user-id", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """List all activities
 
     Docs: https://api.immich.app/endpoints/activities/getActivities
@@ -94,7 +94,7 @@ def get_activity_statistics(
     ctx: typer.Context,
     album_id: str = typer.Option(..., "--album-id", help=""""""),
     asset_id: str | None = typer.Option(None, "--asset-id", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve activity statistics
 
     Docs: https://api.immich.app/endpoints/activities/getActivityStatistics

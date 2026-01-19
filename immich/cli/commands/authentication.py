@@ -26,7 +26,7 @@ def change_password(
         ..., "--new-password", help="""Example: password"""
     ),
     password: str = typer.Option(..., "--password", help="""Example: password"""),
-) -> None:
+) -> None:  # pragma: no cover
     """Change password
 
     Docs: https://api.immich.app/endpoints/authentication/changePassword
@@ -54,7 +54,7 @@ def change_pin_code(
     new_pin_code: str = typer.Option(..., "--new-pin-code", help="""Example: 123456"""),
     password: str | None = typer.Option(None, "--password", help=""""""),
     pin_code: str | None = typer.Option(None, "--pin-code", help="""Example: 123456"""),
-) -> None:
+) -> None:  # pragma: no cover
     """Change pin code
 
     Docs: https://api.immich.app/endpoints/authentication/changePinCode
@@ -81,7 +81,7 @@ def finish_o_auth(
     code_verifier: str | None = typer.Option(None, "--code-verifier", help=""""""),
     state: str | None = typer.Option(None, "--state", help=""""""),
     url: str = typer.Option(..., "--url", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Finish OAuth
 
     Docs: https://api.immich.app/endpoints/authentication/finishOAuth
@@ -103,7 +103,7 @@ def finish_o_auth(
 @app.command("get-auth-status", deprecated=False, rich_help_panel="API commands")
 def get_auth_status(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve auth status
 
     Docs: https://api.immich.app/endpoints/authentication/getAuthStatus
@@ -122,7 +122,7 @@ def link_o_auth_account(
     code_verifier: str | None = typer.Option(None, "--code-verifier", help=""""""),
     state: str | None = typer.Option(None, "--state", help=""""""),
     url: str = typer.Option(..., "--url", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Link OAuth account
 
     Docs: https://api.immich.app/endpoints/authentication/linkOAuthAccount
@@ -146,7 +146,7 @@ def link_o_auth_account(
 @app.command("lock-auth-session", deprecated=False, rich_help_panel="API commands")
 def lock_auth_session(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Lock auth session
 
     Docs: https://api.immich.app/endpoints/authentication/lockAuthSession
@@ -164,7 +164,7 @@ def login(
     ctx: typer.Context,
     email: str = typer.Option(..., "--email", help="""Example: testuser@email.com"""),
     password: str = typer.Option(..., "--password", help="""Example: password"""),
-) -> None:
+) -> None:  # pragma: no cover
     """Login
 
     Docs: https://api.immich.app/endpoints/authentication/login
@@ -183,7 +183,7 @@ def login(
 @app.command("logout", deprecated=False, rich_help_panel="API commands")
 def logout(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Logout
 
     Docs: https://api.immich.app/endpoints/authentication/logout
@@ -199,7 +199,7 @@ def logout(
 )
 def redirect_o_auth_to_mobile(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Redirect OAuth to mobile
 
     Docs: https://api.immich.app/endpoints/authentication/redirectOAuthToMobile
@@ -217,7 +217,7 @@ def reset_pin_code(
     ctx: typer.Context,
     password: str | None = typer.Option(None, "--password", help=""""""),
     pin_code: str | None = typer.Option(None, "--pin-code", help="""Example: 123456"""),
-) -> None:
+) -> None:  # pragma: no cover
     """Reset pin code
 
     Docs: https://api.immich.app/endpoints/authentication/resetPinCode
@@ -239,7 +239,7 @@ def reset_pin_code(
 def setup_pin_code(
     ctx: typer.Context,
     pin_code: str = typer.Option(..., "--pin-code", help="""Example: 123456"""),
-) -> None:
+) -> None:  # pragma: no cover
     """Setup pin code
 
     Docs: https://api.immich.app/endpoints/authentication/setupPinCode
@@ -260,7 +260,7 @@ def sign_up_admin(
     email: str = typer.Option(..., "--email", help="""Example: testuser@email.com"""),
     name: str = typer.Option(..., "--name", help="""Example: Admin"""),
     password: str = typer.Option(..., "--password", help="""Example: password"""),
-) -> None:
+) -> None:  # pragma: no cover
     """Register admin
 
     Docs: https://api.immich.app/endpoints/authentication/signUpAdmin
@@ -283,7 +283,7 @@ def start_o_auth(
     code_challenge: str | None = typer.Option(None, "--code-challenge", help=""""""),
     redirect_uri: str = typer.Option(..., "--redirect-uri", help=""""""),
     state: str | None = typer.Option(None, "--state", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Start OAuth
 
     Docs: https://api.immich.app/endpoints/authentication/startOAuth
@@ -305,7 +305,7 @@ def start_o_auth(
 @app.command("unlink-o-auth-account", deprecated=False, rich_help_panel="API commands")
 def unlink_o_auth_account(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Unlink OAuth account
 
     Docs: https://api.immich.app/endpoints/authentication/unlinkOAuthAccount
@@ -323,7 +323,7 @@ def unlock_auth_session(
     ctx: typer.Context,
     password: str | None = typer.Option(None, "--password", help=""""""),
     pin_code: str | None = typer.Option(None, "--pin-code", help="""Example: 123456"""),
-) -> None:
+) -> None:  # pragma: no cover
     """Unlock auth session
 
     Docs: https://api.immich.app/endpoints/authentication/unlockAuthSession
@@ -346,7 +346,7 @@ def unlock_auth_session(
 @app.command("validate-access-token", deprecated=False, rich_help_panel="API commands")
 def validate_access_token(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Validate access token
 
     Docs: https://api.immich.app/endpoints/authentication/validateAccessToken

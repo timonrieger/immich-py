@@ -21,7 +21,7 @@ app = typer.Typer(
 def delete_notification(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Delete a notification
 
     Docs: https://api.immich.app/endpoints/notifications/deleteNotification
@@ -39,7 +39,7 @@ def delete_notification(
 def delete_notifications(
     ctx: typer.Context,
     ids: list[str] = typer.Option(..., "--ids", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Delete notifications
 
     Docs: https://api.immich.app/endpoints/notifications/deleteNotifications
@@ -60,7 +60,7 @@ def delete_notifications(
 def get_notification(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Get a notification
 
     Docs: https://api.immich.app/endpoints/notifications/getNotification
@@ -83,7 +83,7 @@ def get_notifications(
     unread: Literal["true", "false"] | None = typer.Option(
         None, "--unread", help=""""""
     ),
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve notifications
 
     Docs: https://api.immich.app/endpoints/notifications/getNotifications
@@ -109,7 +109,7 @@ def update_notification(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
     read_at: datetime | None = typer.Option(None, "--read-at", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Update a notification
 
     Docs: https://api.immich.app/endpoints/notifications/updateNotification
@@ -133,7 +133,7 @@ def update_notifications(
     ctx: typer.Context,
     ids: list[str] = typer.Option(..., "--ids", help=""""""),
     read_at: datetime | None = typer.Option(None, "--read-at", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Update notifications
 
     Docs: https://api.immich.app/endpoints/notifications/updateNotifications

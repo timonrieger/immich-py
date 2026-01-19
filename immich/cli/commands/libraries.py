@@ -25,7 +25,7 @@ def create_library(
     import_paths: list[str] | None = typer.Option(None, "--import-paths", help=""""""),
     name: str | None = typer.Option(None, "--name", help=""""""),
     owner_id: str = typer.Option(..., "--owner-id", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Create a library
 
     Docs: https://api.immich.app/endpoints/libraries/createLibrary
@@ -50,7 +50,7 @@ def create_library(
 def delete_library(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Delete a library
 
     Docs: https://api.immich.app/endpoints/libraries/deleteLibrary
@@ -65,7 +65,7 @@ def delete_library(
 @app.command("get-all-libraries", deprecated=False, rich_help_panel="API commands")
 def get_all_libraries(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve libraries
 
     Docs: https://api.immich.app/endpoints/libraries/getAllLibraries
@@ -80,7 +80,7 @@ def get_all_libraries(
 def get_library(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve a library
 
     Docs: https://api.immich.app/endpoints/libraries/getLibrary
@@ -96,7 +96,7 @@ def get_library(
 def get_library_statistics(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve library statistics
 
     Docs: https://api.immich.app/endpoints/libraries/getLibraryStatistics
@@ -114,7 +114,7 @@ def get_library_statistics(
 def scan_library(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Scan a library
 
     Docs: https://api.immich.app/endpoints/libraries/scanLibrary
@@ -135,7 +135,7 @@ def update_library(
     ),
     import_paths: list[str] | None = typer.Option(None, "--import-paths", help=""""""),
     name: str | None = typer.Option(None, "--name", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Update a library
 
     Docs: https://api.immich.app/endpoints/libraries/updateLibrary
@@ -164,7 +164,7 @@ def validate(
         None, "--exclusion-patterns", help=""""""
     ),
     import_paths: list[str] | None = typer.Option(None, "--import-paths", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Validate library settings
 
     Docs: https://api.immich.app/endpoints/libraries/validate

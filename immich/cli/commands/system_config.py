@@ -19,7 +19,7 @@ app = typer.Typer(
 @app.command("get-config", deprecated=False, rich_help_panel="API commands")
 def get_config(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Get system configuration
 
     Docs: https://api.immich.app/endpoints/system-config/getConfig
@@ -33,7 +33,7 @@ def get_config(
 @app.command("get-config-defaults", deprecated=False, rich_help_panel="API commands")
 def get_config_defaults(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Get system configuration defaults
 
     Docs: https://api.immich.app/endpoints/system-config/getConfigDefaults
@@ -51,7 +51,7 @@ def get_config_defaults(
 )
 def get_storage_template_options(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Get storage template options
 
     Docs: https://api.immich.app/endpoints/system-config/getStorageTemplateOptions
@@ -391,7 +391,7 @@ def update_config(
     user_delete_delay: int = typer.Option(
         ..., "--user-delete-delay", help="""""", min=1
     ),
-) -> None:
+) -> None:  # pragma: no cover
     """Update system configuration
 
     Docs: https://api.immich.app/endpoints/system-config/updateConfig

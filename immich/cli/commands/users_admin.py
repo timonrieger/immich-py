@@ -36,7 +36,7 @@ def create_user_admin(
         None, "--should-change-password", help=""""""
     ),
     storage_label: str | None = typer.Option(None, "--storage-label", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Create a user
 
     Docs: https://api.immich.app/endpoints/users-admin/createUserAdmin
@@ -74,7 +74,7 @@ def delete_user_admin(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
     force: Literal["true", "false"] | None = typer.Option(None, "--force", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Delete a user
 
     Docs: https://api.immich.app/endpoints/users-admin/deleteUserAdmin
@@ -95,7 +95,7 @@ def delete_user_admin(
 def get_user_admin(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve a user
 
     Docs: https://api.immich.app/endpoints/users-admin/getUserAdmin
@@ -113,7 +113,7 @@ def get_user_admin(
 def get_user_preferences_admin(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve user preferences
 
     Docs: https://api.immich.app/endpoints/users-admin/getUserPreferencesAdmin
@@ -133,7 +133,7 @@ def get_user_preferences_admin(
 def get_user_sessions_admin(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve user sessions
 
     Docs: https://api.immich.app/endpoints/users-admin/getUserSessionsAdmin
@@ -162,7 +162,7 @@ def get_user_statistics_admin(
     visibility: AssetVisibility | None = typer.Option(
         None, "--visibility", help=""""""
     ),
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve user statistics
 
     Docs: https://api.immich.app/endpoints/users-admin/getUserStatisticsAdmin
@@ -186,7 +186,7 @@ def get_user_statistics_admin(
 def restore_user_admin(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Restore a deleted user
 
     Docs: https://api.immich.app/endpoints/users-admin/restoreUserAdmin
@@ -207,7 +207,7 @@ def search_users_admin(
     with_deleted: Literal["true", "false"] | None = typer.Option(
         None, "--with-deleted", help=""""""
     ),
-) -> None:
+) -> None:  # pragma: no cover
     """Search users
 
     Docs: https://api.immich.app/endpoints/users-admin/searchUsersAdmin
@@ -243,7 +243,7 @@ def update_user_admin(
         None, "--should-change-password", help=""""""
     ),
     storage_label: str | None = typer.Option(None, "--storage-label", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Update a user
 
     Docs: https://api.immich.app/endpoints/users-admin/updateUserAdmin
@@ -347,7 +347,7 @@ def update_user_preferences_admin(
     tags_sidebar_web: Literal["true", "false"] | None = typer.Option(
         None, "--tags-sidebar-web", help=""""""
     ),
-) -> None:
+) -> None:  # pragma: no cover
     """Update user preferences
 
     Docs: https://api.immich.app/endpoints/users-admin/updateUserPreferencesAdmin

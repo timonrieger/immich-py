@@ -27,7 +27,7 @@ def create_face(
     width: int = typer.Option(..., "--width", help=""""""),
     x: int = typer.Option(..., "--x", help=""""""),
     y: int = typer.Option(..., "--y", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Create a face
 
     Docs: https://api.immich.app/endpoints/faces/createFace
@@ -54,7 +54,7 @@ def delete_face(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
     force: bool = typer.Option(..., "--force", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Delete a face
 
     Docs: https://api.immich.app/endpoints/faces/deleteFace
@@ -74,7 +74,7 @@ def delete_face(
 def get_faces(
     ctx: typer.Context,
     id: str = typer.Option(..., "--id", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve faces for asset
 
     Docs: https://api.immich.app/endpoints/faces/getFaces
@@ -91,7 +91,7 @@ def reassign_faces_by_id(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
     body_id: str = typer.Option(..., "--body-id", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Re-assign a face to another person
 
     Docs: https://api.immich.app/endpoints/faces/reassignFacesById

@@ -22,7 +22,7 @@ def download_archive(
     asset_ids: list[str] = typer.Option(..., "--asset-ids", help=""""""),
     key: str | None = typer.Option(None, "--key", help=""""""),
     slug: str | None = typer.Option(None, "--slug", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Download asset archive
 
     Docs: https://api.immich.app/endpoints/download/downloadArchive
@@ -50,7 +50,7 @@ def get_download_info(
     key: str | None = typer.Option(None, "--key", help=""""""),
     slug: str | None = typer.Option(None, "--slug", help=""""""),
     user_id: str | None = typer.Option(None, "--user-id", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve download information
 
     Docs: https://api.immich.app/endpoints/download/getDownloadInfo

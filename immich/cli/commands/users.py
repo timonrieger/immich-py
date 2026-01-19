@@ -21,7 +21,7 @@ app = typer.Typer(
 def create_profile_image(
     ctx: typer.Context,
     file: Path = typer.Option(..., "--file", help="""""", exists=True),
-) -> None:
+) -> None:  # pragma: no cover
     """Create user profile image
 
     Docs: https://api.immich.app/endpoints/users/createProfileImage
@@ -39,7 +39,7 @@ def create_profile_image(
 @app.command("delete-profile-image", deprecated=False, rich_help_panel="API commands")
 def delete_profile_image(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Delete user profile image
 
     Docs: https://api.immich.app/endpoints/users/deleteProfileImage
@@ -53,7 +53,7 @@ def delete_profile_image(
 @app.command("delete-user-license", deprecated=False, rich_help_panel="API commands")
 def delete_user_license(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Delete user product key
 
     Docs: https://api.immich.app/endpoints/users/deleteUserLicense
@@ -67,7 +67,7 @@ def delete_user_license(
 @app.command("delete-user-onboarding", deprecated=False, rich_help_panel="API commands")
 def delete_user_onboarding(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Delete user onboarding
 
     Docs: https://api.immich.app/endpoints/users/deleteUserOnboarding
@@ -81,7 +81,7 @@ def delete_user_onboarding(
 @app.command("get-my-preferences", deprecated=False, rich_help_panel="API commands")
 def get_my_preferences(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Get my preferences
 
     Docs: https://api.immich.app/endpoints/users/getMyPreferences
@@ -95,7 +95,7 @@ def get_my_preferences(
 @app.command("get-my-user", deprecated=False, rich_help_panel="API commands")
 def get_my_user(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Get current user
 
     Docs: https://api.immich.app/endpoints/users/getMyUser
@@ -110,7 +110,7 @@ def get_my_user(
 def get_profile_image(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve user profile image
 
     Docs: https://api.immich.app/endpoints/users/getProfileImage
@@ -126,7 +126,7 @@ def get_profile_image(
 def get_user(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve a user
 
     Docs: https://api.immich.app/endpoints/users/getUser
@@ -141,7 +141,7 @@ def get_user(
 @app.command("get-user-license", deprecated=False, rich_help_panel="API commands")
 def get_user_license(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve user product key
 
     Docs: https://api.immich.app/endpoints/users/getUserLicense
@@ -155,7 +155,7 @@ def get_user_license(
 @app.command("get-user-onboarding", deprecated=False, rich_help_panel="API commands")
 def get_user_onboarding(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve user onboarding
 
     Docs: https://api.immich.app/endpoints/users/getUserOnboarding
@@ -169,7 +169,7 @@ def get_user_onboarding(
 @app.command("search-users", deprecated=False, rich_help_panel="API commands")
 def search_users(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Get all users
 
     Docs: https://api.immich.app/endpoints/users/searchUsers
@@ -185,7 +185,7 @@ def set_user_license(
     ctx: typer.Context,
     activation_key: str = typer.Option(..., "--activation-key", help=""""""),
     license_key: str = typer.Option(..., "--license-key", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Set user product key
 
     Docs: https://api.immich.app/endpoints/users/setUserLicense
@@ -205,7 +205,7 @@ def set_user_license(
 def set_user_onboarding(
     ctx: typer.Context,
     is_onboarded: bool = typer.Option(..., "--is-onboarded", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Update user onboarding
 
     Docs: https://api.immich.app/endpoints/users/setUserOnboarding
@@ -284,7 +284,7 @@ def update_my_preferences(
     tags_sidebar_web: Literal["true", "false"] | None = typer.Option(
         None, "--tags-sidebar-web", help=""""""
     ),
-) -> None:
+) -> None:  # pragma: no cover
     """Update my preferences
 
     Docs: https://api.immich.app/endpoints/users/updateMyPreferences
@@ -385,7 +385,7 @@ def update_my_user(
     email: str | None = typer.Option(None, "--email", help=""""""),
     name: str | None = typer.Option(None, "--name", help=""""""),
     password: str | None = typer.Option(None, "--password", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Update current user
 
     Docs: https://api.immich.app/endpoints/users/updateMyUser

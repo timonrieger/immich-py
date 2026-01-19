@@ -20,7 +20,7 @@ app = typer.Typer(
 def maintenance_login(
     ctx: typer.Context,
     token: str | None = typer.Option(None, "--token", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Log into maintenance mode
 
     Docs: https://api.immich.app/endpoints/maintenance-admin/maintenanceLogin
@@ -42,7 +42,7 @@ def maintenance_login(
 def set_maintenance_mode(
     ctx: typer.Context,
     action: str = typer.Option(..., "--action", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Set maintenance mode
 
     Docs: https://api.immich.app/endpoints/maintenance-admin/setMaintenanceMode

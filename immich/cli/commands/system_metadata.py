@@ -19,7 +19,7 @@ app = typer.Typer(
 @app.command("get-admin-onboarding", deprecated=False, rich_help_panel="API commands")
 def get_admin_onboarding(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve admin onboarding
 
     Docs: https://api.immich.app/endpoints/system-metadata/getAdminOnboarding
@@ -37,7 +37,7 @@ def get_admin_onboarding(
 )
 def get_reverse_geocoding_state(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve reverse geocoding state
 
     Docs: https://api.immich.app/endpoints/system-metadata/getReverseGeocodingState
@@ -55,7 +55,7 @@ def get_reverse_geocoding_state(
 )
 def get_version_check_state(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve version check state
 
     Docs: https://api.immich.app/endpoints/system-metadata/getVersionCheckState
@@ -74,7 +74,7 @@ def get_version_check_state(
 def update_admin_onboarding(
     ctx: typer.Context,
     is_onboarded: bool = typer.Option(..., "--is-onboarded", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Update admin onboarding
 
     Docs: https://api.immich.app/endpoints/system-metadata/updateAdminOnboarding

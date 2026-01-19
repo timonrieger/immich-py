@@ -20,7 +20,7 @@ app = typer.Typer(
 def get_plugin(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve a plugin
 
     Docs: https://api.immich.app/endpoints/plugins/getPlugin
@@ -35,7 +35,7 @@ def get_plugin(
 @app.command("get-plugin-triggers", deprecated=False, rich_help_panel="API commands")
 def get_plugin_triggers(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """List all plugin triggers
 
     Docs: https://api.immich.app/endpoints/plugins/getPluginTriggers
@@ -49,7 +49,7 @@ def get_plugin_triggers(
 @app.command("get-plugins", deprecated=False, rich_help_panel="API commands")
 def get_plugins(
     ctx: typer.Context,
-) -> None:
+) -> None:  # pragma: no cover
     """List all plugins
 
     Docs: https://api.immich.app/endpoints/plugins/getPlugins

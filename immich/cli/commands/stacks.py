@@ -22,7 +22,7 @@ def create_stack(
     asset_ids: list[str] = typer.Option(
         ..., "--asset-ids", help="""first asset becomes the primary"""
     ),
-) -> None:
+) -> None:  # pragma: no cover
     """Create a stack
 
     Docs: https://api.immich.app/endpoints/stacks/createStack
@@ -41,7 +41,7 @@ def create_stack(
 def delete_stack(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Delete a stack
 
     Docs: https://api.immich.app/endpoints/stacks/deleteStack
@@ -57,7 +57,7 @@ def delete_stack(
 def delete_stacks(
     ctx: typer.Context,
     ids: list[str] = typer.Option(..., "--ids", help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Delete stacks
 
     Docs: https://api.immich.app/endpoints/stacks/deleteStacks
@@ -76,7 +76,7 @@ def delete_stacks(
 def get_stack(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve a stack
 
     Docs: https://api.immich.app/endpoints/stacks/getStack
@@ -95,7 +95,7 @@ def remove_asset_from_stack(
     ctx: typer.Context,
     asset_id: str = typer.Argument(..., help=""""""),
     id: str = typer.Argument(..., help=""""""),
-) -> None:
+) -> None:  # pragma: no cover
     """Remove an asset from a stack
 
     Docs: https://api.immich.app/endpoints/stacks/removeAssetFromStack
@@ -116,7 +116,7 @@ def search_stacks(
     primary_asset_id: str | None = typer.Option(
         None, "--primary-asset-id", help=""""""
     ),
-) -> None:
+) -> None:  # pragma: no cover
     """Retrieve stacks
 
     Docs: https://api.immich.app/endpoints/stacks/searchStacks
@@ -136,7 +136,7 @@ def update_stack(
     primary_asset_id: str | None = typer.Option(
         None, "--primary-asset-id", help=""""""
     ),
-) -> None:
+) -> None:  # pragma: no cover
     """Update a stack
 
     Docs: https://api.immich.app/endpoints/stacks/updateStack

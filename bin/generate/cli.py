@@ -2,6 +2,7 @@
 # requires-python = ">=3.11"
 # dependencies = [
 #   "inflection>=0.5.1,<0.6.0",
+#   "pydantic>=2.0.0,<3.0.0",
 #   "urllib3>=2.3.0,<3.0.0",
 # ]
 # ///
@@ -26,7 +27,7 @@ def python_triple_quoted_str(value: str) -> str:
 
 
 class RequestParam(BaseModel):
-    schema: dict[str, Any] = Field(..., description="The schema of the parameter.")
+    oaschema: dict[str, Any] = Field(..., description="The schema of the parameter.")
     location: Literal["body", "query", "header", "path"]
     type: Union[
         Literal[
@@ -279,7 +280,7 @@ def get_request_body_info(
         description = "\n\n".join(description_parts)
 
         param = RequestParam(
-            schema=leaf_schema,
+            oaschema=leaf_schema,
             location="body",
             type=python_type_from_schema(leaf_schema, spec),
             required=is_required,
@@ -316,7 +317,7 @@ def generate_command_function(
             param_data.append(
                 RequestParam(
                     location=param_in,
-                    schema=schema,
+                    oaschema=schema,
                     type=python_type_from_schema(schema, spec),
                     required=param.get("required", False),
                     name=to_python_ident(param["name"]),
@@ -339,8 +340,8 @@ def generate_command_function(
 
     for param in sorted(param_data, key=lambda x: (x.location != "path", x.name)):
         help_arg = f", help={param.description}"
-        minimum = param.schema.get("minimum")
-        maximum = param.schema.get("maximum")
+        minimum = param.oaschema.get("minimum")
+        maximum = param.oaschema.get("maximum")
         min_arg = f", min={minimum}" if minimum is not None else ""
         max_arg = f", max={maximum}" if maximum is not None else ""
         exists_arg = ", exists=True" if param.type == "Path" else ""
@@ -364,7 +365,7 @@ def generate_command_function(
                 f'    {param.name}: {type_str} = typer.Option({default_value}, "--{param.flag_name}"{help_arg}{min_arg}{max_arg}{exists_arg}),'
             )
 
-    lines.append(") -> None:")
+    lines.append(") -> None:  # pragma: no cover")
 
     # Function body
     summary = operation.get("summary", operation_id)
@@ -401,7 +402,7 @@ def generate_command_function(
 
         elif param.location == "body":
             if param.required:
-                if is_complex_type(param.schema, spec):
+                if is_complex_type(param.oaschema, spec):
                     lines.append(
                         f"    value_{param.name} = [json.loads(i) for i in {param.name}]"
                     )
@@ -423,7 +424,7 @@ def generate_command_function(
                         )
             else:
                 lines.append(f"    if {param.name} is not None:")
-                if is_complex_type(param.schema, spec):
+                if is_complex_type(param.oaschema, spec):
                     lines.append(
                         f"        value_{param.name} = [json.loads(i) for i in {param.name}]"
                     )
@@ -481,7 +482,6 @@ def generate_tag_app(
         + tag
         + ' tag (auto-generated, do not edit)."""',
         "",
-        "# pragma: no cover",
         "from __future__ import annotations",
         "",
         "import typer",
