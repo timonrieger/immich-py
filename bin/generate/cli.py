@@ -2,6 +2,7 @@
 # requires-python = ">=3.11"
 # dependencies = [
 #   "inflection>=0.5.1,<0.6.0",
+#   "urllib3>=2.3.0,<3.0.0",
 # ]
 # ///
 
@@ -10,10 +11,10 @@ from __future__ import annotations
 import keyword
 import os
 import shutil
-import urllib3
+import urllib3  # pyright: ignore[reportMissingImports]
 from pathlib import Path
 from typing import Annotated, Any, Literal, Optional, Union
-import inflection
+import inflection  # pyright: ignore[reportMissingImports]
 from pydantic import AfterValidator, BaseModel, Field
 
 
@@ -480,6 +481,7 @@ def generate_tag_app(
         + tag
         + ' tag (auto-generated, do not edit)."""',
         "",
+        "# pragma: no cover",
         "from __future__ import annotations",
         "",
         "import typer",
