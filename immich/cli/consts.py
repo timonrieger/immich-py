@@ -6,6 +6,7 @@ API_KEY_URL = "https://my.immich.app/user-settings?isOpen=api-keys"
 CONFIG_DIR = Path.home() / ".immich-py"
 CONFIG_FILE = CONFIG_DIR / "config.toml"
 DEFAULT_PROFILE = "default"
+DEFAULT_FORMAT = "pretty"
 
 # Environment variables
 IMMICH_FORMAT = "IMMICH_FORMAT"

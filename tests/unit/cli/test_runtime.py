@@ -9,7 +9,7 @@ from unittest.mock import AsyncMock, MagicMock, Mock, patch
 
 import pytest
 from pydantic import BaseModel
-from typer import Context
+from typer import Context, Exit
 
 if TYPE_CHECKING:
     from _pytest.capture import CaptureFixture
@@ -81,65 +81,53 @@ class TestPrintResponse:
 class TestHandleApiError:
     """Tests for handle_api_error function."""
 
-    @patch("immich.cli.runtime.sys.exit")
-    def test_handle_api_error_no_body(self, mock_exit: Mock) -> None:
+    def test_handle_api_error_no_body(self) -> None:
         """Test handle_api_error with no body (with and without status)."""
         e: ApiException = ApiException(status=404)
         e.body = None
-        mock_exit.side_effect = SystemExit(4)
 
-        with pytest.raises(SystemExit):
+        with pytest.raises(Exit) as exc_info:
             handle_api_error(e, None)
 
-        mock_exit.assert_called_once_with(4)
+        assert exc_info.value.exit_code == 4
 
         # Test with no status
         e = ApiException(status=None)
         e.body = None
-        mock_exit.side_effect = SystemExit(1)
-        mock_exit.reset_mock()
 
-        with pytest.raises(SystemExit):
+        with pytest.raises(Exit) as exc_info:
             handle_api_error(e, None)
 
-        mock_exit.assert_called_once_with(1)
+        assert exc_info.value.exit_code == 1
 
-    @patch("immich.cli.runtime.sys.exit")
-    @patch("immich.cli.runtime.print_json")
-    def test_handle_api_error_string_body_pretty(
-        self, mock_print_json: Mock, mock_exit: Mock
-    ) -> None:
+    @patch("immich.cli.utils.print_json")
+    def test_handle_api_error_string_body_pretty(self, mock_print_json: Mock) -> None:
         """Test handle_api_error with string body and pretty format."""
         ctx: Mock = Mock(spec=Context)
         ctx.obj = {"format": "pretty"}
 
         e: ApiException = ApiException(status=400)
         e.body = '{"error": "test"}'
-        mock_exit.side_effect = SystemExit(4)
 
-        with pytest.raises(SystemExit):
+        with pytest.raises(Exit) as exc_info:
             handle_api_error(e, ctx)
 
         mock_print_json.assert_called_once_with('{"error": "test"}')
-        mock_exit.assert_called_once_with(4)
+        assert exc_info.value.exit_code == 4
 
-    @patch("immich.cli.runtime.sys.exit")
-    @patch("immich.cli.runtime.print")
-    def test_handle_api_error_dict_body(
-        self, mock_print: Mock, mock_exit: Mock
-    ) -> None:
+    @patch("immich.cli.utils.print_json")
+    def test_handle_api_error_dict_body(self, mock_print_json: Mock) -> None:
         """Test handle_api_error with dict body (converts to JSON)."""
         e: ApiException = ApiException(status=500)
         e.body = {"error": "test", "code": 500}
-        mock_exit.side_effect = SystemExit(5)
 
-        with pytest.raises(SystemExit):
+        with pytest.raises(Exit) as exc_info:
             handle_api_error(e, None)
 
-        call_args = mock_print.call_args[0][0]
+        call_args = mock_print_json.call_args[0][0]
         parsed = json.loads(call_args)
         assert parsed == {"error": "test", "code": 500}
-        mock_exit.assert_called_once_with(5)
+        assert exc_info.value.exit_code == 5
 
 
 class TestRunAsync:
@@ -216,12 +204,12 @@ class TestRunCommand:
                 loop.close()
 
         mock_asyncio_run.side_effect = mock_run
-        mock_handle_error.side_effect = SystemExit(4)
+        mock_handle_error.side_effect = Exit(4)
 
         ctx: Mock = Mock(spec=Context)
         ctx.obj = {"format": "json"}
 
-        with pytest.raises(SystemExit):
+        with pytest.raises(Exit):
             run_command(mock_client, mock_api_group, "test_method", ctx)
 
         mock_handle_error.assert_called_once_with(api_error, ctx)

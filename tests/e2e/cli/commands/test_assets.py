@@ -7,7 +7,7 @@ from uuid import uuid4
 import pytest
 from typer.testing import CliRunner
 
-from immich._internal.client.upload import UploadResult
+from immich.client.utils.upload import UploadResult
 from immich.cli.main import app as cli_app
 from immich.client.generated import (
     AssetBulkUploadCheckItem,
@@ -199,11 +199,11 @@ async def test_check_existing_assets(
     """Test check-existing-assets command and validate response structure."""
     device_id = str(uuid4())
     device_asset_id = str(uuid4())
-    import immich._internal.client.upload
+    import immich.client.utils.upload
 
-    monkeypatch.setattr(immich._internal.client.upload, "DEVICE_ID", device_id)
+    monkeypatch.setattr(immich.client.utils.upload, "DEVICE_ID", device_id)
     monkeypatch.setattr(
-        immich._internal.client.upload,
+        immich.client.utils.upload,
         "get_device_asset_id",
         lambda filepath, stats: device_asset_id,
     )

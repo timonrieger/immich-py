@@ -1,11 +1,11 @@
-from typing import Any, Optional, overload
+from typing import Any, Optional, cast, overload
 
-from rich import print
+from rich import print as print_rich, print_json
 import rtoml
 import typer
 
-from immich.cli.consts import CONFIG_FILE, SECRET_KEYS
-from immich._internal.types import ClientConfig, _PrintType
+from immich.cli.consts import CONFIG_FILE, DEFAULT_FORMAT, SECRET_KEYS
+from immich.cli.types import ClientConfig, FormatMode, PrintType
 
 
 def set_path(data: dict[str, Any], path: str, value: Any) -> None:
@@ -156,29 +156,36 @@ def mask(obj: Any, start: int = 3, end: int = 3, key: Optional[str] = None) -> A
 def print_(
     message: str,
     *,
-    type: _PrintType = "info",
+    type: PrintType,
     ctx: Optional[typer.Context] = None,
-    **kwargs: Any,
 ) -> None:
     """
-    Print a message in verbose mode.
+    Print a message in the given format as a rich print or a plain print.
     :param message: The message to print
-    :param debug: Whether to only print the message in verbose mode
     :param type: The type of the message
     :param ctx: The context to use
-    :param kwargs: Additional keyword arguments to pass to rich.print
     """
     match type:
-        case "output":
-            print(message, **kwargs)
+        case "json":
+            try:
+                format_mode = cast(FormatMode, ctx.obj.get("format", DEFAULT_FORMAT))  # type: ignore[possibly-missing-attribute]
+            except (AttributeError, KeyError):
+                format_mode = DEFAULT_FORMAT
+            match format_mode:
+                case "pretty":
+                    print_json(message)
+                case "json":
+                    print(message)
+        case "text":
+            print(message)
         case "info":
-            print(message, **kwargs)
+            print_rich(message)
         case "warning":
-            print(f"[yellow][bold][Warning][/bold] {message}[/yellow]", **kwargs)
+            print_rich(f"[yellow][bold][Warning][/bold] {message}[/yellow]")
         case "error":
-            print(f"[red][bold][Error][/bold] {message}[/red]", **kwargs)
+            print_rich(f"[red][bold][Error][/bold] {message}[/red]")
         case "success":
-            print(f"[green][bold][Success][/bold][/green] {message}", **kwargs)
+            print_rich(f"[green][bold][Success][/bold][/green] {message}")
         case "debug":
             if ctx is not None and ctx.obj["verbose"]:
-                print(f"[blue][bold][Debug][/bold] {message}[/blue]", **kwargs)
+                print_rich(f"[blue][bold][Debug][/bold] {message}[/blue]")

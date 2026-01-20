@@ -4,17 +4,16 @@ from __future__ import annotations
 
 import asyncio
 import json
-import sys
-from typing import Any, Awaitable, Callable, cast
+from typing import Any, Awaitable, Callable
 
+from immich.cli.utils import print_
 from pydantic import BaseModel
-from typer import Context
+from typer import Context, Exit
 
-from immich._internal.types import _FormatMode, _MaybeBaseModel
+from immich.cli.types import MaybeBaseModel
 
 from immich import AsyncClient
 from immich.client.generated.exceptions import ApiException
-from rich import print_json
 
 
 def set_nested(d: dict[str, Any], path: list[str], value: Any) -> None:
@@ -32,10 +31,10 @@ def set_nested(d: dict[str, Any], path: list[str], value: Any) -> None:
     current[path[-1]] = value
 
 
-def print_response(data: _MaybeBaseModel, ctx: Context) -> None:
+def print_response(data: MaybeBaseModel, ctx: Context) -> None:
     """Print response data."""
 
-    def convert_to_dict(obj: _MaybeBaseModel) -> Any:
+    def convert_to_dict(obj: MaybeBaseModel) -> Any:
         """Recursively convert Pydantic models to dicts."""
         if isinstance(obj, list):
             return [convert_to_dict(item) for item in obj]
@@ -46,27 +45,21 @@ def print_response(data: _MaybeBaseModel, ctx: Context) -> None:
 
     json_str = json.dumps(convert_to_dict(data), default=str)
 
-    print_json(json_str) if cast(
-        _FormatMode, ctx.obj.get("format")
-    ) == "pretty" else print(json_str)
+    print_(message=json_str, type="json", ctx=ctx)
 
 
 def handle_api_error(e: ApiException, ctx: Context | None = None) -> None:
     """Handle API exceptions and exit with appropriate code."""
     if not e.body:
-        sys.exit(1 if e.status is None else e.status // 100)
+        raise Exit(code=1 if e.status is None else e.status // 100)
 
     if isinstance(e.body, str):
         json_str = e.body
     else:
         json_str = json.dumps(e.body, default=str)
 
-    if ctx and cast(_FormatMode, ctx.obj.get("format")) == "pretty":
-        print_json(json_str)
-    else:
-        print(json_str)
-
-    sys.exit(1 if e.status is None else e.status // 100)
+    print_(message=json_str, type="json", ctx=ctx)
+    raise Exit(code=1 if e.status is None else e.status // 100)
 
 
 async def run_async(coro: Awaitable[Any]) -> Any:

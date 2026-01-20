@@ -7,7 +7,7 @@ import pytest
 
 from immich import AsyncClient
 from immich.cli.consts import IMMICH_API_KEY, IMMICH_API_URL, IMMICH_FORMAT
-from immich._internal.client.upload import UploadResult
+from immich.client.utils.upload import UploadResult
 from immich.client.generated import (
     ActivityCreateDto,
     ActivityResponseDto,

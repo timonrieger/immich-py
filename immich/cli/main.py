@@ -10,6 +10,7 @@ from click.core import ParameterSource
 
 from immich.cli.consts import (
     API_KEY_URL,
+    DEFAULT_FORMAT,
     DEFAULT_PROFILE,
     IMMICH_API_KEY,
     IMMICH_ACCESS_TOKEN,
@@ -30,7 +31,7 @@ except ImportError:  # pragma: no cover
     sys.exit(1)
 
 from immich import AsyncClient
-from immich._internal.types import _FormatMode, ClientConfig
+from immich.cli.types import FormatMode, ClientConfig
 
 # Import command modules
 from immich.cli.commands import api_keys as api_keys_commands
@@ -150,7 +151,7 @@ app.add_typer(workflows_commands.app, name="workflows", rich_help_panel="API com
 
 def version_callback(value: bool) -> None:  # pragma: no cover
     if value:
-        print_(f"immich CLI (unofficial) {version('immich')}", type="output")
+        print_(f"immich CLI (unofficial) {version('immich')}", type="text")
         raise typer.Exit(0)
 
 
@@ -163,8 +164,11 @@ def callback(
         "-v",
         help="Show verbose output.",
     ),
-    format_mode: _FormatMode = typer.Option(
-        "pretty", "--format", help="Output format of the CLI.", envvar=IMMICH_FORMAT
+    format_mode: FormatMode = typer.Option(
+        DEFAULT_FORMAT,
+        "--format",
+        help="Output format of the CLI.",
+        envvar=IMMICH_FORMAT,
     ),
     api_key: Optional[str] = typer.Option(
         None,

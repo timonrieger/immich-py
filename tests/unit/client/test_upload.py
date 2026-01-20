@@ -8,7 +8,7 @@ import pytest
 from immich.client.generated.models.server_media_types_response_dto import (
     ServerMediaTypesResponseDto,
 )
-from immich._internal.client.upload import scan_files
+from immich.client.utils.upload import scan_files
 
 
 @pytest.fixture

@@ -35,6 +35,7 @@ def set(
 
 @app.command("get")
 def get(
+    ctx: typer.Context,
     key: str = typer.Argument(..., help="The key to get from the config"),
     show_secrets: bool = typer.Option(
         False,
@@ -48,11 +49,12 @@ def get(
     value = get_path(data, key)
     if not show_secrets:
         value = mask(value, key=key)
-    print_(value, type="output")
+    print_(message=value, type="text", ctx=ctx)
 
 
 @app.command("reset")
 def reset(
+    ctx: typer.Context,
     _yes: bool = typer.Option(
         False,
         "--yes",
@@ -64,7 +66,7 @@ def reset(
     """Reset the configuration by deleting the config file."""
     check_config()
     CONFIG_FILE.unlink()
-    print_("Config file removed", type="success")
+    print_("Config file removed", type="success", ctx=ctx)
 
 
 @app.command("open")

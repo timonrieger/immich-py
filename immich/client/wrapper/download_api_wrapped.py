@@ -18,7 +18,7 @@ from pydantic import StrictStr
 from immich.client.generated.api.download_api import DownloadApi
 from immich.client.generated.models.asset_ids_dto import AssetIdsDto
 from immich.client.generated.models.download_info_dto import DownloadInfoDto
-from immich._internal.client.download import download_file
+from immich.client.utils.download import download_file
 
 
 class DownloadApiWrapped(DownloadApi):

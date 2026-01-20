@@ -5,7 +5,7 @@ from unittest.mock import MagicMock
 
 import pytest
 
-import immich._internal.client.download as download_utils
+import immich.client.utils.download as download_utils
 
 
 def test_filename_from_headers_prefers_content_disposition() -> None:
