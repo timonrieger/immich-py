@@ -1,5 +1,5 @@
 <h1 align="center">immich-py</h1>
-<h3 align="center">Unofficial Python SDK & CLI for the <a href="https://immich.app">Immich</a> API.</h3>
+<h3 align="center">Python Client & CLI for the <a href="https://immich.app">Immich</a> API.</h3>
 <p align="center">
 <a href="https://github.com/immich-app/immich/releases" target="_blank" rel="noopener noreferrer">
     <img src="https://img.shields.io/badge/dynamic/regex?url=https://raw.githubusercontent.com/timonrieger/immich-py/main/IMMICH-VERSION&search=(.*)&replace=%241%20-%20$1&label=supported%20Immich%20versions&color=blue" alt="Supported Immich version">
@@ -20,7 +20,7 @@
 
 </p>
 
-An async Python SDK and CLI for interacting with the [Immich](https://immich.app) self-hosted photo and video management solution.
+A Python client and CLI for interacting with the [Immich](https://immich.app) self-hosted photo and video management solution.
 
 > [!NOTE]
 > This project is not affiliated with or endorsed by Immich.

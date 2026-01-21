@@ -4,47 +4,33 @@ There are three different available output formats you can choose from:
 
 ## Serialized Response
 
-You can get fully serialized responses as [Pydantic](https://docs.pydantic.dev/) models. Using this, you get the full benefits of Pydantic's type checking.
+You can get fully serialized responses as [Pydantic](https://docs.pydantic.dev/) models.
 
-```python title="main.py"
-res = await client.server.get_about_info()
+```python
+await client.server.get_about_info()
 ```
 
 The output would look like this:
 
-<div class="termy">
-
-```console
-$ python main.py
-
+```python
 ServerAboutResponseDto(
     build='20375083601',
     build_image='main',
-    ...
-    licensed=False,
-    nodejs='v22.13.0',
-    repository='immich-app/immich',
     ...
     version='v2.4.1',
     version_url='https://github.com/immich-app/immich/releases/tag/v2.4.1'
 )
 ```
 
-</div>
 
 ## Serialized Response with HTTP Info
 
-Same as above, but with additional metadata about the HTTP response.
+To get additional metadata about the HTTP response by suffixing the function name with `_with_http_info`.
 
-```python title="main.py"
-res = await client.server.get_about_info_with_http_info()
+```python
+await client.server.get_about_info_with_http_info()
 ```
-
-<div class="termy">
-
-```console
-$ python main.py
-
+```python
 ApiResponse(
     status_code=200,
     headers={'Content-Type': 'application/json'},
@@ -59,22 +45,18 @@ ApiResponse(
 )
 ```
 
-</div>
-
 ## JSON Response
 
 You can receive a classical JSON response by suffixing the function name with `_without_preload_content`:
 
-```python title="main.py"
+```python
 response = await client.server.get_about_info_without_preload_content()
-await response.json()
+await response.json() # (1)!
 ```
 
-<div class="termy">
+1. The response is a `aiohttp.ClientResponse` object, which needs to be awaited to get the JSON data.
 
-```console
-$ python main.py
-
+```json
 {
     "build": "20375083601",
     "buildImage": "main",
@@ -83,5 +65,3 @@ $ python main.py
     "versionUrl": "https://github.com/immich-app/immich/releases/tag/v2.4.1"
 }
 ```
-
-</div>

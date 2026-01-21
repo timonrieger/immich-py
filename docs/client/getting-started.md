@@ -18,7 +18,7 @@ You need Python 3.10–3.14 installed to be able to use this library.
 
 ## Structure
 
-This SDK is **async-only**. The client exposes API groups as attributes, and endpoints as methods on those groups. Groups and endpoints are documented in the [Immich API documentation](https://api.immich.app/endpoints) or under the [Reference](reference/index.md) section.
+This client is **async-only**. It exposes API groups as attributes, and endpoints as methods on those groups. Groups and endpoints are documented in the [Reference](reference/index.md) section. See the [Immich API documentation](https://api.immich.app/endpoints) for more information.
 
 ## Set up your Immich server
 

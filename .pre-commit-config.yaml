@@ -15,7 +15,7 @@ repos:
     rev: 1.8.6
     hooks:
       - id: bandit
-        exclude: "^(immich/client/|tests/)"
+        exclude: "^(immich/client/|tests)"
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0

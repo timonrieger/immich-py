@@ -1,6 +1,6 @@
 # Getting Started
 
-**immich-py** is an unofficial Python SDK and CLI for the [Immich](https://immich.app) API. It provides two main ways to interact with your Immich server:
+**immich-py** provides a Python client and CLI for the [Immich](https://immich.app) API. It provides two main ways to interact with your Immich server:
 
 ## Python Client
 
