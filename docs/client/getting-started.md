@@ -4,15 +4,17 @@
 
 You need Python 3.10–3.14 installed to be able to use this library.
 
-<div class="termy">
+=== "uv"
 
-```console
-$ pip install immich
+    ``` bash
+    uv add immich
+    ```
 
----> 100%
-```
+=== "pip"
 
-</div>
+    ``` bash
+    pip install immich
+    ```
 
 ## Structure
 
@@ -25,31 +27,20 @@ This SDK is **async-only**. The client exposes API groups as attributes, and end
 
 ## Basic Usage
 
-With a context manager (recommended):
+You can use the client with or without a context manager.
 
-```python title="main.py"
-from immich import AsyncClient
+=== "With a context manager (recommended)"
 
-async with AsyncClient(api_key="your-immich-api-key", base_url="http://localhost:2283/api") as client:
-    await client.server.get_about_info()
-```
+    ``` python title="main.py"
+    from immich import AsyncClient
 
-Run it with
-<div class="termy">
+    async with AsyncClient(api_key="your-immich-api-key", base_url="http://localhost:2283/api") as client:
+        await client.server.get_about_info()
+    ```
 
-```console
-$ python main.py
+=== "Without a context manager"
 
-{
-  "build": "20375083601",
-  "version": "v2.4.1",
-}
-```
-
-??? note "Alternative"
-    Without a context manager:
-
-    ```python title="main.py"
+    ``` python title="main.py"
     import asyncio
     from immich import AsyncClient
 
@@ -62,3 +53,15 @@ $ python main.py
 
     asyncio.run(main())
     ```
+
+Run it with
+<div class="termy">
+
+```console
+$ python main.py
+
+{
+  "build": "20375083601",
+  "version": "v2.4.1",
+}
+```

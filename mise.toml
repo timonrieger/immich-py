@@ -123,7 +123,18 @@ run = "uv run zensical build"
 
 [tasks."docs:publish"]
 description = "Build and publish documentation to Vercel. Pass --prod to deploy to production."
-run = "vercel build --yes && vercel deploy --prebuilt"
+usage = """
+flag "--prod" help="Deploy to production"
+"""
+run = '''
+prod_flag=""
+if [[ "${usage_prod?}" == "true" ]]; then
+  prod_flag="--prod"
+fi
+
+vercel build --yes ${prod_flag}
+vercel deploy --prebuilt ${prod_flag}
+'''
 
 [tasks."docs:generate:cli"]
 description = "Generate documentation for the CLI"

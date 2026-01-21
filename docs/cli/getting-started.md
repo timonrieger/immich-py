@@ -4,15 +4,17 @@
 
 You need Python 3.10–3.14 installed to be able to use this CLI.
 
-<div class="termy">
+=== "uv"
 
-```console
-$ pip install immich[cli]
+    ``` bash
+    uv add immich --extra cli
+    ```
 
----> 100%
-```
+=== "pip"
 
-</div>
+    ``` bash
+    pip install immich[cli]
+    ```
 
 ### Shell completion
 
@@ -26,6 +28,8 @@ $ immich --install-completion
 fish completion installed in ~/.config/fish/completions/immich.fish
 Completion will take effect once you restart the terminal
 ```
+
+You will get auto-completion for the commands and options when hitting the <kbd>Tab</kbd> key.
 
 </div>
 

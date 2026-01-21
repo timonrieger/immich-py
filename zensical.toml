@@ -427,10 +427,9 @@ show_signature_return_annotation = true
 # Customize prompt characters that trigger command lines
 prompt_literal_start = ["$", ">"]
 
-# [project.plugins.awesome-nav]
-
 [project.markdown_extensions.admonition]
 [project.markdown_extensions.pymdownx.details]
 [project.markdown_extensions.pymdownx.superfences]
 [project.markdown_extensions.pymdownx.tabbed]
+alternate_style = true
 
