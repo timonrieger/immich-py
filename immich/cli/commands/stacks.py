@@ -12,7 +12,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""A stack is a group of related assets. One asset is the "primary" asset, and the rest are "child" assets. On the main timeline, stack parents are included by default, while child assets are hidden.\n\nDocs: https://api.immich.app/endpoints/stacks"""
+    help="""A stack is a group of related assets. One asset is the "primary" asset, and the rest are "child" assets. On the main timeline, stack parents are included by default, while child assets are hidden.\n\n[link=https://api.immich.app/endpoints/stacks]Immich API documentation[/link]"""
 )
 
 
@@ -25,7 +25,7 @@ def create_stack(
 ) -> None:  # pragma: no cover
     """Create a stack
 
-    Docs: https://api.immich.app/endpoints/stacks/createStack
+    [link=https://api.immich.app/endpoints/stacks/createStack]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -44,7 +44,7 @@ def delete_stack(
 ) -> None:  # pragma: no cover
     """Delete a stack
 
-    Docs: https://api.immich.app/endpoints/stacks/deleteStack
+    [link=https://api.immich.app/endpoints/stacks/deleteStack]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -60,7 +60,7 @@ def delete_stacks(
 ) -> None:  # pragma: no cover
     """Delete stacks
 
-    Docs: https://api.immich.app/endpoints/stacks/deleteStacks
+    [link=https://api.immich.app/endpoints/stacks/deleteStacks]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -79,7 +79,7 @@ def get_stack(
 ) -> None:  # pragma: no cover
     """Retrieve a stack
 
-    Docs: https://api.immich.app/endpoints/stacks/getStack
+    [link=https://api.immich.app/endpoints/stacks/getStack]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -98,7 +98,7 @@ def remove_asset_from_stack(
 ) -> None:  # pragma: no cover
     """Remove an asset from a stack
 
-    Docs: https://api.immich.app/endpoints/stacks/removeAssetFromStack
+    [link=https://api.immich.app/endpoints/stacks/removeAssetFromStack]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["asset_id"] = asset_id
@@ -119,7 +119,7 @@ def search_stacks(
 ) -> None:  # pragma: no cover
     """Retrieve stacks
 
-    Docs: https://api.immich.app/endpoints/stacks/searchStacks
+    [link=https://api.immich.app/endpoints/stacks/searchStacks]Immich API documentation[/link]
     """
     kwargs = {}
     if primary_asset_id is not None:
@@ -139,7 +139,7 @@ def update_stack(
 ) -> None:  # pragma: no cover
     """Update a stack
 
-    Docs: https://api.immich.app/endpoints/stacks/updateStack
+    [link=https://api.immich.app/endpoints/stacks/updateStack]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}

@@ -12,7 +12,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""A face is a detected human face within an asset, which can be associated with a person. Faces are normally detected via machine learning, but can also be created via manually.\n\nDocs: https://api.immich.app/endpoints/faces"""
+    help="""A face is a detected human face within an asset, which can be associated with a person. Faces are normally detected via machine learning, but can also be created via manually.\n\n[link=https://api.immich.app/endpoints/faces]Immich API documentation[/link]"""
 )
 
 
@@ -30,7 +30,7 @@ def create_face(
 ) -> None:  # pragma: no cover
     """Create a face
 
-    Docs: https://api.immich.app/endpoints/faces/createFace
+    [link=https://api.immich.app/endpoints/faces/createFace]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -57,7 +57,7 @@ def delete_face(
 ) -> None:  # pragma: no cover
     """Delete a face
 
-    Docs: https://api.immich.app/endpoints/faces/deleteFace
+    [link=https://api.immich.app/endpoints/faces/deleteFace]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -77,7 +77,7 @@ def get_faces(
 ) -> None:  # pragma: no cover
     """Retrieve faces for asset
 
-    Docs: https://api.immich.app/endpoints/faces/getFaces
+    [link=https://api.immich.app/endpoints/faces/getFaces]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -94,7 +94,7 @@ def reassign_faces_by_id(
 ) -> None:  # pragma: no cover
     """Re-assign a face to another person
 
-    Docs: https://api.immich.app/endpoints/faces/reassignFacesById
+    [link=https://api.immich.app/endpoints/faces/reassignFacesById]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}

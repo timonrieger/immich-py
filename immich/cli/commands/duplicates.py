@@ -12,7 +12,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""Endpoints for managing and identifying duplicate assets.\n\nDocs: https://api.immich.app/endpoints/duplicates"""
+    help="""Endpoints for managing and identifying duplicate assets.\n\n[link=https://api.immich.app/endpoints/duplicates]Immich API documentation[/link]"""
 )
 
 
@@ -23,7 +23,7 @@ def delete_duplicate(
 ) -> None:  # pragma: no cover
     """Delete a duplicate
 
-    Docs: https://api.immich.app/endpoints/duplicates/deleteDuplicate
+    [link=https://api.immich.app/endpoints/duplicates/deleteDuplicate]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -39,7 +39,7 @@ def delete_duplicates(
 ) -> None:  # pragma: no cover
     """Delete duplicates
 
-    Docs: https://api.immich.app/endpoints/duplicates/deleteDuplicates
+    [link=https://api.immich.app/endpoints/duplicates/deleteDuplicates]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -57,7 +57,7 @@ def get_asset_duplicates(
 ) -> None:  # pragma: no cover
     """Retrieve duplicates
 
-    Docs: https://api.immich.app/endpoints/duplicates/getAssetDuplicates
+    [link=https://api.immich.app/endpoints/duplicates/getAssetDuplicates]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]

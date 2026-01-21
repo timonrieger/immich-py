@@ -370,7 +370,9 @@ def generate_command_function(
     # Function body
     summary = operation.get("summary", operation_id)
     doc_url = f"https://api.immich.app/endpoints/{inflection.parameterize(tag)}/{operation_id}"
-    lines.append(f'    """{summary}\n\n     {doc_url}\n    """')
+    lines.append(
+        f'    """{summary}\n\n     [link={doc_url}]Immich API documentation[/link]\n    """'
+    )
 
     # Build kwargs
     lines.append("    kwargs = {}")
@@ -473,9 +475,7 @@ def generate_tag_app(
     tag_attr = to_snake_case(tag)
     tag_description = next(t for t in spec["tags"] if t["name"] == tag)["description"]
     tag_slug = inflection.parameterize(tag)
-    tag_help = (
-        f"{tag_description}\\n\\nDocs: https://api.immich.app/endpoints/{tag_slug}"
-    )
+    tag_help = f"{tag_description}\\n\\n[link=https://api.immich.app/endpoints/{tag_slug}]Immich API documentation[/link]"
 
     lines = [
         '"""Generated CLI commands for '

@@ -12,7 +12,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""Administrative endpoints for managing users, including creating, updating, deleting, and restoring users. Also includes endpoints for resetting passwords and PIN codes.\n\nDocs: https://api.immich.app/endpoints/users-admin"""
+    help="""Administrative endpoints for managing users, including creating, updating, deleting, and restoring users. Also includes endpoints for resetting passwords and PIN codes.\n\n[link=https://api.immich.app/endpoints/users-admin]Immich API documentation[/link]"""
 )
 
 
@@ -39,7 +39,7 @@ def create_user_admin(
 ) -> None:  # pragma: no cover
     """Create a user
 
-    Docs: https://api.immich.app/endpoints/users-admin/createUserAdmin
+    [link=https://api.immich.app/endpoints/users-admin/createUserAdmin]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -77,7 +77,7 @@ def delete_user_admin(
 ) -> None:  # pragma: no cover
     """Delete a user
 
-    Docs: https://api.immich.app/endpoints/users-admin/deleteUserAdmin
+    [link=https://api.immich.app/endpoints/users-admin/deleteUserAdmin]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -98,7 +98,7 @@ def get_user_admin(
 ) -> None:  # pragma: no cover
     """Retrieve a user
 
-    Docs: https://api.immich.app/endpoints/users-admin/getUserAdmin
+    [link=https://api.immich.app/endpoints/users-admin/getUserAdmin]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -116,7 +116,7 @@ def get_user_preferences_admin(
 ) -> None:  # pragma: no cover
     """Retrieve user preferences
 
-    Docs: https://api.immich.app/endpoints/users-admin/getUserPreferencesAdmin
+    [link=https://api.immich.app/endpoints/users-admin/getUserPreferencesAdmin]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -136,7 +136,7 @@ def get_user_sessions_admin(
 ) -> None:  # pragma: no cover
     """Retrieve user sessions
 
-    Docs: https://api.immich.app/endpoints/users-admin/getUserSessionsAdmin
+    [link=https://api.immich.app/endpoints/users-admin/getUserSessionsAdmin]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -165,7 +165,7 @@ def get_user_statistics_admin(
 ) -> None:  # pragma: no cover
     """Retrieve user statistics
 
-    Docs: https://api.immich.app/endpoints/users-admin/getUserStatisticsAdmin
+    [link=https://api.immich.app/endpoints/users-admin/getUserStatisticsAdmin]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -189,7 +189,7 @@ def restore_user_admin(
 ) -> None:  # pragma: no cover
     """Restore a deleted user
 
-    Docs: https://api.immich.app/endpoints/users-admin/restoreUserAdmin
+    [link=https://api.immich.app/endpoints/users-admin/restoreUserAdmin]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -210,7 +210,7 @@ def search_users_admin(
 ) -> None:  # pragma: no cover
     """Search users
 
-    Docs: https://api.immich.app/endpoints/users-admin/searchUsersAdmin
+    [link=https://api.immich.app/endpoints/users-admin/searchUsersAdmin]Immich API documentation[/link]
     """
     kwargs = {}
     if id is not None:
@@ -246,7 +246,7 @@ def update_user_admin(
 ) -> None:  # pragma: no cover
     """Update a user
 
-    Docs: https://api.immich.app/endpoints/users-admin/updateUserAdmin
+    [link=https://api.immich.app/endpoints/users-admin/updateUserAdmin]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -350,7 +350,7 @@ def update_user_preferences_admin(
 ) -> None:  # pragma: no cover
     """Update user preferences
 
-    Docs: https://api.immich.app/endpoints/users-admin/updateUserPreferencesAdmin
+    [link=https://api.immich.app/endpoints/users-admin/updateUserPreferencesAdmin]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}

@@ -12,7 +12,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""Queues and background jobs are used for processing tasks asynchronously. Queues can be paused and resumed as needed.\n\nDocs: https://api.immich.app/endpoints/queues"""
+    help="""Queues and background jobs are used for processing tasks asynchronously. Queues can be paused and resumed as needed.\n\n[link=https://api.immich.app/endpoints/queues]Immich API documentation[/link]"""
 )
 
 
@@ -28,7 +28,7 @@ def empty_queue(
 ) -> None:  # pragma: no cover
     """Empty a queue
 
-    Docs: https://api.immich.app/endpoints/queues/emptyQueue
+    [link=https://api.immich.app/endpoints/queues/emptyQueue]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -49,7 +49,7 @@ def get_queue(
 ) -> None:  # pragma: no cover
     """Retrieve a queue
 
-    Docs: https://api.immich.app/endpoints/queues/getQueue
+    [link=https://api.immich.app/endpoints/queues/getQueue]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["name"] = name
@@ -66,7 +66,7 @@ def get_queue_jobs(
 ) -> None:  # pragma: no cover
     """Retrieve queue jobs
 
-    Docs: https://api.immich.app/endpoints/queues/getQueueJobs
+    [link=https://api.immich.app/endpoints/queues/getQueueJobs]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["name"] = name
@@ -83,7 +83,7 @@ def get_queues(
 ) -> None:  # pragma: no cover
     """List all queues
 
-    Docs: https://api.immich.app/endpoints/queues/getQueues
+    [link=https://api.immich.app/endpoints/queues/getQueues]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -101,7 +101,7 @@ def update_queue(
 ) -> None:  # pragma: no cover
     """Update a queue
 
-    Docs: https://api.immich.app/endpoints/queues/updateQueue
+    [link=https://api.immich.app/endpoints/queues/updateQueue]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}

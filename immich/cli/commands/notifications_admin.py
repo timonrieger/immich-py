@@ -14,7 +14,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""Notification administrative endpoints.\n\nDocs: https://api.immich.app/endpoints/notifications-admin"""
+    help="""Notification administrative endpoints.\n\n[link=https://api.immich.app/endpoints/notifications-admin]Immich API documentation[/link]"""
 )
 
 
@@ -31,7 +31,7 @@ def create_notification(
 ) -> None:  # pragma: no cover
     """Create a notification
 
-    Docs: https://api.immich.app/endpoints/notifications-admin/createNotification
+    [link=https://api.immich.app/endpoints/notifications-admin/createNotification]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -67,7 +67,7 @@ def get_notification_template_admin(
 ) -> None:  # pragma: no cover
     """Render email template
 
-    Docs: https://api.immich.app/endpoints/notifications-admin/getNotificationTemplateAdmin
+    [link=https://api.immich.app/endpoints/notifications-admin/getNotificationTemplateAdmin]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -105,7 +105,7 @@ def send_test_email_admin(
 ) -> None:  # pragma: no cover
     """Send test email
 
-    Docs: https://api.immich.app/endpoints/notifications-admin/sendTestEmailAdmin
+    [link=https://api.immich.app/endpoints/notifications-admin/sendTestEmailAdmin]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}

@@ -13,7 +13,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""A notification is a specialized message sent to users to inform them of important events. Currently, these notifications are only shown in the Immich web application.\n\nDocs: https://api.immich.app/endpoints/notifications"""
+    help="""A notification is a specialized message sent to users to inform them of important events. Currently, these notifications are only shown in the Immich web application.\n\n[link=https://api.immich.app/endpoints/notifications]Immich API documentation[/link]"""
 )
 
 
@@ -24,7 +24,7 @@ def delete_notification(
 ) -> None:  # pragma: no cover
     """Delete a notification
 
-    Docs: https://api.immich.app/endpoints/notifications/deleteNotification
+    [link=https://api.immich.app/endpoints/notifications/deleteNotification]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -42,7 +42,7 @@ def delete_notifications(
 ) -> None:  # pragma: no cover
     """Delete notifications
 
-    Docs: https://api.immich.app/endpoints/notifications/deleteNotifications
+    [link=https://api.immich.app/endpoints/notifications/deleteNotifications]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -63,7 +63,7 @@ def get_notification(
 ) -> None:  # pragma: no cover
     """Get a notification
 
-    Docs: https://api.immich.app/endpoints/notifications/getNotification
+    [link=https://api.immich.app/endpoints/notifications/getNotification]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -86,7 +86,7 @@ def get_notifications(
 ) -> None:  # pragma: no cover
     """Retrieve notifications
 
-    Docs: https://api.immich.app/endpoints/notifications/getNotifications
+    [link=https://api.immich.app/endpoints/notifications/getNotifications]Immich API documentation[/link]
     """
     kwargs = {}
     if id is not None:
@@ -112,7 +112,7 @@ def update_notification(
 ) -> None:  # pragma: no cover
     """Update a notification
 
-    Docs: https://api.immich.app/endpoints/notifications/updateNotification
+    [link=https://api.immich.app/endpoints/notifications/updateNotification]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -136,7 +136,7 @@ def update_notifications(
 ) -> None:  # pragma: no cover
     """Update notifications
 
-    Docs: https://api.immich.app/endpoints/notifications/updateNotifications
+    [link=https://api.immich.app/endpoints/notifications/updateNotifications]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}

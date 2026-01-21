@@ -13,7 +13,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""A person is a collection of faces, which can be favorited and named. A person can also be merged into another person. People are automatically created via the face recognition job.\n\nDocs: https://api.immich.app/endpoints/people"""
+    help="""A person is a collection of faces, which can be favorited and named. A person can also be merged into another person. People are automatically created via the face recognition job.\n\n[link=https://api.immich.app/endpoints/people]Immich API documentation[/link]"""
 )
 
 
@@ -37,7 +37,7 @@ Note: the mobile app cannot currently set the birth date to null.""",
 ) -> None:  # pragma: no cover
     """Create a person
 
-    Docs: https://api.immich.app/endpoints/people/createPerson
+    [link=https://api.immich.app/endpoints/people/createPerson]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -65,7 +65,7 @@ def delete_people(
 ) -> None:  # pragma: no cover
     """Delete people
 
-    Docs: https://api.immich.app/endpoints/people/deletePeople
+    [link=https://api.immich.app/endpoints/people/deletePeople]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -84,7 +84,7 @@ def delete_person(
 ) -> None:  # pragma: no cover
     """Delete person
 
-    Docs: https://api.immich.app/endpoints/people/deletePerson
+    [link=https://api.immich.app/endpoints/people/deletePerson]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -114,7 +114,7 @@ def get_all_people(
 ) -> None:  # pragma: no cover
     """Get all people
 
-    Docs: https://api.immich.app/endpoints/people/getAllPeople
+    [link=https://api.immich.app/endpoints/people/getAllPeople]Immich API documentation[/link]
     """
     kwargs = {}
     if closest_asset_id is not None:
@@ -139,7 +139,7 @@ def get_person(
 ) -> None:  # pragma: no cover
     """Get a person
 
-    Docs: https://api.immich.app/endpoints/people/getPerson
+    [link=https://api.immich.app/endpoints/people/getPerson]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -155,7 +155,7 @@ def get_person_statistics(
 ) -> None:  # pragma: no cover
     """Get person statistics
 
-    Docs: https://api.immich.app/endpoints/people/getPersonStatistics
+    [link=https://api.immich.app/endpoints/people/getPersonStatistics]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -171,7 +171,7 @@ def get_person_thumbnail(
 ) -> None:  # pragma: no cover
     """Get person thumbnail
 
-    Docs: https://api.immich.app/endpoints/people/getPersonThumbnail
+    [link=https://api.immich.app/endpoints/people/getPersonThumbnail]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -188,7 +188,7 @@ def merge_person(
 ) -> None:  # pragma: no cover
     """Merge people
 
-    Docs: https://api.immich.app/endpoints/people/mergePerson
+    [link=https://api.immich.app/endpoints/people/mergePerson]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -209,7 +209,7 @@ def reassign_faces(
 ) -> None:  # pragma: no cover
     """Reassign faces
 
-    Docs: https://api.immich.app/endpoints/people/reassignFaces
+    [link=https://api.immich.app/endpoints/people/reassignFaces]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -230,7 +230,7 @@ def update_people(
 ) -> None:  # pragma: no cover
     """Update people
 
-    Docs: https://api.immich.app/endpoints/people/updatePeople
+    [link=https://api.immich.app/endpoints/people/updatePeople]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -269,7 +269,7 @@ Note: the mobile app cannot currently set the birth date to null.""",
 ) -> None:  # pragma: no cover
     """Update person
 
-    Docs: https://api.immich.app/endpoints/people/updatePerson
+    [link=https://api.immich.app/endpoints/people/updatePerson]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}

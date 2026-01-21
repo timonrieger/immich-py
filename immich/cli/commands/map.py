@@ -13,7 +13,7 @@ from immich.cli.runtime import print_response, run_command
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""Map endpoints include supplemental functionality related to geolocation, such as reverse geocoding and retrieving map markers for assets with geolocation data.\n\nDocs: https://api.immich.app/endpoints/map"""
+    help="""Map endpoints include supplemental functionality related to geolocation, such as reverse geocoding and retrieving map markers for assets with geolocation data.\n\n[link=https://api.immich.app/endpoints/map]Immich API documentation[/link]"""
 )
 
 
@@ -41,7 +41,7 @@ def get_map_markers(
 ) -> None:  # pragma: no cover
     """Retrieve map markers
 
-    Docs: https://api.immich.app/endpoints/map/getMapMarkers
+    [link=https://api.immich.app/endpoints/map/getMapMarkers]Immich API documentation[/link]
     """
     kwargs = {}
     if file_created_after is not None:
@@ -69,7 +69,7 @@ def reverse_geocode(
 ) -> None:  # pragma: no cover
     """Reverse geocode coordinates
 
-    Docs: https://api.immich.app/endpoints/map/reverseGeocode
+    [link=https://api.immich.app/endpoints/map/reverseGeocode]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["lat"] = lat

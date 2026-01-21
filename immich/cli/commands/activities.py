@@ -12,7 +12,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""An activity is a like or a comment made by a user on an asset or album.\n\nDocs: https://api.immich.app/endpoints/activities"""
+    help="""An activity is a like or a comment made by a user on an asset or album.\n\n[link=https://api.immich.app/endpoints/activities]Immich API documentation[/link]"""
 )
 
 
@@ -26,7 +26,7 @@ def create_activity(
 ) -> None:  # pragma: no cover
     """Create an activity
 
-    Docs: https://api.immich.app/endpoints/activities/createActivity
+    [link=https://api.immich.app/endpoints/activities/createActivity]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -50,7 +50,7 @@ def delete_activity(
 ) -> None:  # pragma: no cover
     """Delete an activity
 
-    Docs: https://api.immich.app/endpoints/activities/deleteActivity
+    [link=https://api.immich.app/endpoints/activities/deleteActivity]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -70,7 +70,7 @@ def get_activities(
 ) -> None:  # pragma: no cover
     """List all activities
 
-    Docs: https://api.immich.app/endpoints/activities/getActivities
+    [link=https://api.immich.app/endpoints/activities/getActivities]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["album_id"] = album_id
@@ -97,7 +97,7 @@ def get_activity_statistics(
 ) -> None:  # pragma: no cover
     """Retrieve activity statistics
 
-    Docs: https://api.immich.app/endpoints/activities/getActivityStatistics
+    [link=https://api.immich.app/endpoints/activities/getActivityStatistics]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["album_id"] = album_id

@@ -15,7 +15,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""An asset is an image or video that has been uploaded to Immich.\n\nDocs: https://api.immich.app/endpoints/assets"""
+    help="""An asset is an image or video that has been uploaded to Immich.\n\n[link=https://api.immich.app/endpoints/assets]Immich API documentation[/link]"""
 )
 
 
@@ -26,7 +26,7 @@ def check_bulk_upload(
 ) -> None:  # pragma: no cover
     """Check bulk upload
 
-    Docs: https://api.immich.app/endpoints/assets/checkBulkUpload
+    [link=https://api.immich.app/endpoints/assets/checkBulkUpload]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -47,7 +47,7 @@ def check_existing_assets(
 ) -> None:  # pragma: no cover
     """Check existing assets
 
-    Docs: https://api.immich.app/endpoints/assets/checkExistingAssets
+    [link=https://api.immich.app/endpoints/assets/checkExistingAssets]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -81,7 +81,7 @@ def copy_asset(
 ) -> None:  # pragma: no cover
     """Copy asset
 
-    Docs: https://api.immich.app/endpoints/assets/copyAsset
+    [link=https://api.immich.app/endpoints/assets/copyAsset]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -112,7 +112,7 @@ def delete_asset_metadata(
 ) -> None:  # pragma: no cover
     """Delete asset metadata by key
 
-    Docs: https://api.immich.app/endpoints/assets/deleteAssetMetadata
+    [link=https://api.immich.app/endpoints/assets/deleteAssetMetadata]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -130,7 +130,7 @@ def delete_assets(
 ) -> None:  # pragma: no cover
     """Delete assets
 
-    Docs: https://api.immich.app/endpoints/assets/deleteAssets
+    [link=https://api.immich.app/endpoints/assets/deleteAssets]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -153,7 +153,7 @@ def delete_bulk_asset_metadata(
 ) -> None:  # pragma: no cover
     """Delete asset metadata
 
-    Docs: https://api.immich.app/endpoints/assets/deleteBulkAssetMetadata
+    [link=https://api.immich.app/endpoints/assets/deleteBulkAssetMetadata]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -182,7 +182,7 @@ def download_asset(
 ) -> None:  # pragma: no cover
     """Download original asset
 
-    Docs: https://api.immich.app/endpoints/assets/downloadAsset
+    [link=https://api.immich.app/endpoints/assets/downloadAsset]Immich API documentation[/link]
     """
     kwargs = {}
     if edited is not None:
@@ -211,7 +211,7 @@ As a JSON string""",
 ) -> None:  # pragma: no cover
     """Apply edits to an existing asset
 
-    Docs: https://api.immich.app/endpoints/assets/editAsset
+    [link=https://api.immich.app/endpoints/assets/editAsset]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -234,7 +234,7 @@ def get_all_user_assets_by_device_id(
 ) -> None:  # pragma: no cover
     """Retrieve assets by device ID
 
-    Docs: https://api.immich.app/endpoints/assets/getAllUserAssetsByDeviceId
+    [link=https://api.immich.app/endpoints/assets/getAllUserAssetsByDeviceId]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["device_id"] = device_id
@@ -252,7 +252,7 @@ def get_asset_edits(
 ) -> None:  # pragma: no cover
     """Retrieve edits for an existing asset
 
-    Docs: https://api.immich.app/endpoints/assets/getAssetEdits
+    [link=https://api.immich.app/endpoints/assets/getAssetEdits]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -270,7 +270,7 @@ def get_asset_info(
 ) -> None:  # pragma: no cover
     """Retrieve an asset
 
-    Docs: https://api.immich.app/endpoints/assets/getAssetInfo
+    [link=https://api.immich.app/endpoints/assets/getAssetInfo]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -290,7 +290,7 @@ def get_asset_metadata(
 ) -> None:  # pragma: no cover
     """Get asset metadata
 
-    Docs: https://api.immich.app/endpoints/assets/getAssetMetadata
+    [link=https://api.immich.app/endpoints/assets/getAssetMetadata]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -309,7 +309,7 @@ def get_asset_metadata_by_key(
 ) -> None:  # pragma: no cover
     """Retrieve asset metadata by key
 
-    Docs: https://api.immich.app/endpoints/assets/getAssetMetadataByKey
+    [link=https://api.immich.app/endpoints/assets/getAssetMetadataByKey]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -328,7 +328,7 @@ def get_asset_ocr(
 ) -> None:  # pragma: no cover
     """Retrieve asset OCR data
 
-    Docs: https://api.immich.app/endpoints/assets/getAssetOcr
+    [link=https://api.immich.app/endpoints/assets/getAssetOcr]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -352,7 +352,7 @@ def get_asset_statistics(
 ) -> None:  # pragma: no cover
     """Get asset statistics
 
-    Docs: https://api.immich.app/endpoints/assets/getAssetStatistics
+    [link=https://api.immich.app/endpoints/assets/getAssetStatistics]Immich API documentation[/link]
     """
     kwargs = {}
     if is_favorite is not None:
@@ -373,7 +373,7 @@ def get_random(
 ) -> None:  # pragma: no cover
     """Get random assets
 
-    Docs: https://api.immich.app/endpoints/assets/getRandom
+    [link=https://api.immich.app/endpoints/assets/getRandom]Immich API documentation[/link]
     """
     kwargs = {}
     if count is not None:
@@ -392,7 +392,7 @@ def play_asset_video(
 ) -> None:  # pragma: no cover
     """Play asset video
 
-    Docs: https://api.immich.app/endpoints/assets/playAssetVideo
+    [link=https://api.immich.app/endpoints/assets/playAssetVideo]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -412,7 +412,7 @@ def remove_asset_edits(
 ) -> None:  # pragma: no cover
     """Remove edits from an existing asset
 
-    Docs: https://api.immich.app/endpoints/assets/removeAssetEdits
+    [link=https://api.immich.app/endpoints/assets/removeAssetEdits]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -437,7 +437,7 @@ def replace_asset(
 ) -> None:  # pragma: no cover
     """Replace asset
 
-    Docs: https://api.immich.app/endpoints/assets/replaceAsset
+    [link=https://api.immich.app/endpoints/assets/replaceAsset]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -470,7 +470,7 @@ def run_asset_jobs(
 ) -> None:  # pragma: no cover
     """Run an asset job
 
-    Docs: https://api.immich.app/endpoints/assets/runAssetJobs
+    [link=https://api.immich.app/endpoints/assets/runAssetJobs]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -504,7 +504,7 @@ def update_asset(
 ) -> None:  # pragma: no cover
     """Update an asset
 
-    Docs: https://api.immich.app/endpoints/assets/updateAsset
+    [link=https://api.immich.app/endpoints/assets/updateAsset]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -540,7 +540,7 @@ def update_asset_metadata(
 ) -> None:  # pragma: no cover
     """Update asset metadata
 
-    Docs: https://api.immich.app/endpoints/assets/updateAssetMetadata
+    [link=https://api.immich.app/endpoints/assets/updateAssetMetadata]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -577,7 +577,7 @@ def update_assets(
 ) -> None:  # pragma: no cover
     """Update assets
 
-    Docs: https://api.immich.app/endpoints/assets/updateAssets
+    [link=https://api.immich.app/endpoints/assets/updateAssets]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -618,7 +618,7 @@ def update_bulk_asset_metadata(
 ) -> None:  # pragma: no cover
     """Upsert asset metadata
 
-    Docs: https://api.immich.app/endpoints/assets/updateBulkAssetMetadata
+    [link=https://api.immich.app/endpoints/assets/updateBulkAssetMetadata]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -668,7 +668,7 @@ def upload_asset(
 ) -> None:  # pragma: no cover
     """Upload asset
 
-    Docs: https://api.immich.app/endpoints/assets/uploadAsset
+    [link=https://api.immich.app/endpoints/assets/uploadAsset]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -720,7 +720,7 @@ def view_asset(
 ) -> None:  # pragma: no cover
     """View asset thumbnail
 
-    Docs: https://api.immich.app/endpoints/assets/viewAsset
+    [link=https://api.immich.app/endpoints/assets/viewAsset]Immich API documentation[/link]
     """
     kwargs = {}
     if edited is not None:

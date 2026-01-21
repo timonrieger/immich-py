@@ -12,7 +12,7 @@ from immich.cli.runtime import print_response, run_command
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""A plugin is an installed module that makes filters and actions available for the workflow feature.\n\nDocs: https://api.immich.app/endpoints/plugins"""
+    help="""A plugin is an installed module that makes filters and actions available for the workflow feature.\n\n[link=https://api.immich.app/endpoints/plugins]Immich API documentation[/link]"""
 )
 
 
@@ -23,7 +23,7 @@ def get_plugin(
 ) -> None:  # pragma: no cover
     """Retrieve a plugin
 
-    Docs: https://api.immich.app/endpoints/plugins/getPlugin
+    [link=https://api.immich.app/endpoints/plugins/getPlugin]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -38,7 +38,7 @@ def get_plugin_triggers(
 ) -> None:  # pragma: no cover
     """List all plugin triggers
 
-    Docs: https://api.immich.app/endpoints/plugins/getPluginTriggers
+    [link=https://api.immich.app/endpoints/plugins/getPluginTriggers]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -52,7 +52,7 @@ def get_plugins(
 ) -> None:  # pragma: no cover
     """List all plugins
 
-    Docs: https://api.immich.app/endpoints/plugins/getPlugins
+    [link=https://api.immich.app/endpoints/plugins/getPlugins]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]

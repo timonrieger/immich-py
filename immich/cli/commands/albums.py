@@ -13,7 +13,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""An album is a collection of assets that can be shared with other users or via shared links.\n\nDocs: https://api.immich.app/endpoints/albums"""
+    help="""An album is a collection of assets that can be shared with other users or via shared links.\n\n[link=https://api.immich.app/endpoints/albums]Immich API documentation[/link]"""
 )
 
 
@@ -27,7 +27,7 @@ def add_assets_to_album(
 ) -> None:  # pragma: no cover
     """Add assets to an album
 
-    Docs: https://api.immich.app/endpoints/albums/addAssetsToAlbum
+    [link=https://api.immich.app/endpoints/albums/addAssetsToAlbum]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -54,7 +54,7 @@ def add_assets_to_albums(
 ) -> None:  # pragma: no cover
     """Add assets to albums
 
-    Docs: https://api.immich.app/endpoints/albums/addAssetsToAlbums
+    [link=https://api.immich.app/endpoints/albums/addAssetsToAlbums]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -81,7 +81,7 @@ def add_users_to_album(
 ) -> None:  # pragma: no cover
     """Share album with users
 
-    Docs: https://api.immich.app/endpoints/albums/addUsersToAlbum
+    [link=https://api.immich.app/endpoints/albums/addUsersToAlbum]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -107,7 +107,7 @@ def create_album(
 ) -> None:  # pragma: no cover
     """Create an album
 
-    Docs: https://api.immich.app/endpoints/albums/createAlbum
+    [link=https://api.immich.app/endpoints/albums/createAlbum]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -133,7 +133,7 @@ def delete_album(
 ) -> None:  # pragma: no cover
     """Delete an album
 
-    Docs: https://api.immich.app/endpoints/albums/deleteAlbum
+    [link=https://api.immich.app/endpoints/albums/deleteAlbum]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -154,7 +154,7 @@ def get_album_info(
 ) -> None:  # pragma: no cover
     """Retrieve an album
 
-    Docs: https://api.immich.app/endpoints/albums/getAlbumInfo
+    [link=https://api.immich.app/endpoints/albums/getAlbumInfo]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -175,7 +175,7 @@ def get_album_statistics(
 ) -> None:  # pragma: no cover
     """Retrieve album statistics
 
-    Docs: https://api.immich.app/endpoints/albums/getAlbumStatistics
+    [link=https://api.immich.app/endpoints/albums/getAlbumStatistics]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -199,7 +199,7 @@ undefined: get all albums""",
 ) -> None:  # pragma: no cover
     """List all albums
 
-    Docs: https://api.immich.app/endpoints/albums/getAllAlbums
+    [link=https://api.immich.app/endpoints/albums/getAllAlbums]Immich API documentation[/link]
     """
     kwargs = {}
     if asset_id is not None:
@@ -221,7 +221,7 @@ def remove_asset_from_album(
 ) -> None:  # pragma: no cover
     """Remove assets from an album
 
-    Docs: https://api.immich.app/endpoints/albums/removeAssetFromAlbum
+    [link=https://api.immich.app/endpoints/albums/removeAssetFromAlbum]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -244,7 +244,7 @@ def remove_user_from_album(
 ) -> None:  # pragma: no cover
     """Remove user from album
 
-    Docs: https://api.immich.app/endpoints/albums/removeUserFromAlbum
+    [link=https://api.immich.app/endpoints/albums/removeUserFromAlbum]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -270,7 +270,7 @@ def update_album_info(
 ) -> None:  # pragma: no cover
     """Update an album
 
-    Docs: https://api.immich.app/endpoints/albums/updateAlbumInfo
+    [link=https://api.immich.app/endpoints/albums/updateAlbumInfo]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -303,7 +303,7 @@ def update_album_user(
 ) -> None:  # pragma: no cover
     """Update user role
 
-    Docs: https://api.immich.app/endpoints/albums/updateAlbumUser
+    [link=https://api.immich.app/endpoints/albums/updateAlbumUser]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}

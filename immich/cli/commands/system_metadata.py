@@ -12,7 +12,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""Endpoints to view, modify, and validate the system metadata, which includes information about things like admin onboarding status.\n\nDocs: https://api.immich.app/endpoints/system-metadata"""
+    help="""Endpoints to view, modify, and validate the system metadata, which includes information about things like admin onboarding status.\n\n[link=https://api.immich.app/endpoints/system-metadata]Immich API documentation[/link]"""
 )
 
 
@@ -22,7 +22,7 @@ def get_admin_onboarding(
 ) -> None:  # pragma: no cover
     """Retrieve admin onboarding
 
-    Docs: https://api.immich.app/endpoints/system-metadata/getAdminOnboarding
+    [link=https://api.immich.app/endpoints/system-metadata/getAdminOnboarding]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -40,7 +40,7 @@ def get_reverse_geocoding_state(
 ) -> None:  # pragma: no cover
     """Retrieve reverse geocoding state
 
-    Docs: https://api.immich.app/endpoints/system-metadata/getReverseGeocodingState
+    [link=https://api.immich.app/endpoints/system-metadata/getReverseGeocodingState]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -58,7 +58,7 @@ def get_version_check_state(
 ) -> None:  # pragma: no cover
     """Retrieve version check state
 
-    Docs: https://api.immich.app/endpoints/system-metadata/getVersionCheckState
+    [link=https://api.immich.app/endpoints/system-metadata/getVersionCheckState]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -77,7 +77,7 @@ def update_admin_onboarding(
 ) -> None:  # pragma: no cover
     """Update admin onboarding
 
-    Docs: https://api.immich.app/endpoints/system-metadata/updateAdminOnboarding
+    [link=https://api.immich.app/endpoints/system-metadata/updateAdminOnboarding]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}

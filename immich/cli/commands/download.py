@@ -12,7 +12,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""Endpoints for downloading assets or collections of assets.\n\nDocs: https://api.immich.app/endpoints/download"""
+    help="""Endpoints for downloading assets or collections of assets.\n\n[link=https://api.immich.app/endpoints/download]Immich API documentation[/link]"""
 )
 
 
@@ -25,7 +25,7 @@ def download_archive(
 ) -> None:  # pragma: no cover
     """Download asset archive
 
-    Docs: https://api.immich.app/endpoints/download/downloadArchive
+    [link=https://api.immich.app/endpoints/download/downloadArchive]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -53,7 +53,7 @@ def get_download_info(
 ) -> None:  # pragma: no cover
     """Retrieve download information
 
-    Docs: https://api.immich.app/endpoints/download/getDownloadInfo
+    [link=https://api.immich.app/endpoints/download/getDownloadInfo]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}

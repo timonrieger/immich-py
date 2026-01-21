@@ -12,7 +12,7 @@ from immich.cli.runtime import print_response, run_command
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""Endpoints for specialized views, such as the folder view.\n\nDocs: https://api.immich.app/endpoints/views"""
+    help="""Endpoints for specialized views, such as the folder view.\n\n[link=https://api.immich.app/endpoints/views]Immich API documentation[/link]"""
 )
 
 
@@ -25,7 +25,7 @@ def get_assets_by_original_path(
 ) -> None:  # pragma: no cover
     """Retrieve assets by original path
 
-    Docs: https://api.immich.app/endpoints/views/getAssetsByOriginalPath
+    [link=https://api.immich.app/endpoints/views/getAssetsByOriginalPath]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["path"] = path
@@ -44,7 +44,7 @@ def get_unique_original_paths(
 ) -> None:  # pragma: no cover
     """Retrieve unique paths
 
-    Docs: https://api.immich.app/endpoints/views/getUniqueOriginalPaths
+    [link=https://api.immich.app/endpoints/views/getUniqueOriginalPaths]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]

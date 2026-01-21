@@ -12,7 +12,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""A partner is a link with another user that allows sharing of assets between two users.\n\nDocs: https://api.immich.app/endpoints/partners"""
+    help="""A partner is a link with another user that allows sharing of assets between two users.\n\n[link=https://api.immich.app/endpoints/partners]Immich API documentation[/link]"""
 )
 
 
@@ -23,7 +23,7 @@ def create_partner(
 ) -> None:  # pragma: no cover
     """Create a partner
 
-    Docs: https://api.immich.app/endpoints/partners/createPartner
+    [link=https://api.immich.app/endpoints/partners/createPartner]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -44,7 +44,7 @@ def create_partner_deprecated(
 ) -> None:  # pragma: no cover
     """Create a partner
 
-    Docs: https://api.immich.app/endpoints/partners/createPartnerDeprecated
+    [link=https://api.immich.app/endpoints/partners/createPartnerDeprecated]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -62,7 +62,7 @@ def get_partners(
 ) -> None:  # pragma: no cover
     """Retrieve partners
 
-    Docs: https://api.immich.app/endpoints/partners/getPartners
+    [link=https://api.immich.app/endpoints/partners/getPartners]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["direction"] = direction
@@ -78,7 +78,7 @@ def remove_partner(
 ) -> None:  # pragma: no cover
     """Remove a partner
 
-    Docs: https://api.immich.app/endpoints/partners/removePartner
+    [link=https://api.immich.app/endpoints/partners/removePartner]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -95,7 +95,7 @@ def update_partner(
 ) -> None:  # pragma: no cover
     """Update a partner
 
-    Docs: https://api.immich.app/endpoints/partners/updatePartner
+    [link=https://api.immich.app/endpoints/partners/updatePartner]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}

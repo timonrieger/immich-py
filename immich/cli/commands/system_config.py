@@ -12,7 +12,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""Endpoints to view, modify, and validate the system configuration settings.\n\nDocs: https://api.immich.app/endpoints/system-config"""
+    help="""Endpoints to view, modify, and validate the system configuration settings.\n\n[link=https://api.immich.app/endpoints/system-config]Immich API documentation[/link]"""
 )
 
 
@@ -22,7 +22,7 @@ def get_config(
 ) -> None:  # pragma: no cover
     """Get system configuration
 
-    Docs: https://api.immich.app/endpoints/system-config/getConfig
+    [link=https://api.immich.app/endpoints/system-config/getConfig]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -36,7 +36,7 @@ def get_config_defaults(
 ) -> None:  # pragma: no cover
     """Get system configuration defaults
 
-    Docs: https://api.immich.app/endpoints/system-config/getConfigDefaults
+    [link=https://api.immich.app/endpoints/system-config/getConfigDefaults]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -54,7 +54,7 @@ def get_storage_template_options(
 ) -> None:  # pragma: no cover
     """Get storage template options
 
-    Docs: https://api.immich.app/endpoints/system-config/getStorageTemplateOptions
+    [link=https://api.immich.app/endpoints/system-config/getStorageTemplateOptions]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -394,7 +394,7 @@ def update_config(
 ) -> None:  # pragma: no cover
     """Update system configuration
 
-    Docs: https://api.immich.app/endpoints/system-config/updateConfig
+    [link=https://api.immich.app/endpoints/system-config/updateConfig]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}

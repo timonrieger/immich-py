@@ -13,7 +13,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""Endpoints related to searching assets via text, smart search, optical character recognition (OCR), and other filters like person, album, and other metadata. Search endpoints usually support pagination and sorting.\n\nDocs: https://api.immich.app/endpoints/search"""
+    help="""Endpoints related to searching assets via text, smart search, optical character recognition (OCR), and other filters like person, album, and other metadata. Search endpoints usually support pagination and sorting.\n\n[link=https://api.immich.app/endpoints/search]Immich API documentation[/link]"""
 )
 
 
@@ -23,7 +23,7 @@ def get_assets_by_city(
 ) -> None:  # pragma: no cover
     """Retrieve assets by city
 
-    Docs: https://api.immich.app/endpoints/search/getAssetsByCity
+    [link=https://api.immich.app/endpoints/search/getAssetsByCity]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -37,7 +37,7 @@ def get_explore_data(
 ) -> None:  # pragma: no cover
     """Retrieve explore data
 
-    Docs: https://api.immich.app/endpoints/search/getExploreData
+    [link=https://api.immich.app/endpoints/search/getExploreData]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -60,7 +60,7 @@ def get_search_suggestions(
 ) -> None:  # pragma: no cover
     """Retrieve search suggestions
 
-    Docs: https://api.immich.app/endpoints/search/getSearchSuggestions
+    [link=https://api.immich.app/endpoints/search/getSearchSuggestions]Immich API documentation[/link]
     """
     kwargs = {}
     if country is not None:
@@ -134,7 +134,7 @@ def search_asset_statistics(
 ) -> None:  # pragma: no cover
     """Search asset statistics
 
-    Docs: https://api.immich.app/endpoints/search/searchAssetStatistics
+    [link=https://api.immich.app/endpoints/search/searchAssetStatistics]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -283,7 +283,7 @@ def search_assets(
 ) -> None:  # pragma: no cover
     """Search assets by metadata
 
-    Docs: https://api.immich.app/endpoints/search/searchAssets
+    [link=https://api.immich.app/endpoints/search/searchAssets]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -444,7 +444,7 @@ def search_large_assets(
 ) -> None:  # pragma: no cover
     """Search large assets
 
-    Docs: https://api.immich.app/endpoints/search/searchLargeAssets
+    [link=https://api.immich.app/endpoints/search/searchLargeAssets]Immich API documentation[/link]
     """
     kwargs = {}
     if album_ids is not None:
@@ -526,7 +526,7 @@ def search_person(
 ) -> None:  # pragma: no cover
     """Search people
 
-    Docs: https://api.immich.app/endpoints/search/searchPerson
+    [link=https://api.immich.app/endpoints/search/searchPerson]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["name"] = name
@@ -544,7 +544,7 @@ def search_places(
 ) -> None:  # pragma: no cover
     """Search places
 
-    Docs: https://api.immich.app/endpoints/search/searchPlaces
+    [link=https://api.immich.app/endpoints/search/searchPlaces]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["name"] = name
@@ -616,7 +616,7 @@ def search_random(
 ) -> None:  # pragma: no cover
     """Search random assets
 
-    Docs: https://api.immich.app/endpoints/search/searchRandom
+    [link=https://api.immich.app/endpoints/search/searchRandom]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -754,7 +754,7 @@ def search_smart(
 ) -> None:  # pragma: no cover
     """Smart asset search
 
-    Docs: https://api.immich.app/endpoints/search/searchSmart
+    [link=https://api.immich.app/endpoints/search/searchSmart]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}

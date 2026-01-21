@@ -12,7 +12,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""Endpoints related to user authentication, including OAuth.\n\nDocs: https://api.immich.app/endpoints/authentication"""
+    help="""Endpoints related to user authentication, including OAuth.\n\n[link=https://api.immich.app/endpoints/authentication]Immich API documentation[/link]"""
 )
 
 
@@ -29,7 +29,7 @@ def change_password(
 ) -> None:  # pragma: no cover
     """Change password
 
-    Docs: https://api.immich.app/endpoints/authentication/changePassword
+    [link=https://api.immich.app/endpoints/authentication/changePassword]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -57,7 +57,7 @@ def change_pin_code(
 ) -> None:  # pragma: no cover
     """Change pin code
 
-    Docs: https://api.immich.app/endpoints/authentication/changePinCode
+    [link=https://api.immich.app/endpoints/authentication/changePinCode]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -84,7 +84,7 @@ def finish_o_auth(
 ) -> None:  # pragma: no cover
     """Finish OAuth
 
-    Docs: https://api.immich.app/endpoints/authentication/finishOAuth
+    [link=https://api.immich.app/endpoints/authentication/finishOAuth]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -106,7 +106,7 @@ def get_auth_status(
 ) -> None:  # pragma: no cover
     """Retrieve auth status
 
-    Docs: https://api.immich.app/endpoints/authentication/getAuthStatus
+    [link=https://api.immich.app/endpoints/authentication/getAuthStatus]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -125,7 +125,7 @@ def link_o_auth_account(
 ) -> None:  # pragma: no cover
     """Link OAuth account
 
-    Docs: https://api.immich.app/endpoints/authentication/linkOAuthAccount
+    [link=https://api.immich.app/endpoints/authentication/linkOAuthAccount]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -149,7 +149,7 @@ def lock_auth_session(
 ) -> None:  # pragma: no cover
     """Lock auth session
 
-    Docs: https://api.immich.app/endpoints/authentication/lockAuthSession
+    [link=https://api.immich.app/endpoints/authentication/lockAuthSession]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -167,7 +167,7 @@ def login(
 ) -> None:  # pragma: no cover
     """Login
 
-    Docs: https://api.immich.app/endpoints/authentication/login
+    [link=https://api.immich.app/endpoints/authentication/login]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -186,7 +186,7 @@ def logout(
 ) -> None:  # pragma: no cover
     """Logout
 
-    Docs: https://api.immich.app/endpoints/authentication/logout
+    [link=https://api.immich.app/endpoints/authentication/logout]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -202,7 +202,7 @@ def redirect_o_auth_to_mobile(
 ) -> None:  # pragma: no cover
     """Redirect OAuth to mobile
 
-    Docs: https://api.immich.app/endpoints/authentication/redirectOAuthToMobile
+    [link=https://api.immich.app/endpoints/authentication/redirectOAuthToMobile]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -220,7 +220,7 @@ def reset_pin_code(
 ) -> None:  # pragma: no cover
     """Reset pin code
 
-    Docs: https://api.immich.app/endpoints/authentication/resetPinCode
+    [link=https://api.immich.app/endpoints/authentication/resetPinCode]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -242,7 +242,7 @@ def setup_pin_code(
 ) -> None:  # pragma: no cover
     """Setup pin code
 
-    Docs: https://api.immich.app/endpoints/authentication/setupPinCode
+    [link=https://api.immich.app/endpoints/authentication/setupPinCode]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -263,7 +263,7 @@ def sign_up_admin(
 ) -> None:  # pragma: no cover
     """Register admin
 
-    Docs: https://api.immich.app/endpoints/authentication/signUpAdmin
+    [link=https://api.immich.app/endpoints/authentication/signUpAdmin]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -286,7 +286,7 @@ def start_o_auth(
 ) -> None:  # pragma: no cover
     """Start OAuth
 
-    Docs: https://api.immich.app/endpoints/authentication/startOAuth
+    [link=https://api.immich.app/endpoints/authentication/startOAuth]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -308,7 +308,7 @@ def unlink_o_auth_account(
 ) -> None:  # pragma: no cover
     """Unlink OAuth account
 
-    Docs: https://api.immich.app/endpoints/authentication/unlinkOAuthAccount
+    [link=https://api.immich.app/endpoints/authentication/unlinkOAuthAccount]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -326,7 +326,7 @@ def unlock_auth_session(
 ) -> None:  # pragma: no cover
     """Unlock auth session
 
-    Docs: https://api.immich.app/endpoints/authentication/unlockAuthSession
+    [link=https://api.immich.app/endpoints/authentication/unlockAuthSession]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -349,7 +349,7 @@ def validate_access_token(
 ) -> None:  # pragma: no cover
     """Validate access token
 
-    Docs: https://api.immich.app/endpoints/authentication/validateAccessToken
+    [link=https://api.immich.app/endpoints/authentication/validateAccessToken]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]

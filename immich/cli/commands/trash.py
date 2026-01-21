@@ -12,7 +12,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""Endpoints for managing the trash can, which includes assets that have been discarded. Items in the trash are automatically deleted after a configured amount of time.\n\nDocs: https://api.immich.app/endpoints/trash"""
+    help="""Endpoints for managing the trash can, which includes assets that have been discarded. Items in the trash are automatically deleted after a configured amount of time.\n\n[link=https://api.immich.app/endpoints/trash]Immich API documentation[/link]"""
 )
 
 
@@ -22,7 +22,7 @@ def empty_trash(
 ) -> None:  # pragma: no cover
     """Empty trash
 
-    Docs: https://api.immich.app/endpoints/trash/emptyTrash
+    [link=https://api.immich.app/endpoints/trash/emptyTrash]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -37,7 +37,7 @@ def restore_assets(
 ) -> None:  # pragma: no cover
     """Restore assets
 
-    Docs: https://api.immich.app/endpoints/trash/restoreAssets
+    [link=https://api.immich.app/endpoints/trash/restoreAssets]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -55,7 +55,7 @@ def restore_trash(
 ) -> None:  # pragma: no cover
     """Restore trash
 
-    Docs: https://api.immich.app/endpoints/trash/restoreTrash
+    [link=https://api.immich.app/endpoints/trash/restoreTrash]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]

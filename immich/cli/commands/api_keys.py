@@ -12,7 +12,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""An api key can be used to programmatically access the Immich API.\n\nDocs: https://api.immich.app/endpoints/api-keys"""
+    help="""An api key can be used to programmatically access the Immich API.\n\n[link=https://api.immich.app/endpoints/api-keys]Immich API documentation[/link]"""
 )
 
 
@@ -24,7 +24,7 @@ def create_api_key(
 ) -> None:  # pragma: no cover
     """Create an API key
 
-    Docs: https://api.immich.app/endpoints/api-keys/createApiKey
+    [link=https://api.immich.app/endpoints/api-keys/createApiKey]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -45,7 +45,7 @@ def delete_api_key(
 ) -> None:  # pragma: no cover
     """Delete an API key
 
-    Docs: https://api.immich.app/endpoints/api-keys/deleteApiKey
+    [link=https://api.immich.app/endpoints/api-keys/deleteApiKey]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -61,7 +61,7 @@ def get_api_key(
 ) -> None:  # pragma: no cover
     """Retrieve an API key
 
-    Docs: https://api.immich.app/endpoints/api-keys/getApiKey
+    [link=https://api.immich.app/endpoints/api-keys/getApiKey]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -76,7 +76,7 @@ def get_api_keys(
 ) -> None:  # pragma: no cover
     """List all API keys
 
-    Docs: https://api.immich.app/endpoints/api-keys/getApiKeys
+    [link=https://api.immich.app/endpoints/api-keys/getApiKeys]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -90,7 +90,7 @@ def get_my_api_key(
 ) -> None:  # pragma: no cover
     """Retrieve the current API key
 
-    Docs: https://api.immich.app/endpoints/api-keys/getMyApiKey
+    [link=https://api.immich.app/endpoints/api-keys/getMyApiKey]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -109,7 +109,7 @@ def update_api_key(
 ) -> None:  # pragma: no cover
     """Update an API key
 
-    Docs: https://api.immich.app/endpoints/api-keys/updateApiKey
+    [link=https://api.immich.app/endpoints/api-keys/updateApiKey]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}

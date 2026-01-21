@@ -3,7 +3,7 @@
 **Usage**:
 
 ```console
-immich [OPTIONS] COMMAND [ARGS]...
+$ immich [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -68,7 +68,7 @@ Interactively set up a profile for the CLI to connect to an Immich server.
 **Usage**:
 
 ```console
-immich setup [OPTIONS]
+$ immich setup [OPTIONS]
 ```
 
 **Options**:
@@ -84,12 +84,12 @@ immich setup [OPTIONS]
 
 An api key can be used to programmatically access the Immich API.
 
-Docs: <https://api.immich.app/endpoints/api-keys>
+<a href="https://api.immich.app/endpoints/api-keys">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich api-keys [OPTIONS] COMMAND [ARGS]...
+$ immich api-keys [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -109,12 +109,12 @@ immich api-keys [OPTIONS] COMMAND [ARGS]...
 
 Create an API key
 
-Docs: <https://api.immich.app/endpoints/api-keys/createApiKey>
+<a href="https://api.immich.app/endpoints/api-keys/createApiKey">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich api-keys create-api-key [OPTIONS]
+$ immich api-keys create-api-key [OPTIONS]
 ```
 
 **Options**:
@@ -127,12 +127,12 @@ immich api-keys create-api-key [OPTIONS]
 
 Delete an API key
 
-Docs: <https://api.immich.app/endpoints/api-keys/deleteApiKey>
+<a href="https://api.immich.app/endpoints/api-keys/deleteApiKey">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich api-keys delete-api-key [OPTIONS] ID
+$ immich api-keys delete-api-key [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -147,12 +147,12 @@ immich api-keys delete-api-key [OPTIONS] ID
 
 Retrieve an API key
 
-Docs: <https://api.immich.app/endpoints/api-keys/getApiKey>
+<a href="https://api.immich.app/endpoints/api-keys/getApiKey">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich api-keys get-api-key [OPTIONS] ID
+$ immich api-keys get-api-key [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -167,12 +167,12 @@ immich api-keys get-api-key [OPTIONS] ID
 
 List all API keys
 
-Docs: <https://api.immich.app/endpoints/api-keys/getApiKeys>
+<a href="https://api.immich.app/endpoints/api-keys/getApiKeys">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich api-keys get-api-keys [OPTIONS]
+$ immich api-keys get-api-keys [OPTIONS]
 ```
 
 **Options**:
@@ -183,12 +183,12 @@ immich api-keys get-api-keys [OPTIONS]
 
 Retrieve the current API key
 
-Docs: <https://api.immich.app/endpoints/api-keys/getMyApiKey>
+<a href="https://api.immich.app/endpoints/api-keys/getMyApiKey">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich api-keys get-my-api-key [OPTIONS]
+$ immich api-keys get-my-api-key [OPTIONS]
 ```
 
 **Options**:
@@ -199,12 +199,12 @@ immich api-keys get-my-api-key [OPTIONS]
 
 Update an API key
 
-Docs: <https://api.immich.app/endpoints/api-keys/updateApiKey>
+<a href="https://api.immich.app/endpoints/api-keys/updateApiKey">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich api-keys update-api-key [OPTIONS] ID
+$ immich api-keys update-api-key [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -221,12 +221,12 @@ immich api-keys update-api-key [OPTIONS] ID
 
 An activity is a like or a comment made by a user on an asset or album.
 
-Docs: <https://api.immich.app/endpoints/activities>
+<a href="https://api.immich.app/endpoints/activities">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich activities [OPTIONS] COMMAND [ARGS]...
+$ immich activities [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -244,12 +244,12 @@ immich activities [OPTIONS] COMMAND [ARGS]...
 
 Create an activity
 
-Docs: <https://api.immich.app/endpoints/activities/createActivity>
+<a href="https://api.immich.app/endpoints/activities/createActivity">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich activities create-activity [OPTIONS]
+$ immich activities create-activity [OPTIONS]
 ```
 
 **Options**:
@@ -264,12 +264,12 @@ immich activities create-activity [OPTIONS]
 
 Delete an activity
 
-Docs: <https://api.immich.app/endpoints/activities/deleteActivity>
+<a href="https://api.immich.app/endpoints/activities/deleteActivity">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich activities delete-activity [OPTIONS] ID
+$ immich activities delete-activity [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -284,12 +284,12 @@ immich activities delete-activity [OPTIONS] ID
 
 List all activities
 
-Docs: <https://api.immich.app/endpoints/activities/getActivities>
+<a href="https://api.immich.app/endpoints/activities/getActivities">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich activities get-activities [OPTIONS]
+$ immich activities get-activities [OPTIONS]
 ```
 
 **Options**:
@@ -305,12 +305,12 @@ immich activities get-activities [OPTIONS]
 
 Retrieve activity statistics
 
-Docs: <https://api.immich.app/endpoints/activities/getActivityStatistics>
+<a href="https://api.immich.app/endpoints/activities/getActivityStatistics">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich activities get-activity-statistics [OPTIONS]
+$ immich activities get-activity-statistics [OPTIONS]
 ```
 
 **Options**:
@@ -323,12 +323,12 @@ immich activities get-activity-statistics [OPTIONS]
 
 An album is a collection of assets that can be shared with other users or via shared links.
 
-Docs: <https://api.immich.app/endpoints/albums>
+<a href="https://api.immich.app/endpoints/albums">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich albums [OPTIONS] COMMAND [ARGS]...
+$ immich albums [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -354,12 +354,12 @@ immich albums [OPTIONS] COMMAND [ARGS]...
 
 Add assets to an album
 
-Docs: <https://api.immich.app/endpoints/albums/addAssetsToAlbum>
+<a href="https://api.immich.app/endpoints/albums/addAssetsToAlbum">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich albums add-assets-to-album [OPTIONS] ID
+$ immich albums add-assets-to-album [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -377,12 +377,12 @@ immich albums add-assets-to-album [OPTIONS] ID
 
 Add assets to albums
 
-Docs: <https://api.immich.app/endpoints/albums/addAssetsToAlbums>
+<a href="https://api.immich.app/endpoints/albums/addAssetsToAlbums">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich albums add-assets-to-albums [OPTIONS]
+$ immich albums add-assets-to-albums [OPTIONS]
 ```
 
 **Options**:
@@ -397,12 +397,12 @@ immich albums add-assets-to-albums [OPTIONS]
 
 Share album with users
 
-Docs: <https://api.immich.app/endpoints/albums/addUsersToAlbum>
+<a href="https://api.immich.app/endpoints/albums/addUsersToAlbum">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich albums add-users-to-album [OPTIONS] ID
+$ immich albums add-users-to-album [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -418,12 +418,12 @@ immich albums add-users-to-album [OPTIONS] ID
 
 Create an album
 
-Docs: <https://api.immich.app/endpoints/albums/createAlbum>
+<a href="https://api.immich.app/endpoints/albums/createAlbum">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich albums create-album [OPTIONS]
+$ immich albums create-album [OPTIONS]
 ```
 
 **Options**:
@@ -438,12 +438,12 @@ immich albums create-album [OPTIONS]
 
 Delete an album
 
-Docs: <https://api.immich.app/endpoints/albums/deleteAlbum>
+<a href="https://api.immich.app/endpoints/albums/deleteAlbum">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich albums delete-album [OPTIONS] ID
+$ immich albums delete-album [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -458,12 +458,12 @@ immich albums delete-album [OPTIONS] ID
 
 Retrieve an album
 
-Docs: <https://api.immich.app/endpoints/albums/getAlbumInfo>
+<a href="https://api.immich.app/endpoints/albums/getAlbumInfo">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich albums get-album-info [OPTIONS] ID
+$ immich albums get-album-info [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -481,12 +481,12 @@ immich albums get-album-info [OPTIONS] ID
 
 Retrieve album statistics
 
-Docs: <https://api.immich.app/endpoints/albums/getAlbumStatistics>
+<a href="https://api.immich.app/endpoints/albums/getAlbumStatistics">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich albums get-album-statistics [OPTIONS]
+$ immich albums get-album-statistics [OPTIONS]
 ```
 
 **Options**:
@@ -497,12 +497,12 @@ immich albums get-album-statistics [OPTIONS]
 
 List all albums
 
-Docs: <https://api.immich.app/endpoints/albums/getAllAlbums>
+<a href="https://api.immich.app/endpoints/albums/getAllAlbums">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich albums get-all-albums [OPTIONS]
+$ immich albums get-all-albums [OPTIONS]
 ```
 
 **Options**:
@@ -517,12 +517,12 @@ undefined: get all albums
 
 Remove assets from an album
 
-Docs: <https://api.immich.app/endpoints/albums/removeAssetFromAlbum>
+<a href="https://api.immich.app/endpoints/albums/removeAssetFromAlbum">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich albums remove-asset-from-album [OPTIONS] ID
+$ immich albums remove-asset-from-album [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -538,12 +538,12 @@ immich albums remove-asset-from-album [OPTIONS] ID
 
 Remove user from album
 
-Docs: <https://api.immich.app/endpoints/albums/removeUserFromAlbum>
+<a href="https://api.immich.app/endpoints/albums/removeUserFromAlbum">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich albums remove-user-from-album [OPTIONS] ID USER_ID
+$ immich albums remove-user-from-album [OPTIONS] ID USER_ID
 ```
 
 **Arguments**:
@@ -559,12 +559,12 @@ immich albums remove-user-from-album [OPTIONS] ID USER_ID
 
 Update an album
 
-Docs: <https://api.immich.app/endpoints/albums/updateAlbumInfo>
+<a href="https://api.immich.app/endpoints/albums/updateAlbumInfo">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich albums update-album-info [OPTIONS] ID
+$ immich albums update-album-info [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -584,12 +584,12 @@ immich albums update-album-info [OPTIONS] ID
 
 Update user role
 
-Docs: <https://api.immich.app/endpoints/albums/updateAlbumUser>
+<a href="https://api.immich.app/endpoints/albums/updateAlbumUser">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich albums update-album-user [OPTIONS] ID USER_ID
+$ immich albums update-album-user [OPTIONS] ID USER_ID
 ```
 
 **Arguments**:
@@ -606,12 +606,12 @@ immich albums update-album-user [OPTIONS] ID USER_ID
 
 An asset is an image or video that has been uploaded to Immich.
 
-Docs: <https://api.immich.app/endpoints/assets>
+<a href="https://api.immich.app/endpoints/assets">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets [OPTIONS] COMMAND [ARGS]...
+$ immich assets [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -655,12 +655,12 @@ immich assets [OPTIONS] COMMAND [ARGS]...
 
 Check bulk upload
 
-Docs: <https://api.immich.app/endpoints/assets/checkBulkUpload>
+<a href="https://api.immich.app/endpoints/assets/checkBulkUpload">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets check-bulk-upload [OPTIONS]
+$ immich assets check-bulk-upload [OPTIONS]
 ```
 
 **Options**:
@@ -672,12 +672,12 @@ immich assets check-bulk-upload [OPTIONS]
 
 Check existing assets
 
-Docs: <https://api.immich.app/endpoints/assets/checkExistingAssets>
+<a href="https://api.immich.app/endpoints/assets/checkExistingAssets">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets check-existing-assets [OPTIONS]
+$ immich assets check-existing-assets [OPTIONS]
 ```
 
 **Options**:
@@ -690,12 +690,12 @@ immich assets check-existing-assets [OPTIONS]
 
 Copy asset
 
-Docs: <https://api.immich.app/endpoints/assets/copyAsset>
+<a href="https://api.immich.app/endpoints/assets/copyAsset">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets copy-asset [OPTIONS]
+$ immich assets copy-asset [OPTIONS]
 ```
 
 **Options**:
@@ -713,12 +713,12 @@ immich assets copy-asset [OPTIONS]
 
 Delete asset metadata by key
 
-Docs: <https://api.immich.app/endpoints/assets/deleteAssetMetadata>
+<a href="https://api.immich.app/endpoints/assets/deleteAssetMetadata">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets delete-asset-metadata [OPTIONS] ID KEY
+$ immich assets delete-asset-metadata [OPTIONS] ID KEY
 ```
 
 **Arguments**:
@@ -734,12 +734,12 @@ immich assets delete-asset-metadata [OPTIONS] ID KEY
 
 Delete assets
 
-Docs: <https://api.immich.app/endpoints/assets/deleteAssets>
+<a href="https://api.immich.app/endpoints/assets/deleteAssets">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets delete-assets [OPTIONS]
+$ immich assets delete-assets [OPTIONS]
 ```
 
 **Options**:
@@ -752,12 +752,12 @@ immich assets delete-assets [OPTIONS]
 
 Delete asset metadata
 
-Docs: <https://api.immich.app/endpoints/assets/deleteBulkAssetMetadata>
+<a href="https://api.immich.app/endpoints/assets/deleteBulkAssetMetadata">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets delete-bulk-asset-metadata [OPTIONS]
+$ immich assets delete-bulk-asset-metadata [OPTIONS]
 ```
 
 **Options**:
@@ -769,12 +769,12 @@ immich assets delete-bulk-asset-metadata [OPTIONS]
 
 Download original asset
 
-Docs: <https://api.immich.app/endpoints/assets/downloadAsset>
+<a href="https://api.immich.app/endpoints/assets/downloadAsset">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets download-asset [OPTIONS] ID
+$ immich assets download-asset [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -792,12 +792,12 @@ immich assets download-asset [OPTIONS] ID
 
 Apply edits to an existing asset
 
-Docs: <https://api.immich.app/endpoints/assets/editAsset>
+<a href="https://api.immich.app/endpoints/assets/editAsset">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets edit-asset [OPTIONS] ID
+$ immich assets edit-asset [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -809,19 +809,18 @@ immich assets edit-asset [OPTIONS] ID
 * `--edits TEXT`: list of edits
 
 As a JSON string  [required]
-
 * `--help`: Show this message and exit.
 
 ### `immich assets get-all-user-assets-by-device-id`
 
 Retrieve assets by device ID
 
-Docs: <https://api.immich.app/endpoints/assets/getAllUserAssetsByDeviceId>
+<a href="https://api.immich.app/endpoints/assets/getAllUserAssetsByDeviceId">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets get-all-user-assets-by-device-id [OPTIONS] DEVICE_ID
+$ immich assets get-all-user-assets-by-device-id [OPTIONS] DEVICE_ID
 ```
 
 **Arguments**:
@@ -836,12 +835,12 @@ immich assets get-all-user-assets-by-device-id [OPTIONS] DEVICE_ID
 
 Retrieve edits for an existing asset
 
-Docs: <https://api.immich.app/endpoints/assets/getAssetEdits>
+<a href="https://api.immich.app/endpoints/assets/getAssetEdits">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets get-asset-edits [OPTIONS] ID
+$ immich assets get-asset-edits [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -856,12 +855,12 @@ immich assets get-asset-edits [OPTIONS] ID
 
 Retrieve an asset
 
-Docs: <https://api.immich.app/endpoints/assets/getAssetInfo>
+<a href="https://api.immich.app/endpoints/assets/getAssetInfo">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets get-asset-info [OPTIONS] ID
+$ immich assets get-asset-info [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -878,12 +877,12 @@ immich assets get-asset-info [OPTIONS] ID
 
 Get asset metadata
 
-Docs: <https://api.immich.app/endpoints/assets/getAssetMetadata>
+<a href="https://api.immich.app/endpoints/assets/getAssetMetadata">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets get-asset-metadata [OPTIONS] ID
+$ immich assets get-asset-metadata [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -898,12 +897,12 @@ immich assets get-asset-metadata [OPTIONS] ID
 
 Retrieve asset metadata by key
 
-Docs: <https://api.immich.app/endpoints/assets/getAssetMetadataByKey>
+<a href="https://api.immich.app/endpoints/assets/getAssetMetadataByKey">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets get-asset-metadata-by-key [OPTIONS] ID KEY
+$ immich assets get-asset-metadata-by-key [OPTIONS] ID KEY
 ```
 
 **Arguments**:
@@ -919,12 +918,12 @@ immich assets get-asset-metadata-by-key [OPTIONS] ID KEY
 
 Retrieve asset OCR data
 
-Docs: <https://api.immich.app/endpoints/assets/getAssetOcr>
+<a href="https://api.immich.app/endpoints/assets/getAssetOcr">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets get-asset-ocr [OPTIONS] ID
+$ immich assets get-asset-ocr [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -939,12 +938,12 @@ immich assets get-asset-ocr [OPTIONS] ID
 
 Get asset statistics
 
-Docs: <https://api.immich.app/endpoints/assets/getAssetStatistics>
+<a href="https://api.immich.app/endpoints/assets/getAssetStatistics">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets get-asset-statistics [OPTIONS]
+$ immich assets get-asset-statistics [OPTIONS]
 ```
 
 **Options**:
@@ -958,12 +957,12 @@ immich assets get-asset-statistics [OPTIONS]
 
 Get random assets
 
-Docs: <https://api.immich.app/endpoints/assets/getRandom>
+<a href="https://api.immich.app/endpoints/assets/getRandom">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets get-random [OPTIONS]
+$ immich assets get-random [OPTIONS]
 ```
 
 **Options**:
@@ -975,12 +974,12 @@ immich assets get-random [OPTIONS]
 
 Play asset video
 
-Docs: <https://api.immich.app/endpoints/assets/playAssetVideo>
+<a href="https://api.immich.app/endpoints/assets/playAssetVideo">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets play-asset-video [OPTIONS] ID
+$ immich assets play-asset-video [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -997,12 +996,12 @@ immich assets play-asset-video [OPTIONS] ID
 
 Remove edits from an existing asset
 
-Docs: <https://api.immich.app/endpoints/assets/removeAssetEdits>
+<a href="https://api.immich.app/endpoints/assets/removeAssetEdits">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets remove-asset-edits [OPTIONS] ID
+$ immich assets remove-asset-edits [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -1017,12 +1016,12 @@ immich assets remove-asset-edits [OPTIONS] ID
 
 Replace asset
 
-Docs: <https://api.immich.app/endpoints/assets/replaceAsset>
+<a href="https://api.immich.app/endpoints/assets/replaceAsset">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets replace-asset [OPTIONS] ID
+$ immich assets replace-asset [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -1046,12 +1045,12 @@ immich assets replace-asset [OPTIONS] ID
 
 Run an asset job
 
-Docs: <https://api.immich.app/endpoints/assets/runAssetJobs>
+<a href="https://api.immich.app/endpoints/assets/runAssetJobs">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets run-asset-jobs [OPTIONS]
+$ immich assets run-asset-jobs [OPTIONS]
 ```
 
 **Options**:
@@ -1064,12 +1063,12 @@ immich assets run-asset-jobs [OPTIONS]
 
 Update an asset
 
-Docs: <https://api.immich.app/endpoints/assets/updateAsset>
+<a href="https://api.immich.app/endpoints/assets/updateAsset">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets update-asset [OPTIONS] ID
+$ immich assets update-asset [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -1092,12 +1091,12 @@ immich assets update-asset [OPTIONS] ID
 
 Update asset metadata
 
-Docs: <https://api.immich.app/endpoints/assets/updateAssetMetadata>
+<a href="https://api.immich.app/endpoints/assets/updateAssetMetadata">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets update-asset-metadata [OPTIONS] ID
+$ immich assets update-asset-metadata [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -1113,12 +1112,12 @@ immich assets update-asset-metadata [OPTIONS] ID
 
 Update assets
 
-Docs: <https://api.immich.app/endpoints/assets/updateAssets>
+<a href="https://api.immich.app/endpoints/assets/updateAssets">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets update-assets [OPTIONS]
+$ immich assets update-assets [OPTIONS]
 ```
 
 **Options**:
@@ -1140,12 +1139,12 @@ immich assets update-assets [OPTIONS]
 
 Upsert asset metadata
 
-Docs: <https://api.immich.app/endpoints/assets/updateBulkAssetMetadata>
+<a href="https://api.immich.app/endpoints/assets/updateBulkAssetMetadata">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets update-bulk-asset-metadata [OPTIONS]
+$ immich assets update-bulk-asset-metadata [OPTIONS]
 ```
 
 **Options**:
@@ -1157,12 +1156,12 @@ immich assets update-bulk-asset-metadata [OPTIONS]
 
 Upload asset
 
-Docs: <https://api.immich.app/endpoints/assets/uploadAsset>
+<a href="https://api.immich.app/endpoints/assets/uploadAsset">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets upload-asset [OPTIONS]
+$ immich assets upload-asset [OPTIONS]
 ```
 
 **Options**:
@@ -1188,12 +1187,12 @@ immich assets upload-asset [OPTIONS]
 
 View asset thumbnail
 
-Docs: <https://api.immich.app/endpoints/assets/viewAsset>
+<a href="https://api.immich.app/endpoints/assets/viewAsset">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich assets view-asset [OPTIONS] ID
+$ immich assets view-asset [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -1218,7 +1217,7 @@ The filename can be specified or will be derived from the response headers.
 **Usage**:
 
 ```console
-immich assets download-asset-to-file [OPTIONS] ID OUT_DIR
+$ immich assets download-asset-to-file [OPTIONS] ID OUT_DIR
 ```
 
 **Arguments**:
@@ -1244,7 +1243,7 @@ The filename can be specified or will be derived from the response headers.
 **Usage**:
 
 ```console
-immich assets play-asset-video-to-file [OPTIONS] ID OUT_DIR
+$ immich assets play-asset-video-to-file [OPTIONS] ID OUT_DIR
 ```
 
 **Arguments**:
@@ -1270,7 +1269,7 @@ The filename can be specified or will be derived from the response headers.
 **Usage**:
 
 ```console
-immich assets view-asset-to-file [OPTIONS] ID OUT_DIR
+$ immich assets view-asset-to-file [OPTIONS] ID OUT_DIR
 ```
 
 **Arguments**:
@@ -1297,7 +1296,7 @@ Directories are automatically walked recursively.
 **Usage**:
 
 ```console
-immich assets upload [OPTIONS] PATHS...
+$ immich assets upload [OPTIONS] PATHS...
 ```
 
 **Arguments**:
@@ -1322,12 +1321,12 @@ immich assets upload [OPTIONS] PATHS...
 
 Endpoints related to user authentication, including OAuth.
 
-Docs: <https://api.immich.app/endpoints/authentication>
+<a href="https://api.immich.app/endpoints/authentication">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich authentication [OPTIONS] COMMAND [ARGS]...
+$ immich authentication [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -1357,12 +1356,12 @@ immich authentication [OPTIONS] COMMAND [ARGS]...
 
 Change password
 
-Docs: <https://api.immich.app/endpoints/authentication/changePassword>
+<a href="https://api.immich.app/endpoints/authentication/changePassword">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich authentication change-password [OPTIONS]
+$ immich authentication change-password [OPTIONS]
 ```
 
 **Options**:
@@ -1376,12 +1375,12 @@ immich authentication change-password [OPTIONS]
 
 Change pin code
 
-Docs: <https://api.immich.app/endpoints/authentication/changePinCode>
+<a href="https://api.immich.app/endpoints/authentication/changePinCode">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich authentication change-pin-code [OPTIONS]
+$ immich authentication change-pin-code [OPTIONS]
 ```
 
 **Options**:
@@ -1395,12 +1394,12 @@ immich authentication change-pin-code [OPTIONS]
 
 Finish OAuth
 
-Docs: <https://api.immich.app/endpoints/authentication/finishOAuth>
+<a href="https://api.immich.app/endpoints/authentication/finishOAuth">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich authentication finish-o-auth [OPTIONS]
+$ immich authentication finish-o-auth [OPTIONS]
 ```
 
 **Options**:
@@ -1414,12 +1413,12 @@ immich authentication finish-o-auth [OPTIONS]
 
 Retrieve auth status
 
-Docs: <https://api.immich.app/endpoints/authentication/getAuthStatus>
+<a href="https://api.immich.app/endpoints/authentication/getAuthStatus">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich authentication get-auth-status [OPTIONS]
+$ immich authentication get-auth-status [OPTIONS]
 ```
 
 **Options**:
@@ -1430,12 +1429,12 @@ immich authentication get-auth-status [OPTIONS]
 
 Link OAuth account
 
-Docs: <https://api.immich.app/endpoints/authentication/linkOAuthAccount>
+<a href="https://api.immich.app/endpoints/authentication/linkOAuthAccount">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich authentication link-o-auth-account [OPTIONS]
+$ immich authentication link-o-auth-account [OPTIONS]
 ```
 
 **Options**:
@@ -1449,12 +1448,12 @@ immich authentication link-o-auth-account [OPTIONS]
 
 Lock auth session
 
-Docs: <https://api.immich.app/endpoints/authentication/lockAuthSession>
+<a href="https://api.immich.app/endpoints/authentication/lockAuthSession">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich authentication lock-auth-session [OPTIONS]
+$ immich authentication lock-auth-session [OPTIONS]
 ```
 
 **Options**:
@@ -1465,17 +1464,17 @@ immich authentication lock-auth-session [OPTIONS]
 
 Login
 
-Docs: <https://api.immich.app/endpoints/authentication/login>
+<a href="https://api.immich.app/endpoints/authentication/login">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich authentication login [OPTIONS]
+$ immich authentication login [OPTIONS]
 ```
 
 **Options**:
 
-* `--email TEXT`: Example: <testuser@email.com>  [required]
+* `--email TEXT`: Example: testuser@email.com  [required]
 * `--password TEXT`: Example: password  [required]
 * `--help`: Show this message and exit.
 
@@ -1483,12 +1482,12 @@ immich authentication login [OPTIONS]
 
 Logout
 
-Docs: <https://api.immich.app/endpoints/authentication/logout>
+<a href="https://api.immich.app/endpoints/authentication/logout">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich authentication logout [OPTIONS]
+$ immich authentication logout [OPTIONS]
 ```
 
 **Options**:
@@ -1499,12 +1498,12 @@ immich authentication logout [OPTIONS]
 
 Redirect OAuth to mobile
 
-Docs: <https://api.immich.app/endpoints/authentication/redirectOAuthToMobile>
+<a href="https://api.immich.app/endpoints/authentication/redirectOAuthToMobile">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich authentication redirect-o-auth-to-mobile [OPTIONS]
+$ immich authentication redirect-o-auth-to-mobile [OPTIONS]
 ```
 
 **Options**:
@@ -1515,12 +1514,12 @@ immich authentication redirect-o-auth-to-mobile [OPTIONS]
 
 Reset pin code
 
-Docs: <https://api.immich.app/endpoints/authentication/resetPinCode>
+<a href="https://api.immich.app/endpoints/authentication/resetPinCode">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich authentication reset-pin-code [OPTIONS]
+$ immich authentication reset-pin-code [OPTIONS]
 ```
 
 **Options**:
@@ -1533,12 +1532,12 @@ immich authentication reset-pin-code [OPTIONS]
 
 Setup pin code
 
-Docs: <https://api.immich.app/endpoints/authentication/setupPinCode>
+<a href="https://api.immich.app/endpoints/authentication/setupPinCode">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich authentication setup-pin-code [OPTIONS]
+$ immich authentication setup-pin-code [OPTIONS]
 ```
 
 **Options**:
@@ -1550,17 +1549,17 @@ immich authentication setup-pin-code [OPTIONS]
 
 Register admin
 
-Docs: <https://api.immich.app/endpoints/authentication/signUpAdmin>
+<a href="https://api.immich.app/endpoints/authentication/signUpAdmin">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich authentication sign-up-admin [OPTIONS]
+$ immich authentication sign-up-admin [OPTIONS]
 ```
 
 **Options**:
 
-* `--email TEXT`: Example: <testuser@email.com>  [required]
+* `--email TEXT`: Example: testuser@email.com  [required]
 * `--name TEXT`: Example: Admin  [required]
 * `--password TEXT`: Example: password  [required]
 * `--help`: Show this message and exit.
@@ -1569,12 +1568,12 @@ immich authentication sign-up-admin [OPTIONS]
 
 Start OAuth
 
-Docs: <https://api.immich.app/endpoints/authentication/startOAuth>
+<a href="https://api.immich.app/endpoints/authentication/startOAuth">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich authentication start-o-auth [OPTIONS]
+$ immich authentication start-o-auth [OPTIONS]
 ```
 
 **Options**:
@@ -1588,12 +1587,12 @@ immich authentication start-o-auth [OPTIONS]
 
 Unlink OAuth account
 
-Docs: <https://api.immich.app/endpoints/authentication/unlinkOAuthAccount>
+<a href="https://api.immich.app/endpoints/authentication/unlinkOAuthAccount">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich authentication unlink-o-auth-account [OPTIONS]
+$ immich authentication unlink-o-auth-account [OPTIONS]
 ```
 
 **Options**:
@@ -1604,12 +1603,12 @@ immich authentication unlink-o-auth-account [OPTIONS]
 
 Unlock auth session
 
-Docs: <https://api.immich.app/endpoints/authentication/unlockAuthSession>
+<a href="https://api.immich.app/endpoints/authentication/unlockAuthSession">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich authentication unlock-auth-session [OPTIONS]
+$ immich authentication unlock-auth-session [OPTIONS]
 ```
 
 **Options**:
@@ -1622,12 +1621,12 @@ immich authentication unlock-auth-session [OPTIONS]
 
 Validate access token
 
-Docs: <https://api.immich.app/endpoints/authentication/validateAccessToken>
+<a href="https://api.immich.app/endpoints/authentication/validateAccessToken">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich authentication validate-access-token [OPTIONS]
+$ immich authentication validate-access-token [OPTIONS]
 ```
 
 **Options**:
@@ -1638,12 +1637,12 @@ immich authentication validate-access-token [OPTIONS]
 
 Administrative endpoints related to authentication.
 
-Docs: <https://api.immich.app/endpoints/authentication-admin>
+<a href="https://api.immich.app/endpoints/authentication-admin">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich authentication-admin [OPTIONS] COMMAND [ARGS]...
+$ immich authentication-admin [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -1658,12 +1657,12 @@ immich authentication-admin [OPTIONS] COMMAND [ARGS]...
 
 Unlink all OAuth accounts
 
-Docs: <https://api.immich.app/endpoints/authentication-admin/unlinkAllOAuthAccountsAdmin>
+<a href="https://api.immich.app/endpoints/authentication-admin/unlinkAllOAuthAccountsAdmin">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich authentication-admin unlink-all-o-auth-accounts-admin [OPTIONS]
+$ immich authentication-admin unlink-all-o-auth-accounts-admin [OPTIONS]
 ```
 
 **Options**:
@@ -1674,12 +1673,12 @@ immich authentication-admin unlink-all-o-auth-accounts-admin [OPTIONS]
 
 Endpoints for downloading assets or collections of assets.
 
-Docs: <https://api.immich.app/endpoints/download>
+<a href="https://api.immich.app/endpoints/download">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich download [OPTIONS] COMMAND [ARGS]...
+$ immich download [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -1696,12 +1695,12 @@ immich download [OPTIONS] COMMAND [ARGS]...
 
 Download asset archive
 
-Docs: <https://api.immich.app/endpoints/download/downloadArchive>
+<a href="https://api.immich.app/endpoints/download/downloadArchive">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich download download-archive [OPTIONS]
+$ immich download download-archive [OPTIONS]
 ```
 
 **Options**:
@@ -1715,12 +1714,12 @@ immich download download-archive [OPTIONS]
 
 Retrieve download information
 
-Docs: <https://api.immich.app/endpoints/download/getDownloadInfo>
+<a href="https://api.immich.app/endpoints/download/getDownloadInfo">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich download get-download-info [OPTIONS]
+$ immich download get-download-info [OPTIONS]
 ```
 
 **Options**:
@@ -1743,7 +1742,7 @@ The download_info parameter can be provided via --json or using dotted flags.
 **Usage**:
 
 ```console
-immich download download-archive-to-file [OPTIONS] OUT_DIR
+$ immich download download-archive-to-file [OPTIONS] OUT_DIR
 ```
 
 **Arguments**:
@@ -1755,10 +1754,10 @@ immich download download-archive-to-file [OPTIONS] OUT_DIR
 * `--key TEXT`: Public share key (last path segment of /share/&lt;key&gt;)
 * `--slug TEXT`: Public share slug (last path segment of /s/&lt;slug&gt;)
 * `--show-progress`: Show progress bars (per-archive bytes + overall archive count)
-* `--albumId TEXT`: Album ID to download
-* `--archiveSize INTEGER`: Archive size limit in bytes
-* `--assetIds TEXT`: Asset IDs to download
-* `--userId TEXT`: User ID to download assets from
+* `--album-id TEXT`: Album ID to download
+* `--archive-size INTEGER`: Archive size limit in bytes
+* `--asset-ids TEXT`: Asset IDs to download
+* `--user-id TEXT`: User ID to download assets from
 * `--help`: Show this message and exit.
 
 ## `immich config`
@@ -1768,7 +1767,7 @@ Configure the CLI with server details, profiles, and request settings.
 **Usage**:
 
 ```console
-immich config [OPTIONS] COMMAND [ARGS]...
+$ immich config [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -1789,7 +1788,7 @@ Set a value in the config file.
 **Usage**:
 
 ```console
-immich config set [OPTIONS] KEY
+$ immich config set [OPTIONS] KEY
 ```
 
 **Arguments**:
@@ -1808,7 +1807,7 @@ Get a value from the config file. Secrets are redacted by default.
 **Usage**:
 
 ```console
-immich config get [OPTIONS] KEY
+$ immich config get [OPTIONS] KEY
 ```
 
 **Arguments**:
@@ -1827,7 +1826,7 @@ Reset the configuration by deleting the config file.
 **Usage**:
 
 ```console
-immich config reset [OPTIONS]
+$ immich config reset [OPTIONS]
 ```
 
 **Options**:
@@ -1842,7 +1841,7 @@ Open the config file in the default editor.
 **Usage**:
 
 ```console
-immich config open [OPTIONS]
+$ immich config open [OPTIONS]
 ```
 
 **Options**:
@@ -1853,12 +1852,12 @@ immich config open [OPTIONS]
 
 Endpoints for managing and identifying duplicate assets.
 
-Docs: <https://api.immich.app/endpoints/duplicates>
+<a href="https://api.immich.app/endpoints/duplicates">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich duplicates [OPTIONS] COMMAND [ARGS]...
+$ immich duplicates [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -1875,12 +1874,12 @@ immich duplicates [OPTIONS] COMMAND [ARGS]...
 
 Delete a duplicate
 
-Docs: <https://api.immich.app/endpoints/duplicates/deleteDuplicate>
+<a href="https://api.immich.app/endpoints/duplicates/deleteDuplicate">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich duplicates delete-duplicate [OPTIONS] ID
+$ immich duplicates delete-duplicate [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -1895,12 +1894,12 @@ immich duplicates delete-duplicate [OPTIONS] ID
 
 Delete duplicates
 
-Docs: <https://api.immich.app/endpoints/duplicates/deleteDuplicates>
+<a href="https://api.immich.app/endpoints/duplicates/deleteDuplicates">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich duplicates delete-duplicates [OPTIONS]
+$ immich duplicates delete-duplicates [OPTIONS]
 ```
 
 **Options**:
@@ -1912,12 +1911,12 @@ immich duplicates delete-duplicates [OPTIONS]
 
 Retrieve duplicates
 
-Docs: <https://api.immich.app/endpoints/duplicates/getAssetDuplicates>
+<a href="https://api.immich.app/endpoints/duplicates/getAssetDuplicates">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich duplicates get-asset-duplicates [OPTIONS]
+$ immich duplicates get-asset-duplicates [OPTIONS]
 ```
 
 **Options**:
@@ -1928,12 +1927,12 @@ immich duplicates get-asset-duplicates [OPTIONS]
 
 A face is a detected human face within an asset, which can be associated with a person. Faces are normally detected via machine learning, but can also be created via manually.
 
-Docs: <https://api.immich.app/endpoints/faces>
+<a href="https://api.immich.app/endpoints/faces">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich faces [OPTIONS] COMMAND [ARGS]...
+$ immich faces [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -1951,12 +1950,12 @@ immich faces [OPTIONS] COMMAND [ARGS]...
 
 Create a face
 
-Docs: <https://api.immich.app/endpoints/faces/createFace>
+<a href="https://api.immich.app/endpoints/faces/createFace">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich faces create-face [OPTIONS]
+$ immich faces create-face [OPTIONS]
 ```
 
 **Options**:
@@ -1975,12 +1974,12 @@ immich faces create-face [OPTIONS]
 
 Delete a face
 
-Docs: <https://api.immich.app/endpoints/faces/deleteFace>
+<a href="https://api.immich.app/endpoints/faces/deleteFace">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich faces delete-face [OPTIONS] ID
+$ immich faces delete-face [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -1996,12 +1995,12 @@ immich faces delete-face [OPTIONS] ID
 
 Retrieve faces for asset
 
-Docs: <https://api.immich.app/endpoints/faces/getFaces>
+<a href="https://api.immich.app/endpoints/faces/getFaces">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich faces get-faces [OPTIONS]
+$ immich faces get-faces [OPTIONS]
 ```
 
 **Options**:
@@ -2013,12 +2012,12 @@ immich faces get-faces [OPTIONS]
 
 Re-assign a face to another person
 
-Docs: <https://api.immich.app/endpoints/faces/reassignFacesById>
+<a href="https://api.immich.app/endpoints/faces/reassignFacesById">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich faces reassign-faces-by-id [OPTIONS] ID
+$ immich faces reassign-faces-by-id [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -2034,12 +2033,12 @@ immich faces reassign-faces-by-id [OPTIONS] ID
 
 Queues and background jobs are used for processing tasks asynchronously. Queues can be paused and resumed as needed.
 
-Docs: <https://api.immich.app/endpoints/jobs>
+<a href="https://api.immich.app/endpoints/jobs">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich jobs [OPTIONS] COMMAND [ARGS]...
+$ immich jobs [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -2056,12 +2055,12 @@ immich jobs [OPTIONS] COMMAND [ARGS]...
 
 Create a manual job
 
-Docs: <https://api.immich.app/endpoints/jobs/createJob>
+<a href="https://api.immich.app/endpoints/jobs/createJob">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich jobs create-job [OPTIONS]
+$ immich jobs create-job [OPTIONS]
 ```
 
 **Options**:
@@ -2073,12 +2072,12 @@ immich jobs create-job [OPTIONS]
 
 Retrieve queue counts and status
 
-Docs: <https://api.immich.app/endpoints/jobs/getQueuesLegacy>
+<a href="https://api.immich.app/endpoints/jobs/getQueuesLegacy">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich jobs get-queues-legacy [OPTIONS]
+$ immich jobs get-queues-legacy [OPTIONS]
 ```
 
 **Options**:
@@ -2089,12 +2088,12 @@ immich jobs get-queues-legacy [OPTIONS]
 
 Run jobs
 
-Docs: <https://api.immich.app/endpoints/jobs/runQueueCommandLegacy>
+<a href="https://api.immich.app/endpoints/jobs/runQueueCommandLegacy">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich jobs run-queue-command-legacy [OPTIONS] NAME:{thumbnailGeneration|metadataExtraction|videoConversion|faceDetection|facialRecognition|smartSearch|duplicateDetection|backgroundTask|storageTemplateMigration|migration|search|sidecar|library|notifications|backupDatabase|ocr|workflow|editor}
+$ immich jobs run-queue-command-legacy [OPTIONS] NAME:{thumbnailGeneration|metadataExtraction|videoConversion|faceDetection|facialRecognition|smartSearch|duplicateDetection|backgroundTask|storageTemplateMigration|migration|search|sidecar|library|notifications|backupDatabase|ocr|workflow|editor}
 ```
 
 **Arguments**:
@@ -2111,12 +2110,12 @@ immich jobs run-queue-command-legacy [OPTIONS] NAME:{thumbnailGeneration|metadat
 
 An external library is made up of input file paths or expressions that are scanned for asset files. Discovered files are automatically imported. Assets much be unique within a library, but can be duplicated across libraries. Each user has a default upload library, and can have one or more external libraries.
 
-Docs: <https://api.immich.app/endpoints/libraries>
+<a href="https://api.immich.app/endpoints/libraries">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich libraries [OPTIONS] COMMAND [ARGS]...
+$ immich libraries [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -2138,12 +2137,12 @@ immich libraries [OPTIONS] COMMAND [ARGS]...
 
 Create a library
 
-Docs: <https://api.immich.app/endpoints/libraries/createLibrary>
+<a href="https://api.immich.app/endpoints/libraries/createLibrary">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich libraries create-library [OPTIONS]
+$ immich libraries create-library [OPTIONS]
 ```
 
 **Options**:
@@ -2158,12 +2157,12 @@ immich libraries create-library [OPTIONS]
 
 Delete a library
 
-Docs: <https://api.immich.app/endpoints/libraries/deleteLibrary>
+<a href="https://api.immich.app/endpoints/libraries/deleteLibrary">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich libraries delete-library [OPTIONS] ID
+$ immich libraries delete-library [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -2178,12 +2177,12 @@ immich libraries delete-library [OPTIONS] ID
 
 Retrieve libraries
 
-Docs: <https://api.immich.app/endpoints/libraries/getAllLibraries>
+<a href="https://api.immich.app/endpoints/libraries/getAllLibraries">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich libraries get-all-libraries [OPTIONS]
+$ immich libraries get-all-libraries [OPTIONS]
 ```
 
 **Options**:
@@ -2194,12 +2193,12 @@ immich libraries get-all-libraries [OPTIONS]
 
 Retrieve a library
 
-Docs: <https://api.immich.app/endpoints/libraries/getLibrary>
+<a href="https://api.immich.app/endpoints/libraries/getLibrary">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich libraries get-library [OPTIONS] ID
+$ immich libraries get-library [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -2214,12 +2213,12 @@ immich libraries get-library [OPTIONS] ID
 
 Retrieve library statistics
 
-Docs: <https://api.immich.app/endpoints/libraries/getLibraryStatistics>
+<a href="https://api.immich.app/endpoints/libraries/getLibraryStatistics">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich libraries get-library-statistics [OPTIONS] ID
+$ immich libraries get-library-statistics [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -2234,12 +2233,12 @@ immich libraries get-library-statistics [OPTIONS] ID
 
 Scan a library
 
-Docs: <https://api.immich.app/endpoints/libraries/scanLibrary>
+<a href="https://api.immich.app/endpoints/libraries/scanLibrary">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich libraries scan-library [OPTIONS] ID
+$ immich libraries scan-library [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -2254,12 +2253,12 @@ immich libraries scan-library [OPTIONS] ID
 
 Update a library
 
-Docs: <https://api.immich.app/endpoints/libraries/updateLibrary>
+<a href="https://api.immich.app/endpoints/libraries/updateLibrary">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich libraries update-library [OPTIONS] ID
+$ immich libraries update-library [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -2277,12 +2276,12 @@ immich libraries update-library [OPTIONS] ID
 
 Validate library settings
 
-Docs: <https://api.immich.app/endpoints/libraries/validate>
+<a href="https://api.immich.app/endpoints/libraries/validate">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich libraries validate [OPTIONS] ID
+$ immich libraries validate [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -2299,12 +2298,12 @@ immich libraries validate [OPTIONS] ID
 
 Maintenance mode allows you to put Immich in a read-only state to perform various operations.
 
-Docs: <https://api.immich.app/endpoints/maintenance-admin>
+<a href="https://api.immich.app/endpoints/maintenance-admin">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich maintenance-admin [OPTIONS] COMMAND [ARGS]...
+$ immich maintenance-admin [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -2313,19 +2312,53 @@ immich maintenance-admin [OPTIONS] COMMAND [ARGS]...
 
 **Commands**:
 
+* `detect-prior-install`: Detect existing install
+* `get-maintenance-status`: Get maintenance mode status
 * `maintenance-login`: Log into maintenance mode
 * `set-maintenance-mode`: Set maintenance mode
+
+### `immich maintenance-admin detect-prior-install`
+
+Detect existing install
+
+<a href="https://api.immich.app/endpoints/maintenance-admin/detectPriorInstall">Immich API documentation</a>
+
+**Usage**:
+
+```console
+$ immich maintenance-admin detect-prior-install [OPTIONS]
+```
+
+**Options**:
+
+* `--help`: Show this message and exit.
+
+### `immich maintenance-admin get-maintenance-status`
+
+Get maintenance mode status
+
+<a href="https://api.immich.app/endpoints/maintenance-admin/getMaintenanceStatus">Immich API documentation</a>
+
+**Usage**:
+
+```console
+$ immich maintenance-admin get-maintenance-status [OPTIONS]
+```
+
+**Options**:
+
+* `--help`: Show this message and exit.
 
 ### `immich maintenance-admin maintenance-login`
 
 Log into maintenance mode
 
-Docs: <https://api.immich.app/endpoints/maintenance-admin/maintenanceLogin>
+<a href="https://api.immich.app/endpoints/maintenance-admin/maintenanceLogin">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich maintenance-admin maintenance-login [OPTIONS]
+$ immich maintenance-admin maintenance-login [OPTIONS]
 ```
 
 **Options**:
@@ -2337,29 +2370,30 @@ immich maintenance-admin maintenance-login [OPTIONS]
 
 Set maintenance mode
 
-Docs: <https://api.immich.app/endpoints/maintenance-admin/setMaintenanceMode>
+<a href="https://api.immich.app/endpoints/maintenance-admin/setMaintenanceMode">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich maintenance-admin set-maintenance-mode [OPTIONS]
+$ immich maintenance-admin set-maintenance-mode [OPTIONS]
 ```
 
 **Options**:
 
 * `--action TEXT`: [required]
+* `--restore-backup-filename TEXT`
 * `--help`: Show this message and exit.
 
 ## `immich map`
 
 Map endpoints include supplemental functionality related to geolocation, such as reverse geocoding and retrieving map markers for assets with geolocation data.
 
-Docs: <https://api.immich.app/endpoints/map>
+<a href="https://api.immich.app/endpoints/map">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich map [OPTIONS] COMMAND [ARGS]...
+$ immich map [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -2375,12 +2409,12 @@ immich map [OPTIONS] COMMAND [ARGS]...
 
 Retrieve map markers
 
-Docs: <https://api.immich.app/endpoints/map/getMapMarkers>
+<a href="https://api.immich.app/endpoints/map/getMapMarkers">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich map get-map-markers [OPTIONS]
+$ immich map get-map-markers [OPTIONS]
 ```
 
 **Options**:
@@ -2397,12 +2431,12 @@ immich map get-map-markers [OPTIONS]
 
 Reverse geocode coordinates
 
-Docs: <https://api.immich.app/endpoints/map/reverseGeocode>
+<a href="https://api.immich.app/endpoints/map/reverseGeocode">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich map reverse-geocode [OPTIONS]
+$ immich map reverse-geocode [OPTIONS]
 ```
 
 **Options**:
@@ -2415,12 +2449,12 @@ immich map reverse-geocode [OPTIONS]
 
 A memory is a specialized collection of assets with dedicated viewing implementations in the web and mobile clients. A memory includes fields related to visibility and are automatically generated per user via a background job.
 
-Docs: <https://api.immich.app/endpoints/memories>
+<a href="https://api.immich.app/endpoints/memories">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich memories [OPTIONS] COMMAND [ARGS]...
+$ immich memories [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -2442,12 +2476,12 @@ immich memories [OPTIONS] COMMAND [ARGS]...
 
 Add assets to a memory
 
-Docs: <https://api.immich.app/endpoints/memories/addMemoryAssets>
+<a href="https://api.immich.app/endpoints/memories/addMemoryAssets">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich memories add-memory-assets [OPTIONS] ID
+$ immich memories add-memory-assets [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -2463,12 +2497,12 @@ immich memories add-memory-assets [OPTIONS] ID
 
 Create a memory
 
-Docs: <https://api.immich.app/endpoints/memories/createMemory>
+<a href="https://api.immich.app/endpoints/memories/createMemory">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich memories create-memory [OPTIONS]
+$ immich memories create-memory [OPTIONS]
 ```
 
 **Options**:
@@ -2485,12 +2519,12 @@ immich memories create-memory [OPTIONS]
 
 Delete a memory
 
-Docs: <https://api.immich.app/endpoints/memories/deleteMemory>
+<a href="https://api.immich.app/endpoints/memories/deleteMemory">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich memories delete-memory [OPTIONS] ID
+$ immich memories delete-memory [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -2505,12 +2539,12 @@ immich memories delete-memory [OPTIONS] ID
 
 Retrieve a memory
 
-Docs: <https://api.immich.app/endpoints/memories/getMemory>
+<a href="https://api.immich.app/endpoints/memories/getMemory">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich memories get-memory [OPTIONS] ID
+$ immich memories get-memory [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -2525,12 +2559,12 @@ immich memories get-memory [OPTIONS] ID
 
 Retrieve memories statistics
 
-Docs: <https://api.immich.app/endpoints/memories/memoriesStatistics>
+<a href="https://api.immich.app/endpoints/memories/memoriesStatistics">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich memories memories-statistics [OPTIONS]
+$ immich memories memories-statistics [OPTIONS]
 ```
 
 **Options**:
@@ -2547,12 +2581,12 @@ immich memories memories-statistics [OPTIONS]
 
 Remove assets from a memory
 
-Docs: <https://api.immich.app/endpoints/memories/removeMemoryAssets>
+<a href="https://api.immich.app/endpoints/memories/removeMemoryAssets">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich memories remove-memory-assets [OPTIONS] ID
+$ immich memories remove-memory-assets [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -2568,12 +2602,12 @@ immich memories remove-memory-assets [OPTIONS] ID
 
 Retrieve memories
 
-Docs: <https://api.immich.app/endpoints/memories/searchMemories>
+<a href="https://api.immich.app/endpoints/memories/searchMemories">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich memories search-memories [OPTIONS]
+$ immich memories search-memories [OPTIONS]
 ```
 
 **Options**:
@@ -2590,12 +2624,12 @@ immich memories search-memories [OPTIONS]
 
 Update a memory
 
-Docs: <https://api.immich.app/endpoints/memories/updateMemory>
+<a href="https://api.immich.app/endpoints/memories/updateMemory">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich memories update-memory [OPTIONS] ID
+$ immich memories update-memory [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -2613,12 +2647,12 @@ immich memories update-memory [OPTIONS] ID
 
 A notification is a specialized message sent to users to inform them of important events. Currently, these notifications are only shown in the Immich web application.
 
-Docs: <https://api.immich.app/endpoints/notifications>
+<a href="https://api.immich.app/endpoints/notifications">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich notifications [OPTIONS] COMMAND [ARGS]...
+$ immich notifications [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -2638,12 +2672,12 @@ immich notifications [OPTIONS] COMMAND [ARGS]...
 
 Delete a notification
 
-Docs: <https://api.immich.app/endpoints/notifications/deleteNotification>
+<a href="https://api.immich.app/endpoints/notifications/deleteNotification">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich notifications delete-notification [OPTIONS] ID
+$ immich notifications delete-notification [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -2658,12 +2692,12 @@ immich notifications delete-notification [OPTIONS] ID
 
 Delete notifications
 
-Docs: <https://api.immich.app/endpoints/notifications/deleteNotifications>
+<a href="https://api.immich.app/endpoints/notifications/deleteNotifications">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich notifications delete-notifications [OPTIONS]
+$ immich notifications delete-notifications [OPTIONS]
 ```
 
 **Options**:
@@ -2675,12 +2709,12 @@ immich notifications delete-notifications [OPTIONS]
 
 Get a notification
 
-Docs: <https://api.immich.app/endpoints/notifications/getNotification>
+<a href="https://api.immich.app/endpoints/notifications/getNotification">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich notifications get-notification [OPTIONS] ID
+$ immich notifications get-notification [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -2695,12 +2729,12 @@ immich notifications get-notification [OPTIONS] ID
 
 Retrieve notifications
 
-Docs: <https://api.immich.app/endpoints/notifications/getNotifications>
+<a href="https://api.immich.app/endpoints/notifications/getNotifications">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich notifications get-notifications [OPTIONS]
+$ immich notifications get-notifications [OPTIONS]
 ```
 
 **Options**:
@@ -2715,12 +2749,12 @@ immich notifications get-notifications [OPTIONS]
 
 Update a notification
 
-Docs: <https://api.immich.app/endpoints/notifications/updateNotification>
+<a href="https://api.immich.app/endpoints/notifications/updateNotification">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich notifications update-notification [OPTIONS] ID
+$ immich notifications update-notification [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -2736,12 +2770,12 @@ immich notifications update-notification [OPTIONS] ID
 
 Update notifications
 
-Docs: <https://api.immich.app/endpoints/notifications/updateNotifications>
+<a href="https://api.immich.app/endpoints/notifications/updateNotifications">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich notifications update-notifications [OPTIONS]
+$ immich notifications update-notifications [OPTIONS]
 ```
 
 **Options**:
@@ -2754,12 +2788,12 @@ immich notifications update-notifications [OPTIONS]
 
 Notification administrative endpoints.
 
-Docs: <https://api.immich.app/endpoints/notifications-admin>
+<a href="https://api.immich.app/endpoints/notifications-admin">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich notifications-admin [OPTIONS] COMMAND [ARGS]...
+$ immich notifications-admin [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -2776,12 +2810,12 @@ immich notifications-admin [OPTIONS] COMMAND [ARGS]...
 
 Create a notification
 
-Docs: <https://api.immich.app/endpoints/notifications-admin/createNotification>
+<a href="https://api.immich.app/endpoints/notifications-admin/createNotification">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich notifications-admin create-notification [OPTIONS]
+$ immich notifications-admin create-notification [OPTIONS]
 ```
 
 **Options**:
@@ -2799,12 +2833,12 @@ immich notifications-admin create-notification [OPTIONS]
 
 Render email template
 
-Docs: <https://api.immich.app/endpoints/notifications-admin/getNotificationTemplateAdmin>
+<a href="https://api.immich.app/endpoints/notifications-admin/getNotificationTemplateAdmin">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich notifications-admin get-notification-template-admin [OPTIONS] NAME
+$ immich notifications-admin get-notification-template-admin [OPTIONS] NAME
 ```
 
 **Arguments**:
@@ -2820,12 +2854,12 @@ immich notifications-admin get-notification-template-admin [OPTIONS] NAME
 
 Send test email
 
-Docs: <https://api.immich.app/endpoints/notifications-admin/sendTestEmailAdmin>
+<a href="https://api.immich.app/endpoints/notifications-admin/sendTestEmailAdmin">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich notifications-admin send-test-email-admin [OPTIONS]
+$ immich notifications-admin send-test-email-admin [OPTIONS]
 ```
 
 **Options**:
@@ -2845,12 +2879,12 @@ immich notifications-admin send-test-email-admin [OPTIONS]
 
 A partner is a link with another user that allows sharing of assets between two users.
 
-Docs: <https://api.immich.app/endpoints/partners>
+<a href="https://api.immich.app/endpoints/partners">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich partners [OPTIONS] COMMAND [ARGS]...
+$ immich partners [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -2869,12 +2903,12 @@ immich partners [OPTIONS] COMMAND [ARGS]...
 
 Create a partner
 
-Docs: <https://api.immich.app/endpoints/partners/createPartner>
+<a href="https://api.immich.app/endpoints/partners/createPartner">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich partners create-partner [OPTIONS]
+$ immich partners create-partner [OPTIONS]
 ```
 
 **Options**:
@@ -2886,12 +2920,12 @@ immich partners create-partner [OPTIONS]
 
 Create a partner
 
-Docs: <https://api.immich.app/endpoints/partners/createPartnerDeprecated>
+<a href="https://api.immich.app/endpoints/partners/createPartnerDeprecated">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich partners create-partner-deprecated [OPTIONS] ID
+$ immich partners create-partner-deprecated [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -2906,12 +2940,12 @@ immich partners create-partner-deprecated [OPTIONS] ID
 
 Retrieve partners
 
-Docs: <https://api.immich.app/endpoints/partners/getPartners>
+<a href="https://api.immich.app/endpoints/partners/getPartners">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich partners get-partners [OPTIONS]
+$ immich partners get-partners [OPTIONS]
 ```
 
 **Options**:
@@ -2923,12 +2957,12 @@ immich partners get-partners [OPTIONS]
 
 Remove a partner
 
-Docs: <https://api.immich.app/endpoints/partners/removePartner>
+<a href="https://api.immich.app/endpoints/partners/removePartner">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich partners remove-partner [OPTIONS] ID
+$ immich partners remove-partner [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -2943,12 +2977,12 @@ immich partners remove-partner [OPTIONS] ID
 
 Update a partner
 
-Docs: <https://api.immich.app/endpoints/partners/updatePartner>
+<a href="https://api.immich.app/endpoints/partners/updatePartner">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich partners update-partner [OPTIONS] ID
+$ immich partners update-partner [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -2964,12 +2998,12 @@ immich partners update-partner [OPTIONS] ID
 
 A person is a collection of faces, which can be favorited and named. A person can also be merged into another person. People are automatically created via the face recognition job.
 
-Docs: <https://api.immich.app/endpoints/people>
+<a href="https://api.immich.app/endpoints/people">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich people [OPTIONS] COMMAND [ARGS]...
+$ immich people [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -2994,12 +3028,12 @@ immich people [OPTIONS] COMMAND [ARGS]...
 
 Create a person
 
-Docs: <https://api.immich.app/endpoints/people/createPerson>
+<a href="https://api.immich.app/endpoints/people/createPerson">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich people create-person [OPTIONS]
+$ immich people create-person [OPTIONS]
 ```
 
 **Options**:
@@ -3016,12 +3050,12 @@ Note: the mobile app cannot currently set the birth date to null.
 
 Delete people
 
-Docs: <https://api.immich.app/endpoints/people/deletePeople>
+<a href="https://api.immich.app/endpoints/people/deletePeople">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich people delete-people [OPTIONS]
+$ immich people delete-people [OPTIONS]
 ```
 
 **Options**:
@@ -3033,12 +3067,12 @@ immich people delete-people [OPTIONS]
 
 Delete person
 
-Docs: <https://api.immich.app/endpoints/people/deletePerson>
+<a href="https://api.immich.app/endpoints/people/deletePerson">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich people delete-person [OPTIONS] ID
+$ immich people delete-person [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -3053,12 +3087,12 @@ immich people delete-person [OPTIONS] ID
 
 Get all people
 
-Docs: <https://api.immich.app/endpoints/people/getAllPeople>
+<a href="https://api.immich.app/endpoints/people/getAllPeople">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich people get-all-people [OPTIONS]
+$ immich people get-all-people [OPTIONS]
 ```
 
 **Options**:
@@ -3074,12 +3108,12 @@ immich people get-all-people [OPTIONS]
 
 Get a person
 
-Docs: <https://api.immich.app/endpoints/people/getPerson>
+<a href="https://api.immich.app/endpoints/people/getPerson">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich people get-person [OPTIONS] ID
+$ immich people get-person [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -3094,12 +3128,12 @@ immich people get-person [OPTIONS] ID
 
 Get person statistics
 
-Docs: <https://api.immich.app/endpoints/people/getPersonStatistics>
+<a href="https://api.immich.app/endpoints/people/getPersonStatistics">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich people get-person-statistics [OPTIONS] ID
+$ immich people get-person-statistics [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -3114,12 +3148,12 @@ immich people get-person-statistics [OPTIONS] ID
 
 Get person thumbnail
 
-Docs: <https://api.immich.app/endpoints/people/getPersonThumbnail>
+<a href="https://api.immich.app/endpoints/people/getPersonThumbnail">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich people get-person-thumbnail [OPTIONS] ID
+$ immich people get-person-thumbnail [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -3134,12 +3168,12 @@ immich people get-person-thumbnail [OPTIONS] ID
 
 Merge people
 
-Docs: <https://api.immich.app/endpoints/people/mergePerson>
+<a href="https://api.immich.app/endpoints/people/mergePerson">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich people merge-person [OPTIONS] ID
+$ immich people merge-person [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -3155,12 +3189,12 @@ immich people merge-person [OPTIONS] ID
 
 Reassign faces
 
-Docs: <https://api.immich.app/endpoints/people/reassignFaces>
+<a href="https://api.immich.app/endpoints/people/reassignFaces">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich people reassign-faces [OPTIONS] ID
+$ immich people reassign-faces [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -3176,12 +3210,12 @@ immich people reassign-faces [OPTIONS] ID
 
 Update people
 
-Docs: <https://api.immich.app/endpoints/people/updatePeople>
+<a href="https://api.immich.app/endpoints/people/updatePeople">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich people update-people [OPTIONS]
+$ immich people update-people [OPTIONS]
 ```
 
 **Options**:
@@ -3193,12 +3227,12 @@ immich people update-people [OPTIONS]
 
 Update person
 
-Docs: <https://api.immich.app/endpoints/people/updatePerson>
+<a href="https://api.immich.app/endpoints/people/updatePerson">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich people update-person [OPTIONS] ID
+$ immich people update-person [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -3220,12 +3254,12 @@ Note: the mobile app cannot currently set the birth date to null.
 
 A plugin is an installed module that makes filters and actions available for the workflow feature.
 
-Docs: <https://api.immich.app/endpoints/plugins>
+<a href="https://api.immich.app/endpoints/plugins">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich plugins [OPTIONS] COMMAND [ARGS]...
+$ immich plugins [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -3242,12 +3276,12 @@ immich plugins [OPTIONS] COMMAND [ARGS]...
 
 Retrieve a plugin
 
-Docs: <https://api.immich.app/endpoints/plugins/getPlugin>
+<a href="https://api.immich.app/endpoints/plugins/getPlugin">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich plugins get-plugin [OPTIONS] ID
+$ immich plugins get-plugin [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -3262,12 +3296,12 @@ immich plugins get-plugin [OPTIONS] ID
 
 List all plugin triggers
 
-Docs: <https://api.immich.app/endpoints/plugins/getPluginTriggers>
+<a href="https://api.immich.app/endpoints/plugins/getPluginTriggers">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich plugins get-plugin-triggers [OPTIONS]
+$ immich plugins get-plugin-triggers [OPTIONS]
 ```
 
 **Options**:
@@ -3278,12 +3312,12 @@ immich plugins get-plugin-triggers [OPTIONS]
 
 List all plugins
 
-Docs: <https://api.immich.app/endpoints/plugins/getPlugins>
+<a href="https://api.immich.app/endpoints/plugins/getPlugins">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich plugins get-plugins [OPTIONS]
+$ immich plugins get-plugins [OPTIONS]
 ```
 
 **Options**:
@@ -3294,12 +3328,12 @@ immich plugins get-plugins [OPTIONS]
 
 Queues and background jobs are used for processing tasks asynchronously. Queues can be paused and resumed as needed.
 
-Docs: <https://api.immich.app/endpoints/queues>
+<a href="https://api.immich.app/endpoints/queues">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich queues [OPTIONS] COMMAND [ARGS]...
+$ immich queues [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -3318,12 +3352,12 @@ immich queues [OPTIONS] COMMAND [ARGS]...
 
 Empty a queue
 
-Docs: <https://api.immich.app/endpoints/queues/emptyQueue>
+<a href="https://api.immich.app/endpoints/queues/emptyQueue">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich queues empty-queue [OPTIONS] NAME:{thumbnailGeneration|metadataExtraction|videoConversion|faceDetection|facialRecognition|smartSearch|duplicateDetection|backgroundTask|storageTemplateMigration|migration|search|sidecar|library|notifications|backupDatabase|ocr|workflow|editor}
+$ immich queues empty-queue [OPTIONS] NAME:{thumbnailGeneration|metadataExtraction|videoConversion|faceDetection|facialRecognition|smartSearch|duplicateDetection|backgroundTask|storageTemplateMigration|migration|search|sidecar|library|notifications|backupDatabase|ocr|workflow|editor}
 ```
 
 **Arguments**:
@@ -3339,12 +3373,12 @@ immich queues empty-queue [OPTIONS] NAME:{thumbnailGeneration|metadataExtraction
 
 Retrieve a queue
 
-Docs: <https://api.immich.app/endpoints/queues/getQueue>
+<a href="https://api.immich.app/endpoints/queues/getQueue">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich queues get-queue [OPTIONS] NAME:{thumbnailGeneration|metadataExtraction|videoConversion|faceDetection|facialRecognition|smartSearch|duplicateDetection|backgroundTask|storageTemplateMigration|migration|search|sidecar|library|notifications|backupDatabase|ocr|workflow|editor}
+$ immich queues get-queue [OPTIONS] NAME:{thumbnailGeneration|metadataExtraction|videoConversion|faceDetection|facialRecognition|smartSearch|duplicateDetection|backgroundTask|storageTemplateMigration|migration|search|sidecar|library|notifications|backupDatabase|ocr|workflow|editor}
 ```
 
 **Arguments**:
@@ -3359,12 +3393,12 @@ immich queues get-queue [OPTIONS] NAME:{thumbnailGeneration|metadataExtraction|v
 
 Retrieve queue jobs
 
-Docs: <https://api.immich.app/endpoints/queues/getQueueJobs>
+<a href="https://api.immich.app/endpoints/queues/getQueueJobs">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich queues get-queue-jobs [OPTIONS] NAME:{thumbnailGeneration|metadataExtraction|videoConversion|faceDetection|facialRecognition|smartSearch|duplicateDetection|backgroundTask|storageTemplateMigration|migration|search|sidecar|library|notifications|backupDatabase|ocr|workflow|editor}
+$ immich queues get-queue-jobs [OPTIONS] NAME:{thumbnailGeneration|metadataExtraction|videoConversion|faceDetection|facialRecognition|smartSearch|duplicateDetection|backgroundTask|storageTemplateMigration|migration|search|sidecar|library|notifications|backupDatabase|ocr|workflow|editor}
 ```
 
 **Arguments**:
@@ -3380,12 +3414,12 @@ immich queues get-queue-jobs [OPTIONS] NAME:{thumbnailGeneration|metadataExtract
 
 List all queues
 
-Docs: <https://api.immich.app/endpoints/queues/getQueues>
+<a href="https://api.immich.app/endpoints/queues/getQueues">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich queues get-queues [OPTIONS]
+$ immich queues get-queues [OPTIONS]
 ```
 
 **Options**:
@@ -3396,12 +3430,12 @@ immich queues get-queues [OPTIONS]
 
 Update a queue
 
-Docs: <https://api.immich.app/endpoints/queues/updateQueue>
+<a href="https://api.immich.app/endpoints/queues/updateQueue">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich queues update-queue [OPTIONS] NAME:{thumbnailGeneration|metadataExtraction|videoConversion|faceDetection|facialRecognition|smartSearch|duplicateDetection|backgroundTask|storageTemplateMigration|migration|search|sidecar|library|notifications|backupDatabase|ocr|workflow|editor}
+$ immich queues update-queue [OPTIONS] NAME:{thumbnailGeneration|metadataExtraction|videoConversion|faceDetection|facialRecognition|smartSearch|duplicateDetection|backgroundTask|storageTemplateMigration|migration|search|sidecar|library|notifications|backupDatabase|ocr|workflow|editor}
 ```
 
 **Arguments**:
@@ -3417,12 +3451,12 @@ immich queues update-queue [OPTIONS] NAME:{thumbnailGeneration|metadataExtractio
 
 Endpoints related to searching assets via text, smart search, optical character recognition (OCR), and other filters like person, album, and other metadata. Search endpoints usually support pagination and sorting.
 
-Docs: <https://api.immich.app/endpoints/search>
+<a href="https://api.immich.app/endpoints/search">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich search [OPTIONS] COMMAND [ARGS]...
+$ immich search [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -3446,12 +3480,12 @@ immich search [OPTIONS] COMMAND [ARGS]...
 
 Retrieve assets by city
 
-Docs: <https://api.immich.app/endpoints/search/getAssetsByCity>
+<a href="https://api.immich.app/endpoints/search/getAssetsByCity">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich search get-assets-by-city [OPTIONS]
+$ immich search get-assets-by-city [OPTIONS]
 ```
 
 **Options**:
@@ -3462,12 +3496,12 @@ immich search get-assets-by-city [OPTIONS]
 
 Retrieve explore data
 
-Docs: <https://api.immich.app/endpoints/search/getExploreData>
+<a href="https://api.immich.app/endpoints/search/getExploreData">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich search get-explore-data [OPTIONS]
+$ immich search get-explore-data [OPTIONS]
 ```
 
 **Options**:
@@ -3478,12 +3512,12 @@ immich search get-explore-data [OPTIONS]
 
 Retrieve search suggestions
 
-Docs: <https://api.immich.app/endpoints/search/getSearchSuggestions>
+<a href="https://api.immich.app/endpoints/search/getSearchSuggestions">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich search get-search-suggestions [OPTIONS]
+$ immich search get-search-suggestions [OPTIONS]
 ```
 
 **Options**:
@@ -3501,12 +3535,12 @@ immich search get-search-suggestions [OPTIONS]
 
 Search asset statistics
 
-Docs: <https://api.immich.app/endpoints/search/searchAssetStatistics>
+<a href="https://api.immich.app/endpoints/search/searchAssetStatistics">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich search search-asset-statistics [OPTIONS]
+$ immich search search-asset-statistics [OPTIONS]
 ```
 
 **Options**:
@@ -3546,12 +3580,12 @@ immich search search-asset-statistics [OPTIONS]
 
 Search assets by metadata
 
-Docs: <https://api.immich.app/endpoints/search/searchAssets>
+<a href="https://api.immich.app/endpoints/search/searchAssets">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich search search-assets [OPTIONS]
+$ immich search search-assets [OPTIONS]
 ```
 
 **Options**:
@@ -3606,12 +3640,12 @@ immich search search-assets [OPTIONS]
 
 Search large assets
 
-Docs: <https://api.immich.app/endpoints/search/searchLargeAssets>
+<a href="https://api.immich.app/endpoints/search/searchLargeAssets">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich search search-large-assets [OPTIONS]
+$ immich search search-large-assets [OPTIONS]
 ```
 
 **Options**:
@@ -3654,12 +3688,12 @@ immich search search-large-assets [OPTIONS]
 
 Search people
 
-Docs: <https://api.immich.app/endpoints/search/searchPerson>
+<a href="https://api.immich.app/endpoints/search/searchPerson">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich search search-person [OPTIONS]
+$ immich search search-person [OPTIONS]
 ```
 
 **Options**:
@@ -3672,12 +3706,12 @@ immich search search-person [OPTIONS]
 
 Search places
 
-Docs: <https://api.immich.app/endpoints/search/searchPlaces>
+<a href="https://api.immich.app/endpoints/search/searchPlaces">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich search search-places [OPTIONS]
+$ immich search search-places [OPTIONS]
 ```
 
 **Options**:
@@ -3689,12 +3723,12 @@ immich search search-places [OPTIONS]
 
 Search random assets
 
-Docs: <https://api.immich.app/endpoints/search/searchRandom>
+<a href="https://api.immich.app/endpoints/search/searchRandom">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich search search-random [OPTIONS]
+$ immich search search-random [OPTIONS]
 ```
 
 **Options**:
@@ -3738,12 +3772,12 @@ immich search search-random [OPTIONS]
 
 Smart asset search
 
-Docs: <https://api.immich.app/endpoints/search/searchSmart>
+<a href="https://api.immich.app/endpoints/search/searchSmart">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich search search-smart [OPTIONS]
+$ immich search search-smart [OPTIONS]
 ```
 
 **Options**:
@@ -3789,12 +3823,12 @@ immich search search-smart [OPTIONS]
 
 Information about the current server deployment, including version and build information, available features, supported media types, and more.
 
-Docs: <https://api.immich.app/endpoints/server>
+<a href="https://api.immich.app/endpoints/server">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich server [OPTIONS] COMMAND [ARGS]...
+$ immich server [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -3823,12 +3857,12 @@ immich server [OPTIONS] COMMAND [ARGS]...
 
 Delete server product key
 
-Docs: <https://api.immich.app/endpoints/server/deleteServerLicense>
+<a href="https://api.immich.app/endpoints/server/deleteServerLicense">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich server delete-server-license [OPTIONS]
+$ immich server delete-server-license [OPTIONS]
 ```
 
 **Options**:
@@ -3839,12 +3873,12 @@ immich server delete-server-license [OPTIONS]
 
 Get server information
 
-Docs: <https://api.immich.app/endpoints/server/getAboutInfo>
+<a href="https://api.immich.app/endpoints/server/getAboutInfo">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich server get-about-info [OPTIONS]
+$ immich server get-about-info [OPTIONS]
 ```
 
 **Options**:
@@ -3855,12 +3889,12 @@ immich server get-about-info [OPTIONS]
 
 Get APK links
 
-Docs: <https://api.immich.app/endpoints/server/getApkLinks>
+<a href="https://api.immich.app/endpoints/server/getApkLinks">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich server get-apk-links [OPTIONS]
+$ immich server get-apk-links [OPTIONS]
 ```
 
 **Options**:
@@ -3871,12 +3905,12 @@ immich server get-apk-links [OPTIONS]
 
 Get config
 
-Docs: <https://api.immich.app/endpoints/server/getServerConfig>
+<a href="https://api.immich.app/endpoints/server/getServerConfig">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich server get-server-config [OPTIONS]
+$ immich server get-server-config [OPTIONS]
 ```
 
 **Options**:
@@ -3887,12 +3921,12 @@ immich server get-server-config [OPTIONS]
 
 Get features
 
-Docs: <https://api.immich.app/endpoints/server/getServerFeatures>
+<a href="https://api.immich.app/endpoints/server/getServerFeatures">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich server get-server-features [OPTIONS]
+$ immich server get-server-features [OPTIONS]
 ```
 
 **Options**:
@@ -3903,12 +3937,12 @@ immich server get-server-features [OPTIONS]
 
 Get product key
 
-Docs: <https://api.immich.app/endpoints/server/getServerLicense>
+<a href="https://api.immich.app/endpoints/server/getServerLicense">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich server get-server-license [OPTIONS]
+$ immich server get-server-license [OPTIONS]
 ```
 
 **Options**:
@@ -3919,12 +3953,12 @@ immich server get-server-license [OPTIONS]
 
 Get statistics
 
-Docs: <https://api.immich.app/endpoints/server/getServerStatistics>
+<a href="https://api.immich.app/endpoints/server/getServerStatistics">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich server get-server-statistics [OPTIONS]
+$ immich server get-server-statistics [OPTIONS]
 ```
 
 **Options**:
@@ -3935,12 +3969,12 @@ immich server get-server-statistics [OPTIONS]
 
 Get server version
 
-Docs: <https://api.immich.app/endpoints/server/getServerVersion>
+<a href="https://api.immich.app/endpoints/server/getServerVersion">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich server get-server-version [OPTIONS]
+$ immich server get-server-version [OPTIONS]
 ```
 
 **Options**:
@@ -3951,12 +3985,12 @@ immich server get-server-version [OPTIONS]
 
 Get storage
 
-Docs: <https://api.immich.app/endpoints/server/getStorage>
+<a href="https://api.immich.app/endpoints/server/getStorage">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich server get-storage [OPTIONS]
+$ immich server get-storage [OPTIONS]
 ```
 
 **Options**:
@@ -3967,12 +4001,12 @@ immich server get-storage [OPTIONS]
 
 Get supported media types
 
-Docs: <https://api.immich.app/endpoints/server/getSupportedMediaTypes>
+<a href="https://api.immich.app/endpoints/server/getSupportedMediaTypes">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich server get-supported-media-types [OPTIONS]
+$ immich server get-supported-media-types [OPTIONS]
 ```
 
 **Options**:
@@ -3983,12 +4017,12 @@ immich server get-supported-media-types [OPTIONS]
 
 Get theme
 
-Docs: <https://api.immich.app/endpoints/server/getTheme>
+<a href="https://api.immich.app/endpoints/server/getTheme">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich server get-theme [OPTIONS]
+$ immich server get-theme [OPTIONS]
 ```
 
 **Options**:
@@ -3999,12 +4033,12 @@ immich server get-theme [OPTIONS]
 
 Get version check status
 
-Docs: <https://api.immich.app/endpoints/server/getVersionCheck>
+<a href="https://api.immich.app/endpoints/server/getVersionCheck">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich server get-version-check [OPTIONS]
+$ immich server get-version-check [OPTIONS]
 ```
 
 **Options**:
@@ -4015,12 +4049,12 @@ immich server get-version-check [OPTIONS]
 
 Get version history
 
-Docs: <https://api.immich.app/endpoints/server/getVersionHistory>
+<a href="https://api.immich.app/endpoints/server/getVersionHistory">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich server get-version-history [OPTIONS]
+$ immich server get-version-history [OPTIONS]
 ```
 
 **Options**:
@@ -4031,12 +4065,12 @@ immich server get-version-history [OPTIONS]
 
 Ping
 
-Docs: <https://api.immich.app/endpoints/server/pingServer>
+<a href="https://api.immich.app/endpoints/server/pingServer">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich server ping-server [OPTIONS]
+$ immich server ping-server [OPTIONS]
 ```
 
 **Options**:
@@ -4047,12 +4081,12 @@ immich server ping-server [OPTIONS]
 
 Set server product key
 
-Docs: <https://api.immich.app/endpoints/server/setServerLicense>
+<a href="https://api.immich.app/endpoints/server/setServerLicense">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich server set-server-license [OPTIONS]
+$ immich server set-server-license [OPTIONS]
 ```
 
 **Options**:
@@ -4065,12 +4099,12 @@ immich server set-server-license [OPTIONS]
 
 A session represents an authenticated login session for a user. Sessions also appear in the web application as &quot;Authorized devices&quot;.
 
-Docs: <https://api.immich.app/endpoints/sessions>
+<a href="https://api.immich.app/endpoints/sessions">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich sessions [OPTIONS] COMMAND [ARGS]...
+$ immich sessions [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -4090,12 +4124,12 @@ immich sessions [OPTIONS] COMMAND [ARGS]...
 
 Create a session
 
-Docs: <https://api.immich.app/endpoints/sessions/createSession>
+<a href="https://api.immich.app/endpoints/sessions/createSession">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich sessions create-session [OPTIONS]
+$ immich sessions create-session [OPTIONS]
 ```
 
 **Options**:
@@ -4109,12 +4143,12 @@ immich sessions create-session [OPTIONS]
 
 Delete all sessions
 
-Docs: <https://api.immich.app/endpoints/sessions/deleteAllSessions>
+<a href="https://api.immich.app/endpoints/sessions/deleteAllSessions">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich sessions delete-all-sessions [OPTIONS]
+$ immich sessions delete-all-sessions [OPTIONS]
 ```
 
 **Options**:
@@ -4125,12 +4159,12 @@ immich sessions delete-all-sessions [OPTIONS]
 
 Delete a session
 
-Docs: <https://api.immich.app/endpoints/sessions/deleteSession>
+<a href="https://api.immich.app/endpoints/sessions/deleteSession">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich sessions delete-session [OPTIONS] ID
+$ immich sessions delete-session [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -4145,12 +4179,12 @@ immich sessions delete-session [OPTIONS] ID
 
 Retrieve sessions
 
-Docs: <https://api.immich.app/endpoints/sessions/getSessions>
+<a href="https://api.immich.app/endpoints/sessions/getSessions">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich sessions get-sessions [OPTIONS]
+$ immich sessions get-sessions [OPTIONS]
 ```
 
 **Options**:
@@ -4161,12 +4195,12 @@ immich sessions get-sessions [OPTIONS]
 
 Lock a session
 
-Docs: <https://api.immich.app/endpoints/sessions/lockSession>
+<a href="https://api.immich.app/endpoints/sessions/lockSession">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich sessions lock-session [OPTIONS] ID
+$ immich sessions lock-session [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -4181,12 +4215,12 @@ immich sessions lock-session [OPTIONS] ID
 
 Update a session
 
-Docs: <https://api.immich.app/endpoints/sessions/updateSession>
+<a href="https://api.immich.app/endpoints/sessions/updateSession">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich sessions update-session [OPTIONS] ID
+$ immich sessions update-session [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -4202,12 +4236,12 @@ immich sessions update-session [OPTIONS] ID
 
 A shared link is a public url that provides access to a specific album, asset, or collection of assets. A shared link can be protected with a password, include a specific slug, allow or disallow downloads, and optionally include an expiration date.
 
-Docs: <https://api.immich.app/endpoints/shared-links>
+<a href="https://api.immich.app/endpoints/shared-links">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich shared-links [OPTIONS] COMMAND [ARGS]...
+$ immich shared-links [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -4229,12 +4263,12 @@ immich shared-links [OPTIONS] COMMAND [ARGS]...
 
 Add assets to a shared link
 
-Docs: <https://api.immich.app/endpoints/shared-links/addSharedLinkAssets>
+<a href="https://api.immich.app/endpoints/shared-links/addSharedLinkAssets">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich shared-links add-shared-link-assets [OPTIONS] ID
+$ immich shared-links add-shared-link-assets [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -4252,12 +4286,12 @@ immich shared-links add-shared-link-assets [OPTIONS] ID
 
 Create a shared link
 
-Docs: <https://api.immich.app/endpoints/shared-links/createSharedLink>
+<a href="https://api.immich.app/endpoints/shared-links/createSharedLink">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich shared-links create-shared-link [OPTIONS]
+$ immich shared-links create-shared-link [OPTIONS]
 ```
 
 **Options**:
@@ -4278,12 +4312,12 @@ immich shared-links create-shared-link [OPTIONS]
 
 Retrieve all shared links
 
-Docs: <https://api.immich.app/endpoints/shared-links/getAllSharedLinks>
+<a href="https://api.immich.app/endpoints/shared-links/getAllSharedLinks">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich shared-links get-all-shared-links [OPTIONS]
+$ immich shared-links get-all-shared-links [OPTIONS]
 ```
 
 **Options**:
@@ -4296,12 +4330,12 @@ immich shared-links get-all-shared-links [OPTIONS]
 
 Retrieve current shared link
 
-Docs: <https://api.immich.app/endpoints/shared-links/getMySharedLink>
+<a href="https://api.immich.app/endpoints/shared-links/getMySharedLink">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich shared-links get-my-shared-link [OPTIONS]
+$ immich shared-links get-my-shared-link [OPTIONS]
 ```
 
 **Options**:
@@ -4316,12 +4350,12 @@ immich shared-links get-my-shared-link [OPTIONS]
 
 Retrieve a shared link
 
-Docs: <https://api.immich.app/endpoints/shared-links/getSharedLinkById>
+<a href="https://api.immich.app/endpoints/shared-links/getSharedLinkById">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich shared-links get-shared-link-by-id [OPTIONS] ID
+$ immich shared-links get-shared-link-by-id [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -4336,12 +4370,12 @@ immich shared-links get-shared-link-by-id [OPTIONS] ID
 
 Delete a shared link
 
-Docs: <https://api.immich.app/endpoints/shared-links/removeSharedLink>
+<a href="https://api.immich.app/endpoints/shared-links/removeSharedLink">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich shared-links remove-shared-link [OPTIONS] ID
+$ immich shared-links remove-shared-link [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -4356,12 +4390,12 @@ immich shared-links remove-shared-link [OPTIONS] ID
 
 Remove assets from a shared link
 
-Docs: <https://api.immich.app/endpoints/shared-links/removeSharedLinkAssets>
+<a href="https://api.immich.app/endpoints/shared-links/removeSharedLinkAssets">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich shared-links remove-shared-link-assets [OPTIONS] ID
+$ immich shared-links remove-shared-link-assets [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -4379,12 +4413,12 @@ immich shared-links remove-shared-link-assets [OPTIONS] ID
 
 Update a shared link
 
-Docs: <https://api.immich.app/endpoints/shared-links/updateSharedLink>
+<a href="https://api.immich.app/endpoints/shared-links/updateSharedLink">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich shared-links update-shared-link [OPTIONS] ID
+$ immich shared-links update-shared-link [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -4409,12 +4443,12 @@ Clients that can send null values can ignore this.
 
 A stack is a group of related assets. One asset is the &quot;primary&quot; asset, and the rest are &quot;child&quot; assets. On the main timeline, stack parents are included by default, while child assets are hidden.
 
-Docs: <https://api.immich.app/endpoints/stacks>
+<a href="https://api.immich.app/endpoints/stacks">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich stacks [OPTIONS] COMMAND [ARGS]...
+$ immich stacks [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -4435,12 +4469,12 @@ immich stacks [OPTIONS] COMMAND [ARGS]...
 
 Create a stack
 
-Docs: <https://api.immich.app/endpoints/stacks/createStack>
+<a href="https://api.immich.app/endpoints/stacks/createStack">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich stacks create-stack [OPTIONS]
+$ immich stacks create-stack [OPTIONS]
 ```
 
 **Options**:
@@ -4452,12 +4486,12 @@ immich stacks create-stack [OPTIONS]
 
 Delete a stack
 
-Docs: <https://api.immich.app/endpoints/stacks/deleteStack>
+<a href="https://api.immich.app/endpoints/stacks/deleteStack">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich stacks delete-stack [OPTIONS] ID
+$ immich stacks delete-stack [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -4472,12 +4506,12 @@ immich stacks delete-stack [OPTIONS] ID
 
 Delete stacks
 
-Docs: <https://api.immich.app/endpoints/stacks/deleteStacks>
+<a href="https://api.immich.app/endpoints/stacks/deleteStacks">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich stacks delete-stacks [OPTIONS]
+$ immich stacks delete-stacks [OPTIONS]
 ```
 
 **Options**:
@@ -4489,12 +4523,12 @@ immich stacks delete-stacks [OPTIONS]
 
 Retrieve a stack
 
-Docs: <https://api.immich.app/endpoints/stacks/getStack>
+<a href="https://api.immich.app/endpoints/stacks/getStack">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich stacks get-stack [OPTIONS] ID
+$ immich stacks get-stack [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -4509,12 +4543,12 @@ immich stacks get-stack [OPTIONS] ID
 
 Remove an asset from a stack
 
-Docs: <https://api.immich.app/endpoints/stacks/removeAssetFromStack>
+<a href="https://api.immich.app/endpoints/stacks/removeAssetFromStack">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich stacks remove-asset-from-stack [OPTIONS] ASSET_ID ID
+$ immich stacks remove-asset-from-stack [OPTIONS] ASSET_ID ID
 ```
 
 **Arguments**:
@@ -4530,12 +4564,12 @@ immich stacks remove-asset-from-stack [OPTIONS] ASSET_ID ID
 
 Retrieve stacks
 
-Docs: <https://api.immich.app/endpoints/stacks/searchStacks>
+<a href="https://api.immich.app/endpoints/stacks/searchStacks">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich stacks search-stacks [OPTIONS]
+$ immich stacks search-stacks [OPTIONS]
 ```
 
 **Options**:
@@ -4547,12 +4581,12 @@ immich stacks search-stacks [OPTIONS]
 
 Update a stack
 
-Docs: <https://api.immich.app/endpoints/stacks/updateStack>
+<a href="https://api.immich.app/endpoints/stacks/updateStack">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich stacks update-stack [OPTIONS] ID
+$ immich stacks update-stack [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -4568,12 +4602,12 @@ immich stacks update-stack [OPTIONS] ID
 
 A collection of endpoints for the new mobile synchronization implementation.
 
-Docs: <https://api.immich.app/endpoints/sync>
+<a href="https://api.immich.app/endpoints/sync">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich sync [OPTIONS] COMMAND [ARGS]...
+$ immich sync [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -4593,12 +4627,12 @@ immich sync [OPTIONS] COMMAND [ARGS]...
 
 Delete acknowledgements
 
-Docs: <https://api.immich.app/endpoints/sync/deleteSyncAck>
+<a href="https://api.immich.app/endpoints/sync/deleteSyncAck">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich sync delete-sync-ack [OPTIONS]
+$ immich sync delete-sync-ack [OPTIONS]
 ```
 
 **Options**:
@@ -4610,12 +4644,12 @@ immich sync delete-sync-ack [OPTIONS]
 
 Get delta sync for user
 
-Docs: <https://api.immich.app/endpoints/sync/getDeltaSync>
+<a href="https://api.immich.app/endpoints/sync/getDeltaSync">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich sync get-delta-sync [OPTIONS]
+$ immich sync get-delta-sync [OPTIONS]
 ```
 
 **Options**:
@@ -4628,12 +4662,12 @@ immich sync get-delta-sync [OPTIONS]
 
 Get full sync for user
 
-Docs: <https://api.immich.app/endpoints/sync/getFullSyncForUser>
+<a href="https://api.immich.app/endpoints/sync/getFullSyncForUser">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich sync get-full-sync-for-user [OPTIONS]
+$ immich sync get-full-sync-for-user [OPTIONS]
 ```
 
 **Options**:
@@ -4648,12 +4682,12 @@ immich sync get-full-sync-for-user [OPTIONS]
 
 Retrieve acknowledgements
 
-Docs: <https://api.immich.app/endpoints/sync/getSyncAck>
+<a href="https://api.immich.app/endpoints/sync/getSyncAck">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich sync get-sync-ack [OPTIONS]
+$ immich sync get-sync-ack [OPTIONS]
 ```
 
 **Options**:
@@ -4664,12 +4698,12 @@ immich sync get-sync-ack [OPTIONS]
 
 Stream sync changes
 
-Docs: <https://api.immich.app/endpoints/sync/getSyncStream>
+<a href="https://api.immich.app/endpoints/sync/getSyncStream">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich sync get-sync-stream [OPTIONS]
+$ immich sync get-sync-stream [OPTIONS]
 ```
 
 **Options**:
@@ -4682,12 +4716,12 @@ immich sync get-sync-stream [OPTIONS]
 
 Acknowledge changes
 
-Docs: <https://api.immich.app/endpoints/sync/sendSyncAck>
+<a href="https://api.immich.app/endpoints/sync/sendSyncAck">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich sync send-sync-ack [OPTIONS]
+$ immich sync send-sync-ack [OPTIONS]
 ```
 
 **Options**:
@@ -4699,12 +4733,12 @@ immich sync send-sync-ack [OPTIONS]
 
 Endpoints to view, modify, and validate the system configuration settings.
 
-Docs: <https://api.immich.app/endpoints/system-config>
+<a href="https://api.immich.app/endpoints/system-config">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich system-config [OPTIONS] COMMAND [ARGS]...
+$ immich system-config [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -4722,12 +4756,12 @@ immich system-config [OPTIONS] COMMAND [ARGS]...
 
 Get system configuration
 
-Docs: <https://api.immich.app/endpoints/system-config/getConfig>
+<a href="https://api.immich.app/endpoints/system-config/getConfig">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich system-config get-config [OPTIONS]
+$ immich system-config get-config [OPTIONS]
 ```
 
 **Options**:
@@ -4738,12 +4772,12 @@ immich system-config get-config [OPTIONS]
 
 Get system configuration defaults
 
-Docs: <https://api.immich.app/endpoints/system-config/getConfigDefaults>
+<a href="https://api.immich.app/endpoints/system-config/getConfigDefaults">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich system-config get-config-defaults [OPTIONS]
+$ immich system-config get-config-defaults [OPTIONS]
 ```
 
 **Options**:
@@ -4754,12 +4788,12 @@ immich system-config get-config-defaults [OPTIONS]
 
 Get storage template options
 
-Docs: <https://api.immich.app/endpoints/system-config/getStorageTemplateOptions>
+<a href="https://api.immich.app/endpoints/system-config/getStorageTemplateOptions">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich system-config get-storage-template-options [OPTIONS]
+$ immich system-config get-storage-template-options [OPTIONS]
 ```
 
 **Options**:
@@ -4770,12 +4804,12 @@ immich system-config get-storage-template-options [OPTIONS]
 
 Update system configuration
 
-Docs: <https://api.immich.app/endpoints/system-config/updateConfig>
+<a href="https://api.immich.app/endpoints/system-config/updateConfig">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich system-config update-config [OPTIONS]
+$ immich system-config update-config [OPTIONS]
 ```
 
 **Options**:
@@ -4912,12 +4946,12 @@ immich system-config update-config [OPTIONS]
 
 Endpoints to view, modify, and validate the system metadata, which includes information about things like admin onboarding status.
 
-Docs: <https://api.immich.app/endpoints/system-metadata>
+<a href="https://api.immich.app/endpoints/system-metadata">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich system-metadata [OPTIONS] COMMAND [ARGS]...
+$ immich system-metadata [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -4935,12 +4969,12 @@ immich system-metadata [OPTIONS] COMMAND [ARGS]...
 
 Retrieve admin onboarding
 
-Docs: <https://api.immich.app/endpoints/system-metadata/getAdminOnboarding>
+<a href="https://api.immich.app/endpoints/system-metadata/getAdminOnboarding">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich system-metadata get-admin-onboarding [OPTIONS]
+$ immich system-metadata get-admin-onboarding [OPTIONS]
 ```
 
 **Options**:
@@ -4951,12 +4985,12 @@ immich system-metadata get-admin-onboarding [OPTIONS]
 
 Retrieve reverse geocoding state
 
-Docs: <https://api.immich.app/endpoints/system-metadata/getReverseGeocodingState>
+<a href="https://api.immich.app/endpoints/system-metadata/getReverseGeocodingState">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich system-metadata get-reverse-geocoding-state [OPTIONS]
+$ immich system-metadata get-reverse-geocoding-state [OPTIONS]
 ```
 
 **Options**:
@@ -4967,12 +5001,12 @@ immich system-metadata get-reverse-geocoding-state [OPTIONS]
 
 Retrieve version check state
 
-Docs: <https://api.immich.app/endpoints/system-metadata/getVersionCheckState>
+<a href="https://api.immich.app/endpoints/system-metadata/getVersionCheckState">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich system-metadata get-version-check-state [OPTIONS]
+$ immich system-metadata get-version-check-state [OPTIONS]
 ```
 
 **Options**:
@@ -4983,12 +5017,12 @@ immich system-metadata get-version-check-state [OPTIONS]
 
 Update admin onboarding
 
-Docs: <https://api.immich.app/endpoints/system-metadata/updateAdminOnboarding>
+<a href="https://api.immich.app/endpoints/system-metadata/updateAdminOnboarding">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich system-metadata update-admin-onboarding [OPTIONS]
+$ immich system-metadata update-admin-onboarding [OPTIONS]
 ```
 
 **Options**:
@@ -5000,12 +5034,12 @@ immich system-metadata update-admin-onboarding [OPTIONS]
 
 A tag is a user-defined label that can be applied to assets for organizational purposes. Tags can also be hierarchical, allowing for parent-child relationships between tags.
 
-Docs: <https://api.immich.app/endpoints/tags>
+<a href="https://api.immich.app/endpoints/tags">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich tags [OPTIONS] COMMAND [ARGS]...
+$ immich tags [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -5028,12 +5062,12 @@ immich tags [OPTIONS] COMMAND [ARGS]...
 
 Tag assets
 
-Docs: <https://api.immich.app/endpoints/tags/bulkTagAssets>
+<a href="https://api.immich.app/endpoints/tags/bulkTagAssets">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich tags bulk-tag-assets [OPTIONS]
+$ immich tags bulk-tag-assets [OPTIONS]
 ```
 
 **Options**:
@@ -5046,12 +5080,12 @@ immich tags bulk-tag-assets [OPTIONS]
 
 Create a tag
 
-Docs: <https://api.immich.app/endpoints/tags/createTag>
+<a href="https://api.immich.app/endpoints/tags/createTag">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich tags create-tag [OPTIONS]
+$ immich tags create-tag [OPTIONS]
 ```
 
 **Options**:
@@ -5065,12 +5099,12 @@ immich tags create-tag [OPTIONS]
 
 Delete a tag
 
-Docs: <https://api.immich.app/endpoints/tags/deleteTag>
+<a href="https://api.immich.app/endpoints/tags/deleteTag">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich tags delete-tag [OPTIONS] ID
+$ immich tags delete-tag [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -5085,12 +5119,12 @@ immich tags delete-tag [OPTIONS] ID
 
 Retrieve tags
 
-Docs: <https://api.immich.app/endpoints/tags/getAllTags>
+<a href="https://api.immich.app/endpoints/tags/getAllTags">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich tags get-all-tags [OPTIONS]
+$ immich tags get-all-tags [OPTIONS]
 ```
 
 **Options**:
@@ -5101,12 +5135,12 @@ immich tags get-all-tags [OPTIONS]
 
 Retrieve a tag
 
-Docs: <https://api.immich.app/endpoints/tags/getTagById>
+<a href="https://api.immich.app/endpoints/tags/getTagById">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich tags get-tag-by-id [OPTIONS] ID
+$ immich tags get-tag-by-id [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -5121,12 +5155,12 @@ immich tags get-tag-by-id [OPTIONS] ID
 
 Tag assets
 
-Docs: <https://api.immich.app/endpoints/tags/tagAssets>
+<a href="https://api.immich.app/endpoints/tags/tagAssets">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich tags tag-assets [OPTIONS] ID
+$ immich tags tag-assets [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -5142,12 +5176,12 @@ immich tags tag-assets [OPTIONS] ID
 
 Untag assets
 
-Docs: <https://api.immich.app/endpoints/tags/untagAssets>
+<a href="https://api.immich.app/endpoints/tags/untagAssets">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich tags untag-assets [OPTIONS] ID
+$ immich tags untag-assets [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -5163,12 +5197,12 @@ immich tags untag-assets [OPTIONS] ID
 
 Update a tag
 
-Docs: <https://api.immich.app/endpoints/tags/updateTag>
+<a href="https://api.immich.app/endpoints/tags/updateTag">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich tags update-tag [OPTIONS] ID
+$ immich tags update-tag [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -5184,12 +5218,12 @@ immich tags update-tag [OPTIONS] ID
 
 Upsert tags
 
-Docs: <https://api.immich.app/endpoints/tags/upsertTags>
+<a href="https://api.immich.app/endpoints/tags/upsertTags">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich tags upsert-tags [OPTIONS]
+$ immich tags upsert-tags [OPTIONS]
 ```
 
 **Options**:
@@ -5201,12 +5235,12 @@ immich tags upsert-tags [OPTIONS]
 
 Specialized endpoints related to the timeline implementation used in the web application. External applications or tools should not use or rely on these endpoints, as they are subject to change without notice.
 
-Docs: <https://api.immich.app/endpoints/timeline>
+<a href="https://api.immich.app/endpoints/timeline">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich timeline [OPTIONS] COMMAND [ARGS]...
+$ immich timeline [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -5222,12 +5256,12 @@ immich timeline [OPTIONS] COMMAND [ARGS]...
 
 Get time bucket
 
-Docs: <https://api.immich.app/endpoints/timeline/getTimeBucket>
+<a href="https://api.immich.app/endpoints/timeline/getTimeBucket">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich timeline get-time-bucket [OPTIONS]
+$ immich timeline get-time-bucket [OPTIONS]
 ```
 
 **Options**:
@@ -5252,12 +5286,12 @@ immich timeline get-time-bucket [OPTIONS]
 
 Get time buckets
 
-Docs: <https://api.immich.app/endpoints/timeline/getTimeBuckets>
+<a href="https://api.immich.app/endpoints/timeline/getTimeBuckets">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich timeline get-time-buckets [OPTIONS]
+$ immich timeline get-time-buckets [OPTIONS]
 ```
 
 **Options**:
@@ -5281,12 +5315,12 @@ immich timeline get-time-buckets [OPTIONS]
 
 Endpoints for managing the trash can, which includes assets that have been discarded. Items in the trash are automatically deleted after a configured amount of time.
 
-Docs: <https://api.immich.app/endpoints/trash>
+<a href="https://api.immich.app/endpoints/trash">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich trash [OPTIONS] COMMAND [ARGS]...
+$ immich trash [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -5303,12 +5337,12 @@ immich trash [OPTIONS] COMMAND [ARGS]...
 
 Empty trash
 
-Docs: <https://api.immich.app/endpoints/trash/emptyTrash>
+<a href="https://api.immich.app/endpoints/trash/emptyTrash">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich trash empty-trash [OPTIONS]
+$ immich trash empty-trash [OPTIONS]
 ```
 
 **Options**:
@@ -5319,12 +5353,12 @@ immich trash empty-trash [OPTIONS]
 
 Restore assets
 
-Docs: <https://api.immich.app/endpoints/trash/restoreAssets>
+<a href="https://api.immich.app/endpoints/trash/restoreAssets">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich trash restore-assets [OPTIONS]
+$ immich trash restore-assets [OPTIONS]
 ```
 
 **Options**:
@@ -5336,12 +5370,12 @@ immich trash restore-assets [OPTIONS]
 
 Restore trash
 
-Docs: <https://api.immich.app/endpoints/trash/restoreTrash>
+<a href="https://api.immich.app/endpoints/trash/restoreTrash">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich trash restore-trash [OPTIONS]
+$ immich trash restore-trash [OPTIONS]
 ```
 
 **Options**:
@@ -5352,12 +5386,12 @@ immich trash restore-trash [OPTIONS]
 
 Endpoints for viewing and updating the current users, including product key information, profile picture data, onboarding progress, and more.
 
-Docs: <https://api.immich.app/endpoints/users>
+<a href="https://api.immich.app/endpoints/users">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users [OPTIONS] COMMAND [ARGS]...
+$ immich users [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -5387,12 +5421,12 @@ immich users [OPTIONS] COMMAND [ARGS]...
 
 Create user profile image
 
-Docs: <https://api.immich.app/endpoints/users/createProfileImage>
+<a href="https://api.immich.app/endpoints/users/createProfileImage">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users create-profile-image [OPTIONS]
+$ immich users create-profile-image [OPTIONS]
 ```
 
 **Options**:
@@ -5404,12 +5438,12 @@ immich users create-profile-image [OPTIONS]
 
 Delete user profile image
 
-Docs: <https://api.immich.app/endpoints/users/deleteProfileImage>
+<a href="https://api.immich.app/endpoints/users/deleteProfileImage">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users delete-profile-image [OPTIONS]
+$ immich users delete-profile-image [OPTIONS]
 ```
 
 **Options**:
@@ -5420,12 +5454,12 @@ immich users delete-profile-image [OPTIONS]
 
 Delete user product key
 
-Docs: <https://api.immich.app/endpoints/users/deleteUserLicense>
+<a href="https://api.immich.app/endpoints/users/deleteUserLicense">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users delete-user-license [OPTIONS]
+$ immich users delete-user-license [OPTIONS]
 ```
 
 **Options**:
@@ -5436,12 +5470,12 @@ immich users delete-user-license [OPTIONS]
 
 Delete user onboarding
 
-Docs: <https://api.immich.app/endpoints/users/deleteUserOnboarding>
+<a href="https://api.immich.app/endpoints/users/deleteUserOnboarding">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users delete-user-onboarding [OPTIONS]
+$ immich users delete-user-onboarding [OPTIONS]
 ```
 
 **Options**:
@@ -5452,12 +5486,12 @@ immich users delete-user-onboarding [OPTIONS]
 
 Get my preferences
 
-Docs: <https://api.immich.app/endpoints/users/getMyPreferences>
+<a href="https://api.immich.app/endpoints/users/getMyPreferences">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users get-my-preferences [OPTIONS]
+$ immich users get-my-preferences [OPTIONS]
 ```
 
 **Options**:
@@ -5468,12 +5502,12 @@ immich users get-my-preferences [OPTIONS]
 
 Get current user
 
-Docs: <https://api.immich.app/endpoints/users/getMyUser>
+<a href="https://api.immich.app/endpoints/users/getMyUser">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users get-my-user [OPTIONS]
+$ immich users get-my-user [OPTIONS]
 ```
 
 **Options**:
@@ -5484,12 +5518,12 @@ immich users get-my-user [OPTIONS]
 
 Retrieve user profile image
 
-Docs: <https://api.immich.app/endpoints/users/getProfileImage>
+<a href="https://api.immich.app/endpoints/users/getProfileImage">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users get-profile-image [OPTIONS] ID
+$ immich users get-profile-image [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -5504,12 +5538,12 @@ immich users get-profile-image [OPTIONS] ID
 
 Retrieve a user
 
-Docs: <https://api.immich.app/endpoints/users/getUser>
+<a href="https://api.immich.app/endpoints/users/getUser">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users get-user [OPTIONS] ID
+$ immich users get-user [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -5524,12 +5558,12 @@ immich users get-user [OPTIONS] ID
 
 Retrieve user product key
 
-Docs: <https://api.immich.app/endpoints/users/getUserLicense>
+<a href="https://api.immich.app/endpoints/users/getUserLicense">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users get-user-license [OPTIONS]
+$ immich users get-user-license [OPTIONS]
 ```
 
 **Options**:
@@ -5540,12 +5574,12 @@ immich users get-user-license [OPTIONS]
 
 Retrieve user onboarding
 
-Docs: <https://api.immich.app/endpoints/users/getUserOnboarding>
+<a href="https://api.immich.app/endpoints/users/getUserOnboarding">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users get-user-onboarding [OPTIONS]
+$ immich users get-user-onboarding [OPTIONS]
 ```
 
 **Options**:
@@ -5556,12 +5590,12 @@ immich users get-user-onboarding [OPTIONS]
 
 Get all users
 
-Docs: <https://api.immich.app/endpoints/users/searchUsers>
+<a href="https://api.immich.app/endpoints/users/searchUsers">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users search-users [OPTIONS]
+$ immich users search-users [OPTIONS]
 ```
 
 **Options**:
@@ -5572,12 +5606,12 @@ immich users search-users [OPTIONS]
 
 Set user product key
 
-Docs: <https://api.immich.app/endpoints/users/setUserLicense>
+<a href="https://api.immich.app/endpoints/users/setUserLicense">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users set-user-license [OPTIONS]
+$ immich users set-user-license [OPTIONS]
 ```
 
 **Options**:
@@ -5590,12 +5624,12 @@ immich users set-user-license [OPTIONS]
 
 Update user onboarding
 
-Docs: <https://api.immich.app/endpoints/users/setUserOnboarding>
+<a href="https://api.immich.app/endpoints/users/setUserOnboarding">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users set-user-onboarding [OPTIONS]
+$ immich users set-user-onboarding [OPTIONS]
 ```
 
 **Options**:
@@ -5607,12 +5641,12 @@ immich users set-user-onboarding [OPTIONS]
 
 Update my preferences
 
-Docs: <https://api.immich.app/endpoints/users/updateMyPreferences>
+<a href="https://api.immich.app/endpoints/users/updateMyPreferences">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users update-my-preferences [OPTIONS]
+$ immich users update-my-preferences [OPTIONS]
 ```
 
 **Options**:
@@ -5644,12 +5678,12 @@ immich users update-my-preferences [OPTIONS]
 
 Update current user
 
-Docs: <https://api.immich.app/endpoints/users/updateMyUser>
+<a href="https://api.immich.app/endpoints/users/updateMyUser">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users update-my-user [OPTIONS]
+$ immich users update-my-user [OPTIONS]
 ```
 
 **Options**:
@@ -5670,7 +5704,7 @@ The filename can be specified or will be derived from the response headers.
 **Usage**:
 
 ```console
-immich users get-profile-image-to-file [OPTIONS] ID OUT_DIR
+$ immich users get-profile-image-to-file [OPTIONS] ID OUT_DIR
 ```
 
 **Arguments**:
@@ -5688,12 +5722,12 @@ immich users get-profile-image-to-file [OPTIONS] ID OUT_DIR
 
 Administrative endpoints for managing users, including creating, updating, deleting, and restoring users. Also includes endpoints for resetting passwords and PIN codes.
 
-Docs: <https://api.immich.app/endpoints/users-admin>
+<a href="https://api.immich.app/endpoints/users-admin">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users-admin [OPTIONS] COMMAND [ARGS]...
+$ immich users-admin [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -5717,12 +5751,12 @@ immich users-admin [OPTIONS] COMMAND [ARGS]...
 
 Create a user
 
-Docs: <https://api.immich.app/endpoints/users-admin/createUserAdmin>
+<a href="https://api.immich.app/endpoints/users-admin/createUserAdmin">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users-admin create-user-admin [OPTIONS]
+$ immich users-admin create-user-admin [OPTIONS]
 ```
 
 **Options**:
@@ -5742,12 +5776,12 @@ immich users-admin create-user-admin [OPTIONS]
 
 Delete a user
 
-Docs: <https://api.immich.app/endpoints/users-admin/deleteUserAdmin>
+<a href="https://api.immich.app/endpoints/users-admin/deleteUserAdmin">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users-admin delete-user-admin [OPTIONS] ID
+$ immich users-admin delete-user-admin [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -5763,12 +5797,12 @@ immich users-admin delete-user-admin [OPTIONS] ID
 
 Retrieve a user
 
-Docs: <https://api.immich.app/endpoints/users-admin/getUserAdmin>
+<a href="https://api.immich.app/endpoints/users-admin/getUserAdmin">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users-admin get-user-admin [OPTIONS] ID
+$ immich users-admin get-user-admin [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -5783,12 +5817,12 @@ immich users-admin get-user-admin [OPTIONS] ID
 
 Retrieve user preferences
 
-Docs: <https://api.immich.app/endpoints/users-admin/getUserPreferencesAdmin>
+<a href="https://api.immich.app/endpoints/users-admin/getUserPreferencesAdmin">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users-admin get-user-preferences-admin [OPTIONS] ID
+$ immich users-admin get-user-preferences-admin [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -5803,12 +5837,12 @@ immich users-admin get-user-preferences-admin [OPTIONS] ID
 
 Retrieve user sessions
 
-Docs: <https://api.immich.app/endpoints/users-admin/getUserSessionsAdmin>
+<a href="https://api.immich.app/endpoints/users-admin/getUserSessionsAdmin">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users-admin get-user-sessions-admin [OPTIONS] ID
+$ immich users-admin get-user-sessions-admin [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -5823,12 +5857,12 @@ immich users-admin get-user-sessions-admin [OPTIONS] ID
 
 Retrieve user statistics
 
-Docs: <https://api.immich.app/endpoints/users-admin/getUserStatisticsAdmin>
+<a href="https://api.immich.app/endpoints/users-admin/getUserStatisticsAdmin">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users-admin get-user-statistics-admin [OPTIONS] ID
+$ immich users-admin get-user-statistics-admin [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -5846,12 +5880,12 @@ immich users-admin get-user-statistics-admin [OPTIONS] ID
 
 Restore a deleted user
 
-Docs: <https://api.immich.app/endpoints/users-admin/restoreUserAdmin>
+<a href="https://api.immich.app/endpoints/users-admin/restoreUserAdmin">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users-admin restore-user-admin [OPTIONS] ID
+$ immich users-admin restore-user-admin [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -5866,12 +5900,12 @@ immich users-admin restore-user-admin [OPTIONS] ID
 
 Search users
 
-Docs: <https://api.immich.app/endpoints/users-admin/searchUsersAdmin>
+<a href="https://api.immich.app/endpoints/users-admin/searchUsersAdmin">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users-admin search-users-admin [OPTIONS]
+$ immich users-admin search-users-admin [OPTIONS]
 ```
 
 **Options**:
@@ -5884,12 +5918,12 @@ immich users-admin search-users-admin [OPTIONS]
 
 Update a user
 
-Docs: <https://api.immich.app/endpoints/users-admin/updateUserAdmin>
+<a href="https://api.immich.app/endpoints/users-admin/updateUserAdmin">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users-admin update-user-admin [OPTIONS] ID
+$ immich users-admin update-user-admin [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -5913,12 +5947,12 @@ immich users-admin update-user-admin [OPTIONS] ID
 
 Update user preferences
 
-Docs: <https://api.immich.app/endpoints/users-admin/updateUserPreferencesAdmin>
+<a href="https://api.immich.app/endpoints/users-admin/updateUserPreferencesAdmin">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich users-admin update-user-preferences-admin [OPTIONS] ID
+$ immich users-admin update-user-preferences-admin [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -5954,12 +5988,12 @@ immich users-admin update-user-preferences-admin [OPTIONS] ID
 
 Endpoints for specialized views, such as the folder view.
 
-Docs: <https://api.immich.app/endpoints/views>
+<a href="https://api.immich.app/endpoints/views">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich views [OPTIONS] COMMAND [ARGS]...
+$ immich views [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -5975,12 +6009,12 @@ immich views [OPTIONS] COMMAND [ARGS]...
 
 Retrieve assets by original path
 
-Docs: <https://api.immich.app/endpoints/views/getAssetsByOriginalPath>
+<a href="https://api.immich.app/endpoints/views/getAssetsByOriginalPath">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich views get-assets-by-original-path [OPTIONS]
+$ immich views get-assets-by-original-path [OPTIONS]
 ```
 
 **Options**:
@@ -5992,12 +6026,12 @@ immich views get-assets-by-original-path [OPTIONS]
 
 Retrieve unique paths
 
-Docs: <https://api.immich.app/endpoints/views/getUniqueOriginalPaths>
+<a href="https://api.immich.app/endpoints/views/getUniqueOriginalPaths">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich views get-unique-original-paths [OPTIONS]
+$ immich views get-unique-original-paths [OPTIONS]
 ```
 
 **Options**:
@@ -6008,12 +6042,12 @@ immich views get-unique-original-paths [OPTIONS]
 
 A workflow is a set of actions that run whenever a triggering event occurs. Workflows also can include filters to further limit execution.
 
-Docs: <https://api.immich.app/endpoints/workflows>
+<a href="https://api.immich.app/endpoints/workflows">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich workflows [OPTIONS] COMMAND [ARGS]...
+$ immich workflows [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -6032,12 +6066,12 @@ immich workflows [OPTIONS] COMMAND [ARGS]...
 
 Create a workflow
 
-Docs: <https://api.immich.app/endpoints/workflows/createWorkflow>
+<a href="https://api.immich.app/endpoints/workflows/createWorkflow">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich workflows create-workflow [OPTIONS]
+$ immich workflows create-workflow [OPTIONS]
 ```
 
 **Options**:
@@ -6054,12 +6088,12 @@ immich workflows create-workflow [OPTIONS]
 
 Delete a workflow
 
-Docs: <https://api.immich.app/endpoints/workflows/deleteWorkflow>
+<a href="https://api.immich.app/endpoints/workflows/deleteWorkflow">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich workflows delete-workflow [OPTIONS] ID
+$ immich workflows delete-workflow [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -6074,12 +6108,12 @@ immich workflows delete-workflow [OPTIONS] ID
 
 Retrieve a workflow
 
-Docs: <https://api.immich.app/endpoints/workflows/getWorkflow>
+<a href="https://api.immich.app/endpoints/workflows/getWorkflow">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich workflows get-workflow [OPTIONS] ID
+$ immich workflows get-workflow [OPTIONS] ID
 ```
 
 **Arguments**:
@@ -6094,12 +6128,12 @@ immich workflows get-workflow [OPTIONS] ID
 
 List all workflows
 
-Docs: <https://api.immich.app/endpoints/workflows/getWorkflows>
+<a href="https://api.immich.app/endpoints/workflows/getWorkflows">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich workflows get-workflows [OPTIONS]
+$ immich workflows get-workflows [OPTIONS]
 ```
 
 **Options**:
@@ -6110,12 +6144,12 @@ immich workflows get-workflows [OPTIONS]
 
 Update a workflow
 
-Docs: <https://api.immich.app/endpoints/workflows/updateWorkflow>
+<a href="https://api.immich.app/endpoints/workflows/updateWorkflow">Immich API documentation</a>
 
 **Usage**:
 
 ```console
-immich workflows update-workflow [OPTIONS] ID
+$ immich workflows update-workflow [OPTIONS] ID
 ```
 
 **Arguments**:

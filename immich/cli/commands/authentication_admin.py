@@ -12,7 +12,7 @@ from immich.cli.runtime import print_response, run_command
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""Administrative endpoints related to authentication.\n\nDocs: https://api.immich.app/endpoints/authentication-admin"""
+    help="""Administrative endpoints related to authentication.\n\n[link=https://api.immich.app/endpoints/authentication-admin]Immich API documentation[/link]"""
 )
 
 
@@ -24,7 +24,7 @@ def unlink_all_o_auth_accounts_admin(
 ) -> None:  # pragma: no cover
     """Unlink all OAuth accounts
 
-    Docs: https://api.immich.app/endpoints/authentication-admin/unlinkAllOAuthAccountsAdmin
+    [link=https://api.immich.app/endpoints/authentication-admin/unlinkAllOAuthAccountsAdmin]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]

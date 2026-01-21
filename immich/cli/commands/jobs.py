@@ -12,7 +12,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""Queues and background jobs are used for processing tasks asynchronously. Queues can be paused and resumed as needed.\n\nDocs: https://api.immich.app/endpoints/jobs"""
+    help="""Queues and background jobs are used for processing tasks asynchronously. Queues can be paused and resumed as needed.\n\n[link=https://api.immich.app/endpoints/jobs]Immich API documentation[/link]"""
 )
 
 
@@ -23,7 +23,7 @@ def create_job(
 ) -> None:  # pragma: no cover
     """Create a manual job
 
-    Docs: https://api.immich.app/endpoints/jobs/createJob
+    [link=https://api.immich.app/endpoints/jobs/createJob]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -41,7 +41,7 @@ def get_queues_legacy(
 ) -> None:  # pragma: no cover
     """Retrieve queue counts and status
 
-    Docs: https://api.immich.app/endpoints/jobs/getQueuesLegacy
+    [link=https://api.immich.app/endpoints/jobs/getQueuesLegacy]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -60,7 +60,7 @@ def run_queue_command_legacy(
 ) -> None:  # pragma: no cover
     """Run jobs
 
-    Docs: https://api.immich.app/endpoints/jobs/runQueueCommandLegacy
+    [link=https://api.immich.app/endpoints/jobs/runQueueCommandLegacy]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}

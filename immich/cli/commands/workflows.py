@@ -13,7 +13,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""A workflow is a set of actions that run whenever a triggering event occurs. Workflows also can include filters to further limit execution.\n\nDocs: https://api.immich.app/endpoints/workflows"""
+    help="""A workflow is a set of actions that run whenever a triggering event occurs. Workflows also can include filters to further limit execution.\n\n[link=https://api.immich.app/endpoints/workflows]Immich API documentation[/link]"""
 )
 
 
@@ -31,7 +31,7 @@ def create_workflow(
 ) -> None:  # pragma: no cover
     """Create a workflow
 
-    Docs: https://api.immich.app/endpoints/workflows/createWorkflow
+    [link=https://api.immich.app/endpoints/workflows/createWorkflow]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -59,7 +59,7 @@ def delete_workflow(
 ) -> None:  # pragma: no cover
     """Delete a workflow
 
-    Docs: https://api.immich.app/endpoints/workflows/deleteWorkflow
+    [link=https://api.immich.app/endpoints/workflows/deleteWorkflow]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -75,7 +75,7 @@ def get_workflow(
 ) -> None:  # pragma: no cover
     """Retrieve a workflow
 
-    Docs: https://api.immich.app/endpoints/workflows/getWorkflow
+    [link=https://api.immich.app/endpoints/workflows/getWorkflow]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -90,7 +90,7 @@ def get_workflows(
 ) -> None:  # pragma: no cover
     """List all workflows
 
-    Docs: https://api.immich.app/endpoints/workflows/getWorkflows
+    [link=https://api.immich.app/endpoints/workflows/getWorkflows]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -117,7 +117,7 @@ def update_workflow(
 ) -> None:  # pragma: no cover
     """Update a workflow
 
-    Docs: https://api.immich.app/endpoints/workflows/updateWorkflow
+    [link=https://api.immich.app/endpoints/workflows/updateWorkflow]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}

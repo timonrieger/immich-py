@@ -13,7 +13,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""A collection of endpoints for the new mobile synchronization implementation.\n\nDocs: https://api.immich.app/endpoints/sync"""
+    help="""A collection of endpoints for the new mobile synchronization implementation.\n\n[link=https://api.immich.app/endpoints/sync]Immich API documentation[/link]"""
 )
 
 
@@ -24,7 +24,7 @@ def delete_sync_ack(
 ) -> None:  # pragma: no cover
     """Delete acknowledgements
 
-    Docs: https://api.immich.app/endpoints/sync/deleteSyncAck
+    [link=https://api.immich.app/endpoints/sync/deleteSyncAck]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -45,7 +45,7 @@ def get_delta_sync(
 ) -> None:  # pragma: no cover
     """Get delta sync for user
 
-    Docs: https://api.immich.app/endpoints/sync/getDeltaSync
+    [link=https://api.immich.app/endpoints/sync/getDeltaSync]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -68,7 +68,7 @@ def get_full_sync_for_user(
 ) -> None:  # pragma: no cover
     """Get full sync for user
 
-    Docs: https://api.immich.app/endpoints/sync/getFullSyncForUser
+    [link=https://api.immich.app/endpoints/sync/getFullSyncForUser]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -91,7 +91,7 @@ def get_sync_ack(
 ) -> None:  # pragma: no cover
     """Retrieve acknowledgements
 
-    Docs: https://api.immich.app/endpoints/sync/getSyncAck
+    [link=https://api.immich.app/endpoints/sync/getSyncAck]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -107,7 +107,7 @@ def get_sync_stream(
 ) -> None:  # pragma: no cover
     """Stream sync changes
 
-    Docs: https://api.immich.app/endpoints/sync/getSyncStream
+    [link=https://api.immich.app/endpoints/sync/getSyncStream]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -128,7 +128,7 @@ def send_sync_ack(
 ) -> None:  # pragma: no cover
     """Acknowledge changes
 
-    Docs: https://api.immich.app/endpoints/sync/sendSyncAck
+    [link=https://api.immich.app/endpoints/sync/sendSyncAck]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}

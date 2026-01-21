@@ -12,7 +12,7 @@ from immich.cli.runtime import print_response, run_command
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""Specialized endpoints related to the timeline implementation used in the web application. External applications or tools should not use or rely on these endpoints, as they are subject to change without notice.\n\nDocs: https://api.immich.app/endpoints/timeline"""
+    help="""Specialized endpoints related to the timeline implementation used in the web application. External applications or tools should not use or rely on these endpoints, as they are subject to change without notice.\n\n[link=https://api.immich.app/endpoints/timeline]Immich API documentation[/link]"""
 )
 
 
@@ -74,7 +74,7 @@ def get_time_bucket(
 ) -> None:  # pragma: no cover
     """Get time bucket
 
-    Docs: https://api.immich.app/endpoints/timeline/getTimeBucket
+    [link=https://api.immich.app/endpoints/timeline/getTimeBucket]Immich API documentation[/link]
     """
     kwargs = {}
     if album_id is not None:
@@ -162,7 +162,7 @@ def get_time_buckets(
 ) -> None:  # pragma: no cover
     """Get time buckets
 
-    Docs: https://api.immich.app/endpoints/timeline/getTimeBuckets
+    [link=https://api.immich.app/endpoints/timeline/getTimeBuckets]Immich API documentation[/link]
     """
     kwargs = {}
     if album_id is not None:

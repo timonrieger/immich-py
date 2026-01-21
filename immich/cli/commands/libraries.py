@@ -12,7 +12,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""An external library is made up of input file paths or expressions that are scanned for asset files. Discovered files are automatically imported. Assets much be unique within a library, but can be duplicated across libraries. Each user has a default upload library, and can have one or more external libraries.\n\nDocs: https://api.immich.app/endpoints/libraries"""
+    help="""An external library is made up of input file paths or expressions that are scanned for asset files. Discovered files are automatically imported. Assets much be unique within a library, but can be duplicated across libraries. Each user has a default upload library, and can have one or more external libraries.\n\n[link=https://api.immich.app/endpoints/libraries]Immich API documentation[/link]"""
 )
 
 
@@ -28,7 +28,7 @@ def create_library(
 ) -> None:  # pragma: no cover
     """Create a library
 
-    Docs: https://api.immich.app/endpoints/libraries/createLibrary
+    [link=https://api.immich.app/endpoints/libraries/createLibrary]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -53,7 +53,7 @@ def delete_library(
 ) -> None:  # pragma: no cover
     """Delete a library
 
-    Docs: https://api.immich.app/endpoints/libraries/deleteLibrary
+    [link=https://api.immich.app/endpoints/libraries/deleteLibrary]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -68,7 +68,7 @@ def get_all_libraries(
 ) -> None:  # pragma: no cover
     """Retrieve libraries
 
-    Docs: https://api.immich.app/endpoints/libraries/getAllLibraries
+    [link=https://api.immich.app/endpoints/libraries/getAllLibraries]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -83,7 +83,7 @@ def get_library(
 ) -> None:  # pragma: no cover
     """Retrieve a library
 
-    Docs: https://api.immich.app/endpoints/libraries/getLibrary
+    [link=https://api.immich.app/endpoints/libraries/getLibrary]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -99,7 +99,7 @@ def get_library_statistics(
 ) -> None:  # pragma: no cover
     """Retrieve library statistics
 
-    Docs: https://api.immich.app/endpoints/libraries/getLibraryStatistics
+    [link=https://api.immich.app/endpoints/libraries/getLibraryStatistics]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -117,7 +117,7 @@ def scan_library(
 ) -> None:  # pragma: no cover
     """Scan a library
 
-    Docs: https://api.immich.app/endpoints/libraries/scanLibrary
+    [link=https://api.immich.app/endpoints/libraries/scanLibrary]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -138,7 +138,7 @@ def update_library(
 ) -> None:  # pragma: no cover
     """Update a library
 
-    Docs: https://api.immich.app/endpoints/libraries/updateLibrary
+    [link=https://api.immich.app/endpoints/libraries/updateLibrary]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -167,7 +167,7 @@ def validate(
 ) -> None:  # pragma: no cover
     """Validate library settings
 
-    Docs: https://api.immich.app/endpoints/libraries/validate
+    [link=https://api.immich.app/endpoints/libraries/validate]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}

@@ -12,7 +12,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""Information about the current server deployment, including version and build information, available features, supported media types, and more.\n\nDocs: https://api.immich.app/endpoints/server"""
+    help="""Information about the current server deployment, including version and build information, available features, supported media types, and more.\n\n[link=https://api.immich.app/endpoints/server]Immich API documentation[/link]"""
 )
 
 
@@ -22,7 +22,7 @@ def delete_server_license(
 ) -> None:  # pragma: no cover
     """Delete server product key
 
-    Docs: https://api.immich.app/endpoints/server/deleteServerLicense
+    [link=https://api.immich.app/endpoints/server/deleteServerLicense]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -36,7 +36,7 @@ def get_about_info(
 ) -> None:  # pragma: no cover
     """Get server information
 
-    Docs: https://api.immich.app/endpoints/server/getAboutInfo
+    [link=https://api.immich.app/endpoints/server/getAboutInfo]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -50,7 +50,7 @@ def get_apk_links(
 ) -> None:  # pragma: no cover
     """Get APK links
 
-    Docs: https://api.immich.app/endpoints/server/getApkLinks
+    [link=https://api.immich.app/endpoints/server/getApkLinks]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -64,7 +64,7 @@ def get_server_config(
 ) -> None:  # pragma: no cover
     """Get config
 
-    Docs: https://api.immich.app/endpoints/server/getServerConfig
+    [link=https://api.immich.app/endpoints/server/getServerConfig]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -78,7 +78,7 @@ def get_server_features(
 ) -> None:  # pragma: no cover
     """Get features
 
-    Docs: https://api.immich.app/endpoints/server/getServerFeatures
+    [link=https://api.immich.app/endpoints/server/getServerFeatures]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -92,7 +92,7 @@ def get_server_license(
 ) -> None:  # pragma: no cover
     """Get product key
 
-    Docs: https://api.immich.app/endpoints/server/getServerLicense
+    [link=https://api.immich.app/endpoints/server/getServerLicense]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -106,7 +106,7 @@ def get_server_statistics(
 ) -> None:  # pragma: no cover
     """Get statistics
 
-    Docs: https://api.immich.app/endpoints/server/getServerStatistics
+    [link=https://api.immich.app/endpoints/server/getServerStatistics]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -120,7 +120,7 @@ def get_server_version(
 ) -> None:  # pragma: no cover
     """Get server version
 
-    Docs: https://api.immich.app/endpoints/server/getServerVersion
+    [link=https://api.immich.app/endpoints/server/getServerVersion]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -134,7 +134,7 @@ def get_storage(
 ) -> None:  # pragma: no cover
     """Get storage
 
-    Docs: https://api.immich.app/endpoints/server/getStorage
+    [link=https://api.immich.app/endpoints/server/getStorage]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -150,7 +150,7 @@ def get_supported_media_types(
 ) -> None:  # pragma: no cover
     """Get supported media types
 
-    Docs: https://api.immich.app/endpoints/server/getSupportedMediaTypes
+    [link=https://api.immich.app/endpoints/server/getSupportedMediaTypes]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -166,7 +166,7 @@ def get_theme(
 ) -> None:  # pragma: no cover
     """Get theme
 
-    Docs: https://api.immich.app/endpoints/server/getTheme
+    [link=https://api.immich.app/endpoints/server/getTheme]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -180,7 +180,7 @@ def get_version_check(
 ) -> None:  # pragma: no cover
     """Get version check status
 
-    Docs: https://api.immich.app/endpoints/server/getVersionCheck
+    [link=https://api.immich.app/endpoints/server/getVersionCheck]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -194,7 +194,7 @@ def get_version_history(
 ) -> None:  # pragma: no cover
     """Get version history
 
-    Docs: https://api.immich.app/endpoints/server/getVersionHistory
+    [link=https://api.immich.app/endpoints/server/getVersionHistory]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -208,7 +208,7 @@ def ping_server(
 ) -> None:  # pragma: no cover
     """Ping
 
-    Docs: https://api.immich.app/endpoints/server/pingServer
+    [link=https://api.immich.app/endpoints/server/pingServer]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -224,7 +224,7 @@ def set_server_license(
 ) -> None:  # pragma: no cover
     """Set server product key
 
-    Docs: https://api.immich.app/endpoints/server/setServerLicense
+    [link=https://api.immich.app/endpoints/server/setServerLicense]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}

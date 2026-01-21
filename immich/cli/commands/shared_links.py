@@ -13,7 +13,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""A shared link is a public url that provides access to a specific album, asset, or collection of assets. A shared link can be protected with a password, include a specific slug, allow or disallow downloads, and optionally include an expiration date.\n\nDocs: https://api.immich.app/endpoints/shared-links"""
+    help="""A shared link is a public url that provides access to a specific album, asset, or collection of assets. A shared link can be protected with a password, include a specific slug, allow or disallow downloads, and optionally include an expiration date.\n\n[link=https://api.immich.app/endpoints/shared-links]Immich API documentation[/link]"""
 )
 
 
@@ -27,7 +27,7 @@ def add_shared_link_assets(
 ) -> None:  # pragma: no cover
     """Add assets to a shared link
 
-    Docs: https://api.immich.app/endpoints/shared-links/addSharedLinkAssets
+    [link=https://api.immich.app/endpoints/shared-links/addSharedLinkAssets]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -68,7 +68,7 @@ def create_shared_link(
 ) -> None:  # pragma: no cover
     """Create a shared link
 
-    Docs: https://api.immich.app/endpoints/shared-links/createSharedLink
+    [link=https://api.immich.app/endpoints/shared-links/createSharedLink]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -108,7 +108,7 @@ def get_all_shared_links(
 ) -> None:  # pragma: no cover
     """Retrieve all shared links
 
-    Docs: https://api.immich.app/endpoints/shared-links/getAllSharedLinks
+    [link=https://api.immich.app/endpoints/shared-links/getAllSharedLinks]Immich API documentation[/link]
     """
     kwargs = {}
     if album_id is not None:
@@ -132,7 +132,7 @@ def get_my_shared_link(
 ) -> None:  # pragma: no cover
     """Retrieve current shared link
 
-    Docs: https://api.immich.app/endpoints/shared-links/getMySharedLink
+    [link=https://api.immich.app/endpoints/shared-links/getMySharedLink]Immich API documentation[/link]
     """
     kwargs = {}
     if key is not None:
@@ -157,7 +157,7 @@ def get_shared_link_by_id(
 ) -> None:  # pragma: no cover
     """Retrieve a shared link
 
-    Docs: https://api.immich.app/endpoints/shared-links/getSharedLinkById
+    [link=https://api.immich.app/endpoints/shared-links/getSharedLinkById]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -175,7 +175,7 @@ def remove_shared_link(
 ) -> None:  # pragma: no cover
     """Delete a shared link
 
-    Docs: https://api.immich.app/endpoints/shared-links/removeSharedLink
+    [link=https://api.immich.app/endpoints/shared-links/removeSharedLink]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -198,7 +198,7 @@ def remove_shared_link_assets(
 ) -> None:  # pragma: no cover
     """Remove assets from a shared link
 
-    Docs: https://api.immich.app/endpoints/shared-links/removeSharedLinkAssets
+    [link=https://api.immich.app/endpoints/shared-links/removeSharedLinkAssets]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -244,7 +244,7 @@ Clients that can send null values can ignore this.""",
 ) -> None:  # pragma: no cover
     """Update a shared link
 
-    Docs: https://api.immich.app/endpoints/shared-links/updateSharedLink
+    [link=https://api.immich.app/endpoints/shared-links/updateSharedLink]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}

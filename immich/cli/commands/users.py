@@ -13,7 +13,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""Endpoints for viewing and updating the current users, including product key information, profile picture data, onboarding progress, and more.\n\nDocs: https://api.immich.app/endpoints/users"""
+    help="""Endpoints for viewing and updating the current users, including product key information, profile picture data, onboarding progress, and more.\n\n[link=https://api.immich.app/endpoints/users]Immich API documentation[/link]"""
 )
 
 
@@ -24,7 +24,7 @@ def create_profile_image(
 ) -> None:  # pragma: no cover
     """Create user profile image
 
-    Docs: https://api.immich.app/endpoints/users/createProfileImage
+    [link=https://api.immich.app/endpoints/users/createProfileImage]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -42,7 +42,7 @@ def delete_profile_image(
 ) -> None:  # pragma: no cover
     """Delete user profile image
 
-    Docs: https://api.immich.app/endpoints/users/deleteProfileImage
+    [link=https://api.immich.app/endpoints/users/deleteProfileImage]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -56,7 +56,7 @@ def delete_user_license(
 ) -> None:  # pragma: no cover
     """Delete user product key
 
-    Docs: https://api.immich.app/endpoints/users/deleteUserLicense
+    [link=https://api.immich.app/endpoints/users/deleteUserLicense]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -70,7 +70,7 @@ def delete_user_onboarding(
 ) -> None:  # pragma: no cover
     """Delete user onboarding
 
-    Docs: https://api.immich.app/endpoints/users/deleteUserOnboarding
+    [link=https://api.immich.app/endpoints/users/deleteUserOnboarding]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -84,7 +84,7 @@ def get_my_preferences(
 ) -> None:  # pragma: no cover
     """Get my preferences
 
-    Docs: https://api.immich.app/endpoints/users/getMyPreferences
+    [link=https://api.immich.app/endpoints/users/getMyPreferences]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -98,7 +98,7 @@ def get_my_user(
 ) -> None:  # pragma: no cover
     """Get current user
 
-    Docs: https://api.immich.app/endpoints/users/getMyUser
+    [link=https://api.immich.app/endpoints/users/getMyUser]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -113,7 +113,7 @@ def get_profile_image(
 ) -> None:  # pragma: no cover
     """Retrieve user profile image
 
-    Docs: https://api.immich.app/endpoints/users/getProfileImage
+    [link=https://api.immich.app/endpoints/users/getProfileImage]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -129,7 +129,7 @@ def get_user(
 ) -> None:  # pragma: no cover
     """Retrieve a user
 
-    Docs: https://api.immich.app/endpoints/users/getUser
+    [link=https://api.immich.app/endpoints/users/getUser]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -144,7 +144,7 @@ def get_user_license(
 ) -> None:  # pragma: no cover
     """Retrieve user product key
 
-    Docs: https://api.immich.app/endpoints/users/getUserLicense
+    [link=https://api.immich.app/endpoints/users/getUserLicense]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -158,7 +158,7 @@ def get_user_onboarding(
 ) -> None:  # pragma: no cover
     """Retrieve user onboarding
 
-    Docs: https://api.immich.app/endpoints/users/getUserOnboarding
+    [link=https://api.immich.app/endpoints/users/getUserOnboarding]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -172,7 +172,7 @@ def search_users(
 ) -> None:  # pragma: no cover
     """Get all users
 
-    Docs: https://api.immich.app/endpoints/users/searchUsers
+    [link=https://api.immich.app/endpoints/users/searchUsers]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -188,7 +188,7 @@ def set_user_license(
 ) -> None:  # pragma: no cover
     """Set user product key
 
-    Docs: https://api.immich.app/endpoints/users/setUserLicense
+    [link=https://api.immich.app/endpoints/users/setUserLicense]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -208,7 +208,7 @@ def set_user_onboarding(
 ) -> None:  # pragma: no cover
     """Update user onboarding
 
-    Docs: https://api.immich.app/endpoints/users/setUserOnboarding
+    [link=https://api.immich.app/endpoints/users/setUserOnboarding]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -287,7 +287,7 @@ def update_my_preferences(
 ) -> None:  # pragma: no cover
     """Update my preferences
 
-    Docs: https://api.immich.app/endpoints/users/updateMyPreferences
+    [link=https://api.immich.app/endpoints/users/updateMyPreferences]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -388,7 +388,7 @@ def update_my_user(
 ) -> None:  # pragma: no cover
     """Update current user
 
-    Docs: https://api.immich.app/endpoints/users/updateMyUser
+    [link=https://api.immich.app/endpoints/users/updateMyUser]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}

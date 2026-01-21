@@ -12,7 +12,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""A tag is a user-defined label that can be applied to assets for organizational purposes. Tags can also be hierarchical, allowing for parent-child relationships between tags.\n\nDocs: https://api.immich.app/endpoints/tags"""
+    help="""A tag is a user-defined label that can be applied to assets for organizational purposes. Tags can also be hierarchical, allowing for parent-child relationships between tags.\n\n[link=https://api.immich.app/endpoints/tags]Immich API documentation[/link]"""
 )
 
 
@@ -24,7 +24,7 @@ def bulk_tag_assets(
 ) -> None:  # pragma: no cover
     """Tag assets
 
-    Docs: https://api.immich.app/endpoints/tags/bulkTagAssets
+    [link=https://api.immich.app/endpoints/tags/bulkTagAssets]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -46,7 +46,7 @@ def create_tag(
 ) -> None:  # pragma: no cover
     """Create a tag
 
-    Docs: https://api.immich.app/endpoints/tags/createTag
+    [link=https://api.immich.app/endpoints/tags/createTag]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -69,7 +69,7 @@ def delete_tag(
 ) -> None:  # pragma: no cover
     """Delete a tag
 
-    Docs: https://api.immich.app/endpoints/tags/deleteTag
+    [link=https://api.immich.app/endpoints/tags/deleteTag]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -84,7 +84,7 @@ def get_all_tags(
 ) -> None:  # pragma: no cover
     """Retrieve tags
 
-    Docs: https://api.immich.app/endpoints/tags/getAllTags
+    [link=https://api.immich.app/endpoints/tags/getAllTags]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -99,7 +99,7 @@ def get_tag_by_id(
 ) -> None:  # pragma: no cover
     """Retrieve a tag
 
-    Docs: https://api.immich.app/endpoints/tags/getTagById
+    [link=https://api.immich.app/endpoints/tags/getTagById]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -116,7 +116,7 @@ def tag_assets(
 ) -> None:  # pragma: no cover
     """Tag assets
 
-    Docs: https://api.immich.app/endpoints/tags/tagAssets
+    [link=https://api.immich.app/endpoints/tags/tagAssets]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -137,7 +137,7 @@ def untag_assets(
 ) -> None:  # pragma: no cover
     """Untag assets
 
-    Docs: https://api.immich.app/endpoints/tags/untagAssets
+    [link=https://api.immich.app/endpoints/tags/untagAssets]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -158,7 +158,7 @@ def update_tag(
 ) -> None:  # pragma: no cover
     """Update a tag
 
-    Docs: https://api.immich.app/endpoints/tags/updateTag
+    [link=https://api.immich.app/endpoints/tags/updateTag]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -179,7 +179,7 @@ def upsert_tags(
 ) -> None:  # pragma: no cover
     """Upsert tags
 
-    Docs: https://api.immich.app/endpoints/tags/upsertTags
+    [link=https://api.immich.app/endpoints/tags/upsertTags]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}

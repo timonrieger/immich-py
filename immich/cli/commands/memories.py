@@ -13,7 +13,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""A memory is a specialized collection of assets with dedicated viewing implementations in the web and mobile clients. A memory includes fields related to visibility and are automatically generated per user via a background job.\n\nDocs: https://api.immich.app/endpoints/memories"""
+    help="""A memory is a specialized collection of assets with dedicated viewing implementations in the web and mobile clients. A memory includes fields related to visibility and are automatically generated per user via a background job.\n\n[link=https://api.immich.app/endpoints/memories]Immich API documentation[/link]"""
 )
 
 
@@ -25,7 +25,7 @@ def add_memory_assets(
 ) -> None:  # pragma: no cover
     """Add assets to a memory
 
-    Docs: https://api.immich.app/endpoints/memories/addMemoryAssets
+    [link=https://api.immich.app/endpoints/memories/addMemoryAssets]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -52,7 +52,7 @@ def create_memory(
 ) -> None:  # pragma: no cover
     """Create a memory
 
-    Docs: https://api.immich.app/endpoints/memories/createMemory
+    [link=https://api.immich.app/endpoints/memories/createMemory]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -79,7 +79,7 @@ def delete_memory(
 ) -> None:  # pragma: no cover
     """Delete a memory
 
-    Docs: https://api.immich.app/endpoints/memories/deleteMemory
+    [link=https://api.immich.app/endpoints/memories/deleteMemory]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -95,7 +95,7 @@ def get_memory(
 ) -> None:  # pragma: no cover
     """Retrieve a memory
 
-    Docs: https://api.immich.app/endpoints/memories/getMemory
+    [link=https://api.immich.app/endpoints/memories/getMemory]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -122,7 +122,7 @@ def memories_statistics(
 ) -> None:  # pragma: no cover
     """Retrieve memories statistics
 
-    Docs: https://api.immich.app/endpoints/memories/memoriesStatistics
+    [link=https://api.immich.app/endpoints/memories/memoriesStatistics]Immich API documentation[/link]
     """
     kwargs = {}
     if for_ is not None:
@@ -150,7 +150,7 @@ def remove_memory_assets(
 ) -> None:  # pragma: no cover
     """Remove assets from a memory
 
-    Docs: https://api.immich.app/endpoints/memories/removeMemoryAssets
+    [link=https://api.immich.app/endpoints/memories/removeMemoryAssets]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -181,7 +181,7 @@ def search_memories(
 ) -> None:  # pragma: no cover
     """Retrieve memories
 
-    Docs: https://api.immich.app/endpoints/memories/searchMemories
+    [link=https://api.immich.app/endpoints/memories/searchMemories]Immich API documentation[/link]
     """
     kwargs = {}
     if for_ is not None:
@@ -213,7 +213,7 @@ def update_memory(
 ) -> None:  # pragma: no cover
     """Update a memory
 
-    Docs: https://api.immich.app/endpoints/memories/updateMemory
+    [link=https://api.immich.app/endpoints/memories/updateMemory]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}

@@ -12,7 +12,7 @@ from immich.cli.runtime import print_response, run_command, set_nested
 from immich.client.generated.models import *
 
 app = typer.Typer(
-    help="""A session represents an authenticated login session for a user. Sessions also appear in the web application as "Authorized devices".\n\nDocs: https://api.immich.app/endpoints/sessions"""
+    help="""A session represents an authenticated login session for a user. Sessions also appear in the web application as "Authorized devices".\n\n[link=https://api.immich.app/endpoints/sessions]Immich API documentation[/link]"""
 )
 
 
@@ -27,7 +27,7 @@ def create_session(
 ) -> None:  # pragma: no cover
     """Create a session
 
-    Docs: https://api.immich.app/endpoints/sessions/createSession
+    [link=https://api.immich.app/endpoints/sessions/createSession]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
@@ -50,7 +50,7 @@ def delete_all_sessions(
 ) -> None:  # pragma: no cover
     """Delete all sessions
 
-    Docs: https://api.immich.app/endpoints/sessions/deleteAllSessions
+    [link=https://api.immich.app/endpoints/sessions/deleteAllSessions]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -65,7 +65,7 @@ def delete_session(
 ) -> None:  # pragma: no cover
     """Delete a session
 
-    Docs: https://api.immich.app/endpoints/sessions/deleteSession
+    [link=https://api.immich.app/endpoints/sessions/deleteSession]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -80,7 +80,7 @@ def get_sessions(
 ) -> None:  # pragma: no cover
     """Retrieve sessions
 
-    Docs: https://api.immich.app/endpoints/sessions/getSessions
+    [link=https://api.immich.app/endpoints/sessions/getSessions]Immich API documentation[/link]
     """
     kwargs = {}
     client: "AsyncClient" = ctx.obj["client"]
@@ -95,7 +95,7 @@ def lock_session(
 ) -> None:  # pragma: no cover
     """Lock a session
 
-    Docs: https://api.immich.app/endpoints/sessions/lockSession
+    [link=https://api.immich.app/endpoints/sessions/lockSession]Immich API documentation[/link]
     """
     kwargs = {}
     kwargs["id"] = id
@@ -114,7 +114,7 @@ def update_session(
 ) -> None:  # pragma: no cover
     """Update a session
 
-    Docs: https://api.immich.app/endpoints/sessions/updateSession
+    [link=https://api.immich.app/endpoints/sessions/updateSession]Immich API documentation[/link]
     """
     kwargs = {}
     json_data = {}
