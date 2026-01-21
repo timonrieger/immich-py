@@ -662,6 +662,7 @@ docs = [
     { name = "mkdocstrings", extra = ["python"] },
     { name = "pymdown-extensions" },
     { name = "termynal" },
+    { name = "typer" },
     { name = "zensical" },
 ]
 
@@ -673,7 +674,7 @@ requires-dist = [
     { name = "pystatx", specifier = ">=0.1,<0.2" },
     { name = "python-dateutil", specifier = ">=2.8.2,<3.0.0" },
     { name = "rtoml", specifier = ">=0.13.0,<0.14.0" },
-    { name = "typer", marker = "extra == 'cli'", specifier = ">=0.12.0,<1.0.0" },
+    { name = "typer", marker = "extra == 'cli'", specifier = ">=0.21.1,<0.22.0" },
     { name = "typing-extensions", specifier = ">=4.7.1,<5.0.0" },
     { name = "uv", marker = "extra == 'build'", specifier = "==0.9.21" },
 ]
@@ -693,6 +694,7 @@ docs = [
     { name = "mkdocstrings", extras = ["python"], specifier = ">=1.0.1,<2.0.0" },
     { name = "pymdown-extensions", specifier = ">=10.20,<11.0" },
     { name = "termynal", specifier = ">=0.13.1,<0.14.0" },
+    { name = "typer", specifier = ">=0.21.1,<0.22.0" },
     { name = "zensical", specifier = ">=0.0.17,<0.0.18" },
 ]
 

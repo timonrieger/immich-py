@@ -31,7 +31,7 @@ run = "uv run pytest tests/e2e/client"
 description = "Run e2e client tests with pytest"
 
 [tasks.install]
-run = "uv sync"
+run = "uv sync --all-groups --all-extras"
 alias = "i"
 description = "Install dependencies (alias: 'i')"
 
@@ -44,7 +44,7 @@ run = "uv tree --outdated --depth 1"
 description = "Check dependencies for updates"
 
 [tasks.setup]
-run = ["mise install", "uvx pre-commit install"]
+run = ["mise i", "uvx pre-commit install"]
 description = "Setup the project"
 
 [tasks.build]
@@ -92,7 +92,7 @@ run = [
 
 [tasks."ci:install"]
 description = "Install dependencies in CI"
-run = ["uv sync --locked --all-groups"]
+run = ["mise i --locked"]
 
 [tasks."ci:test:unit"]
 description = "Run unit tests in CI"
@@ -123,3 +123,16 @@ run = "uv run zensical build"
 [tasks."docs:publish"]
 description = "Publish documentation"
 run = "vercel build --yes && vercel deploy"
+
+[tasks."docs:generate:cli"]
+description = "Generate documentation for the CLI"
+run = ["typer immich/cli/main.py utils docs --name immich --output docs/cli/reference.md --title Reference"]
+
+[tasks."docs:generate:client"]
+description = "Generate documentation for the client"
+run = [
+"""
+set -eu
+uv run bin/docs/client.py
+"""
+]

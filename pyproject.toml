@@ -35,7 +35,7 @@ dependencies = [
 [project.optional-dependencies]
 build = ["uv==0.9.21"]
 cli = [
-    "typer>=0.12.0,<1.0.0"
+    "typer>=0.21.1,<0.22.0",
 ]
 
 [project.scripts]
@@ -63,6 +63,7 @@ docs = [
     "mkdocstrings[python]>=1.0.1,<2.0.0",
     "pymdown-extensions>=10.20,<11.0",
     "termynal>=0.13.1,<0.14.0",
+    "typer>=0.21.1,<0.22.0",
     "zensical>=0.0.17,<0.0.18",
 ]
 
