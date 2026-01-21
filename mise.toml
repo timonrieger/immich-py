@@ -128,7 +128,7 @@ flag "--prod" help="Deploy to production"
 """
 run = '''
 prod_flag=""
-if [[ "${usage_prod?}" == "true" ]]; then
+if [[ "${usage_prod}" == "true" ]]; then
   prod_flag="--prod"
 fi
 
