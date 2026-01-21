@@ -14,16 +14,35 @@ def filename_to_title(filename: str) -> str:
 def filename_to_class_name(filename: str) -> str:
     """Convert filename like 'activities_api.py' to 'ActivitiesApi'.
 
-    Special case: 'api_keys_api.py' -> 'APIKeysApi' (API at start is uppercase).
+    Special cases:
+    - 'api_keys_api.py' -> 'APIKeysApi' (API at start is uppercase)
+    - 'clip_config.py' -> 'CLIPConfig' (CLIP at start is uppercase)
+    - 'transcode_hw_accel.py' -> 'TranscodeHWAccel' (HW is uppercase)
+    - 'o_auth_callback_dto.py' -> 'OAuthCallbackDto'
     """
     name = filename.replace(".py", "")
     parts = name.split("_")
 
-    # Handle "api" at start -> uppercase "API"
-    if parts and parts[0] == "api":
-        return "API" + "".join(part.capitalize() for part in parts[1:])
+    # Handle special case: "o_auth" -> "OAuth"
+    if len(parts) >= 2 and parts[0] == "o" and parts[1] == "auth":
+        return "OAuth" + "".join(part.capitalize() for part in parts[2:])
 
-    return "".join(part.capitalize() for part in parts)
+    # Acronyms that should always be uppercase (anywhere in the name)
+    always_uppercase = {"hw"}
+
+    # Acronyms that should be uppercase only at the start
+    uppercase_at_start = {"api", "clip"}
+
+    result_parts = []
+    for i, part in enumerate(parts):
+        if part in always_uppercase:
+            result_parts.append(part.upper())
+        elif i == 0 and part in uppercase_at_start:
+            result_parts.append(part.upper())
+        else:
+            result_parts.append(part.capitalize())
+
+    return "".join(result_parts)
 
 
 def get_module_path(file_path: Path, project_root: Path) -> str:
@@ -57,7 +76,7 @@ def process_directory(
     files = sorted(source_dir.glob(file_pattern))
     files = [f for f in files if not f.name.startswith("__")]
 
-    for source_file in files:
+    for source_file in files[:3]:
         filename = source_file.name
         class_name = filename_to_class_name(filename)
         module_path = get_module_path(source_file, project_root)
@@ -94,7 +113,18 @@ def main():
     total_generated += count
     print(f"  {count} API files")
 
-    # 2. wrapper/ -> docs/client/reference/wrapper/
+    # 2. generated/models/ -> docs/client/reference/models/
+    print("\nProcessing generated/models/...")
+    count = process_directory(
+        source_dir=client_dir / "generated" / "models",
+        output_dir=docs_ref_dir / "models",
+        project_root=project_root,
+        file_pattern="*.py",
+    )
+    total_generated += count
+    print(f"  {count} model files")
+
+    # 3. wrapper/ -> docs/client/reference/wrapper/
     print("\nProcessing wrapper/...")
     count = process_directory(
         source_dir=client_dir / "wrapper",

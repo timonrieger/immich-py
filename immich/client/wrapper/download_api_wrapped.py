@@ -22,6 +22,8 @@ from immich.client.utils.download import download_file
 
 
 class DownloadApiWrapped(DownloadApi):
+    """Wrapper for the DownloadApi that provides convenience methods."""
+
     async def download_archive_to_file(
         self,
         download_info: DownloadInfoDto,

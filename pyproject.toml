@@ -102,5 +102,5 @@ markers = [
 
 [tool.ty]
 environment.root = ['immich']
-src.exclude = ["immich/client/**"]
+src.exclude = ["immich/client/generated/**"]
 rules.unresolved-import = "ignore"

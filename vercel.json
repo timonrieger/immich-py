@@ -1,5 +1,5 @@
 {
   "installCommand": "uv sync --group docs",
-  "buildCommand": "uv run mkdocs build -d site --clean",
+  "buildCommand": "uv run zensical build",
   "outputDirectory": "site"
 }

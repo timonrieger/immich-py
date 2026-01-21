@@ -50,11 +50,12 @@ edit_uri = "edit/main/docs"
 #
 # Read more: https://zensical.org/docs/setup/navigation/
 nav = [
-    "index.md",
+    {"Home" = "index.md"},
     { Overview = [
         "overview/getting-started.md",
         "overview/custom-functions.md",
         "overview/versioning.md",
+        "overview/auto-sync.md",
     ] },
     { CLI = [
         "cli/getting-started.md",
@@ -68,7 +69,7 @@ nav = [
         "client/response-types.md",
         "client/session-management.md",
         { Reference = [
-            "client/reference/AsyncClient.md",
+            {"AsyncClient" = "client/reference/index.md"},
             { API = [
                 "client/reference/api/activities_api.md",
                 "client/reference/api/albums_api.md",
@@ -111,6 +112,9 @@ nav = [
                 "client/reference/wrapper/assets_api_wrapped.md",
                 "client/reference/wrapper/download_api_wrapped.md",
                 "client/reference/wrapper/users_api_wrapped.md",
+            ] },
+            { Models = [
+                "client/reference/models/activity_response_dto.md",
             ] },
         ] },
     ] },

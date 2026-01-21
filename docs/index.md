@@ -20,12 +20,12 @@
 
 </p>
 
-!!! warning
-    This repository is mostly **auto-generated** from the Immich OpenAPI specification.
+!!! note
+    This repository is **auto-generated** from the Immich OpenAPI specification.
     Pull requests are welcome, but modifications to auto-generated code will be rejected. See [Contributing](./info/contributing.md) for more details.
 
 !!! note
-    This project is [auto-synced](https://github.com/timonrieger/immich-py/blob/main/.github/workflows/upstream-sync.yml) with the **latest Immich release**.
+    This project is [auto-synced](./overview/auto-sync.md) with the **latest Immich release**.
 
 !!! note
     This project is not affiliated with or endorsed by Immich.

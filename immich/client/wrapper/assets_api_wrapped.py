@@ -23,6 +23,8 @@ from immich.client.utils.download import download_file, resolve_output_filename
 
 
 class AssetsApiWrapped(AssetsApi):
+    """Wrapper for the AssetsApi that provides convenience methods."""
+
     async def download_asset_to_file(
         self,
         id: UUID,

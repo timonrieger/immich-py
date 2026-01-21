@@ -9,6 +9,8 @@ from immich.client.utils.download import download_file, resolve_output_filename
 
 
 class UsersApiWrapped(UsersApi):
+    """Wrapper for the UsersApi that provides convenience methods."""
+
     async def get_profile_image_to_file(
         self,
         id: UUID,

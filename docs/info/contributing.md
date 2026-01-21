@@ -6,20 +6,29 @@ This repository is **auto-generated** from the Immich OpenAPI specification.
 
 Pull requests are welcome! However, **modifications to auto-generated code will be rejected**.
 
+### Prerequisites
+
+We manage the project with [mise](https://mise.jdx.dev). To get started, install mise and run `mise setup`. Then, you can run any task with `mise run <task>`. To see all available tasks, run `mise tasks ls`.
+
 ### PR checklist
 
 Before submitting a pull request, please ensure:
 
-1. Install [mise](https://mise.jdx.dev)
-2. Run `mise run ci:check` to verify all checks pass
-3. To see all available tasks, run `mise tasks ls`
+1. Run `mise run ci:check` to verify all checks pass
+2. Run all tests (see [Testing](#testing))
 
 ### Auto-generated code restrictions
 
 The following directories contain auto-generated code and **must not be modified**:
 
-- `immich/client/` - Auto-generated client
+- `immich/client/generated/` - Auto-generated client
 - `immich/cli/commands/` - Auto-generated CLI commands
+
+### Testing
+
+To run tests, run any of the `mise run test:*` tasks.
+Make sure all tests pass before submitting a pull request.
+If you don't have a local Immich server and cannot run End-to-End tests, please mention this in the pull request.
 
 ## Where to report issues
 

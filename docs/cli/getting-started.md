@@ -57,7 +57,7 @@ Profile 'default' created successfully!
 !!! note "Validation"
     The server is validated when you run `immich setup`. The CLI will fail if the server is not reachable.
 
-See [`immich setup`](../cli/reference.md#immich-setup) for the full command reference.
+See [`immich setup`](reference.md#immich-setup) for the full command reference.
 
 ## First commands
 
@@ -93,4 +93,4 @@ $ immich --format table server get-about-info
 
 </div>
 
-To see all available commands, run `immich --help` or see the [reference](./reference.md).
+To see all available commands, run `immich --help` or see the [reference](reference.md).

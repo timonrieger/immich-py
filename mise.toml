@@ -117,12 +117,12 @@ description = "Run documentation development server (using mkdocs)"
 run = "uv run mkdocs serve"
 
 [tasks."docs:build"]
-description = "Build documentation"
+description = "Build documentation locally"
 run = "uv run zensical build"
 
 [tasks."docs:publish"]
-description = "Publish documentation"
-run = "vercel build --yes && vercel deploy"
+description = "Build and publish documentation to Vercel. Pass --prod to deploy to production."
+run = "vercel build --yes && vercel deploy --prebuilt"
 
 [tasks."docs:generate:cli"]
 description = "Generate documentation for the CLI"
@@ -135,4 +135,11 @@ run = [
 set -eu
 uv run bin/docs/client.py
 """
+]
+
+[tasks."docs:generate"]
+description = "Generate documentation for the CLI and client"
+run = [
+    { task = "docs:generate:cli" },
+    { task = "docs:generate:client" },
 ]
