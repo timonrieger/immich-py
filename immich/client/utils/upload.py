@@ -183,6 +183,7 @@ async def check_duplicates(
     assets_api: AssetsApi,
     skip_duplicates: bool = False,
     show_progress: bool = False,
+    dry_run: bool = False,
 ) -> tuple[list[Path], list[RejectedEntry]]:
     """Check which files are duplicates on the server.
 
@@ -190,10 +191,11 @@ async def check_duplicates(
     :param assets_api: Assets API instance for duplicate checking.
     :param skip_duplicates: Whether to skip duplicate checking (might still get rejected on the server).
     :param show_progress: Whether to show progress bars.
+    :param dry_run: Whether to run in dry run mode (no actual API calls).
 
     :return: Tuple of (new_files, rejected_entries) where new_files can be uploaded and rejected_entries are duplicates.
     """
-    if skip_duplicates:
+    if skip_duplicates or dry_run:
         return files, []
 
     progress_columns = [

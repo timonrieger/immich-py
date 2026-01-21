@@ -220,6 +220,7 @@ class AssetsApiWrapped(AssetsApi):
             assets_api=self,
             skip_duplicates=skip_duplicates,
             show_progress=show_progress,
+            dry_run=dry_run,
         )
 
         uploaded, actual_rejected, failed = await upload_files(
