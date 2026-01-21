@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import traceback
 from typing import Any, Awaitable, Callable
 
 from immich.cli.utils import print_
@@ -48,22 +49,20 @@ def print_response(data: MaybeBaseModel, ctx: Context) -> None:
     print_(message=json_str, type="json", ctx=ctx)
 
 
-def handle_api_error(e: ApiException, ctx: Context | None = None) -> None:
-    """Handle API exceptions and exit with appropriate code."""
+def format_api_error(e: ApiException) -> tuple[str, int]:
+    """Return (message, exit_code) for an ApiException."""
+    exit_code = 1 if e.status is None else e.status // 100
+
     if not e.body:
-        raise Exit(code=1 if e.status is None else e.status // 100)
+        return ("API error", exit_code)
 
     if isinstance(e.body, str):
-        json_str = e.body
-    else:
-        json_str = json.dumps(e.body, default=str)
+        return (e.body, exit_code)
 
-    print_(message=json_str, type="json", ctx=ctx)
-    raise Exit(code=1 if e.status is None else e.status // 100)
+    return (json.dumps(e.body, default=str), exit_code)
 
 
 async def run_async(coro: Awaitable[Any]) -> Any:
-    """Run async coroutine from sync context."""
     return await coro
 
 
@@ -74,20 +73,31 @@ def run_command(
     ctx: Context | None = None,
     **kwargs: Any,
 ) -> Any:
-    """Run a client API method and return result."""
+    """Run a client API method and handle the result."""
     method: Callable[..., Awaitable[Any]] = getattr(api_group, method_name)
 
     async def _call_and_close() -> Any:
         try:
             return await method(**kwargs)
         finally:
-            # Ensure we don't leak aiohttp connectors/sessions after each command.
-            # In a CLI context we generally run one command per process.
             await client.close()
 
     try:
-        return asyncio.run(run_async(_call_and_close()))
+        return asyncio.run(_call_and_close())
+
+    except ApiException as e:
+        message, code = format_api_error(e)
+        print_(message, type="error", ctx=ctx)
+        print_(traceback.format_exc(), type="debug", ctx=ctx)
+        raise Exit(code=code)
+
     except Exception as e:
-        if isinstance(e, ApiException):
-            handle_api_error(e, ctx)
-        raise
+        msg = str(e).strip()
+
+        if msg:
+            print_(f"Unexpected error: {msg}", type="error", ctx=ctx)
+        else:
+            print_("Unexpected error occurred", type="error", ctx=ctx)
+
+        print_(traceback.format_exc(), type="debug", ctx=ctx)
+        raise Exit(code=1)

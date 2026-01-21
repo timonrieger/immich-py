@@ -58,15 +58,14 @@ def setup(
             base_url=base_url, api_key=api_key, access_token=access_token
         )
         try:
-            run_command(client, client.server, "ping_server")
-        except Exception as exc:
+            run_command(client, client.server, "ping_server", ctx=ctx)
+        except Exception:
             print_(
                 "Error validating server. Make sure the base URL is correct (including /api) and the server is reachable.",
                 type="error",
                 ctx=ctx,
             )
-            print_(str(exc), type="debug", ctx=ctx)
-            raise typer.Exit(1)
+            raise
 
     set_path(
         data,
