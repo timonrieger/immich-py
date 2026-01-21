@@ -3,8 +3,6 @@
 This page contains practical examples of using the Immich CLI for common tasks.
 > Have an example? You’re welcome to suggest it on [GitHub issues](https://github.com/timonrieger/immich-py/issues).
 
-
-
 ## List all albums and parse with jq
 
 Get all albums and their name and ID:
@@ -17,6 +15,7 @@ Animal Portraits ff09c49f-525d-4216-bc5a-8ff070bca149
 Vacation 2023 851c8f67-9bf3-48f5-8130-59da9ab17c06
 Selfies c980670b-69d1-42ee-b4a5-86947f169d99
 ```
+
 </div>
 
 ## Download an album archive
@@ -35,6 +34,7 @@ Download an album archive to a directory with progress bar:
   "out/archive-d73aaebe-f8d2-486d-b0f0-a0a64c75320b.zip"
 ]
 ```
+
 </div>
 
 ## Upload assets
@@ -65,6 +65,7 @@ $ immich assets upload ~/timelapse.mp4 --dry-run
   }
 }
 ```
+
 </div>
 
 ## List all people with names
@@ -87,6 +88,7 @@ $ immich people get-all-people | jq '.people[] | select(.name != "")'
   "updated_at": "2026-01-20 22:30:00.771000+00:00"
 }
 ```
+
 </div>
 
 ## List all users
@@ -119,4 +121,5 @@ $ immich --format table users search-users
 │ profile_image_path │                                      │
 └────────────────────┴──────────────────────────────────────┘
 ```
+
 </div>

@@ -1,9 +1,9 @@
 nav:
   - index.md
   - Overview:
-      - getting-started.md
-      - custom-functions.md
-      - versioning.md
+      - overview/getting-started.md
+      - overview/custom-functions.md
+      - overview/versioning.md
   - CLI:
       - cli/getting-started.md
       - cli/examples.md
@@ -17,6 +17,7 @@ nav:
       - Reference:
           - client/reference/client.md
           - client/reference/*
-  - About:
-      - credits.md
-      - contributing.md
+  - Info:
+      - info/credits.md
+      - info/contributing.md
+      - info/development.md

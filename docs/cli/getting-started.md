@@ -11,8 +11,8 @@ $ pip install immich[cli]
 
 ---> 100%
 ```
-</div>
 
+</div>
 
 ### Shell completion
 
@@ -26,11 +26,11 @@ $ immich --install-completion
 fish completion installed in ~/.config/fish/completions/immich.fish
 Completion will take effect once you restart the terminal
 ```
+
 </div>
 
 !!! note "Performance"
     Due to the size of the CLI and Python's runtime overhead, the auto-completion is not as fast as I hoped it could be (see [typer#231](https://github.com/fastapi/typer/issues/231)).
-
 
 ## Set up your Immich server
 
@@ -51,6 +51,7 @@ $ immich setup
 
 Profile 'default' created successfully!
 ```
+
 </div>
 
 !!! note "Validation"
@@ -72,6 +73,7 @@ $ immich server get-about-info
   "version": "v2.4.1",
 }
 ```
+
 </div>
 
 You can also get the information in a different format, e.g. as a table:

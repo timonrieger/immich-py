@@ -11,6 +11,7 @@ $ pip install immich
 
 ---> 100%
 ```
+
 </div>
 
 ## Structure

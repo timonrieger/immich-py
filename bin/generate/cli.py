@@ -370,7 +370,7 @@ def generate_command_function(
     # Function body
     summary = operation.get("summary", operation_id)
     doc_url = f"https://api.immich.app/endpoints/{inflection.parameterize(tag)}/{operation_id}"
-    lines.append(f'    """{summary}\n\n     Docs: {doc_url}\n    """')
+    lines.append(f'    """{summary}\n\n     {doc_url}\n    """')
 
     # Build kwargs
     lines.append("    kwargs = {}")

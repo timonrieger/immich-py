@@ -1,4 +1,4 @@
-## Versioning
+# Versioning
 
 This package follows **[Semantic Versioning](https://semver.org)**. Some important notes:
 
