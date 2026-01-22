@@ -84,6 +84,8 @@ class Permission(str, Enum):
     TIMELINE_DOT_READ = "timeline.read"
     TIMELINE_DOT_DOWNLOAD = "timeline.download"
     MAINTENANCE = "maintenance"
+    MAP_DOT_READ = "map.read"
+    MAP_DOT_SEARCH = "map.search"
     MEMORY_DOT_CREATE = "memory.create"
     MEMORY_DOT_READ = "memory.read"
     MEMORY_DOT_UPDATE = "memory.update"
