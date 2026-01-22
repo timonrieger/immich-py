@@ -6,8 +6,13 @@ from typing import Awaitable, Callable
 import pytest
 from typer.testing import CliRunner
 
+from immich import AsyncClient
 from immich.cli.main import app as cli_app
-from immich.client.generated import AssetResponseDto, CreateProfileImageResponseDto
+from immich.client.generated import (
+    AssetBulkDeleteDto,
+    AssetResponseDto,
+    CreateProfileImageResponseDto,
+)
 from immich.client.utils.upload import UploadResult
 
 
@@ -118,8 +123,8 @@ async def test_view_asset_to_file(
 @pytest.mark.e2e
 async def test_upload(
     runner: CliRunner,
+    client_with_api_key: AsyncClient,
     test_image_factory: Callable[..., Path],
-    tmp_path: Path,
 ) -> None:
     """Test upload command and verify assets are uploaded."""
     # Create test images
@@ -147,6 +152,11 @@ async def test_upload(
     upload_result = UploadResult.model_validate(response_data)
     assert upload_result.stats.uploaded > 0, "No assets were uploaded"
     assert len(upload_result.uploaded) > 0, "No assets in uploaded list"
+
+    # cleanup uploaded assets
+    await client_with_api_key.assets.delete_assets(
+        AssetBulkDeleteDto(ids=[u.asset.id for u in upload_result.uploaded], force=True)
+    )
 
 
 @pytest.mark.asyncio
@@ -188,6 +198,7 @@ async def test_download_archive_to_file(
 @pytest.mark.e2e
 async def test_users_get_profile_image_to_file(
     runner: CliRunner,
+    client_with_api_key: AsyncClient,
     test_image: Path,
     tmp_path: Path,
 ) -> None:
@@ -233,3 +244,6 @@ async def test_users_get_profile_image_to_file(
     assert downloaded_files[0].stat().st_size > 0, (
         "Downloaded profile image file is empty"
     )
+
+    # cleanup profile image
+    await client_with_api_key.users.delete_profile_image()

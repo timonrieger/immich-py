@@ -134,7 +134,6 @@ def runner_simple() -> CliRunner:
 @pytest.fixture
 async def upload_assets(
     client_with_api_key: AsyncClient,
-    teardown: bool,
 ) -> AsyncGenerator[Callable[..., Awaitable[UploadResult]], None]:
     """Factory fixture: yields an async callable to upload assets and auto-clean them up.
 
@@ -156,7 +155,7 @@ async def upload_assets(
 
     yield _upload
 
-    if teardown and _uploaded_ids:
+    if _uploaded_ids:
         await client_with_api_key.assets.delete_assets(
             AssetBulkDeleteDto(
                 ids=_uploaded_ids, force=True
