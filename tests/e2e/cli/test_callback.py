@@ -29,7 +29,7 @@ def mock_server_api():
 class TestCallbackConfigResolution:
     def test_cli_options_take_precedence_over_profile(
         self,
-        runner_simple: CliRunner,
+        runner_without_auth: CliRunner,
         mock_config_path: Path,
         mock_server_api: MagicMock,
     ):
@@ -42,7 +42,7 @@ class TestCallbackConfigResolution:
             'access_token = "profile-token"'
         )
 
-        result = runner_simple.invoke(
+        result = runner_without_auth.invoke(
             main.app,
             [
                 "--base-url",
@@ -66,7 +66,7 @@ class TestCallbackConfigResolution:
 
     def test_profile_values_used_when_cli_options_missing(
         self,
-        runner_simple: CliRunner,
+        runner_without_auth: CliRunner,
         mock_config_path: Path,
         mock_server_api: MagicMock,
     ):
@@ -79,7 +79,7 @@ class TestCallbackConfigResolution:
             'access_token = "profile-token"'
         )
 
-        result = runner_simple.invoke(
+        result = runner_without_auth.invoke(
             main.app,
             ["server", "get-about-info"],
         )
@@ -94,7 +94,7 @@ class TestCallbackConfigResolution:
 
     def test_partial_cli_options_merge_with_profile(
         self,
-        runner_simple: CliRunner,
+        runner_without_auth: CliRunner,
         mock_config_path: Path,
         mock_server_api: MagicMock,
     ):
@@ -107,7 +107,7 @@ class TestCallbackConfigResolution:
             'access_token = "profile-token"'
         )
 
-        result = runner_simple.invoke(
+        result = runner_without_auth.invoke(
             main.app,
             [
                 "--base-url",
@@ -127,7 +127,7 @@ class TestCallbackConfigResolution:
 
     def test_custom_profile_resolution(
         self,
-        runner_simple: CliRunner,
+        runner_without_auth: CliRunner,
         mock_config_path: Path,
         mock_server_api: MagicMock,
     ):
@@ -143,7 +143,7 @@ class TestCallbackConfigResolution:
             'access_token = "default-token"'
         )
 
-        result = runner_simple.invoke(
+        result = runner_without_auth.invoke(
             main.app,
             [
                 "--profile",
@@ -162,14 +162,14 @@ class TestCallbackConfigResolution:
         assert call_kwargs["access_token"] is None
 
     def test_no_base_url_exits_with_error(
-        self, runner_simple: CliRunner, mock_config_path: Path
+        self, runner_without_auth: CliRunner, mock_config_path: Path
     ) -> None:
         """Test that missing base_url exits with error code 1."""
         # Create config file without base_url
         mock_config_path.parent.mkdir(parents=True, exist_ok=True)
         mock_config_path.write_text('[profiles.default]\napi_key = "profile-key"\n')
 
-        result = runner_simple.invoke(
+        result = runner_without_auth.invoke(
             main.app,
             ["server", "get-about-info"],
         )
@@ -182,7 +182,7 @@ class TestCallbackConfigResolution:
     def test_verbose_mode_prints_debug_config(
         self,
         mock_print: MagicMock,
-        runner_simple: CliRunner,
+        runner_without_auth: CliRunner,
         mock_config_path: Path,
         mock_server_api: MagicMock,
     ) -> None:
@@ -194,7 +194,7 @@ class TestCallbackConfigResolution:
             'api_key = "profile-key"\n'
         )
 
-        result = runner_simple.invoke(
+        result = runner_without_auth.invoke(
             main.app,
             [
                 "--verbose",

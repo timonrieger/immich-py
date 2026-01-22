@@ -25,14 +25,14 @@ from immich.client.generated import (
 
 
 @pytest.mark.e2e
-def test_create_album(runner: CliRunner, user: UserResponseDto) -> None:
+def test_create_album(runner_with_api_key: CliRunner, user: UserResponseDto) -> None:
     """Test create-album command with description and validate response structure."""
     album_name = "Test Album with Description"
     description = "Test description"
     album_users = [
         AlbumUserCreateDto(role=AlbumUserRole.EDITOR, userId=UUID(str(user.id)))
     ]
-    result = runner.invoke(
+    result = runner_with_api_key.invoke(
         cli_app,
         [
             "albums",

@@ -17,10 +17,12 @@ from immich.client.generated import AlbumResponseDto
 
 
 @pytest.mark.e2e
-def test_get_all_albums(runner: CliRunner, album: AlbumResponseDto) -> None:
+def test_get_all_albums(
+    runner_with_api_key: CliRunner, album: AlbumResponseDto
+) -> None:
     """Test get-all-albums command and validate response structure."""
     album_id = album.id
-    result = runner.invoke(
+    result = runner_with_api_key.invoke(
         cli_app,
         ["albums", "get-all-albums"],
     )

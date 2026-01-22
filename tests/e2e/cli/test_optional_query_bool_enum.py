@@ -29,7 +29,7 @@ from immich.client.generated import (
 @pytest.mark.asyncio
 @pytest.mark.e2e
 async def test_get_all_albums_with_shared_filter(
-    runner: CliRunner,
+    runner_with_api_key: CliRunner,
     user: UserResponseDto,
     album_factory: Callable[..., Awaitable[AlbumResponseDto]],
 ) -> None:
@@ -40,7 +40,7 @@ async def test_get_all_albums_with_shared_filter(
     request = CreateAlbumDto(albumName="Test Album", album_users=album_users)
     album = await album_factory(request.model_dump())
     result = await asyncio.to_thread(
-        runner.invoke,
+        runner_with_api_key.invoke,
         cli_app,
         [
             "albums",

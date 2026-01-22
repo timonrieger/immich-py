@@ -10,6 +10,7 @@ from immich import AsyncClient
 from immich.cli.consts import (
     DEFAULT_FORMAT,
     DEFAULT_PROFILE,
+    IMMICH_ACCESS_TOKEN,
     IMMICH_API_KEY,
     IMMICH_API_URL,
     IMMICH_FORMAT,
@@ -109,7 +110,7 @@ async def client_with_access_token(env: dict[str, str]):
 
 
 @pytest.fixture
-def runner(client_with_api_key: AsyncClient) -> CliRunner:
+def runner_with_api_key(client_with_api_key: AsyncClient) -> CliRunner:
     """Typer CliRunner fixture for CLI testing."""
     return CliRunner(
         env={
@@ -117,6 +118,7 @@ def runner(client_with_api_key: AsyncClient) -> CliRunner:
             IMMICH_API_KEY: client_with_api_key.base_client.configuration.api_key[
                 "api_key"
             ],
+            IMMICH_ACCESS_TOKEN: None,
             IMMICH_FORMAT: DEFAULT_FORMAT,
             IMMICH_PROFILE: DEFAULT_PROFILE,
         }
@@ -124,10 +126,16 @@ def runner(client_with_api_key: AsyncClient) -> CliRunner:
 
 
 @pytest.fixture
-def runner_simple() -> CliRunner:
+def runner_without_auth() -> CliRunner:
     """Simple Typer CliRunner fixture for CLI testing without client setup."""
     return CliRunner(
-        env={IMMICH_FORMAT: DEFAULT_FORMAT, IMMICH_PROFILE: DEFAULT_PROFILE}
+        env={
+            IMMICH_FORMAT: DEFAULT_FORMAT,
+            IMMICH_PROFILE: DEFAULT_PROFILE,
+            IMMICH_API_KEY: None,
+            IMMICH_ACCESS_TOKEN: None,
+            IMMICH_API_URL: None,
+        }
     )
 
 

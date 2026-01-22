@@ -9,10 +9,10 @@ from immich.cli.main import app
 
 class TestSetup:
     def test_setup_with_all_parameters(
-        self, runner_simple: CliRunner, mock_config_path: Path
+        self, runner_without_auth: CliRunner, mock_config_path: Path
     ):
         """Test setup command with all parameters provided."""
-        result = runner_simple.invoke(
+        result = runner_without_auth.invoke(
             app,
             [
                 "setup",
@@ -42,10 +42,10 @@ class TestSetup:
             assert "default" in result.stdout
 
     def test_setup_with_custom_profile(
-        self, runner_simple: CliRunner, mock_config_path: Path
+        self, runner_without_auth: CliRunner, mock_config_path: Path
     ):
         """Test setup command with custom profile."""
-        result = runner_simple.invoke(
+        result = runner_without_auth.invoke(
             app,
             [
                 "setup",
@@ -73,10 +73,10 @@ class TestSetup:
         assert "production" in result.stdout
 
     def test_setup_with_only_base_url(
-        self, runner_simple: CliRunner, mock_config_path: Path
+        self, runner_without_auth: CliRunner, mock_config_path: Path
     ):
         """Test setup command with only base_url (empty api_key and access_token)."""
-        result = runner_simple.invoke(
+        result = runner_without_auth.invoke(
             app,
             [
                 "setup",
@@ -100,7 +100,7 @@ class TestSetup:
             assert config_data["profiles"]["default"]["access_token"] == ""
 
     def test_setup_overwrites_existing_profile(
-        self, runner_simple: CliRunner, mock_config_path: Path
+        self, runner_without_auth: CliRunner, mock_config_path: Path
     ):
         """Test that setup overwrites an existing profile."""
         mock_config_path.parent.mkdir(parents=True, exist_ok=True)
@@ -108,7 +108,7 @@ class TestSetup:
             '[profiles.default]\nbase_url = "old-url"\napi_key = "old-key"'
         )
 
-        result = runner_simple.invoke(
+        result = runner_without_auth.invoke(
             app,
             [
                 "setup",
@@ -132,13 +132,13 @@ class TestSetup:
 
     @patch("immich.cli.wrapper.setup.run_command")
     def test_setup_ping_server_validation_fails(
-        self, mock_run_command, runner_simple: CliRunner, mock_config_path: Path
+        self, mock_run_command, runner_without_auth: CliRunner, mock_config_path: Path
     ):
         """Test setup command when ping server validation fails."""
         # Mock run_command to raise an exception simulating a failed ping
         mock_run_command.side_effect = Exception("Connection refused")
 
-        result = runner_simple.invoke(
+        result = runner_without_auth.invoke(
             app,
             [
                 "setup",

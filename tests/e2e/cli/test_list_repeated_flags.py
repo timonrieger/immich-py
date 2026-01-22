@@ -20,10 +20,10 @@ from immich.client.generated.models.asset_response_dto import AssetResponseDto
 
 @pytest.mark.e2e
 def test_add_assets_to_album(
-    runner: CliRunner, album: AlbumResponseDto, asset: AssetResponseDto
+    runner_with_api_key: CliRunner, album: AlbumResponseDto, asset: AssetResponseDto
 ) -> None:
     """Test add-assets-to-album command and validate response structure."""
-    result = runner.invoke(
+    result = runner_with_api_key.invoke(
         cli_app,
         [
             "albums",

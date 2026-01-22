@@ -25,13 +25,13 @@ from immich.client.generated import (
 @pytest.mark.asyncio
 @pytest.mark.e2e
 async def test_check_bulk_upload(
-    runner: CliRunner,
+    runner_with_api_key: CliRunner,
 ) -> None:
     """Test check-bulk-upload command and validate response structure."""
     asset1 = AssetBulkUploadCheckItem(checksum=str(uuid4()), id=str(uuid4()))
     asset2 = AssetBulkUploadCheckItem(checksum=str(uuid4()), id=str(uuid4()))
     result = await asyncio.to_thread(
-        runner.invoke,
+        runner_with_api_key.invoke,
         cli_app,
         [
             "assets",

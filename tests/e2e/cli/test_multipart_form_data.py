@@ -20,9 +20,9 @@ from immich.client.generated import CreateProfileImageResponseDto
 
 
 @pytest.mark.e2e
-def test_multipart_form_data(runner: CliRunner, test_image: Path) -> None:
+def test_multipart_form_data(runner_with_api_key: CliRunner, test_image: Path) -> None:
     """Test multipart/form-data command and validate direct kwargs merge."""
-    result = runner.invoke(
+    result = runner_with_api_key.invoke(
         cli_app,
         [
             "users",

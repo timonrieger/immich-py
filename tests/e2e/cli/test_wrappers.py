@@ -20,7 +20,7 @@ from immich.client.utils.upload import UploadResult
 @pytest.mark.asyncio
 @pytest.mark.e2e
 async def test_download_asset_to_file(
-    runner: CliRunner,
+    runner_with_api_key: CliRunner,
     asset: AssetResponseDto,
     tmp_path: Path,
 ) -> None:
@@ -30,7 +30,7 @@ async def test_download_asset_to_file(
     out_dir.mkdir()
 
     result = await asyncio.to_thread(
-        runner.invoke,
+        runner_with_api_key.invoke,
         cli_app,
         ["assets", "download-asset-to-file", asset_id, str(out_dir)],
     )
@@ -48,7 +48,7 @@ async def test_download_asset_to_file(
 @pytest.mark.asyncio
 @pytest.mark.e2e
 async def test_play_asset_video_to_file(
-    runner: CliRunner,
+    runner_with_api_key: CliRunner,
     test_video_factory: Callable[..., Path],
     upload_assets: Callable[..., Awaitable[UploadResult]],
     tmp_path: Path,
@@ -65,7 +65,7 @@ async def test_play_asset_video_to_file(
     out_dir.mkdir()
 
     result = await asyncio.to_thread(
-        runner.invoke,
+        runner_with_api_key.invoke,
         cli_app,
         [
             "assets",
@@ -88,7 +88,7 @@ async def test_play_asset_video_to_file(
 @pytest.mark.asyncio
 @pytest.mark.e2e
 async def test_view_asset_to_file(
-    runner: CliRunner,
+    runner_with_api_key: CliRunner,
     asset: AssetResponseDto,
     tmp_path: Path,
 ) -> None:
@@ -98,7 +98,7 @@ async def test_view_asset_to_file(
     out_dir.mkdir()
 
     result = await asyncio.to_thread(
-        runner.invoke,
+        runner_with_api_key.invoke,
         cli_app,
         [
             "assets",
@@ -123,7 +123,7 @@ async def test_view_asset_to_file(
 @pytest.mark.asyncio
 @pytest.mark.e2e
 async def test_upload(
-    runner: CliRunner,
+    runner_with_api_key: CliRunner,
     client_with_api_key: AsyncClient,
     test_image_factory: Callable[..., Path],
 ) -> None:
@@ -133,7 +133,7 @@ async def test_upload(
     img2 = test_image_factory(filename="test2.jpg")
 
     result = await asyncio.to_thread(
-        runner.invoke,
+        runner_with_api_key.invoke,
         cli_app,
         [
             "assets",
@@ -165,7 +165,7 @@ async def test_upload(
 @pytest.mark.asyncio
 @pytest.mark.e2e
 async def test_download_archive_to_file(
-    runner: CliRunner,
+    runner_with_api_key: CliRunner,
     asset: AssetResponseDto,
     tmp_path: Path,
 ) -> None:
@@ -175,7 +175,7 @@ async def test_download_archive_to_file(
     out_dir.mkdir()
 
     result = await asyncio.to_thread(
-        runner.invoke,
+        runner_with_api_key.invoke,
         cli_app,
         [
             "download",
@@ -200,7 +200,7 @@ async def test_download_archive_to_file(
 @pytest.mark.asyncio
 @pytest.mark.e2e
 async def test_users_get_profile_image_to_file(
-    runner: CliRunner,
+    runner_with_api_key: CliRunner,
     client_with_api_key: AsyncClient,
     test_image: Path,
     tmp_path: Path,
@@ -208,7 +208,7 @@ async def test_users_get_profile_image_to_file(
     """Test users-get-profile-image-to-file command and verify profile image is downloaded."""
     # First, create a profile image for the current user
     create_result = await asyncio.to_thread(
-        runner.invoke,
+        runner_with_api_key.invoke,
         cli_app,
         [
             "users",
@@ -227,7 +227,7 @@ async def test_users_get_profile_image_to_file(
     out_dir.mkdir()
 
     result = await asyncio.to_thread(
-        runner.invoke,
+        runner_with_api_key.invoke,
         cli_app,
         [
             "users",
