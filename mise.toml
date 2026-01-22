@@ -1,6 +1,6 @@
 [tools]
 python = "3.14.2"
-uv = "0.9.21"
+uv = "0.9.26"
 
 # https://mise.jdx.dev/mise-cookbook/python.html#mise-uv
 [env]
@@ -14,25 +14,29 @@ description = "Run pre-commit hooks"
 run = "uv run ty check"
 description = "Run type checking"
 
-[tasks."test:unit"]
-run = "uv run pytest tests/unit"
-description = "Run tests with pytest"
+[tasks."test:unit:cli"]
+run = "uv run pytest tests/unit/cli"
+description = "Run CLI unit tests with pytest"
 
-[tasks."test:e2e"]
-run = "uv run pytest tests/e2e"
-description = "Run e2e tests"
+[tasks."test:unit:client"]
+run = "uv run pytest tests/unit/client"
+description = "Run client unit tests with pytest"
 
-[tasks."test:unit:cov"]
-run = "uv run pytest tests/unit --cov=immich --cov-report=html --cov-report=term"
-description = "Run tests with coverage report"
+[tasks."test:e2e:cli"]
+run = "uv run pytest tests/e2e/cli"
+description = "Run e2e CLI tests with pytest"
+
+[tasks."test:e2e:client"]
+run = "uv run pytest tests/e2e/client"
+description = "Run e2e client tests with pytest"
 
 [tasks.install]
-run = "uv sync"
+run = "uv sync --all-groups --all-extras"
 alias = "i"
 description = "Install dependencies (alias: 'i')"
 
 [tasks."install:upgrade"]
-run = "uv sync --upgrade"
+run = "mise run install --upgrade"
 description = "Upgrade dependencies in the allowed ranges"
 
 [tasks."install:check"]
@@ -40,7 +44,7 @@ run = "uv tree --outdated --depth 1"
 description = "Check dependencies for updates"
 
 [tasks.setup]
-run = ["mise install", "uvx pre-commit install"]
+run = ["mise run install", "uvx pre-commit install"]
 description = "Setup the project"
 
 [tasks.build]
@@ -51,18 +55,32 @@ description = "Build the package"
 run = "uvx --from 'python-semantic-release==10' semantic-release --noop -c pyproject.toml version"
 description = "Dry run version bump"
 
-[tasks.generate]
-description = "Generate Immich API client (alias: 'g')"
-alias = "g"
+[tasks."generate:client"]
+description = "Generate Immich API client"
 run = '''
 set -eu
-uv run bin/generate.py
+uv run bin/generate/client.py
 '''
 
+[tasks."generate:cli"]
+description = "Generate Immich CLI"
+run = '''
+set -eu
+uv run bin/generate/cli.py
+'''
+
+[tasks.generate]
+description = "Generate Immich API client and CLI"
+run = [
+    { task = "generate:client" },
+    { task = "generate:cli" },
+]
+
 [tasks."ci:gen"]
-description = "Run generate then lint sequentially"
+description = "Run generate then lint sequentially (set IMMICH_OPENAPI_REF to a git ref to generate the client and CLI)"
 run = [
     { task = "generate" },
+    { task = "docs:generate" },
     { task = "lint" },
 ]
 
@@ -75,22 +93,68 @@ run = [
 
 [tasks."ci:install"]
 description = "Install dependencies in CI"
-run = ["uv sync --locked --dev"]
+run = ["mise run install --locked"]
 
 [tasks."ci:test:unit"]
 description = "Run unit tests in CI"
 run = [
     { task = "ci:install" },
-    { task = "test:unit" },
+    { task = "test:unit:cli" },
+    { task = "test:unit:client" },
 ]
 
 [tasks."ci:test:e2e"]
 description = "Run e2e tests in CI"
 run = [
     { task = "ci:install" },
-    { task = "test:e2e" },
+    { task = "test:e2e:cli" },
+    { task = "test:e2e:client" },
 ]
 
-[tasks.clean]
-run = "rm -rf build/ dist/ *.egg-info/ .pytest_cache/ htmlcov/ .coverage .ruff_cache/"
-description = "Clean build artifacts and cache files"
+[tasks."docs:dev"]
+description = "Run documentation development server"
+run = "uv run zensical serve"
+
+[tasks."docs:serve"]
+hide = true
+description = "Run documentation development server (using mkdocs)"
+run = "uv run mkdocs serve"
+
+[tasks."docs:build"]
+description = "Build documentation locally"
+run = "uv run zensical build"
+
+[tasks."docs:publish"]
+description = "Build and publish documentation to Vercel. Pass --prod to deploy to production."
+usage = """
+flag "--prod" help="Deploy to production"
+"""
+run = '''
+prod_flag=""
+if [[ "${usage_prod}" == "true" ]]; then
+  prod_flag="--prod"
+fi
+
+vercel build --yes ${prod_flag}
+vercel deploy --prebuilt ${prod_flag}
+'''
+
+[tasks."docs:generate:cli"]
+description = "Generate documentation for the CLI"
+run = ["typer immich/cli/main.py utils docs --name immich --output docs/cli/reference.md --title Reference"]
+
+[tasks."docs:generate:client"]
+description = "Generate documentation for the client"
+run = [
+"""
+set -eu
+uv run bin/docs/client.py
+"""
+]
+
+[tasks."docs:generate"]
+description = "Generate documentation for the CLI and client"
+run = [
+    { task = "docs:generate:cli" },
+    { task = "docs:generate:client" },
+]

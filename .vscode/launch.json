@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Immich CLI Generator",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "bin.generate.cli",
+      "args": [],
+      "jinja": true,
+      "justMyCode": true,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+/**
+ * termynal.js
+ *
+ * @author Ines Montani <ines@ines.io>
+ * @version 0.0.1
+ * @license MIT
+ */
+
+/* Termynal terminal styling - aligned with Material for MkDocs theme */
+[data-termynal] {
+  width: 750px;
+  max-width: 100%;
+  /* Use Material theme background colors that adapt to light/dark mode */
+  background: var(--md-code-bg-color, #252a33);
+  color: var(--md-code-fg-color, #eee);
+  font-size: 15px;
+  /* Use the same code font family as defined in the theme */
+  font-family: var(--md-code-font);
+  border-radius: 4px;
+  padding: 50px 45px 30px;
+  position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  line-height: 1.2;
+  /* Add subtle border that adapts to theme */
+  border: 1px solid var(--md-default-fg-color--lighter, rgba(0, 0, 0, 0.1));
+}
+
+/* Terminal window buttons (red, yellow, green) */
+[data-termynal]:before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #d9515d;
+  -webkit-box-shadow: 25px 0 0 #f4c025, 50px 0 0 #3ec930;
+          box-shadow: 25px 0 0 #f4c025, 50px 0 0 #3ec930;
+}
+
+/* Terminal label */
+[data-termynal]:after {
+  content: 'bash';
+  position: absolute;
+  color: var(--color-text-subtle);
+  top: 5px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+/* Terminal control buttons (restart, fast forward) */
+a[data-terminal-control] {
+  text-align: right;
+  display: block;
+  color: var(--color-text-subtle);
+}
+
+[data-ty] {
+  display: block;
+  line-height: 2;
+}
+
+[data-ty]:before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+}
+
+[data-ty="input"]:before,
+[data-ty-prompt]:before {
+  margin-right: 0.75em;
+  color: var(--color-text-subtle);
+}
+
+[data-ty="input"]:before {
+  content: '$';
+}
+
+[data-ty][data-ty-prompt]:before {
+  content: attr(data-ty-prompt);
+}
+
+[data-ty-cursor]:after {
+  content: attr(data-ty-cursor);
+  font-family: var(--md-code-font), monospace;
+  margin-left: 0.5em;
+  -webkit-animation: blink 1s infinite;
+          animation: blink 1s infinite;
+}
+
+@-webkit-keyframes blink {
+  50% {
+      opacity: 0;
+  }
+}
+
+@keyframes blink {
+  50% {
+      opacity: 0;
+  }
+}

@@ -69,6 +69,13 @@ client/models/asset_bulk_upload_check_result.py
 client/models/asset_copy_dto.py
 client/models/asset_delta_sync_dto.py
 client/models/asset_delta_sync_response_dto.py
+client/models/asset_edit_action.py
+client/models/asset_edit_action_crop.py
+client/models/asset_edit_action_list_dto.py
+client/models/asset_edit_action_list_dto_edits_inner.py
+client/models/asset_edit_action_mirror.py
+client/models/asset_edit_action_rotate.py
+client/models/asset_edits_dto.py
 client/models/asset_face_create_dto.py
 client/models/asset_face_delete_dto.py
 client/models/asset_face_response_dto.py
@@ -83,7 +90,11 @@ client/models/asset_jobs_dto.py
 client/models/asset_media_response_dto.py
 client/models/asset_media_size.py
 client/models/asset_media_status.py
-client/models/asset_metadata_key.py
+client/models/asset_metadata_bulk_delete_dto.py
+client/models/asset_metadata_bulk_delete_item_dto.py
+client/models/asset_metadata_bulk_response_dto.py
+client/models/asset_metadata_bulk_upsert_dto.py
+client/models/asset_metadata_bulk_upsert_item_dto.py
 client/models/asset_metadata_response_dto.py
 client/models/asset_metadata_upsert_dto.py
 client/models/asset_metadata_upsert_item_dto.py
@@ -112,6 +123,7 @@ client/models/cq_mode.py
 client/models/create_album_dto.py
 client/models/create_library_dto.py
 client/models/create_profile_image_response_dto.py
+client/models/crop_parameters.py
 client/models/database_backup_config.py
 client/models/download_archive_info.py
 client/models/download_info_dto.py
@@ -156,6 +168,8 @@ client/models/memory_type.py
 client/models/memory_update_dto.py
 client/models/merge_person_dto.py
 client/models/metadata_search_dto.py
+client/models/mirror_axis.py
+client/models/mirror_parameters.py
 client/models/notification_create_dto.py
 client/models/notification_delete_all_dto.py
 client/models/notification_dto.py
@@ -216,6 +230,7 @@ client/models/ratings_update.py
 client/models/reaction_level.py
 client/models/reaction_type.py
 client/models/reverse_geocoding_state_response_dto.py
+client/models/rotate_parameters.py
 client/models/search_album_response_dto.py
 client/models/search_asset_response_dto.py
 client/models/search_explore_item.py

@@ -1,0 +1,11 @@
+/* Import Google Fonts */
+@import url('https://api.fonts.coollabs.io/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://api.fonts.coollabs.io/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --md-text-font: "Google Sans", "Inter", sans-serif;
+  --md-code-font: "Google Sans Code", "JetBrains Mono", monospace;
+  /* --md-primary-fg-color:        #EE0F0F;
+  --md-primary-fg-color--light: #ECB7B7;
+  --md-primary-fg-color--dark:  #90030C; */
+}

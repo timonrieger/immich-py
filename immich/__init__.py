@@ -1,3 +1,3 @@
-from immich.sdk import AsyncClient
+from immich.client.main import AsyncClient
 
 __all__ = ["AsyncClient"]
