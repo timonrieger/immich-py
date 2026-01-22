@@ -14,7 +14,7 @@ from immich.client.generated.models.asset_bulk_upload_check_result import (
 from immich.client.generated.models.server_media_types_response_dto import (
     ServerMediaTypesResponseDto,
 )
-from immich.client.utils.upload import check_duplicates, scan_files
+from immich.client.utils.upload import check_duplicates, find_sidecar, scan_files
 
 
 @pytest.fixture
@@ -312,3 +312,43 @@ async def test_check_duplicates_with_progress(mock_assets, tmp_path: Path) -> No
     assert new_files == [file1]
     assert rejected == []
     mock_assets.check_bulk_upload.assert_called_once()
+
+
+def test_find_sidecar_no_sidecar(tmp_path: Path) -> None:
+    """Test that find_sidecar returns None when no sidecar exists."""
+    file1 = tmp_path / "test1.jpg"
+    file1.write_bytes(b"test1")
+    result = find_sidecar(file1)
+    assert result is None
+
+
+def test_find_sidecar_first_convention(tmp_path: Path) -> None:
+    """Test that find_sidecar finds sidecar with first convention (filename.xmp)."""
+    file1 = tmp_path / "test1.jpg"
+    sidecar1 = tmp_path / "test1.xmp"
+    file1.write_bytes(b"test1")
+    sidecar1.write_bytes(b"xmp data")
+    result = find_sidecar(file1)
+    assert result == sidecar1
+
+
+def test_find_sidecar_second_convention(tmp_path: Path) -> None:
+    """Test that find_sidecar finds sidecar with second convention (filename.ext.xmp)."""
+    file1 = tmp_path / "test1.jpg"
+    sidecar1 = tmp_path / "test1.jpg.xmp"
+    file1.write_bytes(b"test1")
+    sidecar1.write_bytes(b"xmp data")
+    result = find_sidecar(file1)
+    assert result == sidecar1
+
+
+def test_find_sidecar_both_exist(tmp_path: Path) -> None:
+    """Test that find_sidecar returns first convention when both exist."""
+    file1 = tmp_path / "test1.jpg"
+    sidecar1 = tmp_path / "test1.xmp"
+    sidecar2 = tmp_path / "test1.jpg.xmp"
+    file1.write_bytes(b"test1")
+    sidecar1.write_bytes(b"xmp data 1")
+    sidecar2.write_bytes(b"xmp data 2")
+    result = find_sidecar(file1)
+    assert result == sidecar1
