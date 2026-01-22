@@ -4,27 +4,22 @@ from typing import AsyncGenerator, Awaitable, Callable, Generator, Optional
 from uuid import UUID, uuid4
 
 import pytest
+from typer.testing import CliRunner
 
 from immich import AsyncClient
-from immich.cli.consts import IMMICH_API_KEY, IMMICH_API_URL, IMMICH_FORMAT
+from immich.cli.consts import (
+    DEFAULT_FORMAT,
+    DEFAULT_PROFILE,
+    IMMICH_API_KEY,
+    IMMICH_API_URL,
+    IMMICH_FORMAT,
+    IMMICH_PROFILE,
+)
 from immich.client.utils.upload import UploadResult
 from immich.client.generated import (
-    ActivityCreateDto,
-    ActivityResponseDto,
     AlbumResponseDto,
-    APIKeyResponseDto,
     AssetBulkDeleteDto,
     AssetResponseDto,
-    AuthStatusResponseDto,
-    CreateAlbumDto,
-    LicenseKeyDto,
-    LicenseResponseDto,
-    PinCodeChangeDto,
-    PinCodeResetDto,
-    PinCodeSetupDto,
-    ReactionType,
-    UserAdminCreateDto,
-    UserResponseDto,
 )
 from immich.client.generated.exceptions import BadRequestException
 from immich.client.generated.models.admin_onboarding_update_dto import (
@@ -34,7 +29,6 @@ from immich.client.generated.models.api_key_create_dto import APIKeyCreateDto
 from immich.client.generated.models.login_credential_dto import LoginCredentialDto
 from immich.client.generated.models.permission import Permission
 from immich.client.generated.models.sign_up_dto import SignUpDto
-from immich.client.generated.models.user_admin_delete_dto import UserAdminDeleteDto
 
 from tests.e2e.client.generators import make_random_image, make_random_video
 
@@ -113,6 +107,29 @@ async def client_with_access_token(env: dict[str, str]):
 
 
 @pytest.fixture
+def runner(client_with_api_key: AsyncClient) -> CliRunner:
+    """Typer CliRunner fixture for CLI testing."""
+    return CliRunner(
+        env={
+            IMMICH_API_URL: client_with_api_key.base_client.configuration.host,
+            IMMICH_API_KEY: client_with_api_key.base_client.configuration.api_key[
+                "api_key"
+            ],
+            IMMICH_FORMAT: DEFAULT_FORMAT,
+            IMMICH_PROFILE: DEFAULT_PROFILE,
+        }
+    )
+
+
+@pytest.fixture
+def runner_simple() -> CliRunner:
+    """Simple Typer CliRunner fixture for CLI testing without client setup."""
+    return CliRunner(
+        env={IMMICH_FORMAT: DEFAULT_FORMAT, IMMICH_PROFILE: DEFAULT_PROFILE}
+    )
+
+
+@pytest.fixture
 def test_image_factory(
     tmp_path: Path, teardown: bool
 ) -> Generator[Callable[[Optional[str]], Path], None, None]:
@@ -179,19 +196,6 @@ def test_video(
 
 
 @pytest.fixture
-async def album(
-    album_factory: Callable[..., Awaitable[AlbumResponseDto]],
-) -> AsyncGenerator[AlbumResponseDto, None]:
-    """Fixture to set up album for testing.
-
-    Creates an album, returns parsed album object.
-    Skips dependent tests if album creation fails.
-    """
-    request = CreateAlbumDto(albumName="Test Album")
-    yield await album_factory(request.model_dump())
-
-
-@pytest.fixture
 async def album_factory(
     client_with_api_key: AsyncClient, teardown: bool
 ) -> AsyncGenerator[Callable[..., Awaitable[AlbumResponseDto]], None]:
@@ -228,49 +232,6 @@ def teardown(request: pytest.FixtureRequest) -> bool:
     if hasattr(request, "param"):
         return request.param
     return True
-
-
-@pytest.fixture
-async def activity(
-    client_with_api_key: AsyncClient,
-    album: AlbumResponseDto,
-    activity_type: ReactionType,
-    teardown: bool,
-) -> AsyncGenerator[ActivityResponseDto, None]:
-    """Fixture to set up activity for testing.
-
-    Creates an activity with the specified type, returns parsed activity object.
-    Skips dependent tests if activity creation fails.
-    """
-    # Set up: Create activity
-    activity = await client_with_api_key.activities.create_activity(
-        ActivityCreateDto(
-            albumId=UUID(str(album.id)),
-            type=activity_type,
-            comment="Test comment" if activity_type == ReactionType.COMMENT else None,
-        )
-    )
-    yield activity
-    if teardown:
-        await client_with_api_key.activities.delete_activity(UUID(str(activity.id)))
-
-
-@pytest.fixture
-async def license(
-    client_with_api_key: AsyncClient, teardown: bool
-) -> AsyncGenerator[LicenseResponseDto, None]:
-    """Fixture to set up license for testing.
-
-    Sets a license, returns parsed license object.
-    Skips dependent tests if license setup fails.
-    Note: This requires valid license keys. Tests may skip if license keys are not available.
-    """
-    license = await client_with_api_key.server.set_server_license(
-        LicenseKeyDto(licenseKey=LICENSE_KEY, activationKey=ACTIVATION_KEY)
-    )
-    yield license
-    if teardown:
-        await client_with_api_key.server.delete_server_license()
 
 
 @pytest.fixture
@@ -321,143 +282,3 @@ async def asset(
     assert len(upload_result.uploaded) == 1
     asset = upload_result.uploaded[0].asset
     yield asset
-
-
-@pytest.fixture
-async def user(
-    client_with_api_key: AsyncClient, teardown: bool
-) -> AsyncGenerator[UserResponseDto, None]:
-    """Fixture to set up user for testing.
-
-    Creates a user, returns parsed user object.
-    Skips dependent tests if user creation fails.
-    """
-    uuid = uuid4()
-    user = await client_with_api_key.users_admin.create_user_admin(
-        UserAdminCreateDto(
-            email=f"test_{uuid}@immich.cloud",
-            password="password",
-            name=f"Test User {uuid}",
-        )
-    )
-    yield user
-    if teardown:
-        await client_with_api_key.users_admin.delete_user_admin(
-            UUID(str(user.id)),
-            UserAdminDeleteDto(force=True),
-        )
-
-
-@pytest.fixture
-async def api_key(
-    client_with_api_key: AsyncClient, teardown: bool
-) -> AsyncGenerator[APIKeyResponseDto, None]:
-    """Fixture to set up API key for testing.
-
-    Creates an API key, returns parsed API key object.
-    Skips dependent tests if API key creation fails.
-    """
-    uuid = uuid4()
-    api_key_response = await client_with_api_key.api_keys.create_api_key(
-        APIKeyCreateDto(
-            name=f"test-api-key-{uuid}",
-            permissions=[Permission.ALL],
-        )
-    )
-    api_key = api_key_response.api_key
-    yield api_key
-    if teardown:
-        await client_with_api_key.api_keys.delete_api_key(UUID(str(api_key.id)))
-
-
-@pytest.fixture
-async def get_asset_info_factory(
-    client_with_api_key: AsyncClient,
-) -> AsyncGenerator[Callable[[str], Awaitable[AssetResponseDto]], None]:
-    """Factory fixture: yields a callable to get asset info by ID via CLI.
-
-    Example:
-        asset_info = await get_asset_info_factory(asset_id)
-    """
-
-    async def _get_asset_info(asset_id: str) -> AssetResponseDto:
-        try:
-            return await client_with_api_key.assets.get_asset_info(UUID(str(asset_id)))
-        except Exception as e:
-            pytest.skip(f"Get asset info failed:\n{e}")
-
-    yield _get_asset_info
-
-
-@pytest.fixture
-async def pin_code_setup(
-    client_with_api_key: AsyncClient, teardown: bool
-) -> AsyncGenerator[str, None]:
-    """Fixture to set up PIN code for testing.
-
-    Sets up a PIN code with value "123456", returns the PIN code value.
-    Skips dependent tests if PIN code setup fails.
-    """
-    pin_code = "123456"
-    try:
-        # safe play in case a previous test failed and left a PIN code set
-        try:
-            await client_with_api_key.auth.reset_pin_code(
-                PinCodeResetDto(password="password")
-            )
-        except Exception:
-            pass
-        await client_with_api_key.auth.setup_pin_code(PinCodeSetupDto(pinCode=pin_code))
-        assert (await client_with_api_key.auth.get_auth_status()).pin_code is True
-    except Exception as e:
-        pytest.skip(f"PIN code setup failed: {e}")
-
-    yield pin_code
-
-    if teardown:
-        # Reset PIN code by deleting it (requires password)
-        await client_with_api_key.auth.reset_pin_code(
-            PinCodeResetDto(password="password")
-        )
-
-
-@pytest.fixture
-async def pin_code_change(
-    pin_code_setup: str, client_with_api_key: AsyncClient
-) -> AsyncGenerator[tuple[str, str], None]:
-    """Fixture to set up and change PIN code for testing.
-
-    Inherits from pin_code_setup, changes the PIN code, and returns both
-    the initial and new PIN code values in a dict with keys 'initial' and 'new'.
-    Skips dependent tests if PIN code change fails.
-    """
-    initial_pin = pin_code_setup
-    new_pin = "567890"
-
-    try:
-        await client_with_api_key.auth.change_pin_code(
-            PinCodeChangeDto(newPinCode=new_pin, password="password")
-        )
-    except Exception as e:
-        pytest.skip(f"PIN code change failed:\n{e}")
-
-    yield (initial_pin, new_pin)
-
-
-@pytest.fixture
-async def get_auth_status_factory(
-    client_with_access_token: AsyncClient,
-) -> AsyncGenerator[Callable[[], Awaitable[AuthStatusResponseDto]], None]:
-    """Factory fixture: yields a callable to get auth status.
-
-    Example:
-        auth_status = await get_auth_status_factory()
-    """
-
-    async def _get_auth_status() -> AuthStatusResponseDto:
-        try:
-            return await client_with_access_token.auth.get_auth_status()
-        except Exception as e:
-            pytest.skip(f"Get auth status failed:\n{e}")
-
-    yield _get_auth_status
