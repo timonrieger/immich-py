@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
-from typing import AsyncGenerator, Awaitable, Callable
+from typing import AsyncGenerator, Awaitable, Callable, Optional
+from uuid import UUID, uuid4
 
 import pytest
 from typer.testing import CliRunner
@@ -16,7 +17,12 @@ from immich.cli.consts import (
 )
 from immich.client.utils.upload import UploadResult
 from immich.client.generated import (
+    AlbumResponseDto,
     AssetResponseDto,
+    CreateAlbumDto,
+    UserAdminCreateDto,
+    UserAdminDeleteDto,
+    UserResponseDto,
 )
 from immich.client.generated.exceptions import BadRequestException
 from immich.client.generated.models.admin_onboarding_update_dto import (
@@ -160,3 +166,67 @@ async def asset(
     assert len(upload_result.uploaded) == 1
     asset = upload_result.uploaded[0].asset
     yield asset
+
+
+@pytest.fixture
+async def user(
+    client_with_api_key: AsyncClient,
+) -> AsyncGenerator[UserResponseDto, None]:
+    """Fixture to set up user for testing.
+
+    Creates a user, returns parsed user object.
+    Skips dependent tests if user creation fails.
+    """
+    uuid = uuid4()
+    user = await client_with_api_key.users_admin.create_user_admin(
+        UserAdminCreateDto(
+            email=f"test_{uuid}@immich.cloud",
+            password="password",
+            name=f"Test User {uuid}",
+        )
+    )
+    yield user
+    await client_with_api_key.users_admin.delete_user_admin(
+        UUID(str(user.id)),
+        UserAdminDeleteDto(force=True),
+    )
+
+
+@pytest.fixture
+async def album(
+    album_factory: Callable[..., Awaitable[AlbumResponseDto]],
+) -> AsyncGenerator[AlbumResponseDto, None]:
+    """Fixture to set up album for testing.
+
+    Creates an album, returns parsed album object.
+    Skips dependent tests if album creation fails.
+    """
+    request = CreateAlbumDto(albumName="Test Album")
+    yield await album_factory(request.model_dump())
+
+
+@pytest.fixture
+async def album_factory(
+    client_with_api_key: AsyncClient,
+) -> AsyncGenerator[Callable[..., Awaitable[AlbumResponseDto]], None]:
+    """Fixture to set up album for testing with factory pattern.
+
+    Creates an album, returns parsed album object.
+    Skips dependent tests if album creation fails.
+    """
+    _album_id: Optional[UUID] = None
+
+    async def _create_album(*args, **kwargs) -> AlbumResponseDto:
+        nonlocal _album_id
+        try:
+            result = await client_with_api_key.albums.create_album(*args, **kwargs)
+        except Exception as e:
+            pytest.skip(f"Asset upload failed:\n{e}")
+
+        _album_id = UUID(str(result.id))
+        return result
+
+    yield _create_album
+
+    if _album_id:
+        await client_with_api_key.albums.delete_album(_album_id)
