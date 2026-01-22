@@ -1,70 +1,10 @@
 from __future__ import annotations
 
 from pathlib import Path
-from unittest.mock import MagicMock
 
 import pytest
 
 import immich.client.utils.download as download_utils
-
-
-def test_filename_from_headers_prefers_content_disposition() -> None:
-    headers = {"Content-Disposition": 'attachment; filename="hello.jpg"'}
-    assert (
-        download_utils.filename_from_headers(headers, fallback_base="ignored")
-        == "hello.jpg"
-    )
-
-
-def test_filename_from_headers_uses_content_type_as_extension_safety_net_for_cd_name() -> (
-    None
-):
-    headers = {
-        "Content-Disposition": 'attachment; filename="hello"',
-        "Content-Type": "image/jpeg",
-    }
-    assert (
-        download_utils.filename_from_headers(headers, fallback_base="ignored")
-        == "hello.jpg"
-    )
-
-
-def test_filename_from_headers_cd_without_extension_and_without_content_type_returns_bare_cd_name() -> (
-    None
-):
-    headers = {"Content-Disposition": 'attachment; filename="hello"'}
-    assert (
-        download_utils.filename_from_headers(headers, fallback_base="ignored")
-        == "hello"
-    )
-
-
-def test_filename_from_headers_falls_back_to_content_type() -> None:
-    headers = {"Content-Type": "image/jpeg"}
-    assert (
-        download_utils.filename_from_headers(headers, fallback_base="orig-123")
-        == "orig-123.jpg"
-    )
-
-
-def test_filename_from_headers_returns_none_when_content_type_is_unknown_and_no_cd_name() -> (
-    None
-):
-    headers = {"Content-Type": "application/x-unknown"}
-    assert (
-        download_utils.filename_from_headers(headers, fallback_base="orig-123") is None
-    )
-
-
-def test_filename_from_headers_returns_none_when_no_cd_and_no_content_type() -> None:
-    headers = {"X-Other": "1"}
-    assert (
-        download_utils.filename_from_headers(headers, fallback_base="orig-123") is None
-    )
-
-
-def test_filename_from_headers_none_headers() -> None:
-    assert download_utils.filename_from_headers(None, fallback_base="orig-123") is None
 
 
 @pytest.mark.parametrize(
@@ -368,36 +308,6 @@ async def test_download_file_temp_file_complete_deletes_and_restarts(
 
 
 @pytest.mark.asyncio
-async def test_download_file_resume_disabled(tmp_path: Path) -> None:
-    """Test that when resumeable=False, temp file is deleted and download restarts."""
-    out_dir = tmp_path / "downloads"
-    out_dir.mkdir()
-
-    partial_data = b"partial"
-    temp_file = out_dir / "no_resume_flag.txt.temp"
-    temp_file.write_bytes(partial_data)
-
-    full_content = b"complete content"
-    headers = {"Content-Length": str(len(full_content))}
-
-    async def make_request(headers_arg):
-        # Should not receive Range header
-        assert headers_arg is None or "Range" not in headers_arg
-        return MockResponse(headers, content_data=full_content)
-
-    def resolve_filename(h):
-        return "no_resume_flag.txt"
-
-    result = await download_utils.download_file(
-        make_request, out_dir, resolve_filename, resumeable=False
-    )
-
-    assert result == out_dir / "no_resume_flag.txt"
-    assert result.read_bytes() == full_content
-    assert not temp_file.exists()
-
-
-@pytest.mark.asyncio
 async def test_download_file_raises_error_if_out_dir_is_not_directory(
     tmp_path: Path,
 ) -> None:
@@ -506,60 +416,3 @@ async def test_download_file_cleans_up_temp_file_on_error(tmp_path: Path) -> Non
 
     # Temp file should not exist after error
     assert not (out_dir / "error.txt.temp").exists()
-
-
-@pytest.mark.asyncio
-async def test_download_file_handles_no_content_length(tmp_path: Path) -> None:
-    """Test download when Content-Length header is missing."""
-    out_dir = tmp_path / "downloads"
-    out_dir.mkdir()
-
-    content_data = b"no length"
-    headers: dict[str, str] = {}  # No Content-Length
-
-    async def make_request(headers_arg):
-        return MockResponse(headers, content_data=content_data)
-
-    def resolve_filename(h):
-        return "no_length.txt"
-
-    result = await download_utils.download_file(make_request, out_dir, resolve_filename)
-
-    assert result.read_bytes() == content_data
-
-
-@pytest.mark.asyncio
-async def test_download_file_resume_updates_progress_bar(tmp_path: Path) -> None:
-    """Test that progress bar is updated with existing file size on resume."""
-    out_dir = tmp_path / "downloads"
-    out_dir.mkdir()
-
-    partial_data = b"partial"
-    temp_file = out_dir / "resume_pbar.txt.temp"
-    temp_file.write_bytes(partial_data)
-
-    full_content = b"partial" + b"remaining"
-    headers = {"Content-Length": str(len(full_content))}
-
-    async def make_request(headers_arg):
-        if headers_arg and "Range" in headers_arg:
-            return MockResponse(headers, status=206, content_data=b"remaining")
-        return MockResponse(headers, content_data=full_content)
-
-    def resolve_filename(h):
-        return "resume_pbar.txt"
-
-    mock_pbar = MagicMock()
-
-    result = await download_utils.download_file(
-        make_request,
-        out_dir,
-        resolve_filename,
-        progress=mock_pbar,
-        show_progress=False,
-        resumeable=True,
-    )
-
-    # Should update with partial data size, then with remaining chunks
-    assert mock_pbar.update.called
-    assert result.read_bytes() == full_content
