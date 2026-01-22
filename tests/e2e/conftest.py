@@ -18,6 +18,7 @@ from immich.cli.consts import (
 from immich.client.utils.upload import UploadResult
 from immich.client.generated import (
     AlbumResponseDto,
+    AssetBulkDeleteDto,
     AssetResponseDto,
     CreateAlbumDto,
     UserAdminCreateDto,
@@ -133,22 +134,34 @@ def runner_simple() -> CliRunner:
 @pytest.fixture
 async def upload_assets(
     client_with_api_key: AsyncClient,
+    teardown: bool,
 ) -> AsyncGenerator[Callable[..., Awaitable[UploadResult]], None]:
-    """Factory fixture: yields an async callable to upload assets.
+    """Factory fixture: yields an async callable to upload assets and auto-clean them up.
 
     Example:
         upload_result = await upload_assets([test_image], skip_duplicates=True)
     """
 
+    _uploaded_ids: list[UUID] = []
+
     async def _upload(*args, **kwargs) -> UploadResult:
+        nonlocal _uploaded_ids
         try:
             result = await client_with_api_key.assets.upload(*args, **kwargs)
         except Exception as e:
             pytest.skip(f"Asset upload failed:\n{e}")
 
+        _uploaded_ids.extend(UUID(u.asset.id) for u in result.uploaded)
         return result
 
     yield _upload
+
+    if teardown and _uploaded_ids:
+        await client_with_api_key.assets.delete_assets(
+            AssetBulkDeleteDto(
+                ids=_uploaded_ids, force=True
+            )  # deletes without moving to trash
+        )
 
 
 @pytest.fixture

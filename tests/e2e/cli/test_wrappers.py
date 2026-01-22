@@ -119,6 +119,7 @@ async def test_view_asset_to_file(
 async def test_upload(
     runner: CliRunner,
     test_image_factory: Callable[..., Path],
+    tmp_path: Path,
 ) -> None:
     """Test upload command and verify assets are uploaded."""
     # Create test images
