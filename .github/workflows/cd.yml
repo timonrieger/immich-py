@@ -53,7 +53,7 @@ jobs:
     runs-on: ubuntu-latest
     if: |
       (github.ref == 'refs/heads/main' && github.event_name == 'push' && !contains(github.event.head_commit.message, 'skip e2e')) ||
-      (github.event_name == 'pull_request' && contains(join(github.event.pull_request.labels.*.name, ' '), 'run-e2e'))
+      (github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'run-e2e'))
     permissions:
       contents: read
 
