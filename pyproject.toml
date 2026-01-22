@@ -33,7 +33,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-build = ["uv==0.9.21"]
+build = ["uv==0.9.26"]
 cli = [
     "typer>=0.21.1,<0.22.0",
 ]
@@ -46,7 +46,7 @@ Repository = "https://github.com/timonrieger/immich-py"
 Changelog = "https://github.com/timonrieger/immich-py/releases"
 
 [build-system]
-requires = ["uv_build==0.9.21"]
+requires = ["uv_build==0.9.26"]
 build-backend = "uv_build"
 
 [dependency-groups]
