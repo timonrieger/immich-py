@@ -10,11 +10,10 @@ import sys
 from statx import statx
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Literal, Optional, cast
+from typing import Optional, cast
 from uuid import UUID
 import uuid
 
-from pydantic import BaseModel, Field
 from rich.progress import (
     Progress,
     SpinnerColumn,
@@ -25,6 +24,12 @@ from rich.progress import (
     TimeRemainingColumn,
 )
 from immich.client.consts import DEVICE_ID
+from immich.client.types import (
+    RejectedEntry,
+    FailedEntry,
+    UploadedEntry,
+    RejectionReason,
+)
 from immich.client.generated.api.albums_api import AlbumsApi
 from immich.client.generated.api.assets_api import AssetsApi
 from immich.client.generated.api.server_api import ServerApi
@@ -57,65 +62,6 @@ def get_device_asset_id(filepath: Path, stats: os.stat_result) -> str:
     :return: The device asset ID.
     """
     return f"{filepath.name}-{stats.st_size}".replace(" ", "")
-
-
-class UploadStats(BaseModel):
-    total: int
-    uploaded: int
-    rejected: int
-    failed: int
-
-
-_REJECTED_REASONS = Literal["duplicate", "unsupported_format"]
-
-
-class RejectedEntry(BaseModel):
-    """Represents a file that was rejected during upload (check)."""
-
-    filepath: Path = Field(
-        ..., description="The path to the local file that was rejected."
-    )
-    asset_id: Optional[str] = Field(
-        None, description="The ID of the asset. Set if reason is 'duplicate'."
-    )
-    reason: Optional[_REJECTED_REASONS] = Field(
-        None, description="The reason for the rejection."
-    )
-
-
-class FailedEntry(BaseModel):
-    """Represents a file that failed to upload."""
-
-    filepath: Path = Field(
-        ..., description="The path to the local file that failed to upload."
-    )
-    error: str = Field(..., description="The error message from the server.")
-
-
-class UploadedEntry(BaseModel):
-    """Represents a successfully uploaded file."""
-
-    asset: AssetMediaResponseDto = Field(
-        ..., description="The asset that was uploaded."
-    )
-    filepath: Path = Field(
-        ..., description="The path to the local file that was uploaded."
-    )
-
-
-class UploadResult(BaseModel):
-    """The result of an upload operation containing all uploaded, rejected, and failed entries."""
-
-    uploaded: list[UploadedEntry] = Field(
-        ..., description="The assets that were uploaded."
-    )
-    rejected: list[RejectedEntry] = Field(
-        ..., description="The files that were rejected."
-    )
-    failed: list[FailedEntry] = Field(
-        ..., description="The files that failed to upload."
-    )
-    stats: UploadStats = Field(..., description="The statistics of the upload.")
 
 
 async def scan_files(
@@ -238,7 +184,7 @@ async def check_duplicates(
                         RejectedEntry(
                             filepath=filepath,
                             asset_id=result.asset_id,
-                            reason=cast(Optional[_REJECTED_REASONS], result.reason),
+                            reason=cast(Optional[RejectionReason], result.reason),
                         )
                     )
                 else:

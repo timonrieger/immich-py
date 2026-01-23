@@ -14,35 +14,30 @@ def filename_to_title(filename: str) -> str:
 def filename_to_class_name(filename: str) -> str:
     """Convert filename like 'activities_api.py' to 'ActivitiesApi'.
 
-    Special cases:
-    - 'api_keys_api.py' -> 'APIKeysApi' (API at start is uppercase)
-    - 'clip_config.py' -> 'CLIPConfig' (CLIP at start is uppercase)
-    - 'transcode_hw_accel.py' -> 'TranscodeHWAccel' (HW is uppercase)
-    - 'o_auth_callback_dto.py' -> 'OAuthCallbackDto'
+    Special cases are handled via explicit mapping, otherwise falls back to
+    split by underscore, capitalize each part, and join.
     """
     name = filename.replace(".py", "")
+
+    # Explicit mapping for special cases
+    special_cases: dict[str, str] = {
+        "api_keys_api": "APIKeysApi",
+        "api_key_create_dto": "APIKeyCreateDto",
+        "api_key_create_response_dto": "APIKeyCreateResponseDto",
+        "api_key_response_dto": "APIKeyResponseDto",
+        "api_key_update_dto": "APIKeyUpdateDto",
+        "clip_config": "CLIPConfig",
+        "transcode_hw_accel": "TranscodeHWAccel",
+        "o_auth_callback_dto": "OAuthCallbackDto",
+        "cq_mode": "CQMode",
+    }
+
+    if name in special_cases:
+        return special_cases[name]
+
+    # Default: split by underscore, capitalize each part, join
     parts = name.split("_")
-
-    # Handle special case: "o_auth" -> "OAuth"
-    if len(parts) >= 2 and parts[0] == "o" and parts[1] == "auth":
-        return "OAuth" + "".join(part.capitalize() for part in parts[2:])
-
-    # Acronyms that should always be uppercase (anywhere in the name)
-    always_uppercase = {"hw"}
-
-    # Acronyms that should be uppercase only at the start
-    uppercase_at_start = {"api", "clip"}
-
-    result_parts = []
-    for i, part in enumerate(parts):
-        if part in always_uppercase:
-            result_parts.append(part.upper())
-        elif i == 0 and part in uppercase_at_start:
-            result_parts.append(part.upper())
-        else:
-            result_parts.append(part.capitalize())
-
-    return "".join(result_parts)
+    return "".join(part.capitalize() for part in parts)
 
 
 def get_module_path(file_path: Path, project_root: Path) -> str:
