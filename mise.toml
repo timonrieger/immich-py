@@ -40,7 +40,7 @@ run = "mise run install --upgrade"
 description = "Upgrade dependencies in the allowed ranges"
 
 [tasks."install:check"]
-run = "uv tree --outdated --depth 1"
+run = "uv tree --outdated --all-groups --depth 1"
 description = "Check dependencies for updates"
 
 [tasks.setup]
