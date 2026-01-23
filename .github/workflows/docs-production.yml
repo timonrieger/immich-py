@@ -1,16 +1,14 @@
 name: Docs Production
+
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
 on:
   push:
     branches:
       - main
-    paths:
-      - 'zensical.toml'
-      - 'docs/**'
-      - '.github/workflows/docs-production.yml'
-      - 'vercel.json'
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -20,6 +18,11 @@ jobs:
         uses: jdx/mise-action@146a28175021df8ca24f8ee1828cc2a60f980bd5 # v3
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
+      - name: Cache build output
+        uses: actions/cache@8b402f58fbc84540c8b491a91e594a4576fec3d7 # v5
+        with:
+          path: .cache
+          key: docs-production-${{ hashFiles('zensical.toml', 'docs/**', '**/*.py') }}
       - name: Run build
         run: mise docs:build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: Run deploy
