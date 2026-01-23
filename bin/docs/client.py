@@ -2,6 +2,7 @@
 """Generate API documentation markdown files from client classes."""
 
 from pathlib import Path
+import shutil
 
 # Explicit mapping for special cases
 SPECIAL_CASES: dict[str, tuple[str, str]] = {
@@ -101,6 +102,7 @@ def main():
 
     # 1. generated/api/ -> docs/client/reference/api/
     print("\nProcessing generated/api/...")
+    shutil.rmtree(docs_ref_dir / "api", ignore_errors=True)
     count = process_directory(
         source_dir=client_dir / "generated" / "api",
         output_dir=docs_ref_dir / "api",
@@ -112,6 +114,7 @@ def main():
 
     # 2. generated/models/ -> docs/client/reference/models/
     print("\nProcessing generated/models/...")
+    shutil.rmtree(docs_ref_dir / "models", ignore_errors=True)
     count = process_directory(
         source_dir=client_dir / "generated" / "models",
         output_dir=docs_ref_dir / "models",
@@ -123,9 +126,10 @@ def main():
 
     # 3. wrapper/ -> docs/client/reference/api
     print("\nProcessing wrapper/...")
+    # don't delete the directory since there might be other custom files
     count = process_directory(
         source_dir=client_dir / "wrapper",
-        output_dir=docs_ref_dir / "api",
+        output_dir=docs_ref_dir / "custom",
         project_root=project_root,
         file_pattern="*.py",
     )
