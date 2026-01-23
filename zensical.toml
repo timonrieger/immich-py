@@ -735,23 +735,16 @@ inventories = ["https://docs.python.org/3/objects.inv"]
 
 [project.plugins.mkdocstrings.handlers.python.options]
 docstring_style = "sphinx"
-# Use static parsing only - this prevents rebuild loops from dynamic imports
 allow_inspection = false
-# Only show public members to reduce processing
-show_if_no_docstring = true
 show_root_heading = true
 show_signature_annotations = true
 merge_init_into_class = true
 separate_signature = true
-backlinks = "tree"
-filters = "public"
 extensions = [
     { griffe_pydantic = { schema = true } },
 ]
 
 [project.plugins.termynal]
-# Customize prompt characters that trigger command lines
-prompt_literal_start = ["$", ">"]
 
 [project.markdown_extensions.attr_list]
 [project.markdown_extensions.pymdownx.emoji]
