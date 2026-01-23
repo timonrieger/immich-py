@@ -22,7 +22,7 @@ jobs:
         uses: actions/cache@8b402f58fbc84540c8b491a91e594a4576fec3d7 # v5
         with:
           path: .cache
-          key: docs-production-${{ hashFiles('zensical.toml', 'docs/**', '**/*.py') }}
+          key: docs-production-${{ hashFiles('zensical.toml', 'docs/**', 'immich/client/generated/**/*.py') }}
       - name: Run build
         run: mise docs:build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: Run deploy
