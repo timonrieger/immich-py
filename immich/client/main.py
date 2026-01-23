@@ -350,13 +350,15 @@ class AsyncClient:
         self.workflows = WorkflowsApi(self.base_client)
 
     async def close(self) -> None:
-        # If the caller injected the aiohttp session, don't close it.
+        """Close the client and release resources."""
         if not self._owns_http_client and self._injected_http_client is not None:
             self.base_client.rest_client.pool_manager = None
         await self.base_client.close()
 
     async def __aenter__(self) -> "AsyncClient":
+        """Enter the context manager."""
         return self
 
     async def __aexit__(self, exc_type, exc_val, exc_tb) -> None:
+        """Exit the context manager."""
         await self.close()
