@@ -6,7 +6,6 @@ import sys
 from typing import Optional
 from importlib.metadata import version
 
-from click.core import ParameterSource
 from rich.console import Console
 
 from immich.cli.consts import (
@@ -23,6 +22,7 @@ from immich.cli.utils import resolve_client_config, mask, print_
 
 try:
     import typer
+    import click
 except ImportError:  # pragma: no cover
     print(
         "Error: CLI dependencies not installed. Install with: pip install immich[cli] or uv add immich --extra cli",
@@ -224,7 +224,7 @@ def callback(
             # we only consider the profile explicit if it was set via the command line
             # environment variables are not considered explicit
             profile_explicit=ctx.get_parameter_source("profile")
-            == ParameterSource.COMMANDLINE,
+            == click.core.ParameterSource.COMMANDLINE,
         )
         if not config.base_url:
             print_(
