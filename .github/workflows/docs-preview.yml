@@ -18,9 +18,13 @@ on:
       - '.github/workflows/docs-preview.yml'
       - 'vercel.json'
 
+permissions: {}
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
       - name: Install mise
