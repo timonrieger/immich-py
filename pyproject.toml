@@ -29,13 +29,13 @@ dependencies = [
     "pystatx>=0.1,<0.2",
     "python-dateutil>=2.8.2,<3.0.0",
     "rich>=14.2.0,<15.0.0",
-    "rtoml>=0.13.0,<0.14.0",
     "typing-extensions>=4.7.1,<5.0.0",
 ]
 
 [project.optional-dependencies]
 build = ["uv==0.9.26"]
 cli = [
+    "rtoml>=0.13.0,<0.14.0",
     "typer>=0.21.1,<0.22.0",
 ]
 

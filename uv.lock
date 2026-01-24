@@ -515,7 +515,6 @@ dependencies = [
     { name = "pystatx" },
     { name = "python-dateutil" },
     { name = "rich" },
-    { name = "rtoml" },
     { name = "typing-extensions" },
 ]
 
@@ -524,6 +523,7 @@ build = [
     { name = "uv" },
 ]
 cli = [
+    { name = "rtoml" },
     { name = "typer" },
 ]
 
@@ -552,7 +552,7 @@ requires-dist = [
     { name = "pystatx", specifier = ">=0.1,<0.2" },
     { name = "python-dateutil", specifier = ">=2.8.2,<3.0.0" },
     { name = "rich", specifier = ">=14.2.0,<15.0.0" },
-    { name = "rtoml", specifier = ">=0.13.0,<0.14.0" },
+    { name = "rtoml", marker = "extra == 'cli'", specifier = ">=0.13.0,<0.14.0" },
     { name = "typer", marker = "extra == 'cli'", specifier = ">=0.21.1,<0.22.0" },
     { name = "typing-extensions", specifier = ">=4.7.1,<5.0.0" },
     { name = "uv", marker = "extra == 'build'", specifier = "==0.9.26" },
