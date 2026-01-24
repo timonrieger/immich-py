@@ -1,7 +1,7 @@
 try:  # pragma: no cover
     from .main import app
 except ImportError:  # pragma: no cover
-    app = None
+    app = None  # type: ignore[invalid-assignment]
 
 
 def main() -> None:  # pragma: no cover
