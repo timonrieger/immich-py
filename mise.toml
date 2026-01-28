@@ -10,6 +10,10 @@ _.python.venv = { path = ".venv" }
 run = "uvx pre-commit run --all-files"
 description = "Run pre-commit hooks"
 
+[tasks."lint:fix"]
+run = "uvx pre-commit run --all-files || true"
+description = "Run pre-commit hooks without failing"
+
 [tasks.check]
 run = "uv run ty check"
 description = "Run type checking"
@@ -81,7 +85,7 @@ description = "Run generate then lint sequentially (set IMMICH_OPENAPI_REF to a 
 run = [
     { task = "generate" },
     { task = "docs:generate" },
-    { task = "lint" },
+    { task = "lint:fix" },
 ]
 
 [tasks."ci:check"]
@@ -130,7 +134,10 @@ run = "vercel deploy --prebuilt"
 
 [tasks."docs:generate:cli"]
 description = "Generate documentation for the CLI"
-run = ["typer immich/cli/main.py utils docs --name immich --output docs/cli/reference.md --title Reference"]
+run = [
+    { task = "ci:install" },
+    "uv run typer immich/cli/main.py utils docs --name immich --output docs/cli/reference.md --title Reference",
+]
 
 [tasks."docs:generate:client"]
 description = "Generate documentation for the client"

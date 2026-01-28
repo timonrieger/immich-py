@@ -5,6 +5,11 @@ on:
     # Run every day at 00:30
     - cron: '30 0 * * *'
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'The tag to sync to'
+        required: true
+        default: 'latest'
 
 permissions:
   contents: write
@@ -26,20 +31,23 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           persist-credentials: false
 
-      - name: Fetch latest stable Immich tag
-        id: fetch_tag
+      - name: Determine tag to sync
+        id: tag_to_use
         run: |
-          # Fetch all tags from immich-app/immich
-          TAGS=$(git ls-remote --tags --sort='-v:refname' https://github.com/immich-app/immich.git | grep -E 'refs/tags/v[0-9]+\.[0-9]+\.[0-9]+$' | head -1)
-
-          if [ -z "$TAGS" ]; then
-            exit 1
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "$INPUT_TAG" != "latest" ]; then
+            echo "Using tag from workflow_dispatch input: $INPUT_TAG"
+            TAG="$INPUT_TAG"
+          else
+            echo "Fetching latest stable tag"
+            TAGS=$(git ls-remote --tags --sort='-v:refname' https://github.com/immich-app/immich.git | grep -E 'refs/tags/v[0-9]+\.[0-9]+\.[0-9]+$' | head -1)
+            if [ -z "$TAGS" ]; then
+              exit 1
+            fi
+            TAG=$(echo "$TAGS" | sed 's/.*refs\/tags\///')
           fi
-
-          # Extract tag name (format: <sha>	refs/tags/v1.2.3)
-          LATEST_TAG=$(echo "$TAGS" | sed 's/.*refs\/tags\///')
-
-          echo "latest_tag=$LATEST_TAG" >> "$GITHUB_OUTPUT"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+        env:
+          INPUT_TAG: ${{ github.event.inputs.tag }}
 
       - name: Read stored upstream tag
         id: stored_tag
@@ -51,26 +59,26 @@ jobs:
       - name: Check if sync is needed
         id: check_sync
         run: |
-          if [ "$LATEST_TAG" = "$STORED_TAG" ]; then
+          if [ "$TAG" = "$STORED_TAG" ]; then
             echo "sync_needed=false" >> "$GITHUB_OUTPUT"
-            echo "No new tag: $LATEST_TAG"
+            echo "No new tag: $TAG"
             exit 0
           fi
 
           echo "sync_needed=true" >> "$GITHUB_OUTPUT"
-          echo "New tag found: $LATEST_TAG (was $STORED_TAG)"
+          echo "New tag found: $TAG (was $STORED_TAG)"
         env:
-          LATEST_TAG: ${{ steps.fetch_tag.outputs.latest_tag }}
+          TAG: ${{ steps.tag_to_use.outputs.tag }}
           STORED_TAG: ${{ steps.stored_tag.outputs.stored_tag }}
 
       - name: Determine commit message type
         id: commit_msg
         if: steps.check_sync.outputs.sync_needed == 'true'
         run: |
-          RELEASE_URL="https://github.com/immich-app/immich/releases/tag/$LATEST_TAG"
+          RELEASE_URL="https://github.com/immich-app/immich/releases/tag/$TAG"
 
           # Remove 'v' prefix for comparison
-          LATEST_VERSION=$(echo "$LATEST_TAG" | sed 's/^v//')
+          LATEST_VERSION=$(echo "$TAG" | sed 's/^v//')
           STORED_VERSION=$(echo "$STORED_TAG" | sed 's/^v//')
 
           # Parse version components
@@ -95,13 +103,17 @@ jobs:
           echo "commit_type=$COMMIT_TYPE" >> "$GITHUB_OUTPUT"
 
           # Build commit message
-          COMMIT_MESSAGE="$COMMIT_TYPE: sync client to Immich $LATEST_TAG"$'\n\n'"Immich Release Notes: $RELEASE_URL"
+          COMMIT_MESSAGE="$COMMIT_TYPE: sync client to Immich $TAG"$'\n\n'"Immich Release Notes: $RELEASE_URL"
           if [ -n "$COMMIT_BODY" ]; then
             COMMIT_MESSAGE="$COMMIT_MESSAGE"$'\n\n'"$COMMIT_BODY"
           fi
-          echo "commit_message=$COMMIT_MESSAGE" >> "$GITHUB_OUTPUT"
+          {
+            echo "commit_message<<EOF"
+            echo "$COMMIT_MESSAGE"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
         env:
-          LATEST_TAG: ${{ steps.fetch_tag.outputs.latest_tag }}
+          TAG: ${{ steps.tag_to_use.outputs.tag }}
           STORED_TAG: ${{ steps.stored_tag.outputs.stored_tag }}
 
       - name: Compute PR branch name
@@ -109,9 +121,9 @@ jobs:
         if: steps.check_sync.outputs.sync_needed == 'true'
         run: |
           # keep it deterministic so create-pull-request can update the same PR
-          echo "branch=automation/sync-${LATEST_TAG}" >> "$GITHUB_OUTPUT"
+          echo "branch=automation/sync-${TAG}" >> "$GITHUB_OUTPUT"
         env:
-          LATEST_TAG: ${{ steps.fetch_tag.outputs.latest_tag }}
+          TAG: ${{ steps.tag_to_use.outputs.tag }}
 
       - name: Install mise
         uses: jdx/mise-action@146a28175021df8ca24f8ee1828cc2a60f980bd5 # v3
@@ -119,30 +131,32 @@ jobs:
       - name: Generate client code
         if: steps.check_sync.outputs.sync_needed == 'true'
         env:
-          IMMICH_OPENAPI_REF: ${{ steps.fetch_tag.outputs.latest_tag }}
+          IMMICH_OPENAPI_REF: ${{ steps.tag_to_use.outputs.tag }}
         run: mise run ci:gen
 
       - name: Update stored tag file
         if: steps.check_sync.outputs.sync_needed == 'true'
         run: |
-          echo "$LATEST_TAG" > IMMICH-VERSION
+          echo "$TAG" > IMMICH-VERSION
         env:
-          LATEST_TAG: ${{ steps.fetch_tag.outputs.latest_tag }}
+          TAG: ${{ steps.tag_to_use.outputs.tag }}
 
-      - name: Create or update PR (automation branch -> main)
+      - name: Create or update PR
         if: steps.check_sync.outputs.sync_needed == 'true'
         uses: peter-evans/create-pull-request@98357b18bf14b5342f975ff684046ec3b2a07725 # v8
         with:
+          token: ${{ secrets.SYNC_PAT }}
           commit-message: ${{ steps.commit_msg.outputs.commit_message }}
           committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           branch: ${{ steps.pr_branch.outputs.branch }}
           base: main
-          title: Sync Immich ${{ steps.fetch_tag.outputs.latest_tag }}
+          title: Sync Immich ${{ steps.tag_to_use.outputs.tag }}
           body: |
-            Automatically generated sync to Immich ${{ steps.fetch_tag.outputs.latest_tag }}.
+            Automatically generated sync to Immich ${{ steps.tag_to_use.outputs.tag }}.
 
             This PR was created by the upstream sync workflow.
 
-            Upstream tag: https://github.com/immich-app/immich/releases/tag/${{ steps.fetch_tag.outputs.latest_tag }}
-          delete-branch: true
+            Upstream tag: https://github.com/immich-app/immich/releases/tag/${{ steps.tag_to_use.outputs.tag }}
 
+            @coderabbitai ignore
+          delete-branch: true

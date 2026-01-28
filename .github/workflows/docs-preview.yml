@@ -6,17 +6,8 @@ env:
 
 on:
   pull_request:
-    branches:
-      - main
     types:
-      - opened
-      - synchronize
-    paths:
-      - 'zensical.toml'
-      - 'docs/**'
-      - 'immich/client/generated/**'
-      - '.github/workflows/docs-preview.yml'
-      - 'vercel.json'
+      - labeled
 
 permissions:
   contents: read
@@ -24,6 +15,7 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: ${{ github.event.action == 'labeled' && github.event.label.name == 'preview' }}
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
         with:
