@@ -3,7 +3,6 @@ name: Continuous Delivery
 on:
   pull_request:
     branches: [main]
-    types: [opened, labeled, synchronize]
   push:
     branches: [main]
 
@@ -52,9 +51,6 @@ jobs:
 
   e2e-tests:
     runs-on: ubuntu-latest
-    if: |
-      (github.ref == 'refs/heads/main' && github.event_name == 'push') ||
-      (github.event.action == 'labeled' && github.event.label.name == 'run-e2e')
     steps:
       - name: Check-out repository
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
