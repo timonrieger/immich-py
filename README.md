@@ -2,7 +2,7 @@
 <h3 align="center">Python Client & CLI for the <a href="https://immich.app">Immich</a> API.</h3>
 <p align="center">
 <a href="https://github.com/immich-app/immich/releases" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/dynamic/regex?url=https://raw.githubusercontent.com/timonrieger/immich-py/main/IMMICH-VERSION&search=(.*)&replace=%241%20-%20$1&label=supported%20Immich%20versions&color=blue" alt="Supported Immich version">
+    <img src="https://img.shields.io/badge/dynamic/regex?url=https://raw.githubusercontent.com/timonrieger/immich-py/main/IMMICH-VERSION&search=(.*)&replace=v2.4.1%20-%20$1&label=supported%20Immich%20versions&color=blue" alt="Supported Immich version">
 </a>
     <a href="https://pypi.org/project/immich" target="_blank" rel="noopener noreferrer">
         <img src="https://img.shields.io/pypi/v/immich?color=blue&label=pypi%20package" alt="Package version">
