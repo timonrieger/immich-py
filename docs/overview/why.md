@@ -16,11 +16,7 @@ immich-py is designed as a shared, reliable API layer for Python projects in the
 The main area that evolves is API tracking, not the internal design.
 
 ### 5. Automated maintenance
-The client reduces risk of staleness through automation:
-- Full test suite
-- Automatic documentation generation
-- Release sync automation
-For every Immich release, a pull request is automatically generated to update the client. Most releases are one-click merges, and some require only very small adjustments.
+The client reduces risk of staleness through automation. For every Immich release, a pull request is opened to update the client. Read more about [auto-syncing](./auto-sync.md).
 
 ### 6. Ecosystem alignment
 immich-py is maintained by a contributor active in the wider Immich team and ecosystem. Ongoing contributions to core and tooling ensure the client evolves in step with the platform, making it a reliable, ecosystem-oriented API layer rather than an isolated side project.

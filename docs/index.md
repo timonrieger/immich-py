@@ -21,7 +21,7 @@
     Contributions are welcome in designated areas; modifications to generated code should be discussed first. See [Contributing](./info/contributing.md) for details.
 
 !!! info "Auto-synced with Immich"
-    This project is [auto-synced](./overview/auto-sync.md) with the **latest Immich release**, typically within 24 hours.
+    This project is [auto-synced](./overview/auto-sync.md) with the **latest Immich release**.
 
 !!! info "Not affiliated with Immich"
     This project is not affiliated with or endorsed by Immich.
