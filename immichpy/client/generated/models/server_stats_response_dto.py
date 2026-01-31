@@ -28,12 +28,16 @@ class ServerStatsResponseDto(BaseModel):
     ServerStatsResponseDto
     """  # noqa: E501
 
-    photos: StrictInt
-    usage: StrictInt
+    photos: StrictInt = Field(description="Total number of photos")
+    usage: StrictInt = Field(description="Total storage usage in bytes")
     usage_by_user: List[UsageByUserDto] = Field(alias="usageByUser")
-    usage_photos: StrictInt = Field(alias="usagePhotos")
-    usage_videos: StrictInt = Field(alias="usageVideos")
-    videos: StrictInt
+    usage_photos: StrictInt = Field(
+        description="Storage usage for photos in bytes", alias="usagePhotos"
+    )
+    usage_videos: StrictInt = Field(
+        description="Storage usage for videos in bytes", alias="usageVideos"
+    )
+    videos: StrictInt = Field(description="Total number of videos")
     __properties: ClassVar[List[str]] = [
         "photos",
         "usage",

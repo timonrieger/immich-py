@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,7 +27,7 @@ class TemplateDto(BaseModel):
     TemplateDto
     """  # noqa: E501
 
-    template: StrictStr
+    template: StrictStr = Field(description="Template name")
     __properties: ClassVar[List[str]] = ["template"]
 
     model_config = ConfigDict(

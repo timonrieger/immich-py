@@ -28,17 +28,26 @@ class FacialRecognitionConfig(BaseModel):
     FacialRecognitionConfig
     """  # noqa: E501
 
-    enabled: StrictBool
+    enabled: StrictBool = Field(description="Whether the task is enabled")
     max_distance: Union[
         Annotated[float, Field(le=2, strict=True, ge=0.1)],
         Annotated[int, Field(le=2, strict=True, ge=1)],
-    ] = Field(alias="maxDistance")
-    min_faces: Annotated[int, Field(strict=True, ge=1)] = Field(alias="minFaces")
+    ] = Field(
+        description="Maximum distance threshold for face recognition",
+        alias="maxDistance",
+    )
+    min_faces: Annotated[int, Field(strict=True, ge=1)] = Field(
+        description="Minimum number of faces required for recognition", alias="minFaces"
+    )
     min_score: Union[
         Annotated[float, Field(le=1, strict=True, ge=0.1)],
         Annotated[int, Field(le=1, strict=True, ge=1)],
-    ] = Field(alias="minScore")
-    model_name: StrictStr = Field(alias="modelName")
+    ] = Field(
+        description="Minimum confidence score for face detection", alias="minScore"
+    )
+    model_name: StrictStr = Field(
+        description="Name of the model to use", alias="modelName"
+    )
     __properties: ClassVar[List[str]] = [
         "enabled",
         "maxDistance",

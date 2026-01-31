@@ -20,7 +20,9 @@ app = typer.Typer(
 @app.command("delete-sync-ack", deprecated=False, rich_help_panel="API commands")
 def delete_sync_ack(
     ctx: typer.Context,
-    types: list[SyncEntityType] | None = typer.Option(None, "--types", help=""""""),
+    types: list[SyncEntityType] | None = typer.Option(
+        None, "--types", help="""Sync entity types to delete acks for"""
+    ),
 ) -> None:
     """Delete acknowledgements
 
@@ -40,8 +42,10 @@ def delete_sync_ack(
 @app.command("get-delta-sync", deprecated=True, rich_help_panel="API commands")
 def get_delta_sync(
     ctx: typer.Context,
-    updated_after: datetime = typer.Option(..., "--updated-after", help=""""""),
-    user_ids: list[str] = typer.Option(..., "--user-ids", help=""""""),
+    updated_after: datetime = typer.Option(
+        ..., "--updated-after", help="""Sync assets updated after this date"""
+    ),
+    user_ids: list[str] = typer.Option(..., "--user-ids", help="""User IDs to sync"""),
 ) -> None:
     """Get delta sync for user
 
@@ -61,10 +65,16 @@ def get_delta_sync(
 @app.command("get-full-sync-for-user", deprecated=True, rich_help_panel="API commands")
 def get_full_sync_for_user(
     ctx: typer.Context,
-    last_id: str | None = typer.Option(None, "--last-id", help=""""""),
-    limit: int = typer.Option(..., "--limit", help="""""", min=1),
-    updated_until: datetime = typer.Option(..., "--updated-until", help=""""""),
-    user_id: str | None = typer.Option(None, "--user-id", help=""""""),
+    last_id: str | None = typer.Option(
+        None, "--last-id", help="""Last asset ID (pagination)"""
+    ),
+    limit: int = typer.Option(
+        ..., "--limit", help="""Maximum number of assets to return""", min=1
+    ),
+    updated_until: datetime = typer.Option(
+        ..., "--updated-until", help="""Sync assets updated until this date"""
+    ),
+    user_id: str | None = typer.Option(None, "--user-id", help="""Filter by user ID"""),
 ) -> None:
     """Get full sync for user
 
@@ -102,8 +112,12 @@ def get_sync_ack(
 @app.command("get-sync-stream", deprecated=False, rich_help_panel="API commands")
 def get_sync_stream(
     ctx: typer.Context,
-    reset: Literal["true", "false"] | None = typer.Option(None, "--reset", help=""""""),
-    types: list[SyncRequestType] = typer.Option(..., "--types", help=""""""),
+    reset: Literal["true", "false"] | None = typer.Option(
+        None, "--reset", help="""Reset sync state"""
+    ),
+    types: list[SyncRequestType] = typer.Option(
+        ..., "--types", help="""Sync request types"""
+    ),
 ) -> None:
     """Stream sync changes
 
@@ -124,7 +138,9 @@ def get_sync_stream(
 @app.command("send-sync-ack", deprecated=False, rich_help_panel="API commands")
 def send_sync_ack(
     ctx: typer.Context,
-    acks: list[str] = typer.Option(..., "--acks", help=""""""),
+    acks: list[str] = typer.Option(
+        ..., "--acks", help="""Acknowledgment IDs (max 1000)"""
+    ),
 ) -> None:
     """Acknowledge changes
 

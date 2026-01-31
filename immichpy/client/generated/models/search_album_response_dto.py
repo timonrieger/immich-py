@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List
 from immichpy.client.generated.models.album_response_dto import AlbumResponseDto
 from immichpy.client.generated.models.search_facet_response_dto import (
@@ -31,10 +31,10 @@ class SearchAlbumResponseDto(BaseModel):
     SearchAlbumResponseDto
     """  # noqa: E501
 
-    count: StrictInt
+    count: StrictInt = Field(description="Number of albums in this page")
     facets: List[SearchFacetResponseDto]
     items: List[AlbumResponseDto]
-    total: StrictInt
+    total: StrictInt = Field(description="Total number of matching albums")
     __properties: ClassVar[List[str]] = ["count", "facets", "items", "total"]
 
     model_config = ConfigDict(

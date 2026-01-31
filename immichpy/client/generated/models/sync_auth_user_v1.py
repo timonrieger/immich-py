@@ -29,19 +29,29 @@ class SyncAuthUserV1(BaseModel):
     SyncAuthUserV1
     """  # noqa: E501
 
-    avatar_color: Optional[UserAvatarColor] = Field(alias="avatarColor")
-    deleted_at: Optional[datetime] = Field(alias="deletedAt")
-    email: StrictStr
-    has_profile_image: StrictBool = Field(alias="hasProfileImage")
-    id: StrictStr
-    is_admin: StrictBool = Field(alias="isAdmin")
-    name: StrictStr
-    oauth_id: StrictStr = Field(alias="oauthId")
-    pin_code: Optional[StrictStr] = Field(alias="pinCode")
-    profile_changed_at: datetime = Field(alias="profileChangedAt")
+    avatar_color: Optional[UserAvatarColor] = Field(
+        description="User avatar color", alias="avatarColor"
+    )
+    deleted_at: Optional[datetime] = Field(
+        description="User deleted at", alias="deletedAt"
+    )
+    email: StrictStr = Field(description="User email")
+    has_profile_image: StrictBool = Field(
+        description="User has profile image", alias="hasProfileImage"
+    )
+    id: StrictStr = Field(description="User ID")
+    is_admin: StrictBool = Field(description="User is admin", alias="isAdmin")
+    name: StrictStr = Field(description="User name")
+    oauth_id: StrictStr = Field(description="User OAuth ID", alias="oauthId")
+    pin_code: Optional[StrictStr] = Field(description="User pin code", alias="pinCode")
+    profile_changed_at: datetime = Field(
+        description="User profile changed at", alias="profileChangedAt"
+    )
     quota_size_in_bytes: Optional[StrictInt] = Field(alias="quotaSizeInBytes")
     quota_usage_in_bytes: StrictInt = Field(alias="quotaUsageInBytes")
-    storage_label: Optional[StrictStr] = Field(alias="storageLabel")
+    storage_label: Optional[StrictStr] = Field(
+        description="User storage label", alias="storageLabel"
+    )
     __properties: ClassVar[List[str]] = [
         "avatarColor",
         "deletedAt",

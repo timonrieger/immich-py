@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,12 +27,12 @@ class QueueStatisticsDto(BaseModel):
     QueueStatisticsDto
     """  # noqa: E501
 
-    active: StrictInt
-    completed: StrictInt
-    delayed: StrictInt
-    failed: StrictInt
-    paused: StrictInt
-    waiting: StrictInt
+    active: StrictInt = Field(description="Number of active jobs")
+    completed: StrictInt = Field(description="Number of completed jobs")
+    delayed: StrictInt = Field(description="Number of delayed jobs")
+    failed: StrictInt = Field(description="Number of failed jobs")
+    paused: StrictInt = Field(description="Number of paused jobs")
+    waiting: StrictInt = Field(description="Number of waiting jobs")
     __properties: ClassVar[List[str]] = [
         "active",
         "completed",

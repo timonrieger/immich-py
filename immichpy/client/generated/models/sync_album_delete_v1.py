@@ -27,7 +27,7 @@ class SyncAlbumDeleteV1(BaseModel):
     SyncAlbumDeleteV1
     """  # noqa: E501
 
-    album_id: StrictStr = Field(alias="albumId")
+    album_id: StrictStr = Field(description="Album ID", alias="albumId")
     __properties: ClassVar[List[str]] = ["albumId"]
 
     model_config = ConfigDict(

@@ -28,10 +28,15 @@ class UserUpdateMeDto(BaseModel):
     UserUpdateMeDto
     """  # noqa: E501
 
-    avatar_color: Optional[UserAvatarColor] = Field(default=None, alias="avatarColor")
-    email: Optional[StrictStr] = None
-    name: Optional[StrictStr] = None
-    password: Optional[StrictStr] = None
+    avatar_color: Optional[UserAvatarColor] = Field(
+        default=None, description="Avatar color", alias="avatarColor"
+    )
+    email: Optional[StrictStr] = Field(default=None, description="User email")
+    name: Optional[StrictStr] = Field(default=None, description="User name")
+    password: Optional[StrictStr] = Field(
+        default=None,
+        description="User password (deprecated, use change password endpoint)",
+    )
     __properties: ClassVar[List[str]] = ["avatarColor", "email", "name", "password"]
 
     model_config = ConfigDict(

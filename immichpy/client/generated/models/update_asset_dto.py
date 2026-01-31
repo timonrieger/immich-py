@@ -39,20 +39,32 @@ class UpdateAssetDto(BaseModel):
     """  # noqa: E501
 
     date_time_original: Optional[StrictStr] = Field(
-        default=None, alias="dateTimeOriginal"
+        default=None, description="Original date and time", alias="dateTimeOriginal"
     )
-    description: Optional[StrictStr] = None
-    is_favorite: Optional[StrictBool] = Field(default=None, alias="isFavorite")
-    latitude: Optional[Union[StrictFloat, StrictInt]] = None
-    live_photo_video_id: Optional[UUID] = Field(default=None, alias="livePhotoVideoId")
-    longitude: Optional[Union[StrictFloat, StrictInt]] = None
+    description: Optional[StrictStr] = Field(
+        default=None, description="Asset description"
+    )
+    is_favorite: Optional[StrictBool] = Field(
+        default=None, description="Mark as favorite", alias="isFavorite"
+    )
+    latitude: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="Latitude coordinate"
+    )
+    live_photo_video_id: Optional[UUID] = Field(
+        default=None, description="Live photo video ID", alias="livePhotoVideoId"
+    )
+    longitude: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="Longitude coordinate"
+    )
     rating: Optional[
         Union[
             Annotated[float, Field(le=5, strict=True, ge=-1)],
             Annotated[int, Field(le=5, strict=True, ge=-1)],
         ]
-    ] = None
-    visibility: Optional[AssetVisibility] = None
+    ] = Field(default=None, description="Rating")
+    visibility: Optional[AssetVisibility] = Field(
+        default=None, description="Asset visibility"
+    )
     __properties: ClassVar[List[str]] = [
         "dateTimeOriginal",
         "description",

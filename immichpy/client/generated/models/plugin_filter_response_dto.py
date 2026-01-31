@@ -28,13 +28,17 @@ class PluginFilterResponseDto(BaseModel):
     PluginFilterResponseDto
     """  # noqa: E501
 
-    description: StrictStr
-    id: StrictStr
-    method_name: StrictStr = Field(alias="methodName")
-    plugin_id: StrictStr = Field(alias="pluginId")
-    var_schema: Optional[Dict[str, Any]] = Field(alias="schema")
-    supported_contexts: List[PluginContextType] = Field(alias="supportedContexts")
-    title: StrictStr
+    description: StrictStr = Field(description="Filter description")
+    id: StrictStr = Field(description="Filter ID")
+    method_name: StrictStr = Field(description="Method name", alias="methodName")
+    plugin_id: StrictStr = Field(description="Plugin ID", alias="pluginId")
+    var_schema: Optional[Dict[str, Any]] = Field(
+        description="Filter schema", alias="schema"
+    )
+    supported_contexts: List[PluginContextType] = Field(
+        description="Supported contexts", alias="supportedContexts"
+    )
+    title: StrictStr = Field(description="Filter title")
     __properties: ClassVar[List[str]] = [
         "description",
         "id",

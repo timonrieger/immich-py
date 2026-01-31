@@ -29,16 +29,16 @@ class PersonCreateDto(BaseModel):
     """  # noqa: E501
 
     birth_date: Optional[date] = Field(
-        default=None,
-        description="Person date of birth. Note: the mobile app cannot currently set the birth date to null.",
-        alias="birthDate",
+        default=None, description="Person date of birth", alias="birthDate"
     )
-    color: Optional[StrictStr] = None
-    is_favorite: Optional[StrictBool] = Field(default=None, alias="isFavorite")
+    color: Optional[StrictStr] = Field(default=None, description="Person color (hex)")
+    is_favorite: Optional[StrictBool] = Field(
+        default=None, description="Mark as favorite", alias="isFavorite"
+    )
     is_hidden: Optional[StrictBool] = Field(
-        default=None, description="Person visibility", alias="isHidden"
+        default=None, description="Person visibility (hidden)", alias="isHidden"
     )
-    name: Optional[StrictStr] = Field(default=None, description="Person name.")
+    name: Optional[StrictStr] = Field(default=None, description="Person name")
     __properties: ClassVar[List[str]] = [
         "birthDate",
         "color",

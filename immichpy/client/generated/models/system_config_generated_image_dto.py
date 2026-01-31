@@ -29,10 +29,12 @@ class SystemConfigGeneratedImageDto(BaseModel):
     SystemConfigGeneratedImageDto
     """  # noqa: E501
 
-    format: ImageFormat
+    format: ImageFormat = Field(description="Image format")
     progressive: Optional[StrictBool] = False
-    quality: Annotated[int, Field(le=100, strict=True, ge=1)]
-    size: Annotated[int, Field(strict=True, ge=1)]
+    quality: Annotated[int, Field(le=100, strict=True, ge=1)] = Field(
+        description="Quality"
+    )
+    size: Annotated[int, Field(strict=True, ge=1)] = Field(description="Size")
     __properties: ClassVar[List[str]] = ["format", "progressive", "quality", "size"]
 
     model_config = ConfigDict(

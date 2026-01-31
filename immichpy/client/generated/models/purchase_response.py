@@ -27,8 +27,12 @@ class PurchaseResponse(BaseModel):
     PurchaseResponse
     """  # noqa: E501
 
-    hide_buy_button_until: StrictStr = Field(alias="hideBuyButtonUntil")
-    show_support_badge: StrictBool = Field(alias="showSupportBadge")
+    hide_buy_button_until: StrictStr = Field(
+        description="Date until which to hide buy button", alias="hideBuyButtonUntil"
+    )
+    show_support_badge: StrictBool = Field(
+        description="Whether to show support badge", alias="showSupportBadge"
+    )
     __properties: ClassVar[List[str]] = ["hideBuyButtonUntil", "showSupportBadge"]
 
     model_config = ConfigDict(

@@ -32,9 +32,9 @@ class AssetEditsDto(BaseModel):
     AssetEditsDto
     """  # noqa: E501
 
-    asset_id: UUID = Field(alias="assetId")
+    asset_id: UUID = Field(description="Asset ID to apply edits to", alias="assetId")
     edits: Annotated[List[AssetEditActionListDtoEditsInner], Field(min_length=1)] = (
-        Field(description="list of edits")
+        Field(description="List of edit actions to apply (crop, rotate, or mirror)")
     )
     __properties: ClassVar[List[str]] = ["assetId", "edits"]
 

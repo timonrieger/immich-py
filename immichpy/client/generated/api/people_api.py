@@ -781,8 +781,12 @@ class PeopleApi:
     @validate_call
     async def get_all_people(
         self,
-        closest_asset_id: Optional[UUID] = None,
-        closest_person_id: Optional[UUID] = None,
+        closest_asset_id: Annotated[
+            Optional[UUID], Field(description="Closest asset ID for similarity search")
+        ] = None,
+        closest_person_id: Annotated[
+            Optional[UUID], Field(description="Closest person ID for similarity search")
+        ] = None,
         page: Annotated[
             Optional[
                 Union[
@@ -801,7 +805,9 @@ class PeopleApi:
             ],
             Field(description="Number of items per page"),
         ] = None,
-        with_hidden: Optional[StrictBool] = None,
+        with_hidden: Annotated[
+            Optional[StrictBool], Field(description="Include hidden people")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -818,15 +824,15 @@ class PeopleApi:
 
         Retrieve a list of all people.
 
-        :param closest_asset_id:
+        :param closest_asset_id: Closest asset ID for similarity search
         :type closest_asset_id: UUID
-        :param closest_person_id:
+        :param closest_person_id: Closest person ID for similarity search
         :type closest_person_id: UUID
         :param page: Page number for pagination
         :type page: float
         :param size: Number of items per page
         :type size: float
-        :param with_hidden:
+        :param with_hidden: Include hidden people
         :type with_hidden: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -877,8 +883,12 @@ class PeopleApi:
     @validate_call
     async def get_all_people_with_http_info(
         self,
-        closest_asset_id: Optional[UUID] = None,
-        closest_person_id: Optional[UUID] = None,
+        closest_asset_id: Annotated[
+            Optional[UUID], Field(description="Closest asset ID for similarity search")
+        ] = None,
+        closest_person_id: Annotated[
+            Optional[UUID], Field(description="Closest person ID for similarity search")
+        ] = None,
         page: Annotated[
             Optional[
                 Union[
@@ -897,7 +907,9 @@ class PeopleApi:
             ],
             Field(description="Number of items per page"),
         ] = None,
-        with_hidden: Optional[StrictBool] = None,
+        with_hidden: Annotated[
+            Optional[StrictBool], Field(description="Include hidden people")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -914,15 +926,15 @@ class PeopleApi:
 
         Retrieve a list of all people.
 
-        :param closest_asset_id:
+        :param closest_asset_id: Closest asset ID for similarity search
         :type closest_asset_id: UUID
-        :param closest_person_id:
+        :param closest_person_id: Closest person ID for similarity search
         :type closest_person_id: UUID
         :param page: Page number for pagination
         :type page: float
         :param size: Number of items per page
         :type size: float
-        :param with_hidden:
+        :param with_hidden: Include hidden people
         :type with_hidden: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -973,8 +985,12 @@ class PeopleApi:
     @validate_call
     async def get_all_people_without_preload_content(
         self,
-        closest_asset_id: Optional[UUID] = None,
-        closest_person_id: Optional[UUID] = None,
+        closest_asset_id: Annotated[
+            Optional[UUID], Field(description="Closest asset ID for similarity search")
+        ] = None,
+        closest_person_id: Annotated[
+            Optional[UUID], Field(description="Closest person ID for similarity search")
+        ] = None,
         page: Annotated[
             Optional[
                 Union[
@@ -993,7 +1009,9 @@ class PeopleApi:
             ],
             Field(description="Number of items per page"),
         ] = None,
-        with_hidden: Optional[StrictBool] = None,
+        with_hidden: Annotated[
+            Optional[StrictBool], Field(description="Include hidden people")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1010,15 +1028,15 @@ class PeopleApi:
 
         Retrieve a list of all people.
 
-        :param closest_asset_id:
+        :param closest_asset_id: Closest asset ID for similarity search
         :type closest_asset_id: UUID
-        :param closest_person_id:
+        :param closest_person_id: Closest person ID for similarity search
         :type closest_person_id: UUID
         :param page: Page number for pagination
         :type page: float
         :param size: Number of items per page
         :type size: float
-        :param with_hidden:
+        :param with_hidden: Include hidden people
         :type with_hidden: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

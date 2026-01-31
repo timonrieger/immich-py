@@ -19,10 +19,12 @@ app = typer.Typer(
 @app.command("create-session", deprecated=False, rich_help_panel="API commands")
 def create_session(
     ctx: typer.Context,
-    device_os: str | None = typer.Option(None, "--device-os", help=""""""),
-    device_type: str | None = typer.Option(None, "--device-type", help=""""""),
+    device_os: str | None = typer.Option(None, "--device-os", help="""Device OS"""),
+    device_type: str | None = typer.Option(
+        None, "--device-type", help="""Device type"""
+    ),
     duration: float | None = typer.Option(
-        None, "--duration", help="""session duration, in seconds""", min=1
+        None, "--duration", help="""Session duration in seconds""", min=1
     ),
 ) -> None:
     """Create a session
@@ -109,7 +111,7 @@ def update_session(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
     is_pending_sync_reset: Literal["true", "false"] | None = typer.Option(
-        None, "--is-pending-sync-reset", help=""""""
+        None, "--is-pending-sync-reset", help="""Reset pending sync state"""
     ),
 ) -> None:
     """Update a session

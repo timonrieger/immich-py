@@ -302,7 +302,7 @@ class DeprecatedApi:
     @validate_call
     async def get_all_user_assets_by_device_id(
         self,
-        device_id: StrictStr,
+        device_id: Annotated[StrictStr, Field(description="Device ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -319,7 +319,7 @@ class DeprecatedApi:
 
         Get all asset of a device that are in the database, ID only.
 
-        :param device_id: (required)
+        :param device_id: Device ID (required)
         :type device_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -369,7 +369,7 @@ class DeprecatedApi:
     @validate_call
     async def get_all_user_assets_by_device_id_with_http_info(
         self,
-        device_id: StrictStr,
+        device_id: Annotated[StrictStr, Field(description="Device ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -386,7 +386,7 @@ class DeprecatedApi:
 
         Get all asset of a device that are in the database, ID only.
 
-        :param device_id: (required)
+        :param device_id: Device ID (required)
         :type device_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -436,7 +436,7 @@ class DeprecatedApi:
     @validate_call
     async def get_all_user_assets_by_device_id_without_preload_content(
         self,
-        device_id: StrictStr,
+        device_id: Annotated[StrictStr, Field(description="Device ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -453,7 +453,7 @@ class DeprecatedApi:
 
         Get all asset of a device that are in the database, ID only.
 
-        :param device_id: (required)
+        :param device_id: Device ID (required)
         :type device_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1289,11 +1289,14 @@ class DeprecatedApi:
     @validate_call
     async def get_random(
         self,
-        count: Optional[
-            Union[
-                Annotated[float, Field(strict=True, ge=1)],
-                Annotated[int, Field(strict=True, ge=1)],
-            ]
+        count: Annotated[
+            Optional[
+                Union[
+                    Annotated[float, Field(strict=True, ge=1)],
+                    Annotated[int, Field(strict=True, ge=1)],
+                ]
+            ],
+            Field(description="Number of random assets to return"),
         ] = None,
         _request_timeout: Union[
             None,
@@ -1311,7 +1314,7 @@ class DeprecatedApi:
 
         Retrieve a specified number of random assets for the authenticated user.
 
-        :param count:
+        :param count: Number of random assets to return
         :type count: float
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1359,11 +1362,14 @@ class DeprecatedApi:
     @validate_call
     async def get_random_with_http_info(
         self,
-        count: Optional[
-            Union[
-                Annotated[float, Field(strict=True, ge=1)],
-                Annotated[int, Field(strict=True, ge=1)],
-            ]
+        count: Annotated[
+            Optional[
+                Union[
+                    Annotated[float, Field(strict=True, ge=1)],
+                    Annotated[int, Field(strict=True, ge=1)],
+                ]
+            ],
+            Field(description="Number of random assets to return"),
         ] = None,
         _request_timeout: Union[
             None,
@@ -1381,7 +1387,7 @@ class DeprecatedApi:
 
         Retrieve a specified number of random assets for the authenticated user.
 
-        :param count:
+        :param count: Number of random assets to return
         :type count: float
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1429,11 +1435,14 @@ class DeprecatedApi:
     @validate_call
     async def get_random_without_preload_content(
         self,
-        count: Optional[
-            Union[
-                Annotated[float, Field(strict=True, ge=1)],
-                Annotated[int, Field(strict=True, ge=1)],
-            ]
+        count: Annotated[
+            Optional[
+                Union[
+                    Annotated[float, Field(strict=True, ge=1)],
+                    Annotated[int, Field(strict=True, ge=1)],
+                ]
+            ],
+            Field(description="Number of random assets to return"),
         ] = None,
         _request_timeout: Union[
             None,
@@ -1451,7 +1460,7 @@ class DeprecatedApi:
 
         Retrieve a specified number of random assets for the authenticated user.
 
-        :param count:
+        :param count: Number of random assets to return
         :type count: float
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1550,15 +1559,22 @@ class DeprecatedApi:
     async def replace_asset(
         self,
         id: UUID,
-        asset_data: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
-        device_asset_id: StrictStr,
-        device_id: StrictStr,
-        file_created_at: datetime,
-        file_modified_at: datetime,
+        asset_data: Annotated[
+            Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
+            Field(description="Asset file data"),
+        ],
+        device_asset_id: Annotated[StrictStr, Field(description="Device asset ID")],
+        device_id: Annotated[StrictStr, Field(description="Device ID")],
+        file_created_at: Annotated[datetime, Field(description="File creation date")],
+        file_modified_at: Annotated[
+            datetime, Field(description="File modification date")
+        ],
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
-        duration: Optional[StrictStr] = None,
-        filename: Optional[StrictStr] = None,
+        duration: Annotated[
+            Optional[StrictStr], Field(description="Duration (for videos)")
+        ] = None,
+        filename: Annotated[Optional[StrictStr], Field(description="Filename")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1577,23 +1593,23 @@ class DeprecatedApi:
 
         :param id: (required)
         :type id: UUID
-        :param asset_data: (required)
+        :param asset_data: Asset file data (required)
         :type asset_data: bytearray
-        :param device_asset_id: (required)
+        :param device_asset_id: Device asset ID (required)
         :type device_asset_id: str
-        :param device_id: (required)
+        :param device_id: Device ID (required)
         :type device_id: str
-        :param file_created_at: (required)
+        :param file_created_at: File creation date (required)
         :type file_created_at: datetime
-        :param file_modified_at: (required)
+        :param file_modified_at: File modification date (required)
         :type file_modified_at: datetime
         :param key:
         :type key: str
         :param slug:
         :type slug: str
-        :param duration:
+        :param duration: Duration (for videos)
         :type duration: str
-        :param filename:
+        :param filename: Filename
         :type filename: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1651,15 +1667,22 @@ class DeprecatedApi:
     async def replace_asset_with_http_info(
         self,
         id: UUID,
-        asset_data: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
-        device_asset_id: StrictStr,
-        device_id: StrictStr,
-        file_created_at: datetime,
-        file_modified_at: datetime,
+        asset_data: Annotated[
+            Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
+            Field(description="Asset file data"),
+        ],
+        device_asset_id: Annotated[StrictStr, Field(description="Device asset ID")],
+        device_id: Annotated[StrictStr, Field(description="Device ID")],
+        file_created_at: Annotated[datetime, Field(description="File creation date")],
+        file_modified_at: Annotated[
+            datetime, Field(description="File modification date")
+        ],
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
-        duration: Optional[StrictStr] = None,
-        filename: Optional[StrictStr] = None,
+        duration: Annotated[
+            Optional[StrictStr], Field(description="Duration (for videos)")
+        ] = None,
+        filename: Annotated[Optional[StrictStr], Field(description="Filename")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1678,23 +1701,23 @@ class DeprecatedApi:
 
         :param id: (required)
         :type id: UUID
-        :param asset_data: (required)
+        :param asset_data: Asset file data (required)
         :type asset_data: bytearray
-        :param device_asset_id: (required)
+        :param device_asset_id: Device asset ID (required)
         :type device_asset_id: str
-        :param device_id: (required)
+        :param device_id: Device ID (required)
         :type device_id: str
-        :param file_created_at: (required)
+        :param file_created_at: File creation date (required)
         :type file_created_at: datetime
-        :param file_modified_at: (required)
+        :param file_modified_at: File modification date (required)
         :type file_modified_at: datetime
         :param key:
         :type key: str
         :param slug:
         :type slug: str
-        :param duration:
+        :param duration: Duration (for videos)
         :type duration: str
-        :param filename:
+        :param filename: Filename
         :type filename: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1752,15 +1775,22 @@ class DeprecatedApi:
     async def replace_asset_without_preload_content(
         self,
         id: UUID,
-        asset_data: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
-        device_asset_id: StrictStr,
-        device_id: StrictStr,
-        file_created_at: datetime,
-        file_modified_at: datetime,
+        asset_data: Annotated[
+            Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
+            Field(description="Asset file data"),
+        ],
+        device_asset_id: Annotated[StrictStr, Field(description="Device asset ID")],
+        device_id: Annotated[StrictStr, Field(description="Device ID")],
+        file_created_at: Annotated[datetime, Field(description="File creation date")],
+        file_modified_at: Annotated[
+            datetime, Field(description="File modification date")
+        ],
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
-        duration: Optional[StrictStr] = None,
-        filename: Optional[StrictStr] = None,
+        duration: Annotated[
+            Optional[StrictStr], Field(description="Duration (for videos)")
+        ] = None,
+        filename: Annotated[Optional[StrictStr], Field(description="Filename")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1779,23 +1809,23 @@ class DeprecatedApi:
 
         :param id: (required)
         :type id: UUID
-        :param asset_data: (required)
+        :param asset_data: Asset file data (required)
         :type asset_data: bytearray
-        :param device_asset_id: (required)
+        :param device_asset_id: Device asset ID (required)
         :type device_asset_id: str
-        :param device_id: (required)
+        :param device_id: Device ID (required)
         :type device_id: str
-        :param file_created_at: (required)
+        :param file_created_at: File creation date (required)
         :type file_created_at: datetime
-        :param file_modified_at: (required)
+        :param file_modified_at: File modification date (required)
         :type file_modified_at: datetime
         :param key:
         :type key: str
         :param slug:
         :type slug: str
-        :param duration:
+        :param duration: Duration (for videos)
         :type duration: str
-        :param filename:
+        :param filename: Filename
         :type filename: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1940,7 +1970,7 @@ class DeprecatedApi:
     @validate_call
     async def run_queue_command_legacy(
         self,
-        name: QueueName,
+        name: Annotated[QueueName, Field(description="Queue name")],
         queue_command_dto: QueueCommandDto,
         _request_timeout: Union[
             None,
@@ -1958,7 +1988,7 @@ class DeprecatedApi:
 
         Queue all assets for a specific job type. Defaults to only queueing assets that have not yet been processed, but the force command can be used to re-process all assets.
 
-        :param name: (required)
+        :param name: Queue name (required)
         :type name: QueueName
         :param queue_command_dto: (required)
         :type queue_command_dto: QueueCommandDto
@@ -2009,7 +2039,7 @@ class DeprecatedApi:
     @validate_call
     async def run_queue_command_legacy_with_http_info(
         self,
-        name: QueueName,
+        name: Annotated[QueueName, Field(description="Queue name")],
         queue_command_dto: QueueCommandDto,
         _request_timeout: Union[
             None,
@@ -2027,7 +2057,7 @@ class DeprecatedApi:
 
         Queue all assets for a specific job type. Defaults to only queueing assets that have not yet been processed, but the force command can be used to re-process all assets.
 
-        :param name: (required)
+        :param name: Queue name (required)
         :type name: QueueName
         :param queue_command_dto: (required)
         :type queue_command_dto: QueueCommandDto
@@ -2078,7 +2108,7 @@ class DeprecatedApi:
     @validate_call
     async def run_queue_command_legacy_without_preload_content(
         self,
-        name: QueueName,
+        name: Annotated[QueueName, Field(description="Queue name")],
         queue_command_dto: QueueCommandDto,
         _request_timeout: Union[
             None,
@@ -2096,7 +2126,7 @@ class DeprecatedApi:
 
         Queue all assets for a specific job type. Defaults to only queueing assets that have not yet been processed, but the force command can be used to re-process all assets.
 
-        :param name: (required)
+        :param name: Queue name (required)
         :type name: QueueName
         :param queue_command_dto: (required)
         :type queue_command_dto: QueueCommandDto

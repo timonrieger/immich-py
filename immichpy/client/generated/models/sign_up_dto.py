@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,9 +27,9 @@ class SignUpDto(BaseModel):
     SignUpDto
     """  # noqa: E501
 
-    email: StrictStr
-    name: StrictStr
-    password: StrictStr
+    email: StrictStr = Field(description="User email")
+    name: StrictStr = Field(description="User name")
+    password: StrictStr = Field(description="User password")
     __properties: ClassVar[List[str]] = ["email", "name", "password"]
 
     model_config = ConfigDict(

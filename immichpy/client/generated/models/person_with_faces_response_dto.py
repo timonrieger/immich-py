@@ -31,15 +31,25 @@ class PersonWithFacesResponseDto(BaseModel):
     PersonWithFacesResponseDto
     """  # noqa: E501
 
-    birth_date: Optional[date] = Field(alias="birthDate")
-    color: Optional[StrictStr] = None
-    faces: List[AssetFaceWithoutPersonResponseDto]
-    id: StrictStr
-    is_favorite: Optional[StrictBool] = Field(default=None, alias="isFavorite")
-    is_hidden: StrictBool = Field(alias="isHidden")
-    name: StrictStr
-    thumbnail_path: StrictStr = Field(alias="thumbnailPath")
-    updated_at: Optional[datetime] = Field(default=None, alias="updatedAt")
+    birth_date: Optional[date] = Field(
+        description="Person date of birth", alias="birthDate"
+    )
+    color: Optional[StrictStr] = Field(default=None, description="Person color (hex)")
+    faces: List[AssetFaceWithoutPersonResponseDto] = Field(
+        description="Face detections"
+    )
+    id: StrictStr = Field(description="Person ID")
+    is_favorite: Optional[StrictBool] = Field(
+        default=None, description="Is favorite", alias="isFavorite"
+    )
+    is_hidden: StrictBool = Field(description="Is hidden", alias="isHidden")
+    name: StrictStr = Field(description="Person name")
+    thumbnail_path: StrictStr = Field(
+        description="Thumbnail path", alias="thumbnailPath"
+    )
+    updated_at: Optional[datetime] = Field(
+        default=None, description="Last update date", alias="updatedAt"
+    )
     __properties: ClassVar[List[str]] = [
         "birthDate",
         "color",

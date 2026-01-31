@@ -28,8 +28,8 @@ class TagBulkAssetsDto(BaseModel):
     TagBulkAssetsDto
     """  # noqa: E501
 
-    asset_ids: List[UUID] = Field(alias="assetIds")
-    tag_ids: List[UUID] = Field(alias="tagIds")
+    asset_ids: List[UUID] = Field(description="Asset IDs", alias="assetIds")
+    tag_ids: List[UUID] = Field(description="Tag IDs", alias="tagIds")
     __properties: ClassVar[List[str]] = ["assetIds", "tagIds"]
 
     model_config = ConfigDict(

@@ -28,9 +28,11 @@ class AssetDeltaSyncResponseDto(BaseModel):
     AssetDeltaSyncResponseDto
     """  # noqa: E501
 
-    deleted: List[StrictStr]
-    needs_full_sync: StrictBool = Field(alias="needsFullSync")
-    upserted: List[AssetResponseDto]
+    deleted: List[StrictStr] = Field(description="Deleted asset IDs")
+    needs_full_sync: StrictBool = Field(
+        description="Whether full sync is needed", alias="needsFullSync"
+    )
+    upserted: List[AssetResponseDto] = Field(description="Upserted assets")
     __properties: ClassVar[List[str]] = ["deleted", "needsFullSync", "upserted"]
 
     model_config = ConfigDict(

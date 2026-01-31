@@ -27,8 +27,12 @@ class VersionCheckStateResponseDto(BaseModel):
     VersionCheckStateResponseDto
     """  # noqa: E501
 
-    checked_at: Optional[StrictStr] = Field(alias="checkedAt")
-    release_version: Optional[StrictStr] = Field(alias="releaseVersion")
+    checked_at: Optional[StrictStr] = Field(
+        description="Last check timestamp", alias="checkedAt"
+    )
+    release_version: Optional[StrictStr] = Field(
+        description="Release version", alias="releaseVersion"
+    )
     __properties: ClassVar[List[str]] = ["checkedAt", "releaseVersion"]
 
     model_config = ConfigDict(

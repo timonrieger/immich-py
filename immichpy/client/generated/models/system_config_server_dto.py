@@ -27,9 +27,13 @@ class SystemConfigServerDto(BaseModel):
     SystemConfigServerDto
     """  # noqa: E501
 
-    external_domain: StrictStr = Field(alias="externalDomain")
-    login_page_message: StrictStr = Field(alias="loginPageMessage")
-    public_users: StrictBool = Field(alias="publicUsers")
+    external_domain: StrictStr = Field(
+        description="External domain", alias="externalDomain"
+    )
+    login_page_message: StrictStr = Field(
+        description="Login page message", alias="loginPageMessage"
+    )
+    public_users: StrictBool = Field(description="Public users", alias="publicUsers")
     __properties: ClassVar[List[str]] = [
         "externalDomain",
         "loginPageMessage",

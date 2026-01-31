@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,8 +27,8 @@ class MemoriesResponse(BaseModel):
     MemoriesResponse
     """  # noqa: E501
 
-    duration: StrictInt
-    enabled: StrictBool
+    duration: StrictInt = Field(description="Memory duration in seconds")
+    enabled: StrictBool = Field(description="Whether memories are enabled")
     __properties: ClassVar[List[str]] = ["duration", "enabled"]
 
     model_config = ConfigDict(

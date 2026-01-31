@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,7 +27,7 @@ class TagUpsertDto(BaseModel):
     TagUpsertDto
     """  # noqa: E501
 
-    tags: List[StrictStr]
+    tags: List[StrictStr] = Field(description="Tag names to upsert")
     __properties: ClassVar[List[str]] = ["tags"]
 
     model_config = ConfigDict(

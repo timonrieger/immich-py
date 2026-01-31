@@ -29,12 +29,18 @@ class DownloadInfoDto(BaseModel):
     DownloadInfoDto
     """  # noqa: E501
 
-    album_id: Optional[UUID] = Field(default=None, alias="albumId")
-    archive_size: Optional[Annotated[int, Field(strict=True, ge=1)]] = Field(
-        default=None, alias="archiveSize"
+    album_id: Optional[UUID] = Field(
+        default=None, description="Album ID to download", alias="albumId"
     )
-    asset_ids: Optional[List[UUID]] = Field(default=None, alias="assetIds")
-    user_id: Optional[UUID] = Field(default=None, alias="userId")
+    archive_size: Optional[Annotated[int, Field(strict=True, ge=1)]] = Field(
+        default=None, description="Archive size limit in bytes", alias="archiveSize"
+    )
+    asset_ids: Optional[List[UUID]] = Field(
+        default=None, description="Asset IDs to download", alias="assetIds"
+    )
+    user_id: Optional[UUID] = Field(
+        default=None, description="User ID to download assets from", alias="userId"
+    )
     __properties: ClassVar[List[str]] = ["albumId", "archiveSize", "assetIds", "userId"]
 
     model_config = ConfigDict(

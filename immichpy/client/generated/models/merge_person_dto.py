@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from uuid import UUID
 from typing import Optional, Set
@@ -28,7 +28,7 @@ class MergePersonDto(BaseModel):
     MergePersonDto
     """  # noqa: E501
 
-    ids: List[UUID]
+    ids: List[UUID] = Field(description="Person IDs to merge")
     __properties: ClassVar[List[str]] = ["ids"]
 
     model_config = ConfigDict(

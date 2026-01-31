@@ -34,11 +34,17 @@ class AssetBulkUploadCheckResult(BaseModel):
     AssetBulkUploadCheckResult
     """  # noqa: E501
 
-    action: StrictStr
-    asset_id: Optional[StrictStr] = Field(default=None, alias="assetId")
-    id: StrictStr
-    is_trashed: Optional[StrictBool] = Field(default=None, alias="isTrashed")
-    reason: Optional[StrictStr] = None
+    action: StrictStr = Field(description="Upload action")
+    asset_id: Optional[StrictStr] = Field(
+        default=None, description="Existing asset ID if duplicate", alias="assetId"
+    )
+    id: StrictStr = Field(description="Asset ID")
+    is_trashed: Optional[StrictBool] = Field(
+        default=None, description="Whether existing asset is trashed", alias="isTrashed"
+    )
+    reason: Optional[StrictStr] = Field(
+        default=None, description="Rejection reason if rejected"
+    )
     __properties: ClassVar[List[str]] = [
         "action",
         "assetId",

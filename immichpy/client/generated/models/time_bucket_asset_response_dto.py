@@ -47,8 +47,7 @@ class TimeBucketAssetResponseDto(BaseModel):
         description="Array of video durations in HH:MM:SS format (null for images)"
     )
     file_created_at: List[StrictStr] = Field(
-        description="Array of file creation timestamps in UTC (ISO 8601 format, without timezone)",
-        alias="fileCreatedAt",
+        description="Array of file creation timestamps in UTC", alias="fileCreatedAt"
     )
     id: List[StrictStr] = Field(description="Array of asset IDs in the time bucket")
     is_favorite: List[StrictBool] = Field(

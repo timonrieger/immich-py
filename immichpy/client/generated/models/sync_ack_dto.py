@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
 from immichpy.client.generated.models.sync_entity_type import SyncEntityType
 from typing import Optional, Set
@@ -28,8 +28,8 @@ class SyncAckDto(BaseModel):
     SyncAckDto
     """  # noqa: E501
 
-    ack: StrictStr
-    type: SyncEntityType
+    ack: StrictStr = Field(description="Acknowledgment ID")
+    type: SyncEntityType = Field(description="Sync entity type")
     __properties: ClassVar[List[str]] = ["ack", "type"]
 
     model_config = ConfigDict(

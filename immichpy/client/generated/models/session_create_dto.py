@@ -28,14 +28,18 @@ class SessionCreateDto(BaseModel):
     SessionCreateDto
     """  # noqa: E501
 
-    device_os: Optional[StrictStr] = Field(default=None, alias="deviceOS")
-    device_type: Optional[StrictStr] = Field(default=None, alias="deviceType")
+    device_os: Optional[StrictStr] = Field(
+        default=None, description="Device OS", alias="deviceOS"
+    )
+    device_type: Optional[StrictStr] = Field(
+        default=None, description="Device type", alias="deviceType"
+    )
     duration: Optional[
         Union[
             Annotated[float, Field(strict=True, ge=1)],
             Annotated[int, Field(strict=True, ge=1)],
         ]
-    ] = Field(default=None, description="session duration, in seconds")
+    ] = Field(default=None, description="Session duration in seconds")
     __properties: ClassVar[List[str]] = ["deviceOS", "deviceType", "duration"]
 
     model_config = ConfigDict(

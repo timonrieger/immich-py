@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class AssetTypeEnum(str, Enum):
     """
-    AssetTypeEnum
+    Asset type
     """
 
     """

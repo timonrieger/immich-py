@@ -28,8 +28,8 @@ class SystemConfigTrashDto(BaseModel):
     SystemConfigTrashDto
     """  # noqa: E501
 
-    days: Annotated[int, Field(strict=True, ge=0)]
-    enabled: StrictBool
+    days: Annotated[int, Field(strict=True, ge=0)] = Field(description="Days")
+    enabled: StrictBool = Field(description="Enabled")
     __properties: ClassVar[List[str]] = ["days", "enabled"]
 
     model_config = ConfigDict(

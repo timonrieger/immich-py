@@ -34,12 +34,16 @@ class WorkflowCreateDto(BaseModel):
     WorkflowCreateDto
     """  # noqa: E501
 
-    actions: List[WorkflowActionItemDto]
-    description: Optional[StrictStr] = None
-    enabled: Optional[StrictBool] = None
-    filters: List[WorkflowFilterItemDto]
-    name: StrictStr
-    trigger_type: PluginTriggerType = Field(alias="triggerType")
+    actions: List[WorkflowActionItemDto] = Field(description="Workflow actions")
+    description: Optional[StrictStr] = Field(
+        default=None, description="Workflow description"
+    )
+    enabled: Optional[StrictBool] = Field(default=None, description="Workflow enabled")
+    filters: List[WorkflowFilterItemDto] = Field(description="Workflow filters")
+    name: StrictStr = Field(description="Workflow name")
+    trigger_type: PluginTriggerType = Field(
+        description="Workflow trigger type", alias="triggerType"
+    )
     __properties: ClassVar[List[str]] = [
         "actions",
         "description",

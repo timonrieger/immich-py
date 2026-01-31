@@ -51,7 +51,7 @@ def get_maintenance_status(
 @app.command("maintenance-login", deprecated=False, rich_help_panel="API commands")
 def maintenance_login(
     ctx: typer.Context,
-    token: str | None = typer.Option(None, "--token", help=""""""),
+    token: str | None = typer.Option(None, "--token", help="""Maintenance token"""),
 ) -> None:
     """Log into maintenance mode
 
@@ -73,9 +73,9 @@ def maintenance_login(
 @app.command("set-maintenance-mode", deprecated=False, rich_help_panel="API commands")
 def set_maintenance_mode(
     ctx: typer.Context,
-    action: str = typer.Option(..., "--action", help=""""""),
+    action: str = typer.Option(..., "--action", help="""Maintenance action"""),
     restore_backup_filename: str | None = typer.Option(
-        None, "--restore-backup-filename", help=""""""
+        None, "--restore-backup-filename", help="""Restore backup filename"""
     ),
 ) -> None:
     """Set maintenance mode

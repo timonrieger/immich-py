@@ -27,9 +27,15 @@ class OAuthConfigDto(BaseModel):
     OAuthConfigDto
     """  # noqa: E501
 
-    code_challenge: Optional[StrictStr] = Field(default=None, alias="codeChallenge")
-    redirect_uri: StrictStr = Field(alias="redirectUri")
-    state: Optional[StrictStr] = None
+    code_challenge: Optional[StrictStr] = Field(
+        default=None, description="OAuth code challenge (PKCE)", alias="codeChallenge"
+    )
+    redirect_uri: StrictStr = Field(
+        description="OAuth redirect URI", alias="redirectUri"
+    )
+    state: Optional[StrictStr] = Field(
+        default=None, description="OAuth state parameter"
+    )
     __properties: ClassVar[List[str]] = ["codeChallenge", "redirectUri", "state"]
 
     model_config = ConfigDict(

@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class SharedLinkType(str, Enum):
     """
-    SharedLinkType
+    Shared link type
     """
 
     """

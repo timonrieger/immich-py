@@ -27,35 +27,59 @@ class ServerAboutResponseDto(BaseModel):
     ServerAboutResponseDto
     """  # noqa: E501
 
-    build: Optional[StrictStr] = None
-    build_image: Optional[StrictStr] = Field(default=None, alias="buildImage")
-    build_image_url: Optional[StrictStr] = Field(default=None, alias="buildImageUrl")
-    build_url: Optional[StrictStr] = Field(default=None, alias="buildUrl")
-    exiftool: Optional[StrictStr] = None
-    ffmpeg: Optional[StrictStr] = None
-    imagemagick: Optional[StrictStr] = None
-    libvips: Optional[StrictStr] = None
-    licensed: StrictBool
-    nodejs: Optional[StrictStr] = None
-    repository: Optional[StrictStr] = None
-    repository_url: Optional[StrictStr] = Field(default=None, alias="repositoryUrl")
-    source_commit: Optional[StrictStr] = Field(default=None, alias="sourceCommit")
-    source_ref: Optional[StrictStr] = Field(default=None, alias="sourceRef")
-    source_url: Optional[StrictStr] = Field(default=None, alias="sourceUrl")
+    build: Optional[StrictStr] = Field(default=None, description="Build identifier")
+    build_image: Optional[StrictStr] = Field(
+        default=None, description="Build image name", alias="buildImage"
+    )
+    build_image_url: Optional[StrictStr] = Field(
+        default=None, description="Build image URL", alias="buildImageUrl"
+    )
+    build_url: Optional[StrictStr] = Field(
+        default=None, description="Build URL", alias="buildUrl"
+    )
+    exiftool: Optional[StrictStr] = Field(default=None, description="ExifTool version")
+    ffmpeg: Optional[StrictStr] = Field(default=None, description="FFmpeg version")
+    imagemagick: Optional[StrictStr] = Field(
+        default=None, description="ImageMagick version"
+    )
+    libvips: Optional[StrictStr] = Field(default=None, description="libvips version")
+    licensed: StrictBool = Field(description="Whether the server is licensed")
+    nodejs: Optional[StrictStr] = Field(default=None, description="Node.js version")
+    repository: Optional[StrictStr] = Field(default=None, description="Repository name")
+    repository_url: Optional[StrictStr] = Field(
+        default=None, description="Repository URL", alias="repositoryUrl"
+    )
+    source_commit: Optional[StrictStr] = Field(
+        default=None, description="Source commit hash", alias="sourceCommit"
+    )
+    source_ref: Optional[StrictStr] = Field(
+        default=None, description="Source reference (branch/tag)", alias="sourceRef"
+    )
+    source_url: Optional[StrictStr] = Field(
+        default=None, description="Source URL", alias="sourceUrl"
+    )
     third_party_bug_feature_url: Optional[StrictStr] = Field(
-        default=None, alias="thirdPartyBugFeatureUrl"
+        default=None,
+        description="Third-party bug/feature URL",
+        alias="thirdPartyBugFeatureUrl",
     )
     third_party_documentation_url: Optional[StrictStr] = Field(
-        default=None, alias="thirdPartyDocumentationUrl"
+        default=None,
+        description="Third-party documentation URL",
+        alias="thirdPartyDocumentationUrl",
     )
     third_party_source_url: Optional[StrictStr] = Field(
-        default=None, alias="thirdPartySourceUrl"
+        default=None, description="Third-party source URL", alias="thirdPartySourceUrl"
     )
     third_party_support_url: Optional[StrictStr] = Field(
-        default=None, alias="thirdPartySupportUrl"
+        default=None,
+        description="Third-party support URL",
+        alias="thirdPartySupportUrl",
     )
-    version: StrictStr
-    version_url: StrictStr = Field(alias="versionUrl")
+    version: StrictStr = Field(description="Server version")
+    version_url: StrictStr = Field(
+        description="URL to version information", alias="versionUrl"
+    )
     __properties: ClassVar[List[str]] = [
         "build",
         "buildImage",

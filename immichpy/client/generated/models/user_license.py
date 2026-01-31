@@ -28,9 +28,11 @@ class UserLicense(BaseModel):
     UserLicense
     """  # noqa: E501
 
-    activated_at: datetime = Field(alias="activatedAt")
-    activation_key: StrictStr = Field(alias="activationKey")
-    license_key: StrictStr = Field(alias="licenseKey")
+    activated_at: datetime = Field(description="Activation date", alias="activatedAt")
+    activation_key: StrictStr = Field(
+        description="Activation key", alias="activationKey"
+    )
+    license_key: StrictStr = Field(description="License key", alias="licenseKey")
     __properties: ClassVar[List[str]] = ["activatedAt", "activationKey", "licenseKey"]
 
     model_config = ConfigDict(

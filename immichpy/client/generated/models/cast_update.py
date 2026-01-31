@@ -27,7 +27,9 @@ class CastUpdate(BaseModel):
     CastUpdate
     """  # noqa: E501
 
-    g_cast_enabled: Optional[StrictBool] = Field(default=None, alias="gCastEnabled")
+    g_cast_enabled: Optional[StrictBool] = Field(
+        default=None, description="Whether Google Cast is enabled", alias="gCastEnabled"
+    )
     __properties: ClassVar[List[str]] = ["gCastEnabled"]
 
     model_config = ConfigDict(

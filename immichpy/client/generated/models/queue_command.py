@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class QueueCommand(str, Enum):
     """
-    QueueCommand
+    Queue command to execute
     """
 
     """

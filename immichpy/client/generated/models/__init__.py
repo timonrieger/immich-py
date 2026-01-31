@@ -34,7 +34,9 @@ from immichpy.client.generated.models.album_statistics_response_dto import (
 )
 from immichpy.client.generated.models.album_user_add_dto import AlbumUserAddDto
 from immichpy.client.generated.models.album_user_create_dto import AlbumUserCreateDto
-from immichpy.client.generated.models.album_user_response_dto import AlbumUserResponseDto
+from immichpy.client.generated.models.album_user_response_dto import (
+    AlbumUserResponseDto,
+)
 from immichpy.client.generated.models.album_user_role import AlbumUserRole
 from immichpy.client.generated.models.albums_add_assets_dto import AlbumsAddAssetsDto
 from immichpy.client.generated.models.albums_add_assets_response_dto import (
@@ -78,7 +80,9 @@ from immichpy.client.generated.models.asset_edit_action_rotate import (
 from immichpy.client.generated.models.asset_edits_dto import AssetEditsDto
 from immichpy.client.generated.models.asset_face_create_dto import AssetFaceCreateDto
 from immichpy.client.generated.models.asset_face_delete_dto import AssetFaceDeleteDto
-from immichpy.client.generated.models.asset_face_response_dto import AssetFaceResponseDto
+from immichpy.client.generated.models.asset_face_response_dto import (
+    AssetFaceResponseDto,
+)
 from immichpy.client.generated.models.asset_face_update_dto import AssetFaceUpdateDto
 from immichpy.client.generated.models.asset_face_update_item import AssetFaceUpdateItem
 from immichpy.client.generated.models.asset_face_without_person_response_dto import (
@@ -218,7 +222,9 @@ from immichpy.client.generated.models.maintenance_status_response_dto import (
     MaintenanceStatusResponseDto,
 )
 from immichpy.client.generated.models.manual_job_name import ManualJobName
-from immichpy.client.generated.models.map_marker_response_dto import MapMarkerResponseDto
+from immichpy.client.generated.models.map_marker_response_dto import (
+    MapMarkerResponseDto,
+)
 from immichpy.client.generated.models.map_reverse_geocode_response_dto import (
     MapReverseGeocodeResponseDto,
 )
@@ -236,7 +242,9 @@ from immichpy.client.generated.models.merge_person_dto import MergePersonDto
 from immichpy.client.generated.models.metadata_search_dto import MetadataSearchDto
 from immichpy.client.generated.models.mirror_axis import MirrorAxis
 from immichpy.client.generated.models.mirror_parameters import MirrorParameters
-from immichpy.client.generated.models.notification_create_dto import NotificationCreateDto
+from immichpy.client.generated.models.notification_create_dto import (
+    NotificationCreateDto,
+)
 from immichpy.client.generated.models.notification_delete_all_dto import (
     NotificationDeleteAllDto,
 )
@@ -246,7 +254,9 @@ from immichpy.client.generated.models.notification_type import NotificationType
 from immichpy.client.generated.models.notification_update_all_dto import (
     NotificationUpdateAllDto,
 )
-from immichpy.client.generated.models.notification_update_dto import NotificationUpdateDto
+from immichpy.client.generated.models.notification_update_dto import (
+    NotificationUpdateDto,
+)
 from immichpy.client.generated.models.o_auth_authorize_response_dto import (
     OAuthAuthorizeResponseDto,
 )
@@ -258,7 +268,9 @@ from immichpy.client.generated.models.o_auth_token_endpoint_auth_method import (
 from immichpy.client.generated.models.ocr_config import OcrConfig
 from immichpy.client.generated.models.on_this_day_dto import OnThisDayDto
 from immichpy.client.generated.models.onboarding_dto import OnboardingDto
-from immichpy.client.generated.models.onboarding_response_dto import OnboardingResponseDto
+from immichpy.client.generated.models.onboarding_response_dto import (
+    OnboardingResponseDto,
+)
 from immichpy.client.generated.models.partner_create_dto import PartnerCreateDto
 from immichpy.client.generated.models.partner_direction import PartnerDirection
 from immichpy.client.generated.models.partner_response_dto import PartnerResponseDto
@@ -307,7 +319,9 @@ from immichpy.client.generated.models.queue_response_legacy_dto import (
     QueueResponseLegacyDto,
 )
 from immichpy.client.generated.models.queue_statistics_dto import QueueStatisticsDto
-from immichpy.client.generated.models.queue_status_legacy_dto import QueueStatusLegacyDto
+from immichpy.client.generated.models.queue_status_legacy_dto import (
+    QueueStatusLegacyDto,
+)
 from immichpy.client.generated.models.queue_update_dto import QueueUpdateDto
 from immichpy.client.generated.models.queues_response_legacy_dto import (
     QueuesResponseLegacyDto,
@@ -444,14 +458,18 @@ from immichpy.client.generated.models.system_config_dto import SystemConfigDto
 from immichpy.client.generated.models.system_config_f_fmpeg_dto import (
     SystemConfigFFmpegDto,
 )
-from immichpy.client.generated.models.system_config_faces_dto import SystemConfigFacesDto
+from immichpy.client.generated.models.system_config_faces_dto import (
+    SystemConfigFacesDto,
+)
 from immichpy.client.generated.models.system_config_generated_fullsize_image_dto import (
     SystemConfigGeneratedFullsizeImageDto,
 )
 from immichpy.client.generated.models.system_config_generated_image_dto import (
     SystemConfigGeneratedImageDto,
 )
-from immichpy.client.generated.models.system_config_image_dto import SystemConfigImageDto
+from immichpy.client.generated.models.system_config_image_dto import (
+    SystemConfigImageDto,
+)
 from immichpy.client.generated.models.system_config_job_dto import SystemConfigJobDto
 from immichpy.client.generated.models.system_config_library_dto import (
     SystemConfigLibraryDto,
@@ -481,7 +499,9 @@ from immichpy.client.generated.models.system_config_nightly_tasks_dto import (
 from immichpy.client.generated.models.system_config_notifications_dto import (
     SystemConfigNotificationsDto,
 )
-from immichpy.client.generated.models.system_config_o_auth_dto import SystemConfigOAuthDto
+from immichpy.client.generated.models.system_config_o_auth_dto import (
+    SystemConfigOAuthDto,
+)
 from immichpy.client.generated.models.system_config_password_login_dto import (
     SystemConfigPasswordLoginDto,
 )
@@ -507,8 +527,12 @@ from immichpy.client.generated.models.system_config_template_storage_option_dto 
 from immichpy.client.generated.models.system_config_templates_dto import (
     SystemConfigTemplatesDto,
 )
-from immichpy.client.generated.models.system_config_theme_dto import SystemConfigThemeDto
-from immichpy.client.generated.models.system_config_trash_dto import SystemConfigTrashDto
+from immichpy.client.generated.models.system_config_theme_dto import (
+    SystemConfigThemeDto,
+)
+from immichpy.client.generated.models.system_config_trash_dto import (
+    SystemConfigTrashDto,
+)
 from immichpy.client.generated.models.system_config_user_dto import SystemConfigUserDto
 from immichpy.client.generated.models.tag_bulk_assets_dto import TagBulkAssetsDto
 from immichpy.client.generated.models.tag_bulk_assets_response_dto import (
@@ -522,7 +546,9 @@ from immichpy.client.generated.models.tags_response import TagsResponse
 from immichpy.client.generated.models.tags_update import TagsUpdate
 from immichpy.client.generated.models.template_dto import TemplateDto
 from immichpy.client.generated.models.template_response_dto import TemplateResponseDto
-from immichpy.client.generated.models.test_email_response_dto import TestEmailResponseDto
+from immichpy.client.generated.models.test_email_response_dto import (
+    TestEmailResponseDto,
+)
 from immichpy.client.generated.models.time_bucket_asset_response_dto import (
     TimeBucketAssetResponseDto,
 )
@@ -540,7 +566,9 @@ from immichpy.client.generated.models.update_library_dto import UpdateLibraryDto
 from immichpy.client.generated.models.usage_by_user_dto import UsageByUserDto
 from immichpy.client.generated.models.user_admin_create_dto import UserAdminCreateDto
 from immichpy.client.generated.models.user_admin_delete_dto import UserAdminDeleteDto
-from immichpy.client.generated.models.user_admin_response_dto import UserAdminResponseDto
+from immichpy.client.generated.models.user_admin_response_dto import (
+    UserAdminResponseDto,
+)
 from immichpy.client.generated.models.user_admin_update_dto import UserAdminUpdateDto
 from immichpy.client.generated.models.user_avatar_color import UserAvatarColor
 from immichpy.client.generated.models.user_license import UserLicense

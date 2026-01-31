@@ -19,7 +19,9 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from immichpy.client.generated.models.queue_statistics_dto import QueueStatisticsDto
-from immichpy.client.generated.models.queue_status_legacy_dto import QueueStatusLegacyDto
+from immichpy.client.generated.models.queue_status_legacy_dto import (
+    QueueStatusLegacyDto,
+)
 from typing import Optional, Set
 from typing_extensions import Self
 

@@ -29,19 +29,29 @@ class UserAdminUpdateDto(BaseModel):
     UserAdminUpdateDto
     """  # noqa: E501
 
-    avatar_color: Optional[UserAvatarColor] = Field(default=None, alias="avatarColor")
-    email: Optional[StrictStr] = None
-    is_admin: Optional[StrictBool] = Field(default=None, alias="isAdmin")
-    name: Optional[StrictStr] = None
-    password: Optional[StrictStr] = None
-    pin_code: Optional[StrictStr] = Field(default=None, alias="pinCode")
+    avatar_color: Optional[UserAvatarColor] = Field(
+        default=None, description="Avatar color", alias="avatarColor"
+    )
+    email: Optional[StrictStr] = Field(default=None, description="User email")
+    is_admin: Optional[StrictBool] = Field(
+        default=None, description="Grant admin privileges", alias="isAdmin"
+    )
+    name: Optional[StrictStr] = Field(default=None, description="User name")
+    password: Optional[StrictStr] = Field(default=None, description="User password")
+    pin_code: Optional[StrictStr] = Field(
+        default=None, description="PIN code", alias="pinCode"
+    )
     quota_size_in_bytes: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
-        default=None, alias="quotaSizeInBytes"
+        default=None, description="Storage quota in bytes", alias="quotaSizeInBytes"
     )
     should_change_password: Optional[StrictBool] = Field(
-        default=None, alias="shouldChangePassword"
+        default=None,
+        description="Require password change on next login",
+        alias="shouldChangePassword",
     )
-    storage_label: Optional[StrictStr] = Field(default=None, alias="storageLabel")
+    storage_label: Optional[StrictStr] = Field(
+        default=None, description="Storage label", alias="storageLabel"
+    )
     __properties: ClassVar[List[str]] = [
         "avatarColor",
         "email",

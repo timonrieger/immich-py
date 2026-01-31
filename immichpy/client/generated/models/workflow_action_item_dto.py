@@ -28,8 +28,12 @@ class WorkflowActionItemDto(BaseModel):
     WorkflowActionItemDto
     """  # noqa: E501
 
-    action_config: Optional[Dict[str, Any]] = Field(default=None, alias="actionConfig")
-    plugin_action_id: UUID = Field(alias="pluginActionId")
+    action_config: Optional[Dict[str, Any]] = Field(
+        default=None, description="Action configuration", alias="actionConfig"
+    )
+    plugin_action_id: UUID = Field(
+        description="Plugin action ID", alias="pluginActionId"
+    )
     __properties: ClassVar[List[str]] = ["actionConfig", "pluginActionId"]
 
     model_config = ConfigDict(

@@ -27,7 +27,7 @@ class SyncPersonDeleteV1(BaseModel):
     SyncPersonDeleteV1
     """  # noqa: E501
 
-    person_id: StrictStr = Field(alias="personId")
+    person_id: StrictStr = Field(description="Person ID", alias="personId")
     __properties: ClassVar[List[str]] = ["personId"]
 
     model_config = ConfigDict(

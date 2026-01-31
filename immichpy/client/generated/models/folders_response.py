@@ -27,8 +27,10 @@ class FoldersResponse(BaseModel):
     FoldersResponse
     """  # noqa: E501
 
-    enabled: StrictBool
-    sidebar_web: StrictBool = Field(alias="sidebarWeb")
+    enabled: StrictBool = Field(description="Whether folders are enabled")
+    sidebar_web: StrictBool = Field(
+        description="Whether folders appear in web sidebar", alias="sidebarWeb"
+    )
     __properties: ClassVar[List[str]] = ["enabled", "sidebarWeb"]
 
     model_config = ConfigDict(

@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class MaintenanceAction(str, Enum):
     """
-    MaintenanceAction
+    Maintenance action
     """
 
     """

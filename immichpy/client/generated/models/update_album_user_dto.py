@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from immichpy.client.generated.models.album_user_role import AlbumUserRole
 from typing import Optional, Set
@@ -28,7 +28,7 @@ class UpdateAlbumUserDto(BaseModel):
     UpdateAlbumUserDto
     """  # noqa: E501
 
-    role: AlbumUserRole
+    role: AlbumUserRole = Field(description="Album user role")
     __properties: ClassVar[List[str]] = ["role"]
 
     model_config = ConfigDict(

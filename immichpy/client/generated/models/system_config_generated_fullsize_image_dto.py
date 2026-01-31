@@ -29,10 +29,12 @@ class SystemConfigGeneratedFullsizeImageDto(BaseModel):
     SystemConfigGeneratedFullsizeImageDto
     """  # noqa: E501
 
-    enabled: StrictBool
-    format: ImageFormat
-    progressive: Optional[StrictBool] = False
-    quality: Annotated[int, Field(le=100, strict=True, ge=1)]
+    enabled: StrictBool = Field(description="Enabled")
+    format: ImageFormat = Field(description="Image format")
+    progressive: Optional[StrictBool] = Field(default=False, description="Progressive")
+    quality: Annotated[int, Field(le=100, strict=True, ge=1)] = Field(
+        description="Quality"
+    )
     __properties: ClassVar[List[str]] = ["enabled", "format", "progressive", "quality"]
 
     model_config = ConfigDict(

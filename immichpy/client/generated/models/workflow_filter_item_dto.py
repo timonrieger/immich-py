@@ -28,8 +28,12 @@ class WorkflowFilterItemDto(BaseModel):
     WorkflowFilterItemDto
     """  # noqa: E501
 
-    filter_config: Optional[Dict[str, Any]] = Field(default=None, alias="filterConfig")
-    plugin_filter_id: UUID = Field(alias="pluginFilterId")
+    filter_config: Optional[Dict[str, Any]] = Field(
+        default=None, description="Filter configuration", alias="filterConfig"
+    )
+    plugin_filter_id: UUID = Field(
+        description="Plugin filter ID", alias="pluginFilterId"
+    )
     __properties: ClassVar[List[str]] = ["filterConfig", "pluginFilterId"]
 
     model_config = ConfigDict(

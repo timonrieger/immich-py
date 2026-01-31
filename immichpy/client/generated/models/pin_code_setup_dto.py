@@ -27,7 +27,7 @@ class PinCodeSetupDto(BaseModel):
     PinCodeSetupDto
     """  # noqa: E501
 
-    pin_code: StrictStr = Field(alias="pinCode")
+    pin_code: StrictStr = Field(description="PIN code (4-6 digits)", alias="pinCode")
     __properties: ClassVar[List[str]] = ["pinCode"]
 
     model_config = ConfigDict(

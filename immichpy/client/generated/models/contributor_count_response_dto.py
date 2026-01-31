@@ -27,8 +27,10 @@ class ContributorCountResponseDto(BaseModel):
     ContributorCountResponseDto
     """  # noqa: E501
 
-    asset_count: StrictInt = Field(alias="assetCount")
-    user_id: StrictStr = Field(alias="userId")
+    asset_count: StrictInt = Field(
+        description="Number of assets contributed", alias="assetCount"
+    )
+    user_id: StrictStr = Field(description="User ID", alias="userId")
     __properties: ClassVar[List[str]] = ["assetCount", "userId"]
 
     model_config = ConfigDict(

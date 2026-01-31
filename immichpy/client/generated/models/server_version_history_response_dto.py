@@ -28,9 +28,11 @@ class ServerVersionHistoryResponseDto(BaseModel):
     ServerVersionHistoryResponseDto
     """  # noqa: E501
 
-    created_at: datetime = Field(alias="createdAt")
-    id: StrictStr
-    version: StrictStr
+    created_at: datetime = Field(
+        description="When this version was first seen", alias="createdAt"
+    )
+    id: StrictStr = Field(description="Version history entry ID")
+    version: StrictStr = Field(description="Version string")
     __properties: ClassVar[List[str]] = ["createdAt", "id", "version"]
 
     model_config = ConfigDict(

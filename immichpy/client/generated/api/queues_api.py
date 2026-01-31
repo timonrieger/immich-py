@@ -42,7 +42,7 @@ class QueuesApi:
     @validate_call
     async def empty_queue(
         self,
-        name: QueueName,
+        name: Annotated[QueueName, Field(description="Queue name")],
         queue_delete_dto: QueueDeleteDto,
         _request_timeout: Union[
             None,
@@ -60,7 +60,7 @@ class QueuesApi:
 
         Removes all jobs from the specified queue.
 
-        :param name: (required)
+        :param name: Queue name (required)
         :type name: QueueName
         :param queue_delete_dto: (required)
         :type queue_delete_dto: QueueDeleteDto
@@ -110,7 +110,7 @@ class QueuesApi:
     @validate_call
     async def empty_queue_with_http_info(
         self,
-        name: QueueName,
+        name: Annotated[QueueName, Field(description="Queue name")],
         queue_delete_dto: QueueDeleteDto,
         _request_timeout: Union[
             None,
@@ -128,7 +128,7 @@ class QueuesApi:
 
         Removes all jobs from the specified queue.
 
-        :param name: (required)
+        :param name: Queue name (required)
         :type name: QueueName
         :param queue_delete_dto: (required)
         :type queue_delete_dto: QueueDeleteDto
@@ -178,7 +178,7 @@ class QueuesApi:
     @validate_call
     async def empty_queue_without_preload_content(
         self,
-        name: QueueName,
+        name: Annotated[QueueName, Field(description="Queue name")],
         queue_delete_dto: QueueDeleteDto,
         _request_timeout: Union[
             None,
@@ -196,7 +196,7 @@ class QueuesApi:
 
         Removes all jobs from the specified queue.
 
-        :param name: (required)
+        :param name: Queue name (required)
         :type name: QueueName
         :param queue_delete_dto: (required)
         :type queue_delete_dto: QueueDeleteDto
@@ -302,7 +302,7 @@ class QueuesApi:
     @validate_call
     async def get_queue(
         self,
-        name: QueueName,
+        name: Annotated[QueueName, Field(description="Queue name")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -319,7 +319,7 @@ class QueuesApi:
 
         Retrieves a specific queue by its name.
 
-        :param name: (required)
+        :param name: Queue name (required)
         :type name: QueueName
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -366,7 +366,7 @@ class QueuesApi:
     @validate_call
     async def get_queue_with_http_info(
         self,
-        name: QueueName,
+        name: Annotated[QueueName, Field(description="Queue name")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -383,7 +383,7 @@ class QueuesApi:
 
         Retrieves a specific queue by its name.
 
-        :param name: (required)
+        :param name: Queue name (required)
         :type name: QueueName
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -430,7 +430,7 @@ class QueuesApi:
     @validate_call
     async def get_queue_without_preload_content(
         self,
-        name: QueueName,
+        name: Annotated[QueueName, Field(description="Queue name")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -447,7 +447,7 @@ class QueuesApi:
 
         Retrieves a specific queue by its name.
 
-        :param name: (required)
+        :param name: Queue name (required)
         :type name: QueueName
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -543,8 +543,10 @@ class QueuesApi:
     @validate_call
     async def get_queue_jobs(
         self,
-        name: QueueName,
-        status: Optional[List[QueueJobStatus]] = None,
+        name: Annotated[QueueName, Field(description="Queue name")],
+        status: Annotated[
+            Optional[List[QueueJobStatus]], Field(description="Filter jobs by status")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -561,9 +563,9 @@ class QueuesApi:
 
         Retrieves a list of queue jobs from the specified queue.
 
-        :param name: (required)
+        :param name: Queue name (required)
         :type name: QueueName
-        :param status:
+        :param status: Filter jobs by status
         :type status: List[QueueJobStatus]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -611,8 +613,10 @@ class QueuesApi:
     @validate_call
     async def get_queue_jobs_with_http_info(
         self,
-        name: QueueName,
-        status: Optional[List[QueueJobStatus]] = None,
+        name: Annotated[QueueName, Field(description="Queue name")],
+        status: Annotated[
+            Optional[List[QueueJobStatus]], Field(description="Filter jobs by status")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -629,9 +633,9 @@ class QueuesApi:
 
         Retrieves a list of queue jobs from the specified queue.
 
-        :param name: (required)
+        :param name: Queue name (required)
         :type name: QueueName
-        :param status:
+        :param status: Filter jobs by status
         :type status: List[QueueJobStatus]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -679,8 +683,10 @@ class QueuesApi:
     @validate_call
     async def get_queue_jobs_without_preload_content(
         self,
-        name: QueueName,
-        status: Optional[List[QueueJobStatus]] = None,
+        name: Annotated[QueueName, Field(description="Queue name")],
+        status: Annotated[
+            Optional[List[QueueJobStatus]], Field(description="Filter jobs by status")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -697,9 +703,9 @@ class QueuesApi:
 
         Retrieves a list of queue jobs from the specified queue.
 
-        :param name: (required)
+        :param name: Queue name (required)
         :type name: QueueName
-        :param status:
+        :param status: Filter jobs by status
         :type status: List[QueueJobStatus]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1028,7 +1034,7 @@ class QueuesApi:
     @validate_call
     async def update_queue(
         self,
-        name: QueueName,
+        name: Annotated[QueueName, Field(description="Queue name")],
         queue_update_dto: QueueUpdateDto,
         _request_timeout: Union[
             None,
@@ -1046,7 +1052,7 @@ class QueuesApi:
 
         Change the paused status of a specific queue.
 
-        :param name: (required)
+        :param name: Queue name (required)
         :type name: QueueName
         :param queue_update_dto: (required)
         :type queue_update_dto: QueueUpdateDto
@@ -1096,7 +1102,7 @@ class QueuesApi:
     @validate_call
     async def update_queue_with_http_info(
         self,
-        name: QueueName,
+        name: Annotated[QueueName, Field(description="Queue name")],
         queue_update_dto: QueueUpdateDto,
         _request_timeout: Union[
             None,
@@ -1114,7 +1120,7 @@ class QueuesApi:
 
         Change the paused status of a specific queue.
 
-        :param name: (required)
+        :param name: Queue name (required)
         :type name: QueueName
         :param queue_update_dto: (required)
         :type queue_update_dto: QueueUpdateDto
@@ -1164,7 +1170,7 @@ class QueuesApi:
     @validate_call
     async def update_queue_without_preload_content(
         self,
-        name: QueueName,
+        name: Annotated[QueueName, Field(description="Queue name")],
         queue_update_dto: QueueUpdateDto,
         _request_timeout: Union[
             None,
@@ -1182,7 +1188,7 @@ class QueuesApi:
 
         Change the paused status of a specific queue.
 
-        :param name: (required)
+        :param name: Queue name (required)
         :type name: QueueName
         :param queue_update_dto: (required)
         :type queue_update_dto: QueueUpdateDto

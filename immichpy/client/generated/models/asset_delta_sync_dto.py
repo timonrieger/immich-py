@@ -29,8 +29,10 @@ class AssetDeltaSyncDto(BaseModel):
     AssetDeltaSyncDto
     """  # noqa: E501
 
-    updated_after: datetime = Field(alias="updatedAfter")
-    user_ids: List[UUID] = Field(alias="userIds")
+    updated_after: datetime = Field(
+        description="Sync assets updated after this date", alias="updatedAfter"
+    )
+    user_ids: List[UUID] = Field(description="User IDs to sync", alias="userIds")
     __properties: ClassVar[List[str]] = ["updatedAfter", "userIds"]
 
     model_config = ConfigDict(

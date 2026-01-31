@@ -34,9 +34,11 @@ class AssetIdsResponseDto(BaseModel):
     AssetIdsResponseDto
     """  # noqa: E501
 
-    asset_id: StrictStr = Field(alias="assetId")
-    error: Optional[StrictStr] = None
-    success: StrictBool
+    asset_id: StrictStr = Field(description="Asset ID", alias="assetId")
+    error: Optional[StrictStr] = Field(
+        default=None, description="Error reason if failed"
+    )
+    success: StrictBool = Field(description="Whether operation succeeded")
     __properties: ClassVar[List[str]] = ["assetId", "error", "success"]
 
     @field_validator("error")

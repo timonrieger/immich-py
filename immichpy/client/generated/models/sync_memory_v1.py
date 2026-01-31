@@ -29,18 +29,18 @@ class SyncMemoryV1(BaseModel):
     SyncMemoryV1
     """  # noqa: E501
 
-    created_at: datetime = Field(alias="createdAt")
-    data: Dict[str, Any]
-    deleted_at: Optional[datetime] = Field(alias="deletedAt")
-    hide_at: Optional[datetime] = Field(alias="hideAt")
-    id: StrictStr
-    is_saved: StrictBool = Field(alias="isSaved")
-    memory_at: datetime = Field(alias="memoryAt")
-    owner_id: StrictStr = Field(alias="ownerId")
-    seen_at: Optional[datetime] = Field(alias="seenAt")
-    show_at: Optional[datetime] = Field(alias="showAt")
-    type: MemoryType
-    updated_at: datetime = Field(alias="updatedAt")
+    created_at: datetime = Field(description="Created at", alias="createdAt")
+    data: Dict[str, Any] = Field(description="Data")
+    deleted_at: Optional[datetime] = Field(description="Deleted at", alias="deletedAt")
+    hide_at: Optional[datetime] = Field(description="Hide at", alias="hideAt")
+    id: StrictStr = Field(description="Memory ID")
+    is_saved: StrictBool = Field(description="Is saved", alias="isSaved")
+    memory_at: datetime = Field(description="Memory at", alias="memoryAt")
+    owner_id: StrictStr = Field(description="Owner ID", alias="ownerId")
+    seen_at: Optional[datetime] = Field(description="Seen at", alias="seenAt")
+    show_at: Optional[datetime] = Field(description="Show at", alias="showAt")
+    type: MemoryType = Field(description="Memory type")
+    updated_at: datetime = Field(description="Updated at", alias="updatedAt")
     __properties: ClassVar[List[str]] = [
         "createdAt",
         "data",

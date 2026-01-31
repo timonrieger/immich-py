@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Set
 from typing_extensions import Self
@@ -27,7 +27,9 @@ class RatingsUpdate(BaseModel):
     RatingsUpdate
     """  # noqa: E501
 
-    enabled: Optional[StrictBool] = None
+    enabled: Optional[StrictBool] = Field(
+        default=None, description="Whether ratings are enabled"
+    )
     __properties: ClassVar[List[str]] = ["enabled"]
 
     model_config = ConfigDict(

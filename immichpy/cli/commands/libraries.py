@@ -20,11 +20,13 @@ app = typer.Typer(
 def create_library(
     ctx: typer.Context,
     exclusion_patterns: list[str] | None = typer.Option(
-        None, "--exclusion-patterns", help=""""""
+        None, "--exclusion-patterns", help="""Exclusion patterns (max 128)"""
     ),
-    import_paths: list[str] | None = typer.Option(None, "--import-paths", help=""""""),
-    name: str | None = typer.Option(None, "--name", help=""""""),
-    owner_id: str = typer.Option(..., "--owner-id", help=""""""),
+    import_paths: list[str] | None = typer.Option(
+        None, "--import-paths", help="""Import paths (max 128)"""
+    ),
+    name: str | None = typer.Option(None, "--name", help="""Library name"""),
+    owner_id: str = typer.Option(..., "--owner-id", help="""Owner user ID"""),
 ) -> None:
     """Create a library
 
@@ -131,10 +133,12 @@ def update_library(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
     exclusion_patterns: list[str] | None = typer.Option(
-        None, "--exclusion-patterns", help=""""""
+        None, "--exclusion-patterns", help="""Exclusion patterns (max 128)"""
     ),
-    import_paths: list[str] | None = typer.Option(None, "--import-paths", help=""""""),
-    name: str | None = typer.Option(None, "--name", help=""""""),
+    import_paths: list[str] | None = typer.Option(
+        None, "--import-paths", help="""Import paths (max 128)"""
+    ),
+    name: str | None = typer.Option(None, "--name", help="""Library name"""),
 ) -> None:
     """Update a library
 
@@ -161,9 +165,11 @@ def validate(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
     exclusion_patterns: list[str] | None = typer.Option(
-        None, "--exclusion-patterns", help=""""""
+        None, "--exclusion-patterns", help="""Exclusion patterns (max 128)"""
     ),
-    import_paths: list[str] | None = typer.Option(None, "--import-paths", help=""""""),
+    import_paths: list[str] | None = typer.Option(
+        None, "--import-paths", help="""Import paths to validate (max 128)"""
+    ),
 ) -> None:
     """Validate library settings
 

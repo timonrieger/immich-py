@@ -25,11 +25,13 @@ from typing_extensions import Self
 
 class AlbumsUpdate(BaseModel):
     """
-    AlbumsUpdate
+    Album preferences
     """  # noqa: E501
 
     default_asset_order: Optional[AssetOrder] = Field(
-        default=None, alias="defaultAssetOrder"
+        default=None,
+        description="Default asset order for albums",
+        alias="defaultAssetOrder",
     )
     __properties: ClassVar[List[str]] = ["defaultAssetOrder"]
 

@@ -29,9 +29,13 @@ class LicenseResponseDto(BaseModel):
     LicenseResponseDto
     """  # noqa: E501
 
-    activated_at: datetime = Field(alias="activatedAt")
-    activation_key: StrictStr = Field(alias="activationKey")
-    license_key: Annotated[str, Field(strict=True)] = Field(alias="licenseKey")
+    activated_at: datetime = Field(description="Activation date", alias="activatedAt")
+    activation_key: StrictStr = Field(
+        description="Activation key", alias="activationKey"
+    )
+    license_key: Annotated[str, Field(strict=True)] = Field(
+        description="License key (format: IM(SV|CL)(-XXXX){8})", alias="licenseKey"
+    )
     __properties: ClassVar[List[str]] = ["activatedAt", "activationKey", "licenseKey"]
 
     @field_validator("license_key")

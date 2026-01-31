@@ -28,11 +28,13 @@ class SyncStackV1(BaseModel):
     SyncStackV1
     """  # noqa: E501
 
-    created_at: datetime = Field(alias="createdAt")
-    id: StrictStr
-    owner_id: StrictStr = Field(alias="ownerId")
-    primary_asset_id: StrictStr = Field(alias="primaryAssetId")
-    updated_at: datetime = Field(alias="updatedAt")
+    created_at: datetime = Field(description="Created at", alias="createdAt")
+    id: StrictStr = Field(description="Stack ID")
+    owner_id: StrictStr = Field(description="Owner ID", alias="ownerId")
+    primary_asset_id: StrictStr = Field(
+        description="Primary asset ID", alias="primaryAssetId"
+    )
+    updated_at: datetime = Field(description="Updated at", alias="updatedAt")
     __properties: ClassVar[List[str]] = [
         "createdAt",
         "id",

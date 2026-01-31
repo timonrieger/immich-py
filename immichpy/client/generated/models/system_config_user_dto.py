@@ -28,7 +28,9 @@ class SystemConfigUserDto(BaseModel):
     SystemConfigUserDto
     """  # noqa: E501
 
-    delete_delay: Annotated[int, Field(strict=True, ge=1)] = Field(alias="deleteDelay")
+    delete_delay: Annotated[int, Field(strict=True, ge=1)] = Field(
+        description="Delete delay", alias="deleteDelay"
+    )
     __properties: ClassVar[List[str]] = ["deleteDelay"]
 
     model_config = ConfigDict(

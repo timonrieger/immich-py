@@ -29,12 +29,16 @@ class UpdateLibraryDto(BaseModel):
     """  # noqa: E501
 
     exclusion_patterns: Optional[Annotated[List[StrictStr], Field(max_length=128)]] = (
-        Field(default=None, alias="exclusionPatterns")
+        Field(
+            default=None,
+            description="Exclusion patterns (max 128)",
+            alias="exclusionPatterns",
+        )
     )
     import_paths: Optional[Annotated[List[StrictStr], Field(max_length=128)]] = Field(
-        default=None, alias="importPaths"
+        default=None, description="Import paths (max 128)", alias="importPaths"
     )
-    name: Optional[StrictStr] = None
+    name: Optional[StrictStr] = Field(default=None, description="Library name")
     __properties: ClassVar[List[str]] = ["exclusionPatterns", "importPaths", "name"]
 
     model_config = ConfigDict(

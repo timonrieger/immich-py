@@ -29,10 +29,16 @@ class ValidateLibraryDto(BaseModel):
     """  # noqa: E501
 
     exclusion_patterns: Optional[Annotated[List[StrictStr], Field(max_length=128)]] = (
-        Field(default=None, alias="exclusionPatterns")
+        Field(
+            default=None,
+            description="Exclusion patterns (max 128)",
+            alias="exclusionPatterns",
+        )
     )
     import_paths: Optional[Annotated[List[StrictStr], Field(max_length=128)]] = Field(
-        default=None, alias="importPaths"
+        default=None,
+        description="Import paths to validate (max 128)",
+        alias="importPaths",
     )
     __properties: ClassVar[List[str]] = ["exclusionPatterns", "importPaths"]
 

@@ -28,9 +28,13 @@ class CreateProfileImageResponseDto(BaseModel):
     CreateProfileImageResponseDto
     """  # noqa: E501
 
-    profile_changed_at: datetime = Field(alias="profileChangedAt")
-    profile_image_path: StrictStr = Field(alias="profileImagePath")
-    user_id: StrictStr = Field(alias="userId")
+    profile_changed_at: datetime = Field(
+        description="Profile image change date", alias="profileChangedAt"
+    )
+    profile_image_path: StrictStr = Field(
+        description="Profile image file path", alias="profileImagePath"
+    )
+    user_id: StrictStr = Field(description="User ID", alias="userId")
     __properties: ClassVar[List[str]] = [
         "profileChangedAt",
         "profileImagePath",

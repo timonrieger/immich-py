@@ -29,7 +29,7 @@ class APIKeyCreateResponseDto(BaseModel):
     """  # noqa: E501
 
     api_key: APIKeyResponseDto = Field(alias="apiKey")
-    secret: StrictStr
+    secret: StrictStr = Field(description="API key secret (only shown once)")
     __properties: ClassVar[List[str]] = ["apiKey", "secret"]
 
     model_config = ConfigDict(

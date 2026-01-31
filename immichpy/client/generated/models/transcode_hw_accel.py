@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class TranscodeHWAccel(str, Enum):
     """
-    TranscodeHWAccel
+    Transcode hardware acceleration
     """
 
     """

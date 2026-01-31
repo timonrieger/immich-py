@@ -15,12 +15,16 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from immichpy.client.generated.models.notification_create_dto import NotificationCreateDto
+from immichpy.client.generated.models.notification_create_dto import (
+    NotificationCreateDto,
+)
 from immichpy.client.generated.models.notification_dto import NotificationDto
 from immichpy.client.generated.models.system_config_smtp_dto import SystemConfigSmtpDto
 from immichpy.client.generated.models.template_dto import TemplateDto
 from immichpy.client.generated.models.template_response_dto import TemplateResponseDto
-from immichpy.client.generated.models.test_email_response_dto import TestEmailResponseDto
+from immichpy.client.generated.models.test_email_response_dto import (
+    TestEmailResponseDto,
+)
 
 from immichpy.client.generated.api_client import ApiClient, RequestSerialized
 from immichpy.client.generated.api_response import ApiResponse

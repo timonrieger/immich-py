@@ -29,13 +29,21 @@ class SyncUserV1(BaseModel):
     SyncUserV1
     """  # noqa: E501
 
-    avatar_color: Optional[UserAvatarColor] = Field(alias="avatarColor")
-    deleted_at: Optional[datetime] = Field(alias="deletedAt")
-    email: StrictStr
-    has_profile_image: StrictBool = Field(alias="hasProfileImage")
-    id: StrictStr
-    name: StrictStr
-    profile_changed_at: datetime = Field(alias="profileChangedAt")
+    avatar_color: Optional[UserAvatarColor] = Field(
+        description="User avatar color", alias="avatarColor"
+    )
+    deleted_at: Optional[datetime] = Field(
+        description="User deleted at", alias="deletedAt"
+    )
+    email: StrictStr = Field(description="User email")
+    has_profile_image: StrictBool = Field(
+        description="User has profile image", alias="hasProfileImage"
+    )
+    id: StrictStr = Field(description="User ID")
+    name: StrictStr = Field(description="User name")
+    profile_changed_at: datetime = Field(
+        description="User profile changed at", alias="profileChangedAt"
+    )
     __properties: ClassVar[List[str]] = [
         "avatarColor",
         "deletedAt",

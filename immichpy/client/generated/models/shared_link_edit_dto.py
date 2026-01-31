@@ -28,18 +28,28 @@ class SharedLinkEditDto(BaseModel):
     SharedLinkEditDto
     """  # noqa: E501
 
-    allow_download: Optional[StrictBool] = Field(default=None, alias="allowDownload")
-    allow_upload: Optional[StrictBool] = Field(default=None, alias="allowUpload")
+    allow_download: Optional[StrictBool] = Field(
+        default=None, description="Allow downloads", alias="allowDownload"
+    )
+    allow_upload: Optional[StrictBool] = Field(
+        default=None, description="Allow uploads", alias="allowUpload"
+    )
     change_expiry_time: Optional[StrictBool] = Field(
         default=None,
-        description="Few clients cannot send null to set the expiryTime to never. Setting this flag and not sending expiryAt is considered as null instead. Clients that can send null values can ignore this.",
+        description="Whether to change the expiry time. Few clients cannot send null to set the expiryTime to never. Setting this flag and not sending expiryAt is considered as null instead. Clients that can send null values can ignore this.",
         alias="changeExpiryTime",
     )
-    description: Optional[StrictStr] = None
-    expires_at: Optional[datetime] = Field(default=None, alias="expiresAt")
-    password: Optional[StrictStr] = None
-    show_metadata: Optional[StrictBool] = Field(default=None, alias="showMetadata")
-    slug: Optional[StrictStr] = None
+    description: Optional[StrictStr] = Field(
+        default=None, description="Link description"
+    )
+    expires_at: Optional[datetime] = Field(
+        default=None, description="Expiration date", alias="expiresAt"
+    )
+    password: Optional[StrictStr] = Field(default=None, description="Link password")
+    show_metadata: Optional[StrictBool] = Field(
+        default=None, description="Show metadata", alias="showMetadata"
+    )
+    slug: Optional[StrictStr] = Field(default=None, description="Custom URL slug")
     __properties: ClassVar[List[str]] = [
         "allowDownload",
         "allowUpload",

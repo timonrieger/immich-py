@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class PluginTriggerType(str, Enum):
     """
-    PluginTriggerType
+    Trigger type
     """
 
     """

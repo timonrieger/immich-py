@@ -27,9 +27,9 @@ class ValidateLibraryImportPathResponseDto(BaseModel):
     ValidateLibraryImportPathResponseDto
     """  # noqa: E501
 
-    import_path: StrictStr = Field(alias="importPath")
-    is_valid: StrictBool = Field(alias="isValid")
-    message: Optional[StrictStr] = None
+    import_path: StrictStr = Field(description="Import path", alias="importPath")
+    is_valid: StrictBool = Field(description="Is valid", alias="isValid")
+    message: Optional[StrictStr] = Field(default=None, description="Validation message")
     __properties: ClassVar[List[str]] = ["importPath", "isValid", "message"]
 
     model_config = ConfigDict(

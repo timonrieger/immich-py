@@ -30,7 +30,7 @@ class AddUsersDto(BaseModel):
     """  # noqa: E501
 
     album_users: Annotated[List[AlbumUserAddDto], Field(min_length=1)] = Field(
-        alias="albumUsers"
+        description="Album users to add", alias="albumUsers"
     )
     __properties: ClassVar[List[str]] = ["albumUsers"]
 

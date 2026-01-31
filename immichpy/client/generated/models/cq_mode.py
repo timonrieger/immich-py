@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class CQMode(str, Enum):
     """
-    CQMode
+    CQ mode
     """
 
     """

@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from immichpy.client.generated.models.asset_face_update_item import AssetFaceUpdateItem
 from typing import Optional, Set
@@ -28,7 +28,7 @@ class AssetFaceUpdateDto(BaseModel):
     AssetFaceUpdateDto
     """  # noqa: E501
 
-    data: List[AssetFaceUpdateItem]
+    data: List[AssetFaceUpdateItem] = Field(description="Face update items")
     __properties: ClassVar[List[str]] = ["data"]
 
     model_config = ConfigDict(

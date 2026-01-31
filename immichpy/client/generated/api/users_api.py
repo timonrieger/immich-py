@@ -23,8 +23,12 @@ from immichpy.client.generated.models.create_profile_image_response_dto import (
 from immichpy.client.generated.models.license_key_dto import LicenseKeyDto
 from immichpy.client.generated.models.license_response_dto import LicenseResponseDto
 from immichpy.client.generated.models.onboarding_dto import OnboardingDto
-from immichpy.client.generated.models.onboarding_response_dto import OnboardingResponseDto
-from immichpy.client.generated.models.user_admin_response_dto import UserAdminResponseDto
+from immichpy.client.generated.models.onboarding_response_dto import (
+    OnboardingResponseDto,
+)
+from immichpy.client.generated.models.user_admin_response_dto import (
+    UserAdminResponseDto,
+)
 from immichpy.client.generated.models.user_preferences_response_dto import (
     UserPreferencesResponseDto,
 )
@@ -54,7 +58,10 @@ class UsersApi:
     @validate_call
     async def create_profile_image(
         self,
-        file: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
+        file: Annotated[
+            Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
+            Field(description="Profile image file"),
+        ],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -71,7 +78,7 @@ class UsersApi:
 
         Upload and set a new profile image for the current user.
 
-        :param file: (required)
+        :param file: Profile image file (required)
         :type file: bytearray
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -118,7 +125,10 @@ class UsersApi:
     @validate_call
     async def create_profile_image_with_http_info(
         self,
-        file: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
+        file: Annotated[
+            Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
+            Field(description="Profile image file"),
+        ],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -135,7 +145,7 @@ class UsersApi:
 
         Upload and set a new profile image for the current user.
 
-        :param file: (required)
+        :param file: Profile image file (required)
         :type file: bytearray
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -182,7 +192,10 @@ class UsersApi:
     @validate_call
     async def create_profile_image_without_preload_content(
         self,
-        file: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
+        file: Annotated[
+            Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
+            Field(description="Profile image file"),
+        ],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -199,7 +212,7 @@ class UsersApi:
 
         Upload and set a new profile image for the current user.
 
-        :param file: (required)
+        :param file: Profile image file (required)
         :type file: bytearray
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

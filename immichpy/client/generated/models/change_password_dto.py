@@ -29,12 +29,14 @@ class ChangePasswordDto(BaseModel):
     """  # noqa: E501
 
     invalidate_sessions: Optional[StrictBool] = Field(
-        default=False, alias="invalidateSessions"
+        default=False,
+        description="Invalidate all other sessions",
+        alias="invalidateSessions",
     )
     new_password: Annotated[str, Field(min_length=8, strict=True)] = Field(
-        alias="newPassword"
+        description="New password (min 8 characters)", alias="newPassword"
     )
-    password: StrictStr
+    password: StrictStr = Field(description="Current password")
     __properties: ClassVar[List[str]] = [
         "invalidateSessions",
         "newPassword",

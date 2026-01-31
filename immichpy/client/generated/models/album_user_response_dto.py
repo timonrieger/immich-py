@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from immichpy.client.generated.models.album_user_role import AlbumUserRole
 from immichpy.client.generated.models.user_response_dto import UserResponseDto
@@ -29,7 +29,7 @@ class AlbumUserResponseDto(BaseModel):
     AlbumUserResponseDto
     """  # noqa: E501
 
-    role: AlbumUserRole
+    role: AlbumUserRole = Field(description="Album user role")
     user: UserResponseDto
     __properties: ClassVar[List[str]] = ["role", "user"]
 

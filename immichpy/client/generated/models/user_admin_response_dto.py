@@ -31,23 +31,40 @@ class UserAdminResponseDto(BaseModel):
     UserAdminResponseDto
     """  # noqa: E501
 
-    avatar_color: UserAvatarColor = Field(alias="avatarColor")
-    created_at: datetime = Field(alias="createdAt")
-    deleted_at: Optional[datetime] = Field(alias="deletedAt")
-    email: StrictStr
-    id: StrictStr
-    is_admin: StrictBool = Field(alias="isAdmin")
-    license: Optional[UserLicense]
-    name: StrictStr
-    oauth_id: StrictStr = Field(alias="oauthId")
-    profile_changed_at: datetime = Field(alias="profileChangedAt")
-    profile_image_path: StrictStr = Field(alias="profileImagePath")
-    quota_size_in_bytes: Optional[StrictInt] = Field(alias="quotaSizeInBytes")
-    quota_usage_in_bytes: Optional[StrictInt] = Field(alias="quotaUsageInBytes")
-    should_change_password: StrictBool = Field(alias="shouldChangePassword")
-    status: UserStatus
-    storage_label: Optional[StrictStr] = Field(alias="storageLabel")
-    updated_at: datetime = Field(alias="updatedAt")
+    avatar_color: UserAvatarColor = Field(
+        description="Avatar color", alias="avatarColor"
+    )
+    created_at: datetime = Field(description="Creation date", alias="createdAt")
+    deleted_at: Optional[datetime] = Field(
+        description="Deletion date", alias="deletedAt"
+    )
+    email: StrictStr = Field(description="User email")
+    id: StrictStr = Field(description="User ID")
+    is_admin: StrictBool = Field(description="Is admin user", alias="isAdmin")
+    license: Optional[UserLicense] = Field(description="User license")
+    name: StrictStr = Field(description="User name")
+    oauth_id: StrictStr = Field(description="OAuth ID", alias="oauthId")
+    profile_changed_at: datetime = Field(
+        description="Profile change date", alias="profileChangedAt"
+    )
+    profile_image_path: StrictStr = Field(
+        description="Profile image path", alias="profileImagePath"
+    )
+    quota_size_in_bytes: Optional[StrictInt] = Field(
+        description="Storage quota in bytes", alias="quotaSizeInBytes"
+    )
+    quota_usage_in_bytes: Optional[StrictInt] = Field(
+        description="Storage usage in bytes", alias="quotaUsageInBytes"
+    )
+    should_change_password: StrictBool = Field(
+        description="Require password change on next login",
+        alias="shouldChangePassword",
+    )
+    status: UserStatus = Field(description="User status")
+    storage_label: Optional[StrictStr] = Field(
+        description="Storage label", alias="storageLabel"
+    )
+    updated_at: datetime = Field(description="Last update date", alias="updatedAt")
     __properties: ClassVar[List[str]] = [
         "avatarColor",
         "createdAt",

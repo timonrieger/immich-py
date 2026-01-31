@@ -31,7 +31,9 @@ class ValidateLibraryResponseDto(BaseModel):
     """  # noqa: E501
 
     import_paths: Optional[List[ValidateLibraryImportPathResponseDto]] = Field(
-        default=None, alias="importPaths"
+        default=None,
+        description="Validation results for import paths",
+        alias="importPaths",
     )
     __properties: ClassVar[List[str]] = ["importPaths"]
 

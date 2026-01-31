@@ -30,25 +30,35 @@ class SyncAssetV1(BaseModel):
     SyncAssetV1
     """  # noqa: E501
 
-    checksum: StrictStr
-    deleted_at: Optional[datetime] = Field(alias="deletedAt")
-    duration: Optional[StrictStr]
-    file_created_at: Optional[datetime] = Field(alias="fileCreatedAt")
-    file_modified_at: Optional[datetime] = Field(alias="fileModifiedAt")
-    height: Optional[StrictInt]
-    id: StrictStr
-    is_edited: StrictBool = Field(alias="isEdited")
-    is_favorite: StrictBool = Field(alias="isFavorite")
-    library_id: Optional[StrictStr] = Field(alias="libraryId")
-    live_photo_video_id: Optional[StrictStr] = Field(alias="livePhotoVideoId")
-    local_date_time: Optional[datetime] = Field(alias="localDateTime")
-    original_file_name: StrictStr = Field(alias="originalFileName")
-    owner_id: StrictStr = Field(alias="ownerId")
-    stack_id: Optional[StrictStr] = Field(alias="stackId")
-    thumbhash: Optional[StrictStr]
-    type: AssetTypeEnum
-    visibility: AssetVisibility
-    width: Optional[StrictInt]
+    checksum: StrictStr = Field(description="Checksum")
+    deleted_at: Optional[datetime] = Field(description="Deleted at", alias="deletedAt")
+    duration: Optional[StrictStr] = Field(description="Duration")
+    file_created_at: Optional[datetime] = Field(
+        description="File created at", alias="fileCreatedAt"
+    )
+    file_modified_at: Optional[datetime] = Field(
+        description="File modified at", alias="fileModifiedAt"
+    )
+    height: Optional[StrictInt] = Field(description="Asset height")
+    id: StrictStr = Field(description="Asset ID")
+    is_edited: StrictBool = Field(description="Is edited", alias="isEdited")
+    is_favorite: StrictBool = Field(description="Is favorite", alias="isFavorite")
+    library_id: Optional[StrictStr] = Field(description="Library ID", alias="libraryId")
+    live_photo_video_id: Optional[StrictStr] = Field(
+        description="Live photo video ID", alias="livePhotoVideoId"
+    )
+    local_date_time: Optional[datetime] = Field(
+        description="Local date time", alias="localDateTime"
+    )
+    original_file_name: StrictStr = Field(
+        description="Original file name", alias="originalFileName"
+    )
+    owner_id: StrictStr = Field(description="Owner ID", alias="ownerId")
+    stack_id: Optional[StrictStr] = Field(description="Stack ID", alias="stackId")
+    thumbhash: Optional[StrictStr] = Field(description="Thumbhash")
+    type: AssetTypeEnum = Field(description="Asset type")
+    visibility: AssetVisibility = Field(description="Asset visibility")
+    width: Optional[StrictInt] = Field(description="Asset width")
     __properties: ClassVar[List[str]] = [
         "checksum",
         "deletedAt",

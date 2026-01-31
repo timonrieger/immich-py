@@ -18,7 +18,9 @@ from typing_extensions import Annotated
 from uuid import UUID
 from immichpy.client.generated.models.asset_face_create_dto import AssetFaceCreateDto
 from immichpy.client.generated.models.asset_face_delete_dto import AssetFaceDeleteDto
-from immichpy.client.generated.models.asset_face_response_dto import AssetFaceResponseDto
+from immichpy.client.generated.models.asset_face_response_dto import (
+    AssetFaceResponseDto,
+)
 from immichpy.client.generated.models.face_dto import FaceDto
 from immichpy.client.generated.models.person_response_dto import PersonResponseDto
 
@@ -547,7 +549,7 @@ class FacesApi:
     @validate_call
     async def get_faces(
         self,
-        id: UUID,
+        id: Annotated[UUID, Field(description="Face ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -564,7 +566,7 @@ class FacesApi:
 
         Retrieve all faces belonging to an asset.
 
-        :param id: (required)
+        :param id: Face ID (required)
         :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -611,7 +613,7 @@ class FacesApi:
     @validate_call
     async def get_faces_with_http_info(
         self,
-        id: UUID,
+        id: Annotated[UUID, Field(description="Face ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -628,7 +630,7 @@ class FacesApi:
 
         Retrieve all faces belonging to an asset.
 
-        :param id: (required)
+        :param id: Face ID (required)
         :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -675,7 +677,7 @@ class FacesApi:
     @validate_call
     async def get_faces_without_preload_content(
         self,
-        id: UUID,
+        id: Annotated[UUID, Field(description="Face ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -692,7 +694,7 @@ class FacesApi:
 
         Retrieve all faces belonging to an asset.
 
-        :param id: (required)
+        :param id: Face ID (required)
         :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

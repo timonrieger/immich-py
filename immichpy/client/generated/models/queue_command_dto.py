@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from immichpy.client.generated.models.queue_command import QueueCommand
 from typing import Set
@@ -28,8 +28,10 @@ class QueueCommandDto(BaseModel):
     QueueCommandDto
     """  # noqa: E501
 
-    command: QueueCommand
-    force: Optional[StrictBool] = None
+    command: QueueCommand = Field(description="Queue command to execute")
+    force: Optional[StrictBool] = Field(
+        default=None, description="Force the command execution (if applicable)"
+    )
     __properties: ClassVar[List[str]] = ["command", "force"]
 
     model_config = ConfigDict(

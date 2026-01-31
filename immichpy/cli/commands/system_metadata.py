@@ -73,7 +73,9 @@ def get_version_check_state(
 )
 def update_admin_onboarding(
     ctx: typer.Context,
-    is_onboarded: bool = typer.Option(..., "--is-onboarded", help=""""""),
+    is_onboarded: bool = typer.Option(
+        ..., "--is-onboarded", help="""Is admin onboarded"""
+    ),
 ) -> None:
     """Update admin onboarding
 

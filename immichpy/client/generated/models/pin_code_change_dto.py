@@ -27,9 +27,15 @@ class PinCodeChangeDto(BaseModel):
     PinCodeChangeDto
     """  # noqa: E501
 
-    new_pin_code: StrictStr = Field(alias="newPinCode")
-    password: Optional[StrictStr] = None
-    pin_code: Optional[StrictStr] = Field(default=None, alias="pinCode")
+    new_pin_code: StrictStr = Field(
+        description="New PIN code (4-6 digits)", alias="newPinCode"
+    )
+    password: Optional[StrictStr] = Field(
+        default=None, description="User password (required if PIN code is not provided)"
+    )
+    pin_code: Optional[StrictStr] = Field(
+        default=None, description="New PIN code (4-6 digits)", alias="pinCode"
+    )
     __properties: ClassVar[List[str]] = ["newPinCode", "password", "pinCode"]
 
     model_config = ConfigDict(

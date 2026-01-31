@@ -29,13 +29,21 @@ class PartnerResponseDto(BaseModel):
     PartnerResponseDto
     """  # noqa: E501
 
-    avatar_color: UserAvatarColor = Field(alias="avatarColor")
-    email: StrictStr
-    id: StrictStr
-    in_timeline: Optional[StrictBool] = Field(default=None, alias="inTimeline")
-    name: StrictStr
-    profile_changed_at: datetime = Field(alias="profileChangedAt")
-    profile_image_path: StrictStr = Field(alias="profileImagePath")
+    avatar_color: UserAvatarColor = Field(
+        description="Avatar color", alias="avatarColor"
+    )
+    email: StrictStr = Field(description="User email")
+    id: StrictStr = Field(description="User ID")
+    in_timeline: Optional[StrictBool] = Field(
+        default=None, description="Show in timeline", alias="inTimeline"
+    )
+    name: StrictStr = Field(description="User name")
+    profile_changed_at: datetime = Field(
+        description="Profile change date", alias="profileChangedAt"
+    )
+    profile_image_path: StrictStr = Field(
+        description="Profile image path", alias="profileImagePath"
+    )
     __properties: ClassVar[List[str]] = [
         "avatarColor",
         "email",

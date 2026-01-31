@@ -32,7 +32,9 @@ from immichpy.client.generated.models.pin_code_reset_dto import PinCodeResetDto
 from immichpy.client.generated.models.pin_code_setup_dto import PinCodeSetupDto
 from immichpy.client.generated.models.session_unlock_dto import SessionUnlockDto
 from immichpy.client.generated.models.sign_up_dto import SignUpDto
-from immichpy.client.generated.models.user_admin_response_dto import UserAdminResponseDto
+from immichpy.client.generated.models.user_admin_response_dto import (
+    UserAdminResponseDto,
+)
 from immichpy.client.generated.models.validate_access_token_response_dto import (
     ValidateAccessTokenResponseDto,
 )

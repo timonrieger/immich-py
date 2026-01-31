@@ -28,11 +28,14 @@ class DuplicateDetectionConfig(BaseModel):
     DuplicateDetectionConfig
     """  # noqa: E501
 
-    enabled: StrictBool
+    enabled: StrictBool = Field(description="Whether the task is enabled")
     max_distance: Union[
         Annotated[float, Field(le=0.1, strict=True, ge=0.001)],
         Annotated[int, Field(le=0, strict=True, ge=1)],
-    ] = Field(alias="maxDistance")
+    ] = Field(
+        description="Maximum distance threshold for duplicate detection",
+        alias="maxDistance",
+    )
     __properties: ClassVar[List[str]] = ["enabled", "maxDistance"]
 
     model_config = ConfigDict(

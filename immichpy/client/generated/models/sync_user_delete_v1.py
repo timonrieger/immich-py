@@ -27,7 +27,7 @@ class SyncUserDeleteV1(BaseModel):
     SyncUserDeleteV1
     """  # noqa: E501
 
-    user_id: StrictStr = Field(alias="userId")
+    user_id: StrictStr = Field(description="User ID", alias="userId")
     __properties: ClassVar[List[str]] = ["userId"]
 
     model_config = ConfigDict(

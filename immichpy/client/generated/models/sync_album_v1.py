@@ -29,15 +29,19 @@ class SyncAlbumV1(BaseModel):
     SyncAlbumV1
     """  # noqa: E501
 
-    created_at: datetime = Field(alias="createdAt")
-    description: StrictStr
-    id: StrictStr
-    is_activity_enabled: StrictBool = Field(alias="isActivityEnabled")
-    name: StrictStr
+    created_at: datetime = Field(description="Created at", alias="createdAt")
+    description: StrictStr = Field(description="Album description")
+    id: StrictStr = Field(description="Album ID")
+    is_activity_enabled: StrictBool = Field(
+        description="Is activity enabled", alias="isActivityEnabled"
+    )
+    name: StrictStr = Field(description="Album name")
     order: AssetOrder
-    owner_id: StrictStr = Field(alias="ownerId")
-    thumbnail_asset_id: Optional[StrictStr] = Field(alias="thumbnailAssetId")
-    updated_at: datetime = Field(alias="updatedAt")
+    owner_id: StrictStr = Field(description="Owner ID", alias="ownerId")
+    thumbnail_asset_id: Optional[StrictStr] = Field(
+        description="Thumbnail asset ID", alias="thumbnailAssetId"
+    )
+    updated_at: datetime = Field(description="Updated at", alias="updatedAt")
     __properties: ClassVar[List[str]] = [
         "createdAt",
         "description",

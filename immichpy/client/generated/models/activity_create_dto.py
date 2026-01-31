@@ -29,10 +29,16 @@ class ActivityCreateDto(BaseModel):
     ActivityCreateDto
     """  # noqa: E501
 
-    album_id: UUID = Field(alias="albumId")
-    asset_id: Optional[UUID] = Field(default=None, alias="assetId")
-    comment: Optional[StrictStr] = None
-    type: ReactionType
+    album_id: UUID = Field(description="Album ID", alias="albumId")
+    asset_id: Optional[UUID] = Field(
+        default=None,
+        description="Asset ID (if activity is for an asset)",
+        alias="assetId",
+    )
+    comment: Optional[StrictStr] = Field(
+        default=None, description="Comment text (required if type is comment)"
+    )
+    type: ReactionType = Field(description="Activity type (like or comment)")
     __properties: ClassVar[List[str]] = ["albumId", "assetId", "comment", "type"]
 
     model_config = ConfigDict(

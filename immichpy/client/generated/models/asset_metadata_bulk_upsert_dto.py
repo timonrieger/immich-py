@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from immichpy.client.generated.models.asset_metadata_bulk_upsert_item_dto import (
     AssetMetadataBulkUpsertItemDto,
@@ -30,7 +30,9 @@ class AssetMetadataBulkUpsertDto(BaseModel):
     AssetMetadataBulkUpsertDto
     """  # noqa: E501
 
-    items: List[AssetMetadataBulkUpsertItemDto]
+    items: List[AssetMetadataBulkUpsertItemDto] = Field(
+        description="Metadata items to upsert"
+    )
     __properties: ClassVar[List[str]] = ["items"]
 
     model_config = ConfigDict(

@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class VideoContainer(str, Enum):
     """
-    VideoContainer
+    Accepted containers
     """
 
     """

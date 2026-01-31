@@ -520,7 +520,7 @@ class JobsApi:
     @validate_call
     async def run_queue_command_legacy(
         self,
-        name: QueueName,
+        name: Annotated[QueueName, Field(description="Queue name")],
         queue_command_dto: QueueCommandDto,
         _request_timeout: Union[
             None,
@@ -538,7 +538,7 @@ class JobsApi:
 
         Queue all assets for a specific job type. Defaults to only queueing assets that have not yet been processed, but the force command can be used to re-process all assets.
 
-        :param name: (required)
+        :param name: Queue name (required)
         :type name: QueueName
         :param queue_command_dto: (required)
         :type queue_command_dto: QueueCommandDto
@@ -589,7 +589,7 @@ class JobsApi:
     @validate_call
     async def run_queue_command_legacy_with_http_info(
         self,
-        name: QueueName,
+        name: Annotated[QueueName, Field(description="Queue name")],
         queue_command_dto: QueueCommandDto,
         _request_timeout: Union[
             None,
@@ -607,7 +607,7 @@ class JobsApi:
 
         Queue all assets for a specific job type. Defaults to only queueing assets that have not yet been processed, but the force command can be used to re-process all assets.
 
-        :param name: (required)
+        :param name: Queue name (required)
         :type name: QueueName
         :param queue_command_dto: (required)
         :type queue_command_dto: QueueCommandDto
@@ -658,7 +658,7 @@ class JobsApi:
     @validate_call
     async def run_queue_command_legacy_without_preload_content(
         self,
-        name: QueueName,
+        name: Annotated[QueueName, Field(description="Queue name")],
         queue_command_dto: QueueCommandDto,
         _request_timeout: Union[
             None,
@@ -676,7 +676,7 @@ class JobsApi:
 
         Queue all assets for a specific job type. Defaults to only queueing assets that have not yet been processed, but the force command can be used to re-process all assets.
 
-        :param name: (required)
+        :param name: Queue name (required)
         :type name: QueueName
         :param queue_command_dto: (required)
         :type queue_command_dto: QueueCommandDto

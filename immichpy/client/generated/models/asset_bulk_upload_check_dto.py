@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from immichpy.client.generated.models.asset_bulk_upload_check_item import (
     AssetBulkUploadCheckItem,
@@ -30,7 +30,7 @@ class AssetBulkUploadCheckDto(BaseModel):
     AssetBulkUploadCheckDto
     """  # noqa: E501
 
-    assets: List[AssetBulkUploadCheckItem]
+    assets: List[AssetBulkUploadCheckItem] = Field(description="Assets to check")
     __properties: ClassVar[List[str]] = ["assets"]
 
     model_config = ConfigDict(

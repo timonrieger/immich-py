@@ -27,9 +27,11 @@ class SyncPartnerV1(BaseModel):
     SyncPartnerV1
     """  # noqa: E501
 
-    in_timeline: StrictBool = Field(alias="inTimeline")
-    shared_by_id: StrictStr = Field(alias="sharedById")
-    shared_with_id: StrictStr = Field(alias="sharedWithId")
+    in_timeline: StrictBool = Field(description="In timeline", alias="inTimeline")
+    shared_by_id: StrictStr = Field(description="Shared by ID", alias="sharedById")
+    shared_with_id: StrictStr = Field(
+        description="Shared with ID", alias="sharedWithId"
+    )
     __properties: ClassVar[List[str]] = ["inTimeline", "sharedById", "sharedWithId"]
 
     model_config = ConfigDict(

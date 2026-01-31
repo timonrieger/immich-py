@@ -27,8 +27,14 @@ class PeopleUpdate(BaseModel):
     PeopleUpdate
     """  # noqa: E501
 
-    enabled: Optional[StrictBool] = None
-    sidebar_web: Optional[StrictBool] = Field(default=None, alias="sidebarWeb")
+    enabled: Optional[StrictBool] = Field(
+        default=None, description="Whether people are enabled"
+    )
+    sidebar_web: Optional[StrictBool] = Field(
+        default=None,
+        description="Whether people appear in web sidebar",
+        alias="sidebarWeb",
+    )
     __properties: ClassVar[List[str]] = ["enabled", "sidebarWeb"]
 
     model_config = ConfigDict(

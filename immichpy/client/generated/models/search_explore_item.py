@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
 from immichpy.client.generated.models.asset_response_dto import AssetResponseDto
 from typing import Optional, Set
@@ -29,7 +29,7 @@ class SearchExploreItem(BaseModel):
     """  # noqa: E501
 
     data: AssetResponseDto
-    value: StrictStr
+    value: StrictStr = Field(description="Explore value")
     __properties: ClassVar[List[str]] = ["data", "value"]
 
     model_config = ConfigDict(

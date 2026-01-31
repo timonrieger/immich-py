@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictFloat, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Union
 from immichpy.client.generated.models.storage_folder import StorageFolder
 from typing import Optional, Set
@@ -28,10 +28,12 @@ class MaintenanceDetectInstallStorageFolderDto(BaseModel):
     MaintenanceDetectInstallStorageFolderDto
     """  # noqa: E501
 
-    files: Union[StrictFloat, StrictInt]
-    folder: StorageFolder
-    readable: StrictBool
-    writable: StrictBool
+    files: Union[StrictFloat, StrictInt] = Field(
+        description="Number of files in the folder"
+    )
+    folder: StorageFolder = Field(description="Storage folder")
+    readable: StrictBool = Field(description="Whether the folder is readable")
+    writable: StrictBool = Field(description="Whether the folder is writable")
     __properties: ClassVar[List[str]] = ["files", "folder", "readable", "writable"]
 
     model_config = ConfigDict(

@@ -29,19 +29,29 @@ class UserAdminCreateDto(BaseModel):
     UserAdminCreateDto
     """  # noqa: E501
 
-    avatar_color: Optional[UserAvatarColor] = Field(default=None, alias="avatarColor")
-    email: StrictStr
-    is_admin: Optional[StrictBool] = Field(default=None, alias="isAdmin")
-    name: StrictStr
-    notify: Optional[StrictBool] = None
-    password: StrictStr
+    avatar_color: Optional[UserAvatarColor] = Field(
+        default=None, description="Avatar color", alias="avatarColor"
+    )
+    email: StrictStr = Field(description="User email")
+    is_admin: Optional[StrictBool] = Field(
+        default=None, description="Grant admin privileges", alias="isAdmin"
+    )
+    name: StrictStr = Field(description="User name")
+    notify: Optional[StrictBool] = Field(
+        default=None, description="Send notification email"
+    )
+    password: StrictStr = Field(description="User password")
     quota_size_in_bytes: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
-        default=None, alias="quotaSizeInBytes"
+        default=None, description="Storage quota in bytes", alias="quotaSizeInBytes"
     )
     should_change_password: Optional[StrictBool] = Field(
-        default=None, alias="shouldChangePassword"
+        default=None,
+        description="Require password change on next login",
+        alias="shouldChangePassword",
     )
-    storage_label: Optional[StrictStr] = Field(default=None, alias="storageLabel")
+    storage_label: Optional[StrictStr] = Field(
+        default=None, description="Storage label", alias="storageLabel"
+    )
     __properties: ClassVar[List[str]] = [
         "avatarColor",
         "email",

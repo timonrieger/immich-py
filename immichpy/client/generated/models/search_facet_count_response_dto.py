@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,8 +27,8 @@ class SearchFacetCountResponseDto(BaseModel):
     SearchFacetCountResponseDto
     """  # noqa: E501
 
-    count: StrictInt
-    value: StrictStr
+    count: StrictInt = Field(description="Number of assets with this facet value")
+    value: StrictStr = Field(description="Facet value")
     __properties: ClassVar[List[str]] = ["count", "value"]
 
     model_config = ConfigDict(

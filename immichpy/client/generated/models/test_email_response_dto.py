@@ -27,7 +27,7 @@ class TestEmailResponseDto(BaseModel):
     TestEmailResponseDto
     """  # noqa: E501
 
-    message_id: StrictStr = Field(alias="messageId")
+    message_id: StrictStr = Field(description="Email message ID", alias="messageId")
     __properties: ClassVar[List[str]] = ["messageId"]
 
     model_config = ConfigDict(

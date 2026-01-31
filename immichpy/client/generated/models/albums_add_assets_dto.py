@@ -28,8 +28,8 @@ class AlbumsAddAssetsDto(BaseModel):
     AlbumsAddAssetsDto
     """  # noqa: E501
 
-    album_ids: List[UUID] = Field(alias="albumIds")
-    asset_ids: List[UUID] = Field(alias="assetIds")
+    album_ids: List[UUID] = Field(description="Album IDs", alias="albumIds")
+    asset_ids: List[UUID] = Field(description="Asset IDs", alias="assetIds")
     __properties: ClassVar[List[str]] = ["albumIds", "assetIds"]
 
     model_config = ConfigDict(

@@ -1388,7 +1388,9 @@ class AlbumsApi:
         id: UUID,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
-        without_assets: Optional[StrictBool] = None,
+        without_assets: Annotated[
+            Optional[StrictBool], Field(description="Exclude assets from response")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1411,7 +1413,7 @@ class AlbumsApi:
         :type key: str
         :param slug:
         :type slug: str
-        :param without_assets:
+        :param without_assets: Exclude assets from response
         :type without_assets: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1464,7 +1466,9 @@ class AlbumsApi:
         id: UUID,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
-        without_assets: Optional[StrictBool] = None,
+        without_assets: Annotated[
+            Optional[StrictBool], Field(description="Exclude assets from response")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1487,7 +1491,7 @@ class AlbumsApi:
         :type key: str
         :param slug:
         :type slug: str
-        :param without_assets:
+        :param without_assets: Exclude assets from response
         :type without_assets: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1540,7 +1544,9 @@ class AlbumsApi:
         id: UUID,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
-        without_assets: Optional[StrictBool] = None,
+        without_assets: Annotated[
+            Optional[StrictBool], Field(description="Exclude assets from response")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1563,7 +1569,7 @@ class AlbumsApi:
         :type key: str
         :param slug:
         :type slug: str
-        :param without_assets:
+        :param without_assets: Exclude assets from response
         :type without_assets: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1903,10 +1909,15 @@ class AlbumsApi:
         asset_id: Annotated[
             Optional[UUID],
             Field(
-                description="Only returns albums that contain the asset Ignores the shared parameter undefined: get all albums"
+                description="Filter albums containing this asset ID (ignores shared parameter)"
             ),
         ] = None,
-        shared: Optional[StrictBool] = None,
+        shared: Annotated[
+            Optional[StrictBool],
+            Field(
+                description="Filter by shared status: true = only shared, false = only own, undefined = all"
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1923,9 +1934,9 @@ class AlbumsApi:
 
         Retrieve a list of albums available to the authenticated user.
 
-        :param asset_id: Only returns albums that contain the asset Ignores the shared parameter undefined: get all albums
+        :param asset_id: Filter albums containing this asset ID (ignores shared parameter)
         :type asset_id: UUID
-        :param shared:
+        :param shared: Filter by shared status: true = only shared, false = only own, undefined = all
         :type shared: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1976,10 +1987,15 @@ class AlbumsApi:
         asset_id: Annotated[
             Optional[UUID],
             Field(
-                description="Only returns albums that contain the asset Ignores the shared parameter undefined: get all albums"
+                description="Filter albums containing this asset ID (ignores shared parameter)"
             ),
         ] = None,
-        shared: Optional[StrictBool] = None,
+        shared: Annotated[
+            Optional[StrictBool],
+            Field(
+                description="Filter by shared status: true = only shared, false = only own, undefined = all"
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1996,9 +2012,9 @@ class AlbumsApi:
 
         Retrieve a list of albums available to the authenticated user.
 
-        :param asset_id: Only returns albums that contain the asset Ignores the shared parameter undefined: get all albums
+        :param asset_id: Filter albums containing this asset ID (ignores shared parameter)
         :type asset_id: UUID
-        :param shared:
+        :param shared: Filter by shared status: true = only shared, false = only own, undefined = all
         :type shared: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2049,10 +2065,15 @@ class AlbumsApi:
         asset_id: Annotated[
             Optional[UUID],
             Field(
-                description="Only returns albums that contain the asset Ignores the shared parameter undefined: get all albums"
+                description="Filter albums containing this asset ID (ignores shared parameter)"
             ),
         ] = None,
-        shared: Optional[StrictBool] = None,
+        shared: Annotated[
+            Optional[StrictBool],
+            Field(
+                description="Filter by shared status: true = only shared, false = only own, undefined = all"
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2069,9 +2090,9 @@ class AlbumsApi:
 
         Retrieve a list of albums available to the authenticated user.
 
-        :param asset_id: Only returns albums that contain the asset Ignores the shared parameter undefined: get all albums
+        :param asset_id: Filter albums containing this asset ID (ignores shared parameter)
         :type asset_id: UUID
-        :param shared:
+        :param shared: Filter by shared status: true = only shared, false = only own, undefined = all
         :type shared: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from immichpy.client.generated.models.bulk_id_error_reason import BulkIdErrorReason
 from typing import Set
@@ -28,8 +28,8 @@ class AlbumsAddAssetsResponseDto(BaseModel):
     AlbumsAddAssetsResponseDto
     """  # noqa: E501
 
-    error: Optional[BulkIdErrorReason] = None
-    success: StrictBool
+    error: Optional[BulkIdErrorReason] = Field(default=None, description="Error reason")
+    success: StrictBool = Field(description="Operation success")
     __properties: ClassVar[List[str]] = ["error", "success"]
 
     model_config = ConfigDict(

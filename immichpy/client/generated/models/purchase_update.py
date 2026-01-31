@@ -28,10 +28,14 @@ class PurchaseUpdate(BaseModel):
     """  # noqa: E501
 
     hide_buy_button_until: Optional[StrictStr] = Field(
-        default=None, alias="hideBuyButtonUntil"
+        default=None,
+        description="Date until which to hide buy button",
+        alias="hideBuyButtonUntil",
     )
     show_support_badge: Optional[StrictBool] = Field(
-        default=None, alias="showSupportBadge"
+        default=None,
+        description="Whether to show support badge",
+        alias="showSupportBadge",
     )
     __properties: ClassVar[List[str]] = ["hideBuyButtonUntil", "showSupportBadge"]
 

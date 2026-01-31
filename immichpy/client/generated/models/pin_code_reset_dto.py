@@ -27,8 +27,12 @@ class PinCodeResetDto(BaseModel):
     PinCodeResetDto
     """  # noqa: E501
 
-    password: Optional[StrictStr] = None
-    pin_code: Optional[StrictStr] = Field(default=None, alias="pinCode")
+    password: Optional[StrictStr] = Field(
+        default=None, description="User password (required if PIN code is not provided)"
+    )
+    pin_code: Optional[StrictStr] = Field(
+        default=None, description="New PIN code (4-6 digits)", alias="pinCode"
+    )
     __properties: ClassVar[List[str]] = ["password", "pinCode"]
 
     model_config = ConfigDict(

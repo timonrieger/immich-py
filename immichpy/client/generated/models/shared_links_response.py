@@ -27,8 +27,10 @@ class SharedLinksResponse(BaseModel):
     SharedLinksResponse
     """  # noqa: E501
 
-    enabled: StrictBool
-    sidebar_web: StrictBool = Field(alias="sidebarWeb")
+    enabled: StrictBool = Field(description="Whether shared links are enabled")
+    sidebar_web: StrictBool = Field(
+        description="Whether shared links appear in web sidebar", alias="sidebarWeb"
+    )
     __properties: ClassVar[List[str]] = ["enabled", "sidebarWeb"]
 
     model_config = ConfigDict(

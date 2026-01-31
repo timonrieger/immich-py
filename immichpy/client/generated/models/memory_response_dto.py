@@ -32,18 +32,26 @@ class MemoryResponseDto(BaseModel):
     """  # noqa: E501
 
     assets: List[AssetResponseDto]
-    created_at: datetime = Field(alias="createdAt")
+    created_at: datetime = Field(description="Creation date", alias="createdAt")
     data: OnThisDayDto
-    deleted_at: Optional[datetime] = Field(default=None, alias="deletedAt")
-    hide_at: Optional[datetime] = Field(default=None, alias="hideAt")
-    id: StrictStr
-    is_saved: StrictBool = Field(alias="isSaved")
-    memory_at: datetime = Field(alias="memoryAt")
-    owner_id: StrictStr = Field(alias="ownerId")
-    seen_at: Optional[datetime] = Field(default=None, alias="seenAt")
-    show_at: Optional[datetime] = Field(default=None, alias="showAt")
-    type: MemoryType
-    updated_at: datetime = Field(alias="updatedAt")
+    deleted_at: Optional[datetime] = Field(
+        default=None, description="Deletion date", alias="deletedAt"
+    )
+    hide_at: Optional[datetime] = Field(
+        default=None, description="Date when memory should be hidden", alias="hideAt"
+    )
+    id: StrictStr = Field(description="Memory ID")
+    is_saved: StrictBool = Field(description="Is memory saved", alias="isSaved")
+    memory_at: datetime = Field(description="Memory date", alias="memoryAt")
+    owner_id: StrictStr = Field(description="Owner user ID", alias="ownerId")
+    seen_at: Optional[datetime] = Field(
+        default=None, description="Date when memory was seen", alias="seenAt"
+    )
+    show_at: Optional[datetime] = Field(
+        default=None, description="Date when memory should be shown", alias="showAt"
+    )
+    type: MemoryType = Field(description="Memory type")
+    updated_at: datetime = Field(description="Last update date", alias="updatedAt")
     __properties: ClassVar[List[str]] = [
         "assets",
         "createdAt",

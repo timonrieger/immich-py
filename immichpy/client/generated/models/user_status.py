@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class UserStatus(str, Enum):
     """
-    UserStatus
+    User status
     """
 
     """

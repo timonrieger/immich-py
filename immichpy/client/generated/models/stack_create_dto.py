@@ -30,7 +30,7 @@ class StackCreateDto(BaseModel):
     """  # noqa: E501
 
     asset_ids: Annotated[List[UUID], Field(min_length=2)] = Field(
-        description="first asset becomes the primary", alias="assetIds"
+        description="Asset IDs (first becomes primary, min 2)", alias="assetIds"
     )
     __properties: ClassVar[List[str]] = ["assetIds"]
 

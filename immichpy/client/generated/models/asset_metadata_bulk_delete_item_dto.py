@@ -28,8 +28,8 @@ class AssetMetadataBulkDeleteItemDto(BaseModel):
     AssetMetadataBulkDeleteItemDto
     """  # noqa: E501
 
-    asset_id: UUID = Field(alias="assetId")
-    key: StrictStr
+    asset_id: UUID = Field(description="Asset ID", alias="assetId")
+    key: StrictStr = Field(description="Metadata key")
     __properties: ClassVar[List[str]] = ["assetId", "key"]
 
     model_config = ConfigDict(

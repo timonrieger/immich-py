@@ -29,9 +29,9 @@ class CheckExistingAssetsDto(BaseModel):
     """  # noqa: E501
 
     device_asset_ids: Annotated[List[StrictStr], Field(min_length=1)] = Field(
-        alias="deviceAssetIds"
+        description="Device asset IDs to check", alias="deviceAssetIds"
     )
-    device_id: StrictStr = Field(alias="deviceId")
+    device_id: StrictStr = Field(description="Device ID", alias="deviceId")
     __properties: ClassVar[List[str]] = ["deviceAssetIds", "deviceId"]
 
     model_config = ConfigDict(

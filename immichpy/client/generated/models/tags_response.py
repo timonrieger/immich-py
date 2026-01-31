@@ -27,8 +27,10 @@ class TagsResponse(BaseModel):
     TagsResponse
     """  # noqa: E501
 
-    enabled: StrictBool
-    sidebar_web: StrictBool = Field(alias="sidebarWeb")
+    enabled: StrictBool = Field(description="Whether tags are enabled")
+    sidebar_web: StrictBool = Field(
+        description="Whether tags appear in web sidebar", alias="sidebarWeb"
+    )
     __properties: ClassVar[List[str]] = ["enabled", "sidebarWeb"]
 
     model_config = ConfigDict(

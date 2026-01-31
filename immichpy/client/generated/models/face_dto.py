@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from uuid import UUID
 from typing import Optional, Set
@@ -28,7 +28,7 @@ class FaceDto(BaseModel):
     FaceDto
     """  # noqa: E501
 
-    id: UUID
+    id: UUID = Field(description="Face ID")
     __properties: ClassVar[List[str]] = ["id"]
 
     model_config = ConfigDict(

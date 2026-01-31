@@ -28,10 +28,12 @@ class PeopleResponseDto(BaseModel):
     PeopleResponseDto
     """  # noqa: E501
 
-    has_next_page: Optional[StrictBool] = Field(default=None, alias="hasNextPage")
-    hidden: StrictInt
-    people: List[PersonResponseDto]
-    total: StrictInt
+    has_next_page: Optional[StrictBool] = Field(
+        default=None, description="Whether there are more pages", alias="hasNextPage"
+    )
+    hidden: StrictInt = Field(description="Number of hidden people")
+    people: List[PersonResponseDto] = Field(description="List of people")
+    total: StrictInt = Field(description="Total number of people")
     __properties: ClassVar[List[str]] = ["hasNextPage", "hidden", "people", "total"]
 
     model_config = ConfigDict(

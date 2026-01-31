@@ -28,9 +28,11 @@ class StackResponseDto(BaseModel):
     StackResponseDto
     """  # noqa: E501
 
-    assets: List[AssetResponseDto]
-    id: StrictStr
-    primary_asset_id: StrictStr = Field(alias="primaryAssetId")
+    assets: List[AssetResponseDto] = Field(description="Stack assets")
+    id: StrictStr = Field(description="Stack ID")
+    primary_asset_id: StrictStr = Field(
+        description="Primary asset ID", alias="primaryAssetId"
+    )
     __properties: ClassVar[List[str]] = ["assets", "id", "primaryAssetId"]
 
     model_config = ConfigDict(

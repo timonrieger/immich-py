@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Set
 from typing_extensions import Self
@@ -27,9 +27,9 @@ class MapReverseGeocodeResponseDto(BaseModel):
     MapReverseGeocodeResponseDto
     """  # noqa: E501
 
-    city: Optional[StrictStr]
-    country: Optional[StrictStr]
-    state: Optional[StrictStr]
+    city: Optional[StrictStr] = Field(description="City name")
+    country: Optional[StrictStr] = Field(description="Country name")
+    state: Optional[StrictStr] = Field(description="State/Province name")
     __properties: ClassVar[List[str]] = ["city", "country", "state"]
 
     model_config = ConfigDict(

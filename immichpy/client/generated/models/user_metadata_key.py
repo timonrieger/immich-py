@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class UserMetadataKey(str, Enum):
     """
-    UserMetadataKey
+    User metadata key
     """
 
     """

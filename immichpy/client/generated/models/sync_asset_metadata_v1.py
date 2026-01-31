@@ -27,9 +27,9 @@ class SyncAssetMetadataV1(BaseModel):
     SyncAssetMetadataV1
     """  # noqa: E501
 
-    asset_id: StrictStr = Field(alias="assetId")
-    key: StrictStr
-    value: Dict[str, Any]
+    asset_id: StrictStr = Field(description="Asset ID", alias="assetId")
+    key: StrictStr = Field(description="Key")
+    value: Dict[str, Any] = Field(description="Value")
     __properties: ClassVar[List[str]] = ["assetId", "key", "value"]
 
     model_config = ConfigDict(

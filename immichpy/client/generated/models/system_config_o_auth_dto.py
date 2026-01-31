@@ -31,27 +31,37 @@ class SystemConfigOAuthDto(BaseModel):
     SystemConfigOAuthDto
     """  # noqa: E501
 
-    auto_launch: StrictBool = Field(alias="autoLaunch")
-    auto_register: StrictBool = Field(alias="autoRegister")
-    button_text: StrictStr = Field(alias="buttonText")
-    client_id: StrictStr = Field(alias="clientId")
-    client_secret: StrictStr = Field(alias="clientSecret")
+    auto_launch: StrictBool = Field(description="Auto launch", alias="autoLaunch")
+    auto_register: StrictBool = Field(description="Auto register", alias="autoRegister")
+    button_text: StrictStr = Field(description="Button text", alias="buttonText")
+    client_id: StrictStr = Field(description="Client ID", alias="clientId")
+    client_secret: StrictStr = Field(description="Client secret", alias="clientSecret")
     default_storage_quota: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(
-        alias="defaultStorageQuota"
+        description="Default storage quota", alias="defaultStorageQuota"
     )
-    enabled: StrictBool
-    issuer_url: StrictStr = Field(alias="issuerUrl")
-    mobile_override_enabled: StrictBool = Field(alias="mobileOverrideEnabled")
-    mobile_redirect_uri: StrictStr = Field(alias="mobileRedirectUri")
-    profile_signing_algorithm: StrictStr = Field(alias="profileSigningAlgorithm")
-    role_claim: StrictStr = Field(alias="roleClaim")
-    scope: StrictStr
+    enabled: StrictBool = Field(description="Enabled")
+    issuer_url: StrictStr = Field(description="Issuer URL", alias="issuerUrl")
+    mobile_override_enabled: StrictBool = Field(
+        description="Mobile override enabled", alias="mobileOverrideEnabled"
+    )
+    mobile_redirect_uri: StrictStr = Field(
+        description="Mobile redirect URI", alias="mobileRedirectUri"
+    )
+    profile_signing_algorithm: StrictStr = Field(
+        description="Profile signing algorithm", alias="profileSigningAlgorithm"
+    )
+    role_claim: StrictStr = Field(description="Role claim", alias="roleClaim")
+    scope: StrictStr = Field(description="Scope")
     signing_algorithm: StrictStr = Field(alias="signingAlgorithm")
-    storage_label_claim: StrictStr = Field(alias="storageLabelClaim")
-    storage_quota_claim: StrictStr = Field(alias="storageQuotaClaim")
-    timeout: Annotated[int, Field(strict=True, ge=1)]
+    storage_label_claim: StrictStr = Field(
+        description="Storage label claim", alias="storageLabelClaim"
+    )
+    storage_quota_claim: StrictStr = Field(
+        description="Storage quota claim", alias="storageQuotaClaim"
+    )
+    timeout: Annotated[int, Field(strict=True, ge=1)] = Field(description="Timeout")
     token_endpoint_auth_method: OAuthTokenEndpointAuthMethod = Field(
-        alias="tokenEndpointAuthMethod"
+        description="Token endpoint auth method", alias="tokenEndpointAuthMethod"
     )
     __properties: ClassVar[List[str]] = [
         "autoLaunch",

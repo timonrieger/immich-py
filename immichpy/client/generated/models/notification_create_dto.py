@@ -31,13 +31,23 @@ class NotificationCreateDto(BaseModel):
     NotificationCreateDto
     """  # noqa: E501
 
-    data: Optional[Dict[str, Any]] = None
-    description: Optional[StrictStr] = None
-    level: Optional[NotificationLevel] = None
-    read_at: Optional[datetime] = Field(default=None, alias="readAt")
-    title: StrictStr
-    type: Optional[NotificationType] = None
-    user_id: UUID = Field(alias="userId")
+    data: Optional[Dict[str, Any]] = Field(
+        default=None, description="Additional notification data"
+    )
+    description: Optional[StrictStr] = Field(
+        default=None, description="Notification description"
+    )
+    level: Optional[NotificationLevel] = Field(
+        default=None, description="Notification level"
+    )
+    read_at: Optional[datetime] = Field(
+        default=None, description="Date when notification was read", alias="readAt"
+    )
+    title: StrictStr = Field(description="Notification title")
+    type: Optional[NotificationType] = Field(
+        default=None, description="Notification type"
+    )
+    user_id: UUID = Field(description="User ID to send notification to", alias="userId")
     __properties: ClassVar[List[str]] = [
         "data",
         "description",

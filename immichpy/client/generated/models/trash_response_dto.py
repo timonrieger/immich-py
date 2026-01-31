@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,7 +27,7 @@ class TrashResponseDto(BaseModel):
     TrashResponseDto
     """  # noqa: E501
 
-    count: StrictInt
+    count: StrictInt = Field(description="Number of items in trash")
     __properties: ClassVar[List[str]] = ["count"]
 
     model_config = ConfigDict(

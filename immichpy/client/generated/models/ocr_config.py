@@ -28,19 +28,27 @@ class OcrConfig(BaseModel):
     OcrConfig
     """  # noqa: E501
 
-    enabled: StrictBool
+    enabled: StrictBool = Field(description="Whether the task is enabled")
     max_resolution: Annotated[int, Field(strict=True, ge=1)] = Field(
-        alias="maxResolution"
+        description="Maximum resolution for OCR processing", alias="maxResolution"
     )
     min_detection_score: Union[
         Annotated[float, Field(le=1, strict=True, ge=0.1)],
         Annotated[int, Field(le=1, strict=True, ge=1)],
-    ] = Field(alias="minDetectionScore")
+    ] = Field(
+        description="Minimum confidence score for text detection",
+        alias="minDetectionScore",
+    )
     min_recognition_score: Union[
         Annotated[float, Field(le=1, strict=True, ge=0.1)],
         Annotated[int, Field(le=1, strict=True, ge=1)],
-    ] = Field(alias="minRecognitionScore")
-    model_name: StrictStr = Field(alias="modelName")
+    ] = Field(
+        description="Minimum confidence score for text recognition",
+        alias="minRecognitionScore",
+    )
+    model_name: StrictStr = Field(
+        description="Name of the model to use", alias="modelName"
+    )
     __properties: ClassVar[List[str]] = [
         "enabled",
         "maxResolution",

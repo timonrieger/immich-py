@@ -29,8 +29,10 @@ class APIKeyCreateDto(BaseModel):
     APIKeyCreateDto
     """  # noqa: E501
 
-    name: Optional[StrictStr] = None
-    permissions: Annotated[List[Permission], Field(min_length=1)]
+    name: Optional[StrictStr] = Field(default=None, description="API key name")
+    permissions: Annotated[List[Permission], Field(min_length=1)] = Field(
+        description="List of permissions"
+    )
     __properties: ClassVar[List[str]] = ["name", "permissions"]
 
     model_config = ConfigDict(

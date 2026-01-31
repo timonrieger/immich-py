@@ -27,8 +27,8 @@ class AssetBulkUploadCheckItem(BaseModel):
     AssetBulkUploadCheckItem
     """  # noqa: E501
 
-    checksum: StrictStr = Field(description="base64 or hex encoded sha1 hash")
-    id: StrictStr
+    checksum: StrictStr = Field(description="Base64 or hex encoded SHA1 hash")
+    id: StrictStr = Field(description="Asset ID")
     __properties: ClassVar[List[str]] = ["checksum", "id"]
 
     model_config = ConfigDict(

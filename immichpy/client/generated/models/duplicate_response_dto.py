@@ -28,8 +28,10 @@ class DuplicateResponseDto(BaseModel):
     DuplicateResponseDto
     """  # noqa: E501
 
-    assets: List[AssetResponseDto]
-    duplicate_id: StrictStr = Field(alias="duplicateId")
+    assets: List[AssetResponseDto] = Field(description="Duplicate assets")
+    duplicate_id: StrictStr = Field(
+        description="Duplicate group ID", alias="duplicateId"
+    )
     __properties: ClassVar[List[str]] = ["assets", "duplicateId"]
 
     model_config = ConfigDict(

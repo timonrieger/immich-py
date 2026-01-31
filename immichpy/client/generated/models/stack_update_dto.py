@@ -28,7 +28,9 @@ class StackUpdateDto(BaseModel):
     StackUpdateDto
     """  # noqa: E501
 
-    primary_asset_id: Optional[UUID] = Field(default=None, alias="primaryAssetId")
+    primary_asset_id: Optional[UUID] = Field(
+        default=None, description="Primary asset ID", alias="primaryAssetId"
+    )
     __properties: ClassVar[List[str]] = ["primaryAssetId"]
 
     model_config = ConfigDict(

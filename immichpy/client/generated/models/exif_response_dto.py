@@ -28,38 +28,62 @@ class ExifResponseDto(BaseModel):
     ExifResponseDto
     """  # noqa: E501
 
-    city: Optional[StrictStr] = None
-    country: Optional[StrictStr] = None
+    city: Optional[StrictStr] = Field(default=None, description="City name")
+    country: Optional[StrictStr] = Field(default=None, description="Country name")
     date_time_original: Optional[datetime] = Field(
-        default=None, alias="dateTimeOriginal"
+        default=None, description="Original date/time", alias="dateTimeOriginal"
     )
-    description: Optional[StrictStr] = None
+    description: Optional[StrictStr] = Field(
+        default=None, description="Image description"
+    )
     exif_image_height: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None, alias="exifImageHeight"
+        default=None, description="Image height in pixels", alias="exifImageHeight"
     )
     exif_image_width: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None, alias="exifImageWidth"
+        default=None, description="Image width in pixels", alias="exifImageWidth"
     )
-    exposure_time: Optional[StrictStr] = Field(default=None, alias="exposureTime")
+    exposure_time: Optional[StrictStr] = Field(
+        default=None, description="Exposure time", alias="exposureTime"
+    )
     f_number: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None, alias="fNumber"
+        default=None, description="F-number (aperture)", alias="fNumber"
     )
-    file_size_in_byte: Optional[StrictInt] = Field(default=None, alias="fileSizeInByte")
+    file_size_in_byte: Optional[StrictInt] = Field(
+        default=None, description="File size in bytes", alias="fileSizeInByte"
+    )
     focal_length: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None, alias="focalLength"
+        default=None, description="Focal length in mm", alias="focalLength"
     )
-    iso: Optional[Union[StrictFloat, StrictInt]] = None
-    latitude: Optional[Union[StrictFloat, StrictInt]] = None
-    lens_model: Optional[StrictStr] = Field(default=None, alias="lensModel")
-    longitude: Optional[Union[StrictFloat, StrictInt]] = None
-    make: Optional[StrictStr] = None
-    model: Optional[StrictStr] = None
-    modify_date: Optional[datetime] = Field(default=None, alias="modifyDate")
-    orientation: Optional[StrictStr] = None
-    projection_type: Optional[StrictStr] = Field(default=None, alias="projectionType")
-    rating: Optional[Union[StrictFloat, StrictInt]] = None
-    state: Optional[StrictStr] = None
-    time_zone: Optional[StrictStr] = Field(default=None, alias="timeZone")
+    iso: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="ISO sensitivity"
+    )
+    latitude: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="GPS latitude"
+    )
+    lens_model: Optional[StrictStr] = Field(
+        default=None, description="Lens model", alias="lensModel"
+    )
+    longitude: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="GPS longitude"
+    )
+    make: Optional[StrictStr] = Field(default=None, description="Camera make")
+    model: Optional[StrictStr] = Field(default=None, description="Camera model")
+    modify_date: Optional[datetime] = Field(
+        default=None, description="Modification date/time", alias="modifyDate"
+    )
+    orientation: Optional[StrictStr] = Field(
+        default=None, description="Image orientation"
+    )
+    projection_type: Optional[StrictStr] = Field(
+        default=None, description="Projection type", alias="projectionType"
+    )
+    rating: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="Rating"
+    )
+    state: Optional[StrictStr] = Field(default=None, description="State/province name")
+    time_zone: Optional[StrictStr] = Field(
+        default=None, description="Time zone", alias="timeZone"
+    )
     __properties: ClassVar[List[str]] = [
         "city",
         "country",

@@ -537,7 +537,7 @@ class PartnersApi:
     @validate_call
     async def get_partners(
         self,
-        direction: PartnerDirection,
+        direction: Annotated[PartnerDirection, Field(description="Partner direction")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -554,7 +554,7 @@ class PartnersApi:
 
         Retrieve a list of partners with whom assets are shared.
 
-        :param direction: (required)
+        :param direction: Partner direction (required)
         :type direction: PartnerDirection
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -601,7 +601,7 @@ class PartnersApi:
     @validate_call
     async def get_partners_with_http_info(
         self,
-        direction: PartnerDirection,
+        direction: Annotated[PartnerDirection, Field(description="Partner direction")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -618,7 +618,7 @@ class PartnersApi:
 
         Retrieve a list of partners with whom assets are shared.
 
-        :param direction: (required)
+        :param direction: Partner direction (required)
         :type direction: PartnerDirection
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -665,7 +665,7 @@ class PartnersApi:
     @validate_call
     async def get_partners_without_preload_content(
         self,
-        direction: PartnerDirection,
+        direction: Annotated[PartnerDirection, Field(description="Partner direction")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -682,7 +682,7 @@ class PartnersApi:
 
         Retrieve a list of partners with whom assets are shared.
 
-        :param direction: (required)
+        :param direction: Partner direction (required)
         :type direction: PartnerDirection
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

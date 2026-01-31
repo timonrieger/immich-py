@@ -27,8 +27,8 @@ class SyncAlbumToAssetV1(BaseModel):
     SyncAlbumToAssetV1
     """  # noqa: E501
 
-    album_id: StrictStr = Field(alias="albumId")
-    asset_id: StrictStr = Field(alias="assetId")
+    album_id: StrictStr = Field(description="Album ID", alias="albumId")
+    asset_id: StrictStr = Field(description="Asset ID", alias="assetId")
     __properties: ClassVar[List[str]] = ["albumId", "assetId"]
 
     model_config = ConfigDict(

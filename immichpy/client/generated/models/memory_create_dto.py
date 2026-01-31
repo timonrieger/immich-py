@@ -31,12 +31,18 @@ class MemoryCreateDto(BaseModel):
     MemoryCreateDto
     """  # noqa: E501
 
-    asset_ids: Optional[List[UUID]] = Field(default=None, alias="assetIds")
+    asset_ids: Optional[List[UUID]] = Field(
+        default=None, description="Asset IDs to associate with memory", alias="assetIds"
+    )
     data: OnThisDayDto
-    is_saved: Optional[StrictBool] = Field(default=None, alias="isSaved")
-    memory_at: datetime = Field(alias="memoryAt")
-    seen_at: Optional[datetime] = Field(default=None, alias="seenAt")
-    type: MemoryType
+    is_saved: Optional[StrictBool] = Field(
+        default=None, description="Is memory saved", alias="isSaved"
+    )
+    memory_at: datetime = Field(description="Memory date", alias="memoryAt")
+    seen_at: Optional[datetime] = Field(
+        default=None, description="Date when memory was seen", alias="seenAt"
+    )
+    type: MemoryType = Field(description="Memory type")
     __properties: ClassVar[List[str]] = [
         "assetIds",
         "data",

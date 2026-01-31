@@ -16,7 +16,14 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr, field_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StrictBool,
+    StrictStr,
+    field_validator,
+)
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Set
 from typing_extensions import Self
@@ -27,9 +34,11 @@ class BulkIdResponseDto(BaseModel):
     BulkIdResponseDto
     """  # noqa: E501
 
-    error: Optional[StrictStr] = None
-    id: StrictStr
-    success: StrictBool
+    error: Optional[StrictStr] = Field(
+        default=None, description="Error reason if failed"
+    )
+    id: StrictStr = Field(description="ID")
+    success: StrictBool = Field(description="Whether operation succeeded")
     __properties: ClassVar[List[str]] = ["error", "id", "success"]
 
     @field_validator("error")

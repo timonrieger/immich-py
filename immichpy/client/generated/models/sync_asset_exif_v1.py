@@ -28,31 +28,51 @@ class SyncAssetExifV1(BaseModel):
     SyncAssetExifV1
     """  # noqa: E501
 
-    asset_id: StrictStr = Field(alias="assetId")
-    city: Optional[StrictStr]
-    country: Optional[StrictStr]
-    date_time_original: Optional[datetime] = Field(alias="dateTimeOriginal")
-    description: Optional[StrictStr]
-    exif_image_height: Optional[StrictInt] = Field(alias="exifImageHeight")
-    exif_image_width: Optional[StrictInt] = Field(alias="exifImageWidth")
-    exposure_time: Optional[StrictStr] = Field(alias="exposureTime")
-    f_number: Optional[Union[StrictFloat, StrictInt]] = Field(alias="fNumber")
-    file_size_in_byte: Optional[StrictInt] = Field(alias="fileSizeInByte")
-    focal_length: Optional[Union[StrictFloat, StrictInt]] = Field(alias="focalLength")
-    fps: Optional[Union[StrictFloat, StrictInt]]
-    iso: Optional[StrictInt]
-    latitude: Optional[Union[StrictFloat, StrictInt]]
-    lens_model: Optional[StrictStr] = Field(alias="lensModel")
-    longitude: Optional[Union[StrictFloat, StrictInt]]
-    make: Optional[StrictStr]
-    model: Optional[StrictStr]
-    modify_date: Optional[datetime] = Field(alias="modifyDate")
-    orientation: Optional[StrictStr]
-    profile_description: Optional[StrictStr] = Field(alias="profileDescription")
-    projection_type: Optional[StrictStr] = Field(alias="projectionType")
-    rating: Optional[StrictInt]
-    state: Optional[StrictStr]
-    time_zone: Optional[StrictStr] = Field(alias="timeZone")
+    asset_id: StrictStr = Field(description="Asset ID", alias="assetId")
+    city: Optional[StrictStr] = Field(description="City")
+    country: Optional[StrictStr] = Field(description="Country")
+    date_time_original: Optional[datetime] = Field(
+        description="Date time original", alias="dateTimeOriginal"
+    )
+    description: Optional[StrictStr] = Field(description="Description")
+    exif_image_height: Optional[StrictInt] = Field(
+        description="Exif image height", alias="exifImageHeight"
+    )
+    exif_image_width: Optional[StrictInt] = Field(
+        description="Exif image width", alias="exifImageWidth"
+    )
+    exposure_time: Optional[StrictStr] = Field(
+        description="Exposure time", alias="exposureTime"
+    )
+    f_number: Optional[Union[StrictFloat, StrictInt]] = Field(
+        description="F number", alias="fNumber"
+    )
+    file_size_in_byte: Optional[StrictInt] = Field(
+        description="File size in byte", alias="fileSizeInByte"
+    )
+    focal_length: Optional[Union[StrictFloat, StrictInt]] = Field(
+        description="Focal length", alias="focalLength"
+    )
+    fps: Optional[Union[StrictFloat, StrictInt]] = Field(description="FPS")
+    iso: Optional[StrictInt] = Field(description="ISO")
+    latitude: Optional[Union[StrictFloat, StrictInt]] = Field(description="Latitude")
+    lens_model: Optional[StrictStr] = Field(description="Lens model", alias="lensModel")
+    longitude: Optional[Union[StrictFloat, StrictInt]] = Field(description="Longitude")
+    make: Optional[StrictStr] = Field(description="Make")
+    model: Optional[StrictStr] = Field(description="Model")
+    modify_date: Optional[datetime] = Field(
+        description="Modify date", alias="modifyDate"
+    )
+    orientation: Optional[StrictStr] = Field(description="Orientation")
+    profile_description: Optional[StrictStr] = Field(
+        description="Profile description", alias="profileDescription"
+    )
+    projection_type: Optional[StrictStr] = Field(
+        description="Projection type", alias="projectionType"
+    )
+    rating: Optional[StrictInt] = Field(description="Rating")
+    state: Optional[StrictStr] = Field(description="State")
+    time_zone: Optional[StrictStr] = Field(description="Time zone", alias="timeZone")
     __properties: ClassVar[List[str]] = [
         "assetId",
         "city",

@@ -30,22 +30,22 @@ class PeopleUpdateItem(BaseModel):
     """  # noqa: E501
 
     birth_date: Optional[date] = Field(
-        default=None,
-        description="Person date of birth. Note: the mobile app cannot currently set the birth date to null.",
-        alias="birthDate",
+        default=None, description="Person date of birth", alias="birthDate"
     )
-    color: Optional[StrictStr] = None
+    color: Optional[StrictStr] = Field(default=None, description="Person color (hex)")
     feature_face_asset_id: Optional[UUID] = Field(
         default=None,
-        description="Asset is used to get the feature face thumbnail.",
+        description="Asset ID used for feature face thumbnail",
         alias="featureFaceAssetId",
     )
-    id: StrictStr = Field(description="Person id.")
-    is_favorite: Optional[StrictBool] = Field(default=None, alias="isFavorite")
-    is_hidden: Optional[StrictBool] = Field(
-        default=None, description="Person visibility", alias="isHidden"
+    id: StrictStr = Field(description="Person ID")
+    is_favorite: Optional[StrictBool] = Field(
+        default=None, description="Mark as favorite", alias="isFavorite"
     )
-    name: Optional[StrictStr] = Field(default=None, description="Person name.")
+    is_hidden: Optional[StrictBool] = Field(
+        default=None, description="Person visibility (hidden)", alias="isHidden"
+    )
+    name: Optional[StrictStr] = Field(default=None, description="Person name")
     __properties: ClassVar[List[str]] = [
         "birthDate",
         "color",

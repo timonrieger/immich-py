@@ -27,6 +27,7 @@ from pydantic import (
     StrictStr,
 )
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from uuid import UUID
 from immichpy.client.generated.models.asset_face_without_person_response_dto import (
     AssetFaceWithoutPersonResponseDto,
 )
@@ -50,15 +51,19 @@ class AssetResponseDto(BaseModel):
     AssetResponseDto
     """  # noqa: E501
 
-    checksum: StrictStr = Field(description="base64 encoded sha1 hash")
+    checksum: StrictStr = Field(description="Base64 encoded SHA1 hash")
     created_at: datetime = Field(
         description="The UTC timestamp when the asset was originally uploaded to Immich.",
         alias="createdAt",
     )
-    device_asset_id: StrictStr = Field(alias="deviceAssetId")
-    device_id: StrictStr = Field(alias="deviceId")
-    duplicate_id: Optional[StrictStr] = Field(default=None, alias="duplicateId")
-    duration: StrictStr
+    device_asset_id: StrictStr = Field(
+        description="Device asset ID", alias="deviceAssetId"
+    )
+    device_id: StrictStr = Field(description="Device ID", alias="deviceId")
+    duplicate_id: Optional[StrictStr] = Field(
+        default=None, description="Duplicate group ID", alias="duplicateId"
+    )
+    duration: StrictStr = Field(description="Video duration (for videos)")
     exif_info: Optional[ExifResponseDto] = Field(default=None, alias="exifInfo")
     file_created_at: datetime = Field(
         description="The actual UTC timestamp when the file was created/captured, preserving timezone information. This is the authoritative timestamp for chronological sorting within timeline groups. Combined with timezone data, this can be used to determine the exact moment the photo was taken.",
@@ -68,35 +73,45 @@ class AssetResponseDto(BaseModel):
         description="The UTC timestamp when the file was last modified on the filesystem. This reflects the last time the physical file was changed, which may be different from when the photo was originally taken.",
         alias="fileModifiedAt",
     )
-    has_metadata: StrictBool = Field(alias="hasMetadata")
-    height: Optional[Union[StrictFloat, StrictInt]]
-    id: StrictStr
-    is_archived: StrictBool = Field(alias="isArchived")
-    is_edited: StrictBool = Field(alias="isEdited")
-    is_favorite: StrictBool = Field(alias="isFavorite")
-    is_offline: StrictBool = Field(alias="isOffline")
-    is_trashed: StrictBool = Field(alias="isTrashed")
-    library_id: Optional[StrictStr] = Field(default=None, alias="libraryId")
+    has_metadata: StrictBool = Field(
+        description="Whether asset has metadata", alias="hasMetadata"
+    )
+    height: Optional[Union[StrictFloat, StrictInt]] = Field(description="Asset height")
+    id: StrictStr = Field(description="Asset ID")
+    is_archived: StrictBool = Field(description="Is archived", alias="isArchived")
+    is_edited: StrictBool = Field(description="Is edited", alias="isEdited")
+    is_favorite: StrictBool = Field(description="Is favorite", alias="isFavorite")
+    is_offline: StrictBool = Field(description="Is offline", alias="isOffline")
+    is_trashed: StrictBool = Field(description="Is trashed", alias="isTrashed")
+    library_id: Optional[UUID] = Field(
+        default=None, description="Library ID", alias="libraryId"
+    )
     live_photo_video_id: Optional[StrictStr] = Field(
-        default=None, alias="livePhotoVideoId"
+        default=None, description="Live photo video ID", alias="livePhotoVideoId"
     )
     local_date_time: datetime = Field(
         description='The local date and time when the photo/video was taken, derived from EXIF metadata. This represents the photographer\'s local time regardless of timezone, stored as a timezone-agnostic timestamp. Used for timeline grouping by "local" days and months.',
         alias="localDateTime",
     )
-    original_file_name: StrictStr = Field(alias="originalFileName")
-    original_mime_type: Optional[StrictStr] = Field(
-        default=None, alias="originalMimeType"
+    original_file_name: StrictStr = Field(
+        description="Original file name", alias="originalFileName"
     )
-    original_path: StrictStr = Field(alias="originalPath")
+    original_mime_type: Optional[StrictStr] = Field(
+        default=None, description="Original MIME type", alias="originalMimeType"
+    )
+    original_path: StrictStr = Field(
+        description="Original file path", alias="originalPath"
+    )
     owner: Optional[UserResponseDto] = None
-    owner_id: StrictStr = Field(alias="ownerId")
+    owner_id: StrictStr = Field(description="Owner user ID", alias="ownerId")
     people: Optional[List[PersonWithFacesResponseDto]] = None
-    resized: Optional[StrictBool] = None
+    resized: Optional[StrictBool] = Field(default=None, description="Is resized")
     stack: Optional[AssetStackResponseDto] = None
     tags: Optional[List[TagResponseDto]] = None
-    thumbhash: Optional[StrictStr]
-    type: AssetTypeEnum
+    thumbhash: Optional[StrictStr] = Field(
+        description="Thumbhash for thumbnail generation"
+    )
+    type: AssetTypeEnum = Field(description="Asset type")
     unassigned_faces: Optional[List[AssetFaceWithoutPersonResponseDto]] = Field(
         default=None, alias="unassignedFaces"
     )
@@ -104,8 +119,8 @@ class AssetResponseDto(BaseModel):
         description="The UTC timestamp when the asset record was last updated in the database. This is automatically maintained by the database and reflects when any field in the asset was last modified.",
         alias="updatedAt",
     )
-    visibility: AssetVisibility
-    width: Optional[Union[StrictFloat, StrictInt]]
+    visibility: AssetVisibility = Field(description="Asset visibility")
+    width: Optional[Union[StrictFloat, StrictInt]] = Field(description="Asset width")
     __properties: ClassVar[List[str]] = [
         "checksum",
         "createdAt",

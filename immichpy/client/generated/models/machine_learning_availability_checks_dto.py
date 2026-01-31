@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictFloat, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Union
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,7 +27,7 @@ class MachineLearningAvailabilityChecksDto(BaseModel):
     MachineLearningAvailabilityChecksDto
     """  # noqa: E501
 
-    enabled: StrictBool
+    enabled: StrictBool = Field(description="Enabled")
     interval: Union[StrictFloat, StrictInt]
     timeout: Union[StrictFloat, StrictInt]
     __properties: ClassVar[List[str]] = ["enabled", "interval", "timeout"]

@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,8 +27,8 @@ class AssetMetadataUpsertItemDto(BaseModel):
     AssetMetadataUpsertItemDto
     """  # noqa: E501
 
-    key: StrictStr
-    value: Dict[str, Any]
+    key: StrictStr = Field(description="Metadata key")
+    value: Dict[str, Any] = Field(description="Metadata value (object)")
     __properties: ClassVar[List[str]] = ["key", "value"]
 
     model_config = ConfigDict(

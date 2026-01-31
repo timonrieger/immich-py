@@ -28,9 +28,15 @@ class MemoryUpdateDto(BaseModel):
     MemoryUpdateDto
     """  # noqa: E501
 
-    is_saved: Optional[StrictBool] = Field(default=None, alias="isSaved")
-    memory_at: Optional[datetime] = Field(default=None, alias="memoryAt")
-    seen_at: Optional[datetime] = Field(default=None, alias="seenAt")
+    is_saved: Optional[StrictBool] = Field(
+        default=None, description="Is memory saved", alias="isSaved"
+    )
+    memory_at: Optional[datetime] = Field(
+        default=None, description="Memory date", alias="memoryAt"
+    )
+    seen_at: Optional[datetime] = Field(
+        default=None, description="Date when memory was seen", alias="seenAt"
+    )
     __properties: ClassVar[List[str]] = ["isSaved", "memoryAt", "seenAt"]
 
     model_config = ConfigDict(

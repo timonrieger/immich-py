@@ -28,8 +28,8 @@ class AssetFaceUpdateItem(BaseModel):
     AssetFaceUpdateItem
     """  # noqa: E501
 
-    asset_id: UUID = Field(alias="assetId")
-    person_id: UUID = Field(alias="personId")
+    asset_id: UUID = Field(description="Asset ID", alias="assetId")
+    person_id: UUID = Field(description="Person ID", alias="personId")
     __properties: ClassVar[List[str]] = ["assetId", "personId"]
 
     model_config = ConfigDict(

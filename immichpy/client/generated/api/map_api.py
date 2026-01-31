@@ -17,7 +17,9 @@ from typing_extensions import Annotated
 
 from datetime import datetime
 from pydantic import StrictBool
-from immichpy.client.generated.models.map_marker_response_dto import MapMarkerResponseDto
+from immichpy.client.generated.models.map_marker_response_dto import (
+    MapMarkerResponseDto,
+)
 from immichpy.client.generated.models.map_reverse_geocode_response_dto import (
     MapReverseGeocodeResponseDto,
 )
@@ -42,12 +44,26 @@ class MapApi:
     @validate_call
     async def get_map_markers(
         self,
-        file_created_after: Optional[datetime] = None,
-        file_created_before: Optional[datetime] = None,
-        is_archived: Optional[StrictBool] = None,
-        is_favorite: Optional[StrictBool] = None,
-        with_partners: Optional[StrictBool] = None,
-        with_shared_albums: Optional[StrictBool] = None,
+        file_created_after: Annotated[
+            Optional[datetime],
+            Field(description="Filter assets created after this date"),
+        ] = None,
+        file_created_before: Annotated[
+            Optional[datetime],
+            Field(description="Filter assets created before this date"),
+        ] = None,
+        is_archived: Annotated[
+            Optional[StrictBool], Field(description="Filter by archived status")
+        ] = None,
+        is_favorite: Annotated[
+            Optional[StrictBool], Field(description="Filter by favorite status")
+        ] = None,
+        with_partners: Annotated[
+            Optional[StrictBool], Field(description="Include partner assets")
+        ] = None,
+        with_shared_albums: Annotated[
+            Optional[StrictBool], Field(description="Include shared album assets")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -64,17 +80,17 @@ class MapApi:
 
         Retrieve a list of latitude and longitude coordinates for every asset with location data.
 
-        :param file_created_after:
+        :param file_created_after: Filter assets created after this date
         :type file_created_after: datetime
-        :param file_created_before:
+        :param file_created_before: Filter assets created before this date
         :type file_created_before: datetime
-        :param is_archived:
+        :param is_archived: Filter by archived status
         :type is_archived: bool
-        :param is_favorite:
+        :param is_favorite: Filter by favorite status
         :type is_favorite: bool
-        :param with_partners:
+        :param with_partners: Include partner assets
         :type with_partners: bool
-        :param with_shared_albums:
+        :param with_shared_albums: Include shared album assets
         :type with_shared_albums: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -126,12 +142,26 @@ class MapApi:
     @validate_call
     async def get_map_markers_with_http_info(
         self,
-        file_created_after: Optional[datetime] = None,
-        file_created_before: Optional[datetime] = None,
-        is_archived: Optional[StrictBool] = None,
-        is_favorite: Optional[StrictBool] = None,
-        with_partners: Optional[StrictBool] = None,
-        with_shared_albums: Optional[StrictBool] = None,
+        file_created_after: Annotated[
+            Optional[datetime],
+            Field(description="Filter assets created after this date"),
+        ] = None,
+        file_created_before: Annotated[
+            Optional[datetime],
+            Field(description="Filter assets created before this date"),
+        ] = None,
+        is_archived: Annotated[
+            Optional[StrictBool], Field(description="Filter by archived status")
+        ] = None,
+        is_favorite: Annotated[
+            Optional[StrictBool], Field(description="Filter by favorite status")
+        ] = None,
+        with_partners: Annotated[
+            Optional[StrictBool], Field(description="Include partner assets")
+        ] = None,
+        with_shared_albums: Annotated[
+            Optional[StrictBool], Field(description="Include shared album assets")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -148,17 +178,17 @@ class MapApi:
 
         Retrieve a list of latitude and longitude coordinates for every asset with location data.
 
-        :param file_created_after:
+        :param file_created_after: Filter assets created after this date
         :type file_created_after: datetime
-        :param file_created_before:
+        :param file_created_before: Filter assets created before this date
         :type file_created_before: datetime
-        :param is_archived:
+        :param is_archived: Filter by archived status
         :type is_archived: bool
-        :param is_favorite:
+        :param is_favorite: Filter by favorite status
         :type is_favorite: bool
-        :param with_partners:
+        :param with_partners: Include partner assets
         :type with_partners: bool
-        :param with_shared_albums:
+        :param with_shared_albums: Include shared album assets
         :type with_shared_albums: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -210,12 +240,26 @@ class MapApi:
     @validate_call
     async def get_map_markers_without_preload_content(
         self,
-        file_created_after: Optional[datetime] = None,
-        file_created_before: Optional[datetime] = None,
-        is_archived: Optional[StrictBool] = None,
-        is_favorite: Optional[StrictBool] = None,
-        with_partners: Optional[StrictBool] = None,
-        with_shared_albums: Optional[StrictBool] = None,
+        file_created_after: Annotated[
+            Optional[datetime],
+            Field(description="Filter assets created after this date"),
+        ] = None,
+        file_created_before: Annotated[
+            Optional[datetime],
+            Field(description="Filter assets created before this date"),
+        ] = None,
+        is_archived: Annotated[
+            Optional[StrictBool], Field(description="Filter by archived status")
+        ] = None,
+        is_favorite: Annotated[
+            Optional[StrictBool], Field(description="Filter by favorite status")
+        ] = None,
+        with_partners: Annotated[
+            Optional[StrictBool], Field(description="Include partner assets")
+        ] = None,
+        with_shared_albums: Annotated[
+            Optional[StrictBool], Field(description="Include shared album assets")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -232,17 +276,17 @@ class MapApi:
 
         Retrieve a list of latitude and longitude coordinates for every asset with location data.
 
-        :param file_created_after:
+        :param file_created_after: Filter assets created after this date
         :type file_created_after: datetime
-        :param file_created_before:
+        :param file_created_before: Filter assets created before this date
         :type file_created_before: datetime
-        :param is_archived:
+        :param is_archived: Filter by archived status
         :type is_archived: bool
-        :param is_favorite:
+        :param is_favorite: Filter by favorite status
         :type is_favorite: bool
-        :param with_partners:
+        :param with_partners: Include partner assets
         :type with_partners: bool
-        :param with_shared_albums:
+        :param with_shared_albums: Include shared album assets
         :type with_shared_albums: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -384,8 +428,12 @@ class MapApi:
     @validate_call
     async def reverse_geocode(
         self,
-        lat: Union[StrictFloat, StrictInt],
-        lon: Union[StrictFloat, StrictInt],
+        lat: Annotated[
+            Union[StrictFloat, StrictInt], Field(description="Latitude (-90 to 90)")
+        ],
+        lon: Annotated[
+            Union[StrictFloat, StrictInt], Field(description="Longitude (-180 to 180)")
+        ],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -402,9 +450,9 @@ class MapApi:
 
         Retrieve location information (e.g., city, country) for given latitude and longitude coordinates.
 
-        :param lat: (required)
+        :param lat: Latitude (-90 to 90) (required)
         :type lat: float
-        :param lon: (required)
+        :param lon: Longitude (-180 to 180) (required)
         :type lon: float
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -452,8 +500,12 @@ class MapApi:
     @validate_call
     async def reverse_geocode_with_http_info(
         self,
-        lat: Union[StrictFloat, StrictInt],
-        lon: Union[StrictFloat, StrictInt],
+        lat: Annotated[
+            Union[StrictFloat, StrictInt], Field(description="Latitude (-90 to 90)")
+        ],
+        lon: Annotated[
+            Union[StrictFloat, StrictInt], Field(description="Longitude (-180 to 180)")
+        ],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -470,9 +522,9 @@ class MapApi:
 
         Retrieve location information (e.g., city, country) for given latitude and longitude coordinates.
 
-        :param lat: (required)
+        :param lat: Latitude (-90 to 90) (required)
         :type lat: float
-        :param lon: (required)
+        :param lon: Longitude (-180 to 180) (required)
         :type lon: float
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -520,8 +572,12 @@ class MapApi:
     @validate_call
     async def reverse_geocode_without_preload_content(
         self,
-        lat: Union[StrictFloat, StrictInt],
-        lon: Union[StrictFloat, StrictInt],
+        lat: Annotated[
+            Union[StrictFloat, StrictInt], Field(description="Latitude (-90 to 90)")
+        ],
+        lon: Annotated[
+            Union[StrictFloat, StrictInt], Field(description="Longitude (-180 to 180)")
+        ],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -538,9 +594,9 @@ class MapApi:
 
         Retrieve location information (e.g., city, country) for given latitude and longitude coordinates.
 
-        :param lat: (required)
+        :param lat: Latitude (-90 to 90) (required)
         :type lat: float
-        :param lon: (required)
+        :param lon: Longitude (-180 to 180) (required)
         :type lon: float
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

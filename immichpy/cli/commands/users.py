@@ -20,7 +20,9 @@ app = typer.Typer(
 @app.command("create-profile-image", deprecated=False, rich_help_panel="API commands")
 def create_profile_image(
     ctx: typer.Context,
-    file: Path = typer.Option(..., "--file", help="""""", exists=True),
+    file: Path = typer.Option(
+        ..., "--file", help="""Profile image file""", exists=True
+    ),
 ) -> None:
     """Create user profile image
 
@@ -182,8 +184,12 @@ def search_users(
 @app.command("set-user-license", deprecated=False, rich_help_panel="API commands")
 def set_user_license(
     ctx: typer.Context,
-    activation_key: str = typer.Option(..., "--activation-key", help=""""""),
-    license_key: str = typer.Option(..., "--license-key", help=""""""),
+    activation_key: str = typer.Option(
+        ..., "--activation-key", help="""Activation key"""
+    ),
+    license_key: str = typer.Option(
+        ..., "--license-key", help="""License key (format: IM(SV|CL)(-XXXX){8})"""
+    ),
 ) -> None:
     """Set user product key
 
@@ -203,7 +209,9 @@ def set_user_license(
 @app.command("set-user-onboarding", deprecated=False, rich_help_panel="API commands")
 def set_user_onboarding(
     ctx: typer.Context,
-    is_onboarded: bool = typer.Option(..., "--is-onboarded", help=""""""),
+    is_onboarded: bool = typer.Option(
+        ..., "--is-onboarded", help="""Is user onboarded"""
+    ),
 ) -> None:
     """Update user onboarding
 
@@ -223,65 +231,79 @@ def set_user_onboarding(
 def update_my_preferences(
     ctx: typer.Context,
     albums_default_asset_order: str | None = typer.Option(
-        None, "--albums-default-asset-order", help=""""""
+        None, "--albums-default-asset-order", help="""Asset sort order"""
     ),
-    avatar_color: str | None = typer.Option(None, "--avatar-color", help=""""""),
+    avatar_color: str | None = typer.Option(
+        None, "--avatar-color", help="""Avatar color"""
+    ),
     cast_g_cast_enabled: Literal["true", "false"] | None = typer.Option(
-        None, "--cast-g-cast-enabled", help=""""""
+        None, "--cast-g-cast-enabled", help="""Whether Google Cast is enabled"""
     ),
     download_archive_size: int | None = typer.Option(
-        None, "--download-archive-size", help="""""", min=1
+        None, "--download-archive-size", help="""Maximum archive size in bytes""", min=1
     ),
     download_include_embedded_videos: Literal["true", "false"] | None = typer.Option(
-        None, "--download-include-embedded-videos", help=""""""
+        None,
+        "--download-include-embedded-videos",
+        help="""Whether to include embedded videos in downloads""",
     ),
     email_notifications_album_invite: Literal["true", "false"] | None = typer.Option(
-        None, "--email-notifications-album-invite", help=""""""
+        None,
+        "--email-notifications-album-invite",
+        help="""Whether to receive email notifications for album invites""",
     ),
     email_notifications_album_update: Literal["true", "false"] | None = typer.Option(
-        None, "--email-notifications-album-update", help=""""""
+        None,
+        "--email-notifications-album-update",
+        help="""Whether to receive email notifications for album updates""",
     ),
     email_notifications_enabled: Literal["true", "false"] | None = typer.Option(
-        None, "--email-notifications-enabled", help=""""""
+        None,
+        "--email-notifications-enabled",
+        help="""Whether email notifications are enabled""",
     ),
     folders_enabled: Literal["true", "false"] | None = typer.Option(
-        None, "--folders-enabled", help=""""""
+        None, "--folders-enabled", help="""Whether folders are enabled"""
     ),
     folders_sidebar_web: Literal["true", "false"] | None = typer.Option(
-        None, "--folders-sidebar-web", help=""""""
+        None, "--folders-sidebar-web", help="""Whether folders appear in web sidebar"""
     ),
     memories_duration: int | None = typer.Option(
-        None, "--memories-duration", help="""""", min=1
+        None, "--memories-duration", help="""Memory duration in seconds""", min=1
     ),
     memories_enabled: Literal["true", "false"] | None = typer.Option(
-        None, "--memories-enabled", help=""""""
+        None, "--memories-enabled", help="""Whether memories are enabled"""
     ),
     people_enabled: Literal["true", "false"] | None = typer.Option(
-        None, "--people-enabled", help=""""""
+        None, "--people-enabled", help="""Whether people are enabled"""
     ),
     people_sidebar_web: Literal["true", "false"] | None = typer.Option(
-        None, "--people-sidebar-web", help=""""""
+        None, "--people-sidebar-web", help="""Whether people appear in web sidebar"""
     ),
     purchase_hide_buy_button_until: str | None = typer.Option(
-        None, "--purchase-hide-buy-button-until", help=""""""
+        None,
+        "--purchase-hide-buy-button-until",
+        help="""Date until which to hide buy button""",
     ),
     purchase_show_support_badge: Literal["true", "false"] | None = typer.Option(
-        None, "--purchase-show-support-badge", help=""""""
+        None, "--purchase-show-support-badge", help="""Whether to show support badge"""
     ),
     ratings_enabled: Literal["true", "false"] | None = typer.Option(
-        None, "--ratings-enabled", help=""""""
+        None, "--ratings-enabled", help="""Whether ratings are enabled"""
     ),
     shared_links_enabled: Literal["true", "false"] | None = typer.Option(
-        None, "--shared-links-enabled", help=""""""
+        None, "--shared-links-enabled", help="""Whether shared links are enabled"""
     ),
     shared_links_sidebar_web: Literal["true", "false"] | None = typer.Option(
-        None, "--shared-links-sidebar-web", help=""""""
+        None,
+        "--shared-links-sidebar-web",
+        help="""Whether shared links appear in web sidebar""",
     ),
     tags_enabled: Literal["true", "false"] | None = typer.Option(
-        None, "--tags-enabled", help=""""""
+        None, "--tags-enabled", help="""Whether tags are enabled"""
     ),
     tags_sidebar_web: Literal["true", "false"] | None = typer.Option(
-        None, "--tags-sidebar-web", help=""""""
+        None, "--tags-sidebar-web", help="""Whether tags appear in web sidebar"""
     ),
 ) -> None:
     """Update my preferences
@@ -380,10 +402,16 @@ def update_my_preferences(
 @app.command("update-my-user", deprecated=False, rich_help_panel="API commands")
 def update_my_user(
     ctx: typer.Context,
-    avatar_color: str | None = typer.Option(None, "--avatar-color", help=""""""),
-    email: str | None = typer.Option(None, "--email", help=""""""),
-    name: str | None = typer.Option(None, "--name", help=""""""),
-    password: str | None = typer.Option(None, "--password", help=""""""),
+    avatar_color: str | None = typer.Option(
+        None, "--avatar-color", help="""Avatar color"""
+    ),
+    email: str | None = typer.Option(None, "--email", help="""User email"""),
+    name: str | None = typer.Option(None, "--name", help="""User name"""),
+    password: str | None = typer.Option(
+        None,
+        "--password",
+        help="""User password (deprecated, use change password endpoint)""",
+    ),
 ) -> None:
     """Update current user
 

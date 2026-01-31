@@ -29,12 +29,18 @@ class UserResponseDto(BaseModel):
     UserResponseDto
     """  # noqa: E501
 
-    avatar_color: UserAvatarColor = Field(alias="avatarColor")
-    email: StrictStr
-    id: StrictStr
-    name: StrictStr
-    profile_changed_at: datetime = Field(alias="profileChangedAt")
-    profile_image_path: StrictStr = Field(alias="profileImagePath")
+    avatar_color: UserAvatarColor = Field(
+        description="Avatar color", alias="avatarColor"
+    )
+    email: StrictStr = Field(description="User email")
+    id: StrictStr = Field(description="User ID")
+    name: StrictStr = Field(description="User name")
+    profile_changed_at: datetime = Field(
+        description="Profile change date", alias="profileChangedAt"
+    )
+    profile_image_path: StrictStr = Field(
+        description="Profile image path", alias="profileImagePath"
+    )
     __properties: ClassVar[List[str]] = [
         "avatarColor",
         "email",

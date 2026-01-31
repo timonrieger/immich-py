@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from immichpy.client.generated.models.asset_metadata_bulk_delete_item_dto import (
     AssetMetadataBulkDeleteItemDto,
@@ -30,7 +30,9 @@ class AssetMetadataBulkDeleteDto(BaseModel):
     AssetMetadataBulkDeleteDto
     """  # noqa: E501
 
-    items: List[AssetMetadataBulkDeleteItemDto]
+    items: List[AssetMetadataBulkDeleteItemDto] = Field(
+        description="Metadata items to delete"
+    )
     __properties: ClassVar[List[str]] = ["items"]
 
     model_config = ConfigDict(

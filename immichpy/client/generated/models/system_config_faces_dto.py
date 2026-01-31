@@ -27,7 +27,7 @@ class SystemConfigFacesDto(BaseModel):
     SystemConfigFacesDto
     """  # noqa: E501
 
-    var_import: StrictBool = Field(alias="import")
+    var_import: StrictBool = Field(description="Import", alias="import")
     __properties: ClassVar[List[str]] = ["import"]
 
     model_config = ConfigDict(

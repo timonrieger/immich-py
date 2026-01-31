@@ -35,7 +35,7 @@ def delete_duplicate(
 @app.command("delete-duplicates", deprecated=False, rich_help_panel="API commands")
 def delete_duplicates(
     ctx: typer.Context,
-    ids: list[str] = typer.Option(..., "--ids", help=""""""),
+    ids: list[str] = typer.Option(..., "--ids", help="""IDs to process"""),
 ) -> None:
     """Delete duplicates
 

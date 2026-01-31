@@ -29,8 +29,10 @@ class QueueResponseDto(BaseModel):
     QueueResponseDto
     """  # noqa: E501
 
-    is_paused: StrictBool = Field(alias="isPaused")
-    name: QueueName
+    is_paused: StrictBool = Field(
+        description="Whether the queue is paused", alias="isPaused"
+    )
+    name: QueueName = Field(description="Queue name")
     statistics: QueueStatisticsDto
     __properties: ClassVar[List[str]] = ["isPaused", "name", "statistics"]
 

@@ -508,13 +508,26 @@ class SearchApi:
     @validate_call
     async def get_search_suggestions(
         self,
-        type: SearchSuggestionType,
-        country: Optional[StrictStr] = None,
-        include_null: Optional[StrictBool] = None,
-        lens_model: Optional[StrictStr] = None,
-        make: Optional[StrictStr] = None,
-        model: Optional[StrictStr] = None,
-        state: Optional[StrictStr] = None,
+        type: Annotated[SearchSuggestionType, Field(description="Suggestion type")],
+        country: Annotated[
+            Optional[StrictStr], Field(description="Filter by country")
+        ] = None,
+        include_null: Annotated[
+            Optional[StrictBool],
+            Field(description="Include null values in suggestions"),
+        ] = None,
+        lens_model: Annotated[
+            Optional[StrictStr], Field(description="Filter by lens model")
+        ] = None,
+        make: Annotated[
+            Optional[StrictStr], Field(description="Filter by camera make")
+        ] = None,
+        model: Annotated[
+            Optional[StrictStr], Field(description="Filter by camera model")
+        ] = None,
+        state: Annotated[
+            Optional[StrictStr], Field(description="Filter by state/province")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -531,19 +544,19 @@ class SearchApi:
 
         Retrieve search suggestions based on partial input. This endpoint is used for typeahead search features.
 
-        :param type: (required)
+        :param type: Suggestion type (required)
         :type type: SearchSuggestionType
-        :param country:
+        :param country: Filter by country
         :type country: str
-        :param include_null:
+        :param include_null: Include null values in suggestions
         :type include_null: bool
-        :param lens_model:
+        :param lens_model: Filter by lens model
         :type lens_model: str
-        :param make:
+        :param make: Filter by camera make
         :type make: str
-        :param model:
+        :param model: Filter by camera model
         :type model: str
-        :param state:
+        :param state: Filter by state/province
         :type state: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -596,13 +609,26 @@ class SearchApi:
     @validate_call
     async def get_search_suggestions_with_http_info(
         self,
-        type: SearchSuggestionType,
-        country: Optional[StrictStr] = None,
-        include_null: Optional[StrictBool] = None,
-        lens_model: Optional[StrictStr] = None,
-        make: Optional[StrictStr] = None,
-        model: Optional[StrictStr] = None,
-        state: Optional[StrictStr] = None,
+        type: Annotated[SearchSuggestionType, Field(description="Suggestion type")],
+        country: Annotated[
+            Optional[StrictStr], Field(description="Filter by country")
+        ] = None,
+        include_null: Annotated[
+            Optional[StrictBool],
+            Field(description="Include null values in suggestions"),
+        ] = None,
+        lens_model: Annotated[
+            Optional[StrictStr], Field(description="Filter by lens model")
+        ] = None,
+        make: Annotated[
+            Optional[StrictStr], Field(description="Filter by camera make")
+        ] = None,
+        model: Annotated[
+            Optional[StrictStr], Field(description="Filter by camera model")
+        ] = None,
+        state: Annotated[
+            Optional[StrictStr], Field(description="Filter by state/province")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -619,19 +645,19 @@ class SearchApi:
 
         Retrieve search suggestions based on partial input. This endpoint is used for typeahead search features.
 
-        :param type: (required)
+        :param type: Suggestion type (required)
         :type type: SearchSuggestionType
-        :param country:
+        :param country: Filter by country
         :type country: str
-        :param include_null:
+        :param include_null: Include null values in suggestions
         :type include_null: bool
-        :param lens_model:
+        :param lens_model: Filter by lens model
         :type lens_model: str
-        :param make:
+        :param make: Filter by camera make
         :type make: str
-        :param model:
+        :param model: Filter by camera model
         :type model: str
-        :param state:
+        :param state: Filter by state/province
         :type state: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -684,13 +710,26 @@ class SearchApi:
     @validate_call
     async def get_search_suggestions_without_preload_content(
         self,
-        type: SearchSuggestionType,
-        country: Optional[StrictStr] = None,
-        include_null: Optional[StrictBool] = None,
-        lens_model: Optional[StrictStr] = None,
-        make: Optional[StrictStr] = None,
-        model: Optional[StrictStr] = None,
-        state: Optional[StrictStr] = None,
+        type: Annotated[SearchSuggestionType, Field(description="Suggestion type")],
+        country: Annotated[
+            Optional[StrictStr], Field(description="Filter by country")
+        ] = None,
+        include_null: Annotated[
+            Optional[StrictBool],
+            Field(description="Include null values in suggestions"),
+        ] = None,
+        lens_model: Annotated[
+            Optional[StrictStr], Field(description="Filter by lens model")
+        ] = None,
+        make: Annotated[
+            Optional[StrictStr], Field(description="Filter by camera make")
+        ] = None,
+        model: Annotated[
+            Optional[StrictStr], Field(description="Filter by camera model")
+        ] = None,
+        state: Annotated[
+            Optional[StrictStr], Field(description="Filter by state/province")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -707,19 +746,19 @@ class SearchApi:
 
         Retrieve search suggestions based on partial input. This endpoint is used for typeahead search features.
 
-        :param type: (required)
+        :param type: Suggestion type (required)
         :type type: SearchSuggestionType
-        :param country:
+        :param country: Filter by country
         :type country: str
-        :param include_null:
+        :param include_null: Include null values in suggestions
         :type include_null: bool
-        :param lens_model:
+        :param lens_model: Filter by lens model
         :type lens_model: str
-        :param make:
+        :param make: Filter by camera make
         :type make: str
-        :param model:
+        :param model: Filter by camera model
         :type model: str
-        :param state:
+        :param state: Filter by state/province
         :type state: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1348,48 +1387,115 @@ class SearchApi:
     @validate_call
     async def search_large_assets(
         self,
-        album_ids: Optional[List[UUID]] = None,
-        city: Optional[StrictStr] = None,
-        country: Optional[StrictStr] = None,
-        created_after: Optional[datetime] = None,
-        created_before: Optional[datetime] = None,
-        device_id: Optional[StrictStr] = None,
-        is_encoded: Optional[StrictBool] = None,
-        is_favorite: Optional[StrictBool] = None,
-        is_motion: Optional[StrictBool] = None,
-        is_not_in_album: Optional[StrictBool] = None,
-        is_offline: Optional[StrictBool] = None,
-        lens_model: Optional[StrictStr] = None,
-        library_id: Optional[UUID] = None,
-        make: Optional[StrictStr] = None,
-        min_file_size: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
-        model: Optional[StrictStr] = None,
-        ocr: Optional[StrictStr] = None,
-        person_ids: Optional[List[UUID]] = None,
-        rating: Optional[
-            Union[
-                Annotated[float, Field(le=5, strict=True, ge=-1)],
-                Annotated[int, Field(le=5, strict=True, ge=-1)],
-            ]
+        album_ids: Annotated[
+            Optional[List[UUID]], Field(description="Filter by album IDs")
         ] = None,
-        size: Optional[
-            Union[
-                Annotated[float, Field(le=1000, strict=True, ge=1)],
-                Annotated[int, Field(le=1000, strict=True, ge=1)],
-            ]
+        city: Annotated[
+            Optional[StrictStr], Field(description="Filter by city name")
         ] = None,
-        state: Optional[StrictStr] = None,
-        tag_ids: Optional[List[UUID]] = None,
-        taken_after: Optional[datetime] = None,
-        taken_before: Optional[datetime] = None,
-        trashed_after: Optional[datetime] = None,
-        trashed_before: Optional[datetime] = None,
-        type: Optional[AssetTypeEnum] = None,
-        updated_after: Optional[datetime] = None,
-        updated_before: Optional[datetime] = None,
-        visibility: Optional[AssetVisibility] = None,
-        with_deleted: Optional[StrictBool] = None,
-        with_exif: Optional[StrictBool] = None,
+        country: Annotated[
+            Optional[StrictStr], Field(description="Filter by country name")
+        ] = None,
+        created_after: Annotated[
+            Optional[datetime], Field(description="Filter by creation date (after)")
+        ] = None,
+        created_before: Annotated[
+            Optional[datetime], Field(description="Filter by creation date (before)")
+        ] = None,
+        device_id: Annotated[
+            Optional[StrictStr], Field(description="Device ID to filter by")
+        ] = None,
+        is_encoded: Annotated[
+            Optional[StrictBool], Field(description="Filter by encoded status")
+        ] = None,
+        is_favorite: Annotated[
+            Optional[StrictBool], Field(description="Filter by favorite status")
+        ] = None,
+        is_motion: Annotated[
+            Optional[StrictBool], Field(description="Filter by motion photo status")
+        ] = None,
+        is_not_in_album: Annotated[
+            Optional[StrictBool], Field(description="Filter assets not in any album")
+        ] = None,
+        is_offline: Annotated[
+            Optional[StrictBool], Field(description="Filter by offline status")
+        ] = None,
+        lens_model: Annotated[
+            Optional[StrictStr], Field(description="Filter by lens model")
+        ] = None,
+        library_id: Annotated[
+            Optional[UUID], Field(description="Library ID to filter by")
+        ] = None,
+        make: Annotated[
+            Optional[StrictStr], Field(description="Filter by camera make")
+        ] = None,
+        min_file_size: Annotated[
+            Optional[Annotated[int, Field(strict=True, ge=0)]],
+            Field(description="Minimum file size in bytes"),
+        ] = None,
+        model: Annotated[
+            Optional[StrictStr], Field(description="Filter by camera model")
+        ] = None,
+        ocr: Annotated[
+            Optional[StrictStr], Field(description="Filter by OCR text content")
+        ] = None,
+        person_ids: Annotated[
+            Optional[List[UUID]], Field(description="Filter by person IDs")
+        ] = None,
+        rating: Annotated[
+            Optional[
+                Union[
+                    Annotated[float, Field(le=5, strict=True, ge=-1)],
+                    Annotated[int, Field(le=5, strict=True, ge=-1)],
+                ]
+            ],
+            Field(description="Filter by rating"),
+        ] = None,
+        size: Annotated[
+            Optional[
+                Union[
+                    Annotated[float, Field(le=1000, strict=True, ge=1)],
+                    Annotated[int, Field(le=1000, strict=True, ge=1)],
+                ]
+            ],
+            Field(description="Number of results to return"),
+        ] = None,
+        state: Annotated[
+            Optional[StrictStr], Field(description="Filter by state/province name")
+        ] = None,
+        tag_ids: Annotated[
+            Optional[List[UUID]], Field(description="Filter by tag IDs")
+        ] = None,
+        taken_after: Annotated[
+            Optional[datetime], Field(description="Filter by taken date (after)")
+        ] = None,
+        taken_before: Annotated[
+            Optional[datetime], Field(description="Filter by taken date (before)")
+        ] = None,
+        trashed_after: Annotated[
+            Optional[datetime], Field(description="Filter by trash date (after)")
+        ] = None,
+        trashed_before: Annotated[
+            Optional[datetime], Field(description="Filter by trash date (before)")
+        ] = None,
+        type: Annotated[
+            Optional[AssetTypeEnum], Field(description="Asset type filter")
+        ] = None,
+        updated_after: Annotated[
+            Optional[datetime], Field(description="Filter by update date (after)")
+        ] = None,
+        updated_before: Annotated[
+            Optional[datetime], Field(description="Filter by update date (before)")
+        ] = None,
+        visibility: Annotated[
+            Optional[AssetVisibility], Field(description="Filter by visibility")
+        ] = None,
+        with_deleted: Annotated[
+            Optional[StrictBool], Field(description="Include deleted assets")
+        ] = None,
+        with_exif: Annotated[
+            Optional[StrictBool], Field(description="Include EXIF data in response")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1406,69 +1512,69 @@ class SearchApi:
 
         Search for assets that are considered large based on specified criteria.
 
-        :param album_ids:
+        :param album_ids: Filter by album IDs
         :type album_ids: List[UUID]
-        :param city:
+        :param city: Filter by city name
         :type city: str
-        :param country:
+        :param country: Filter by country name
         :type country: str
-        :param created_after:
+        :param created_after: Filter by creation date (after)
         :type created_after: datetime
-        :param created_before:
+        :param created_before: Filter by creation date (before)
         :type created_before: datetime
-        :param device_id:
+        :param device_id: Device ID to filter by
         :type device_id: str
-        :param is_encoded:
+        :param is_encoded: Filter by encoded status
         :type is_encoded: bool
-        :param is_favorite:
+        :param is_favorite: Filter by favorite status
         :type is_favorite: bool
-        :param is_motion:
+        :param is_motion: Filter by motion photo status
         :type is_motion: bool
-        :param is_not_in_album:
+        :param is_not_in_album: Filter assets not in any album
         :type is_not_in_album: bool
-        :param is_offline:
+        :param is_offline: Filter by offline status
         :type is_offline: bool
-        :param lens_model:
+        :param lens_model: Filter by lens model
         :type lens_model: str
-        :param library_id:
+        :param library_id: Library ID to filter by
         :type library_id: UUID
-        :param make:
+        :param make: Filter by camera make
         :type make: str
-        :param min_file_size:
+        :param min_file_size: Minimum file size in bytes
         :type min_file_size: int
-        :param model:
+        :param model: Filter by camera model
         :type model: str
-        :param ocr:
+        :param ocr: Filter by OCR text content
         :type ocr: str
-        :param person_ids:
+        :param person_ids: Filter by person IDs
         :type person_ids: List[UUID]
-        :param rating:
+        :param rating: Filter by rating
         :type rating: float
-        :param size:
+        :param size: Number of results to return
         :type size: float
-        :param state:
+        :param state: Filter by state/province name
         :type state: str
-        :param tag_ids:
+        :param tag_ids: Filter by tag IDs
         :type tag_ids: List[UUID]
-        :param taken_after:
+        :param taken_after: Filter by taken date (after)
         :type taken_after: datetime
-        :param taken_before:
+        :param taken_before: Filter by taken date (before)
         :type taken_before: datetime
-        :param trashed_after:
+        :param trashed_after: Filter by trash date (after)
         :type trashed_after: datetime
-        :param trashed_before:
+        :param trashed_before: Filter by trash date (before)
         :type trashed_before: datetime
-        :param type:
+        :param type: Asset type filter
         :type type: AssetTypeEnum
-        :param updated_after:
+        :param updated_after: Filter by update date (after)
         :type updated_after: datetime
-        :param updated_before:
+        :param updated_before: Filter by update date (before)
         :type updated_before: datetime
-        :param visibility:
+        :param visibility: Filter by visibility
         :type visibility: AssetVisibility
-        :param with_deleted:
+        :param with_deleted: Include deleted assets
         :type with_deleted: bool
-        :param with_exif:
+        :param with_exif: Include EXIF data in response
         :type with_exif: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1546,48 +1652,115 @@ class SearchApi:
     @validate_call
     async def search_large_assets_with_http_info(
         self,
-        album_ids: Optional[List[UUID]] = None,
-        city: Optional[StrictStr] = None,
-        country: Optional[StrictStr] = None,
-        created_after: Optional[datetime] = None,
-        created_before: Optional[datetime] = None,
-        device_id: Optional[StrictStr] = None,
-        is_encoded: Optional[StrictBool] = None,
-        is_favorite: Optional[StrictBool] = None,
-        is_motion: Optional[StrictBool] = None,
-        is_not_in_album: Optional[StrictBool] = None,
-        is_offline: Optional[StrictBool] = None,
-        lens_model: Optional[StrictStr] = None,
-        library_id: Optional[UUID] = None,
-        make: Optional[StrictStr] = None,
-        min_file_size: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
-        model: Optional[StrictStr] = None,
-        ocr: Optional[StrictStr] = None,
-        person_ids: Optional[List[UUID]] = None,
-        rating: Optional[
-            Union[
-                Annotated[float, Field(le=5, strict=True, ge=-1)],
-                Annotated[int, Field(le=5, strict=True, ge=-1)],
-            ]
+        album_ids: Annotated[
+            Optional[List[UUID]], Field(description="Filter by album IDs")
         ] = None,
-        size: Optional[
-            Union[
-                Annotated[float, Field(le=1000, strict=True, ge=1)],
-                Annotated[int, Field(le=1000, strict=True, ge=1)],
-            ]
+        city: Annotated[
+            Optional[StrictStr], Field(description="Filter by city name")
         ] = None,
-        state: Optional[StrictStr] = None,
-        tag_ids: Optional[List[UUID]] = None,
-        taken_after: Optional[datetime] = None,
-        taken_before: Optional[datetime] = None,
-        trashed_after: Optional[datetime] = None,
-        trashed_before: Optional[datetime] = None,
-        type: Optional[AssetTypeEnum] = None,
-        updated_after: Optional[datetime] = None,
-        updated_before: Optional[datetime] = None,
-        visibility: Optional[AssetVisibility] = None,
-        with_deleted: Optional[StrictBool] = None,
-        with_exif: Optional[StrictBool] = None,
+        country: Annotated[
+            Optional[StrictStr], Field(description="Filter by country name")
+        ] = None,
+        created_after: Annotated[
+            Optional[datetime], Field(description="Filter by creation date (after)")
+        ] = None,
+        created_before: Annotated[
+            Optional[datetime], Field(description="Filter by creation date (before)")
+        ] = None,
+        device_id: Annotated[
+            Optional[StrictStr], Field(description="Device ID to filter by")
+        ] = None,
+        is_encoded: Annotated[
+            Optional[StrictBool], Field(description="Filter by encoded status")
+        ] = None,
+        is_favorite: Annotated[
+            Optional[StrictBool], Field(description="Filter by favorite status")
+        ] = None,
+        is_motion: Annotated[
+            Optional[StrictBool], Field(description="Filter by motion photo status")
+        ] = None,
+        is_not_in_album: Annotated[
+            Optional[StrictBool], Field(description="Filter assets not in any album")
+        ] = None,
+        is_offline: Annotated[
+            Optional[StrictBool], Field(description="Filter by offline status")
+        ] = None,
+        lens_model: Annotated[
+            Optional[StrictStr], Field(description="Filter by lens model")
+        ] = None,
+        library_id: Annotated[
+            Optional[UUID], Field(description="Library ID to filter by")
+        ] = None,
+        make: Annotated[
+            Optional[StrictStr], Field(description="Filter by camera make")
+        ] = None,
+        min_file_size: Annotated[
+            Optional[Annotated[int, Field(strict=True, ge=0)]],
+            Field(description="Minimum file size in bytes"),
+        ] = None,
+        model: Annotated[
+            Optional[StrictStr], Field(description="Filter by camera model")
+        ] = None,
+        ocr: Annotated[
+            Optional[StrictStr], Field(description="Filter by OCR text content")
+        ] = None,
+        person_ids: Annotated[
+            Optional[List[UUID]], Field(description="Filter by person IDs")
+        ] = None,
+        rating: Annotated[
+            Optional[
+                Union[
+                    Annotated[float, Field(le=5, strict=True, ge=-1)],
+                    Annotated[int, Field(le=5, strict=True, ge=-1)],
+                ]
+            ],
+            Field(description="Filter by rating"),
+        ] = None,
+        size: Annotated[
+            Optional[
+                Union[
+                    Annotated[float, Field(le=1000, strict=True, ge=1)],
+                    Annotated[int, Field(le=1000, strict=True, ge=1)],
+                ]
+            ],
+            Field(description="Number of results to return"),
+        ] = None,
+        state: Annotated[
+            Optional[StrictStr], Field(description="Filter by state/province name")
+        ] = None,
+        tag_ids: Annotated[
+            Optional[List[UUID]], Field(description="Filter by tag IDs")
+        ] = None,
+        taken_after: Annotated[
+            Optional[datetime], Field(description="Filter by taken date (after)")
+        ] = None,
+        taken_before: Annotated[
+            Optional[datetime], Field(description="Filter by taken date (before)")
+        ] = None,
+        trashed_after: Annotated[
+            Optional[datetime], Field(description="Filter by trash date (after)")
+        ] = None,
+        trashed_before: Annotated[
+            Optional[datetime], Field(description="Filter by trash date (before)")
+        ] = None,
+        type: Annotated[
+            Optional[AssetTypeEnum], Field(description="Asset type filter")
+        ] = None,
+        updated_after: Annotated[
+            Optional[datetime], Field(description="Filter by update date (after)")
+        ] = None,
+        updated_before: Annotated[
+            Optional[datetime], Field(description="Filter by update date (before)")
+        ] = None,
+        visibility: Annotated[
+            Optional[AssetVisibility], Field(description="Filter by visibility")
+        ] = None,
+        with_deleted: Annotated[
+            Optional[StrictBool], Field(description="Include deleted assets")
+        ] = None,
+        with_exif: Annotated[
+            Optional[StrictBool], Field(description="Include EXIF data in response")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1604,69 +1777,69 @@ class SearchApi:
 
         Search for assets that are considered large based on specified criteria.
 
-        :param album_ids:
+        :param album_ids: Filter by album IDs
         :type album_ids: List[UUID]
-        :param city:
+        :param city: Filter by city name
         :type city: str
-        :param country:
+        :param country: Filter by country name
         :type country: str
-        :param created_after:
+        :param created_after: Filter by creation date (after)
         :type created_after: datetime
-        :param created_before:
+        :param created_before: Filter by creation date (before)
         :type created_before: datetime
-        :param device_id:
+        :param device_id: Device ID to filter by
         :type device_id: str
-        :param is_encoded:
+        :param is_encoded: Filter by encoded status
         :type is_encoded: bool
-        :param is_favorite:
+        :param is_favorite: Filter by favorite status
         :type is_favorite: bool
-        :param is_motion:
+        :param is_motion: Filter by motion photo status
         :type is_motion: bool
-        :param is_not_in_album:
+        :param is_not_in_album: Filter assets not in any album
         :type is_not_in_album: bool
-        :param is_offline:
+        :param is_offline: Filter by offline status
         :type is_offline: bool
-        :param lens_model:
+        :param lens_model: Filter by lens model
         :type lens_model: str
-        :param library_id:
+        :param library_id: Library ID to filter by
         :type library_id: UUID
-        :param make:
+        :param make: Filter by camera make
         :type make: str
-        :param min_file_size:
+        :param min_file_size: Minimum file size in bytes
         :type min_file_size: int
-        :param model:
+        :param model: Filter by camera model
         :type model: str
-        :param ocr:
+        :param ocr: Filter by OCR text content
         :type ocr: str
-        :param person_ids:
+        :param person_ids: Filter by person IDs
         :type person_ids: List[UUID]
-        :param rating:
+        :param rating: Filter by rating
         :type rating: float
-        :param size:
+        :param size: Number of results to return
         :type size: float
-        :param state:
+        :param state: Filter by state/province name
         :type state: str
-        :param tag_ids:
+        :param tag_ids: Filter by tag IDs
         :type tag_ids: List[UUID]
-        :param taken_after:
+        :param taken_after: Filter by taken date (after)
         :type taken_after: datetime
-        :param taken_before:
+        :param taken_before: Filter by taken date (before)
         :type taken_before: datetime
-        :param trashed_after:
+        :param trashed_after: Filter by trash date (after)
         :type trashed_after: datetime
-        :param trashed_before:
+        :param trashed_before: Filter by trash date (before)
         :type trashed_before: datetime
-        :param type:
+        :param type: Asset type filter
         :type type: AssetTypeEnum
-        :param updated_after:
+        :param updated_after: Filter by update date (after)
         :type updated_after: datetime
-        :param updated_before:
+        :param updated_before: Filter by update date (before)
         :type updated_before: datetime
-        :param visibility:
+        :param visibility: Filter by visibility
         :type visibility: AssetVisibility
-        :param with_deleted:
+        :param with_deleted: Include deleted assets
         :type with_deleted: bool
-        :param with_exif:
+        :param with_exif: Include EXIF data in response
         :type with_exif: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1744,48 +1917,115 @@ class SearchApi:
     @validate_call
     async def search_large_assets_without_preload_content(
         self,
-        album_ids: Optional[List[UUID]] = None,
-        city: Optional[StrictStr] = None,
-        country: Optional[StrictStr] = None,
-        created_after: Optional[datetime] = None,
-        created_before: Optional[datetime] = None,
-        device_id: Optional[StrictStr] = None,
-        is_encoded: Optional[StrictBool] = None,
-        is_favorite: Optional[StrictBool] = None,
-        is_motion: Optional[StrictBool] = None,
-        is_not_in_album: Optional[StrictBool] = None,
-        is_offline: Optional[StrictBool] = None,
-        lens_model: Optional[StrictStr] = None,
-        library_id: Optional[UUID] = None,
-        make: Optional[StrictStr] = None,
-        min_file_size: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
-        model: Optional[StrictStr] = None,
-        ocr: Optional[StrictStr] = None,
-        person_ids: Optional[List[UUID]] = None,
-        rating: Optional[
-            Union[
-                Annotated[float, Field(le=5, strict=True, ge=-1)],
-                Annotated[int, Field(le=5, strict=True, ge=-1)],
-            ]
+        album_ids: Annotated[
+            Optional[List[UUID]], Field(description="Filter by album IDs")
         ] = None,
-        size: Optional[
-            Union[
-                Annotated[float, Field(le=1000, strict=True, ge=1)],
-                Annotated[int, Field(le=1000, strict=True, ge=1)],
-            ]
+        city: Annotated[
+            Optional[StrictStr], Field(description="Filter by city name")
         ] = None,
-        state: Optional[StrictStr] = None,
-        tag_ids: Optional[List[UUID]] = None,
-        taken_after: Optional[datetime] = None,
-        taken_before: Optional[datetime] = None,
-        trashed_after: Optional[datetime] = None,
-        trashed_before: Optional[datetime] = None,
-        type: Optional[AssetTypeEnum] = None,
-        updated_after: Optional[datetime] = None,
-        updated_before: Optional[datetime] = None,
-        visibility: Optional[AssetVisibility] = None,
-        with_deleted: Optional[StrictBool] = None,
-        with_exif: Optional[StrictBool] = None,
+        country: Annotated[
+            Optional[StrictStr], Field(description="Filter by country name")
+        ] = None,
+        created_after: Annotated[
+            Optional[datetime], Field(description="Filter by creation date (after)")
+        ] = None,
+        created_before: Annotated[
+            Optional[datetime], Field(description="Filter by creation date (before)")
+        ] = None,
+        device_id: Annotated[
+            Optional[StrictStr], Field(description="Device ID to filter by")
+        ] = None,
+        is_encoded: Annotated[
+            Optional[StrictBool], Field(description="Filter by encoded status")
+        ] = None,
+        is_favorite: Annotated[
+            Optional[StrictBool], Field(description="Filter by favorite status")
+        ] = None,
+        is_motion: Annotated[
+            Optional[StrictBool], Field(description="Filter by motion photo status")
+        ] = None,
+        is_not_in_album: Annotated[
+            Optional[StrictBool], Field(description="Filter assets not in any album")
+        ] = None,
+        is_offline: Annotated[
+            Optional[StrictBool], Field(description="Filter by offline status")
+        ] = None,
+        lens_model: Annotated[
+            Optional[StrictStr], Field(description="Filter by lens model")
+        ] = None,
+        library_id: Annotated[
+            Optional[UUID], Field(description="Library ID to filter by")
+        ] = None,
+        make: Annotated[
+            Optional[StrictStr], Field(description="Filter by camera make")
+        ] = None,
+        min_file_size: Annotated[
+            Optional[Annotated[int, Field(strict=True, ge=0)]],
+            Field(description="Minimum file size in bytes"),
+        ] = None,
+        model: Annotated[
+            Optional[StrictStr], Field(description="Filter by camera model")
+        ] = None,
+        ocr: Annotated[
+            Optional[StrictStr], Field(description="Filter by OCR text content")
+        ] = None,
+        person_ids: Annotated[
+            Optional[List[UUID]], Field(description="Filter by person IDs")
+        ] = None,
+        rating: Annotated[
+            Optional[
+                Union[
+                    Annotated[float, Field(le=5, strict=True, ge=-1)],
+                    Annotated[int, Field(le=5, strict=True, ge=-1)],
+                ]
+            ],
+            Field(description="Filter by rating"),
+        ] = None,
+        size: Annotated[
+            Optional[
+                Union[
+                    Annotated[float, Field(le=1000, strict=True, ge=1)],
+                    Annotated[int, Field(le=1000, strict=True, ge=1)],
+                ]
+            ],
+            Field(description="Number of results to return"),
+        ] = None,
+        state: Annotated[
+            Optional[StrictStr], Field(description="Filter by state/province name")
+        ] = None,
+        tag_ids: Annotated[
+            Optional[List[UUID]], Field(description="Filter by tag IDs")
+        ] = None,
+        taken_after: Annotated[
+            Optional[datetime], Field(description="Filter by taken date (after)")
+        ] = None,
+        taken_before: Annotated[
+            Optional[datetime], Field(description="Filter by taken date (before)")
+        ] = None,
+        trashed_after: Annotated[
+            Optional[datetime], Field(description="Filter by trash date (after)")
+        ] = None,
+        trashed_before: Annotated[
+            Optional[datetime], Field(description="Filter by trash date (before)")
+        ] = None,
+        type: Annotated[
+            Optional[AssetTypeEnum], Field(description="Asset type filter")
+        ] = None,
+        updated_after: Annotated[
+            Optional[datetime], Field(description="Filter by update date (after)")
+        ] = None,
+        updated_before: Annotated[
+            Optional[datetime], Field(description="Filter by update date (before)")
+        ] = None,
+        visibility: Annotated[
+            Optional[AssetVisibility], Field(description="Filter by visibility")
+        ] = None,
+        with_deleted: Annotated[
+            Optional[StrictBool], Field(description="Include deleted assets")
+        ] = None,
+        with_exif: Annotated[
+            Optional[StrictBool], Field(description="Include EXIF data in response")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1802,69 +2042,69 @@ class SearchApi:
 
         Search for assets that are considered large based on specified criteria.
 
-        :param album_ids:
+        :param album_ids: Filter by album IDs
         :type album_ids: List[UUID]
-        :param city:
+        :param city: Filter by city name
         :type city: str
-        :param country:
+        :param country: Filter by country name
         :type country: str
-        :param created_after:
+        :param created_after: Filter by creation date (after)
         :type created_after: datetime
-        :param created_before:
+        :param created_before: Filter by creation date (before)
         :type created_before: datetime
-        :param device_id:
+        :param device_id: Device ID to filter by
         :type device_id: str
-        :param is_encoded:
+        :param is_encoded: Filter by encoded status
         :type is_encoded: bool
-        :param is_favorite:
+        :param is_favorite: Filter by favorite status
         :type is_favorite: bool
-        :param is_motion:
+        :param is_motion: Filter by motion photo status
         :type is_motion: bool
-        :param is_not_in_album:
+        :param is_not_in_album: Filter assets not in any album
         :type is_not_in_album: bool
-        :param is_offline:
+        :param is_offline: Filter by offline status
         :type is_offline: bool
-        :param lens_model:
+        :param lens_model: Filter by lens model
         :type lens_model: str
-        :param library_id:
+        :param library_id: Library ID to filter by
         :type library_id: UUID
-        :param make:
+        :param make: Filter by camera make
         :type make: str
-        :param min_file_size:
+        :param min_file_size: Minimum file size in bytes
         :type min_file_size: int
-        :param model:
+        :param model: Filter by camera model
         :type model: str
-        :param ocr:
+        :param ocr: Filter by OCR text content
         :type ocr: str
-        :param person_ids:
+        :param person_ids: Filter by person IDs
         :type person_ids: List[UUID]
-        :param rating:
+        :param rating: Filter by rating
         :type rating: float
-        :param size:
+        :param size: Number of results to return
         :type size: float
-        :param state:
+        :param state: Filter by state/province name
         :type state: str
-        :param tag_ids:
+        :param tag_ids: Filter by tag IDs
         :type tag_ids: List[UUID]
-        :param taken_after:
+        :param taken_after: Filter by taken date (after)
         :type taken_after: datetime
-        :param taken_before:
+        :param taken_before: Filter by taken date (before)
         :type taken_before: datetime
-        :param trashed_after:
+        :param trashed_after: Filter by trash date (after)
         :type trashed_after: datetime
-        :param trashed_before:
+        :param trashed_before: Filter by trash date (before)
         :type trashed_before: datetime
-        :param type:
+        :param type: Asset type filter
         :type type: AssetTypeEnum
-        :param updated_after:
+        :param updated_after: Filter by update date (after)
         :type updated_after: datetime
-        :param updated_before:
+        :param updated_before: Filter by update date (before)
         :type updated_before: datetime
-        :param visibility:
+        :param visibility: Filter by visibility
         :type visibility: AssetVisibility
-        :param with_deleted:
+        :param with_deleted: Include deleted assets
         :type with_deleted: bool
-        :param with_exif:
+        :param with_exif: Include EXIF data in response
         :type with_exif: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2200,8 +2440,10 @@ class SearchApi:
     @validate_call
     async def search_person(
         self,
-        name: StrictStr,
-        with_hidden: Optional[StrictBool] = None,
+        name: Annotated[StrictStr, Field(description="Person name to search for")],
+        with_hidden: Annotated[
+            Optional[StrictBool], Field(description="Include hidden people")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2218,9 +2460,9 @@ class SearchApi:
 
         Search for people by name.
 
-        :param name: (required)
+        :param name: Person name to search for (required)
         :type name: str
-        :param with_hidden:
+        :param with_hidden: Include hidden people
         :type with_hidden: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2268,8 +2510,10 @@ class SearchApi:
     @validate_call
     async def search_person_with_http_info(
         self,
-        name: StrictStr,
-        with_hidden: Optional[StrictBool] = None,
+        name: Annotated[StrictStr, Field(description="Person name to search for")],
+        with_hidden: Annotated[
+            Optional[StrictBool], Field(description="Include hidden people")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2286,9 +2530,9 @@ class SearchApi:
 
         Search for people by name.
 
-        :param name: (required)
+        :param name: Person name to search for (required)
         :type name: str
-        :param with_hidden:
+        :param with_hidden: Include hidden people
         :type with_hidden: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2336,8 +2580,10 @@ class SearchApi:
     @validate_call
     async def search_person_without_preload_content(
         self,
-        name: StrictStr,
-        with_hidden: Optional[StrictBool] = None,
+        name: Annotated[StrictStr, Field(description="Person name to search for")],
+        with_hidden: Annotated[
+            Optional[StrictBool], Field(description="Include hidden people")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2354,9 +2600,9 @@ class SearchApi:
 
         Search for people by name.
 
-        :param name: (required)
+        :param name: Person name to search for (required)
         :type name: str
-        :param with_hidden:
+        :param with_hidden: Include hidden people
         :type with_hidden: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2458,7 +2704,7 @@ class SearchApi:
     @validate_call
     async def search_places(
         self,
-        name: StrictStr,
+        name: Annotated[StrictStr, Field(description="Place name to search for")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2475,7 +2721,7 @@ class SearchApi:
 
         Search for places by name.
 
-        :param name: (required)
+        :param name: Place name to search for (required)
         :type name: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2522,7 +2768,7 @@ class SearchApi:
     @validate_call
     async def search_places_with_http_info(
         self,
-        name: StrictStr,
+        name: Annotated[StrictStr, Field(description="Place name to search for")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2539,7 +2785,7 @@ class SearchApi:
 
         Search for places by name.
 
-        :param name: (required)
+        :param name: Place name to search for (required)
         :type name: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2586,7 +2832,7 @@ class SearchApi:
     @validate_call
     async def search_places_without_preload_content(
         self,
-        name: StrictStr,
+        name: Annotated[StrictStr, Field(description="Place name to search for")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2603,7 +2849,7 @@ class SearchApi:
 
         Search for places by name.
 
-        :param name: (required)
+        :param name: Place name to search for (required)
         :type name: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

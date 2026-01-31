@@ -27,8 +27,13 @@ class DownloadResponse(BaseModel):
     DownloadResponse
     """  # noqa: E501
 
-    archive_size: StrictInt = Field(alias="archiveSize")
-    include_embedded_videos: StrictBool = Field(alias="includeEmbeddedVideos")
+    archive_size: StrictInt = Field(
+        description="Maximum archive size in bytes", alias="archiveSize"
+    )
+    include_embedded_videos: StrictBool = Field(
+        description="Whether to include embedded videos in downloads",
+        alias="includeEmbeddedVideos",
+    )
     __properties: ClassVar[List[str]] = ["archiveSize", "includeEmbeddedVideos"]
 
     model_config = ConfigDict(

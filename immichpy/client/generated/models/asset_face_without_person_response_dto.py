@@ -29,14 +29,28 @@ class AssetFaceWithoutPersonResponseDto(BaseModel):
     AssetFaceWithoutPersonResponseDto
     """  # noqa: E501
 
-    bounding_box_x1: StrictInt = Field(alias="boundingBoxX1")
-    bounding_box_x2: StrictInt = Field(alias="boundingBoxX2")
-    bounding_box_y1: StrictInt = Field(alias="boundingBoxY1")
-    bounding_box_y2: StrictInt = Field(alias="boundingBoxY2")
-    id: UUID
-    image_height: StrictInt = Field(alias="imageHeight")
-    image_width: StrictInt = Field(alias="imageWidth")
-    source_type: Optional[SourceType] = Field(default=None, alias="sourceType")
+    bounding_box_x1: StrictInt = Field(
+        description="Bounding box X1 coordinate", alias="boundingBoxX1"
+    )
+    bounding_box_x2: StrictInt = Field(
+        description="Bounding box X2 coordinate", alias="boundingBoxX2"
+    )
+    bounding_box_y1: StrictInt = Field(
+        description="Bounding box Y1 coordinate", alias="boundingBoxY1"
+    )
+    bounding_box_y2: StrictInt = Field(
+        description="Bounding box Y2 coordinate", alias="boundingBoxY2"
+    )
+    id: UUID = Field(description="Face ID")
+    image_height: StrictInt = Field(
+        description="Image height in pixels", alias="imageHeight"
+    )
+    image_width: StrictInt = Field(
+        description="Image width in pixels", alias="imageWidth"
+    )
+    source_type: Optional[SourceType] = Field(
+        default=None, description="Face detection source type", alias="sourceType"
+    )
     __properties: ClassVar[List[str]] = [
         "boundingBoxX1",
         "boundingBoxX2",

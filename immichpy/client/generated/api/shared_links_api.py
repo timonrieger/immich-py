@@ -593,8 +593,12 @@ class SharedLinksApi:
     @validate_call
     async def get_all_shared_links(
         self,
-        album_id: Optional[UUID] = None,
-        id: Optional[UUID] = None,
+        album_id: Annotated[
+            Optional[UUID], Field(description="Filter by album ID")
+        ] = None,
+        id: Annotated[
+            Optional[UUID], Field(description="Filter by shared link ID")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -611,9 +615,9 @@ class SharedLinksApi:
 
         Retrieve a list of all shared links.
 
-        :param album_id:
+        :param album_id: Filter by album ID
         :type album_id: UUID
-        :param id:
+        :param id: Filter by shared link ID
         :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -661,8 +665,12 @@ class SharedLinksApi:
     @validate_call
     async def get_all_shared_links_with_http_info(
         self,
-        album_id: Optional[UUID] = None,
-        id: Optional[UUID] = None,
+        album_id: Annotated[
+            Optional[UUID], Field(description="Filter by album ID")
+        ] = None,
+        id: Annotated[
+            Optional[UUID], Field(description="Filter by shared link ID")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -679,9 +687,9 @@ class SharedLinksApi:
 
         Retrieve a list of all shared links.
 
-        :param album_id:
+        :param album_id: Filter by album ID
         :type album_id: UUID
-        :param id:
+        :param id: Filter by shared link ID
         :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -729,8 +737,12 @@ class SharedLinksApi:
     @validate_call
     async def get_all_shared_links_without_preload_content(
         self,
-        album_id: Optional[UUID] = None,
-        id: Optional[UUID] = None,
+        album_id: Annotated[
+            Optional[UUID], Field(description="Filter by album ID")
+        ] = None,
+        id: Annotated[
+            Optional[UUID], Field(description="Filter by shared link ID")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -747,9 +759,9 @@ class SharedLinksApi:
 
         Retrieve a list of all shared links.
 
-        :param album_id:
+        :param album_id: Filter by album ID
         :type album_id: UUID
-        :param id:
+        :param id: Filter by shared link ID
         :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -852,9 +864,11 @@ class SharedLinksApi:
     async def get_my_shared_link(
         self,
         key: Optional[StrictStr] = None,
-        password: Optional[StrictStr] = None,
+        password: Annotated[
+            Optional[StrictStr], Field(description="Link password")
+        ] = None,
         slug: Optional[StrictStr] = None,
-        token: Optional[StrictStr] = None,
+        token: Annotated[Optional[StrictStr], Field(description="Access token")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -873,11 +887,11 @@ class SharedLinksApi:
 
         :param key:
         :type key: str
-        :param password:
+        :param password: Link password
         :type password: str
         :param slug:
         :type slug: str
-        :param token:
+        :param token: Access token
         :type token: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -928,9 +942,11 @@ class SharedLinksApi:
     async def get_my_shared_link_with_http_info(
         self,
         key: Optional[StrictStr] = None,
-        password: Optional[StrictStr] = None,
+        password: Annotated[
+            Optional[StrictStr], Field(description="Link password")
+        ] = None,
         slug: Optional[StrictStr] = None,
-        token: Optional[StrictStr] = None,
+        token: Annotated[Optional[StrictStr], Field(description="Access token")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -949,11 +965,11 @@ class SharedLinksApi:
 
         :param key:
         :type key: str
-        :param password:
+        :param password: Link password
         :type password: str
         :param slug:
         :type slug: str
-        :param token:
+        :param token: Access token
         :type token: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1004,9 +1020,11 @@ class SharedLinksApi:
     async def get_my_shared_link_without_preload_content(
         self,
         key: Optional[StrictStr] = None,
-        password: Optional[StrictStr] = None,
+        password: Annotated[
+            Optional[StrictStr], Field(description="Link password")
+        ] = None,
         slug: Optional[StrictStr] = None,
-        token: Optional[StrictStr] = None,
+        token: Annotated[Optional[StrictStr], Field(description="Access token")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1025,11 +1043,11 @@ class SharedLinksApi:
 
         :param key:
         :type key: str
-        :param password:
+        :param password: Link password
         :type password: str
         :param slug:
         :type slug: str
-        :param token:
+        :param token: Access token
         :type token: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

@@ -27,8 +27,8 @@ class SyncAssetMetadataDeleteV1(BaseModel):
     SyncAssetMetadataDeleteV1
     """  # noqa: E501
 
-    asset_id: StrictStr = Field(alias="assetId")
-    key: StrictStr
+    asset_id: StrictStr = Field(description="Asset ID", alias="assetId")
+    key: StrictStr = Field(description="Key")
     __properties: ClassVar[List[str]] = ["assetId", "key"]
 
     model_config = ConfigDict(

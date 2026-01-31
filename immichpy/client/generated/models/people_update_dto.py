@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from immichpy.client.generated.models.people_update_item import PeopleUpdateItem
 from typing import Optional, Set
@@ -28,7 +28,7 @@ class PeopleUpdateDto(BaseModel):
     PeopleUpdateDto
     """  # noqa: E501
 
-    people: List[PeopleUpdateItem]
+    people: List[PeopleUpdateItem] = Field(description="People to update")
     __properties: ClassVar[List[str]] = ["people"]
 
     model_config = ConfigDict(

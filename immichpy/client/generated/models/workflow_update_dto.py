@@ -34,12 +34,20 @@ class WorkflowUpdateDto(BaseModel):
     WorkflowUpdateDto
     """  # noqa: E501
 
-    actions: Optional[List[WorkflowActionItemDto]] = None
-    description: Optional[StrictStr] = None
-    enabled: Optional[StrictBool] = None
-    filters: Optional[List[WorkflowFilterItemDto]] = None
-    name: Optional[StrictStr] = None
-    trigger_type: Optional[PluginTriggerType] = Field(default=None, alias="triggerType")
+    actions: Optional[List[WorkflowActionItemDto]] = Field(
+        default=None, description="Workflow actions"
+    )
+    description: Optional[StrictStr] = Field(
+        default=None, description="Workflow description"
+    )
+    enabled: Optional[StrictBool] = Field(default=None, description="Workflow enabled")
+    filters: Optional[List[WorkflowFilterItemDto]] = Field(
+        default=None, description="Workflow filters"
+    )
+    name: Optional[StrictStr] = Field(default=None, description="Workflow name")
+    trigger_type: Optional[PluginTriggerType] = Field(
+        default=None, description="Workflow trigger type", alias="triggerType"
+    )
     __properties: ClassVar[List[str]] = [
         "actions",
         "description",

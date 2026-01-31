@@ -29,15 +29,21 @@ class UpdateAlbumDto(BaseModel):
     UpdateAlbumDto
     """  # noqa: E501
 
-    album_name: Optional[StrictStr] = Field(default=None, alias="albumName")
+    album_name: Optional[StrictStr] = Field(
+        default=None, description="Album name", alias="albumName"
+    )
     album_thumbnail_asset_id: Optional[UUID] = Field(
-        default=None, alias="albumThumbnailAssetId"
+        default=None,
+        description="Album thumbnail asset ID",
+        alias="albumThumbnailAssetId",
     )
-    description: Optional[StrictStr] = None
+    description: Optional[StrictStr] = Field(
+        default=None, description="Album description"
+    )
     is_activity_enabled: Optional[StrictBool] = Field(
-        default=None, alias="isActivityEnabled"
+        default=None, description="Enable activity feed", alias="isActivityEnabled"
     )
-    order: Optional[AssetOrder] = None
+    order: Optional[AssetOrder] = Field(default=None, description="Asset sort order")
     __properties: ClassVar[List[str]] = [
         "albumName",
         "albumThumbnailAssetId",

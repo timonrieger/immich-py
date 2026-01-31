@@ -20,7 +20,7 @@ app = typer.Typer(
 def create_stack(
     ctx: typer.Context,
     asset_ids: list[str] = typer.Option(
-        ..., "--asset-ids", help="""first asset becomes the primary"""
+        ..., "--asset-ids", help="""Asset IDs (first becomes primary, min 2)"""
     ),
 ) -> None:
     """Create a stack
@@ -56,7 +56,7 @@ def delete_stack(
 @app.command("delete-stacks", deprecated=False, rich_help_panel="API commands")
 def delete_stacks(
     ctx: typer.Context,
-    ids: list[str] = typer.Option(..., "--ids", help=""""""),
+    ids: list[str] = typer.Option(..., "--ids", help="""IDs to process"""),
 ) -> None:
     """Delete stacks
 
@@ -114,7 +114,7 @@ def remove_asset_from_stack(
 def search_stacks(
     ctx: typer.Context,
     primary_asset_id: str | None = typer.Option(
-        None, "--primary-asset-id", help=""""""
+        None, "--primary-asset-id", help="""Filter by primary asset ID"""
     ),
 ) -> None:
     """Retrieve stacks
@@ -134,7 +134,7 @@ def update_stack(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
     primary_asset_id: str | None = typer.Option(
-        None, "--primary-asset-id", help=""""""
+        None, "--primary-asset-id", help="""Primary asset ID"""
     ),
 ) -> None:
     """Update a stack

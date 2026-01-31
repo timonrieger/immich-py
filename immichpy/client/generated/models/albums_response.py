@@ -28,7 +28,9 @@ class AlbumsResponse(BaseModel):
     AlbumsResponse
     """  # noqa: E501
 
-    default_asset_order: AssetOrder = Field(alias="defaultAssetOrder")
+    default_asset_order: AssetOrder = Field(
+        description="Default asset order for albums", alias="defaultAssetOrder"
+    )
     __properties: ClassVar[List[str]] = ["defaultAssetOrder"]
 
     model_config = ConfigDict(

@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class AssetOrder(str, Enum):
     """
-    AssetOrder
+    Asset sort order
     """
 
     """

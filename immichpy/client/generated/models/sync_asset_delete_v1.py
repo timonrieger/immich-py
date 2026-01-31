@@ -27,7 +27,7 @@ class SyncAssetDeleteV1(BaseModel):
     SyncAssetDeleteV1
     """  # noqa: E501
 
-    asset_id: StrictStr = Field(alias="assetId")
+    asset_id: StrictStr = Field(description="Asset ID", alias="assetId")
     __properties: ClassVar[List[str]] = ["assetId"]
 
     model_config = ConfigDict(

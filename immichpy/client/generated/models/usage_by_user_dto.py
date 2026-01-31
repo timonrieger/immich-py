@@ -27,14 +27,21 @@ class UsageByUserDto(BaseModel):
     UsageByUserDto
     """  # noqa: E501
 
-    photos: StrictInt
-    quota_size_in_bytes: Optional[StrictInt] = Field(alias="quotaSizeInBytes")
-    usage: StrictInt
-    usage_photos: StrictInt = Field(alias="usagePhotos")
-    usage_videos: StrictInt = Field(alias="usageVideos")
-    user_id: StrictStr = Field(alias="userId")
-    user_name: StrictStr = Field(alias="userName")
-    videos: StrictInt
+    photos: StrictInt = Field(description="Number of photos")
+    quota_size_in_bytes: Optional[StrictInt] = Field(
+        description="User quota size in bytes (null if unlimited)",
+        alias="quotaSizeInBytes",
+    )
+    usage: StrictInt = Field(description="Total storage usage in bytes")
+    usage_photos: StrictInt = Field(
+        description="Storage usage for photos in bytes", alias="usagePhotos"
+    )
+    usage_videos: StrictInt = Field(
+        description="Storage usage for videos in bytes", alias="usageVideos"
+    )
+    user_id: StrictStr = Field(description="User ID", alias="userId")
+    user_name: StrictStr = Field(description="User name", alias="userName")
+    videos: StrictInt = Field(description="Number of videos")
     __properties: ClassVar[List[str]] = [
         "photos",
         "quotaSizeInBytes",

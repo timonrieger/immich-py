@@ -27,9 +27,19 @@ class EmailNotificationsUpdate(BaseModel):
     EmailNotificationsUpdate
     """  # noqa: E501
 
-    album_invite: Optional[StrictBool] = Field(default=None, alias="albumInvite")
-    album_update: Optional[StrictBool] = Field(default=None, alias="albumUpdate")
-    enabled: Optional[StrictBool] = None
+    album_invite: Optional[StrictBool] = Field(
+        default=None,
+        description="Whether to receive email notifications for album invites",
+        alias="albumInvite",
+    )
+    album_update: Optional[StrictBool] = Field(
+        default=None,
+        description="Whether to receive email notifications for album updates",
+        alias="albumUpdate",
+    )
+    enabled: Optional[StrictBool] = Field(
+        default=None, description="Whether email notifications are enabled"
+    )
     __properties: ClassVar[List[str]] = ["albumInvite", "albumUpdate", "enabled"]
 
     model_config = ConfigDict(

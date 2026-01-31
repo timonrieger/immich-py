@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Set
 from typing_extensions import Self
@@ -27,7 +27,9 @@ class UserAdminDeleteDto(BaseModel):
     UserAdminDeleteDto
     """  # noqa: E501
 
-    force: Optional[StrictBool] = None
+    force: Optional[StrictBool] = Field(
+        default=None, description="Force delete even if user has assets"
+    )
     __properties: ClassVar[List[str]] = ["force"]
 
     model_config = ConfigDict(

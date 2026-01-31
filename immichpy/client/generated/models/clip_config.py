@@ -27,8 +27,10 @@ class CLIPConfig(BaseModel):
     CLIPConfig
     """  # noqa: E501
 
-    enabled: StrictBool
-    model_name: StrictStr = Field(alias="modelName")
+    enabled: StrictBool = Field(description="Whether the task is enabled")
+    model_name: StrictStr = Field(
+        description="Name of the model to use", alias="modelName"
+    )
     __properties: ClassVar[List[str]] = ["enabled", "modelName"]
 
     model_config = ConfigDict(

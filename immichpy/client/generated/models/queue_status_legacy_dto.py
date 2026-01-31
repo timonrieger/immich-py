@@ -27,8 +27,13 @@ class QueueStatusLegacyDto(BaseModel):
     QueueStatusLegacyDto
     """  # noqa: E501
 
-    is_active: StrictBool = Field(alias="isActive")
-    is_paused: StrictBool = Field(alias="isPaused")
+    is_active: StrictBool = Field(
+        description="Whether the queue is currently active (has running jobs)",
+        alias="isActive",
+    )
+    is_paused: StrictBool = Field(
+        description="Whether the queue is paused", alias="isPaused"
+    )
     __properties: ClassVar[List[str]] = ["isActive", "isPaused"]
 
     model_config = ConfigDict(

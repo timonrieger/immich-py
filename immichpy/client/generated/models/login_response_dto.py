@@ -27,14 +27,18 @@ class LoginResponseDto(BaseModel):
     LoginResponseDto
     """  # noqa: E501
 
-    access_token: StrictStr = Field(alias="accessToken")
-    is_admin: StrictBool = Field(alias="isAdmin")
-    is_onboarded: StrictBool = Field(alias="isOnboarded")
-    name: StrictStr
-    profile_image_path: StrictStr = Field(alias="profileImagePath")
-    should_change_password: StrictBool = Field(alias="shouldChangePassword")
-    user_email: StrictStr = Field(alias="userEmail")
-    user_id: StrictStr = Field(alias="userId")
+    access_token: StrictStr = Field(description="Access token", alias="accessToken")
+    is_admin: StrictBool = Field(description="Is admin user", alias="isAdmin")
+    is_onboarded: StrictBool = Field(description="Is onboarded", alias="isOnboarded")
+    name: StrictStr = Field(description="User name")
+    profile_image_path: StrictStr = Field(
+        description="Profile image path", alias="profileImagePath"
+    )
+    should_change_password: StrictBool = Field(
+        description="Should change password", alias="shouldChangePassword"
+    )
+    user_email: StrictStr = Field(description="User email", alias="userEmail")
+    user_id: StrictStr = Field(description="User ID", alias="userId")
     __properties: ClassVar[List[str]] = [
         "accessToken",
         "isAdmin",

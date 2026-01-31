@@ -20,14 +20,28 @@ app = typer.Typer(
 @app.command("create-workflow", deprecated=False, rich_help_panel="API commands")
 def create_workflow(
     ctx: typer.Context,
-    actions: list[str] = typer.Option(..., "--actions", help="""As a JSON string"""),
-    description: str | None = typer.Option(None, "--description", help=""""""),
-    enabled: Literal["true", "false"] | None = typer.Option(
-        None, "--enabled", help=""""""
+    actions: list[str] = typer.Option(
+        ...,
+        "--actions",
+        help="""Workflow actions
+
+As a JSON string""",
     ),
-    filters: list[str] = typer.Option(..., "--filters", help="""As a JSON string"""),
-    name: str = typer.Option(..., "--name", help=""""""),
-    trigger_type: str = typer.Option(..., "--trigger-type", help=""""""),
+    description: str | None = typer.Option(
+        None, "--description", help="""Workflow description"""
+    ),
+    enabled: Literal["true", "false"] | None = typer.Option(
+        None, "--enabled", help="""Workflow enabled"""
+    ),
+    filters: list[str] = typer.Option(
+        ...,
+        "--filters",
+        help="""Workflow filters
+
+As a JSON string""",
+    ),
+    name: str = typer.Option(..., "--name", help="""Workflow name"""),
+    trigger_type: str = typer.Option(..., "--trigger-type", help="""Trigger type"""),
 ) -> None:
     """Create a workflow
 
@@ -103,17 +117,29 @@ def update_workflow(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
     actions: list[str] | None = typer.Option(
-        None, "--actions", help="""As a JSON string"""
+        None,
+        "--actions",
+        help="""Workflow actions
+
+As a JSON string""",
     ),
-    description: str | None = typer.Option(None, "--description", help=""""""),
+    description: str | None = typer.Option(
+        None, "--description", help="""Workflow description"""
+    ),
     enabled: Literal["true", "false"] | None = typer.Option(
-        None, "--enabled", help=""""""
+        None, "--enabled", help="""Workflow enabled"""
     ),
     filters: list[str] | None = typer.Option(
-        None, "--filters", help="""As a JSON string"""
+        None,
+        "--filters",
+        help="""Workflow filters
+
+As a JSON string""",
     ),
-    name: str | None = typer.Option(None, "--name", help=""""""),
-    trigger_type: str | None = typer.Option(None, "--trigger-type", help=""""""),
+    name: str | None = typer.Option(None, "--name", help="""Workflow name"""),
+    trigger_type: str | None = typer.Option(
+        None, "--trigger-type", help="""Trigger type"""
+    ),
 ) -> None:
     """Update a workflow
 

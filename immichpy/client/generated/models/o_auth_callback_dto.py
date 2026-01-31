@@ -27,9 +27,13 @@ class OAuthCallbackDto(BaseModel):
     OAuthCallbackDto
     """  # noqa: E501
 
-    code_verifier: Optional[StrictStr] = Field(default=None, alias="codeVerifier")
-    state: Optional[StrictStr] = None
-    url: StrictStr
+    code_verifier: Optional[StrictStr] = Field(
+        default=None, description="OAuth code verifier (PKCE)", alias="codeVerifier"
+    )
+    state: Optional[StrictStr] = Field(
+        default=None, description="OAuth state parameter"
+    )
+    url: StrictStr = Field(description="OAuth callback URL")
     __properties: ClassVar[List[str]] = ["codeVerifier", "state", "url"]
 
     model_config = ConfigDict(

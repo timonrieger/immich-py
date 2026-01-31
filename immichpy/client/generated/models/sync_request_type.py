@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class SyncRequestType(str, Enum):
     """
-    SyncRequestType
+    Sync request types
     """
 
     """

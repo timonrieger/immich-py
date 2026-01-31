@@ -28,14 +28,18 @@ class AssetFaceCreateDto(BaseModel):
     AssetFaceCreateDto
     """  # noqa: E501
 
-    asset_id: UUID = Field(alias="assetId")
-    height: StrictInt
-    image_height: StrictInt = Field(alias="imageHeight")
-    image_width: StrictInt = Field(alias="imageWidth")
-    person_id: UUID = Field(alias="personId")
-    width: StrictInt
-    x: StrictInt
-    y: StrictInt
+    asset_id: UUID = Field(description="Asset ID", alias="assetId")
+    height: StrictInt = Field(description="Face bounding box height")
+    image_height: StrictInt = Field(
+        description="Image height in pixels", alias="imageHeight"
+    )
+    image_width: StrictInt = Field(
+        description="Image width in pixels", alias="imageWidth"
+    )
+    person_id: UUID = Field(description="Person ID", alias="personId")
+    width: StrictInt = Field(description="Face bounding box width")
+    x: StrictInt = Field(description="Face bounding box X coordinate")
+    y: StrictInt = Field(description="Face bounding box Y coordinate")
     __properties: ClassVar[List[str]] = [
         "assetId",
         "height",

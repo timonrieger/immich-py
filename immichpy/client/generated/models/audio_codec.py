@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class AudioCodec(str, Enum):
     """
-    AudioCodec
+    Target audio codec
     """
 
     """

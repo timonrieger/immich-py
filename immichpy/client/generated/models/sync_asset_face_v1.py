@@ -27,16 +27,16 @@ class SyncAssetFaceV1(BaseModel):
     SyncAssetFaceV1
     """  # noqa: E501
 
-    asset_id: StrictStr = Field(alias="assetId")
+    asset_id: StrictStr = Field(description="Asset ID", alias="assetId")
     bounding_box_x1: StrictInt = Field(alias="boundingBoxX1")
     bounding_box_x2: StrictInt = Field(alias="boundingBoxX2")
     bounding_box_y1: StrictInt = Field(alias="boundingBoxY1")
     bounding_box_y2: StrictInt = Field(alias="boundingBoxY2")
-    id: StrictStr
+    id: StrictStr = Field(description="Asset face ID")
     image_height: StrictInt = Field(alias="imageHeight")
     image_width: StrictInt = Field(alias="imageWidth")
-    person_id: Optional[StrictStr] = Field(alias="personId")
-    source_type: StrictStr = Field(alias="sourceType")
+    person_id: Optional[StrictStr] = Field(description="Person ID", alias="personId")
+    source_type: StrictStr = Field(description="Source type", alias="sourceType")
     __properties: ClassVar[List[str]] = [
         "assetId",
         "boundingBoxX1",

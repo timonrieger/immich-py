@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from immichpy.client.generated.models.job_name import JobName
 from typing import Set
@@ -28,10 +28,10 @@ class QueueJobResponseDto(BaseModel):
     QueueJobResponseDto
     """  # noqa: E501
 
-    data: Dict[str, Any]
-    id: Optional[StrictStr] = None
-    name: JobName
-    timestamp: StrictInt
+    data: Dict[str, Any] = Field(description="Job data payload")
+    id: Optional[StrictStr] = Field(default=None, description="Job ID")
+    name: JobName = Field(description="Job name")
+    timestamp: StrictInt = Field(description="Job creation timestamp")
     __properties: ClassVar[List[str]] = ["data", "id", "name", "timestamp"]
 
     model_config = ConfigDict(

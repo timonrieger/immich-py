@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,9 +27,9 @@ class ServerVersionResponseDto(BaseModel):
     ServerVersionResponseDto
     """  # noqa: E501
 
-    major: StrictInt
-    minor: StrictInt
-    patch: StrictInt
+    major: StrictInt = Field(description="Major version number")
+    minor: StrictInt = Field(description="Minor version number")
+    patch: StrictInt = Field(description="Patch version number")
     __properties: ClassVar[List[str]] = ["major", "minor", "patch"]
 
     model_config = ConfigDict(

@@ -27,11 +27,15 @@ class WorkflowFilterResponseDto(BaseModel):
     WorkflowFilterResponseDto
     """  # noqa: E501
 
-    filter_config: Optional[Dict[str, Any]] = Field(alias="filterConfig")
-    id: StrictStr
-    order: Union[StrictFloat, StrictInt]
-    plugin_filter_id: StrictStr = Field(alias="pluginFilterId")
-    workflow_id: StrictStr = Field(alias="workflowId")
+    filter_config: Optional[Dict[str, Any]] = Field(
+        description="Filter configuration", alias="filterConfig"
+    )
+    id: StrictStr = Field(description="Filter ID")
+    order: Union[StrictFloat, StrictInt] = Field(description="Filter order")
+    plugin_filter_id: StrictStr = Field(
+        description="Plugin filter ID", alias="pluginFilterId"
+    )
+    workflow_id: StrictStr = Field(description="Workflow ID", alias="workflowId")
     __properties: ClassVar[List[str]] = [
         "filterConfig",
         "id",

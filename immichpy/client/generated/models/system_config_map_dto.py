@@ -28,7 +28,7 @@ class SystemConfigMapDto(BaseModel):
     """  # noqa: E501
 
     dark_style: StrictStr = Field(alias="darkStyle")
-    enabled: StrictBool
+    enabled: StrictBool = Field(description="Enabled")
     light_style: StrictStr = Field(alias="lightStyle")
     __properties: ClassVar[List[str]] = ["darkStyle", "enabled", "lightStyle"]
 

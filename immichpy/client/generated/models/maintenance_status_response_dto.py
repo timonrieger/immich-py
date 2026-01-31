@@ -19,6 +19,7 @@ import json
 from pydantic import (
     BaseModel,
     ConfigDict,
+    Field,
     StrictBool,
     StrictFloat,
     StrictInt,
@@ -35,7 +36,7 @@ class MaintenanceStatusResponseDto(BaseModel):
     MaintenanceStatusResponseDto
     """  # noqa: E501
 
-    action: MaintenanceAction
+    action: MaintenanceAction = Field(description="Maintenance action")
     active: StrictBool
     error: Optional[StrictStr] = None
     progress: Optional[Union[StrictFloat, StrictInt]] = None

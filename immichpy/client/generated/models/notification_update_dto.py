@@ -28,7 +28,9 @@ class NotificationUpdateDto(BaseModel):
     NotificationUpdateDto
     """  # noqa: E501
 
-    read_at: Optional[datetime] = Field(default=None, alias="readAt")
+    read_at: Optional[datetime] = Field(
+        default=None, description="Date when notification was read", alias="readAt"
+    )
     __properties: ClassVar[List[str]] = ["readAt"]
 
     model_config = ConfigDict(

@@ -27,8 +27,10 @@ class DownloadArchiveInfo(BaseModel):
     DownloadArchiveInfo
     """  # noqa: E501
 
-    asset_ids: List[StrictStr] = Field(alias="assetIds")
-    size: StrictInt
+    asset_ids: List[StrictStr] = Field(
+        description="Asset IDs in this archive", alias="assetIds"
+    )
+    size: StrictInt = Field(description="Archive size in bytes")
     __properties: ClassVar[List[str]] = ["assetIds", "size"]
 
     model_config = ConfigDict(

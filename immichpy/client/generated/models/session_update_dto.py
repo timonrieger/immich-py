@@ -28,7 +28,7 @@ class SessionUpdateDto(BaseModel):
     """  # noqa: E501
 
     is_pending_sync_reset: Optional[StrictBool] = Field(
-        default=None, alias="isPendingSyncReset"
+        default=None, description="Reset pending sync state", alias="isPendingSyncReset"
     )
     __properties: ClassVar[List[str]] = ["isPendingSyncReset"]
 

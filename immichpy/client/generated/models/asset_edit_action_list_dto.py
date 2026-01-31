@@ -32,7 +32,7 @@ class AssetEditActionListDto(BaseModel):
     """  # noqa: E501
 
     edits: Annotated[List[AssetEditActionListDtoEditsInner], Field(min_length=1)] = (
-        Field(description="list of edits")
+        Field(description="List of edit actions to apply (crop, rotate, or mirror)")
     )
     __properties: ClassVar[List[str]] = ["edits"]
 

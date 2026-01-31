@@ -27,8 +27,12 @@ class ReverseGeocodingStateResponseDto(BaseModel):
     ReverseGeocodingStateResponseDto
     """  # noqa: E501
 
-    last_import_file_name: Optional[StrictStr] = Field(alias="lastImportFileName")
-    last_update: Optional[StrictStr] = Field(alias="lastUpdate")
+    last_import_file_name: Optional[StrictStr] = Field(
+        description="Last import file name", alias="lastImportFileName"
+    )
+    last_update: Optional[StrictStr] = Field(
+        description="Last update timestamp", alias="lastUpdate"
+    )
     __properties: ClassVar[List[str]] = ["lastImportFileName", "lastUpdate"]
 
     model_config = ConfigDict(

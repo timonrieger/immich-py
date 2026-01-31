@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from immichpy.client.generated.models.manual_job_name import ManualJobName
 from typing import Optional, Set
@@ -28,7 +28,7 @@ class JobCreateDto(BaseModel):
     JobCreateDto
     """  # noqa: E501
 
-    name: ManualJobName
+    name: ManualJobName = Field(description="Job name")
     __properties: ClassVar[List[str]] = ["name"]
 
     model_config = ConfigDict(

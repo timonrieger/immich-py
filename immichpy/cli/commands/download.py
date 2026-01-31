@@ -19,7 +19,7 @@ app = typer.Typer(
 @app.command("download-archive", deprecated=False, rich_help_panel="API commands")
 def download_archive(
     ctx: typer.Context,
-    asset_ids: list[str] = typer.Option(..., "--asset-ids", help=""""""),
+    asset_ids: list[str] = typer.Option(..., "--asset-ids", help="""Asset IDs"""),
     key: str | None = typer.Option(None, "--key", help=""""""),
     slug: str | None = typer.Option(None, "--slug", help=""""""),
 ) -> None:
@@ -44,12 +44,20 @@ def download_archive(
 @app.command("get-download-info", deprecated=False, rich_help_panel="API commands")
 def get_download_info(
     ctx: typer.Context,
-    album_id: str | None = typer.Option(None, "--album-id", help=""""""),
-    archive_size: int | None = typer.Option(None, "--archive-size", help="""""", min=1),
-    asset_ids: list[str] | None = typer.Option(None, "--asset-ids", help=""""""),
+    album_id: str | None = typer.Option(
+        None, "--album-id", help="""Album ID to download"""
+    ),
+    archive_size: int | None = typer.Option(
+        None, "--archive-size", help="""Archive size limit in bytes""", min=1
+    ),
+    asset_ids: list[str] | None = typer.Option(
+        None, "--asset-ids", help="""Asset IDs to download"""
+    ),
     key: str | None = typer.Option(None, "--key", help=""""""),
     slug: str | None = typer.Option(None, "--slug", help=""""""),
-    user_id: str | None = typer.Option(None, "--user-id", help=""""""),
+    user_id: str | None = typer.Option(
+        None, "--user-id", help="""User ID to download assets from"""
+    ),
 ) -> None:
     """Retrieve download information
 

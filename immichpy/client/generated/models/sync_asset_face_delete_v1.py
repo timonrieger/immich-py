@@ -27,7 +27,7 @@ class SyncAssetFaceDeleteV1(BaseModel):
     SyncAssetFaceDeleteV1
     """  # noqa: E501
 
-    asset_face_id: StrictStr = Field(alias="assetFaceId")
+    asset_face_id: StrictStr = Field(description="Asset face ID", alias="assetFaceId")
     __properties: ClassVar[List[str]] = ["assetFaceId"]
 
     model_config = ConfigDict(

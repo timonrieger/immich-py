@@ -751,7 +751,9 @@ from immichpy.client.generated.models.facial_recognition_config import (
 from immichpy.client.generated.models.folders_response import (
     FoldersResponse as FoldersResponse,
 )
-from immichpy.client.generated.models.folders_update import FoldersUpdate as FoldersUpdate
+from immichpy.client.generated.models.folders_update import (
+    FoldersUpdate as FoldersUpdate,
+)
 from immichpy.client.generated.models.image_format import ImageFormat as ImageFormat
 from immichpy.client.generated.models.job_create_dto import JobCreateDto as JobCreateDto
 from immichpy.client.generated.models.job_name import JobName as JobName
@@ -876,8 +878,12 @@ from immichpy.client.generated.models.o_auth_token_endpoint_auth_method import (
     OAuthTokenEndpointAuthMethod as OAuthTokenEndpointAuthMethod,
 )
 from immichpy.client.generated.models.ocr_config import OcrConfig as OcrConfig
-from immichpy.client.generated.models.on_this_day_dto import OnThisDayDto as OnThisDayDto
-from immichpy.client.generated.models.onboarding_dto import OnboardingDto as OnboardingDto
+from immichpy.client.generated.models.on_this_day_dto import (
+    OnThisDayDto as OnThisDayDto,
+)
+from immichpy.client.generated.models.onboarding_dto import (
+    OnboardingDto as OnboardingDto,
+)
 from immichpy.client.generated.models.onboarding_response_dto import (
     OnboardingResponseDto as OnboardingResponseDto,
 )
@@ -996,8 +1002,12 @@ from immichpy.client.generated.models.random_search_dto import (
 from immichpy.client.generated.models.ratings_response import (
     RatingsResponse as RatingsResponse,
 )
-from immichpy.client.generated.models.ratings_update import RatingsUpdate as RatingsUpdate
-from immichpy.client.generated.models.reaction_level import ReactionLevel as ReactionLevel
+from immichpy.client.generated.models.ratings_update import (
+    RatingsUpdate as RatingsUpdate,
+)
+from immichpy.client.generated.models.reaction_level import (
+    ReactionLevel as ReactionLevel,
+)
 from immichpy.client.generated.models.reaction_type import ReactionType as ReactionType
 from immichpy.client.generated.models.reverse_geocoding_state_response_dto import (
     ReverseGeocodingStateResponseDto as ReverseGeocodingStateResponseDto,
@@ -1118,7 +1128,9 @@ from immichpy.client.generated.models.stack_update_dto import (
 from immichpy.client.generated.models.statistics_search_dto import (
     StatisticsSearchDto as StatisticsSearchDto,
 )
-from immichpy.client.generated.models.storage_folder import StorageFolder as StorageFolder
+from immichpy.client.generated.models.storage_folder import (
+    StorageFolder as StorageFolder,
+)
 from immichpy.client.generated.models.sync_ack_delete_dto import (
     SyncAckDeleteDto as SyncAckDeleteDto,
 )

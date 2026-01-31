@@ -28,10 +28,10 @@ class AssetMetadataBulkResponseDto(BaseModel):
     AssetMetadataBulkResponseDto
     """  # noqa: E501
 
-    asset_id: StrictStr = Field(alias="assetId")
-    key: StrictStr
-    updated_at: datetime = Field(alias="updatedAt")
-    value: Dict[str, Any]
+    asset_id: StrictStr = Field(description="Asset ID", alias="assetId")
+    key: StrictStr = Field(description="Metadata key")
+    updated_at: datetime = Field(description="Last update date", alias="updatedAt")
+    value: Dict[str, Any] = Field(description="Metadata value (object)")
     __properties: ClassVar[List[str]] = ["assetId", "key", "updatedAt", "value"]
 
     model_config = ConfigDict(

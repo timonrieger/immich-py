@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class AssetVisibility(str, Enum):
     """
-    AssetVisibility
+    Asset visibility
     """
 
     """

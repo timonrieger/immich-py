@@ -29,9 +29,13 @@ class TagCreateDto(BaseModel):
     TagCreateDto
     """  # noqa: E501
 
-    color: Optional[Annotated[str, Field(strict=True)]] = None
-    name: StrictStr
-    parent_id: Optional[UUID] = Field(default=None, alias="parentId")
+    color: Optional[Annotated[str, Field(strict=True)]] = Field(
+        default=None, description="Tag color (hex)"
+    )
+    name: StrictStr = Field(description="Tag name")
+    parent_id: Optional[UUID] = Field(
+        default=None, description="Parent tag ID", alias="parentId"
+    )
     __properties: ClassVar[List[str]] = ["color", "name", "parentId"]
 
     @field_validator("color")

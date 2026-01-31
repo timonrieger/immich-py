@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class AssetMediaStatus(str, Enum):
     """
-    AssetMediaStatus
+    Upload status
     """
 
     """

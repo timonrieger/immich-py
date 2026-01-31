@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,8 +27,8 @@ class ActivityStatisticsResponseDto(BaseModel):
     ActivityStatisticsResponseDto
     """  # noqa: E501
 
-    comments: StrictInt
-    likes: StrictInt
+    comments: StrictInt = Field(description="Number of comments")
+    likes: StrictInt = Field(description="Number of likes")
     __properties: ClassVar[List[str]] = ["comments", "likes"]
 
     model_config = ConfigDict(

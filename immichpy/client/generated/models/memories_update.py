@@ -28,8 +28,12 @@ class MemoriesUpdate(BaseModel):
     MemoriesUpdate
     """  # noqa: E501
 
-    duration: Optional[Annotated[int, Field(strict=True, ge=1)]] = None
-    enabled: Optional[StrictBool] = None
+    duration: Optional[Annotated[int, Field(strict=True, ge=1)]] = Field(
+        default=None, description="Memory duration in seconds"
+    )
+    enabled: Optional[StrictBool] = Field(
+        default=None, description="Whether memories are enabled"
+    )
     __properties: ClassVar[List[str]] = ["duration", "enabled"]
 
     model_config = ConfigDict(

@@ -32,20 +32,24 @@ class SharedLinkResponseDto(BaseModel):
     """  # noqa: E501
 
     album: Optional[AlbumResponseDto] = None
-    allow_download: StrictBool = Field(alias="allowDownload")
-    allow_upload: StrictBool = Field(alias="allowUpload")
+    allow_download: StrictBool = Field(
+        description="Allow downloads", alias="allowDownload"
+    )
+    allow_upload: StrictBool = Field(description="Allow uploads", alias="allowUpload")
     assets: List[AssetResponseDto]
-    created_at: datetime = Field(alias="createdAt")
-    description: Optional[StrictStr]
-    expires_at: Optional[datetime] = Field(alias="expiresAt")
-    id: StrictStr
-    key: StrictStr
-    password: Optional[StrictStr]
-    show_metadata: StrictBool = Field(alias="showMetadata")
-    slug: Optional[StrictStr]
-    token: Optional[StrictStr] = None
-    type: SharedLinkType
-    user_id: StrictStr = Field(alias="userId")
+    created_at: datetime = Field(description="Creation date", alias="createdAt")
+    description: Optional[StrictStr] = Field(description="Link description")
+    expires_at: Optional[datetime] = Field(
+        description="Expiration date", alias="expiresAt"
+    )
+    id: StrictStr = Field(description="Shared link ID")
+    key: StrictStr = Field(description="Encryption key (base64url)")
+    password: Optional[StrictStr] = Field(description="Has password")
+    show_metadata: StrictBool = Field(description="Show metadata", alias="showMetadata")
+    slug: Optional[StrictStr] = Field(description="Custom URL slug")
+    token: Optional[StrictStr] = Field(default=None, description="Access token")
+    type: SharedLinkType = Field(description="Shared link type")
+    user_id: StrictStr = Field(description="Owner user ID", alias="userId")
     __properties: ClassVar[List[str]] = [
         "album",
         "allowDownload",

@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from immichpy.client.generated.models.sync_entity_type import SyncEntityType
 from typing import Set
@@ -28,7 +28,9 @@ class SyncAckDeleteDto(BaseModel):
     SyncAckDeleteDto
     """  # noqa: E501
 
-    types: Optional[List[SyncEntityType]] = None
+    types: Optional[List[SyncEntityType]] = Field(
+        default=None, description="Sync entity types to delete acks for"
+    )
     __properties: ClassVar[List[str]] = ["types"]
 
     model_config = ConfigDict(

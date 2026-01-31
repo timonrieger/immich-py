@@ -27,8 +27,14 @@ class SharedLinksUpdate(BaseModel):
     SharedLinksUpdate
     """  # noqa: E501
 
-    enabled: Optional[StrictBool] = None
-    sidebar_web: Optional[StrictBool] = Field(default=None, alias="sidebarWeb")
+    enabled: Optional[StrictBool] = Field(
+        default=None, description="Whether shared links are enabled"
+    )
+    sidebar_web: Optional[StrictBool] = Field(
+        default=None,
+        description="Whether shared links appear in web sidebar",
+        alias="sidebarWeb",
+    )
     __properties: ClassVar[List[str]] = ["enabled", "sidebarWeb"]
 
     model_config = ConfigDict(

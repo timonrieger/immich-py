@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from immichpy.client.generated.models.asset_edit_action import AssetEditAction
 from immichpy.client.generated.models.crop_parameters import CropParameters
@@ -29,7 +29,7 @@ class AssetEditActionCrop(BaseModel):
     AssetEditActionCrop
     """  # noqa: E501
 
-    action: AssetEditAction
+    action: AssetEditAction = Field(description="Type of edit action to perform")
     parameters: CropParameters
     __properties: ClassVar[List[str]] = ["action", "parameters"]
 

@@ -28,12 +28,14 @@ class DatabaseBackupConfig(BaseModel):
     DatabaseBackupConfig
     """  # noqa: E501
 
-    cron_expression: StrictStr = Field(alias="cronExpression")
-    enabled: StrictBool
+    cron_expression: StrictStr = Field(
+        description="Cron expression", alias="cronExpression"
+    )
+    enabled: StrictBool = Field(description="Enabled")
     keep_last_amount: Union[
         Annotated[float, Field(strict=True, ge=1)],
         Annotated[int, Field(strict=True, ge=1)],
-    ] = Field(alias="keepLastAmount")
+    ] = Field(description="Keep last amount", alias="keepLastAmount")
     __properties: ClassVar[List[str]] = ["cronExpression", "enabled", "keepLastAmount"]
 
     model_config = ConfigDict(

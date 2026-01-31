@@ -28,7 +28,9 @@ class JobSettingsDto(BaseModel):
     JobSettingsDto
     """  # noqa: E501
 
-    concurrency: Annotated[int, Field(strict=True, ge=1)]
+    concurrency: Annotated[int, Field(strict=True, ge=1)] = Field(
+        description="Concurrency"
+    )
     __properties: ClassVar[List[str]] = ["concurrency"]
 
     model_config = ConfigDict(

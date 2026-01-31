@@ -1042,15 +1042,23 @@ class MemoriesApi:
     @validate_call
     async def memories_statistics(
         self,
-        var_for: Optional[datetime] = None,
-        is_saved: Optional[StrictBool] = None,
-        is_trashed: Optional[StrictBool] = None,
-        order: Optional[MemorySearchOrder] = None,
+        var_for: Annotated[
+            Optional[datetime], Field(description="Filter by date")
+        ] = None,
+        is_saved: Annotated[
+            Optional[StrictBool], Field(description="Filter by saved status")
+        ] = None,
+        is_trashed: Annotated[
+            Optional[StrictBool], Field(description="Include trashed memories")
+        ] = None,
+        order: Annotated[
+            Optional[MemorySearchOrder], Field(description="Sort order")
+        ] = None,
         size: Annotated[
             Optional[Annotated[int, Field(strict=True, ge=1)]],
             Field(description="Number of memories to return"),
         ] = None,
-        type: Optional[MemoryType] = None,
+        type: Annotated[Optional[MemoryType], Field(description="Memory type")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1067,17 +1075,17 @@ class MemoriesApi:
 
         Retrieve statistics about memories, such as total count and other relevant metrics.
 
-        :param var_for:
+        :param var_for: Filter by date
         :type var_for: datetime
-        :param is_saved:
+        :param is_saved: Filter by saved status
         :type is_saved: bool
-        :param is_trashed:
+        :param is_trashed: Include trashed memories
         :type is_trashed: bool
-        :param order:
+        :param order: Sort order
         :type order: MemorySearchOrder
         :param size: Number of memories to return
         :type size: int
-        :param type:
+        :param type: Memory type
         :type type: MemoryType
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1129,15 +1137,23 @@ class MemoriesApi:
     @validate_call
     async def memories_statistics_with_http_info(
         self,
-        var_for: Optional[datetime] = None,
-        is_saved: Optional[StrictBool] = None,
-        is_trashed: Optional[StrictBool] = None,
-        order: Optional[MemorySearchOrder] = None,
+        var_for: Annotated[
+            Optional[datetime], Field(description="Filter by date")
+        ] = None,
+        is_saved: Annotated[
+            Optional[StrictBool], Field(description="Filter by saved status")
+        ] = None,
+        is_trashed: Annotated[
+            Optional[StrictBool], Field(description="Include trashed memories")
+        ] = None,
+        order: Annotated[
+            Optional[MemorySearchOrder], Field(description="Sort order")
+        ] = None,
         size: Annotated[
             Optional[Annotated[int, Field(strict=True, ge=1)]],
             Field(description="Number of memories to return"),
         ] = None,
-        type: Optional[MemoryType] = None,
+        type: Annotated[Optional[MemoryType], Field(description="Memory type")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1154,17 +1170,17 @@ class MemoriesApi:
 
         Retrieve statistics about memories, such as total count and other relevant metrics.
 
-        :param var_for:
+        :param var_for: Filter by date
         :type var_for: datetime
-        :param is_saved:
+        :param is_saved: Filter by saved status
         :type is_saved: bool
-        :param is_trashed:
+        :param is_trashed: Include trashed memories
         :type is_trashed: bool
-        :param order:
+        :param order: Sort order
         :type order: MemorySearchOrder
         :param size: Number of memories to return
         :type size: int
-        :param type:
+        :param type: Memory type
         :type type: MemoryType
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1216,15 +1232,23 @@ class MemoriesApi:
     @validate_call
     async def memories_statistics_without_preload_content(
         self,
-        var_for: Optional[datetime] = None,
-        is_saved: Optional[StrictBool] = None,
-        is_trashed: Optional[StrictBool] = None,
-        order: Optional[MemorySearchOrder] = None,
+        var_for: Annotated[
+            Optional[datetime], Field(description="Filter by date")
+        ] = None,
+        is_saved: Annotated[
+            Optional[StrictBool], Field(description="Filter by saved status")
+        ] = None,
+        is_trashed: Annotated[
+            Optional[StrictBool], Field(description="Include trashed memories")
+        ] = None,
+        order: Annotated[
+            Optional[MemorySearchOrder], Field(description="Sort order")
+        ] = None,
         size: Annotated[
             Optional[Annotated[int, Field(strict=True, ge=1)]],
             Field(description="Number of memories to return"),
         ] = None,
-        type: Optional[MemoryType] = None,
+        type: Annotated[Optional[MemoryType], Field(description="Memory type")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1241,17 +1265,17 @@ class MemoriesApi:
 
         Retrieve statistics about memories, such as total count and other relevant metrics.
 
-        :param var_for:
+        :param var_for: Filter by date
         :type var_for: datetime
-        :param is_saved:
+        :param is_saved: Filter by saved status
         :type is_saved: bool
-        :param is_trashed:
+        :param is_trashed: Include trashed memories
         :type is_trashed: bool
-        :param order:
+        :param order: Sort order
         :type order: MemorySearchOrder
         :param size: Number of memories to return
         :type size: int
-        :param type:
+        :param type: Memory type
         :type type: MemoryType
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1647,15 +1671,23 @@ class MemoriesApi:
     @validate_call
     async def search_memories(
         self,
-        var_for: Optional[datetime] = None,
-        is_saved: Optional[StrictBool] = None,
-        is_trashed: Optional[StrictBool] = None,
-        order: Optional[MemorySearchOrder] = None,
+        var_for: Annotated[
+            Optional[datetime], Field(description="Filter by date")
+        ] = None,
+        is_saved: Annotated[
+            Optional[StrictBool], Field(description="Filter by saved status")
+        ] = None,
+        is_trashed: Annotated[
+            Optional[StrictBool], Field(description="Include trashed memories")
+        ] = None,
+        order: Annotated[
+            Optional[MemorySearchOrder], Field(description="Sort order")
+        ] = None,
         size: Annotated[
             Optional[Annotated[int, Field(strict=True, ge=1)]],
             Field(description="Number of memories to return"),
         ] = None,
-        type: Optional[MemoryType] = None,
+        type: Annotated[Optional[MemoryType], Field(description="Memory type")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1672,17 +1704,17 @@ class MemoriesApi:
 
         Retrieve a list of memories. Memories are sorted descending by creation date by default, although they can also be sorted in ascending order, or randomly.
 
-        :param var_for:
+        :param var_for: Filter by date
         :type var_for: datetime
-        :param is_saved:
+        :param is_saved: Filter by saved status
         :type is_saved: bool
-        :param is_trashed:
+        :param is_trashed: Include trashed memories
         :type is_trashed: bool
-        :param order:
+        :param order: Sort order
         :type order: MemorySearchOrder
         :param size: Number of memories to return
         :type size: int
-        :param type:
+        :param type: Memory type
         :type type: MemoryType
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1734,15 +1766,23 @@ class MemoriesApi:
     @validate_call
     async def search_memories_with_http_info(
         self,
-        var_for: Optional[datetime] = None,
-        is_saved: Optional[StrictBool] = None,
-        is_trashed: Optional[StrictBool] = None,
-        order: Optional[MemorySearchOrder] = None,
+        var_for: Annotated[
+            Optional[datetime], Field(description="Filter by date")
+        ] = None,
+        is_saved: Annotated[
+            Optional[StrictBool], Field(description="Filter by saved status")
+        ] = None,
+        is_trashed: Annotated[
+            Optional[StrictBool], Field(description="Include trashed memories")
+        ] = None,
+        order: Annotated[
+            Optional[MemorySearchOrder], Field(description="Sort order")
+        ] = None,
         size: Annotated[
             Optional[Annotated[int, Field(strict=True, ge=1)]],
             Field(description="Number of memories to return"),
         ] = None,
-        type: Optional[MemoryType] = None,
+        type: Annotated[Optional[MemoryType], Field(description="Memory type")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1759,17 +1799,17 @@ class MemoriesApi:
 
         Retrieve a list of memories. Memories are sorted descending by creation date by default, although they can also be sorted in ascending order, or randomly.
 
-        :param var_for:
+        :param var_for: Filter by date
         :type var_for: datetime
-        :param is_saved:
+        :param is_saved: Filter by saved status
         :type is_saved: bool
-        :param is_trashed:
+        :param is_trashed: Include trashed memories
         :type is_trashed: bool
-        :param order:
+        :param order: Sort order
         :type order: MemorySearchOrder
         :param size: Number of memories to return
         :type size: int
-        :param type:
+        :param type: Memory type
         :type type: MemoryType
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1821,15 +1861,23 @@ class MemoriesApi:
     @validate_call
     async def search_memories_without_preload_content(
         self,
-        var_for: Optional[datetime] = None,
-        is_saved: Optional[StrictBool] = None,
-        is_trashed: Optional[StrictBool] = None,
-        order: Optional[MemorySearchOrder] = None,
+        var_for: Annotated[
+            Optional[datetime], Field(description="Filter by date")
+        ] = None,
+        is_saved: Annotated[
+            Optional[StrictBool], Field(description="Filter by saved status")
+        ] = None,
+        is_trashed: Annotated[
+            Optional[StrictBool], Field(description="Include trashed memories")
+        ] = None,
+        order: Annotated[
+            Optional[MemorySearchOrder], Field(description="Sort order")
+        ] = None,
         size: Annotated[
             Optional[Annotated[int, Field(strict=True, ge=1)]],
             Field(description="Number of memories to return"),
         ] = None,
-        type: Optional[MemoryType] = None,
+        type: Annotated[Optional[MemoryType], Field(description="Memory type")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1846,17 +1894,17 @@ class MemoriesApi:
 
         Retrieve a list of memories. Memories are sorted descending by creation date by default, although they can also be sorted in ascending order, or randomly.
 
-        :param var_for:
+        :param var_for: Filter by date
         :type var_for: datetime
-        :param is_saved:
+        :param is_saved: Filter by saved status
         :type is_saved: bool
-        :param is_trashed:
+        :param is_trashed: Include trashed memories
         :type is_trashed: bool
-        :param order:
+        :param order: Sort order
         :type order: MemorySearchOrder
         :param size: Number of memories to return
         :type size: int
-        :param type:
+        :param type: Memory type
         :type type: MemoryType
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

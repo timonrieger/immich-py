@@ -28,7 +28,7 @@ class SystemConfigLibraryScanDto(BaseModel):
     """  # noqa: E501
 
     cron_expression: StrictStr = Field(alias="cronExpression")
-    enabled: StrictBool
+    enabled: StrictBool = Field(description="Enabled")
     __properties: ClassVar[List[str]] = ["cronExpression", "enabled"]
 
     model_config = ConfigDict(

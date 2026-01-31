@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
 from immichpy.client.generated.models.asset_media_status import AssetMediaStatus
 from typing import Optional, Set
@@ -28,8 +28,8 @@ class AssetMediaResponseDto(BaseModel):
     AssetMediaResponseDto
     """  # noqa: E501
 
-    id: StrictStr
-    status: AssetMediaStatus
+    id: StrictStr = Field(description="Asset media ID")
+    status: AssetMediaStatus = Field(description="Upload status")
     __properties: ClassVar[List[str]] = ["id", "status"]
 
     model_config = ConfigDict(

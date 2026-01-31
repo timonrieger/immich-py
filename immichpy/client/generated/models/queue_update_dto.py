@@ -27,7 +27,9 @@ class QueueUpdateDto(BaseModel):
     QueueUpdateDto
     """  # noqa: E501
 
-    is_paused: Optional[StrictBool] = Field(default=None, alias="isPaused")
+    is_paused: Optional[StrictBool] = Field(
+        default=None, description="Whether to pause the queue", alias="isPaused"
+    )
     __properties: ClassVar[List[str]] = ["isPaused"]
 
     model_config = ConfigDict(

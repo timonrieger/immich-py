@@ -28,13 +28,21 @@ class AssetCopyDto(BaseModel):
     AssetCopyDto
     """  # noqa: E501
 
-    albums: Optional[StrictBool] = True
-    favorite: Optional[StrictBool] = True
-    shared_links: Optional[StrictBool] = Field(default=True, alias="sharedLinks")
-    sidecar: Optional[StrictBool] = True
-    source_id: UUID = Field(alias="sourceId")
-    stack: Optional[StrictBool] = True
-    target_id: UUID = Field(alias="targetId")
+    albums: Optional[StrictBool] = Field(
+        default=True, description="Copy album associations"
+    )
+    favorite: Optional[StrictBool] = Field(
+        default=True, description="Copy favorite status"
+    )
+    shared_links: Optional[StrictBool] = Field(
+        default=True, description="Copy shared links", alias="sharedLinks"
+    )
+    sidecar: Optional[StrictBool] = Field(default=True, description="Copy sidecar file")
+    source_id: UUID = Field(description="Source asset ID", alias="sourceId")
+    stack: Optional[StrictBool] = Field(
+        default=True, description="Copy stack association"
+    )
+    target_id: UUID = Field(description="Target asset ID", alias="targetId")
     __properties: ClassVar[List[str]] = [
         "albums",
         "favorite",

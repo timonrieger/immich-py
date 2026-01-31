@@ -27,8 +27,8 @@ class SyncMemoryAssetDeleteV1(BaseModel):
     SyncMemoryAssetDeleteV1
     """  # noqa: E501
 
-    asset_id: StrictStr = Field(alias="assetId")
-    memory_id: StrictStr = Field(alias="memoryId")
+    asset_id: StrictStr = Field(description="Asset ID", alias="assetId")
+    memory_id: StrictStr = Field(description="Memory ID", alias="memoryId")
     __properties: ClassVar[List[str]] = ["assetId", "memoryId"]
 
     model_config = ConfigDict(

@@ -27,7 +27,9 @@ class CastResponse(BaseModel):
     CastResponse
     """  # noqa: E501
 
-    g_cast_enabled: StrictBool = Field(alias="gCastEnabled")
+    g_cast_enabled: StrictBool = Field(
+        description="Whether Google Cast is enabled", alias="gCastEnabled"
+    )
     __properties: ClassVar[List[str]] = ["gCastEnabled"]
 
     model_config = ConfigDict(

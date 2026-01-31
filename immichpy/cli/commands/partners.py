@@ -19,7 +19,9 @@ app = typer.Typer(
 @app.command("create-partner", deprecated=False, rich_help_panel="API commands")
 def create_partner(
     ctx: typer.Context,
-    shared_with_id: str = typer.Option(..., "--shared-with-id", help=""""""),
+    shared_with_id: str = typer.Option(
+        ..., "--shared-with-id", help="""User ID to share with"""
+    ),
 ) -> None:
     """Create a partner
 
@@ -58,7 +60,9 @@ def create_partner_deprecated(
 @app.command("get-partners", deprecated=False, rich_help_panel="API commands")
 def get_partners(
     ctx: typer.Context,
-    direction: PartnerDirection = typer.Option(..., "--direction", help=""""""),
+    direction: PartnerDirection = typer.Option(
+        ..., "--direction", help="""Partner direction"""
+    ),
 ) -> None:
     """Retrieve partners
 
@@ -91,7 +95,9 @@ def remove_partner(
 def update_partner(
     ctx: typer.Context,
     id: str = typer.Argument(..., help=""""""),
-    in_timeline: bool = typer.Option(..., "--in-timeline", help=""""""),
+    in_timeline: bool = typer.Option(
+        ..., "--in-timeline", help="""Show partner assets in timeline"""
+    ),
 ) -> None:
     """Update a partner
 

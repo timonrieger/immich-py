@@ -27,7 +27,9 @@ class ValidateAccessTokenResponseDto(BaseModel):
     ValidateAccessTokenResponseDto
     """  # noqa: E501
 
-    auth_status: StrictBool = Field(alias="authStatus")
+    auth_status: StrictBool = Field(
+        description="Authentication status", alias="authStatus"
+    )
     __properties: ClassVar[List[str]] = ["authStatus"]
 
     model_config = ConfigDict(

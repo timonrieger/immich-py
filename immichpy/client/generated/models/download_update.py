@@ -29,10 +29,12 @@ class DownloadUpdate(BaseModel):
     """  # noqa: E501
 
     archive_size: Optional[Annotated[int, Field(strict=True, ge=1)]] = Field(
-        default=None, alias="archiveSize"
+        default=None, description="Maximum archive size in bytes", alias="archiveSize"
     )
     include_embedded_videos: Optional[StrictBool] = Field(
-        default=None, alias="includeEmbeddedVideos"
+        default=None,
+        description="Whether to include embedded videos in downloads",
+        alias="includeEmbeddedVideos",
     )
     __properties: ClassVar[List[str]] = ["archiveSize", "includeEmbeddedVideos"]
 

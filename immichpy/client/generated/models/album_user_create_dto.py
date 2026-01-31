@@ -29,8 +29,8 @@ class AlbumUserCreateDto(BaseModel):
     AlbumUserCreateDto
     """  # noqa: E501
 
-    role: AlbumUserRole
-    user_id: UUID = Field(alias="userId")
+    role: AlbumUserRole = Field(description="Album user role")
+    user_id: UUID = Field(description="User ID", alias="userId")
     __properties: ClassVar[List[str]] = ["role", "userId"]
 
     model_config = ConfigDict(

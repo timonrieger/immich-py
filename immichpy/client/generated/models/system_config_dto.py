@@ -24,7 +24,9 @@ from immichpy.client.generated.models.system_config_backups_dto import (
 from immichpy.client.generated.models.system_config_f_fmpeg_dto import (
     SystemConfigFFmpegDto,
 )
-from immichpy.client.generated.models.system_config_image_dto import SystemConfigImageDto
+from immichpy.client.generated.models.system_config_image_dto import (
+    SystemConfigImageDto,
+)
 from immichpy.client.generated.models.system_config_job_dto import SystemConfigJobDto
 from immichpy.client.generated.models.system_config_library_dto import (
     SystemConfigLibraryDto,
@@ -48,7 +50,9 @@ from immichpy.client.generated.models.system_config_nightly_tasks_dto import (
 from immichpy.client.generated.models.system_config_notifications_dto import (
     SystemConfigNotificationsDto,
 )
-from immichpy.client.generated.models.system_config_o_auth_dto import SystemConfigOAuthDto
+from immichpy.client.generated.models.system_config_o_auth_dto import (
+    SystemConfigOAuthDto,
+)
 from immichpy.client.generated.models.system_config_password_login_dto import (
     SystemConfigPasswordLoginDto,
 )
@@ -64,8 +68,12 @@ from immichpy.client.generated.models.system_config_storage_template_dto import 
 from immichpy.client.generated.models.system_config_templates_dto import (
     SystemConfigTemplatesDto,
 )
-from immichpy.client.generated.models.system_config_theme_dto import SystemConfigThemeDto
-from immichpy.client.generated.models.system_config_trash_dto import SystemConfigTrashDto
+from immichpy.client.generated.models.system_config_theme_dto import (
+    SystemConfigThemeDto,
+)
+from immichpy.client.generated.models.system_config_trash_dto import (
+    SystemConfigTrashDto,
+)
 from immichpy.client.generated.models.system_config_user_dto import SystemConfigUserDto
 from typing import Optional, Set
 from typing_extensions import Self

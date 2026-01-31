@@ -28,9 +28,11 @@ class SetMaintenanceModeDto(BaseModel):
     SetMaintenanceModeDto
     """  # noqa: E501
 
-    action: MaintenanceAction
+    action: MaintenanceAction = Field(description="Maintenance action")
     restore_backup_filename: Optional[StrictStr] = Field(
-        default=None, alias="restoreBackupFilename"
+        default=None,
+        description="Restore backup filename",
+        alias="restoreBackupFilename",
     )
     __properties: ClassVar[List[str]] = ["action", "restoreBackupFilename"]
 

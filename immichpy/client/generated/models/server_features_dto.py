@@ -27,21 +27,37 @@ class ServerFeaturesDto(BaseModel):
     ServerFeaturesDto
     """  # noqa: E501
 
-    config_file: StrictBool = Field(alias="configFile")
-    duplicate_detection: StrictBool = Field(alias="duplicateDetection")
-    email: StrictBool
-    facial_recognition: StrictBool = Field(alias="facialRecognition")
-    import_faces: StrictBool = Field(alias="importFaces")
-    map: StrictBool
-    oauth: StrictBool
-    oauth_auto_launch: StrictBool = Field(alias="oauthAutoLaunch")
-    ocr: StrictBool
-    password_login: StrictBool = Field(alias="passwordLogin")
-    reverse_geocoding: StrictBool = Field(alias="reverseGeocoding")
-    search: StrictBool
-    sidecar: StrictBool
-    smart_search: StrictBool = Field(alias="smartSearch")
-    trash: StrictBool
+    config_file: StrictBool = Field(
+        description="Whether config file is available", alias="configFile"
+    )
+    duplicate_detection: StrictBool = Field(
+        description="Whether duplicate detection is enabled", alias="duplicateDetection"
+    )
+    email: StrictBool = Field(description="Whether email notifications are enabled")
+    facial_recognition: StrictBool = Field(
+        description="Whether facial recognition is enabled", alias="facialRecognition"
+    )
+    import_faces: StrictBool = Field(
+        description="Whether face import is enabled", alias="importFaces"
+    )
+    map: StrictBool = Field(description="Whether map feature is enabled")
+    oauth: StrictBool = Field(description="Whether OAuth is enabled")
+    oauth_auto_launch: StrictBool = Field(
+        description="Whether OAuth auto-launch is enabled", alias="oauthAutoLaunch"
+    )
+    ocr: StrictBool = Field(description="Whether OCR is enabled")
+    password_login: StrictBool = Field(
+        description="Whether password login is enabled", alias="passwordLogin"
+    )
+    reverse_geocoding: StrictBool = Field(
+        description="Whether reverse geocoding is enabled", alias="reverseGeocoding"
+    )
+    search: StrictBool = Field(description="Whether search is enabled")
+    sidecar: StrictBool = Field(description="Whether sidecar files are supported")
+    smart_search: StrictBool = Field(
+        description="Whether smart search is enabled", alias="smartSearch"
+    )
+    trash: StrictBool = Field(description="Whether trash feature is enabled")
     __properties: ClassVar[List[str]] = [
         "configFile",
         "duplicateDetection",

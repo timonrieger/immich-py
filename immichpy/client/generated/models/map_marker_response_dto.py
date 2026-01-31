@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Set
 from typing_extensions import Self
@@ -27,12 +27,12 @@ class MapMarkerResponseDto(BaseModel):
     MapMarkerResponseDto
     """  # noqa: E501
 
-    city: Optional[StrictStr]
-    country: Optional[StrictStr]
-    id: StrictStr
-    lat: Union[StrictFloat, StrictInt]
-    lon: Union[StrictFloat, StrictInt]
-    state: Optional[StrictStr]
+    city: Optional[StrictStr] = Field(description="City name")
+    country: Optional[StrictStr] = Field(description="Country name")
+    id: StrictStr = Field(description="Asset ID")
+    lat: Union[StrictFloat, StrictInt] = Field(description="Latitude")
+    lon: Union[StrictFloat, StrictInt] = Field(description="Longitude")
+    state: Optional[StrictStr] = Field(description="State/Province name")
     __properties: ClassVar[List[str]] = ["city", "country", "id", "lat", "lon", "state"]
 
     model_config = ConfigDict(

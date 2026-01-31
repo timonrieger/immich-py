@@ -27,14 +27,37 @@ class SystemConfigTemplateStorageOptionDto(BaseModel):
     SystemConfigTemplateStorageOptionDto
     """  # noqa: E501
 
-    day_options: List[StrictStr] = Field(alias="dayOptions")
-    hour_options: List[StrictStr] = Field(alias="hourOptions")
-    minute_options: List[StrictStr] = Field(alias="minuteOptions")
-    month_options: List[StrictStr] = Field(alias="monthOptions")
-    preset_options: List[StrictStr] = Field(alias="presetOptions")
-    second_options: List[StrictStr] = Field(alias="secondOptions")
-    week_options: List[StrictStr] = Field(alias="weekOptions")
-    year_options: List[StrictStr] = Field(alias="yearOptions")
+    day_options: List[StrictStr] = Field(
+        description="Available day format options for storage template",
+        alias="dayOptions",
+    )
+    hour_options: List[StrictStr] = Field(
+        description="Available hour format options for storage template",
+        alias="hourOptions",
+    )
+    minute_options: List[StrictStr] = Field(
+        description="Available minute format options for storage template",
+        alias="minuteOptions",
+    )
+    month_options: List[StrictStr] = Field(
+        description="Available month format options for storage template",
+        alias="monthOptions",
+    )
+    preset_options: List[StrictStr] = Field(
+        description="Available preset template options", alias="presetOptions"
+    )
+    second_options: List[StrictStr] = Field(
+        description="Available second format options for storage template",
+        alias="secondOptions",
+    )
+    week_options: List[StrictStr] = Field(
+        description="Available week format options for storage template",
+        alias="weekOptions",
+    )
+    year_options: List[StrictStr] = Field(
+        description="Available year format options for storage template",
+        alias="yearOptions",
+    )
     __properties: ClassVar[List[str]] = [
         "dayOptions",
         "hourOptions",

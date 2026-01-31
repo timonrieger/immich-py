@@ -28,16 +28,18 @@ class SyncPersonV1(BaseModel):
     SyncPersonV1
     """  # noqa: E501
 
-    birth_date: Optional[datetime] = Field(alias="birthDate")
-    color: Optional[StrictStr]
-    created_at: datetime = Field(alias="createdAt")
-    face_asset_id: Optional[StrictStr] = Field(alias="faceAssetId")
-    id: StrictStr
-    is_favorite: StrictBool = Field(alias="isFavorite")
-    is_hidden: StrictBool = Field(alias="isHidden")
-    name: StrictStr
-    owner_id: StrictStr = Field(alias="ownerId")
-    updated_at: datetime = Field(alias="updatedAt")
+    birth_date: Optional[datetime] = Field(description="Birth date", alias="birthDate")
+    color: Optional[StrictStr] = Field(description="Color")
+    created_at: datetime = Field(description="Created at", alias="createdAt")
+    face_asset_id: Optional[StrictStr] = Field(
+        description="Face asset ID", alias="faceAssetId"
+    )
+    id: StrictStr = Field(description="Person ID")
+    is_favorite: StrictBool = Field(description="Is favorite", alias="isFavorite")
+    is_hidden: StrictBool = Field(description="Is hidden", alias="isHidden")
+    name: StrictStr = Field(description="Person name")
+    owner_id: StrictStr = Field(description="Owner ID", alias="ownerId")
+    updated_at: datetime = Field(description="Updated at", alias="updatedAt")
     __properties: ClassVar[List[str]] = [
         "birthDate",
         "color",

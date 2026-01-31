@@ -28,15 +28,21 @@ class LibraryResponseDto(BaseModel):
     LibraryResponseDto
     """  # noqa: E501
 
-    asset_count: StrictInt = Field(alias="assetCount")
-    created_at: datetime = Field(alias="createdAt")
-    exclusion_patterns: List[StrictStr] = Field(alias="exclusionPatterns")
-    id: StrictStr
-    import_paths: List[StrictStr] = Field(alias="importPaths")
-    name: StrictStr
-    owner_id: StrictStr = Field(alias="ownerId")
-    refreshed_at: Optional[datetime] = Field(alias="refreshedAt")
-    updated_at: datetime = Field(alias="updatedAt")
+    asset_count: StrictInt = Field(description="Number of assets", alias="assetCount")
+    created_at: datetime = Field(description="Creation date", alias="createdAt")
+    exclusion_patterns: List[StrictStr] = Field(
+        description="Exclusion patterns", alias="exclusionPatterns"
+    )
+    id: StrictStr = Field(description="Library ID")
+    import_paths: List[StrictStr] = Field(
+        description="Import paths", alias="importPaths"
+    )
+    name: StrictStr = Field(description="Library name")
+    owner_id: StrictStr = Field(description="Owner user ID", alias="ownerId")
+    refreshed_at: Optional[datetime] = Field(
+        description="Last refresh date", alias="refreshedAt"
+    )
+    updated_at: datetime = Field(description="Last update date", alias="updatedAt")
     __properties: ClassVar[List[str]] = [
         "assetCount",
         "createdAt",

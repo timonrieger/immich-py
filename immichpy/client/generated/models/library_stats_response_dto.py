@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,10 +27,10 @@ class LibraryStatsResponseDto(BaseModel):
     LibraryStatsResponseDto
     """  # noqa: E501
 
-    photos: StrictInt
-    total: StrictInt
-    usage: StrictInt
-    videos: StrictInt
+    photos: StrictInt = Field(description="Number of photos")
+    total: StrictInt = Field(description="Total number of assets")
+    usage: StrictInt = Field(description="Storage usage in bytes")
+    videos: StrictInt = Field(description="Number of videos")
     __properties: ClassVar[List[str]] = ["photos", "total", "usage", "videos"]
 
     model_config = ConfigDict(

@@ -30,10 +30,18 @@ class AssetFullSyncDto(BaseModel):
     AssetFullSyncDto
     """  # noqa: E501
 
-    last_id: Optional[UUID] = Field(default=None, alias="lastId")
-    limit: Annotated[int, Field(strict=True, ge=1)]
-    updated_until: datetime = Field(alias="updatedUntil")
-    user_id: Optional[UUID] = Field(default=None, alias="userId")
+    last_id: Optional[UUID] = Field(
+        default=None, description="Last asset ID (pagination)", alias="lastId"
+    )
+    limit: Annotated[int, Field(strict=True, ge=1)] = Field(
+        description="Maximum number of assets to return"
+    )
+    updated_until: datetime = Field(
+        description="Sync assets updated until this date", alias="updatedUntil"
+    )
+    user_id: Optional[UUID] = Field(
+        default=None, description="Filter by user ID", alias="userId"
+    )
     __properties: ClassVar[List[str]] = ["lastId", "limit", "updatedUntil", "userId"]
 
     model_config = ConfigDict(

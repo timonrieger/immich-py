@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Set
 from typing_extensions import Self
@@ -27,7 +27,7 @@ class TagUpdateDto(BaseModel):
     TagUpdateDto
     """  # noqa: E501
 
-    color: Optional[StrictStr] = None
+    color: Optional[StrictStr] = Field(default=None, description="Tag color (hex)")
     __properties: ClassVar[List[str]] = ["color"]
 
     model_config = ConfigDict(

@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class SyncEntityType(str, Enum):
     """
-    SyncEntityType
+    Sync entity type
     """
 
     """

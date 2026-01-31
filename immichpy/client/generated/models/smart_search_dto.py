@@ -32,56 +32,122 @@ class SmartSearchDto(BaseModel):
     SmartSearchDto
     """  # noqa: E501
 
-    album_ids: Optional[List[UUID]] = Field(default=None, alias="albumIds")
-    city: Optional[StrictStr] = None
-    country: Optional[StrictStr] = None
-    created_after: Optional[datetime] = Field(default=None, alias="createdAfter")
-    created_before: Optional[datetime] = Field(default=None, alias="createdBefore")
-    device_id: Optional[StrictStr] = Field(default=None, alias="deviceId")
-    is_encoded: Optional[StrictBool] = Field(default=None, alias="isEncoded")
-    is_favorite: Optional[StrictBool] = Field(default=None, alias="isFavorite")
-    is_motion: Optional[StrictBool] = Field(default=None, alias="isMotion")
-    is_not_in_album: Optional[StrictBool] = Field(default=None, alias="isNotInAlbum")
-    is_offline: Optional[StrictBool] = Field(default=None, alias="isOffline")
-    language: Optional[StrictStr] = None
-    lens_model: Optional[StrictStr] = Field(default=None, alias="lensModel")
-    library_id: Optional[UUID] = Field(default=None, alias="libraryId")
-    make: Optional[StrictStr] = None
-    model: Optional[StrictStr] = None
-    ocr: Optional[StrictStr] = None
+    album_ids: Optional[List[UUID]] = Field(
+        default=None, description="Filter by album IDs", alias="albumIds"
+    )
+    city: Optional[StrictStr] = Field(default=None, description="Filter by city name")
+    country: Optional[StrictStr] = Field(
+        default=None, description="Filter by country name"
+    )
+    created_after: Optional[datetime] = Field(
+        default=None,
+        description="Filter by creation date (after)",
+        alias="createdAfter",
+    )
+    created_before: Optional[datetime] = Field(
+        default=None,
+        description="Filter by creation date (before)",
+        alias="createdBefore",
+    )
+    device_id: Optional[StrictStr] = Field(
+        default=None, description="Device ID to filter by", alias="deviceId"
+    )
+    is_encoded: Optional[StrictBool] = Field(
+        default=None, description="Filter by encoded status", alias="isEncoded"
+    )
+    is_favorite: Optional[StrictBool] = Field(
+        default=None, description="Filter by favorite status", alias="isFavorite"
+    )
+    is_motion: Optional[StrictBool] = Field(
+        default=None, description="Filter by motion photo status", alias="isMotion"
+    )
+    is_not_in_album: Optional[StrictBool] = Field(
+        default=None, description="Filter assets not in any album", alias="isNotInAlbum"
+    )
+    is_offline: Optional[StrictBool] = Field(
+        default=None, description="Filter by offline status", alias="isOffline"
+    )
+    language: Optional[StrictStr] = Field(
+        default=None, description="Search language code"
+    )
+    lens_model: Optional[StrictStr] = Field(
+        default=None, description="Filter by lens model", alias="lensModel"
+    )
+    library_id: Optional[UUID] = Field(
+        default=None, description="Library ID to filter by", alias="libraryId"
+    )
+    make: Optional[StrictStr] = Field(default=None, description="Filter by camera make")
+    model: Optional[StrictStr] = Field(
+        default=None, description="Filter by camera model"
+    )
+    ocr: Optional[StrictStr] = Field(
+        default=None, description="Filter by OCR text content"
+    )
     page: Optional[
         Union[
             Annotated[float, Field(strict=True, ge=1)],
             Annotated[int, Field(strict=True, ge=1)],
         ]
-    ] = None
-    person_ids: Optional[List[UUID]] = Field(default=None, alias="personIds")
-    query: Optional[StrictStr] = None
-    query_asset_id: Optional[UUID] = Field(default=None, alias="queryAssetId")
+    ] = Field(default=None, description="Page number")
+    person_ids: Optional[List[UUID]] = Field(
+        default=None, description="Filter by person IDs", alias="personIds"
+    )
+    query: Optional[StrictStr] = Field(
+        default=None, description="Natural language search query"
+    )
+    query_asset_id: Optional[UUID] = Field(
+        default=None,
+        description="Asset ID to use as search reference",
+        alias="queryAssetId",
+    )
     rating: Optional[
         Union[
             Annotated[float, Field(le=5, strict=True, ge=-1)],
             Annotated[int, Field(le=5, strict=True, ge=-1)],
         ]
-    ] = None
+    ] = Field(default=None, description="Filter by rating")
     size: Optional[
         Union[
             Annotated[float, Field(le=1000, strict=True, ge=1)],
             Annotated[int, Field(le=1000, strict=True, ge=1)],
         ]
-    ] = None
-    state: Optional[StrictStr] = None
-    tag_ids: Optional[List[UUID]] = Field(default=None, alias="tagIds")
-    taken_after: Optional[datetime] = Field(default=None, alias="takenAfter")
-    taken_before: Optional[datetime] = Field(default=None, alias="takenBefore")
-    trashed_after: Optional[datetime] = Field(default=None, alias="trashedAfter")
-    trashed_before: Optional[datetime] = Field(default=None, alias="trashedBefore")
-    type: Optional[AssetTypeEnum] = None
-    updated_after: Optional[datetime] = Field(default=None, alias="updatedAfter")
-    updated_before: Optional[datetime] = Field(default=None, alias="updatedBefore")
-    visibility: Optional[AssetVisibility] = None
-    with_deleted: Optional[StrictBool] = Field(default=None, alias="withDeleted")
-    with_exif: Optional[StrictBool] = Field(default=None, alias="withExif")
+    ] = Field(default=None, description="Number of results to return")
+    state: Optional[StrictStr] = Field(
+        default=None, description="Filter by state/province name"
+    )
+    tag_ids: Optional[List[UUID]] = Field(
+        default=None, description="Filter by tag IDs", alias="tagIds"
+    )
+    taken_after: Optional[datetime] = Field(
+        default=None, description="Filter by taken date (after)", alias="takenAfter"
+    )
+    taken_before: Optional[datetime] = Field(
+        default=None, description="Filter by taken date (before)", alias="takenBefore"
+    )
+    trashed_after: Optional[datetime] = Field(
+        default=None, description="Filter by trash date (after)", alias="trashedAfter"
+    )
+    trashed_before: Optional[datetime] = Field(
+        default=None, description="Filter by trash date (before)", alias="trashedBefore"
+    )
+    type: Optional[AssetTypeEnum] = Field(default=None, description="Asset type filter")
+    updated_after: Optional[datetime] = Field(
+        default=None, description="Filter by update date (after)", alias="updatedAfter"
+    )
+    updated_before: Optional[datetime] = Field(
+        default=None,
+        description="Filter by update date (before)",
+        alias="updatedBefore",
+    )
+    visibility: Optional[AssetVisibility] = Field(
+        default=None, description="Filter by visibility"
+    )
+    with_deleted: Optional[StrictBool] = Field(
+        default=None, description="Include deleted assets", alias="withDeleted"
+    )
+    with_exif: Optional[StrictBool] = Field(
+        default=None, description="Include EXIF data in response", alias="withExif"
+    )
     __properties: ClassVar[List[str]] = [
         "albumIds",
         "city",

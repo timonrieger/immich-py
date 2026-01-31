@@ -530,11 +530,19 @@ class ActivitiesApi:
     @validate_call
     async def get_activities(
         self,
-        album_id: UUID,
-        asset_id: Optional[UUID] = None,
-        level: Optional[ReactionLevel] = None,
-        type: Optional[ReactionType] = None,
-        user_id: Optional[UUID] = None,
+        album_id: Annotated[UUID, Field(description="Album ID")],
+        asset_id: Annotated[
+            Optional[UUID], Field(description="Asset ID (if activity is for an asset)")
+        ] = None,
+        level: Annotated[
+            Optional[ReactionLevel], Field(description="Filter by activity level")
+        ] = None,
+        type: Annotated[
+            Optional[ReactionType], Field(description="Filter by activity type")
+        ] = None,
+        user_id: Annotated[
+            Optional[UUID], Field(description="Filter by user ID")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -551,15 +559,15 @@ class ActivitiesApi:
 
         Returns a list of activities for the selected asset or album. The activities are returned in sorted order, with the oldest activities appearing first.
 
-        :param album_id: (required)
+        :param album_id: Album ID (required)
         :type album_id: UUID
-        :param asset_id:
+        :param asset_id: Asset ID (if activity is for an asset)
         :type asset_id: UUID
-        :param level:
+        :param level: Filter by activity level
         :type level: ReactionLevel
-        :param type:
+        :param type: Filter by activity type
         :type type: ReactionType
-        :param user_id:
+        :param user_id: Filter by user ID
         :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -610,11 +618,19 @@ class ActivitiesApi:
     @validate_call
     async def get_activities_with_http_info(
         self,
-        album_id: UUID,
-        asset_id: Optional[UUID] = None,
-        level: Optional[ReactionLevel] = None,
-        type: Optional[ReactionType] = None,
-        user_id: Optional[UUID] = None,
+        album_id: Annotated[UUID, Field(description="Album ID")],
+        asset_id: Annotated[
+            Optional[UUID], Field(description="Asset ID (if activity is for an asset)")
+        ] = None,
+        level: Annotated[
+            Optional[ReactionLevel], Field(description="Filter by activity level")
+        ] = None,
+        type: Annotated[
+            Optional[ReactionType], Field(description="Filter by activity type")
+        ] = None,
+        user_id: Annotated[
+            Optional[UUID], Field(description="Filter by user ID")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -631,15 +647,15 @@ class ActivitiesApi:
 
         Returns a list of activities for the selected asset or album. The activities are returned in sorted order, with the oldest activities appearing first.
 
-        :param album_id: (required)
+        :param album_id: Album ID (required)
         :type album_id: UUID
-        :param asset_id:
+        :param asset_id: Asset ID (if activity is for an asset)
         :type asset_id: UUID
-        :param level:
+        :param level: Filter by activity level
         :type level: ReactionLevel
-        :param type:
+        :param type: Filter by activity type
         :type type: ReactionType
-        :param user_id:
+        :param user_id: Filter by user ID
         :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -690,11 +706,19 @@ class ActivitiesApi:
     @validate_call
     async def get_activities_without_preload_content(
         self,
-        album_id: UUID,
-        asset_id: Optional[UUID] = None,
-        level: Optional[ReactionLevel] = None,
-        type: Optional[ReactionType] = None,
-        user_id: Optional[UUID] = None,
+        album_id: Annotated[UUID, Field(description="Album ID")],
+        asset_id: Annotated[
+            Optional[UUID], Field(description="Asset ID (if activity is for an asset)")
+        ] = None,
+        level: Annotated[
+            Optional[ReactionLevel], Field(description="Filter by activity level")
+        ] = None,
+        type: Annotated[
+            Optional[ReactionType], Field(description="Filter by activity type")
+        ] = None,
+        user_id: Annotated[
+            Optional[UUID], Field(description="Filter by user ID")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -711,15 +735,15 @@ class ActivitiesApi:
 
         Returns a list of activities for the selected asset or album. The activities are returned in sorted order, with the oldest activities appearing first.
 
-        :param album_id: (required)
+        :param album_id: Album ID (required)
         :type album_id: UUID
-        :param asset_id:
+        :param asset_id: Asset ID (if activity is for an asset)
         :type asset_id: UUID
-        :param level:
+        :param level: Filter by activity level
         :type level: ReactionLevel
-        :param type:
+        :param type: Filter by activity type
         :type type: ReactionType
-        :param user_id:
+        :param user_id: Filter by user ID
         :type user_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -836,8 +860,10 @@ class ActivitiesApi:
     @validate_call
     async def get_activity_statistics(
         self,
-        album_id: UUID,
-        asset_id: Optional[UUID] = None,
+        album_id: Annotated[UUID, Field(description="Album ID")],
+        asset_id: Annotated[
+            Optional[UUID], Field(description="Asset ID (if activity is for an asset)")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -854,9 +880,9 @@ class ActivitiesApi:
 
         Returns the number of likes and comments for a given album or asset in an album.
 
-        :param album_id: (required)
+        :param album_id: Album ID (required)
         :type album_id: UUID
-        :param asset_id:
+        :param asset_id: Asset ID (if activity is for an asset)
         :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -904,8 +930,10 @@ class ActivitiesApi:
     @validate_call
     async def get_activity_statistics_with_http_info(
         self,
-        album_id: UUID,
-        asset_id: Optional[UUID] = None,
+        album_id: Annotated[UUID, Field(description="Album ID")],
+        asset_id: Annotated[
+            Optional[UUID], Field(description="Asset ID (if activity is for an asset)")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -922,9 +950,9 @@ class ActivitiesApi:
 
         Returns the number of likes and comments for a given album or asset in an album.
 
-        :param album_id: (required)
+        :param album_id: Album ID (required)
         :type album_id: UUID
-        :param asset_id:
+        :param asset_id: Asset ID (if activity is for an asset)
         :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -972,8 +1000,10 @@ class ActivitiesApi:
     @validate_call
     async def get_activity_statistics_without_preload_content(
         self,
-        album_id: UUID,
-        asset_id: Optional[UUID] = None,
+        album_id: Annotated[UUID, Field(description="Album ID")],
+        asset_id: Annotated[
+            Optional[UUID], Field(description="Asset ID (if activity is for an asset)")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -990,9 +1020,9 @@ class ActivitiesApi:
 
         Returns the number of likes and comments for a given album or asset in an album.
 
-        :param album_id: (required)
+        :param album_id: Album ID (required)
         :type album_id: UUID
-        :param asset_id:
+        :param asset_id: Asset ID (if activity is for an asset)
         :type asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

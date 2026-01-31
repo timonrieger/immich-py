@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List
 from immichpy.client.generated.models.log_level import LogLevel
 from typing import Optional, Set
@@ -28,7 +28,7 @@ class SystemConfigLoggingDto(BaseModel):
     SystemConfigLoggingDto
     """  # noqa: E501
 
-    enabled: StrictBool
+    enabled: StrictBool = Field(description="Enabled")
     level: LogLevel
     __properties: ClassVar[List[str]] = ["enabled", "level"]
 

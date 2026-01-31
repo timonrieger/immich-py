@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class SourceType(str, Enum):
     """
-    SourceType
+    Face detection source type
     """
 
     """

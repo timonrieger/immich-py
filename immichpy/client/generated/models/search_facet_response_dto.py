@@ -30,8 +30,8 @@ class SearchFacetResponseDto(BaseModel):
     SearchFacetResponseDto
     """  # noqa: E501
 
-    counts: List[SearchFacetCountResponseDto]
-    field_name: StrictStr = Field(alias="fieldName")
+    counts: List[SearchFacetCountResponseDto] = Field(description="Facet counts")
+    field_name: StrictStr = Field(description="Facet field name", alias="fieldName")
     __properties: ClassVar[List[str]] = ["counts", "fieldName"]
 
     model_config = ConfigDict(

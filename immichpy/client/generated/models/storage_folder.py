@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class StorageFolder(str, Enum):
     """
-    StorageFolder
+    Storage folder
     """
 
     """

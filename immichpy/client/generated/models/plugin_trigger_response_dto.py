@@ -29,8 +29,10 @@ class PluginTriggerResponseDto(BaseModel):
     PluginTriggerResponseDto
     """  # noqa: E501
 
-    context_type: PluginContextType = Field(alias="contextType")
-    type: PluginTriggerType
+    context_type: PluginContextType = Field(
+        description="Context type", alias="contextType"
+    )
+    type: PluginTriggerType = Field(description="Trigger type")
     __properties: ClassVar[List[str]] = ["contextType", "type"]
 
     model_config = ConfigDict(

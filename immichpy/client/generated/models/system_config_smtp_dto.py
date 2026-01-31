@@ -30,9 +30,13 @@ class SystemConfigSmtpDto(BaseModel):
     SystemConfigSmtpDto
     """  # noqa: E501
 
-    enabled: StrictBool
-    var_from: StrictStr = Field(alias="from")
-    reply_to: StrictStr = Field(alias="replyTo")
+    enabled: StrictBool = Field(
+        description="Whether SMTP email notifications are enabled"
+    )
+    var_from: StrictStr = Field(description="Email address to send from", alias="from")
+    reply_to: StrictStr = Field(
+        description="Email address for replies", alias="replyTo"
+    )
     transport: SystemConfigSmtpTransportDto
     __properties: ClassVar[List[str]] = ["enabled", "from", "replyTo", "transport"]
 

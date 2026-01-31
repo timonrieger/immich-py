@@ -28,7 +28,9 @@ class PartnerCreateDto(BaseModel):
     PartnerCreateDto
     """  # noqa: E501
 
-    shared_with_id: UUID = Field(alias="sharedWithId")
+    shared_with_id: UUID = Field(
+        description="User ID to share with", alias="sharedWithId"
+    )
     __properties: ClassVar[List[str]] = ["sharedWithId"]
 
     model_config = ConfigDict(

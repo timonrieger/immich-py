@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class VideoCodec(str, Enum):
     """
-    VideoCodec
+    Target video codec
     """
 
     """

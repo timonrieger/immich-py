@@ -30,16 +30,30 @@ class SharedLinkCreateDto(BaseModel):
     SharedLinkCreateDto
     """  # noqa: E501
 
-    album_id: Optional[UUID] = Field(default=None, alias="albumId")
-    allow_download: Optional[StrictBool] = Field(default=True, alias="allowDownload")
-    allow_upload: Optional[StrictBool] = Field(default=None, alias="allowUpload")
-    asset_ids: Optional[List[UUID]] = Field(default=None, alias="assetIds")
-    description: Optional[StrictStr] = None
-    expires_at: Optional[datetime] = Field(default=None, alias="expiresAt")
-    password: Optional[StrictStr] = None
-    show_metadata: Optional[StrictBool] = Field(default=True, alias="showMetadata")
-    slug: Optional[StrictStr] = None
-    type: SharedLinkType
+    album_id: Optional[UUID] = Field(
+        default=None, description="Album ID (for album sharing)", alias="albumId"
+    )
+    allow_download: Optional[StrictBool] = Field(
+        default=True, description="Allow downloads", alias="allowDownload"
+    )
+    allow_upload: Optional[StrictBool] = Field(
+        default=None, description="Allow uploads", alias="allowUpload"
+    )
+    asset_ids: Optional[List[UUID]] = Field(
+        default=None, description="Asset IDs (for individual assets)", alias="assetIds"
+    )
+    description: Optional[StrictStr] = Field(
+        default=None, description="Link description"
+    )
+    expires_at: Optional[datetime] = Field(
+        default=None, description="Expiration date", alias="expiresAt"
+    )
+    password: Optional[StrictStr] = Field(default=None, description="Link password")
+    show_metadata: Optional[StrictBool] = Field(
+        default=True, description="Show metadata", alias="showMetadata"
+    )
+    slug: Optional[StrictStr] = Field(default=None, description="Custom URL slug")
+    type: SharedLinkType = Field(description="Shared link type")
     __properties: ClassVar[List[str]] = [
         "albumId",
         "allowDownload",

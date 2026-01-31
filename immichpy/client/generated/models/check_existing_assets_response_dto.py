@@ -27,7 +27,9 @@ class CheckExistingAssetsResponseDto(BaseModel):
     CheckExistingAssetsResponseDto
     """  # noqa: E501
 
-    existing_ids: List[StrictStr] = Field(alias="existingIds")
+    existing_ids: List[StrictStr] = Field(
+        description="Existing asset IDs", alias="existingIds"
+    )
     __properties: ClassVar[List[str]] = ["existingIds"]
 
     model_config = ConfigDict(

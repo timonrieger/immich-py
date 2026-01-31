@@ -19,7 +19,9 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from immichpy.client.generated.models.album_user_response_dto import AlbumUserResponseDto
+from immichpy.client.generated.models.album_user_response_dto import (
+    AlbumUserResponseDto,
+)
 from immichpy.client.generated.models.asset_order import AssetOrder
 from immichpy.client.generated.models.asset_response_dto import AssetResponseDto
 from immichpy.client.generated.models.contributor_count_response_dto import (
@@ -35,29 +37,41 @@ class AlbumResponseDto(BaseModel):
     AlbumResponseDto
     """  # noqa: E501
 
-    album_name: StrictStr = Field(alias="albumName")
-    album_thumbnail_asset_id: Optional[StrictStr] = Field(alias="albumThumbnailAssetId")
+    album_name: StrictStr = Field(description="Album name", alias="albumName")
+    album_thumbnail_asset_id: Optional[StrictStr] = Field(
+        description="Thumbnail asset ID", alias="albumThumbnailAssetId"
+    )
     album_users: List[AlbumUserResponseDto] = Field(alias="albumUsers")
-    asset_count: StrictInt = Field(alias="assetCount")
+    asset_count: StrictInt = Field(description="Number of assets", alias="assetCount")
     assets: List[AssetResponseDto]
     contributor_counts: Optional[List[ContributorCountResponseDto]] = Field(
         default=None, alias="contributorCounts"
     )
-    created_at: datetime = Field(alias="createdAt")
-    description: StrictStr
-    end_date: Optional[datetime] = Field(default=None, alias="endDate")
-    has_shared_link: StrictBool = Field(alias="hasSharedLink")
-    id: StrictStr
-    is_activity_enabled: StrictBool = Field(alias="isActivityEnabled")
-    last_modified_asset_timestamp: Optional[datetime] = Field(
-        default=None, alias="lastModifiedAssetTimestamp"
+    created_at: datetime = Field(description="Creation date", alias="createdAt")
+    description: StrictStr = Field(description="Album description")
+    end_date: Optional[datetime] = Field(
+        default=None, description="End date (latest asset)", alias="endDate"
     )
-    order: Optional[AssetOrder] = None
+    has_shared_link: StrictBool = Field(
+        description="Has shared link", alias="hasSharedLink"
+    )
+    id: StrictStr = Field(description="Album ID")
+    is_activity_enabled: StrictBool = Field(
+        description="Activity feed enabled", alias="isActivityEnabled"
+    )
+    last_modified_asset_timestamp: Optional[datetime] = Field(
+        default=None,
+        description="Last modified asset timestamp",
+        alias="lastModifiedAssetTimestamp",
+    )
+    order: Optional[AssetOrder] = Field(default=None, description="Asset sort order")
     owner: UserResponseDto
-    owner_id: StrictStr = Field(alias="ownerId")
-    shared: StrictBool
-    start_date: Optional[datetime] = Field(default=None, alias="startDate")
-    updated_at: datetime = Field(alias="updatedAt")
+    owner_id: StrictStr = Field(description="Owner user ID", alias="ownerId")
+    shared: StrictBool = Field(description="Is shared album")
+    start_date: Optional[datetime] = Field(
+        default=None, description="Start date (earliest asset)", alias="startDate"
+    )
+    updated_at: datetime = Field(description="Last update date", alias="updatedAt")
     __properties: ClassVar[List[str]] = [
         "albumName",
         "albumThumbnailAssetId",

@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class Permission(str, Enum):
     """
-    Permission
+    List of permissions
     """
 
     """

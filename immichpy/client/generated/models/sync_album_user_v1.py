@@ -28,9 +28,9 @@ class SyncAlbumUserV1(BaseModel):
     SyncAlbumUserV1
     """  # noqa: E501
 
-    album_id: StrictStr = Field(alias="albumId")
-    role: AlbumUserRole
-    user_id: StrictStr = Field(alias="userId")
+    album_id: StrictStr = Field(description="Album ID", alias="albumId")
+    role: AlbumUserRole = Field(description="Album user role")
+    user_id: StrictStr = Field(description="User ID", alias="userId")
     __properties: ClassVar[List[str]] = ["albumId", "role", "userId"]
 
     model_config = ConfigDict(

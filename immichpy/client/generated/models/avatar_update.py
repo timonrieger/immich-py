@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from immichpy.client.generated.models.user_avatar_color import UserAvatarColor
 from typing import Set
@@ -28,7 +28,7 @@ class AvatarUpdate(BaseModel):
     AvatarUpdate
     """  # noqa: E501
 
-    color: Optional[UserAvatarColor] = None
+    color: Optional[UserAvatarColor] = Field(default=None, description="Avatar color")
     __properties: ClassVar[List[str]] = ["color"]
 
     model_config = ConfigDict(

@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Set
 from typing_extensions import Self
@@ -27,7 +27,7 @@ class MaintenanceLoginDto(BaseModel):
     MaintenanceLoginDto
     """  # noqa: E501
 
-    token: Optional[StrictStr] = None
+    token: Optional[StrictStr] = Field(default=None, description="Maintenance token")
     __properties: ClassVar[List[str]] = ["token"]
 
     model_config = ConfigDict(

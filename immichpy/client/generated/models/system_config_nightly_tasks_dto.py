@@ -27,12 +27,22 @@ class SystemConfigNightlyTasksDto(BaseModel):
     SystemConfigNightlyTasksDto
     """  # noqa: E501
 
-    cluster_new_faces: StrictBool = Field(alias="clusterNewFaces")
-    database_cleanup: StrictBool = Field(alias="databaseCleanup")
-    generate_memories: StrictBool = Field(alias="generateMemories")
-    missing_thumbnails: StrictBool = Field(alias="missingThumbnails")
+    cluster_new_faces: StrictBool = Field(
+        description="Cluster new faces", alias="clusterNewFaces"
+    )
+    database_cleanup: StrictBool = Field(
+        description="Database cleanup", alias="databaseCleanup"
+    )
+    generate_memories: StrictBool = Field(
+        description="Generate memories", alias="generateMemories"
+    )
+    missing_thumbnails: StrictBool = Field(
+        description="Missing thumbnails", alias="missingThumbnails"
+    )
     start_time: StrictStr = Field(alias="startTime")
-    sync_quota_usage: StrictBool = Field(alias="syncQuotaUsage")
+    sync_quota_usage: StrictBool = Field(
+        description="Sync quota usage", alias="syncQuotaUsage"
+    )
     __properties: ClassVar[List[str]] = [
         "clusterNewFaces",
         "databaseCleanup",

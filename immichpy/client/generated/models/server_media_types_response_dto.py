@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,9 +27,9 @@ class ServerMediaTypesResponseDto(BaseModel):
     ServerMediaTypesResponseDto
     """  # noqa: E501
 
-    image: List[StrictStr]
-    sidecar: List[StrictStr]
-    video: List[StrictStr]
+    image: List[StrictStr] = Field(description="Supported image MIME types")
+    sidecar: List[StrictStr] = Field(description="Supported sidecar MIME types")
+    video: List[StrictStr] = Field(description="Supported video MIME types")
     __properties: ClassVar[List[str]] = ["image", "sidecar", "video"]
 
     model_config = ConfigDict(

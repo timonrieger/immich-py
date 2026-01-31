@@ -27,11 +27,17 @@ class AuthStatusResponseDto(BaseModel):
     AuthStatusResponseDto
     """  # noqa: E501
 
-    expires_at: Optional[StrictStr] = Field(default=None, alias="expiresAt")
-    is_elevated: StrictBool = Field(alias="isElevated")
-    password: StrictBool
-    pin_code: StrictBool = Field(alias="pinCode")
-    pin_expires_at: Optional[StrictStr] = Field(default=None, alias="pinExpiresAt")
+    expires_at: Optional[StrictStr] = Field(
+        default=None, description="Session expiration date", alias="expiresAt"
+    )
+    is_elevated: StrictBool = Field(
+        description="Is elevated session", alias="isElevated"
+    )
+    password: StrictBool = Field(description="Has password set")
+    pin_code: StrictBool = Field(description="Has PIN code set", alias="pinCode")
+    pin_expires_at: Optional[StrictStr] = Field(
+        default=None, description="PIN expiration date", alias="pinExpiresAt"
+    )
     __properties: ClassVar[List[str]] = [
         "expiresAt",
         "isElevated",

@@ -30,11 +30,15 @@ class ActivityResponseDto(BaseModel):
     ActivityResponseDto
     """  # noqa: E501
 
-    asset_id: Optional[StrictStr] = Field(alias="assetId")
-    comment: Optional[StrictStr] = None
-    created_at: datetime = Field(alias="createdAt")
-    id: StrictStr
-    type: ReactionType
+    asset_id: Optional[StrictStr] = Field(
+        description="Asset ID (if activity is for an asset)", alias="assetId"
+    )
+    comment: Optional[StrictStr] = Field(
+        default=None, description="Comment text (for comment activities)"
+    )
+    created_at: datetime = Field(description="Creation date", alias="createdAt")
+    id: StrictStr = Field(description="Activity ID")
+    type: ReactionType = Field(description="Activity type")
     user: UserResponseDto
     __properties: ClassVar[List[str]] = [
         "assetId",

@@ -29,8 +29,10 @@ class NotificationUpdateAllDto(BaseModel):
     NotificationUpdateAllDto
     """  # noqa: E501
 
-    ids: List[UUID]
-    read_at: Optional[datetime] = Field(default=None, alias="readAt")
+    ids: List[UUID] = Field(description="Notification IDs to update")
+    read_at: Optional[datetime] = Field(
+        default=None, description="Date when notifications were read", alias="readAt"
+    )
     __properties: ClassVar[List[str]] = ["ids", "readAt"]
 
     model_config = ConfigDict(

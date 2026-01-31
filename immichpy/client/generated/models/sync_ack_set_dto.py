@@ -28,7 +28,9 @@ class SyncAckSetDto(BaseModel):
     SyncAckSetDto
     """  # noqa: E501
 
-    acks: Annotated[List[StrictStr], Field(max_length=1000)]
+    acks: Annotated[List[StrictStr], Field(max_length=1000)] = Field(
+        description="Acknowledgment IDs (max 1000)"
+    )
     __properties: ClassVar[List[str]] = ["acks"]
 
     model_config = ConfigDict(

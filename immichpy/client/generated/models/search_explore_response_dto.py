@@ -28,7 +28,7 @@ class SearchExploreResponseDto(BaseModel):
     SearchExploreResponseDto
     """  # noqa: E501
 
-    field_name: StrictStr = Field(alias="fieldName")
+    field_name: StrictStr = Field(description="Explore field name", alias="fieldName")
     items: List[SearchExploreItem]
     __properties: ClassVar[List[str]] = ["fieldName", "items"]
 

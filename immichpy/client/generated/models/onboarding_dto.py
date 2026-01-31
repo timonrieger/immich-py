@@ -27,7 +27,9 @@ class OnboardingDto(BaseModel):
     OnboardingDto
     """  # noqa: E501
 
-    is_onboarded: StrictBool = Field(alias="isOnboarded")
+    is_onboarded: StrictBool = Field(
+        description="Is user onboarded", alias="isOnboarded"
+    )
     __properties: ClassVar[List[str]] = ["isOnboarded"]
 
     model_config = ConfigDict(

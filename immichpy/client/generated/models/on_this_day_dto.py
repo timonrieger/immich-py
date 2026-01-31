@@ -31,7 +31,7 @@ class OnThisDayDto(BaseModel):
     year: Union[
         Annotated[float, Field(strict=True, ge=1)],
         Annotated[int, Field(strict=True, ge=1)],
-    ]
+    ] = Field(description="Year for on this day memory")
     __properties: ClassVar[List[str]] = ["year"]
 
     model_config = ConfigDict(

@@ -27,7 +27,9 @@ class SystemConfigThemeDto(BaseModel):
     SystemConfigThemeDto
     """  # noqa: E501
 
-    custom_css: StrictStr = Field(alias="customCss")
+    custom_css: StrictStr = Field(
+        description="Custom CSS for theming", alias="customCss"
+    )
     __properties: ClassVar[List[str]] = ["customCss"]
 
     model_config = ConfigDict(

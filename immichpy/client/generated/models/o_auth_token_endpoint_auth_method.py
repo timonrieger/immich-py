@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class OAuthTokenEndpointAuthMethod(str, Enum):
     """
-    OAuthTokenEndpointAuthMethod
+    Token endpoint auth method
     """
 
     """

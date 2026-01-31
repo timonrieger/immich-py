@@ -28,9 +28,9 @@ class SyncUserMetadataV1(BaseModel):
     SyncUserMetadataV1
     """  # noqa: E501
 
-    key: UserMetadataKey
-    user_id: StrictStr = Field(alias="userId")
-    value: Dict[str, Any]
+    key: UserMetadataKey = Field(description="User metadata key")
+    user_id: StrictStr = Field(description="User ID", alias="userId")
+    value: Dict[str, Any] = Field(description="User metadata value")
     __properties: ClassVar[List[str]] = ["key", "userId", "value"]
 
     model_config = ConfigDict(

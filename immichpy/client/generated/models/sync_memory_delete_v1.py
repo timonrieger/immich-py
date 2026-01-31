@@ -27,7 +27,7 @@ class SyncMemoryDeleteV1(BaseModel):
     SyncMemoryDeleteV1
     """  # noqa: E501
 
-    memory_id: StrictStr = Field(alias="memoryId")
+    memory_id: StrictStr = Field(description="Memory ID", alias="memoryId")
     __properties: ClassVar[List[str]] = ["memoryId"]
 
     model_config = ConfigDict(

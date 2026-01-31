@@ -27,9 +27,11 @@ class AlbumStatisticsResponseDto(BaseModel):
     AlbumStatisticsResponseDto
     """  # noqa: E501
 
-    not_shared: StrictInt = Field(alias="notShared")
-    owned: StrictInt
-    shared: StrictInt
+    not_shared: StrictInt = Field(
+        description="Number of non-shared albums", alias="notShared"
+    )
+    owned: StrictInt = Field(description="Number of owned albums")
+    shared: StrictInt = Field(description="Number of shared albums")
     __properties: ClassVar[List[str]] = ["notShared", "owned", "shared"]
 
     model_config = ConfigDict(

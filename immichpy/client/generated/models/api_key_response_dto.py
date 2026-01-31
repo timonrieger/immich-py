@@ -29,11 +29,11 @@ class APIKeyResponseDto(BaseModel):
     APIKeyResponseDto
     """  # noqa: E501
 
-    created_at: datetime = Field(alias="createdAt")
-    id: StrictStr
-    name: StrictStr
-    permissions: List[Permission]
-    updated_at: datetime = Field(alias="updatedAt")
+    created_at: datetime = Field(description="Creation date", alias="createdAt")
+    id: StrictStr = Field(description="API key ID")
+    name: StrictStr = Field(description="API key name")
+    permissions: List[Permission] = Field(description="List of permissions")
+    updated_at: datetime = Field(description="Last update date", alias="updatedAt")
     __properties: ClassVar[List[str]] = [
         "createdAt",
         "id",

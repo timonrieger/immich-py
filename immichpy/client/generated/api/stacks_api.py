@@ -1263,7 +1263,9 @@ class StacksApi:
     @validate_call
     async def search_stacks(
         self,
-        primary_asset_id: Optional[UUID] = None,
+        primary_asset_id: Annotated[
+            Optional[UUID], Field(description="Filter by primary asset ID")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1280,7 +1282,7 @@ class StacksApi:
 
         Retrieve a list of stacks.
 
-        :param primary_asset_id:
+        :param primary_asset_id: Filter by primary asset ID
         :type primary_asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1327,7 +1329,9 @@ class StacksApi:
     @validate_call
     async def search_stacks_with_http_info(
         self,
-        primary_asset_id: Optional[UUID] = None,
+        primary_asset_id: Annotated[
+            Optional[UUID], Field(description="Filter by primary asset ID")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1344,7 +1348,7 @@ class StacksApi:
 
         Retrieve a list of stacks.
 
-        :param primary_asset_id:
+        :param primary_asset_id: Filter by primary asset ID
         :type primary_asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1391,7 +1395,9 @@ class StacksApi:
     @validate_call
     async def search_stacks_without_preload_content(
         self,
-        primary_asset_id: Optional[UUID] = None,
+        primary_asset_id: Annotated[
+            Optional[UUID], Field(description="Filter by primary asset ID")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1408,7 +1414,7 @@ class StacksApi:
 
         Retrieve a list of stacks.
 
-        :param primary_asset_id:
+        :param primary_asset_id: Filter by primary asset ID
         :type primary_asset_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

@@ -27,9 +27,11 @@ class SystemConfigStorageTemplateDto(BaseModel):
     SystemConfigStorageTemplateDto
     """  # noqa: E501
 
-    enabled: StrictBool
-    hash_verification_enabled: StrictBool = Field(alias="hashVerificationEnabled")
-    template: StrictStr
+    enabled: StrictBool = Field(description="Enabled")
+    hash_verification_enabled: StrictBool = Field(
+        description="Hash verification enabled", alias="hashVerificationEnabled"
+    )
+    template: StrictStr = Field(description="Template")
     __properties: ClassVar[List[str]] = [
         "enabled",
         "hashVerificationEnabled",

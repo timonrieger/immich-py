@@ -28,15 +28,17 @@ class SystemConfigSmtpTransportDto(BaseModel):
     SystemConfigSmtpTransportDto
     """  # noqa: E501
 
-    host: StrictStr
-    ignore_cert: StrictBool = Field(alias="ignoreCert")
-    password: StrictStr
+    host: StrictStr = Field(description="SMTP server hostname")
+    ignore_cert: StrictBool = Field(
+        description="Whether to ignore SSL certificate errors", alias="ignoreCert"
+    )
+    password: StrictStr = Field(description="SMTP password")
     port: Union[
         Annotated[float, Field(le=65535, strict=True, ge=0)],
         Annotated[int, Field(le=65535, strict=True, ge=0)],
-    ]
-    secure: StrictBool
-    username: StrictStr
+    ] = Field(description="SMTP server port")
+    secure: StrictBool = Field(description="Whether to use secure connection (TLS/SSL)")
+    username: StrictStr = Field(description="SMTP username")
     __properties: ClassVar[List[str]] = [
         "host",
         "ignoreCert",

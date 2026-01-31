@@ -44,7 +44,7 @@ class SystemConfigMachineLearningDto(BaseModel):
     )
     clip: CLIPConfig
     duplicate_detection: DuplicateDetectionConfig = Field(alias="duplicateDetection")
-    enabled: StrictBool
+    enabled: StrictBool = Field(description="Enabled")
     facial_recognition: FacialRecognitionConfig = Field(alias="facialRecognition")
     ocr: OcrConfig
     urls: Annotated[List[StrictStr], Field(min_length=1)]

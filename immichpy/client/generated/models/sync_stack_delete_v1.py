@@ -27,7 +27,7 @@ class SyncStackDeleteV1(BaseModel):
     SyncStackDeleteV1
     """  # noqa: E501
 
-    stack_id: StrictStr = Field(alias="stackId")
+    stack_id: StrictStr = Field(description="Stack ID", alias="stackId")
     __properties: ClassVar[List[str]] = ["stackId"]
 
     model_config = ConfigDict(

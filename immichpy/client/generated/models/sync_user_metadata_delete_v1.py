@@ -28,8 +28,8 @@ class SyncUserMetadataDeleteV1(BaseModel):
     SyncUserMetadataDeleteV1
     """  # noqa: E501
 
-    key: UserMetadataKey
-    user_id: StrictStr = Field(alias="userId")
+    key: UserMetadataKey = Field(description="User metadata key")
+    user_id: StrictStr = Field(description="User ID", alias="userId")
     __properties: ClassVar[List[str]] = ["key", "userId"]
 
     model_config = ConfigDict(

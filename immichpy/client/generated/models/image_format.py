@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class ImageFormat(str, Enum):
     """
-    ImageFormat
+    Image format
     """
 
     """

@@ -27,15 +27,21 @@ class SessionResponseDto(BaseModel):
     SessionResponseDto
     """  # noqa: E501
 
-    app_version: Optional[StrictStr] = Field(alias="appVersion")
-    created_at: StrictStr = Field(alias="createdAt")
-    current: StrictBool
-    device_os: StrictStr = Field(alias="deviceOS")
-    device_type: StrictStr = Field(alias="deviceType")
-    expires_at: Optional[StrictStr] = Field(default=None, alias="expiresAt")
-    id: StrictStr
-    is_pending_sync_reset: StrictBool = Field(alias="isPendingSyncReset")
-    updated_at: StrictStr = Field(alias="updatedAt")
+    app_version: Optional[StrictStr] = Field(
+        description="App version", alias="appVersion"
+    )
+    created_at: StrictStr = Field(description="Creation date", alias="createdAt")
+    current: StrictBool = Field(description="Is current session")
+    device_os: StrictStr = Field(description="Device OS", alias="deviceOS")
+    device_type: StrictStr = Field(description="Device type", alias="deviceType")
+    expires_at: Optional[StrictStr] = Field(
+        default=None, description="Expiration date", alias="expiresAt"
+    )
+    id: StrictStr = Field(description="Session ID")
+    is_pending_sync_reset: StrictBool = Field(
+        description="Is pending sync reset", alias="isPendingSyncReset"
+    )
+    updated_at: StrictStr = Field(description="Last update date", alias="updatedAt")
     __properties: ClassVar[List[str]] = [
         "appVersion",
         "createdAt",

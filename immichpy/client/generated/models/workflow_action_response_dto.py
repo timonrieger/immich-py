@@ -27,11 +27,15 @@ class WorkflowActionResponseDto(BaseModel):
     WorkflowActionResponseDto
     """  # noqa: E501
 
-    action_config: Optional[Dict[str, Any]] = Field(alias="actionConfig")
-    id: StrictStr
-    order: Union[StrictFloat, StrictInt]
-    plugin_action_id: StrictStr = Field(alias="pluginActionId")
-    workflow_id: StrictStr = Field(alias="workflowId")
+    action_config: Optional[Dict[str, Any]] = Field(
+        description="Action configuration", alias="actionConfig"
+    )
+    id: StrictStr = Field(description="Action ID")
+    order: Union[StrictFloat, StrictInt] = Field(description="Action order")
+    plugin_action_id: StrictStr = Field(
+        description="Plugin action ID", alias="pluginActionId"
+    )
+    workflow_id: StrictStr = Field(description="Workflow ID", alias="workflowId")
     __properties: ClassVar[List[str]] = [
         "actionConfig",
         "id",

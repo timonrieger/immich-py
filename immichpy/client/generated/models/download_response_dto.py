@@ -28,8 +28,8 @@ class DownloadResponseDto(BaseModel):
     DownloadResponseDto
     """  # noqa: E501
 
-    archives: List[DownloadArchiveInfo]
-    total_size: StrictInt = Field(alias="totalSize")
+    archives: List[DownloadArchiveInfo] = Field(description="Archive information")
+    total_size: StrictInt = Field(description="Total size in bytes", alias="totalSize")
     __properties: ClassVar[List[str]] = ["archives", "totalSize"]
 
     model_config = ConfigDict(

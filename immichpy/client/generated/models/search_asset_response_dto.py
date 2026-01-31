@@ -31,11 +31,13 @@ class SearchAssetResponseDto(BaseModel):
     SearchAssetResponseDto
     """  # noqa: E501
 
-    count: StrictInt
+    count: StrictInt = Field(description="Number of assets in this page")
     facets: List[SearchFacetResponseDto]
     items: List[AssetResponseDto]
-    next_page: Optional[StrictStr] = Field(alias="nextPage")
-    total: StrictInt
+    next_page: Optional[StrictStr] = Field(
+        description="Next page token", alias="nextPage"
+    )
+    total: StrictInt = Field(description="Total number of matching assets")
     __properties: ClassVar[List[str]] = [
         "count",
         "facets",

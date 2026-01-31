@@ -27,9 +27,13 @@ class AssetStackResponseDto(BaseModel):
     AssetStackResponseDto
     """  # noqa: E501
 
-    asset_count: StrictInt = Field(alias="assetCount")
-    id: StrictStr
-    primary_asset_id: StrictStr = Field(alias="primaryAssetId")
+    asset_count: StrictInt = Field(
+        description="Number of assets in stack", alias="assetCount"
+    )
+    id: StrictStr = Field(description="Stack ID")
+    primary_asset_id: StrictStr = Field(
+        description="Primary asset ID", alias="primaryAssetId"
+    )
     __properties: ClassVar[List[str]] = ["assetCount", "id", "primaryAssetId"]
 
     model_config = ConfigDict(

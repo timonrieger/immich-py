@@ -18,7 +18,9 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
-from immichpy.client.generated.models.system_config_faces_dto import SystemConfigFacesDto
+from immichpy.client.generated.models.system_config_faces_dto import (
+    SystemConfigFacesDto,
+)
 from typing import Optional, Set
 from typing_extensions import Self
 

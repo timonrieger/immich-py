@@ -28,9 +28,9 @@ class AssetMetadataBulkUpsertItemDto(BaseModel):
     AssetMetadataBulkUpsertItemDto
     """  # noqa: E501
 
-    asset_id: UUID = Field(alias="assetId")
-    key: StrictStr
-    value: Dict[str, Any]
+    asset_id: UUID = Field(description="Asset ID", alias="assetId")
+    key: StrictStr = Field(description="Metadata key")
+    value: Dict[str, Any] = Field(description="Metadata value (object)")
     __properties: ClassVar[List[str]] = ["assetId", "key", "value"]
 
     model_config = ConfigDict(

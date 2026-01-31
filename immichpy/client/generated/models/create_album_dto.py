@@ -29,12 +29,16 @@ class CreateAlbumDto(BaseModel):
     CreateAlbumDto
     """  # noqa: E501
 
-    album_name: StrictStr = Field(alias="albumName")
+    album_name: StrictStr = Field(description="Album name", alias="albumName")
     album_users: Optional[List[AlbumUserCreateDto]] = Field(
-        default=None, alias="albumUsers"
+        default=None, description="Album users", alias="albumUsers"
     )
-    asset_ids: Optional[List[UUID]] = Field(default=None, alias="assetIds")
-    description: Optional[StrictStr] = None
+    asset_ids: Optional[List[UUID]] = Field(
+        default=None, description="Initial asset IDs", alias="assetIds"
+    )
+    description: Optional[StrictStr] = Field(
+        default=None, description="Album description"
+    )
     __properties: ClassVar[List[str]] = [
         "albumName",
         "albumUsers",

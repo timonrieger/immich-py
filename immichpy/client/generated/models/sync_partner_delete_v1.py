@@ -27,8 +27,10 @@ class SyncPartnerDeleteV1(BaseModel):
     SyncPartnerDeleteV1
     """  # noqa: E501
 
-    shared_by_id: StrictStr = Field(alias="sharedById")
-    shared_with_id: StrictStr = Field(alias="sharedWithId")
+    shared_by_id: StrictStr = Field(description="Shared by ID", alias="sharedById")
+    shared_with_id: StrictStr = Field(
+        description="Shared with ID", alias="sharedWithId"
+    )
     __properties: ClassVar[List[str]] = ["sharedById", "sharedWithId"]
 
     model_config = ConfigDict(

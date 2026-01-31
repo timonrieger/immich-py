@@ -27,17 +27,41 @@ class ServerConfigDto(BaseModel):
     ServerConfigDto
     """  # noqa: E501
 
-    external_domain: StrictStr = Field(alias="externalDomain")
-    is_initialized: StrictBool = Field(alias="isInitialized")
-    is_onboarded: StrictBool = Field(alias="isOnboarded")
-    login_page_message: StrictStr = Field(alias="loginPageMessage")
-    maintenance_mode: StrictBool = Field(alias="maintenanceMode")
-    map_dark_style_url: StrictStr = Field(alias="mapDarkStyleUrl")
-    map_light_style_url: StrictStr = Field(alias="mapLightStyleUrl")
-    oauth_button_text: StrictStr = Field(alias="oauthButtonText")
-    public_users: StrictBool = Field(alias="publicUsers")
-    trash_days: StrictInt = Field(alias="trashDays")
-    user_delete_delay: StrictInt = Field(alias="userDeleteDelay")
+    external_domain: StrictStr = Field(
+        description="External domain URL", alias="externalDomain"
+    )
+    is_initialized: StrictBool = Field(
+        description="Whether the server has been initialized", alias="isInitialized"
+    )
+    is_onboarded: StrictBool = Field(
+        description="Whether the admin has completed onboarding", alias="isOnboarded"
+    )
+    login_page_message: StrictStr = Field(
+        description="Login page message", alias="loginPageMessage"
+    )
+    maintenance_mode: StrictBool = Field(
+        description="Whether maintenance mode is active", alias="maintenanceMode"
+    )
+    map_dark_style_url: StrictStr = Field(
+        description="Map dark style URL", alias="mapDarkStyleUrl"
+    )
+    map_light_style_url: StrictStr = Field(
+        description="Map light style URL", alias="mapLightStyleUrl"
+    )
+    oauth_button_text: StrictStr = Field(
+        description="OAuth button text", alias="oauthButtonText"
+    )
+    public_users: StrictBool = Field(
+        description="Whether public user registration is enabled", alias="publicUsers"
+    )
+    trash_days: StrictInt = Field(
+        description="Number of days before trashed assets are permanently deleted",
+        alias="trashDays",
+    )
+    user_delete_delay: StrictInt = Field(
+        description="Delay in days before deleted users are permanently removed",
+        alias="userDeleteDelay",
+    )
     __properties: ClassVar[List[str]] = [
         "externalDomain",
         "isInitialized",

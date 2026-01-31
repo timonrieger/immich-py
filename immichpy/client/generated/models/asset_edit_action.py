@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class AssetEditAction(str, Enum):
     """
-    AssetEditAction
+    Type of edit action to perform
     """
 
     """

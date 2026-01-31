@@ -34,15 +34,17 @@ class WorkflowResponseDto(BaseModel):
     WorkflowResponseDto
     """  # noqa: E501
 
-    actions: List[WorkflowActionResponseDto]
-    created_at: StrictStr = Field(alias="createdAt")
-    description: StrictStr
-    enabled: StrictBool
-    filters: List[WorkflowFilterResponseDto]
-    id: StrictStr
-    name: Optional[StrictStr]
-    owner_id: StrictStr = Field(alias="ownerId")
-    trigger_type: PluginTriggerType = Field(alias="triggerType")
+    actions: List[WorkflowActionResponseDto] = Field(description="Workflow actions")
+    created_at: StrictStr = Field(description="Creation date", alias="createdAt")
+    description: StrictStr = Field(description="Workflow description")
+    enabled: StrictBool = Field(description="Workflow enabled")
+    filters: List[WorkflowFilterResponseDto] = Field(description="Workflow filters")
+    id: StrictStr = Field(description="Workflow ID")
+    name: Optional[StrictStr] = Field(description="Workflow name")
+    owner_id: StrictStr = Field(description="Owner user ID", alias="ownerId")
+    trigger_type: PluginTriggerType = Field(
+        description="Workflow trigger type", alias="triggerType"
+    )
     __properties: ClassVar[List[str]] = [
         "actions",
         "createdAt",

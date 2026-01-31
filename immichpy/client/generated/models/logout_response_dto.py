@@ -27,8 +27,8 @@ class LogoutResponseDto(BaseModel):
     LogoutResponseDto
     """  # noqa: E501
 
-    redirect_uri: StrictStr = Field(alias="redirectUri")
-    successful: StrictBool
+    redirect_uri: StrictStr = Field(description="Redirect URI", alias="redirectUri")
+    successful: StrictBool = Field(description="Logout successful")
     __properties: ClassVar[List[str]] = ["redirectUri", "successful"]
 
     model_config = ConfigDict(

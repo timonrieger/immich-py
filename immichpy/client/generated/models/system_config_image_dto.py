@@ -34,8 +34,10 @@ class SystemConfigImageDto(BaseModel):
     SystemConfigImageDto
     """  # noqa: E501
 
-    colorspace: Colorspace
-    extract_embedded: StrictBool = Field(alias="extractEmbedded")
+    colorspace: Colorspace = Field(description="Colorspace")
+    extract_embedded: StrictBool = Field(
+        description="Extract embedded", alias="extractEmbedded"
+    )
     fullsize: SystemConfigGeneratedFullsizeImageDto
     preview: SystemConfigGeneratedImageDto
     thumbnail: SystemConfigGeneratedImageDto

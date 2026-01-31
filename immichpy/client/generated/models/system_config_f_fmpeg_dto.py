@@ -35,27 +35,49 @@ class SystemConfigFFmpegDto(BaseModel):
     SystemConfigFFmpegDto
     """  # noqa: E501
 
-    accel: TranscodeHWAccel
-    accel_decode: StrictBool = Field(alias="accelDecode")
-    accepted_audio_codecs: List[AudioCodec] = Field(alias="acceptedAudioCodecs")
-    accepted_containers: List[VideoContainer] = Field(alias="acceptedContainers")
-    accepted_video_codecs: List[VideoCodec] = Field(alias="acceptedVideoCodecs")
-    bframes: Annotated[int, Field(le=16, strict=True, ge=-1)]
-    cq_mode: CQMode = Field(alias="cqMode")
-    crf: Annotated[int, Field(le=51, strict=True, ge=0)]
-    gop_size: Annotated[int, Field(strict=True, ge=0)] = Field(alias="gopSize")
-    max_bitrate: StrictStr = Field(alias="maxBitrate")
-    preferred_hw_device: StrictStr = Field(alias="preferredHwDevice")
-    preset: StrictStr
-    refs: Annotated[int, Field(le=6, strict=True, ge=0)]
-    target_audio_codec: AudioCodec = Field(alias="targetAudioCodec")
-    target_resolution: StrictStr = Field(alias="targetResolution")
-    target_video_codec: VideoCodec = Field(alias="targetVideoCodec")
-    temporal_aq: StrictBool = Field(alias="temporalAQ")
-    threads: Annotated[int, Field(strict=True, ge=0)]
-    tonemap: ToneMapping
-    transcode: TranscodePolicy
-    two_pass: StrictBool = Field(alias="twoPass")
+    accel: TranscodeHWAccel = Field(description="Transcode hardware acceleration")
+    accel_decode: StrictBool = Field(
+        description="Accelerated decode", alias="accelDecode"
+    )
+    accepted_audio_codecs: List[AudioCodec] = Field(
+        description="Accepted audio codecs", alias="acceptedAudioCodecs"
+    )
+    accepted_containers: List[VideoContainer] = Field(
+        description="Accepted containers", alias="acceptedContainers"
+    )
+    accepted_video_codecs: List[VideoCodec] = Field(
+        description="Accepted video codecs", alias="acceptedVideoCodecs"
+    )
+    bframes: Annotated[int, Field(le=16, strict=True, ge=-1)] = Field(
+        description="B-frames"
+    )
+    cq_mode: CQMode = Field(description="CQ mode", alias="cqMode")
+    crf: Annotated[int, Field(le=51, strict=True, ge=0)] = Field(description="CRF")
+    gop_size: Annotated[int, Field(strict=True, ge=0)] = Field(
+        description="GOP size", alias="gopSize"
+    )
+    max_bitrate: StrictStr = Field(description="Max bitrate", alias="maxBitrate")
+    preferred_hw_device: StrictStr = Field(
+        description="Preferred hardware device", alias="preferredHwDevice"
+    )
+    preset: StrictStr = Field(description="Preset")
+    refs: Annotated[int, Field(le=6, strict=True, ge=0)] = Field(
+        description="References"
+    )
+    target_audio_codec: AudioCodec = Field(
+        description="Target audio codec", alias="targetAudioCodec"
+    )
+    target_resolution: StrictStr = Field(
+        description="Target resolution", alias="targetResolution"
+    )
+    target_video_codec: VideoCodec = Field(
+        description="Target video codec", alias="targetVideoCodec"
+    )
+    temporal_aq: StrictBool = Field(description="Temporal AQ", alias="temporalAQ")
+    threads: Annotated[int, Field(strict=True, ge=0)] = Field(description="Threads")
+    tonemap: ToneMapping = Field(description="Tone mapping")
+    transcode: TranscodePolicy = Field(description="Transcode policy")
+    two_pass: StrictBool = Field(description="Two pass", alias="twoPass")
     __properties: ClassVar[List[str]] = [
         "accel",
         "accelDecode",

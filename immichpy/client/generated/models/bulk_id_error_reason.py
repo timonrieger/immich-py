@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class BulkIdErrorReason(str, Enum):
     """
-    BulkIdErrorReason
+    Error reason
     """
 
     """

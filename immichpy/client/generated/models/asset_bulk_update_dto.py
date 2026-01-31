@@ -39,25 +39,41 @@ class AssetBulkUpdateDto(BaseModel):
     """  # noqa: E501
 
     date_time_original: Optional[StrictStr] = Field(
-        default=None, alias="dateTimeOriginal"
+        default=None, description="Original date and time", alias="dateTimeOriginal"
     )
     date_time_relative: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None, alias="dateTimeRelative"
+        default=None,
+        description="Relative time offset in seconds",
+        alias="dateTimeRelative",
     )
-    description: Optional[StrictStr] = None
-    duplicate_id: Optional[StrictStr] = Field(default=None, alias="duplicateId")
-    ids: List[UUID]
-    is_favorite: Optional[StrictBool] = Field(default=None, alias="isFavorite")
-    latitude: Optional[Union[StrictFloat, StrictInt]] = None
-    longitude: Optional[Union[StrictFloat, StrictInt]] = None
+    description: Optional[StrictStr] = Field(
+        default=None, description="Asset description"
+    )
+    duplicate_id: Optional[StrictStr] = Field(
+        default=None, description="Duplicate asset ID", alias="duplicateId"
+    )
+    ids: List[UUID] = Field(description="Asset IDs to update")
+    is_favorite: Optional[StrictBool] = Field(
+        default=None, description="Mark as favorite", alias="isFavorite"
+    )
+    latitude: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="Latitude coordinate"
+    )
+    longitude: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="Longitude coordinate"
+    )
     rating: Optional[
         Union[
             Annotated[float, Field(le=5, strict=True, ge=-1)],
             Annotated[int, Field(le=5, strict=True, ge=-1)],
         ]
-    ] = None
-    time_zone: Optional[StrictStr] = Field(default=None, alias="timeZone")
-    visibility: Optional[AssetVisibility] = None
+    ] = Field(default=None, description="Rating")
+    time_zone: Optional[StrictStr] = Field(
+        default=None, description="Time zone (IANA timezone)", alias="timeZone"
+    )
+    visibility: Optional[AssetVisibility] = Field(
+        default=None, description="Asset visibility"
+    )
     __properties: ClassVar[List[str]] = [
         "dateTimeOriginal",
         "dateTimeRelative",

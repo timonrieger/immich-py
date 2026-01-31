@@ -29,8 +29,8 @@ class AssetJobsDto(BaseModel):
     AssetJobsDto
     """  # noqa: E501
 
-    asset_ids: List[UUID] = Field(alias="assetIds")
-    name: AssetJobName
+    asset_ids: List[UUID] = Field(description="Asset IDs", alias="assetIds")
+    name: AssetJobName = Field(description="Job name")
     __properties: ClassVar[List[str]] = ["assetIds", "name"]
 
     model_config = ConfigDict(

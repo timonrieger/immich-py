@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,7 +27,7 @@ class AssetFaceDeleteDto(BaseModel):
     AssetFaceDeleteDto
     """  # noqa: E501
 
-    force: StrictBool
+    force: StrictBool = Field(description="Force delete even if person has other faces")
     __properties: ClassVar[List[str]] = ["force"]
 
     model_config = ConfigDict(

@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from immichpy.client.generated.models.sync_request_type import SyncRequestType
 from typing import Set
@@ -28,8 +28,8 @@ class SyncStreamDto(BaseModel):
     SyncStreamDto
     """  # noqa: E501
 
-    reset: Optional[StrictBool] = None
-    types: List[SyncRequestType]
+    reset: Optional[StrictBool] = Field(default=None, description="Reset sync state")
+    types: List[SyncRequestType] = Field(description="Sync request types")
     __properties: ClassVar[List[str]] = ["reset", "types"]
 
     model_config = ConfigDict(

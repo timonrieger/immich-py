@@ -26,7 +26,9 @@ from immichpy.client.generated.models.notification_type import NotificationType
 from immichpy.client.generated.models.notification_update_all_dto import (
     NotificationUpdateAllDto,
 )
-from immichpy.client.generated.models.notification_update_dto import NotificationUpdateDto
+from immichpy.client.generated.models.notification_update_dto import (
+    NotificationUpdateDto,
+)
 
 from immichpy.client.generated.api_client import ApiClient, RequestSerialized
 from immichpy.client.generated.api_response import ApiResponse
@@ -769,10 +771,19 @@ class NotificationsApi:
     @validate_call
     async def get_notifications(
         self,
-        id: Optional[UUID] = None,
-        level: Optional[NotificationLevel] = None,
-        type: Optional[NotificationType] = None,
-        unread: Optional[StrictBool] = None,
+        id: Annotated[
+            Optional[UUID], Field(description="Filter by notification ID")
+        ] = None,
+        level: Annotated[
+            Optional[NotificationLevel],
+            Field(description="Filter by notification level"),
+        ] = None,
+        type: Annotated[
+            Optional[NotificationType], Field(description="Filter by notification type")
+        ] = None,
+        unread: Annotated[
+            Optional[StrictBool], Field(description="Filter by unread status")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -789,13 +800,13 @@ class NotificationsApi:
 
         Retrieve a list of notifications.
 
-        :param id:
+        :param id: Filter by notification ID
         :type id: UUID
-        :param level:
+        :param level: Filter by notification level
         :type level: NotificationLevel
-        :param type:
+        :param type: Filter by notification type
         :type type: NotificationType
-        :param unread:
+        :param unread: Filter by unread status
         :type unread: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -845,10 +856,19 @@ class NotificationsApi:
     @validate_call
     async def get_notifications_with_http_info(
         self,
-        id: Optional[UUID] = None,
-        level: Optional[NotificationLevel] = None,
-        type: Optional[NotificationType] = None,
-        unread: Optional[StrictBool] = None,
+        id: Annotated[
+            Optional[UUID], Field(description="Filter by notification ID")
+        ] = None,
+        level: Annotated[
+            Optional[NotificationLevel],
+            Field(description="Filter by notification level"),
+        ] = None,
+        type: Annotated[
+            Optional[NotificationType], Field(description="Filter by notification type")
+        ] = None,
+        unread: Annotated[
+            Optional[StrictBool], Field(description="Filter by unread status")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -865,13 +885,13 @@ class NotificationsApi:
 
         Retrieve a list of notifications.
 
-        :param id:
+        :param id: Filter by notification ID
         :type id: UUID
-        :param level:
+        :param level: Filter by notification level
         :type level: NotificationLevel
-        :param type:
+        :param type: Filter by notification type
         :type type: NotificationType
-        :param unread:
+        :param unread: Filter by unread status
         :type unread: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -921,10 +941,19 @@ class NotificationsApi:
     @validate_call
     async def get_notifications_without_preload_content(
         self,
-        id: Optional[UUID] = None,
-        level: Optional[NotificationLevel] = None,
-        type: Optional[NotificationType] = None,
-        unread: Optional[StrictBool] = None,
+        id: Annotated[
+            Optional[UUID], Field(description="Filter by notification ID")
+        ] = None,
+        level: Annotated[
+            Optional[NotificationLevel],
+            Field(description="Filter by notification level"),
+        ] = None,
+        type: Annotated[
+            Optional[NotificationType], Field(description="Filter by notification type")
+        ] = None,
+        unread: Annotated[
+            Optional[StrictBool], Field(description="Filter by unread status")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -941,13 +970,13 @@ class NotificationsApi:
 
         Retrieve a list of notifications.
 
-        :param id:
+        :param id: Filter by notification ID
         :type id: UUID
-        :param level:
+        :param level: Filter by notification level
         :type level: NotificationLevel
-        :param type:
+        :param type: Filter by notification type
         :type type: NotificationType
-        :param unread:
+        :param unread: Filter by unread status
         :type unread: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

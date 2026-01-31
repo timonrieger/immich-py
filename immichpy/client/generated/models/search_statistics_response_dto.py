@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,7 +27,7 @@ class SearchStatisticsResponseDto(BaseModel):
     SearchStatisticsResponseDto
     """  # noqa: E501
 
-    total: StrictInt
+    total: StrictInt = Field(description="Total number of matching assets")
     __properties: ClassVar[List[str]] = ["total"]
 
     model_config = ConfigDict(

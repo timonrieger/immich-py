@@ -33,16 +33,16 @@ class PluginResponseDto(BaseModel):
     PluginResponseDto
     """  # noqa: E501
 
-    actions: List[PluginActionResponseDto]
-    author: StrictStr
-    created_at: StrictStr = Field(alias="createdAt")
-    description: StrictStr
-    filters: List[PluginFilterResponseDto]
-    id: StrictStr
-    name: StrictStr
-    title: StrictStr
-    updated_at: StrictStr = Field(alias="updatedAt")
-    version: StrictStr
+    actions: List[PluginActionResponseDto] = Field(description="Plugin actions")
+    author: StrictStr = Field(description="Plugin author")
+    created_at: StrictStr = Field(description="Creation date", alias="createdAt")
+    description: StrictStr = Field(description="Plugin description")
+    filters: List[PluginFilterResponseDto] = Field(description="Plugin filters")
+    id: StrictStr = Field(description="Plugin ID")
+    name: StrictStr = Field(description="Plugin name")
+    title: StrictStr = Field(description="Plugin title")
+    updated_at: StrictStr = Field(description="Last update date", alias="updatedAt")
+    version: StrictStr = Field(description="Plugin version")
     __properties: ClassVar[List[str]] = [
         "actions",
         "author",

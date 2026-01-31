@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Set
 from typing_extensions import Self
@@ -27,11 +27,15 @@ class PlacesResponseDto(BaseModel):
     PlacesResponseDto
     """  # noqa: E501
 
-    admin1name: Optional[StrictStr] = None
-    admin2name: Optional[StrictStr] = None
-    latitude: Union[StrictFloat, StrictInt]
-    longitude: Union[StrictFloat, StrictInt]
-    name: StrictStr
+    admin1name: Optional[StrictStr] = Field(
+        default=None, description="Administrative level 1 name (state/province)"
+    )
+    admin2name: Optional[StrictStr] = Field(
+        default=None, description="Administrative level 2 name (county/district)"
+    )
+    latitude: Union[StrictFloat, StrictInt] = Field(description="Latitude coordinate")
+    longitude: Union[StrictFloat, StrictInt] = Field(description="Longitude coordinate")
+    name: StrictStr = Field(description="Place name")
     __properties: ClassVar[List[str]] = [
         "admin1name",
         "admin2name",

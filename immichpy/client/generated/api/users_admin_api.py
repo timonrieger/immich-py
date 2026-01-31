@@ -24,7 +24,9 @@ from immichpy.client.generated.models.asset_visibility import AssetVisibility
 from immichpy.client.generated.models.session_response_dto import SessionResponseDto
 from immichpy.client.generated.models.user_admin_create_dto import UserAdminCreateDto
 from immichpy.client.generated.models.user_admin_delete_dto import UserAdminDeleteDto
-from immichpy.client.generated.models.user_admin_response_dto import UserAdminResponseDto
+from immichpy.client.generated.models.user_admin_response_dto import (
+    UserAdminResponseDto,
+)
 from immichpy.client.generated.models.user_admin_update_dto import UserAdminUpdateDto
 from immichpy.client.generated.models.user_preferences_response_dto import (
     UserPreferencesResponseDto,
@@ -1294,9 +1296,15 @@ class UsersAdminApi:
     async def get_user_statistics_admin(
         self,
         id: UUID,
-        is_favorite: Optional[StrictBool] = None,
-        is_trashed: Optional[StrictBool] = None,
-        visibility: Optional[AssetVisibility] = None,
+        is_favorite: Annotated[
+            Optional[StrictBool], Field(description="Filter by favorite status")
+        ] = None,
+        is_trashed: Annotated[
+            Optional[StrictBool], Field(description="Filter by trash status")
+        ] = None,
+        visibility: Annotated[
+            Optional[AssetVisibility], Field(description="Filter by visibility")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1315,11 +1323,11 @@ class UsersAdminApi:
 
         :param id: (required)
         :type id: UUID
-        :param is_favorite:
+        :param is_favorite: Filter by favorite status
         :type is_favorite: bool
-        :param is_trashed:
+        :param is_trashed: Filter by trash status
         :type is_trashed: bool
-        :param visibility:
+        :param visibility: Filter by visibility
         :type visibility: AssetVisibility
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1370,9 +1378,15 @@ class UsersAdminApi:
     async def get_user_statistics_admin_with_http_info(
         self,
         id: UUID,
-        is_favorite: Optional[StrictBool] = None,
-        is_trashed: Optional[StrictBool] = None,
-        visibility: Optional[AssetVisibility] = None,
+        is_favorite: Annotated[
+            Optional[StrictBool], Field(description="Filter by favorite status")
+        ] = None,
+        is_trashed: Annotated[
+            Optional[StrictBool], Field(description="Filter by trash status")
+        ] = None,
+        visibility: Annotated[
+            Optional[AssetVisibility], Field(description="Filter by visibility")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1391,11 +1405,11 @@ class UsersAdminApi:
 
         :param id: (required)
         :type id: UUID
-        :param is_favorite:
+        :param is_favorite: Filter by favorite status
         :type is_favorite: bool
-        :param is_trashed:
+        :param is_trashed: Filter by trash status
         :type is_trashed: bool
-        :param visibility:
+        :param visibility: Filter by visibility
         :type visibility: AssetVisibility
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1446,9 +1460,15 @@ class UsersAdminApi:
     async def get_user_statistics_admin_without_preload_content(
         self,
         id: UUID,
-        is_favorite: Optional[StrictBool] = None,
-        is_trashed: Optional[StrictBool] = None,
-        visibility: Optional[AssetVisibility] = None,
+        is_favorite: Annotated[
+            Optional[StrictBool], Field(description="Filter by favorite status")
+        ] = None,
+        is_trashed: Annotated[
+            Optional[StrictBool], Field(description="Filter by trash status")
+        ] = None,
+        visibility: Annotated[
+            Optional[AssetVisibility], Field(description="Filter by visibility")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1467,11 +1487,11 @@ class UsersAdminApi:
 
         :param id: (required)
         :type id: UUID
-        :param is_favorite:
+        :param is_favorite: Filter by favorite status
         :type is_favorite: bool
-        :param is_trashed:
+        :param is_trashed: Filter by trash status
         :type is_trashed: bool
-        :param visibility:
+        :param visibility: Filter by visibility
         :type visibility: AssetVisibility
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1823,8 +1843,10 @@ class UsersAdminApi:
     @validate_call
     async def search_users_admin(
         self,
-        id: Optional[UUID] = None,
-        with_deleted: Optional[StrictBool] = None,
+        id: Annotated[Optional[UUID], Field(description="User ID filter")] = None,
+        with_deleted: Annotated[
+            Optional[StrictBool], Field(description="Include deleted users")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1841,9 +1863,9 @@ class UsersAdminApi:
 
         Search for users.
 
-        :param id:
+        :param id: User ID filter
         :type id: UUID
-        :param with_deleted:
+        :param with_deleted: Include deleted users
         :type with_deleted: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1891,8 +1913,10 @@ class UsersAdminApi:
     @validate_call
     async def search_users_admin_with_http_info(
         self,
-        id: Optional[UUID] = None,
-        with_deleted: Optional[StrictBool] = None,
+        id: Annotated[Optional[UUID], Field(description="User ID filter")] = None,
+        with_deleted: Annotated[
+            Optional[StrictBool], Field(description="Include deleted users")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1909,9 +1933,9 @@ class UsersAdminApi:
 
         Search for users.
 
-        :param id:
+        :param id: User ID filter
         :type id: UUID
-        :param with_deleted:
+        :param with_deleted: Include deleted users
         :type with_deleted: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1959,8 +1983,10 @@ class UsersAdminApi:
     @validate_call
     async def search_users_admin_without_preload_content(
         self,
-        id: Optional[UUID] = None,
-        with_deleted: Optional[StrictBool] = None,
+        id: Annotated[Optional[UUID], Field(description="User ID filter")] = None,
+        with_deleted: Annotated[
+            Optional[StrictBool], Field(description="Include deleted users")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1977,9 +2003,9 @@ class UsersAdminApi:
 
         Search for users.
 
-        :param id:
+        :param id: User ID filter
         :type id: UUID
-        :param with_deleted:
+        :param with_deleted: Include deleted users
         :type with_deleted: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

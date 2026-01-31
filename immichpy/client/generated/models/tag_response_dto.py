@@ -28,13 +28,15 @@ class TagResponseDto(BaseModel):
     TagResponseDto
     """  # noqa: E501
 
-    color: Optional[StrictStr] = None
-    created_at: datetime = Field(alias="createdAt")
-    id: StrictStr
-    name: StrictStr
-    parent_id: Optional[StrictStr] = Field(default=None, alias="parentId")
-    updated_at: datetime = Field(alias="updatedAt")
-    value: StrictStr
+    color: Optional[StrictStr] = Field(default=None, description="Tag color (hex)")
+    created_at: datetime = Field(description="Creation date", alias="createdAt")
+    id: StrictStr = Field(description="Tag ID")
+    name: StrictStr = Field(description="Tag name")
+    parent_id: Optional[StrictStr] = Field(
+        default=None, description="Parent tag ID", alias="parentId"
+    )
+    updated_at: datetime = Field(description="Last update date", alias="updatedAt")
+    value: StrictStr = Field(description="Tag value (full path)")
     __properties: ClassVar[List[str]] = [
         "color",
         "createdAt",

@@ -27,7 +27,9 @@ class PartnerUpdateDto(BaseModel):
     PartnerUpdateDto
     """  # noqa: E501
 
-    in_timeline: StrictBool = Field(alias="inTimeline")
+    in_timeline: StrictBool = Field(
+        description="Show partner assets in timeline", alias="inTimeline"
+    )
     __properties: ClassVar[List[str]] = ["inTimeline"]
 
     model_config = ConfigDict(

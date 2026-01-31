@@ -27,15 +27,28 @@ class ServerStorageResponseDto(BaseModel):
     ServerStorageResponseDto
     """  # noqa: E501
 
-    disk_available: StrictStr = Field(alias="diskAvailable")
-    disk_available_raw: StrictInt = Field(alias="diskAvailableRaw")
-    disk_size: StrictStr = Field(alias="diskSize")
-    disk_size_raw: StrictInt = Field(alias="diskSizeRaw")
-    disk_usage_percentage: Union[StrictFloat, StrictInt] = Field(
-        alias="diskUsagePercentage"
+    disk_available: StrictStr = Field(
+        description="Available disk space (human-readable format)",
+        alias="diskAvailable",
     )
-    disk_use: StrictStr = Field(alias="diskUse")
-    disk_use_raw: StrictInt = Field(alias="diskUseRaw")
+    disk_available_raw: StrictInt = Field(
+        description="Available disk space in bytes", alias="diskAvailableRaw"
+    )
+    disk_size: StrictStr = Field(
+        description="Total disk size (human-readable format)", alias="diskSize"
+    )
+    disk_size_raw: StrictInt = Field(
+        description="Total disk size in bytes", alias="diskSizeRaw"
+    )
+    disk_usage_percentage: Union[StrictFloat, StrictInt] = Field(
+        description="Disk usage percentage (0-100)", alias="diskUsagePercentage"
+    )
+    disk_use: StrictStr = Field(
+        description="Used disk space (human-readable format)", alias="diskUse"
+    )
+    disk_use_raw: StrictInt = Field(
+        description="Used disk space in bytes", alias="diskUseRaw"
+    )
     __properties: ClassVar[List[str]] = [
         "diskAvailable",
         "diskAvailableRaw",

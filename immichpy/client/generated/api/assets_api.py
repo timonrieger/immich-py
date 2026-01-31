@@ -836,8 +836,8 @@ class AssetsApi:
     @validate_call
     async def delete_asset_metadata(
         self,
-        id: UUID,
-        key: StrictStr,
+        id: Annotated[UUID, Field(description="Asset ID")],
+        key: Annotated[StrictStr, Field(description="Metadata key")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -854,9 +854,9 @@ class AssetsApi:
 
         Delete a specific metadata key-value pair associated with the specified asset.
 
-        :param id: (required)
+        :param id: Asset ID (required)
         :type id: UUID
-        :param key: (required)
+        :param key: Metadata key (required)
         :type key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -904,8 +904,8 @@ class AssetsApi:
     @validate_call
     async def delete_asset_metadata_with_http_info(
         self,
-        id: UUID,
-        key: StrictStr,
+        id: Annotated[UUID, Field(description="Asset ID")],
+        key: Annotated[StrictStr, Field(description="Metadata key")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -922,9 +922,9 @@ class AssetsApi:
 
         Delete a specific metadata key-value pair associated with the specified asset.
 
-        :param id: (required)
+        :param id: Asset ID (required)
         :type id: UUID
-        :param key: (required)
+        :param key: Metadata key (required)
         :type key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -972,8 +972,8 @@ class AssetsApi:
     @validate_call
     async def delete_asset_metadata_without_preload_content(
         self,
-        id: UUID,
-        key: StrictStr,
+        id: Annotated[UUID, Field(description="Asset ID")],
+        key: Annotated[StrictStr, Field(description="Metadata key")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -990,9 +990,9 @@ class AssetsApi:
 
         Delete a specific metadata key-value pair associated with the specified asset.
 
-        :param id: (required)
+        :param id: Asset ID (required)
         :type id: UUID
-        :param key: (required)
+        :param key: Metadata key (required)
         :type key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1577,7 +1577,9 @@ class AssetsApi:
     async def download_asset(
         self,
         id: UUID,
-        edited: Optional[StrictBool] = None,
+        edited: Annotated[
+            Optional[StrictBool], Field(description="Return edited asset if available")
+        ] = None,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -1598,7 +1600,7 @@ class AssetsApi:
 
         :param id: (required)
         :type id: UUID
-        :param edited:
+        :param edited: Return edited asset if available
         :type edited: bool
         :param key:
         :type key: str
@@ -1653,7 +1655,9 @@ class AssetsApi:
     async def download_asset_with_http_info(
         self,
         id: UUID,
-        edited: Optional[StrictBool] = None,
+        edited: Annotated[
+            Optional[StrictBool], Field(description="Return edited asset if available")
+        ] = None,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -1674,7 +1678,7 @@ class AssetsApi:
 
         :param id: (required)
         :type id: UUID
-        :param edited:
+        :param edited: Return edited asset if available
         :type edited: bool
         :param key:
         :type key: str
@@ -1729,7 +1733,9 @@ class AssetsApi:
     async def download_asset_without_preload_content(
         self,
         id: UUID,
-        edited: Optional[StrictBool] = None,
+        edited: Annotated[
+            Optional[StrictBool], Field(description="Return edited asset if available")
+        ] = None,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
         _request_timeout: Union[
@@ -1750,7 +1756,7 @@ class AssetsApi:
 
         :param id: (required)
         :type id: UUID
-        :param edited:
+        :param edited: Return edited asset if available
         :type edited: bool
         :param key:
         :type key: str
@@ -2131,7 +2137,7 @@ class AssetsApi:
     @validate_call
     async def get_all_user_assets_by_device_id(
         self,
-        device_id: StrictStr,
+        device_id: Annotated[StrictStr, Field(description="Device ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2148,7 +2154,7 @@ class AssetsApi:
 
         Get all asset of a device that are in the database, ID only.
 
-        :param device_id: (required)
+        :param device_id: Device ID (required)
         :type device_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2198,7 +2204,7 @@ class AssetsApi:
     @validate_call
     async def get_all_user_assets_by_device_id_with_http_info(
         self,
-        device_id: StrictStr,
+        device_id: Annotated[StrictStr, Field(description="Device ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2215,7 +2221,7 @@ class AssetsApi:
 
         Get all asset of a device that are in the database, ID only.
 
-        :param device_id: (required)
+        :param device_id: Device ID (required)
         :type device_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2265,7 +2271,7 @@ class AssetsApi:
     @validate_call
     async def get_all_user_assets_by_device_id_without_preload_content(
         self,
-        device_id: StrictStr,
+        device_id: Annotated[StrictStr, Field(description="Device ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2282,7 +2288,7 @@ class AssetsApi:
 
         Get all asset of a device that are in the database, ID only.
 
-        :param device_id: (required)
+        :param device_id: Device ID (required)
         :type device_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3136,8 +3142,8 @@ class AssetsApi:
     @validate_call
     async def get_asset_metadata_by_key(
         self,
-        id: UUID,
-        key: StrictStr,
+        id: Annotated[UUID, Field(description="Asset ID")],
+        key: Annotated[StrictStr, Field(description="Metadata key")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3154,9 +3160,9 @@ class AssetsApi:
 
         Retrieve the value of a specific metadata key associated with the specified asset.
 
-        :param id: (required)
+        :param id: Asset ID (required)
         :type id: UUID
-        :param key: (required)
+        :param key: Metadata key (required)
         :type key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3204,8 +3210,8 @@ class AssetsApi:
     @validate_call
     async def get_asset_metadata_by_key_with_http_info(
         self,
-        id: UUID,
-        key: StrictStr,
+        id: Annotated[UUID, Field(description="Asset ID")],
+        key: Annotated[StrictStr, Field(description="Metadata key")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3222,9 +3228,9 @@ class AssetsApi:
 
         Retrieve the value of a specific metadata key associated with the specified asset.
 
-        :param id: (required)
+        :param id: Asset ID (required)
         :type id: UUID
-        :param key: (required)
+        :param key: Metadata key (required)
         :type key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3272,8 +3278,8 @@ class AssetsApi:
     @validate_call
     async def get_asset_metadata_by_key_without_preload_content(
         self,
-        id: UUID,
-        key: StrictStr,
+        id: Annotated[UUID, Field(description="Asset ID")],
+        key: Annotated[StrictStr, Field(description="Metadata key")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3290,9 +3296,9 @@ class AssetsApi:
 
         Retrieve the value of a specific metadata key associated with the specified asset.
 
-        :param id: (required)
+        :param id: Asset ID (required)
         :type id: UUID
-        :param key: (required)
+        :param key: Metadata key (required)
         :type key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3633,9 +3639,15 @@ class AssetsApi:
     @validate_call
     async def get_asset_statistics(
         self,
-        is_favorite: Optional[StrictBool] = None,
-        is_trashed: Optional[StrictBool] = None,
-        visibility: Optional[AssetVisibility] = None,
+        is_favorite: Annotated[
+            Optional[StrictBool], Field(description="Filter by favorite status")
+        ] = None,
+        is_trashed: Annotated[
+            Optional[StrictBool], Field(description="Filter by trash status")
+        ] = None,
+        visibility: Annotated[
+            Optional[AssetVisibility], Field(description="Filter by visibility")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3652,11 +3664,11 @@ class AssetsApi:
 
         Retrieve various statistics about the assets owned by the authenticated user.
 
-        :param is_favorite:
+        :param is_favorite: Filter by favorite status
         :type is_favorite: bool
-        :param is_trashed:
+        :param is_trashed: Filter by trash status
         :type is_trashed: bool
-        :param visibility:
+        :param visibility: Filter by visibility
         :type visibility: AssetVisibility
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3705,9 +3717,15 @@ class AssetsApi:
     @validate_call
     async def get_asset_statistics_with_http_info(
         self,
-        is_favorite: Optional[StrictBool] = None,
-        is_trashed: Optional[StrictBool] = None,
-        visibility: Optional[AssetVisibility] = None,
+        is_favorite: Annotated[
+            Optional[StrictBool], Field(description="Filter by favorite status")
+        ] = None,
+        is_trashed: Annotated[
+            Optional[StrictBool], Field(description="Filter by trash status")
+        ] = None,
+        visibility: Annotated[
+            Optional[AssetVisibility], Field(description="Filter by visibility")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3724,11 +3742,11 @@ class AssetsApi:
 
         Retrieve various statistics about the assets owned by the authenticated user.
 
-        :param is_favorite:
+        :param is_favorite: Filter by favorite status
         :type is_favorite: bool
-        :param is_trashed:
+        :param is_trashed: Filter by trash status
         :type is_trashed: bool
-        :param visibility:
+        :param visibility: Filter by visibility
         :type visibility: AssetVisibility
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3777,9 +3795,15 @@ class AssetsApi:
     @validate_call
     async def get_asset_statistics_without_preload_content(
         self,
-        is_favorite: Optional[StrictBool] = None,
-        is_trashed: Optional[StrictBool] = None,
-        visibility: Optional[AssetVisibility] = None,
+        is_favorite: Annotated[
+            Optional[StrictBool], Field(description="Filter by favorite status")
+        ] = None,
+        is_trashed: Annotated[
+            Optional[StrictBool], Field(description="Filter by trash status")
+        ] = None,
+        visibility: Annotated[
+            Optional[AssetVisibility], Field(description="Filter by visibility")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3796,11 +3820,11 @@ class AssetsApi:
 
         Retrieve various statistics about the assets owned by the authenticated user.
 
-        :param is_favorite:
+        :param is_favorite: Filter by favorite status
         :type is_favorite: bool
-        :param is_trashed:
+        :param is_trashed: Filter by trash status
         :type is_trashed: bool
-        :param visibility:
+        :param visibility: Filter by visibility
         :type visibility: AssetVisibility
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3907,11 +3931,14 @@ class AssetsApi:
     @validate_call
     async def get_random(
         self,
-        count: Optional[
-            Union[
-                Annotated[float, Field(strict=True, ge=1)],
-                Annotated[int, Field(strict=True, ge=1)],
-            ]
+        count: Annotated[
+            Optional[
+                Union[
+                    Annotated[float, Field(strict=True, ge=1)],
+                    Annotated[int, Field(strict=True, ge=1)],
+                ]
+            ],
+            Field(description="Number of random assets to return"),
         ] = None,
         _request_timeout: Union[
             None,
@@ -3929,7 +3956,7 @@ class AssetsApi:
 
         Retrieve a specified number of random assets for the authenticated user.
 
-        :param count:
+        :param count: Number of random assets to return
         :type count: float
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3977,11 +4004,14 @@ class AssetsApi:
     @validate_call
     async def get_random_with_http_info(
         self,
-        count: Optional[
-            Union[
-                Annotated[float, Field(strict=True, ge=1)],
-                Annotated[int, Field(strict=True, ge=1)],
-            ]
+        count: Annotated[
+            Optional[
+                Union[
+                    Annotated[float, Field(strict=True, ge=1)],
+                    Annotated[int, Field(strict=True, ge=1)],
+                ]
+            ],
+            Field(description="Number of random assets to return"),
         ] = None,
         _request_timeout: Union[
             None,
@@ -3999,7 +4029,7 @@ class AssetsApi:
 
         Retrieve a specified number of random assets for the authenticated user.
 
-        :param count:
+        :param count: Number of random assets to return
         :type count: float
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4047,11 +4077,14 @@ class AssetsApi:
     @validate_call
     async def get_random_without_preload_content(
         self,
-        count: Optional[
-            Union[
-                Annotated[float, Field(strict=True, ge=1)],
-                Annotated[int, Field(strict=True, ge=1)],
-            ]
+        count: Annotated[
+            Optional[
+                Union[
+                    Annotated[float, Field(strict=True, ge=1)],
+                    Annotated[int, Field(strict=True, ge=1)],
+                ]
+            ],
+            Field(description="Number of random assets to return"),
         ] = None,
         _request_timeout: Union[
             None,
@@ -4069,7 +4102,7 @@ class AssetsApi:
 
         Retrieve a specified number of random assets for the authenticated user.
 
-        :param count:
+        :param count: Number of random assets to return
         :type count: float
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4676,15 +4709,22 @@ class AssetsApi:
     async def replace_asset(
         self,
         id: UUID,
-        asset_data: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
-        device_asset_id: StrictStr,
-        device_id: StrictStr,
-        file_created_at: datetime,
-        file_modified_at: datetime,
+        asset_data: Annotated[
+            Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
+            Field(description="Asset file data"),
+        ],
+        device_asset_id: Annotated[StrictStr, Field(description="Device asset ID")],
+        device_id: Annotated[StrictStr, Field(description="Device ID")],
+        file_created_at: Annotated[datetime, Field(description="File creation date")],
+        file_modified_at: Annotated[
+            datetime, Field(description="File modification date")
+        ],
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
-        duration: Optional[StrictStr] = None,
-        filename: Optional[StrictStr] = None,
+        duration: Annotated[
+            Optional[StrictStr], Field(description="Duration (for videos)")
+        ] = None,
+        filename: Annotated[Optional[StrictStr], Field(description="Filename")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4703,23 +4743,23 @@ class AssetsApi:
 
         :param id: (required)
         :type id: UUID
-        :param asset_data: (required)
+        :param asset_data: Asset file data (required)
         :type asset_data: bytearray
-        :param device_asset_id: (required)
+        :param device_asset_id: Device asset ID (required)
         :type device_asset_id: str
-        :param device_id: (required)
+        :param device_id: Device ID (required)
         :type device_id: str
-        :param file_created_at: (required)
+        :param file_created_at: File creation date (required)
         :type file_created_at: datetime
-        :param file_modified_at: (required)
+        :param file_modified_at: File modification date (required)
         :type file_modified_at: datetime
         :param key:
         :type key: str
         :param slug:
         :type slug: str
-        :param duration:
+        :param duration: Duration (for videos)
         :type duration: str
-        :param filename:
+        :param filename: Filename
         :type filename: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4777,15 +4817,22 @@ class AssetsApi:
     async def replace_asset_with_http_info(
         self,
         id: UUID,
-        asset_data: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
-        device_asset_id: StrictStr,
-        device_id: StrictStr,
-        file_created_at: datetime,
-        file_modified_at: datetime,
+        asset_data: Annotated[
+            Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
+            Field(description="Asset file data"),
+        ],
+        device_asset_id: Annotated[StrictStr, Field(description="Device asset ID")],
+        device_id: Annotated[StrictStr, Field(description="Device ID")],
+        file_created_at: Annotated[datetime, Field(description="File creation date")],
+        file_modified_at: Annotated[
+            datetime, Field(description="File modification date")
+        ],
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
-        duration: Optional[StrictStr] = None,
-        filename: Optional[StrictStr] = None,
+        duration: Annotated[
+            Optional[StrictStr], Field(description="Duration (for videos)")
+        ] = None,
+        filename: Annotated[Optional[StrictStr], Field(description="Filename")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4804,23 +4851,23 @@ class AssetsApi:
 
         :param id: (required)
         :type id: UUID
-        :param asset_data: (required)
+        :param asset_data: Asset file data (required)
         :type asset_data: bytearray
-        :param device_asset_id: (required)
+        :param device_asset_id: Device asset ID (required)
         :type device_asset_id: str
-        :param device_id: (required)
+        :param device_id: Device ID (required)
         :type device_id: str
-        :param file_created_at: (required)
+        :param file_created_at: File creation date (required)
         :type file_created_at: datetime
-        :param file_modified_at: (required)
+        :param file_modified_at: File modification date (required)
         :type file_modified_at: datetime
         :param key:
         :type key: str
         :param slug:
         :type slug: str
-        :param duration:
+        :param duration: Duration (for videos)
         :type duration: str
-        :param filename:
+        :param filename: Filename
         :type filename: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4878,15 +4925,22 @@ class AssetsApi:
     async def replace_asset_without_preload_content(
         self,
         id: UUID,
-        asset_data: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
-        device_asset_id: StrictStr,
-        device_id: StrictStr,
-        file_created_at: datetime,
-        file_modified_at: datetime,
+        asset_data: Annotated[
+            Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
+            Field(description="Asset file data"),
+        ],
+        device_asset_id: Annotated[StrictStr, Field(description="Device asset ID")],
+        device_id: Annotated[StrictStr, Field(description="Device ID")],
+        file_created_at: Annotated[datetime, Field(description="File creation date")],
+        file_modified_at: Annotated[
+            datetime, Field(description="File modification date")
+        ],
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
-        duration: Optional[StrictStr] = None,
-        filename: Optional[StrictStr] = None,
+        duration: Annotated[
+            Optional[StrictStr], Field(description="Duration (for videos)")
+        ] = None,
+        filename: Annotated[Optional[StrictStr], Field(description="Filename")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4905,23 +4959,23 @@ class AssetsApi:
 
         :param id: (required)
         :type id: UUID
-        :param asset_data: (required)
+        :param asset_data: Asset file data (required)
         :type asset_data: bytearray
-        :param device_asset_id: (required)
+        :param device_asset_id: Device asset ID (required)
         :type device_asset_id: str
-        :param device_id: (required)
+        :param device_id: Device ID (required)
         :type device_id: str
-        :param file_created_at: (required)
+        :param file_created_at: File creation date (required)
         :type file_created_at: datetime
-        :param file_modified_at: (required)
+        :param file_modified_at: File modification date (required)
         :type file_modified_at: datetime
         :param key:
         :type key: str
         :param slug:
         :type slug: str
-        :param duration:
+        :param duration: Duration (for videos)
         :type duration: str
-        :param filename:
+        :param filename: Filename
         :type filename: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6339,11 +6393,16 @@ class AssetsApi:
     @validate_call
     async def upload_asset(
         self,
-        asset_data: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
-        device_asset_id: StrictStr,
-        device_id: StrictStr,
-        file_created_at: datetime,
-        file_modified_at: datetime,
+        asset_data: Annotated[
+            Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
+            Field(description="Asset file data"),
+        ],
+        device_asset_id: Annotated[StrictStr, Field(description="Device asset ID")],
+        device_id: Annotated[StrictStr, Field(description="Device ID")],
+        file_created_at: Annotated[datetime, Field(description="File creation date")],
+        file_modified_at: Annotated[
+            datetime, Field(description="File modification date")
+        ],
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
         x_immich_checksum: Annotated[
@@ -6352,15 +6411,27 @@ class AssetsApi:
                 description="sha1 checksum that can be used for duplicate detection before the file is uploaded"
             ),
         ] = None,
-        duration: Optional[StrictStr] = None,
-        filename: Optional[StrictStr] = None,
-        is_favorite: Optional[StrictBool] = None,
-        live_photo_video_id: Optional[UUID] = None,
-        metadata: Optional[List[AssetMetadataUpsertItemDto]] = None,
-        sidecar_data: Optional[
-            Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]
+        duration: Annotated[
+            Optional[StrictStr], Field(description="Duration (for videos)")
         ] = None,
-        visibility: Optional[Any] = None,
+        filename: Annotated[Optional[StrictStr], Field(description="Filename")] = None,
+        is_favorite: Annotated[
+            Optional[StrictBool], Field(description="Mark as favorite")
+        ] = None,
+        live_photo_video_id: Annotated[
+            Optional[UUID], Field(description="Live photo video ID")
+        ] = None,
+        metadata: Annotated[
+            Optional[List[AssetMetadataUpsertItemDto]],
+            Field(description="Asset metadata items"),
+        ] = None,
+        sidecar_data: Annotated[
+            Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]],
+            Field(description="Sidecar file data"),
+        ] = None,
+        visibility: Annotated[
+            Optional[Any], Field(description="Asset visibility")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6377,15 +6448,15 @@ class AssetsApi:
 
         Uploads a new asset to the server.
 
-        :param asset_data: (required)
+        :param asset_data: Asset file data (required)
         :type asset_data: bytearray
-        :param device_asset_id: (required)
+        :param device_asset_id: Device asset ID (required)
         :type device_asset_id: str
-        :param device_id: (required)
+        :param device_id: Device ID (required)
         :type device_id: str
-        :param file_created_at: (required)
+        :param file_created_at: File creation date (required)
         :type file_created_at: datetime
-        :param file_modified_at: (required)
+        :param file_modified_at: File modification date (required)
         :type file_modified_at: datetime
         :param key:
         :type key: str
@@ -6393,19 +6464,19 @@ class AssetsApi:
         :type slug: str
         :param x_immich_checksum: sha1 checksum that can be used for duplicate detection before the file is uploaded
         :type x_immich_checksum: str
-        :param duration:
+        :param duration: Duration (for videos)
         :type duration: str
-        :param filename:
+        :param filename: Filename
         :type filename: str
-        :param is_favorite:
+        :param is_favorite: Mark as favorite
         :type is_favorite: bool
-        :param live_photo_video_id:
+        :param live_photo_video_id: Live photo video ID
         :type live_photo_video_id: UUID
-        :param metadata:
+        :param metadata: Asset metadata items
         :type metadata: List[AssetMetadataUpsertItemDto]
-        :param sidecar_data:
+        :param sidecar_data: Sidecar file data
         :type sidecar_data: bytearray
-        :param visibility:
+        :param visibility: Asset visibility
         :type visibility: AssetVisibility
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6467,11 +6538,16 @@ class AssetsApi:
     @validate_call
     async def upload_asset_with_http_info(
         self,
-        asset_data: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
-        device_asset_id: StrictStr,
-        device_id: StrictStr,
-        file_created_at: datetime,
-        file_modified_at: datetime,
+        asset_data: Annotated[
+            Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
+            Field(description="Asset file data"),
+        ],
+        device_asset_id: Annotated[StrictStr, Field(description="Device asset ID")],
+        device_id: Annotated[StrictStr, Field(description="Device ID")],
+        file_created_at: Annotated[datetime, Field(description="File creation date")],
+        file_modified_at: Annotated[
+            datetime, Field(description="File modification date")
+        ],
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
         x_immich_checksum: Annotated[
@@ -6480,15 +6556,27 @@ class AssetsApi:
                 description="sha1 checksum that can be used for duplicate detection before the file is uploaded"
             ),
         ] = None,
-        duration: Optional[StrictStr] = None,
-        filename: Optional[StrictStr] = None,
-        is_favorite: Optional[StrictBool] = None,
-        live_photo_video_id: Optional[UUID] = None,
-        metadata: Optional[List[AssetMetadataUpsertItemDto]] = None,
-        sidecar_data: Optional[
-            Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]
+        duration: Annotated[
+            Optional[StrictStr], Field(description="Duration (for videos)")
         ] = None,
-        visibility: Optional[Any] = None,
+        filename: Annotated[Optional[StrictStr], Field(description="Filename")] = None,
+        is_favorite: Annotated[
+            Optional[StrictBool], Field(description="Mark as favorite")
+        ] = None,
+        live_photo_video_id: Annotated[
+            Optional[UUID], Field(description="Live photo video ID")
+        ] = None,
+        metadata: Annotated[
+            Optional[List[AssetMetadataUpsertItemDto]],
+            Field(description="Asset metadata items"),
+        ] = None,
+        sidecar_data: Annotated[
+            Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]],
+            Field(description="Sidecar file data"),
+        ] = None,
+        visibility: Annotated[
+            Optional[Any], Field(description="Asset visibility")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6505,15 +6593,15 @@ class AssetsApi:
 
         Uploads a new asset to the server.
 
-        :param asset_data: (required)
+        :param asset_data: Asset file data (required)
         :type asset_data: bytearray
-        :param device_asset_id: (required)
+        :param device_asset_id: Device asset ID (required)
         :type device_asset_id: str
-        :param device_id: (required)
+        :param device_id: Device ID (required)
         :type device_id: str
-        :param file_created_at: (required)
+        :param file_created_at: File creation date (required)
         :type file_created_at: datetime
-        :param file_modified_at: (required)
+        :param file_modified_at: File modification date (required)
         :type file_modified_at: datetime
         :param key:
         :type key: str
@@ -6521,19 +6609,19 @@ class AssetsApi:
         :type slug: str
         :param x_immich_checksum: sha1 checksum that can be used for duplicate detection before the file is uploaded
         :type x_immich_checksum: str
-        :param duration:
+        :param duration: Duration (for videos)
         :type duration: str
-        :param filename:
+        :param filename: Filename
         :type filename: str
-        :param is_favorite:
+        :param is_favorite: Mark as favorite
         :type is_favorite: bool
-        :param live_photo_video_id:
+        :param live_photo_video_id: Live photo video ID
         :type live_photo_video_id: UUID
-        :param metadata:
+        :param metadata: Asset metadata items
         :type metadata: List[AssetMetadataUpsertItemDto]
-        :param sidecar_data:
+        :param sidecar_data: Sidecar file data
         :type sidecar_data: bytearray
-        :param visibility:
+        :param visibility: Asset visibility
         :type visibility: AssetVisibility
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6595,11 +6683,16 @@ class AssetsApi:
     @validate_call
     async def upload_asset_without_preload_content(
         self,
-        asset_data: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
-        device_asset_id: StrictStr,
-        device_id: StrictStr,
-        file_created_at: datetime,
-        file_modified_at: datetime,
+        asset_data: Annotated[
+            Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
+            Field(description="Asset file data"),
+        ],
+        device_asset_id: Annotated[StrictStr, Field(description="Device asset ID")],
+        device_id: Annotated[StrictStr, Field(description="Device ID")],
+        file_created_at: Annotated[datetime, Field(description="File creation date")],
+        file_modified_at: Annotated[
+            datetime, Field(description="File modification date")
+        ],
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
         x_immich_checksum: Annotated[
@@ -6608,15 +6701,27 @@ class AssetsApi:
                 description="sha1 checksum that can be used for duplicate detection before the file is uploaded"
             ),
         ] = None,
-        duration: Optional[StrictStr] = None,
-        filename: Optional[StrictStr] = None,
-        is_favorite: Optional[StrictBool] = None,
-        live_photo_video_id: Optional[UUID] = None,
-        metadata: Optional[List[AssetMetadataUpsertItemDto]] = None,
-        sidecar_data: Optional[
-            Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]
+        duration: Annotated[
+            Optional[StrictStr], Field(description="Duration (for videos)")
         ] = None,
-        visibility: Optional[Any] = None,
+        filename: Annotated[Optional[StrictStr], Field(description="Filename")] = None,
+        is_favorite: Annotated[
+            Optional[StrictBool], Field(description="Mark as favorite")
+        ] = None,
+        live_photo_video_id: Annotated[
+            Optional[UUID], Field(description="Live photo video ID")
+        ] = None,
+        metadata: Annotated[
+            Optional[List[AssetMetadataUpsertItemDto]],
+            Field(description="Asset metadata items"),
+        ] = None,
+        sidecar_data: Annotated[
+            Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]],
+            Field(description="Sidecar file data"),
+        ] = None,
+        visibility: Annotated[
+            Optional[Any], Field(description="Asset visibility")
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6633,15 +6738,15 @@ class AssetsApi:
 
         Uploads a new asset to the server.
 
-        :param asset_data: (required)
+        :param asset_data: Asset file data (required)
         :type asset_data: bytearray
-        :param device_asset_id: (required)
+        :param device_asset_id: Device asset ID (required)
         :type device_asset_id: str
-        :param device_id: (required)
+        :param device_id: Device ID (required)
         :type device_id: str
-        :param file_created_at: (required)
+        :param file_created_at: File creation date (required)
         :type file_created_at: datetime
-        :param file_modified_at: (required)
+        :param file_modified_at: File modification date (required)
         :type file_modified_at: datetime
         :param key:
         :type key: str
@@ -6649,19 +6754,19 @@ class AssetsApi:
         :type slug: str
         :param x_immich_checksum: sha1 checksum that can be used for duplicate detection before the file is uploaded
         :type x_immich_checksum: str
-        :param duration:
+        :param duration: Duration (for videos)
         :type duration: str
-        :param filename:
+        :param filename: Filename
         :type filename: str
-        :param is_favorite:
+        :param is_favorite: Mark as favorite
         :type is_favorite: bool
-        :param live_photo_video_id:
+        :param live_photo_video_id: Live photo video ID
         :type live_photo_video_id: UUID
-        :param metadata:
+        :param metadata: Asset metadata items
         :type metadata: List[AssetMetadataUpsertItemDto]
-        :param sidecar_data:
+        :param sidecar_data: Sidecar file data
         :type sidecar_data: bytearray
-        :param visibility:
+        :param visibility: Asset visibility
         :type visibility: AssetVisibility
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -6829,9 +6934,13 @@ class AssetsApi:
     async def view_asset(
         self,
         id: UUID,
-        edited: Optional[StrictBool] = None,
+        edited: Annotated[
+            Optional[StrictBool], Field(description="Return edited asset if available")
+        ] = None,
         key: Optional[StrictStr] = None,
-        size: Optional[AssetMediaSize] = None,
+        size: Annotated[
+            Optional[AssetMediaSize], Field(description="Asset media size")
+        ] = None,
         slug: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -6851,11 +6960,11 @@ class AssetsApi:
 
         :param id: (required)
         :type id: UUID
-        :param edited:
+        :param edited: Return edited asset if available
         :type edited: bool
         :param key:
         :type key: str
-        :param size:
+        :param size: Asset media size
         :type size: AssetMediaSize
         :param slug:
         :type slug: str
@@ -6909,9 +7018,13 @@ class AssetsApi:
     async def view_asset_with_http_info(
         self,
         id: UUID,
-        edited: Optional[StrictBool] = None,
+        edited: Annotated[
+            Optional[StrictBool], Field(description="Return edited asset if available")
+        ] = None,
         key: Optional[StrictStr] = None,
-        size: Optional[AssetMediaSize] = None,
+        size: Annotated[
+            Optional[AssetMediaSize], Field(description="Asset media size")
+        ] = None,
         slug: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -6931,11 +7044,11 @@ class AssetsApi:
 
         :param id: (required)
         :type id: UUID
-        :param edited:
+        :param edited: Return edited asset if available
         :type edited: bool
         :param key:
         :type key: str
-        :param size:
+        :param size: Asset media size
         :type size: AssetMediaSize
         :param slug:
         :type slug: str
@@ -6989,9 +7102,13 @@ class AssetsApi:
     async def view_asset_without_preload_content(
         self,
         id: UUID,
-        edited: Optional[StrictBool] = None,
+        edited: Annotated[
+            Optional[StrictBool], Field(description="Return edited asset if available")
+        ] = None,
         key: Optional[StrictStr] = None,
-        size: Optional[AssetMediaSize] = None,
+        size: Annotated[
+            Optional[AssetMediaSize], Field(description="Asset media size")
+        ] = None,
         slug: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -7011,11 +7128,11 @@ class AssetsApi:
 
         :param id: (required)
         :type id: UUID
-        :param edited:
+        :param edited: Return edited asset if available
         :type edited: bool
         :param key:
         :type key: str
-        :param size:
+        :param size: Asset media size
         :type size: AssetMediaSize
         :param slug:
         :type slug: str

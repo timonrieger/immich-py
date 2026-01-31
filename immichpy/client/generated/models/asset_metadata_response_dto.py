@@ -28,9 +28,9 @@ class AssetMetadataResponseDto(BaseModel):
     AssetMetadataResponseDto
     """  # noqa: E501
 
-    key: StrictStr
-    updated_at: datetime = Field(alias="updatedAt")
-    value: Dict[str, Any]
+    key: StrictStr = Field(description="Metadata key")
+    updated_at: datetime = Field(description="Last update date", alias="updatedAt")
+    value: Dict[str, Any] = Field(description="Metadata value (object)")
     __properties: ClassVar[List[str]] = ["key", "updatedAt", "value"]
 
     model_config = ConfigDict(

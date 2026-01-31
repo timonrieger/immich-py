@@ -19,7 +19,7 @@ from typing_extensions import Self
 
 class JobName(str, Enum):
     """
-    JobName
+    Job name
     """
 
     """

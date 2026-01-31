@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,10 +27,16 @@ class ServerApkLinksDto(BaseModel):
     ServerApkLinksDto
     """  # noqa: E501
 
-    arm64v8a: StrictStr
-    armeabiv7a: StrictStr
-    universal: StrictStr
-    x86_64: StrictStr
+    arm64v8a: StrictStr = Field(
+        description="APK download link for ARM64 v8a architecture"
+    )
+    armeabiv7a: StrictStr = Field(
+        description="APK download link for ARM EABI v7a architecture"
+    )
+    universal: StrictStr = Field(
+        description="APK download link for universal architecture"
+    )
+    x86_64: StrictStr = Field(description="APK download link for x86_64 architecture")
     __properties: ClassVar[List[str]] = [
         "arm64v8a",
         "armeabiv7a",

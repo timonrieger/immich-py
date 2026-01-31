@@ -27,9 +27,15 @@ class EmailNotificationsResponse(BaseModel):
     EmailNotificationsResponse
     """  # noqa: E501
 
-    album_invite: StrictBool = Field(alias="albumInvite")
-    album_update: StrictBool = Field(alias="albumUpdate")
-    enabled: StrictBool
+    album_invite: StrictBool = Field(
+        description="Whether to receive email notifications for album invites",
+        alias="albumInvite",
+    )
+    album_update: StrictBool = Field(
+        description="Whether to receive email notifications for album updates",
+        alias="albumUpdate",
+    )
+    enabled: StrictBool = Field(description="Whether email notifications are enabled")
     __properties: ClassVar[List[str]] = ["albumInvite", "albumUpdate", "enabled"]
 
     model_config = ConfigDict(

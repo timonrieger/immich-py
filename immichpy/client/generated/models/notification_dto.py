@@ -30,14 +30,20 @@ class NotificationDto(BaseModel):
     NotificationDto
     """  # noqa: E501
 
-    created_at: datetime = Field(alias="createdAt")
-    data: Optional[Dict[str, Any]] = None
-    description: Optional[StrictStr] = None
-    id: StrictStr
-    level: NotificationLevel
-    read_at: Optional[datetime] = Field(default=None, alias="readAt")
-    title: StrictStr
-    type: NotificationType
+    created_at: datetime = Field(description="Creation date", alias="createdAt")
+    data: Optional[Dict[str, Any]] = Field(
+        default=None, description="Additional notification data"
+    )
+    description: Optional[StrictStr] = Field(
+        default=None, description="Notification description"
+    )
+    id: StrictStr = Field(description="Notification ID")
+    level: NotificationLevel = Field(description="Notification level")
+    read_at: Optional[datetime] = Field(
+        default=None, description="Date when notification was read", alias="readAt"
+    )
+    title: StrictStr = Field(description="Notification title")
+    type: NotificationType = Field(description="Notification type")
     __properties: ClassVar[List[str]] = [
         "createdAt",
         "data",
