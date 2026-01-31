@@ -297,6 +297,13 @@ class AsyncClient:
         base_url: str,
         http_client: Optional[ClientSession] = None,
     ) -> None:
+        """
+        :param api_key: The API key to use for authentication.
+        :param access_token: The access token to use for authentication.
+        :param base_url: The base URL of the Immich API.
+        :param http_client: Inject your own connection session if you want to control networking.
+        :param retries: The number of times to retry a HTTP request if it fails. Defaults to None, meaning no retries.
+        """
         self._owns_http_client = http_client is None
         self._injected_http_client = http_client
         self.config = _build_configuration(
