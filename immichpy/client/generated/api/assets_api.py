@@ -5078,7 +5078,7 @@ class AssetsApi:
         device_id: StrictStr,
         file_created_at: datetime,
         file_modified_at: datetime,
-        metadata: List[AssetMetadataUpsertItemDto],
+        metadata: Optional[List[AssetMetadataUpsertItemDto]] = None,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
         x_immich_checksum: Annotated[
@@ -5121,8 +5121,8 @@ class AssetsApi:
         :type file_created_at: datetime
         :param file_modified_at: (required)
         :type file_modified_at: datetime
-        :param metadata: (required)
-        :type metadata: List[AssetMetadataUpsertItemDto]
+        :param metadata:
+        :type metadata: Optional[List[AssetMetadataUpsertItemDto]]
         :param key:
         :type key: str
         :param slug:
@@ -5205,7 +5205,7 @@ class AssetsApi:
         device_id: StrictStr,
         file_created_at: datetime,
         file_modified_at: datetime,
-        metadata: List[AssetMetadataUpsertItemDto],
+        metadata: Optional[List[AssetMetadataUpsertItemDto]] = None,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
         x_immich_checksum: Annotated[
@@ -5248,8 +5248,8 @@ class AssetsApi:
         :type file_created_at: datetime
         :param file_modified_at: (required)
         :type file_modified_at: datetime
-        :param metadata: (required)
-        :type metadata: List[AssetMetadataUpsertItemDto]
+        :param metadata:
+        :type metadata: Optional[List[AssetMetadataUpsertItemDto]]
         :param key:
         :type key: str
         :param slug:
@@ -5332,7 +5332,7 @@ class AssetsApi:
         device_id: StrictStr,
         file_created_at: datetime,
         file_modified_at: datetime,
-        metadata: List[AssetMetadataUpsertItemDto],
+        metadata: Optional[List[AssetMetadataUpsertItemDto]] = None,
         key: Optional[StrictStr] = None,
         slug: Optional[StrictStr] = None,
         x_immich_checksum: Annotated[
@@ -5375,8 +5375,8 @@ class AssetsApi:
         :type file_created_at: datetime
         :param file_modified_at: (required)
         :type file_modified_at: datetime
-        :param metadata: (required)
-        :type metadata: List[AssetMetadataUpsertItemDto]
+        :param metadata:
+        :type metadata: Optional[List[AssetMetadataUpsertItemDto]]
         :param key:
         :type key: str
         :param slug:
