@@ -1,3 +1,8 @@
+⚠️⚠️⚠️
+**This project has been renamed to 'immichpy'. Use 'pip install immichpy' instead of 'pip install immich'.**
+The reason for the rename is that the 'immich' namespace often shadows module and package names. Also this avoids future conflicts with official Immich packages.
+⚠️⚠️⚠️
+
 <h1 align="center">immich-py</h1>
 <h3 align="center">The stable, typed Python API layer for <a href="https://immich.app">Immich</a> automation and integrations.</h3>
 <p align="center">
