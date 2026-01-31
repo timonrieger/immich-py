@@ -85,6 +85,6 @@ def setup(
         type="success",
     )
     print_(
-        f"To verify the config, run [bold]immich config get profiles.{profile}[/bold]",
+        f"To verify the config, run [bold]immichpy config get profiles.{profile}[/bold]",
         type="info",
     )

@@ -176,7 +176,7 @@ class TestCallbackConfigResolution:
 
         assert result.exit_code == 1
         assert "No base URL provided" in result.output
-        assert "immich setup" in result.output
+        assert "immichpy setup" in result.output
 
     @patch("immichpy.cli.main.print_")
     def test_verbose_mode_prints_debug_config(

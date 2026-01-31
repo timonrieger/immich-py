@@ -147,7 +147,7 @@ app.add_typer(
 
 def version_callback(value: bool) -> None:  # pragma: no cover
     if value:
-        print_(f"immich CLI (unofficial) {version('immich')}", type="text")
+        print_(f"immichpy CLI {version('immichpy')}", type="text")
         raise typer.Exit(0)
 
 
@@ -220,7 +220,7 @@ def callback(
         )
         if not config.base_url:
             print_(
-                "No base URL provided. Run 'immich setup' to set up a profile or use '--base-url' to specify a base URL.",
+                "No base URL provided. Run 'immichpy setup' to set up a profile or use '--base-url' to specify a base URL.",
                 type="error",
             )
             raise typer.Exit(code=1)

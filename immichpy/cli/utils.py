@@ -59,7 +59,7 @@ def check_config() -> None:
     """
     if not CONFIG_FILE.exists():
         print_(
-            "Config file does not exist. Run [bold]immich config set[/bold] to create it.",
+            "Config file does not exist. Run [bold]immichpy config set[/bold] to create it.",
             type="error",
         )
         raise typer.Exit(code=1)
@@ -82,7 +82,7 @@ def resolve_client_config(
 
     if profile_explicit and profile not in profiles:
         print_(
-            f"Profile '{profile}' not found. Run immich config set --profile {profile}.",
+            f"Profile '{profile}' not found. Run immichpy config set --profile {profile}.",
             type="error",
         )
         raise typer.Exit(code=1)
